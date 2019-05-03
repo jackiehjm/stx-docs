@@ -237,7 +237,7 @@ user's home directory.
 ::
 
    $ cd $HOME
-   $ git clone https://git.starlingx.io/stx-tools
+   $ git clone https://opendev.org/starlingx/tools
 
 ****************************************
 Installing requirements and dependencies
@@ -1056,5 +1056,6 @@ Following are terms used when describing the AIO-SX deployment and installation.
 .. include:: ../deployment_terminology.rst
    :start-after: incl-common-deployment-terminology:
    :end-before: incl-common-deployment-terminology-end:
+
 
 

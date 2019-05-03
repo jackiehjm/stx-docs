@@ -13,7 +13,7 @@ The following list provides help on choosing the correct deployment guide:
 
    latest/aio_simplex/index
 
-- Following are deployment and installation guides for past StartlingX
+- Following are deployment and installation guides for past StarlingX
   releases that have been archived:
 
   * Currently, no archived deployment guides exist.
@@ -29,7 +29,7 @@ The following list provides help on choosing the correct deployment guide:
          becomes
          :doc:`Libvirt/QEMU </installation_guide/<Year_Month>/installation_libvirt_qemu>`
          3. You might want to change your working directory to /<Year_Month> and use Git to grep for
-         the "current" string (i.e. 'git grep "current" *').  For each applicable occurence, make
+         the "current" string (i.e. 'git grep "current" *').  For each applicable occurrence, make
          the call whether or not to convert the string to the actual archived string "<Year_Month>".
          Be sure to scrub all files for the "current" string in both the "installation_guide"
          and "developer_guide" folders downward.
@@ -41,7 +41,7 @@ The following list provides help on choosing the correct deployment guide:
          becomes
          :doc:`Libvirt/QEMU </installation_guide/current/installation_libvirt_qemu>`
          3. You might want to change your working directory to the "current" directory and use Git to grep for
-         the "latest" string (i.e. 'git grep "latest" *').  For each applicable occurence, make
+         the "latest" string (i.e. 'git grep "latest" *').  For each applicable occurrence, make
          the call whether or not to convert the string to "current".
          Be sure to scrub all files for the "latest" string in both the "installation_guide"
          and "developer_guide" folders downward.
@@ -64,6 +64,7 @@ The following list provides help on choosing the correct deployment guide:
          6. Since you are adding a new version ("latest") *before* it is available
          (e.g. to begin work on new docs), make sure page text still directs user to the
          "current" release and not to the under development version of the manuals.
+
 
 
 
