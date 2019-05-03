@@ -23,6 +23,7 @@ Sections
    contributor/index
    releasenotes/index
    developer_resources/index
+   deploy_install_guides/index
 
 --------
 Projects
