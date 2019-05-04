@@ -148,11 +148,43 @@ Virtual environment
 The recommended minimum requirements for the workstation, hosting the
 virtual machine(s) where StarlingX will be deployed, include:
 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Virtual machine requirements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Virtual machine requirements would depend on what kind of deployment is
+being done, for example an all-in-one Simplex (AIO-SX) deployment, and
+also what virtualization technology is being used. As well, it would
+depend on how long the installation was running, as this example uses
+thin qcow2 disks (which would fill up over time, but initially use much
+less than the virtual size).
+
+For example, in a
+:doc:`Libvirt/QEMU </installation_guide/latest/installation_libvirt_qemu>`
+environment, and an AIO-SX mode, the following are required when using the
+setup scripts and default XML definition file.
+
+- Memory: 18GB RAM
+- Cores: 6
+- Hard Disk: 3 thin qcow2 images
+
+  - Disk0: 600GB virtual size
+
+  - Disk1: 200GB virtual size
+
+  - Disk2: 200GB virtual size
+
+- Network: 4 virtual network adapters
+
+These are only examples but provide a rough idea of what virtual resources
+would be required. It may be possible to reduce these requirements and still
+have a working proof of concept virtual machine environment.
+
 ^^^^^^^^^^^^^^^^^^^^^
 Hardware requirements
 ^^^^^^^^^^^^^^^^^^^^^
 
-A workstation computer with:
+Suggested workstation resources are a computer with:
 
 -  Processor: x86_64 only supported architecture with BIOS enabled
    hardware virtualization extensions
