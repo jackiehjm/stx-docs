@@ -203,7 +203,7 @@ A workstation computer with:
 
 -  QEMU full-system emulation binaries
 
--  stx-tools project
+-  tools project
 
 -  StarlingX ISO image
 
@@ -227,11 +227,11 @@ first need to update the local database list of available packages:
 
    $ sudo apt-get update
 
-*************************
-Install stx-tools project
-*************************
+*********************
+Install tools project
+*********************
 
-Clone the stx-tools project. Usually you will want to clone it under your
+Clone the tools project. Usually you will want to clone it under your
 user's home directory.
 
 ::
@@ -243,11 +243,11 @@ user's home directory.
 Installing requirements and dependencies
 ****************************************
 
-Navigate to the stx-tools installation libvirt directory:
+Navigate to the tools installation libvirt directory:
 
 ::
 
-   $ cd $HOME/stx-tools/deployment/libvirt/
+   $ cd $HOME/tools/deployment/libvirt/
 
 Install the required packages:
 
@@ -315,7 +315,7 @@ e.g.
 Access a virtual server console
 *******************************
 
-The XML for virtual servers in stx-tools repo, deployment/libvirt,
+The XML for virtual servers in the tools repo, deployment/libvirt,
 provides both graphical and text consoles.
 Access the graphical console in virt-manager by right-click on the
 domain (the server) and selecting "Open".
@@ -364,12 +364,12 @@ A bootable USB flash drive containing the StarlingX ISO image.
 Virtual environment
 *******************
 
-Copy the StarlingX ISO Image to the stx-tools deployment libvirt project
+Copy the StarlingX ISO Image to the tools deployment libvirt project
 directory:
 
 ::
 
-   $ cp <starlingx iso image> $HOME/stx-tools/deployment/libvirt/
+   $ cp <starlingx iso image> $HOME/tools/deployment/libvirt/
 
 -------------------
 Set up Controller-0
@@ -1056,6 +1056,8 @@ Following are terms used when describing the AIO-SX deployment and installation.
 .. include:: ../deployment_terminology.rst
    :start-after: incl-common-deployment-terminology:
    :end-before: incl-common-deployment-terminology-end:
+
+
 
 
 
