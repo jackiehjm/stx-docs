@@ -215,16 +215,16 @@ Monitor the initialization. When it is complete, a reboot is initiated
 on the controller-0 host, briefly displays a GNU GRUB screen, and then
 boots automatically into the StarlingX image.
 
-Log into controller-0 as user wrsroot, with password wrsroot. The
-first time you log in as wrsroot, you are required to change your
-password. Enter the current password (wrsroot):
+Log into controller-0 as user sysadmin, with password sysadmin. The
+first time you log in as sysadmin, you are required to change your
+password. Enter the current password (sysadmin):
 
 ::
 
-   Changing password for wrsroot.
+   Changing password for sysadmin.
    (current) UNIX Password:
 
-Enter a new password for the wrsroot account:
+Enter a new password for the sysadmin account:
 
 ::
 
@@ -313,8 +313,8 @@ Set up one provider network of the vlan type, named providernet-a:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ neutron providernet-create providernet-a --type=vlan
-   [wrsroot@controller-0 ~(keystone_admin)]$ neutron providernet-range-create --name providernet-a-range1 --range 100-400 providernet-a
+   [sysadmin@controller-0 ~(keystone_admin)]$ neutron providernet-create providernet-a --type=vlan
+   [sysadmin@controller-0 ~(keystone_admin)]$ neutron providernet-range-create --name providernet-a-range1 --range 100-400 providernet-a
 
 *********************************************
 Adding a Ceph storage backend at installation
@@ -324,7 +324,7 @@ Add CEPH Storage backend:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system storage-backend-add ceph -s cinder,glance,swift,nova
+   [sysadmin@controller-0 ~(keystone_admin)]$ system storage-backend-add ceph -s cinder,glance,swift,nova
 
    WARNING : THIS OPERATION IS NOT REVERSIBLE AND CANNOT BE CANCELLED.
 
@@ -334,7 +334,7 @@ Add CEPH Storage backend:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system storage-backend-add ceph -s cinder,glance,swift,nova --confirmed
+   [sysadmin@controller-0 ~(keystone_admin)]$ system storage-backend-add ceph -s cinder,glance,swift,nova --confirmed
 
    System configuration has changed.
    Please follow the administrator guide to complete configuring the system.
@@ -354,7 +354,7 @@ Confirm CEPH storage is configured:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system storage-backend-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system storage-backend-list
    +--------------------------------------+------------+---------+------------+-------------------+-----------+...
    | uuid                                 | name       | backend | state      | task              | services  |...
    +--------------------------------------+------------+---------+------------+-------------------+-----------+...
@@ -375,7 +375,7 @@ hosts. Use the system host-unlock command:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-unlock controller-0
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-unlock controller-0
 
 The host is rebooted. During the reboot, the command line is unavailable, and
 any ssh connections are dropped. To monitor the progress of the reboot, use the
@@ -395,7 +395,7 @@ Verify that the StarlingX controller services are running:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system service-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system service-list
    +-----+-------------------------------+--------------+----------------+
    | id  | service_name                  | hostname     | state          |
    +-----+-------------------------------+--------------+----------------+
@@ -409,7 +409,7 @@ Verify that controller-0 is unlocked, enabled, and available:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
    +----+--------------+-------------+----------------+-------------+--------------+
    | id | hostname     | personality | administrative | operational | availability |
    +----+--------------+-------------+----------------+-------------+--------------+
@@ -424,7 +424,7 @@ List the controller file systems with status and current sizes:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system controllerfs-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system controllerfs-list
    +--------------------------------------+-----------------+------+--------------------+------------+-------+
    | UUID                                 | FS Name         | Size | Logical Volume     | Replicated | State |
    |                                      |                 | in   |                    |            |       |
@@ -443,7 +443,7 @@ Modify filesystem sizes
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system controllerfs-modify backup=42 database=12 img-conversions=12
+   [sysadmin@controller-0 ~(keystone_admin)]$ system controllerfs-modify backup=42 database=12 img-conversions=12
 
 -------------------------------------------------------
 Installing controller-1 / storage hosts / compute hosts
@@ -481,7 +481,7 @@ UNKNOWN host shows up in table:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
    +----+--------------+-------------+----------------+-------------+--------------+
    | id | hostname     | personality | administrative | operational | availability |
    +----+--------------+-------------+----------------+-------------+--------------+
@@ -493,7 +493,7 @@ Use the system host-add to update host personality attribute:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-add -n <controller_name> -p <personality> -m <mac address>
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-add -n <controller_name> -p <personality> -m <mac address>
 
 **REMARK:** use the Mac address for the specific network interface you
 are going to be connected. e.g. OAM network interface for controller-1
@@ -513,7 +513,7 @@ shown in the install_state field.
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-show <host> | grep install
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-show <host> | grep install
    | install_output      | text                                 |
    | install_state       | booting                              |
    | install_state_info  | None                                 |
@@ -532,7 +532,7 @@ controller-0 list the hosts:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
    +----+--------------+-------------+----------------+-------------+--------------+
    | id | hostname     | personality | administrative | operational | availability |
    +----+--------------+-------------+----------------+-------------+--------------+
@@ -552,7 +552,7 @@ On controller-0, list hosts:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
    +----+--------------+-------------+----------------+-------------+--------------+
    | id | hostname     | personality | administrative | operational | availability |
    +----+--------------+-------------+----------------+-------------+--------------+
@@ -570,13 +570,13 @@ been discovered:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-port-list controller-1
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-port-list controller-1
 
 Provision the OAM interface for controller-1:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-if-modify -n <oam interface> -c platform --networks oam controller-1 <oam interface>
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-if-modify -n <oam interface> -c platform --networks oam controller-1 <oam interface>
 
 **********************
 Unlocking controller-1
@@ -586,7 +586,7 @@ Unlock controller-1:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-unlock controller-1
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-unlock controller-1
 
 Wait while the controller-1 is rebooted. Up to 10 minutes may be
 required for a reboot, depending on hardware.
@@ -601,7 +601,7 @@ confirm status.
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
    +----+--------------+-------------+----------------+-------------+--------------+
    | id | hostname     | personality | administrative | operational | availability |
    +----+--------------+-------------+----------------+-------------+--------------+
@@ -621,7 +621,7 @@ Available physical disks in storage-N:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-disk-list storage-0
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-list storage-0
    +--------------------------------------+-----------+---------+---------+-------+------------+--------------+...
    | uuid                                 | device_no | device_ | device_ | size_ | available_ | rpm          |...
    |                                      | de        | num     | type    | gib   | gib        |              |...
@@ -641,7 +641,7 @@ Available storage tiers in storage-N:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system storage-tier-list ceph_cluster
+   [sysadmin@controller-0 ~(keystone_admin)]$ system storage-tier-list ceph_cluster
    +--------------------------------------+---------+--------+--------------------------------------+
    | uuid                                 | name    | status | backend_using                        |
    +--------------------------------------+---------+--------+--------------------------------------+
@@ -654,7 +654,7 @@ controller-1, and storage-0.
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-stor-add storage-0 c7cc08e6-ff18-4229-a79d-a04187de7b8d
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-stor-add storage-0 c7cc08e6-ff18-4229-a79d-a04187de7b8d
    +------------------+--------------------------------------------------+
    | Property         | Value                                            |
    +------------------+--------------------------------------------------+
@@ -680,7 +680,7 @@ List the OSDs:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-stor-list storage-0
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-stor-list storage-0
    +--------------------------------------+----------+-------+--------------+--------------------------------------+
    | uuid                                 | function | osdid | capabilities | idisk_uuid                           |
    +--------------------------------------+----------+-------+--------------+--------------------------------------+
@@ -691,7 +691,7 @@ Unlock storage-N:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-unlock storage-0
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-unlock storage-0
 
 **REMARK:** Before you continue, repeat Provisioning Storage steps on
 remaining storage nodes.
@@ -723,13 +723,13 @@ pci-addresses that have been discovered:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-port-list compute-0
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-port-list compute-0
 
 Provision the data interface for compute:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-if-modify -p providernet-a -c data compute-0 eth1000
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-if-modify -p providernet-a -c data compute-0 eth1000
 
 ***************************
 VSwitch virtual environment
@@ -743,7 +743,7 @@ vswitch cores to 1:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-cpu-modify compute-0 -f vswitch -p0 1
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-cpu-modify compute-0 -f vswitch -p0 1
    +--------------------------------------+-------+-----------+-------+--------+...
    | uuid                                 | log_c | processor | phy_c | thread |...
    |                                      | ore   |           | ore   |        |...
@@ -763,7 +763,7 @@ the physical disk(s) to be used for nova local:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-disk-list compute-0
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-list compute-0
    +--------------------------------------+-----------+---------+---------+-------+------------+...
    | uuid                                 | device_no | device_ | device_ | size_ | available_ |...
    |                                      | de        | num     | type    | gib   | gib        |...
@@ -776,7 +776,7 @@ Create the 'nova-local' local volume group:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-lvg-add compute-0 nova-local
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-lvg-add compute-0 nova-local
    +-----------------+-------------------------------------------------------------------+
    | Property        | Value                                                             |
    +-----------------+-------------------------------------------------------------------+
@@ -802,7 +802,7 @@ physical disk:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-pv-add compute-0 nova-local a639914b-23a9-4071-9f25-a5f1960846cc
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-pv-add compute-0 nova-local a639914b-23a9-4071-9f25-a5f1960846cc
    +--------------------------+--------------------------------------------+
    | Property                 | Value                                      |
    +--------------------------+--------------------------------------------+
@@ -828,7 +828,7 @@ volumes:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-lvg-modify -b remote compute-0 nova-local
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-lvg-modify -b remote compute-0 nova-local
 
 ************************
 Unlocking a compute host
@@ -839,7 +839,7 @@ compute-N:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-unlock compute-0
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-unlock compute-0
 
 Wait while the compute-N is rebooted. Up to 10 minutes may be required
 for a reboot, depending on hardware. The host is rebooted, and its
@@ -858,7 +858,7 @@ unlocked, enabled, and available:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
    +----+--------------+-------------+----------------+-------------+--------------+
    | id | hostname     | personality | administrative | operational | availability |
    +----+--------------+-------------+----------------+-------------+--------------+
@@ -876,7 +876,7 @@ Checking StarlingX CEPH health
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ ceph -s
+   [sysadmin@controller-0 ~(keystone_admin)]$ ceph -s
        cluster e14ebfd6-5030-4592-91c3-7e6146b3c910
         health HEALTH_OK
         monmap e1: 3 mons at {controller-0=192.168.204.3:6789/0,controller-1=192.168.204.4:6789/0,storage-0=192.168.204.204:6789/0}

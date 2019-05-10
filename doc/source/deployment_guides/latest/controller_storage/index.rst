@@ -206,16 +206,16 @@ Monitor the initialization. When it is complete, a reboot is initiated
 on the controller-0 host, briefly displays a GNU GRUB screen, and then
 boots automatically into the StarlingX image.
 
-Log into controller-0 as user wrsroot, with password wrsroot. The
-first time you log in as wrsroot, you are required to change your
-password. Enter the current password (wrsroot):
+Log into controller-0 as user sysadmin, with password sysadmin. The
+first time you log in as sysadmin, you are required to change your
+password. Enter the current password (sysadmin):
 
 ::
 
-   Changing password for wrsroot.
+   Changing password for sysadmin.
    (current) UNIX Password:
 
-Enter a new password for the wrsroot account:
+Enter a new password for the sysadmin account:
 
 ::
 
@@ -304,8 +304,8 @@ Set up one provider network of the vlan type, named providernet-a:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ neutron providernet-create providernet-a --type=vlan
-   [wrsroot@controller-0 ~(keystone_admin)]$ neutron providernet-range-create --name providernet-a-range1 --range 100-400 providernet-a
+   [sysadmin@controller-0 ~(keystone_admin)]$ neutron providernet-create providernet-a --type=vlan
+   [sysadmin@controller-0 ~(keystone_admin)]$ neutron providernet-range-create --name providernet-a-range1 --range 100-400 providernet-a
 
 *************************************
 Configuring Cinder on controller disk
@@ -316,7 +316,7 @@ physical disk:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-disk-list controller-0
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-list controller-0
    +--------------------------------------+-----------+---------+---------+-------+------------+--------------+...
    | uuid                                 | device_no | device_ | device_ | size_ | available_ | rpm          |...
    |                                      | de        | num     | type    | gib   | gib        |              |...
@@ -329,7 +329,7 @@ Create the 'cinder-volumes' local volume group:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-lvg-add controller-0 cinder-volumes
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-lvg-add controller-0 cinder-volumes
    +-----------------+--------------------------------------+
    | Property        | Value                                |
    +-----------------+--------------------------------------+
@@ -354,7 +354,7 @@ Create a disk partition to add to the volume group:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-disk-partition-add controller-0 89694799-0dd8-4532-8636-c0d8aabfe215 199 -t lvm_phys_vol
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-partition-add controller-0 89694799-0dd8-4532-8636-c0d8aabfe215 199 -t lvm_phys_vol
    +-------------+--------------------------------------------------+
    | Property    | Value                                            |
    +-------------+--------------------------------------------------+
@@ -378,7 +378,7 @@ Wait for the new partition to be created (i.e. status=Ready):
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-disk-partition-list controller-0 --disk 89694799-0dd8-4532-8636-c0d8aabfe215
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-partition-list controller-0 --disk 89694799-0dd8-4532-8636-c0d8aabfe215
    +--------------------------------------+...+------------+...+---------------------+----------+--------+
    | uuid                                 |...| device_nod |...| type_name           | size_mib | status |
    |                                      |...| e          |...|                     |          |        |
@@ -392,7 +392,7 @@ Add the partition to the volume group:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-pv-add controller-0 cinder-volumes 9ba2d76a-6ae2-4bfa-ad48-57b62d102e80
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-pv-add controller-0 cinder-volumes 9ba2d76a-6ae2-4bfa-ad48-57b62d102e80
    +--------------------------+--------------------------------------------------+
    | Property                 | Value                                            |
    +--------------------------+--------------------------------------------------+
@@ -417,14 +417,14 @@ Enable LVM backend:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system storage-backend-add lvm -s cinder --confirmed
+   [sysadmin@controller-0 ~(keystone_admin)]$ system storage-backend-add lvm -s cinder --confirmed
 
 Wait for the storage backend to leave "configuring" state. Confirm LVM
 backend storage is configured:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system storage-backend-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system storage-backend-list
    +--------------------------------------+------------+---------+------------+------+----------+...
    | uuid                                 | name       | backend | state      | task | services |...
    +--------------------------------------+------------+---------+------------+------+----------+...
@@ -442,7 +442,7 @@ privileges. Use the system host-unlock command:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-unlock controller-0
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-unlock controller-0
 
 The host is rebooted. During the reboot, the command line is
 unavailable, and any ssh connections are dropped. To monitor the
@@ -462,7 +462,7 @@ Verify that the StarlingX controller services are running:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system service-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system service-list
    +-----+-------------------------------+--------------+----------------+
    | id  | service_name                  | hostname     | state          |
    +-----+-------------------------------+--------------+----------------+
@@ -476,7 +476,7 @@ Verify that controller-0 is unlocked, enabled, and available:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
    +----+--------------+-------------+----------------+-------------+--------------+
    | id | hostname     | personality | administrative | operational | availability |
    +----+--------------+-------------+----------------+-------------+--------------+
@@ -519,7 +519,7 @@ UNKNOWN host shows up in table:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
    +----+--------------+-------------+----------------+-------------+--------------+
    | id | hostname     | personality | administrative | operational | availability |
    +----+--------------+-------------+----------------+-------------+--------------+
@@ -531,13 +531,13 @@ Use the system host-update to update host personality attribute:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-update 2 personality=controller hostname=controller-1
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-update 2 personality=controller hostname=controller-1
 
 Or for compute-0:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-update 3 personality=compute hostname=compute-0
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-update 3 personality=compute hostname=compute-0
 
 See also: 'system help host-update'.
 
@@ -558,7 +558,7 @@ install_state field:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-show <host> | grep install
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-show <host> | grep install
    | install_output      | text                                 |
    | install_state       | booting                              |
    | install_state_info  | None                                 |
@@ -576,7 +576,7 @@ list the hosts:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
    +----+--------------+-------------+----------------+-------------+--------------+
    | id | hostname     | personality | administrative | operational | availability |
    +----+--------------+-------------+----------------+-------------+--------------+
@@ -594,7 +594,7 @@ On controller-0, list hosts:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
    +----+--------------+-------------+----------------+-------------+--------------+
    | id | hostname     | personality | administrative | operational | availability |
    +----+--------------+-------------+----------------+-------------+--------------+
@@ -612,13 +612,13 @@ been discovered:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-port-list controller-1
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-port-list controller-1
 
 Provision the OAM interface for controller-1:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-if-modify -n <oam interface> -c platform --networks oam controller-1 <oam interface>
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-if-modify -n <oam interface> -c platform --networks oam controller-1 <oam interface>
 
 ************************************
 Provisioning storage on controller-1
@@ -629,7 +629,7 @@ physical disk:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-disk-list controller-1
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-list controller-1
    +--------------------------------------+-----------+---------+---------+-------+------------+
    | uuid                                 | device_no | device_ | device_ | size_ | available_ |
    |                                      | de        | num     | type    | gib   | gib        |
@@ -642,7 +642,7 @@ Assign Cinder storage to the physical disk:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-lvg-add controller-1 cinder-volumes
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-lvg-add controller-1 cinder-volumes
    +-----------------+--------------------------------------+
    | Property        | Value                                |
    +-----------------+--------------------------------------+
@@ -668,7 +668,7 @@ physical disk:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-disk-partition-add controller-1 70b83394-968e-4f0d-8a99-7985cd282a21 199 -t lvm_phys_vol
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-partition-add controller-1 70b83394-968e-4f0d-8a99-7985cd282a21 199 -t lvm_phys_vol
    +-------------+--------------------------------------------------+
    | Property    | Value                                            |
    +-------------+--------------------------------------------------+
@@ -692,7 +692,7 @@ Wait for the new partition to be created (i.e. status=Ready):
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-disk-partition-list controller-1 --disk 70b83394-968e-4f0d-8a99-7985cd282a21
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-partition-list controller-1 --disk 70b83394-968e-4f0d-8a99-7985cd282a21
    +--------------------------------------+...+------------+...+-------+--------+----------------------+
    | uuid                                 |...| device_nod | ... | size_g | status               |
    |                                      |...| e          | ... | ib     |                      |
@@ -706,7 +706,7 @@ Add the partition to the volume group:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-pv-add controller-1 cinder-volumes 16a1c5cb-620c-47a3-be4b-022eafd122ee
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-pv-add controller-1 cinder-volumes 16a1c5cb-620c-47a3-be4b-022eafd122ee
    +--------------------------+--------------------------------------------------+
    | Property                 | Value                                            |
    +--------------------------+--------------------------------------------------+
@@ -735,7 +735,7 @@ Unlock controller-1:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-unlock controller-1
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-unlock controller-1
 
 Wait while the controller-1 is rebooted. Up to 10 minutes may be required for a
 reboot, depending on hardware.
@@ -749,7 +749,7 @@ virtual disks. Also, the management network is expected to have link capacity of
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
    +----+--------------+-------------+----------------+-------------+--------------+
    | id | hostname     | personality | administrative | operational | availability |
    +----+--------------+-------------+----------------+-------------+--------------+
@@ -784,13 +784,13 @@ pci-addresses that have been discovered:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-port-list compute-0
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-port-list compute-0
 
 Provision the data interface for compute:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-if-modify -p providernet-a -c data compute-0 eth1000
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-if-modify -p providernet-a -c data compute-0 eth1000
 
 ***************************
 VSwitch virtual environment
@@ -804,7 +804,7 @@ environment. Therefore run the following command to reduce the vswitch cores to
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-cpu-modify compute-0 -f vswitch -p0 1
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-cpu-modify compute-0 -f vswitch -p0 1
    +--------------------------------------+-------+-----------+-------+--------+...
    | uuid                                 | log_c | processor | phy_c | thread |...
    |                                      | ore   |           | ore   |        |...
@@ -824,7 +824,7 @@ the physical disk(s) to be used for nova local:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-disk-list compute-0
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-list compute-0
    +--------------------------------------+-----------+---------+---------+-------+------------+...
    | uuid                                 | device_no | device_ | device_ | size_ | available_ |...
    |                                      | de        | num     | type    | gib   | gib        |...
@@ -837,7 +837,7 @@ Create the 'nova-local' local volume group:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-lvg-add compute-0 nova-local
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-lvg-add compute-0 nova-local
    +-----------------+-------------------------------------------------------------------+
    | Property        | Value                                                             |
    +-----------------+-------------------------------------------------------------------+
@@ -863,7 +863,7 @@ physical disk:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-pv-add compute-0 nova-local 5ad61bd1-795a-4a76-96ce-39433ef55ca5
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-pv-add compute-0 nova-local 5ad61bd1-795a-4a76-96ce-39433ef55ca5
    +--------------------------+--------------------------------------------+
    | Property                 | Value                                      |
    +--------------------------+--------------------------------------------+
@@ -889,7 +889,7 @@ nova-local:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-lvg-modify -b image -s 10240 compute-0 nova-local
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-lvg-modify -b image -s 10240 compute-0 nova-local
    +-----------------+-------------------------------------------------------------------+
    | Property        | Value                                                             |
    +-----------------+-------------------------------------------------------------------+
@@ -918,7 +918,7 @@ On controller-0, use the system host-unlock command to unlock the compute node:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-unlock compute-0
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-unlock compute-0
 
 Wait while the compute node is rebooted. Up to 10 minutes may be
 required for a reboot, depending on hardware. The host is rebooted, and
@@ -938,7 +938,7 @@ unlocked, enabled, and available:
 
 ::
 
-   [wrsroot@controller-0 ~(keystone_admin)]$ system host-list
+   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
    +----+--------------+-------------+----------------+-------------+--------------+
    | id | hostname     | personality | administrative | operational | availability |
    +----+--------------+-------------+----------------+-------------+--------------+
