@@ -12,9 +12,6 @@ All-in-one simplex R2.0
 Introduction
 ------------
 
-
-**NOTE -----  STUFF FROM THE AIO-SX WIKI DEPLOYMENT OPTION OVERVIEW (THE FIGURE)**
-
 The All-In-One Simplex (AIO-SX) deployment option provides all three cloud
 functions (controller, compute, and storage) on a single physical server.
 With these cloud functions, multiple application types can be deployed and
@@ -50,8 +47,6 @@ deployment.
 Installation Options
 --------------------
 
-**NOTE -----  STUFF FROM THE UNIVERSAL INSTALLATION MANUAL**
-
 StarlingX may be installed in:
 
 -  **Bare metal**: Real deployments of StarlingX are only supported on
@@ -67,8 +62,6 @@ Furthermore, StarlingX installed in virtual environments has a single option:
 ------------
 Requirements
 ------------
-
-**NOTE -----  FROM OLD AIO-SX DEPLOYMENT GUIDE**
 
 **********
 Bare metal
@@ -137,8 +130,6 @@ All-In-One Simplex will be deployed are:
 NVMe drive as boot drive
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-**NOTE -----  NAT DRIVE FROM THE OLD INSTALLATION GUIDE**
-
 To use a Non-Volatile Memory Express (NVMe) drive as the boot drive for any of
 your nodes, you must configure your host and adjust kernel parameters during
 installation:
@@ -162,8 +153,6 @@ installation:
 *******************
 Virtual environment
 *******************
-
-**NOTE -----  VIRTUAL MACHINE REQUIREMENTS FROM THE OLD UNIVERSAL INSTALL MANUAL**
 
 The recommended minimum requirements for the workstation, hosting the
 virtual machine(s) where StarlingX will be deployed, include:
@@ -207,11 +196,9 @@ A workstation computer with:
 
 -  StarlingX ISO image
 
-----------
-Setting up
-----------
-
-**NOTE -----  VIRTUAL ENVIRONMENT SETUP FROM THE OLD INSTALL GUIDE**
+--------------------------
+Setting up the workstation
+--------------------------
 
 This section describes how to set up the workstation computer which will
 host the virtual machine(s) where StarlingX will be deployed.
@@ -267,12 +254,6 @@ Unload firewall and disable firewall on boot:
    Firewall stopped and disabled on system startup
    $ sudo ufw status
    Status: inactive
-
-----------
-More setup
-----------
-
-**NOTE -----  VIRTUAL ENVIRONMENT SETUP FROM THE OLD DEPLOYMENT GUIDE**
 
 **************************
 Prepare the virtual server
@@ -339,13 +320,12 @@ to do this.
 Getting or building the StarlingX ISO image
 -------------------------------------------
 
-**NOTE -----  GETTING THE IMAGE FROM THE OLD INSTALLATION GUIDE**
+The following sub-sections describe how to get or build the
+StarlingX ISO image.
 
 *********************
 Building the Software
 *********************
-
-**NOTE -----  BUILDING THE SOFTWARE FOR VIRTUAL ENVIRONMENT FROM AIO-SX WIKI**
 
 Follow the standard build process in the `StarlingX Developer
 Guide <https://docs.starlingx.io/developer_guide/index.html>`__.
@@ -375,10 +355,6 @@ directory:
 Set up Controller-0
 -------------------
 
-**NOTE -----  STUFF FROM STARLINGX WIKI REGARDING CONTAINERS**
-
-**NOTE ---- Text from old deployment guide with some general cleanup**
-
 Installing controller-0 involves initializing a host with software
 and then applying a bootstrap configuration from the command line.
 The configured bootstrapped host becomes controller-0.
@@ -392,7 +368,7 @@ Following is the general procedure:
 
 3. Power on the server.
 
-4. Configure the controller using the config_controller script.
+4. Configure the controller by running the Ansible bootstrap playbook.
 
 *************************
 Initializing controller-0
@@ -430,17 +406,17 @@ Follow this procedure to initialize the controller:
    on the controller-0 host and briefly displays a GNU GRUB screen after
    which the reboot automatically continues into the StarlingX image.
 
-5. Log into controller-0 as user "wrsroot" and use "wrsroot" as the password.
-   The first time you log in as "wrsroot", you are required to change your
+5. Log into controller-0 as user "sysadmin" and use "sysadmin" as the password.
+   The first time you log in as "sysadmin", you are required to change your
    password:
 
    ::
 
-      Changing password for wrsroot.
-      (current) UNIX Password: wrsroot
+      Changing password for sysadmin.
+      (current) UNIX Password: sysadmin
 
 
-6. Enter a new password for the "wrsroot" account and confirm the change.
+6. Enter a new password for the "sysadmin" account and confirm the change.
    Once you change the password, controller-0 is initialized with StarlingX
    and is ready for configuration.
 
@@ -449,107 +425,147 @@ Follow this procedure to initialize the controller:
 Configuring controller-0
 ************************
 
-This section describes how to interactively configure controller-0
-to bootstrap the system with minimal critical data.
+This section describes how to configure controller-0 for local
+bootstrap in VirtualBox by running the Ansible bootstrap playbook.
 
-.. note:: Except where noted, you must execute all the commands from a console on
-          the host, which is assumed to be controller-0.
+.. note::  - For ease of use in development and controlled test environments,
+             you can provide passwords by specifying from the command line
+             an override file that is an unencrypted text file.
 
-You use the config_controller script to interactively configure the
-controller. When you run this script, it presents a series of prompts
-used for initial configuration of StarlingX. When running the script,
-keep the following in mind:
+           - The sysadmin password is used for SSH authentication.
 
-- For the virtual environment, you can accept all the default values
-  that appear after the "system date and time" prompt.
+           - In production environments, you should store sensitive
+             information in the Ansible vault secret file and use
+             SSH keys rather than passwords for authentication.
 
-- For a physical deployment, answer the bootstrap configuration
-  prompts with answers applicable to your particular physical setup.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Location of the controller bootstrap playbook
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- The script configures the first controller in the StarlingX
-  cluster as controller-0.
+All StarlingX playbooks are located under the directory
+/usr/share/ansible/stx-ansible/playbooks.
+Consequently, the controller bootstrap playbook is located
+at: /usr/share/ansible/stx-ansible/playbooks/bootstrap/.
 
-- The prompts are grouped according to configuration areas.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Default bootstrap playbook settings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Start the config_controller script using the following command:
+The default inventory file, which resides in Ansible configuration directory
+(i.e. /etc/ansible/hosts), contains one single host - the localhost.
+You can override this file using a custom hosts file and the "-i option".
+Doing so makes the file available for remote play through the Ansible
+playbook.
+
+The /usr/share/ansible/stx-ansible/playbooks/bootstrap/host_vars/default.yml
+file specifies the default configuration parameters.
+You can overwrite these parameters in two ways:
+
+- Using either the --extra-vars or -e options at the command line.
+
+- Using an override file.
+
+Using the override file is the preferred option when multiple
+parameters exist that need to be overwritten.
+
+By default Ansible looks for and imports user override files
+in the sysadmin home directory ($HOME).
+If you want to place these files in a different location, you
+must specify the location by using the -e option
+(e.g. -e "override_files_dir=<custom-override-dir>").
+
+The override file must conform to the following naming convention:
+::
+
+   <inventory_hostname>.yml
+
+An example filename is localhost.yml.
+
+^^^^^^^^^^^^^^
+Password types
+^^^^^^^^^^^^^^
+
+For local bootstrap, two types of passwords exist:
+
+- **ansible_become_pass**: a Sudo password to run tasks that require
+  escalated privileges.
+  Most bootstrap tasks must be run as root.
+  Since the playbook is run by the sysadmin user,
+  this is the sysadmin password.
+
+- **admin_password**: A password used in when system commands, such as
+  a Horizon login, are executed.
+
+For remote bootstrap, if an automatic SSH login that uses an SSH key has not been set up between the Ansible control node and the target controller, another password is required:
+
+- **ansible_ssh_pass**: The password used to log into the target host(s).
+
+For all the passwords mentioned in this section, the defaults are
+set to "St8rlingX*".
+
+^^^^^^^^^^^^^^^^^^^^
+Running the playbook
+^^^^^^^^^^^^^^^^^^^^
+
+To run the playbook, you need to first set up external connectivity.
+This section describes how to set up external connectivity and
+then provides two examples showing how to bootstrap controller-0 by
+running the playbook.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Setting up external connectivity
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Use these commands to set up external connectivity:
 
 ::
 
-   sudo config_controller
+   sudo su
+   export CONTROLLER0_OAM_CIDR=10.10.10.3/24
+   export DEFAULT_OAM_GATEWAY=10.10.10.1
+   ifconfig enp0s3 $CONTROLLER0_OAM_CIDR
+   ip route add default via $DEFAULT_OAM_GATEWAY dev enp0s3
 
+~~~~~~~~~~~~~~~~~~~~~~
+Bootstrap controller-0
+~~~~~~~~~~~~~~~~~~~~~~
 
-While running the script, use the following for the prompts:
-
--  System mode: **simplex**
-
--  External OAM address: **10.10.10.3**
-
--  If you do not have direct access to the Google DNS nameserver(s)
-   8.8.8.8 , 8.8.4.4, you configure that when prompted.
-   Press Enter to choose the default, or type a new entry.
-
--  If you do not have direct access to the public Docker registry
-   (https://hub.docker.com/u/starlingx) and instead use a proxy for
-   internet access, you must add proxy information when
-   prompted. (Storyboard 2004710 was merged on Jan 30, 2019).
-
-Following is an example of the configuration process:
+Following is an example that runs the local playbook using all the defaults,
+including passwords being "St8rlingX*":
 
 ::
 
-  System Configuration
-  --------------------
-  Time Zone: UTC
-  System mode: simplex
+   ansible-playbook /usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml
 
-  PXEBoot Network Configuration
-  -----------------------------
-  Separate PXEBoot network not configured
-  PXEBoot Controller floating hostname: pxecontroller
+This next example runs the local playbook with some custom parameters
+that include admin and sysadmin passwords:
 
-  Management Network Configuration
-  --------------------------------
-  Management interface name: lo
-  Management interface: lo
-  Management interface MTU: 1500
-  Management subnet: 192.168.204.0/28
-  Controller floating address: 192.168.204.2
-  Controller 0 address: 192.168.204.3
-  Controller 1 address: 192.168.204.4
-  NFS Management Address 1: 192.168.204.5
-  NFS Management Address 2: 192.168.204.6
-  Controller floating hostname: controller
-  Controller hostname prefix: controller-
-  OAM Controller floating hostname: oamcontroller
-  Dynamic IP address allocation is selected
-  Management multicast subnet: 239.1.1.0/28
+::
 
-  Infrastructure Network Configuration
-  ------------------------------------
-  Infrastructure interface not configured
+   Create a localhost.yml file under /home/sysadmin with the following content:
+   system_mode: duplex
+   external_oam_floating_ip: <custom-external-oam-floating-ip>
+   admin_password: <custom-admin-password>
+   ansible_become_pass: <custom-sysadmin-password>
 
-  Kubernetes Cluster Network Configuration
-  ----------------------------------------
-  Cluster pod network subnet: 172.16.0.0/16
-  Cluster service network subnet: 10.96.0.0/12
-  Cluster host interface name: lo
-  Cluster host interface: lo
-  Cluster host interface MTU: 1500
-  Cluster host subnet: 192.168.206.0/24
+   Play bootstrap playbook:
+   ansible-playbook /usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml
 
-  External OAM Network Configuration
-  ----------------------------------
-  External OAM interface name: enp0s3
-  External OAM interface: enp0s3
-  External OAM interface MTU: 1500
-  External OAM subnet: 10.10.10.0/24
-  External OAM gateway address: 10.10.10.1
-  External OAM address: 10.10.10.3
+This final example bootstraps controller-0 by running
+the local playbook and using a custom sysadmin and admin password
+specified in the command line:
 
-  DNS Configuration
-  -----------------
-  Nameserver 1: 8.8.8.8
-  Nameserver 2: 8.8.4.4
+::
+
+   ansible-playbook /usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml -e "ansible_become_pass=<custom-sysadmin-password> admin_password=<custom-admin-password>"
+
+.. note:: Ansible does not currently support specifying playbook
+          search paths.
+          Consequently, you must specify the full path to the bootstrap
+          playbook in the command line unless you are already in the
+          bootstrap playbook directory.
+          In the near future, a command alias called "bootstrap-controller"
+          will be provided for ease of use.
 
 *************************
 Provisioning the platform
@@ -558,6 +574,16 @@ Provisioning the platform
 The following subsections describe how to provision the
 server being used as controller-0.
 Provisioning makes many services available.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Configure OAM for controller-0 (Ansible bootstrap method only)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use this system command to configure OAM for controller-0:
+
+::
+
+   system host-if-modify controller-0 enp0s3 -c platform --networks oam
 
 ^^^^^^^^^^^^^^^^^^
 Set the NTP server
@@ -725,16 +751,6 @@ Use the following to configure Ceph for Controller-0:
    echo ">>> ceph osd tree"
    ceph osd tree
 
-^^^^^^^^^^^^^^^^^^^^^^^^^
-Set Ceph pool replication
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Use the following to set Ceph pool replication:
-
-::
-
-   ceph osd pool ls | xargs -i ceph osd pool set {} size 1
-
 ^^^^^^^^^^^^^^^^^^^^^
 Unlock the controller
 ^^^^^^^^^^^^^^^^^^^^^
@@ -746,7 +762,21 @@ controller-1. Use the system host-unlock command:
 
    system host-unlock controller-0
 
-After the host unlocks, test that the ceph cluster is operational
+^^^^^^^^^^^^^^^^^^^^^^^^^
+Set Ceph pool replication
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Use the following to set Ceph pool replication:
+
+::
+
+   ceph osd pool ls | xargs -i ceph osd pool set {} size 1
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Test for Ceph cluster operation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Now, test that the ceph cluster is operational:
 
 ::
 
@@ -824,22 +854,22 @@ Alternatively, you can monitor progress by tailing the Armada execution log:
 
 ::
 
-   sudo docker exec armada_service tailf stx-openstack-apply.log
+   sudo docker exec armada_service tail -f stx-openstack-apply.log
 
 
-****************************
-Update Ceph pool replication
-****************************
+.. ****************************
+   Update Ceph pool replication
+   ****************************
 
-With the application applied, the containerized openstack services are
-now running.
+   With the application applied, the containerized openstack services are
+   now running.
 
-In an AIO SX environment, you must set Ceph pool replication for the
-new pools created when the application was applied:
+   In an AIO SX environment, you must set Ceph pool replication for the
+   new pools created when the application was applied:
 
-::
+   ::
 
-   ceph osd pool ls | xargs -i ceph osd pool set {} size 1
+      ceph osd pool ls | xargs -i ceph osd pool set {} size 1
 
 ----------------------------
 Verify the cluster endpoints
@@ -1043,8 +1073,6 @@ Deployment and installation terminology
 
 Following are terms used when describing the AIO-SX deployment and installation.
 
-**NOTE -----  TERMINOLOGY INSERT**
-
 .. include:: ../deployment_terminology.rst
    :start-after: incl-simplex-deployment-terminology:
    :end-before: incl-simplex-deployment-terminology-end:
@@ -1056,6 +1084,11 @@ Following are terms used when describing the AIO-SX deployment and installation.
 .. include:: ../deployment_terminology.rst
    :start-after: incl-common-deployment-terminology:
    :end-before: incl-common-deployment-terminology-end:
+
+
+
+
+
 
 
 
