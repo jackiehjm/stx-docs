@@ -12,6 +12,7 @@ The following list provides help on choosing the correct deployment guide:
    :maxdepth: 1
 
    latest/aio_simplex/index
+   latest/aio_duplex/index
 
 - Following are deployment and installation guides for past StarlingX
   releases that have been archived:
