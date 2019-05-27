@@ -24,7 +24,7 @@ You can clone these repositories by:
 ::
 
    $ git clone https://git.starlingx.io/stx-docs
-   $ git clone https://get-starlingx.io/stx-specs
+   $ git clone https://git.starlingx.io/stx-specs
 
 These projects contain hierarchy that organizes the documentation by topic:
 
