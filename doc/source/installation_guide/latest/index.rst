@@ -315,8 +315,8 @@ Deployment options
 
 -  All-in-one
 
-   - :doc:`StarlingX Cloud Simplex </deployment_guides/latest/aio_simplex/index>`
-   - :doc:`StarlingX Cloud Duplex </deployment_guides/latest/aio_duplex/index>`
+   - :doc:`StarlingX Cloud Simplex <../../deploy_install_guides/latest/aio_simplex/index>`
+   - :doc:`StarlingX Cloud Duplex <../../deploy_install_guides/latest/aio_duplex/index>`
    - :doc:`StarlingX Cloud Duplex with Computes </deployment_guides/latest/aio_duplex_computes/index>`
 
 -  Standard controller
@@ -329,5 +329,6 @@ Deployment options
    - :doc:`Multi-region </deployment_guides/latest/multi_region/index>`
    - :doc:`Distributed cloud </deployment_guides/latest/dist_cloud/index>`
    - :doc:`Additional OpenStack services <additional_os_services>`
+
 
 

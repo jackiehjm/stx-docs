@@ -18,6 +18,8 @@ The following list provides help on choosing the correct installation steps:
      :maxdepth: 1
 
      /installation_guide/latest/index
+     ../deploy_install_guides/latest/aio_simplex/index
+     ../deploy_install_guides/latest/aio_duplex/index
 
 - The "archived" installation documents are as follows:
 
@@ -71,6 +73,7 @@ The following list provides help on choosing the correct installation steps:
          6. Since you are adding a new version ("latest") *before* it is available
          (e.g. to begin work on new docs), make sure page text still directs user to the
          "current" release and not to the under development version of the manuals.
+
 
 
 
