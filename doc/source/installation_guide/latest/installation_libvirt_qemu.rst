@@ -207,5 +207,6 @@ process from the "initializing controller-0" step.
 
 -  All-in-one
 
-   - :doc:`StarlingX Cloud Duplex Virtual Environment </deployment_guides/latest/aio_duplex/index>`
-   - :doc:`StarlingX Cloud Simplex Virtual Environment </deployment_guides/latest/aio_simplex/index>`
+   - :doc:`StarlingX Cloud Duplex Virtual Environment </deploy_install_guides/latest/aio_duplex/index>`
+   - :doc:`StarlingX Cloud Simplex Virtual Environment </deploy_install_guides/latest/aio_simplex/index>`
+
