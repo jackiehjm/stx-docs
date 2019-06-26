@@ -5,7 +5,7 @@ Deployment Guides
 Deployment guides for StarlingX are release-specific.
 The following list provides help on choosing the correct deployment guide:
 
-- The "current" release is the most recent offically released version of StarlingX.
+- The "current" release is the most recent officially released version of StarlingX.
   Following are the current deployment guides:
 
   .. toctree::

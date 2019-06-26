@@ -5,7 +5,7 @@ Installation Guides
 Installation steps for StarlingX are release-specific.
 The following list provides help on choosing the correct installation steps:
 
-- The "current" release is the most recent offically released version of StarlingX:
+- The "current" release is the most recent officially released version of StarlingX:
 
   .. toctree::
      :maxdepth: 1

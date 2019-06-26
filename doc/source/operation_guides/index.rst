@@ -5,7 +5,7 @@ Operation Guides
 Operation guides for StarlingX are release-specific.
 The following list provides help on choosing the correct operations guide:
 
-- The "current" release is the most recent offically released version of StarlingX.
+- The "current" release is the most recent officially released version of StarlingX.
   Following are the current operation guides:
 
   .. toctree::

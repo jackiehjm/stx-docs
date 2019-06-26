@@ -30,7 +30,7 @@ Build guides for StarlingX are release-specific.
 The following list provides help on choosing the correct
 build guide based on a release:
 
-- The "current" release is the most recent offically released version of StarlingX.
+- The "current" release is the most recent officially released version of StarlingX.
   Following is the current build guide:
 
   .. toctree::

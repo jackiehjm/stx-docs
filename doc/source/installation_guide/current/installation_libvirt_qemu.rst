@@ -42,7 +42,7 @@ Configuration
 
 These scripts are configured using environment variables that all have
 built-in defaults. On shared systems you probably do not want to use the
-defaults. The simplest way to handle this is to keep an rc file that can
+defaults. The simplest way to handle this is to keep a rc file that can
 be sourced into an interactive shell that configures everything. Here's
 an example called stxcloud.rc:
 

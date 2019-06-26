@@ -23,7 +23,7 @@ controller / storage cluster with:
   the storage function.
 - A growth path for storage to the full standard solution with an independent
   CEPH storage cluster.
-- High availability services runnning across the controller nodes in either
+- High availability services running across the controller nodes in either
   active/active or active/standby mode.
 - Storage function running on top of LVM on single second disk, DRBD-synchronized
   between the controller nodes.
