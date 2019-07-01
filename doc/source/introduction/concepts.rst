@@ -13,7 +13,7 @@ Node
 
 Virutal Machines
   An instance of a node provided by software (a hypervisor)
-  which runs within the host operating system and hardare.
+  which runs within the host operating system and hardware.
 
 Bare Metal
   A node running without hypervisors (e.g. application workloads run
