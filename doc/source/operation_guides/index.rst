@@ -3,37 +3,47 @@ Operation Guides
 ================
 
 Operation guides for StarlingX are release-specific.
-The following list provides help on choosing the correct operations guide:
+Each guide provides instruction on a specific StarlingX
+configuration (e.g. All-in-one Simplex).
 
-- The "current" release is the most recent officially released version of StarlingX.
-  Following are the current operation guides:
+***********************
+Latest official release
+***********************
 
-  .. toctree::
-     :maxdepth: 1
+The latest official release is the most recent officially
+released version of StarlingX.
 
-     ../api-ref/index
+.. toctree::
+   :maxdepth: 1
 
-- The "latest" release is the forthcoming version under development.
-  Following are the latest operation guides:
+   ../api-ref/index
 
-  .. toctree::
-     :maxdepth: 1
+****************
+Upcoming release
+****************
 
-     ../api-ref/index
-     latest/cli_reference/index
-     latest/data_network_config/index
-     latest/ceph_storage_config/index
-     latest/sdn_networking/index
-     latest/kubernetes_cluster_guide/index
-     latest/swift_config_management/index
-     latest/fault_management/index
-     latest/patching_guide/index
-     latest/upgrade_guide/index
+The upcoming release is the forthcoming version under development.
 
-- Following are operation guides for past StartlingX releases that have
-  been archived:
+.. toctree::
+   :maxdepth: 1
 
-  * Currently, no archived operation guides exist.
+   ../api-ref/index
+   latest/cli_reference/index
+   latest/data_network_config/index
+   latest/ceph_storage_config/index
+   latest/sdn_networking/index
+   latest/kubernetes_cluster_guide/index
+   latest/swift_config_management/index
+   latest/fault_management/index
+   latest/patching_guide/index
+   latest/upgrade_guide/index
+
+
+*****************
+Archived releases
+*****************
+
+Currently, no archived guides exist.
 
 
 .. Steps you must take when a new release of the installer and developer guides occurs:
@@ -45,7 +55,7 @@ The following list provides help on choosing the correct operations guide:
          becomes
          :doc:`Libvirt/QEMU </installation_guide/<Year_Month>/installation_libvirt_qemu>`
          3. You might want to change your working directory to /<Year_Month> and use Git to grep for
-         the "current" string (i.e. 'git grep "current" *').  For each applicable occurence, make
+         the "current" string (i.e. 'git grep "current" *').  For each applicable occurrence, make
          the call whether or not to convert the string to the actual archived string "<Year_Month>".
          Be sure to scrub all files for the "current" string in both the "installation_guide"
          and "developer_guide" folders downward.
@@ -57,7 +67,7 @@ The following list provides help on choosing the correct operations guide:
          becomes
          :doc:`Libvirt/QEMU </installation_guide/current/installation_libvirt_qemu>`
          3. You might want to change your working directory to the "current" directory and use Git to grep for
-         the "latest" string (i.e. 'git grep "latest" *').  For each applicable occurence, make
+         the "latest" string (i.e. 'git grep "latest" *').  For each applicable occurrence, make
          the call whether or not to convert the string to "current".
          Be sure to scrub all files for the "latest" string in both the "installation_guide"
          and "developer_guide" folders downward.
@@ -80,6 +90,7 @@ The following list provides help on choosing the correct operations guide:
          6. Since you are adding a new version ("latest") *before* it is available
          (e.g. to begin work on new docs), make sure page text still directs user to the
          "current" release and not to the under development version of the manuals.
+
 
 
 

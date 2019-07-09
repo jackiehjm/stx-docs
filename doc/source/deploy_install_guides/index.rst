@@ -1,23 +1,70 @@
 ==================================
-Deployment and installation guides
+Installation and Deployment Guides
 ==================================
 
-Deployment and installation guides for StarlingX are release-specific.
-Each guide provides instruction on a specific StarlingX configuration
-(e.g. All-in-one Simplex).
-
-The following list provides help on choosing the correct deployment guide:
-
 .. toctree::
-   :maxdepth: 1
+   :hidden:
 
    latest/aio_simplex/index
    latest/aio_duplex/index
 
-- Following are deployment and installation guides for past StarlingX
-  releases that have been archived:
 
-  * Currently, no archived deployment guides exist.
+Installation and deployment guides for StarlingX are release-specific.
+Each guide provides instruction on a specific StarlingX configuration
+(e.g. All-in-one Simplex).
+
+***********************
+Latest official release
+***********************
+
+The latest official release is the most recent officially
+released version of StarlingX.
+
+^^^^^^^^^^^^^^^^^^
+Installation guide
+^^^^^^^^^^^^^^^^^^
+
+- `Installation stx.2018.10 <../../html/installation_guide/current/index.html>`__
+
+^^^^^^^^^^^^^^^^^
+Deployment guides
+^^^^^^^^^^^^^^^^^
+
+- `All-in-one simplex stx.2018.10 <../../html/deployment_guides/current/simplex.html>`__
+- `All-in-one duplex stx.2018.10 <../../html/deployment_guides/current/duplex.html>`__
+- `Controller storage stx.2018.10 <../../html/deployment_guides/current/controller_storage.html>`__
+- `Dedicated storage stx.2018.10 <../../html/deployment_guides/current/dedicated_storage.html>`__
+
+****************
+Upcoming release
+****************
+
+The upcoming release is the forthcoming version under development.
+
+^^^^^^^^^^^^^^^^^^^
+Deployment planning
+^^^^^^^^^^^^^^^^^^^
+
+- `Deployment planning <../../html/deployment_guides/latest/planning/index.html>`__
+- `Deployment options <../../html/deployment_guides/latest/options/index.html>`__
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Installation and deployment guides
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- `All-in-one simplex R2.0 <../../html/deploy_install_guides/latest/aio_simplex/index.html>`__
+- `All-in-one duplex R2.0 <../../html/deploy_install_guides/latest/aio_duplex/index.html>`__
+- `Standard controller storage R2.0 <../../html/deploy_install_guides/latest/controller_storage/index.html>`__
+- `Standard dedicated storage R2.0 <../../html/deploy_install_guides/latest/dedicated_storage/index.html>`__
+- `Standard with Ironic <../../html/deployment_guides/latest/ironic/index.html>`__
+- `Multi-region <../../html/deployment_guides/latest/multi_region/index.html>`__
+- `Distributed cloud <../../html/deployment_guides/latest/dist_cloud/index.html>`__
+
+*****************
+Archived releases
+*****************
+
+Currently, there are no archived guides.
 
 
 .. Steps you must take when a new release of the deployment and installation
@@ -65,6 +112,7 @@ The following list provides help on choosing the correct deployment guide:
          6. Since you are adding a new version ("latest") *before* it is available
          (e.g. to begin work on new docs), make sure page text still directs user to the
          "current" release and not to the under development version of the manuals.
+
 
 
 

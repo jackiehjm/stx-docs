@@ -17,13 +17,18 @@ Sections
    :maxdepth: 1
 
    introduction/index
-   deployment_guides/index
-   installation_guide/index
+   deploy_install_guides/index
    operation_guides/index
    contributor/index
    releasenotes/index
    developer_resources/index
-   deploy_install_guides/index
+
+.. toctree::
+   :hidden:
+
+   deployment_guides/index
+   installation_guide/index
+
 
 --------
 Projects
