@@ -1,6 +1,6 @@
-=============================
-Dedicated storage stx.2019.05
-=============================
+======================
+Dedicated storage R2.0
+======================
 
 .. contents::
    :local:
@@ -23,7 +23,7 @@ This deployment option provides the maximum capacity for a single region
 deployment, with a supported growth path to a multi-region deployment option by
 adding a secondary region.
 
-.. figure:: ../figures/starlingx-deployment-options-dedicated-storage.png
+.. figure:: figures/starlingx-deployment-options-dedicated-storage.png
    :scale: 50%
    :alt: Dedicated Storage deployment configuration
 
@@ -917,14 +917,14 @@ launch Nova virtual machines.
 Deployment terminology
 ----------------------
 
-.. include:: ../deployment_terminology.rst
+.. include:: deployment_terminology.rst
    :start-after: incl-standard-controller-deployment-terminology:
    :end-before: incl-standard-controller-deployment-terminology-end:
 
-.. include:: ../deployment_terminology.rst
+.. include:: deployment_terminology.rst
    :start-after: incl-dedicated-storage-deployment-terminology:
    :end-before: incl-dedicated-storage-deployment-terminology-end:
 
-.. include:: ../deployment_terminology.rst
+.. include:: deployment_terminology.rst
    :start-after: incl-common-deployment-terminology:
    :end-before: incl-common-deployment-terminology-end:

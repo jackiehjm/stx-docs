@@ -7,10 +7,7 @@ The following list provides help on choosing the correct installation steps:
 
 - The "current" release is the most recent officially released version of StarlingX:
 
-  .. toctree::
-     :maxdepth: 1
-
-     /installation_guide/current/index
+.. "Current" installation guide moved to Installation and Deployment Guides.
 
 - The "latest" release is the forthcoming version under development:
 
@@ -18,8 +15,6 @@ The following list provides help on choosing the correct installation steps:
      :maxdepth: 1
 
      /installation_guide/latest/index
-     ../deploy_install_guides/latest/aio_simplex/index
-     ../deploy_install_guides/latest/aio_duplex/index
 
 - The "archived" installation documents are as follows:
 

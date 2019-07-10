@@ -31,7 +31,7 @@ Only a small amount of cloud processing / storage power is required with an
 All-In-One Simplex deployment.
 
 
-.. figure:: ../figures/starlingx-deployment-options-simplex.png
+.. figure:: figures/starlingx-deployment-options-simplex.png
    :scale: 50%
    :alt: All-In-One Simplex deployment configuration
 
@@ -57,7 +57,7 @@ StarlingX may be installed in:
 
 Furthermore, StarlingX installed in virtual environments has a single option:
 
-- :doc:`Libvirt/QEMU </installation_guide/latest/installation_libvirt_qemu>`
+- :doc:`Libvirt/QEMU <installation_libvirt_qemu>`
 
 ------------
 Requirements
@@ -1073,15 +1073,15 @@ Deployment and installation terminology
 
 Following are terms used when describing the AIO-SX deployment and installation.
 
-.. include:: ../deployment_terminology.rst
+.. include:: deployment_terminology.rst
    :start-after: incl-simplex-deployment-terminology:
    :end-before: incl-simplex-deployment-terminology-end:
 
-.. include:: ../deployment_terminology.rst
+.. include:: deployment_terminology.rst
    :start-after: incl-standard-controller-deployment-terminology:
    :end-before: incl-standard-controller-deployment-terminology-end:
 
-.. include:: ../deployment_terminology.rst
+.. include:: deployment_terminology.rst
    :start-after: incl-common-deployment-terminology:
    :end-before: incl-common-deployment-terminology-end:
 

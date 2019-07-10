@@ -1,6 +1,6 @@
-==============================
-Controller storage stx.2019.05
-==============================
+=======================
+Controller storage R2.0
+=======================
 
 .. contents::
    :local:
@@ -28,7 +28,7 @@ controller / storage cluster with:
 - Storage function running on top of LVM on single second disk, DRBD-sync'd
   between the controller nodes.
 
-.. figure:: ../figures/starlingx-deployment-options-controller-storage.png
+.. figure:: figures/starlingx-deployment-options-controller-storage.png
    :scale: 50%
    :alt: Controller Storage deployment configuration
 
@@ -965,10 +965,10 @@ virtual machines.
 Deployment terminology
 ----------------------
 
-.. include:: ../deployment_terminology.rst
+.. include:: deployment_terminology.rst
    :start-after: incl-standard-controller-deployment-terminology:
    :end-before: incl-standard-controller-deployment-terminology-end:
 
-.. include:: ../deployment_terminology.rst
+.. include:: deployment_terminology.rst
    :start-after: incl-common-deployment-terminology:
    :end-before: incl-common-deployment-terminology-end:

@@ -20,7 +20,9 @@ You can install StarlingX in the following:
 
 StarlingX installed in virtual environments has two options:
 
-- :doc:`Libvirt/QEMU </installation_guide/latest/installation_libvirt_qemu>`
+.. "Latest" libvirt qemu moved to Installation and Deployment Guides - upcoming.
+
+- Libvirt QEMU
 - VirtualBox
 
 ------------
@@ -159,8 +161,10 @@ depend on how long the installation was running, as this example uses
 thin qcow2 disks (which would fill up over time, but initially use much
 less than the virtual size).
 
+.. "Latest" libvirt qemu moved to Installation and Deployment Guides - upcoming.
+
 For example, in a
-:doc:`Libvirt/QEMU </installation_guide/latest/installation_libvirt_qemu>`
+Libvirt/QEMU
 environment, and an AIO-SX mode, the following are required when using the
 setup scripts and default XML definition file.
 
@@ -307,7 +311,8 @@ directory:
   additional_os_services
   multi_region
   dist_cloud
-  installation_libvirt_qemu
+
+.. "Latest" libvirt qemu moved to Installation and Deployment Guides - upcoming.
 
 ------------------
 Deployment options
@@ -315,19 +320,21 @@ Deployment options
 
 -  All-in-one
 
-   - :doc:`StarlingX Cloud Simplex <../../deploy_install_guides/latest/aio_simplex/index>`
-   - :doc:`StarlingX Cloud Duplex <../../deploy_install_guides/latest/aio_duplex/index>`
+.. "Latest" aio simplex and aio duplex moved to Installation and Deployment Guides - upcoming.
+
+
+   - AIO Simplex
+   - AIO Duplex
    - :doc:`StarlingX Cloud Duplex with Computes </deployment_guides/latest/aio_duplex_computes/index>`
 
 -  Standard controller
 
-   - :doc:`StarlingX Cloud with Controller Storage </deployment_guides/latest/controller_storage/index>`
-   - :doc:`StarlingX Cloud with Dedicated Storage </deployment_guides/latest/dedicated_storage/index>`
+.. "Latest" Controller and Dedicated storage moved to Installation and Deployment Guides - upcoming.
 
 -  Others
 
-   - :doc:`Multi-region </deployment_guides/latest/multi_region/index>`
-   - :doc:`Distributed cloud </deployment_guides/latest/dist_cloud/index>`
+.. "Latest" multi region and dist cloud moved to Installation and Deployment Guides - upcoming.
+
    - :doc:`Additional OpenStack services <additional_os_services>`
 
 

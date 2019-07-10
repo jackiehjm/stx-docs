@@ -5,8 +5,7 @@ Installation and Deployment Guides
 .. toctree::
    :hidden:
 
-   latest/aio_simplex/index
-   latest/aio_duplex/index
+   upcoming/installation_libvirt_qemu
 
 
 Installation and deployment guides for StarlingX are release-specific.
@@ -24,16 +23,22 @@ released version of StarlingX.
 Installation guide
 ^^^^^^^^^^^^^^^^^^
 
-- `Installation stx.2018.10 <../../html/installation_guide/current/index.html>`__
+.. toctree::
+   :maxdepth: 1
+
+   current/index
 
 ^^^^^^^^^^^^^^^^^
 Deployment guides
 ^^^^^^^^^^^^^^^^^
 
-- `All-in-one simplex stx.2018.10 <../../html/deployment_guides/current/simplex.html>`__
-- `All-in-one duplex stx.2018.10 <../../html/deployment_guides/current/duplex.html>`__
-- `Controller storage stx.2018.10 <../../html/deployment_guides/current/controller_storage.html>`__
-- `Dedicated storage stx.2018.10 <../../html/deployment_guides/current/dedicated_storage.html>`__
+.. toctree::
+   :maxdepth: 1
+
+   current/simplex
+   current/duplex
+   current/controller_storage
+   current/dedicated_storage
 
 ****************
 Upcoming release
@@ -45,20 +50,26 @@ The upcoming release is the forthcoming version under development.
 Deployment planning
 ^^^^^^^^^^^^^^^^^^^
 
-- `Deployment planning <../../html/deployment_guides/latest/planning/index.html>`__
-- `Deployment options <../../html/deployment_guides/latest/options/index.html>`__
+.. toctree::
+   :maxdepth: 1
+
+   upcoming/planning
+   upcoming/options
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Installation and deployment guides
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- `All-in-one simplex R2.0 <../../html/deploy_install_guides/latest/aio_simplex/index.html>`__
-- `All-in-one duplex R2.0 <../../html/deploy_install_guides/latest/aio_duplex/index.html>`__
-- `Standard controller storage R2.0 <../../html/deploy_install_guides/latest/controller_storage/index.html>`__
-- `Standard dedicated storage R2.0 <../../html/deploy_install_guides/latest/dedicated_storage/index.html>`__
-- `Standard with Ironic <../../html/deployment_guides/latest/ironic/index.html>`__
-- `Multi-region <../../html/deployment_guides/latest/multi_region/index.html>`__
-- `Distributed cloud <../../html/deployment_guides/latest/dist_cloud/index.html>`__
+.. toctree::
+   :maxdepth: 1
+
+   upcoming/aio_simplex
+   upcoming/aio_duplex
+   upcoming/controller_storage
+   upcoming/dedicated_storage
+   upcoming/ironic
+   upcoming/multi_region
+   upcoming/dist_cloud
 
 *****************
 Archived releases

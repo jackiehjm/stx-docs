@@ -1,8 +1,8 @@
-=====================================
-Installation libvirt qemu stx.2019.05
-=====================================
+==============================
+Installation libvirt qemu R2.0
+==============================
 
-Installation for StarlingX stx.2019.05 using Libvirt/QEMU virtualization.
+Installation for StarlingX R2.0 using Libvirt/QEMU virtualization.
 
 ---------------------
 Hardware requirements
@@ -202,11 +202,9 @@ process from the "initializing controller-0" step.
 
 -  Standard controller
 
-   - :doc:`StarlingX Cloud with Dedicated Storage Virtual Environment </deployment_guides/latest/dedicated_storage/index>`
-   - :doc:`StarlingX Cloud with Controller Storage Virtual Environment </deployment_guides/latest/controller_storage/index>`
+   .. "Latest" Controller and Dedicated storage moved to Installation and Deployment Guides - upcoming.
 
 -  All-in-one
 
-   - :doc:`StarlingX Cloud Duplex Virtual Environment </deploy_install_guides/latest/aio_duplex/index>`
-   - :doc:`StarlingX Cloud Simplex Virtual Environment </deploy_install_guides/latest/aio_simplex/index>`
+   .. "Latest" aio-simplex and aio-duplex moved to Installation and Deployment Guides - upcoming.
 

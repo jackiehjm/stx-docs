@@ -6,15 +6,8 @@ Deployment guides for StarlingX are release-specific.
 The following list provides help on choosing the correct deployment guide:
 
 - The "current" release is the most recent officially released version of StarlingX.
-  Following are the current deployment guides:
 
-  .. toctree::
-     :maxdepth: 1
-
-     ../deployment_guides/current/simplex
-     ../deployment_guides/current/duplex
-     ../deployment_guides/current/controller_storage
-     ../deployment_guides/current/dedicated_storage
+.. "Current" deployment guides moved to Installation and Deployment Guides.
 
 - The "latest" release is the forthcoming version under development.
   Following are the latest deployment guides:
@@ -22,16 +15,9 @@ The following list provides help on choosing the correct deployment guide:
   .. toctree::
      :maxdepth: 1
 
-     latest/planning/index
-     latest/options/index
-     ../deploy_install_guides/latest/aio_simplex/index
-     ../deploy_install_guides/latest/aio_duplex/index
      latest/aio_duplex_computes/index
-     latest/controller_storage/index
-     latest/dedicated_storage/index
-     latest/ironic/index
-     latest/multi_region/index
-     latest/dist_cloud/index
+
+ .. All other "Latest" deployment guides moved to Installation and Deployment Guides.
 
 - Following are deployment guides for past StartlingX releases that have
   been archived:

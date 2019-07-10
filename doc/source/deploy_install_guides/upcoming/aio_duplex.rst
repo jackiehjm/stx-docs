@@ -24,7 +24,7 @@ on two physical servers.
 With these cloud functions, multiple application types can be deployed and
 consolidated onto a protected pair of physical servers.
 
-.. figure:: ../figures/starlingx-deployment-options-duplex.png
+.. figure:: figures/starlingx-deployment-options-duplex.png
    :scale: 90%
    :alt: All-In-One Simplex deployment configuration
 
@@ -69,7 +69,7 @@ someone starting with an All-in-one duplex standard configuration option.
 With this option, virtual machines can be scheduled on either of the
 all-in-one controller nodes, the compute nodes, or both.
 
-.. figure:: ../figures/starlingx-deployment-options-duplex-extended.png
+.. figure:: figures/starlingx-deployment-options-duplex-extended.png
    :scale: 90%
    :alt: All-in-one duplex extended configuration
 
@@ -93,7 +93,7 @@ You can install StarlingX in the following:
 
 Furthermore, StarlingX installed in virtual environments has a single option:
 
-- :doc:`Libvirt/QEMU </installation_guide/latest/installation_libvirt_qemu>`
+- :doc:`Libvirt/QEMU <installation_libvirt_qemu>`
 
 ------------
 Requirements
@@ -1226,15 +1226,15 @@ Deployment and installation terminology
 
 Following are terms used when describing the AIO-SX deployment and installation.
 
-.. include:: ../deployment_terminology.rst
+.. include:: deployment_terminology.rst
    :start-after: incl-simplex-deployment-terminology:
    :end-before: incl-simplex-deployment-terminology-end:
 
-.. include:: ../deployment_terminology.rst
+.. include:: deployment_terminology.rst
    :start-after: incl-standard-controller-deployment-terminology:
    :end-before: incl-standard-controller-deployment-terminology-end:
 
-.. include:: ../deployment_terminology.rst
+.. include:: deployment_terminology.rst
    :start-after: incl-common-deployment-terminology:
    :end-before: incl-common-deployment-terminology-end:
 

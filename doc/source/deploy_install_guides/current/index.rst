@@ -5,7 +5,7 @@ Installation guide stx.2018.10
 This is the installation guide for the "current" StarlingX software
 (i.e. the most recently released version).
 If this is not the installation guide you want to use, see the
-:doc:`available installation guides </installation_guide/index>`.
+:doc:`available installation guides </deploy_install_guides/index>`.
 
 ------------
 Introduction
@@ -20,7 +20,7 @@ StarlingX may be installed in:
 
 StarlingX installed in virtual environments has two options:
 
-- :doc:`Libvirt/QEMU </installation_guide/current/installation_libvirt_qemu>`
+- :doc:`Libvirt/QEMU <installation_libvirt_qemu>`
 - VirtualBox
 
 ------------
@@ -271,13 +271,13 @@ Deployment options
 
 -  Standard controller
 
-   - :doc:`StarlingX Cloud with Dedicated Storage </deployment_guides/current/dedicated_storage>`
-   - :doc:`StarlingX Cloud with Controller Storage </deployment_guides/current/controller_storage>`
+   - :doc:`StarlingX Cloud with Dedicated Storage </deploy_install_guides/current/dedicated_storage>`
+   - :doc:`StarlingX Cloud with Controller Storage </deploy_install_guides/current/controller_storage>`
 
 -  All-in-one
 
-   - :doc:`StarlingX Cloud Duplex </deployment_guides/current/duplex>`
-   - :doc:`StarlingX Cloud Simplex </deployment_guides/current/simplex>`
+   - :doc:`StarlingX Cloud Duplex </deploy_install_guides/current/duplex>`
+   - :doc:`StarlingX Cloud Simplex </deploy_install_guides/current/simplex>`
 
 .. toctree::
    :hidden:
