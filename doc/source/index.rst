@@ -23,13 +23,6 @@ Sections
    releasenotes/index
    developer_resources/index
 
-.. toctree::
-   :hidden:
-
-   deployment_guides/index
-   installation_guide/index
-
-
 --------
 Projects
 --------
