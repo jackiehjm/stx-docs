@@ -1,969 +1,1378 @@
-=======================
-Controller storage R2.0
-=======================
+=====================================
+Standard with controller storage R2.0
+=====================================
 
 .. contents::
    :local:
    :depth: 1
 
-**NOTE:**  The instructions to setup a StarlingX Cloud with Controller
-Storage with containerized openstack services in this guide
-are under development.
-For approved instructions, see the
-`StarlingX Cloud with Controller Storage wiki page <https://wiki.openstack.org/wiki/StarlingX/Containers/InstallationOnStandard>`__.
+.. note :: The instructions to setup a StarlingX Cloud with Controller
+           Storage with containerized OpenStack services in this guide
+           are under development.
+           For approved instructions, see the
+           `StarlingX Cloud with Controller Storage wiki page <https://wiki.openstack.org/wiki/StarlingX/Containers/InstallationOnStandard>`__.
+
+------------
+Introduction
+------------
+
+The StarlingX Cloud with Controller Storage configuration option
+is a standard configuration with, two controllers, and two to 10
+compute nodes configuration.
 
 ----------------------
 Deployment description
 ----------------------
 
-The Controller Storage deployment option provides a 2x node high availability
-controller / storage cluster with:
+The StarlingX Standard with Controller Storage deployment option
+provides a 2x node high availability (HA) Controller / Storage
+cluster with the following:
 
-- A pool of up to seven compute nodes (pool size limit due to the capacity of
-  the storage function).
-- A growth path for storage to the full standard solution with an independent
-  CEPH storage cluster.
-- High availability services running across the controller nodes in either
+- A pool of up to 10 compute nodes.
+  The limiting factor for the number of compute nodes depends on the
+  number of Cinder volumes or Kubernetes Permanent Virtual Circuits (PVCs)
+  that are used by application workloads.
+  It is the disk I/O contention on the controllers that limits the
+  number of application workloads and subsequently the
+  number of compute nodes.
+
+- No growth path exists to the full Standard solution with independent storage
+  nodes in the Ceph Storage Cluster.
+
+- HA services running across the controller nodes in either
   active/active or active/standby mode.
-- Storage function running on top of LVM on single second disk, DRBD-sync'd
-  between the controller nodes.
+
+- A storage function provided by a two-node Ceph deployment across
+  the two controller servers.
 
 .. figure:: figures/starlingx-deployment-options-controller-storage.png
-   :scale: 50%
+   :scale: 90%
    :alt: Controller Storage deployment configuration
 
    *Controller Storage deployment configuration*
 
-A Controller Storage deployment provides protection against overall controller
-node and compute node failure:
+The StarlingX Standard with Controller Storage deployment provides
+protection against overall controller node and compute node failure:
 
-- On overall controller node failure, all controller high availability services
+- On overall controller node failure, all controller HA services
   go active on the remaining healthy controller node.
-- On overall compute node failure, virtual machines on failed compute node are
-  recovered on the remaining healthy compute nodes.
 
-------------------------------------
-Preparing controller storage servers
-------------------------------------
+- On overall compute node failure, virtual machines and containers
+  on the failed compute node are recovered on the remaining healthy
+  compute nodes.
 
-**********
-Bare metal
-**********
+--------------------
+Installation options
+--------------------
 
-Required servers:
+You can install StarlingX in the following environments:
 
--  Controllers: 2
--  Computes: 2 - 100
+-  **Bare metal**: Real deployments of StarlingX are only supported on
+   physical servers.
 
-^^^^^^^^^^^^^^^^^^^^^
-Hardware requirements
-^^^^^^^^^^^^^^^^^^^^^
+-  **Virtual environment**: You should only use this environment
+   for evaluation or development purposes.
 
-The recommended minimum requirements for the physical servers where
-Controller Storage will be deployed, include:
+   .. note:: StarlingX supports the following virtual environment installation option:
+      :doc:`Libvirt/QEMU <installation_libvirt_qemu>`
+
+------------
+Requirements
+------------
+
+Following are the bare metal and virtual environment requirements
+for this StarlingX configuration.
+
+********************************
+Bare metal hardware requirements
+********************************
+
+The recommended minimum hardware requirements for the physical servers where
+Controller Storage is deployed include the following:
 
 -  Minimum processor:
 
-   -  Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket
+   -  Dual-CPU IntelÂ® XeonÂ® E5 26xx family (SandyBridge) 8 cores/socket
 
 -  Memory:
 
    -  64 GB controller
-   -  32 GB compute
+   -  32 GB compute node
 
 -  BIOS:
 
-   -  Hyper-Threading technology: Enabled
-   -  Virtualization technology: Enabled
-   -  VT for directed I/O: Enabled
-   -  CPU power and performance policy: Performance
-   -  CPU C state control: Disabled
-   -  Plug & play BMC detection: Disabled
+   -  Hyper-Threading technology enabled
+   -  Virtualization technology enabled
+   -  VT for directed I/O enabled
+   -  CPU power and performance policy set to performance
+   -  CPU C state control disabled
+   -  Plug & play BMC detection disabled
 
 -  Primary disk:
 
-   -  500 GB SDD or NVMe controller
-   -  120 GB (min. 10K RPM) compute
+   -  Controller: 500 GB SDD or NVMe
+   -  Compute node: 120 GB with minimum 10K RPM
 
 -  Additional disks:
 
-   -  1 or more 500 GB disks (min. 10K RPM) compute
+   -  One or more 500 GB disks with minimum of 10K RPM for compute nodes
 
 -  Network ports\*
 
-   -  Management: 10GE controller, compute
+   -  Management: 10GE controller and compute node
    -  OAM: 10GE controller
-   -  Data: n x 10GE compute
+   -  Data: n x 10GE compute node
+
+^^^^^^^^^^^^^^^^^^^^^^^^
+NVMe drive as boot drive
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+To use a Non-Volatile Memory Express (NVMe) drive as the boot drive for any of
+your nodes, you must configure your host and adjust kernel parameters during
+installation:
+
+- Configure the host to be in UEFI mode.
+
+- Edit the kernel boot parameter.
+  After you are presented with the StarlingX ISO boot options and after
+  you have selected the preferred installation option
+  (e.g. Standard Configuration / All-in-One Controller Configuration), press the
+  TAB key to edit the kernel boot parameters.
+  Modify the **boot_device** and **rootfs_device** from the default **sda** so
+  that it is the correct device name for the NVMe drive (e.g. "nvme0n1").
+
+  ::
+
+     vmlinuz rootwait console=tty0 inst.text inst.stage2=hd:LABEL=oe_iso_boot
+     inst.ks=hd:LABEL=oe_iso_boot:/smallsystem_ks.cfg boot_device=nvme0n1
+     rootfs_device=nvme0n1 biosdevname=0 usbcore.autosuspend=-1 inst.gpt
+     security_profile=standard user_namespace.enable=1 initrd=initrd.img
 
 *******************
 Virtual environment
 *******************
 
-Run the libvirt qemu setup scripts. Setting up virtualized OAM and
-management networks:
+Following are the recommended minimum hardware and software
+requirements for the workstation that hosts the virtual machine or
+machines on which StarlingX is deployed:
+
+^^^^^^^^^^^^^^^^^^^^^
+Hardware requirements
+^^^^^^^^^^^^^^^^^^^^^
+
+A workstation computer with the following:
+
+-  Processor: x86_64 supported architecture with BIOS enabled
+   and hardware virtualization extensions
+
+-  Eight cores.
+   Alternatively, you can have four if the CPU load is carefully
+   monitored.
+
+-  Memory: Minimum 32 GB RAM
+
+-  Hard Disk: 500 GB HDD
+
+-  Network: Two network adapters with active Internet connections
+
+^^^^^^^^^^^^^^^^^^^^^
+Software requirements
+^^^^^^^^^^^^^^^^^^^^^
+
+A workstation computer with the following:
+
+-  A newly installed Ubuntu 16.04 LTS 64-bit operating system
+
+-  Configured proxy settings if applicable
+
+-  Git
+
+-  KVM/VirtManager
+
+-  Libvirt library
+
+-  QEMU full-system emulation binaries
+
+-  The "tools" project
+
+-  StarlingX ISO image
+
+-----------------
+Preparing servers
+-----------------
+
+The following sub-sections describe how to prepare bare metal servers
+and virtual servers.
+
+**********
+Bare Metal
+**********
+
+For a bare metal server, the server should start powered-off
+and have "wiped" disks such that the servers must boot from the
+network or from a USB source.
+
+*******************
+Virtual environment
+*******************
+
+This section describes how to set up the servers and build the XML
+definitions that hosts the virtual machine(s) where StarlingX will
+be deployed.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Updating your operating system
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Ensure your Linux distribution is current. You must first update
+the local database list of available packages:
 
 ::
 
-   $ bash setup_network.sh
+   $ sudo apt-get update
 
-Building XML for definition of virtual servers:
+^^^^^^^^^^^^^^^^^^^^^^^^
+Installing tools project
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Clone the tools project.
+Typically, you clone this project while in your home directory:
 
 ::
 
-   $ bash setup_configuration.sh -c controllerstorage -i <starlingx iso image>
+   $ cd $HOME
+   $ git clone https://opendev.org/starlingx/tools
 
-The default XML server definitions that are created by the previous script
-are:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Installing requirements and dependencies
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- controllerstorage-controller-0
-- controllerstorage-controller-1
-- controllerstorage-compute-0
-- controllerstorage-compute-1
+Navigate to the tools installation libvirt directory:
+
+::
+
+   $ cd $HOME/tools/deployment/libvirt/
+
+Install the required packages:
+
+::
+
+   $ bash install_packages.sh
+
+^^^^^^^^^^^^^^^^^^
+Disabling firewall
+^^^^^^^^^^^^^^^^^^
+
+Unload the firewall and disable it during boot:
+
+::
+
+   $ sudo ufw disable
+   Firewall stopped and disabled on system startup
+   $ sudo ufw status
+   Status: inactive
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+Prepare the virtual server
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1. Run the libvirt QEMU setup scripts to set
+   up the virtualized OAM and management networks:
+
+   ::
+
+      $ bash setup_network.sh
+
+2. Build XML for definition of virtual servers:
+
+   ::
+
+      $ bash setup_configuration.sh -c controllerstorage -i <starlingx-iso-image>
+
+   The previous script creates the following default XML server
+   definitions:
+
+   - controllerstorage-controller-0
+   - controllerstorage-controller-1
+   - controllerstorage-compute-0
+   - controllerstorage-compute-1
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 Power up a virtual server
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To power up a virtual server, run the following command:
+To power up the virtual server, use the following command form:
 
 ::
 
     $ sudo virsh start <server-xml-name>
 
-e.g.
+Following is an example where <server-xml-name> is "duplex-controller-0":
 
 ::
 
-    $ sudo virsh start controllerstorage-controller-0
+    $ sudo virsh start duplex-controller-0
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Access virtual server consoles
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Access a virtual server console
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The XML for virtual servers in stx-tools repo, deployment/libvirt,
+The XML for virtual servers in the tools repo, deployment/libvirt,
 provides both graphical and text consoles.
-
-Access the graphical console in virt-manager by right-click on the
-domain (the server) and selecting "Open".
+Access the graphical console in virt-manager by right-clicking on the
+domain (i.e. the server) and selecting "Open".
 
 Access the textual console with the command "virsh console $DOMAIN",
 where DOMAIN is the name of the server shown in virsh.
 
 When booting the controller-0 for the first time, both the serial and
-graphical consoles will present the initial configuration menu for the
-cluster. One can select serial or graphical console for controller-0.
-For the other nodes however only serial is used, regardless of which
-option is selected.
+graphical consoles present the initial configuration menu for the
+cluster. You can select the serial or graphical console for controller-0.
+However, for the remaining nodes regardless of the option you selected,
+you can only use serial.
 
 Open the graphic console on all servers before powering them on to
-observe the boot device selection and PXI boot progress. Run "virsh
-console $DOMAIN" command promptly after power on to see the initial boot
-sequence which follows the boot device selection. One has a few seconds
-to do this.
+observe the boot device selection and PXI boot progress.
+Run "virsh console $DOMAIN" command promptly after the boot process
+completes in order to see the initial boot sequence, which follows
+the boot device selection.
+Once the boot process completes, you only have a few seconds to
+run the command.
+
+-------------------------------
+Getting the StarlingX ISO image
+-------------------------------
+
+Follow the instructions from the :doc:`/contributor/build_guides/latest/index`
+to build a StarlingX ISO image.
+
+Alternatively, you can use a pre-built ISO, which includes all required packages
+provided by the
+`StarlingX CENGN mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`__.
+
+**********
+Bare metal
+**********
+
+For bare metal, you need a bootable USB flash drive
+that contains the StarlingX ISO image.
+
+
+*******************
+Virtual environment
+*******************
+
+For a virtual environment, use the following command to
+copy the StarlingX ISO Image to the tools deployment libvirt project
+directory:
+
+::
+
+   $ cp <starlingx-iso-image> $HOME/tools/deployment/libvirt/
+
 
 --------------------------------
 Installing the controller-0 host
 --------------------------------
 
-Installing controller-0 involves initializing a host with software and
-then applying a bootstrap configuration from the command line. The
-configured bootstrapped host becomes controller-0.
+Installing controller-0 involves initializing a host with software
+and then applying a bootstrap configuration from the command line.
+The configured bootstrapped host becomes controller-0.
 
-Procedure:
+Following is the general procedure:
 
-#. Power on the server that will be controller-0 with the StarlingX ISO
-   on a USB in a bootable USB slot.
-#. Configure the controller using the config_controller script.
+1. Have a USB device that contains a bootable StarlingX ISO.
 
-*************************
-Initializing controller-0
-*************************
+2. Be sure that USB device is plugged into a bootable USB slot on the
+   controller-0 server.
 
-This section describes how to initialize StarlingX in host controller-0.
-Except where noted, all the commands must be executed from a console of
-the host.
+3. Power on the server.
 
-Power on the host to be configured as controller-0, with the StarlingX
-ISO on a USB in a bootable USB slot. Wait for the console to show the
-StarlingX ISO booting options:
+4. Configure the controller by running the Ansible bootstrap playbook.
 
--  **Standard Controller Configuration**
+***********************
+Initialize controller-0
+***********************
 
-   -  When the installer is loaded and the installer welcome screen
-      appears in the controller-0 host, select the type of installation
-      "Standard Controller Configuration".
+This section describes how to initialize StarlingX software on host controller-0.
 
--  **Graphical Console**
+.. note:: Except where noted, you must execute all the commands from a console on
+          the host.
 
-   -  Select the "Graphical Console" as the console to use during
-      installation.
+Follow this procedure to initialize the controller:
 
--  **Standard Security Boot Profile**
+1. Be sure your USB device with the StarlingX ISO is plugged into
+   a bootable USB port on the host you are are configuring as controller-0.
 
-   -  Select "Standard Security Boot Profile" as the security profile.
+2. Power on the host.
 
-Monitor the initialization. When it is complete, a reboot is initiated
-on the controller-0 host, briefly displays a GNU GRUB screen, and then
-boots automatically into the StarlingX image.
+3. Wait for the console to show the StarlingX ISO installer options:
 
-Log into controller-0 as user sysadmin, with password sysadmin. The
-first time you log in as sysadmin, you are required to change your
-password. Enter the current password (sysadmin):
+   - **Standard Controller Configuration:**
+
+     For this option, select "Standard Controller Configuration" for the
+     the type of installation from the installer welcome screen.
+
+   - **Graphical Console:**
+
+     Select "Graphical Console" as the console to use during
+     installation.
+
+   - **Standard Security Boot Profile:**
+
+     Select "Standard Security Boot Profile" as the Security Profile.
+
+4. Monitor the initialization.
+   When it completes, a reboot is initiated on the controller-0
+   host and briefly displays a GNU GRUB screen after which the
+   reboot automatically continues into the StarlingX image.
+
+5. Log into controller-0 as user "sysadmin" and use "sysadmin" as the password.
+   The first time you log in as "sysadmin", you are required to change your
+   password:
+
+   ::
+
+      Changing password for sysadmin.
+      (current) UNIX Password: sysadmin
+
+
+6. Enter a new password for the "sysadmin" account and confirm the change.
+   Once you change the password, controller-0 is initialized with StarlingX
+   and is ready for configuration.
+
+********************************
+Bootstrap configure controller-0
+********************************
+
+This section describes how to bootstrap configure controller-0 by running
+the Ansible bootstrap playbook.
+
+.. note::  - For ease of use in development and controlled test environments,
+             you can provide passwords by specifying them on the command line
+             or by specifying an override file that is an unencrypted text file.
+
+           - The sysadmin password is used for SSH authentication.
+
+           - In production environments, you should store sensitive
+             information in the Ansible vault secret file and use
+             SSH keys rather than passwords for authentication.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Location of the controller bootstrap playbook
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+All StarlingX playbooks are located under the directory
+/usr/share/ansible/stx-ansible/playbooks.
+Consequently, the controller bootstrap playbook is located
+at: /usr/share/ansible/stx-ansible/playbooks/bootstrap/.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Default bootstrap playbook settings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The default inventory file, which resides in Ansible configuration directory
+(i.e. /etc/ansible/hosts), contains one single host - the localhost.
+You can override this file using a custom hosts file and the "-i option".
+Doing so makes the file available for remote play through the Ansible
+playbook.
+
+The /usr/share/ansible/stx-ansible/playbooks/bootstrap/host_vars/default.yml
+file specifies the default configuration parameters.
+You can overwrite these parameters in two ways:
+
+- Using either the --extra-vars or -e options at the command line.
+
+- Using an override file.
+
+Using the override file is the preferred option when multiple
+parameters exist that need to be overwritten.
+
+By default Ansible looks for and imports user override files
+in the sysadmin home directory ($HOME).
+If you want to place these files in a different location, you
+must specify the location by using the -e option
+(e.g. -e "override_files_dir=<custom-override-dir>").
+
+The override file must conform to the following naming convention:
+::
+
+   <inventory_hostname>.yml
+
+An example filename is localhost.yml.
+
+^^^^^^^^^^^^^^
+Password types
+^^^^^^^^^^^^^^
+
+For local bootstrap, two types of passwords exist:
+
+- **ansible_become_pass**: a sudo password to run tasks that require
+  escalated privileges.
+  Most bootstrap tasks must be run as "root".
+  Because the playbook is run by sysadmin user, this is the sysadmin password.
+
+- **admin_password**: A password used for system commands, such as
+  a Horizon login, are executed.
+
+Additionally, if an automatic SSH login that uses an SSH key has not been
+set up between the Ansible control node and the target controller,
+another password is required:
+
+- **ansible_ssh_pass**: The password used to log into the target host or hosts.
+
+For all the passwords mentioned in this section, the defaults are
+set to "St8rlingX*".
+
+^^^^^^^^^^^^^^^^^^^^
+Running the playbook
+^^^^^^^^^^^^^^^^^^^^
+
+To run the playbook, you need to first set up external connectivity.
+This section describes how to set up external connectivity and
+then shows how to bootstrap controller-0 by running the playbook
+using an override file.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Setting up external connectivity
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Use these commands to set up external connectivity.
+Be sure substitute actual IP Addresses and interface names specific
+to your deployment:
 
 ::
 
-   Changing password for sysadmin.
-   (current) UNIX Password:
+   export CONTROLLER0_OAM_CIDR=10.10.10.10/24
+   export DEFAULT_OAM_GATEWAY=10.10.10.1
+   sudo ip address add dev $CONTROLLER0_OAM_CIDR enp2s1
+   sudo ip link set up dev enp2s1
+   sudo ip route add default via $DEFAULT_OAM_GATEWAY dev enp2s1
+   ping 8.8.8.8
 
-Enter a new password for the sysadmin account:
+~~~~~~~~~~~~~~~~~~~~~~
+Bootstrap controller-0
+~~~~~~~~~~~~~~~~~~~~~~
 
-::
-
-   New password:
-
-Enter the new password again to confirm it:
-
-::
-
-   Retype new password:
-
-controller-0 is initialized with StarlingX, and is ready for configuration.
-
-************************
-Configuring controller-0
-************************
-
-This section describes how to perform the controller-0 configuration
-interactively just to bootstrap system with minimum critical data.
-Except where noted, all the commands must be executed from the console
-of the active controller (here assumed to be controller-0).
-
-When run interactively, the config_controller script presents a series
-of prompts for initial configuration of StarlingX:
-
--  For the virtual environment, you can accept all the default values
-   immediately after ‘system date and time’.
--  For a physical deployment, answer the bootstrap configuration
-   questions with answers applicable to your particular physical setup.
-
-The script is used to configure the first controller in the StarlingX
-cluster as controller-0. The prompts are grouped by configuration
-area. To start the script interactively, use the following command
-with no parameters:
+Following is an example that runs the local playbook using all the defaults,
+including passwords being "St8rlingX*":
 
 ::
 
-   controller-0:~$ sudo config_controller
-   System Configuration
-   ================
-   Enter ! at any prompt to abort...
-   ...
+   ansible-playbook /usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml
 
-Accept all the default values immediately after ‘system date and time’.
+This next example runs the local playbook using an override file that provides
+custom parameters that include admin and sysadmin passwords. The override file
+is named "localhost.yml" and is located under /home/sysadmin/ directory.
+
+
+1. Create a *localhost.yml* file under */home/sysadmin/* directory with
+   the following content:
+
+   ::
+
+      # Mandatory
+      system_mode: duplex
+
+      # Optional
+      external_oam_subnet: <custom-external-oam-subnet>
+      external_oam_gateway_address: <custom-external-oam-gateway-address>
+      external_oam_floating_address: <custom-external-oam-floating-ip>
+      external_oam_node_0_address: <custom-external-oam-node-0-address>
+      external_oam_node_1_address: <custom-external-oam-node-1-address>
+      management_subnet: <custom-management-subnet>
+      dns_servers:
+        - <dns-server>
+      admin_password: <custom-admin-password>
+      ansible_become_pass: <custom-sysadmin-password>
+
+
+   */home/sysadmin/localhost.yml* example:
+
+   ::
+
+      # Mandatory
+      system_mode: duplex
+
+      # Optional
+      external_oam_subnet: 10.10.10.0/24
+      external_oam_gateway_address: 10.10.10.1
+      external_oam_floating_address: 10.10.10.3
+      external_oam_node_0_address: 10.10.10.4
+      external_oam_node_1_address: 10.10.10.5
+      management_subnet: 192.168.204.0/24
+      dns_servers:
+        - 8.8.4.4
+      admin_password: St8rlingX*
+      ansible_become_pass: St8rlingX*
+
+
+2. Run the bootstrap playbook:
+
+   ::
+
+      ansible-playbook /usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml
+
+This final example bootstraps controller-0 by running
+the local playbook and using a custom sysadmin and admin password
+specified in the command line:
 
 ::
 
-   ...
-   Applying configuration (this will take several minutes):
+   ansible-playbook /usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml -e "ansible_become_pass=<custom-sysadmin-password> admin_password=<custom-admin-password>"
 
-   01/08: Creating bootstrap configuration ... DONE
-   02/08: Applying bootstrap manifest ... DONE
-   03/08: Persisting local configuration ... DONE
-   04/08: Populating initial system inventory ... DONE
-   05:08: Creating system configuration ... DONE
-   06:08: Applying controller manifest ... DONE
-   07:08: Finalize controller configuration ... DONE
-   08:08: Waiting for service activation ... DONE
-
-   Configuration was applied
-
-   Please complete any out of service commissioning steps with system commands and unlock controller to proceed.
-
-After config_controller bootstrap configuration, REST API, CLI and
-Horizon interfaces are enabled on the controller-0 OAM IP address. The
-remaining installation instructions will use the CLI.
+.. note:: Ansible does not currently support specifying playbook
+          search paths.
+          Consequently, you must specify the full path to the bootstrap
+          playbook in the command line unless you are already in the
+          bootstrap playbook directory.
+          In the near future, a command alias called "bootstrap-controller"
+          will be provided for ease of use.
 
 ------------------------------------
-Provisioning controller-0 and system
+Provisioning the platform
 ------------------------------------
 
+The following subsections describe how to provision the
+server being used as controller-0.
+Provisioning makes many services available.
+
 On controller-0, acquire Keystone administrative privileges:
 
 ::
 
-   controller-0:~$ source /etc/nova/openrc
+   controller-0:~$ source /etc/platform/openrc
 
-*********************************************
-Configuring provider networks at installation
-*********************************************
+*****************************************************************
+Configure OAM, management, and cluster interface for controller-0
+*****************************************************************
 
-You must set up provider networks at installation so that you can attach
-data interfaces and unlock the compute nodes.
-
-Set up one provider network of the vlan type, named providernet-a:
+Use the following commands to configure OAM, Management, and Cluster Interface
+for controller-0:
 
 ::
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ neutron providernet-create providernet-a --type=vlan
-   [sysadmin@controller-0 ~(keystone_admin)]$ neutron providernet-range-create --name providernet-a-range1 --range 100-400 providernet-a
+   source /etc/platform/openrc
+   OAM_IF=enp0s3
+   MGMT_IF=enp0s8
+   system host-if-modify controller-0 lo -c none
+   IFNET_UUIDS=$(system interface-network-list controller-0 | awk '{if ($6=="lo") print $4;}')
+   for UUID in $IFNET_UUIDS; do
+       system interface-network-remove ${UUID}
+   done
+   system host-if-modify controller-0 $OAM_IF -c platform
+   system interface-network-assign controller-0 $OAM_IF oam
+   system host-if-modify controller-0 $MGMT_IF -c platform
+   system interface-network-assign controller-0 $MGMT_IF mgmt
+   system interface-network-assign controller-0 $MGMT_IF cluster-host
+
+*********************
+Set up the NTP server
+*********************
+
+.. attention:: Baremetal hardware only. Skip this step in a virtual
+               environment as it can cause Ceph's clock skew alarms.
+               Moreover, clock of virtual instances is synchronized
+               with the host clock so there is no need to configure
+               NTP here.
+
+Use the following command to configure the IP Addresses
+of the remote Network Time Protocol (NTP) servers.
+These servers provide network time synchronization:
+
+::
+
+   source /etc/platform/openrc
+   system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org
+
+*********************************
+Configure the host's vSwitch type
+*********************************
+
+This section describes how to configure the Virtual Switch required for the
+stx-openstack application, which allows network entities to connect to virtual
+machines over a virtual network.
+
+StarlingX has OVS (kernel-based) vSwitch configured as default:
+
+- Running in a container; defined within the helm charts of stx-openstack
+  manifest.
+- Shares the core(s) assigned to the Platform.
+
+If you require better performance, OVS-DPDK should be used:
+
+- Running directly on the host (i.e. NOT containerized).
+- Requires that at least 1 core be assigned/dedicated to the vSwitch
+  function.
+
+To deploy the default containerized OVS:
+
+::
+
+   system modify --vswitch_type none
+
+I.e. do not run any vSwitch directly on the host, and use the containerized
+OVS defined in the helm charts of stx-openstack manifest.
+
+To deploy OVS-DPDK (OVS with the Data Plane Development Kit, which is
+supported only on bare metal hardware, run the following command:
+
+::
+
+   system modify --vswitch_type ovs-dpdk
+   system host-cpu-modify -f vswitch -p0 1 controller-0
+
+Once vswitch_type is set to OVS-DPDK, any subsequent nodes created will
+default to automatically assigning 1 vSwitch core for AIO Controllers and 2
+vSwitch cores for Computes.
+
+When using OVS-DPDK, Virtual Machines must be configured to use a flavor with
+property: **hw:mem_page_size=large**.
+
+.. important:: After controller-0 is unlocked, changing vswitch_type would
+   require locking and unlocking all computes (and/or AIO Controllers) in
+   order to apply the change.
+
+.. attention:: In a virtual environment, OVS-DPDK is NOT supported, only OVS
+   is supported.
+
+*****************************************************************
+Prepare the host for running the containerized OpenStack services
+*****************************************************************
+
+To prepare the host for running the containerized OpenStack services,
+apply the node label for controller functions:
+
+::
+
+   system host-label-assign controller-0 openstack-control-plane=enabled
+
+*********************
+Unlock the controller
+*********************
+
+You must unlock controller-0 so that you can use it to install
+controller-1.
+Use the ``system host-unlock`` command:
+
+::
+
+   system host-unlock controller-0
 
 *************************************
-Configuring Cinder on controller disk
+Verify the controller-0 configuration
 *************************************
 
-Review the available disk space and capacity and obtain the uuid of the
-physical disk:
+Follow these steps to verify the controller-0 configuration:
+
+1. On controller-0, acquire Keystone administrative privileges:
+
+   ::
+
+      controller-0:~$ source /etc/nova/openrc
+
+2. Verify that the StarlingX controller services are running:
+
+   ::
+
+      [sysadmin@controller-0 ~(keystone_admin)]$ system service-list
+      +-----+-------------------------------+--------------+----------------+
+      | id  | service_name                  | hostname     | state          |
+      +-----+-------------------------------+--------------+----------------+
+      ...
+      | 1   | oam-ip                        | controller-0 | enabled-active |
+      | 2   | management-ip                 | controller-0 | enabled-active |
+      ...
+      +-----+-------------------------------+--------------+----------------+
+
+3. Verify that controller-0 is unlocked, enabled, and available:
+
+   ::
+
+      [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
+      +----+--------------+-------------+----------------+-------------+--------------+
+      | id | hostname     | personality | administrative | operational | availability |
+      +----+--------------+-------------+----------------+-------------+--------------+
+      | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
+      +----+--------------+-------------+----------------+-------------+--------------+
+
+
+--------------------------
+Installing remaining hosts
+--------------------------
+
+The following sub-sections describe how to install the
+remaining hosts.
+
+
+**************
+PXE boot hosts
+**************
+
+Follow these steps to install each PXE boot host:
+
+1. Power-on the host.
+   The host should PXEboot from controller-0.
+
+2. Press F-12 for network boot if the host does not PXEboot.
+
+3. Once the host boots from PXE, the host should be
+   visible when you check for it using the ``system host-list``
+   command:
+
+   ::
+
+      [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
+      +----+--------------+-------------+----------------+-------------+--------------+
+      | id | hostname     | personality | administrative | operational | availability |
+      +----+--------------+-------------+----------------+-------------+--------------+
+      | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
+      | 2  | None         | None        | locked         | disabled    | offline      |
+      | 3  | None         | None        | locked         | disabled    | offline      |
+      | 4  | None         | None        | locked         | disabled    | offline      |
+      +----+--------------+-------------+----------------+-------------+--------------+
+
+****************************
+Configure host personalities
+****************************
+
+Configure the host personalities as follows:
 
 ::
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-list controller-0
-   +--------------------------------------+-----------+---------+---------+-------+------------+--------------+...
-   | uuid                                 | device_no | device_ | device_ | size_ | available_ | rpm          |...
-   |                                      | de        | num     | type    | gib   | gib        |              |...
-   +--------------------------------------+-----------+---------+---------+-------+------------+--------------+...
-   | 004f4c09-2f61-46c5-8def-99b2bdeed83c | /dev/sda  | 2048    | HDD     | 200.0 | 0.0        |              |...
-   | 89694799-0dd8-4532-8636-c0d8aabfe215 | /dev/sdb  | 2064    | HDD     | 200.0 | 199.997    |              |...
-   +--------------------------------------+-----------+---------+---------+-------+------------+--------------+...
+   source /etc/platform/openrc
+   system host-update 2 personality=controller
+   system host-update 3 personality=worker hostname=compute-0
+   system host-update 4 personality=worker hostname=compute-1
 
-Create the 'cinder-volumes' local volume group:
+At this point, hosts should start installing.
 
-::
+*******************************
+Wait for hosts to become online
+*******************************
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-lvg-add controller-0 cinder-volumes
-   +-----------------+--------------------------------------+
-   | Property        | Value                                |
-   +-----------------+--------------------------------------+
-   | lvm_vg_name     | cinder-volumes                       |
-   | vg_state        | adding                               |
-   | uuid            | ece4c755-241c-4363-958e-85e9e3d12917 |
-   | ihost_uuid      | 150284e2-fb60-4169-ae75-7f444b8ca9bf |
-   | lvm_vg_access   | None                                 |
-   | lvm_max_lv      | 0                                    |
-   | lvm_cur_lv      | 0                                    |
-   | lvm_max_pv      | 0                                    |
-   | lvm_cur_pv      | 0                                    |
-   | lvm_vg_size_gib | 0.00                                 |
-   | lvm_vg_total_pe | 0                                    |
-   | lvm_vg_free_pe  | 0                                    |
-   | created_at      | 2018-08-22T03:59:30.685718+00:00     |
-   | updated_at      | None                                 |
-   | parameters      | {u'lvm_type': u'thin'}               |
-   +-----------------+--------------------------------------+
-
-Create a disk partition to add to the volume group:
+Once all nodes have been installed and rebooted, you should see them
+become online and available:
 
 ::
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-partition-add controller-0 89694799-0dd8-4532-8636-c0d8aabfe215 199 -t lvm_phys_vol
-   +-------------+--------------------------------------------------+
-   | Property    | Value                                            |
-   +-------------+--------------------------------------------------+
-   | device_path | /dev/disk/by-path/pci-0000:00:03.0-ata-2.0-part1 |
-   | device_node | /dev/sdb1                                        |
-   | type_guid   | ba5eba11-0000-1111-2222-000000000001             |
-   | type_name   | None                                             |
-   | start_mib   | None                                             |
-   | end_mib     | None                                             |
-   | size_mib    | 203776                                           |
-   | uuid        | 9ba2d76a-6ae2-4bfa-ad48-57b62d102e80             |
-   | ihost_uuid  | 150284e2-fb60-4169-ae75-7f444b8ca9bf             |
-   | idisk_uuid  | 89694799-0dd8-4532-8636-c0d8aabfe215             |
-   | ipv_uuid    | None                                             |
-   | status      | Creating                                         |
-   | created_at  | 2018-08-22T04:03:40.761221+00:00                 |
-   | updated_at  | None                                             |
-   +-------------+--------------------------------------------------+
-
-Wait for the new partition to be created (i.e. status=Ready):
-
-::
-
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-partition-list controller-0 --disk 89694799-0dd8-4532-8636-c0d8aabfe215
-   +--------------------------------------+...+------------+...+---------------------+----------+--------+
-   | uuid                                 |...| device_nod |...| type_name           | size_mib | status |
-   |                                      |...| e          |...|                     |          |        |
-   +--------------------------------------+...+------------+...+---------------------+----------+--------+
-   | 9ba2d76a-6ae2-4bfa-ad48-57b62d102e80 |...| /dev/sdb1  |...| LVM Physical Volume | 199.0    | Ready  |
-   |                                      |...|            |...|                     |          |        |
-   |                                      |...|            |...|                     |          |        |
-   +--------------------------------------+...+------------+...+---------------------+----------+--------+
-
-Add the partition to the volume group:
-
-::
-
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-pv-add controller-0 cinder-volumes 9ba2d76a-6ae2-4bfa-ad48-57b62d102e80
-   +--------------------------+--------------------------------------------------+
-   | Property                 | Value                                            |
-   +--------------------------+--------------------------------------------------+
-   | uuid                     | 060dc47e-bc17-40f4-8f09-5326ef0e86a5             |
-   | pv_state                 | adding                                           |
-   | pv_type                  | partition                                        |
-   | disk_or_part_uuid        | 9ba2d76a-6ae2-4bfa-ad48-57b62d102e80             |
-   | disk_or_part_device_node | /dev/sdb1                                        |
-   | disk_or_part_device_path | /dev/disk/by-path/pci-0000:00:03.0-ata-2.0-part1 |
-   | lvm_pv_name              | /dev/sdb1                                        |
-   | lvm_vg_name              | cinder-volumes                                   |
-   | lvm_pv_uuid              | None                                             |
-   | lvm_pv_size_gib          | 0.0                                              |
-   | lvm_pe_total             | 0                                                |
-   | lvm_pe_alloced           | 0                                                |
-   | ihost_uuid               | 150284e2-fb60-4169-ae75-7f444b8ca9bf             |
-   | created_at               | 2018-08-22T04:06:54.008632+00:00                 |
-   | updated_at               | None                                             |
-   +--------------------------+--------------------------------------------------+
-
-Enable LVM backend:
-
-::
-
-   [sysadmin@controller-0 ~(keystone_admin)]$ system storage-backend-add lvm -s cinder --confirmed
-
-Wait for the storage backend to leave "configuring" state. Confirm LVM
-backend storage is configured:
-
-::
-
-   [sysadmin@controller-0 ~(keystone_admin)]$ system storage-backend-list
-   +--------------------------------------+------------+---------+------------+------+----------+...
-   | uuid                                 | name       | backend | state      | task | services |...
-   +--------------------------------------+------------+---------+------------+------+----------+...
-   | 1daf3e5b-4122-459f-9dba-d2e92896e718 | file-store | file    | configured | None | glance   |...
-   | a4607355-be7e-4c5c-bf87-c71a0e2ad380 | lvm-store  | lvm     | configured | None | cinder   |...
-   +--------------------------------------+------------+---------+------------+------+----------+...
-
-**********************
-Unlocking controller-0
-**********************
-
-You must unlock controller-0 so that you can use it to install the
-remaining hosts. On controller-0, acquire Keystone administrative
-privileges. Use the system host-unlock command:
-
-::
-
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-unlock controller-0
-
-The host is rebooted. During the reboot, the command line is
-unavailable, and any ssh connections are dropped. To monitor the
-progress of the reboot, use the controller-0 console.
-
-****************************************
-Verifying the controller-0 configuration
-****************************************
-
-On controller-0, acquire Keystone administrative privileges:
-
-::
-
-   controller-0:~$ source /etc/nova/openrc
-
-Verify that the StarlingX controller services are running:
-
-::
-
-   [sysadmin@controller-0 ~(keystone_admin)]$ system service-list
-   +-----+-------------------------------+--------------+----------------+
-   | id  | service_name                  | hostname     | state          |
-   +-----+-------------------------------+--------------+----------------+
-   ...
-   | 1   | oam-ip                        | controller-0 | enabled-active |
-   | 2   | management-ip                 | controller-0 | enabled-active |
-   ...
-   +-----+-------------------------------+--------------+----------------+
-
-Verify that controller-0 is unlocked, enabled, and available:
-
-::
-
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
-   +----+--------------+-------------+----------------+-------------+--------------+
-   | id | hostname     | personality | administrative | operational | availability |
-   +----+--------------+-------------+----------------+-------------+--------------+
-   | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
-   +----+--------------+-------------+----------------+-------------+--------------+
-
----------------------------------------
-Installing controller-1 / compute hosts
----------------------------------------
-
-After initializing and configuring an active controller, you can add and
-configure a backup controller and additional compute hosts. For each
-host do the following:
-
-*****************
-Initializing host
-*****************
-
-Power on Host. In host console you will see:
-
-::
-
-   Waiting for this node to be configured.
-
-   Please configure the personality for this node from the
-   controller node in order to proceed.
-
-***************************************
-Updating host hostname and personality
-***************************************
-
-On controller-0, acquire Keystone administrative privileges:
-
-::
-
-   controller-0:~$ source /etc/nova/openrc
-
-Wait for controller-0 to discover new host, list the host until new
-UNKNOWN host shows up in table:
-
-::
-
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
-   +----+--------------+-------------+----------------+-------------+--------------+
-   | id | hostname     | personality | administrative | operational | availability |
-   +----+--------------+-------------+----------------+-------------+--------------+
-   | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
-   | 2  | None         | None        | locked         | disabled    | offline      |
-   +----+--------------+-------------+----------------+-------------+--------------+
-
-Use the system host-update to update host personality attribute:
-
-::
-
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-update 2 personality=controller hostname=controller-1
-
-Or for compute-0:
-
-::
-
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-update 3 personality=compute hostname=compute-0
-
-See also: 'system help host-update'.
-
-Unless it is known that the host's configuration can support the installation of
-more than one node, it is recommended that the installation and configuration of
-each node be serialized. For example, if the entire cluster has its virtual
-disks hosted on the host's root disk which happens to be a single rotational
-type hard disk, then the host cannot (reliably) support parallel node
-installation.
-
-***************
-Monitoring host
-***************
-
-On controller-0, you can monitor the installation progress by running the system
-host-show command for the host periodically. Progress is shown in the
-install_state field:
-
-::
-
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-show <host> | grep install
-   | install_output      | text                                 |
-   | install_state       | booting                              |
-   | install_state_info  | None                                 |
-
-Wait while the host is configured and rebooted. Up to 20 minutes may be required
-for a reboot, depending on hardware. When the reboot is complete, the host is
-reported as locked, disabled, and online.
-
-*************
-Listing hosts
-*************
-
-Once all nodes have been installed, configured and rebooted, on controller-0
-list the hosts:
-
-::
-
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
    +----+--------------+-------------+----------------+-------------+--------------+
    | id | hostname     | personality | administrative | operational | availability |
    +----+--------------+-------------+----------------+-------------+--------------+
    | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
    | 2  | controller-1 | controller  | locked         | disabled    | online       |
-   | 3  | compute-0    | compute     | locked         | disabled    | online       |
-   | 4  | compute-1    | compute     | locked         | disabled    | online       |
+   | 3  | compute-0    | worker      | locked         | disabled    | online       |
+   | 4  | compute-1    | worker      | locked         | disabled    | online       |
    +----+--------------+-------------+----------------+-------------+--------------+
+
+--------------------------------------------------------------------
+Preparing the remaining hosts for running the containerized services
+--------------------------------------------------------------------
+
+On the controller node, apply all the node labels for each controller
+and compute node function:
+
+::
+
+   source /etc/platform/openrc
+   system host-label-assign controller-1 openstack-control-plane=enabled
+   for NODE in compute-0 compute-1; do
+     system host-label-assign $NODE  openstack-compute-node=enabled
+     system host-label-assign $NODE  openvswitch=enabled
+     system host-label-assign $NODE  sriov=enabled
+   done
 
 -------------------------
 Provisioning controller-1
 -------------------------
 
-On controller-0, list hosts:
+The following sub-sections describe how to provision controller-1
+
+******************************
+Add interfaces on controller-1
+******************************
+
+Add the OAM interface and the Cluster-Host interface on controller-1:
 
 ::
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
-   +----+--------------+-------------+----------------+-------------+--------------+
-   | id | hostname     | personality | administrative | operational | availability |
-   +----+--------------+-------------+----------------+-------------+--------------+
-   ...
-   | 2  | controller-1 | controller  | locked         | disabled    | online       |
-   ...
-   +----+--------------+-------------+----------------+-------------+--------------+
+   source /etc/platform/openrc
+   system host-if-modify -n oam0 -c platform controller-1 $(system host-if-list -a controller-1 | awk '/enp0s3/{print $2}')
+   system interface-network-assign controller-1 oam0 oam
+   system interface-network-assign controller-1 mgmt0 cluster-host
 
-***********************************************
-Provisioning network interfaces on controller-1
-***********************************************
+*******************
+Unlock controller-1
+*******************
 
-In order to list out hardware port names, types, PCI addresses that have
-been discovered:
+Use the following procedure to unlock controller-1:
 
-::
+1. Source the "openrc" file and unlock the controller:
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-port-list controller-1
+   ::
 
-Provision the OAM interface for controller-1:
+      source /etc/platform/openrc
+      system host-unlock controller-1
 
-::
+2. Wait for the node to become available:
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-if-modify -n <oam interface> -c platform --networks oam controller-1 <oam interface>
+   ::
 
-************************************
-Provisioning storage on controller-1
-************************************
+      +----+--------------+-------------+----------------+-------------+--------------+
+      | id | hostname     | personality | administrative | operational | availability |
+      +----+--------------+-------------+----------------+-------------+--------------+
+      | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
+      | 2  | controller-1 | controller  | unlocked       | enabled     | available    |
+      | 3  | compute-0    | worker      | locked         | disabled    | online       |
+      | 4  | compute-1    | worker      | locked         | disabled    | online       |
+      +----+--------------+-------------+----------------+-------------+--------------+
 
-Review the available disk space and capacity and obtain the uuid of the
-physical disk:
+3. The Ceph cluster shows a quorum with controller-0 and controller-1:
 
-::
+   ::
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-list controller-1
-   +--------------------------------------+-----------+---------+---------+-------+------------+
-   | uuid                                 | device_no | device_ | device_ | size_ | available_ |
-   |                                      | de        | num     | type    | gib   | gib        |
-   +--------------------------------------+-----------+---------+---------+-------+------------+
-   | f7ce53db-7843-457e-8422-3c8f9970b4f2 | /dev/sda  | 2048    | HDD     | 200.0 | 0.0        |
-   | 70b83394-968e-4f0d-8a99-7985cd282a21 | /dev/sdb  | 2064    | HDD     | 200.0 | 199.997    |
-   +--------------------------------------+-----------+---------+---------+-------+------------+
+      [root@controller-0 sysadmin(keystone_admin)]# ceph -s
+          cluster 93f79bcb-526f-4396-84a4-a29c93614d09
+           health HEALTH_ERR
+                  128 pgs are stuck inactive for more than 300 seconds
+                  128 pgs stuck inactive
+                  128 pgs stuck unclean
+                  no osds
+           monmap e1: 2 mons at {controller-0=192.168.204.3:6789/0,controller-1=192.168.204.4:6789/0}
+                  election epoch 6, quorum 0,1 controller-0,controller-1
+           osdmap e2: 0 osds: 0 up, 0 in
+                  flags sortbitwise,require_jewel_osds
+            pgmap v3: 128 pgs, 2 pools, 0 bytes data, 0 objects
+                  0 kB used, 0 kB / 0 kB avail
+                       128 creating
 
-Assign Cinder storage to the physical disk:
+--------------------------
+Provisioning compute nodes
+--------------------------
 
-::
+The following sub-sections describe how to provision the compute nodes.
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-lvg-add controller-1 cinder-volumes
-   +-----------------+--------------------------------------+
-   | Property        | Value                                |
-   +-----------------+--------------------------------------+
-   | lvm_vg_name     | cinder-volumes                       |
-   | vg_state        | adding                               |
-   | uuid            | 22d8b94a-200a-4fd5-b1f5-7015ddf10d0b |
-   | ihost_uuid      | 06827025-eacb-45e6-bb88-1a649f7404ec |
-   | lvm_vg_access   | None                                 |
-   | lvm_max_lv      | 0                                    |
-   | lvm_cur_lv      | 0                                    |
-   | lvm_max_pv      | 0                                    |
-   | lvm_cur_pv      | 0                                    |
-   | lvm_vg_size_gib | 0.00                                 |
-   | lvm_vg_total_pe | 0                                    |
-   | lvm_vg_free_pe  | 0                                    |
-   | created_at      | 2018-08-22T05:33:44.608913+00:00     |
-   | updated_at      | None                                 |
-   | parameters      | {u'lvm_type': u'thin'}               |
-   +-----------------+--------------------------------------+
+********************************************
+Add the third Ceph monitor to a compute node
+********************************************
 
-Create a disk partition to add to the volume group based on uuid of the
-physical disk:
+Follow these steps:
 
-::
+1. Add the third Ceph monitor to a compute node:
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-partition-add controller-1 70b83394-968e-4f0d-8a99-7985cd282a21 199 -t lvm_phys_vol
-   +-------------+--------------------------------------------------+
-   | Property    | Value                                            |
-   +-------------+--------------------------------------------------+
-   | device_path | /dev/disk/by-path/pci-0000:00:03.0-ata-2.0-part1 |
-   | device_node | /dev/sdb1                                        |
-   | type_guid   | ba5eba11-0000-1111-2222-000000000001             |
-   | type_name   | None                                             |
-   | start_mib   | None                                             |
-   | end_mib     | None                                             |
-   | size_mib    | 203776                                           |
-   | uuid        | 16a1c5cb-620c-47a3-be4b-022eafd122ee             |
-   | ihost_uuid  | 06827025-eacb-45e6-bb88-1a649f7404ec             |
-   | idisk_uuid  | 70b83394-968e-4f0d-8a99-7985cd282a21             |
-   | ipv_uuid    | None                                             |
-   | status      | Creating (on unlock)                             |
-   | created_at  | 2018-08-22T05:36:42.123770+00:00                 |
-   | updated_at  | None                                             |
-   +-------------+--------------------------------------------------+
+   ::
 
-Wait for the new partition to be created (i.e. status=Ready):
+      [root@controller-0 sysadmin(keystone_admin)]# system ceph-mon-add compute-0
+      +--------------+------------------------------------------------------------------+
+      | Property     | Value                                                            |
+      +--------------+------------------------------------------------------------------+
+      | uuid         | f76bc385-190c-4d9a-aa0f-107346a9907b                             |
+      | ceph_mon_gib | 20                                                               |
+      | created_at   | 2019-01-17T12:32:33.372098+00:00                                 |
+      | updated_at   | None                                                             |
+      | state        | configuring                                                      |
+      | task         | {u'controller-1': 'configuring', u'controller-0': 'configuring'} |
+      +--------------+------------------------------------------------------------------+
 
-::
+2. Wait for the compute node monitor to complete configuration:
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-partition-list controller-1 --disk 70b83394-968e-4f0d-8a99-7985cd282a21
-   +--------------------------------------+...+------------+...+-------+--------+----------------------+
-   | uuid                                 |...| device_nod | ... | size_g | status               |
-   |                                      |...| e          | ... | ib     |                      |
-   +--------------------------------------+...+------------+ ... +--------+----------------------+
-   | 16a1c5cb-620c-47a3-be4b-022eafd122ee |...| /dev/sdb1  | ... | 199.0  | Creating (on unlock) |
-   |                                      |...|            | ... |        |                      |
-   |                                      |...|            | ... |        |                      |
-   +--------------------------------------+...+------------+...+--------+----------------------+
+   ::
 
-Add the partition to the volume group:
+      [root@controller-0 sysadmin(keystone_admin)]# system ceph-mon-list
+      +--------------------------------------+-------+--------------+------------+------+
+      | uuid                                 | ceph_ | hostname     | state      | task |
+      |                                      | mon_g |              |            |      |
+      |                                      | ib    |              |            |      |
+      +--------------------------------------+-------+--------------+------------+------+
+      | 64176b6c-e284-4485-bb2a-115dee215279 | 20    | controller-1 | configured | None |
+      | a9ca151b-7f2c-4551-8167-035d49e2df8c | 20    | controller-0 | configured | None |
+      | f76bc385-190c-4d9a-aa0f-107346a9907b | 20    | compute-0    | configured | None |
+      +--------------------------------------+-------+--------------+------------+------+
+
+********************************
+Create the volume group for Nova
+********************************
+
+Use the following to create the volume group for Nova:
 
 ::
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-pv-add controller-1 cinder-volumes 16a1c5cb-620c-47a3-be4b-022eafd122ee
-   +--------------------------+--------------------------------------------------+
-   | Property                 | Value                                            |
-   +--------------------------+--------------------------------------------------+
-   | uuid                     | 01d79ed2-717f-428e-b9bc-23894203b35b             |
-   | pv_state                 | adding                                           |
-   | pv_type                  | partition                                        |
-   | disk_or_part_uuid        | 16a1c5cb-620c-47a3-be4b-022eafd122ee             |
-   | disk_or_part_device_node | /dev/sdb1                                        |
-   | disk_or_part_device_path | /dev/disk/by-path/pci-0000:00:03.0-ata-2.0-part1 |
-   | lvm_pv_name              | /dev/sdb1                                        |
-   | lvm_vg_name              | cinder-volumes                                   |
-   | lvm_pv_uuid              | None                                             |
-   | lvm_pv_size_gib          | 0.0                                              |
-   | lvm_pe_total             | 0                                                |
-   | lvm_pe_alloced           | 0                                                |
-   | ihost_uuid               | 06827025-eacb-45e6-bb88-1a649f7404ec             |
-   | created_at               | 2018-08-22T05:44:34.715289+00:00                 |
-   | updated_at               | None                                             |
-   +--------------------------+--------------------------------------------------+
+   for COMPUTE in compute-0 compute-1; do
+     echo "Configuring Nova local for: $COMPUTE"
+     ROOT_DISK=$(system host-show ${COMPUTE} | grep rootfs | awk '{print $4}')
+     ROOT_DISK_UUID=$(system host-disk-list ${COMPUTE} --nowrap | awk /${ROOT_DISK}/'{print $2}')
+     PARTITION_SIZE=10
+     NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${COMPUTE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
+     NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
+     system host-lvg-add ${COMPUTE} nova-local
+     system host-pv-add ${COMPUTE} nova-local ${NOVA_PARTITION_UUID}
+   done
 
-**********************
-Unlocking controller-1
-**********************
+*******************************************
+Configure data interfaces for compute nodes
+*******************************************
 
-Unlock controller-1:
+Use the following to configure data interfaces for compute nodes:
 
 ::
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-unlock controller-1
+   DATA0IF=eth1000
+   DATA1IF=eth1001
+   PHYSNET0='physnet0'
+   PHYSNET1='physnet1'
+   SPL=/tmp/tmp-system-port-list
+   SPIL=/tmp/tmp-system-host-if-list
 
-Wait while the controller-1 is rebooted. Up to 10 minutes may be required for a
-reboot, depending on hardware.
+   # configure the datanetworks in sysinv, prior to referencing it in
+   the ``system host-if-modify`` command'.
+   system datanetwork-add ${PHYSNET0} vlan
+   system datanetwork-add ${PHYSNET1} vlan
 
-**REMARK:** controller-1 will remain in 'degraded' state until data-syncing is
-complete. The duration is dependant on the virtualization host's configuration -
-i.e., the number and configuration of physical disks used to host the nodes'
-virtual disks. Also, the management network is expected to have link capacity of
-10000 (1000 is not supported due to excessive data-sync time). Use
-'fm alarm-list' to confirm status.
+   for COMPUTE in compute-0 compute-1; do
+     echo "Configuring interface for: $COMPUTE"
+     set -ex
+     system host-port-list ${COMPUTE} --nowrap > ${SPL}
+     system host-if-list -a ${COMPUTE} --nowrap > ${SPIL}
+     DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
+     DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
+     DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
+     DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
+     DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
+     DATA1PORTNAME=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
+     DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
+     DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
+     system host-if-modify -m 1500 -n data0 -c data ${COMPUTE} ${DATA0IFUUID}
+     system host-if-modify -m 1500 -n data1 -c data ${COMPUTE} ${DATA1IFUUID}
+     system interface-datanetwork-assign ${COMPUTE} ${DATA0IFUUID} ${PHYSNET0}
+     system interface-datanetwork-assign ${COMPUTE} ${DATA1IFUUID} ${PHYSNET1}
+     set +ex
+   done
 
-::
+**************************************************************************************
+Set up the cluster-host interfaces on the compute nodes to manage the network (enp0s8)
+**************************************************************************************
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
-   +----+--------------+-------------+----------------+-------------+--------------+
-   | id | hostname     | personality | administrative | operational | availability |
-   +----+--------------+-------------+----------------+-------------+--------------+
-   | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
-   | 2  | controller-1 | controller  | unlocked       | enabled     | available    |
-   ...
-
----------------------------
-Provisioning a compute host
----------------------------
-
-You must configure the network interfaces and the storage disks on a
-host before you can unlock it. For each compute host do the following:
-
-On controller-0, acquire Keystone administrative privileges:
-
-::
-
-   controller-0:~$ source /etc/nova/openrc
-
-*************************************************
-Provisioning network interfaces on a compute host
-*************************************************
-
-On controller-0, in order to list out hardware port names, types,
-pci-addresses that have been discovered:
-
--  **Only in virtual environment**: Ensure that the interface used is
-   one of those attached to host bridge with model type "virtio" (i.e.,
-   eth1000 and eth1001). The model type "e1000" emulated devices will
-   not work for provider networks:
+Use the following to set up the cluster-host interfaces on the compute nodes
+to manage the network:
 
 ::
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-port-list compute-0
+   for COMPUTE in compute-0 compute-1; do
+      system interface-network-assign $COMPUTE mgmt0 cluster-host
+   done
 
-Provision the data interface for compute:
+********************
+Unlock compute nodes
+********************
 
-::
+Follow these steps to unlock compute nodes:
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-if-modify -p providernet-a -c data compute-0 eth1000
+1. Unlock the nodes:
 
-***************************
-VSwitch virtual environment
-***************************
+   ::
 
-**Only in virtual environment**. If the compute has more than 4 cpus, the system
-will auto-configure the vswitch to use 2 cores. However some virtual
-environments do not properly support multi-queue required in a multi-CPU
-environment. Therefore run the following command to reduce the vswitch cores to
-1:
+      for COMPUTE in compute-0 compute-1; do
+         system host-unlock $COMPUTE
+      done
 
-::
+2. After the hosts are available, test that the Ceph cluster is operational
+   and that all three monitors (i.e. controller-0, controller-1, and compute-0)
+   have joined the monitor quorum:
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-cpu-modify compute-0 -f vswitch -p0 1
-   +--------------------------------------+-------+-----------+-------+--------+...
-   | uuid                                 | log_c | processor | phy_c | thread |...
-   |                                      | ore   |           | ore   |        |...
-   +--------------------------------------+-------+-----------+-------+--------+...
-   | a3b5620c-28b1-4fe0-9e97-82950d8582c2 | 0     | 0         | 0     | 0      |...
-   | f2e91c2b-bfc5-4f2a-9434-bceb7e5722c3 | 1     | 0         | 1     | 0      |...
-   | 18a98743-fdc4-4c0c-990f-3c1cb2df8cb3 | 2     | 0         | 2     | 0      |...
-   | 690d25d2-4f99-4ba1-a9ba-0484eec21cc7 | 3     | 0         | 3     | 0      |...
-   +--------------------------------------+-------+-----------+-------+--------+...
+   ::
 
-**************************************
-Provisioning storage on a compute host
-**************************************
+      [root@controller-0 sysadmin(keystone_admin)]# system host-list
+      +----+--------------+-------------+----------------+-------------+--------------+
+      | id | hostname     | personality | administrative | operational | availability |
+      +----+--------------+-------------+----------------+-------------+--------------+
+      | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
+      | 2  | controller-1 | controller  | unlocked       | enabled     | available    |
+      | 3  | compute-0    | worker      | unlocked       | enabled     | available    |
+      | 4  | compute-1    | worker      | unlocked       | enabled     | available    |
+      +----+--------------+-------------+----------------+-------------+--------------+
+      [root@controller-0 sysadmin(keystone_admin)]# ceph -s
+          cluster 93f79bcb-526f-4396-84a4-a29c93614d09
+           health HEALTH_ERR
+                  128 pgs are stuck inactive for more than 300 seconds
+                  128 pgs stuck inactive
+                  128 pgs stuck unclean
+                  no osds
+           monmap e2: 3 mons at {compute-0=192.168.204.182:6789/0,controller-0=192.168.204.3:6789/0,controller-1=192.168.204.4:6789/0}
+                  election epoch 14, quorum 0,1,2 controller-0,controller-1,compute-0
+           osdmap e11: 0 osds: 0 up, 0 in
+                  flags sortbitwise,require_jewel_osds
+            pgmap v12: 128 pgs, 2 pools, 0 bytes data, 0 objects
+                  0 kB used, 0 kB / 0 kB avail
+                       128 creating
 
-Review the available disk space and capacity and obtain the uuid(s) of
-the physical disk(s) to be used for nova local:
+-------------------------------
+Adding Ceph OSDs to controllers
+-------------------------------
 
-::
+Follow these steps to add Ceph OSDs to controllers:
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-disk-list compute-0
-   +--------------------------------------+-----------+---------+---------+-------+------------+...
-   | uuid                                 | device_no | device_ | device_ | size_ | available_ |...
-   |                                      | de        | num     | type    | gib   | gib        |...
-   +--------------------------------------+-----------+---------+---------+-------+------------+...
-   | 8a9d2c09-d3a7-4781-bd06-f7abf603713a | /dev/sda  | 2048    | HDD     | 200.0 | 172.164    |...
-   | 5ad61bd1-795a-4a76-96ce-39433ef55ca5 | /dev/sdb  | 2064    | HDD     | 200.0 | 199.997    |...
-   +--------------------------------------+-----------+---------+---------+-------+------------+...
+1. Add OSD(s) to controller-0:
 
-Create the 'nova-local' local volume group:
+    ::
 
-::
+       HOST=controller-0
+       DISKS=$(system host-disk-list ${HOST})
+       TIERS=$(system storage-tier-list ceph_cluster)
+       OSDs="/dev/sdb"
+       for OSD in $OSDs; do
+          system host-stor-add ${HOST} $(echo "$DISKS" | grep "$OSD" | awk '{print $2}') --tier-uuid $(echo "$TIERS" | grep storage | awk '{print $2}')
+          while true; do system host-stor-list ${HOST} | grep ${OSD} | grep configuring; if [ $? -ne 0 ]; then break; fi; sleep 1; done
+       done
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-lvg-add compute-0 nova-local
-   +-----------------+-------------------------------------------------------------------+
-   | Property        | Value                                                             |
-   +-----------------+-------------------------------------------------------------------+
-   | lvm_vg_name     | nova-local                                                        |
-   | vg_state        | adding                                                            |
-   | uuid            | 18898640-c8b7-4bbd-a323-4bf3e35fee4d                              |
-   | ihost_uuid      | da1cbe93-cec5-4f64-b211-b277e4860ab3                              |
-   | lvm_vg_access   | None                                                              |
-   | lvm_max_lv      | 0                                                                 |
-   | lvm_cur_lv      | 0                                                                 |
-   | lvm_max_pv      | 0                                                                 |
-   | lvm_cur_pv      | 0                                                                 |
-   | lvm_vg_size_gib | 0.00                                                              |
-   | lvm_vg_total_pe | 0                                                                 |
-   | lvm_vg_free_pe  | 0                                                                 |
-   | created_at      | 2018-08-22T08:00:51.945160+00:00                                  |
-   | updated_at      | None                                                              |
-   | parameters      | {u'concurrent_disk_operations': 2, u'instance_backing': u'image'} |
-   +-----------------+-------------------------------------------------------------------+
+       system host-stor-list $HOST
 
-Create a disk partition to add to the volume group based on uuid of the
-physical disk:
+2. Add OSD(s) to controller-1:
 
-::
+   ::
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-pv-add compute-0 nova-local 5ad61bd1-795a-4a76-96ce-39433ef55ca5
-   +--------------------------+--------------------------------------------+
-   | Property                 | Value                                      |
-   +--------------------------+--------------------------------------------+
-   | uuid                     | 4c81745b-286a-4850-ba10-305e19cee78c       |
-   | pv_state                 | adding                                     |
-   | pv_type                  | disk                                       |
-   | disk_or_part_uuid        | 5ad61bd1-795a-4a76-96ce-39433ef55ca5       |
-   | disk_or_part_device_node | /dev/sdb                                   |
-   | disk_or_part_device_path | /dev/disk/by-path/pci-0000:00:03.0-ata-2.0 |
-   | lvm_pv_name              | /dev/sdb                                   |
-   | lvm_vg_name              | nova-local                                 |
-   | lvm_pv_uuid              | None                                       |
-   | lvm_pv_size_gib          | 0.0                                        |
-   | lvm_pe_total             | 0                                          |
-   | lvm_pe_alloced           | 0                                          |
-   | ihost_uuid               | da1cbe93-cec5-4f64-b211-b277e4860ab3       |
-   | created_at               | 2018-08-22T08:07:14.205690+00:00           |
-   | updated_at               | None                                       |
-   +--------------------------+--------------------------------------------+
+      HOST=controller-1
+      DISKS=$(system host-disk-list ${HOST})
+      TIERS=$(system storage-tier-list ceph_cluster)
+      OSDs="/dev/sdb"
+      for OSD in $OSDs; do
+          system host-stor-add ${HOST} $(echo "$DISKS" | grep "$OSD" | awk '{print $2}') --tier-uuid $(echo "$TIERS" | grep storage | awk '{print $2}')
+          while true; do system host-stor-list ${HOST} | grep ${OSD} | grep configuring; if [ $? -ne 0 ]; then break; fi; sleep 1; done
+      done
 
-Specify the local storage space as local copy-on-write image volumes in
-nova-local:
+      system host-stor-list $HOST
 
-::
+3. At this point, Ceph should report "HEALTH_OK" and
+   show the two OSDs, which are each configured for a single controller:
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-lvg-modify -b image -s 10240 compute-0 nova-local
-   +-----------------+-------------------------------------------------------------------+
-   | Property        | Value                                                             |
-   +-----------------+-------------------------------------------------------------------+
-   | lvm_vg_name     | nova-local                                                        |
-   | vg_state        | adding                                                            |
-   | uuid            | 18898640-c8b7-4bbd-a323-4bf3e35fee4d                              |
-   | ihost_uuid      | da1cbe93-cec5-4f64-b211-b277e4860ab3                              |
-   | lvm_vg_access   | None                                                              |
-   | lvm_max_lv      | 0                                                                 |
-   | lvm_cur_lv      | 0                                                                 |
-   | lvm_max_pv      | 0                                                                 |
-   | lvm_cur_pv      | 0                                                                 |
-   | lvm_vg_size_gib | 0.00                                                              |
-   | lvm_vg_total_pe | 0                                                                 |
-   | lvm_vg_free_pe  | 0                                                                 |
-   | created_at      | 2018-08-22T08:00:51.945160+00:00                                  |
-   | updated_at      | None                                                              |
-   | parameters      | {u'concurrent_disk_operations': 2, u'instance_backing': u'image'} |
-   +-----------------+-------------------------------------------------------------------+
+   ::
 
-************************
-Unlocking a compute host
-************************
+      [root@controller-0 sysadmin(keystone_admin)]# ceph -s
+          cluster 93f79bcb-526f-4396-84a4-a29c93614d09
+           health HEALTH_OK
+           monmap e2: 3 mons at {compute-0=192.168.204.182:6789/0,controller-0=192.168.204.3:6789/0,controller-1=192.168.204.4:6789/0}
+                  election epoch 22, quorum 0,1,2 controller-0,controller-1,compute-0
+           osdmap e31: 2 osds: 2 up, 2 in
+                  flags sortbitwise,require_jewel_osds
+           pgmap v73: 384 pgs, 6 pools, 1588 bytes data, 1116 objects
+                 90044 kB used, 17842 MB / 17929 MB avail
+                      384 active+clean
+      [root@controller-1 sysadmin(keystone_admin)]# ceph osd tree
+      ID WEIGHT  TYPE NAME                      UP/DOWN REWEIGHT PRIMARY-AFFINITY
+      -1 0.01700 root storage-tier
+      -2 0.01700     chassis group-0
+      -4 0.00850         host controller-0
+       1 0.00850             osd.1                   up  1.00000          1.00000
+      -3 0.00850         host controller-1
+       0 0.00850             osd.0                   up  1.00000          1.00000
 
-On controller-0, use the system host-unlock command to unlock the compute node:
+---------------------------------------------------------------------------
+Using sysinv to bring up and take down the containerized OpenStack services
+---------------------------------------------------------------------------
+
+The following sub-sections describe how to bring up and take
+down the containerized OpenStack services.
+
+**********************************************
+Generate the stx-openstack application tarball
+**********************************************
+
+Each build on the CENGN mirror generates the `stx-openstack application
+tarballs <http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/latest_green_build/outputs/helm-charts/>`__.
+
+Alternatively, in a development environment, you can run the following command
+to construct the application tarballs:
 
 ::
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-unlock compute-0
+   $MY_REPO_ROOT_DIR/cgcs-root/build-tools/build-helm-charts.sh
 
-Wait while the compute node is rebooted. Up to 10 minutes may be
-required for a reboot, depending on hardware. The host is rebooted, and
-its availability state is reported as in-test, followed by
-unlocked/enabled.
+- You can find the resulting tarballs under
+  $MY_WORKSPACE/std/build-helm/stx.
 
--------------------
-System health check
--------------------
+- By default, the latest stable starlingx docker images are used in armada
+  manifest. You can build the application tarball with different image
+  versions by specifying the image record files/urls which contain the images
+  you would like to use via option --image-record (The `starlingx image build
+  records <http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/>`
+  can be found on the CENGN mirror).
 
-***********************
-Listing StarlingX nodes
-***********************
+- To construct a new name of stx-openstack tarball, specify a label with
+  --label option. The name of the stx-openstack application tarball is
+  **stx-openstack-<stx-openstack-helm rpm version>(-<label>).tgz**.
 
-On controller-0, after a few minutes, all nodes shall be reported as
-unlocked, enabled, and available:
+- If the build-helm-charts.sh command is unable to find the charts, run
+  "build-pkgs" to build the chart rpms and then re-run the build-helm-charts.sh
+  command.
+
+********************************
+Stage application for deployment
+********************************
+
+Transfer the stx-openstack application tarball onto your active controller.
+
+Once the tarball is on the controller, use the system CLI to upload
+the application tarball:
 
 ::
 
-   [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
-   +----+--------------+-------------+----------------+-------------+--------------+
-   | id | hostname     | personality | administrative | operational | availability |
-   +----+--------------+-------------+----------------+-------------+--------------+
-   | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
-   | 2  | controller-1 | controller  | unlocked       | enabled     | available    |
-   | 3  | compute-0    | compute     | unlocked       | enabled     | available    |
-   | 4  | compute-1    | compute     | unlocked       | enabled     | available    |
-   +----+--------------+-------------+----------------+-------------+--------------+
+   system application-upload stx-openstack
+   system application-list
+
+stx-openstack application tarball has a metadata.yaml file which contains the
+app name and version. The app name and version will be extracted from the
+metadata.yaml when uploading. For the application tarballs that do not have
+app name and version included in metadata.yaml, they need to be specified via
+--app-name and --app-version.
 
 *****************
-System alarm-list
+Bring up services
 *****************
 
-When all nodes are unlocked, enabled and available: check 'fm alarm-list' for
-issues.
+Use the system CLI to apply the application:
 
-Your StarlingX deployment is now up and running with 2x HA controllers with
-Cinder storage, 2x computes, and all OpenStack services up and running. You can
-now proceed with standard OpenStack APIs, CLIs and/or Horizon to load Glance
-images, configure Nova Flavors, configure Neutron networks and launch Nova
-virtual machines.
+::
+
+   system application-apply stx-openstack
+
+You can monitor the progress by watching the system application-list:
+
+::
+
+   watch -n 5 system application-list
+
+Alternatively, you can monitor progress by "tailing" the Armada execution log:
+
+::
+
+   sudo docker exec armada_service tail -f stx-openstack-apply.log
+
+
+-------------------------------
+Verifying the cluster endpoints
+-------------------------------
+
+You can verify the cluster endpoints using the following
+commands from a new shell as a root user:
+
+::
+
+   mkdir -p /etc/openstack
+   tee /etc/openstack/clouds.yaml << EOF
+   clouds:
+     openstack_helm:
+       region_name: RegionOne
+       identity_api_version: 3
+       endpoint_type: internalURL
+       auth:
+         username: 'admin'
+         password: 'Li69nux*'
+         project_name: 'admin'
+         project_domain_name: 'default'
+         user_domain_name: 'default'
+         auth_url: 'http://keystone.openstack.svc.cluster.local/v3'
+   EOF
+
+   export OS_CLOUD=openstack_helm
+   openstack endpoint list
+
+-------------------------------------
+Setting up provider/tenant networking
+-------------------------------------
+
+The following sub-sections describe how to set up
+provider/tenant networking.
+
+*********************************
+Create the network segment ranges
+*********************************
+
+Use the following to create the network segment ranges:
+
+.. note :: The "physical-network" name must match name of
+           the datanetwork configured in sysinv through the
+           ``system datanetwork-add`` command as shown in the
+           `Configure data interfaces for compute nodes <./index.html#configure-data-interfaces-for-compute nodes>`__
+           section.
+
+::
+
+   ADMINID=`openstack project list | grep admin | awk '{print $2}'`
+   PHYSNET0='physnet0'
+   PHYSNET1='physnet1'
+
+   openstack network segment range create ${PHYSNET0}-a --network-type vlan --physical-network ${PHYSNET0}  --minimum 400 --maximum 499 --private --  project ${ADMINID}
+
+   openstack network segment range create  ${PHYSNET0}-b --network-type vlan  --physical-network ${PHYSNET0}  --minimum 10 --maximum 10 --shared
+
+   openstack network segment range create ${PHYSNET1}-a --network-type vlan  --physical-network  ${PHYSNET1} --minimum 500 --maximum 599  --private --project ${ADMINID}
+
+************************
+Set up tenant networking
+************************
+
+Set up tenant networking as follows.
+Make adaptations based on lab config:
+
+.. note:: The remaining networking steps are done using this root user.
+
+::
+
+   ADMINID=`openstack project list | grep admin | awk '{print $2}'`
+   PHYSNET0='physnet0'
+   PHYSNET1='physnet1'
+   PUBLICNET='public-net0'
+   PRIVATENET='private-net0'
+   INTERNALNET='internal-net0'
+   EXTERNALNET='external-net0'
+   PUBLICSUBNET='public-subnet0'
+   PRIVATESUBNET='private-subnet0'
+   INTERNALSUBNET='internal-subnet0'
+   EXTERNALSUBNET='external-subnet0'
+   PUBLICROUTER='public-router0'
+   PRIVATEROUTER='private-router0'
+
+   openstack network create --project ${ADMINID} --provider-network-type=vlan --provider-physical-network=${PHYSNET0} --provider-segment=10 --share --external ${EXTERNALNET}
+   openstack network create --project ${ADMINID} --provider-network-type=vlan --provider-physical-network=${PHYSNET0} --provider-segment=400 ${PUBLICNET}
+   openstack network create --project ${ADMINID} --provider-network-type=vlan --provider-physical-network=${PHYSNET1} --provider-segment=500 ${PRIVATENET}
+   openstack network create --project ${ADMINID} ${INTERNALNET}
+   PUBLICNETID=`openstack network list | grep ${PUBLICNET} | awk '{print $2}'`
+   PRIVATENETID=`openstack network list | grep ${PRIVATENET} | awk '{print $2}'`
+   INTERNALNETID=`openstack network list | grep ${INTERNALNET} | awk '{print $2}'`
+   EXTERNALNETID=`openstack network list | grep ${EXTERNALNET} | awk '{print $2}'`
+   openstack subnet create --project ${ADMINID} ${PUBLICSUBNET} --network ${PUBLICNET} --subnet-range 192.168.101.0/24
+   openstack subnet create --project ${ADMINID} ${PRIVATESUBNET} --network ${PRIVATENET} --subnet-range 192.168.201.0/24
+   openstack subnet create --project ${ADMINID} ${INTERNALSUBNET} --gateway none --network ${INTERNALNET} --subnet-range 10.1.1.0/24
+   openstack subnet create --project ${ADMINID} ${EXTERNALSUBNET} --gateway 192.168.1.1 --no-dhcp --network ${EXTERNALNET} --subnet-range 192.168.51.0/24 --ip-version 4
+   openstack router create ${PUBLICROUTER}
+   openstack router create ${PRIVATEROUTER}
+   PRIVATEROUTERID=`openstack router list | grep ${PRIVATEROUTER} | awk '{print $2}'`
+   PUBLICROUTERID=`openstack router list | grep ${PUBLICROUTER} | awk '{print $2}'`
+   openstack router set ${PUBLICROUTER} --external-gateway ${EXTERNALNETID} --disable-snat
+   openstack router set ${PRIVATEROUTER} --external-gateway ${EXTERNALNETID} --disable-snat
+   openstack router add subnet ${PUBLICROUTER} ${PUBLICSUBNET}
+   openstack router add subnet ${PRIVATEROUTER} ${PRIVATESUBNET}
+
+.. include:: uninstalling_deleting_openstack.rst
+   :start-after: incl-uninstalling-deleting-openstack:
+   :end-before: incl-uninstalling-deleting-openstack-end:
+
+.. include:: horizon_access.rst
+   :start-after: incl-horizon-access:
+   :end-before: incl-horizon-access-end:
+
+--------------------------------
+Known issues and troubleshooting
+--------------------------------
+
+No known issues or troubleshooting procedures exist.
 
 ----------------------
 Deployment terminology
 ----------------------
+
+Following are terms used when describing the StarlingX Cloud with
+Controller Storage configuration option.
+
 
 .. include:: deployment_terminology.rst
    :start-after: incl-standard-controller-deployment-terminology:
