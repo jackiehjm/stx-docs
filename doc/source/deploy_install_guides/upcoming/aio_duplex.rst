@@ -1230,6 +1230,186 @@ Setup tenant networking using the following commands:
    openstack router add subnet ${PUBLICROUTER} ${PUBLICSUBNET}
    openstack router add subnet ${PRIVATEROUTER} ${PRIVATESUBNET}
 
+-----------------------------------
+Extending the compute node capacity
+-----------------------------------
+
+You can add up to four compute nodes to the AIO-DX deployment.
+
+On controller-0, acquire Keystone administrative privileges:
+
+::
+
+   controller-0:~$ source /etc/platform/openrc
+
+*************
+PXE boot host
+*************
+
+Follow these steps to install each compute host:
+
+1. Power-on the host.
+   The host should PXEboot from controller-0.
+
+2. Press F-12 for network boot if the host does not PXEboot.
+
+3. Once the host boots from PXE, the host should be
+   visible when you check for it using the ``system host-list``
+   command:
+
+   ::
+
+      [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
+      +----+--------------+-------------+----------------+-------------+--------------+
+      | id | hostname     | personality | administrative | operational | availability |
+      +----+--------------+-------------+----------------+-------------+--------------+
+      | 1  | controller-0 | controller  | unlocked       | enabled     | online       |
+      | 2  | controller-1 | controller  | unlocked       | enabled     | online       |
+      | 3  | None         | None        | locked         | disabled    | offline      |
+      | 4  | None         | None        | locked         | disabled    | offline      |
+      +----+--------------+-------------+----------------+-------------+--------------+
+
+**************************
+Configure host personality
+**************************
+
+Configure the host personality as follows:
+
+::
+
+   system host-update 3 personality=worker hostname=compute-0
+   system host-update 4 personality=worker hostname=compute-1
+
+At this point, host should start installing.
+
+******************************
+Wait for host to become online
+******************************
+
+Once the node has been installed and rebooted, you should see it
+become online and available:
+
+::
+
+   +----+--------------+-------------+----------------+-------------+--------------+
+   | id | hostname     | personality | administrative | operational | availability |
+   +----+--------------+-------------+----------------+-------------+--------------+
+   | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
+   | 2  | controller-1 | controller  | unlocked       | enabled     | online       |
+   | 3  | compute-0    | worker      | locked         | disabled    | online       |
+   | 4  | compute-1    | worker      | locked         | disabled    | online       |
+   +----+--------------+-------------+----------------+-------------+--------------+
+
+*********************************************************
+Preparing the host for running the containerized services
+*********************************************************
+
+On the controller node, apply the node labels for the compute node function:
+
+::
+
+   for NODE in compute-0 compute-1; do
+     system host-label-assign $NODE  openstack-compute-node=enabled
+     system host-label-assign $NODE  openvswitch=enabled
+     system host-label-assign $NODE  sriov=enabled
+   done
+
+********************************
+Create the volume group for Nova
+********************************
+
+Use the following to create the volume group for Nova:
+
+::
+
+   for COMPUTE in compute-0 compute-1; do
+     echo "Configuring Nova local for: $COMPUTE"
+     ROOT_DISK=$(system host-show ${COMPUTE} | grep rootfs | awk '{print $4}')
+     ROOT_DISK_UUID=$(system host-disk-list ${COMPUTE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
+     PARTITION_SIZE=10
+     NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${COMPUTE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
+     NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
+     system host-lvg-add ${COMPUTE} nova-local
+     system host-pv-add ${COMPUTE} nova-local ${NOVA_PARTITION_UUID}
+   done
+
+*****************************************
+Configure data interfaces for the compute
+*****************************************
+
+Use the following to configure data interfaces for the compute node:
+
+::
+
+   DATA0IF=eth1000
+   DATA1IF=eth1001
+   PHYSNET0='physnet0'
+   PHYSNET1='physnet1'
+   SPL=/tmp/tmp-system-port-list
+   SPIL=/tmp/tmp-system-host-if-list
+
+   for COMPUTE in compute-0 compute-1; do
+     echo "Configuring interface for: $COMPUTE"
+     set -ex
+     system host-port-list ${COMPUTE} --nowrap > ${SPL}
+     system host-if-list -a ${COMPUTE} --nowrap > ${SPIL}
+     DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
+     DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
+     DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
+     DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
+     DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
+     DATA1PORTNAME=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
+     DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
+     DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
+     system host-if-modify -m 1500 -n data0 -c data ${COMPUTE} ${DATA0IFUUID}
+     system host-if-modify -m 1500 -n data1 -c data ${COMPUTE} ${DATA1IFUUID}
+     system interface-datanetwork-assign ${COMPUTE} ${DATA0IFUUID} ${PHYSNET0}
+     system interface-datanetwork-assign ${COMPUTE} ${DATA1IFUUID} ${PHYSNET1}
+     set +ex
+   done
+
+*************************************************************************************
+Set up the cluster-host interfaces on the compute node to manage the network (enp0s8)
+*************************************************************************************
+
+Use the following to set up the cluster-host interfaces on the compute node
+to manage the network:
+
+::
+
+   for COMPUTE in compute-0 compute-1; do
+      system interface-network-assign $COMPUTE mgmt0 cluster-host
+   done
+
+*******************
+Unlock compute node
+*******************
+
+Follow these steps to unlock compute node:
+
+1. Unlock the nodes:
+
+   ::
+
+      for COMPUTE in compute-0 compute-1; do
+         system host-unlock $COMPUTE
+      done
+
+2. After hosts reboot, check that they become unlocked / enabled / available
+   such that they are in-service and available to host containers.
+
+   ::
+
+      [root@controller-0 sysadmin(keystone_admin)]# system host-list
+      +----+--------------+-------------+----------------+-------------+--------------+
+      | id | hostname     | personality | administrative | operational | availability |
+      +----+--------------+-------------+----------------+-------------+--------------+
+      | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
+      | 2  | controller-1 | controller  | unlocked       | enabled     | available    |
+      | 3  | compute-0    | worker      | unlocked       | enabled     | available    |
+      | 4  | compute-1    | worker      | unlocked       | enabled     | available    |
+      +----+--------------+-------------+----------------+-------------+--------------+
+
 .. include:: uninstalling_deleting_openstack.rst
    :start-after: incl-uninstalling-deleting-openstack:
    :end-before: incl-uninstalling-deleting-openstack-end:
