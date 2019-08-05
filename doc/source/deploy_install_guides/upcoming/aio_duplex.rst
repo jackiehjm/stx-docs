@@ -700,6 +700,9 @@ These servers are used for network time synchronization:
 Configure the host's vSwitch type
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. attention:: In a virtual environment, OVS-DPDK is NOT supported, only OVS
+   is supported.
+
 This section describes how to configure the Virtual Switch required for the
 stx-openstack application, which allows network entities to connect to virtual
 machines over a virtual network.
@@ -743,9 +746,6 @@ property: **hw:mem_page_size=large**.
 .. important:: After controller-0 is unlocked, changing vswitch_type would
    require locking and unlocking all computes (and/or AIO controllers) in
    order to apply the change.
-
-.. attention:: In a virtual environment, OVS-DPDK is NOT supported, only OVS
-   is supported.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 Configure data interfaces
@@ -875,7 +875,6 @@ Now, test that the Ceph cluster is operational:
                39180 kB used, 50112 MB / 50150 MB avail
                    1728 active+clean
 
-
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Boot the second AIO controller
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -935,10 +934,11 @@ Configure the data interfaces as follows:
    NOWRAP="--nowrap"
 
    echo ">>> Configuring OAM Network"
-   system host-if-modify -n oam0 -c platform --networks oam ${COMPUTE} $(system host-if-list -a $COMPUTE  $NOWRAP | awk -v OAM_IF=$OAM_IF '{if ($4 == OAM_IF) { print $2;}}')
+   system host-if-modify -n oam0 -c platform ${COMPUTE} $(system host-if-list-a $COMPUTE  $NOWRAP | awk -v OAM_IF=$OAM_IF '{if ($4 == OAM_IF) { print $2;}}')
+   system interface-network-assign controller-1 oam0 oam
 
    echo ">>> Configuring Cluster Host Interface"
-   system host-if-modify $COMPUTE mgmt0 --networks cluster-host
+   system interface-network-assign controller-1 mgmt0 cluster-host
 
    echo ">>> Configuring Data Networks"
    SPL=/tmp/tmp-system-port-list
@@ -1091,7 +1091,7 @@ the application tarball:
 
 ::
 
-   system application-upload stx-openstack
+   system application-upload <stx-openstack application tarball>.tgz
    system application-list
 
 The stx-openstack application tarball has a metadata.yaml file which contains

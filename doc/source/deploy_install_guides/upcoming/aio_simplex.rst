@@ -636,6 +636,9 @@ These servers are used for network time synchronization:
 Configure the host's vSwitch type
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. attention:: In a virtual environment, OVS-DPDK is NOT supported, only OVS
+   is supported.
+
 This section describes how to configure the Virtual Switch required for the
 stx-openstack application, which allows network entities to connect to virtual
 machines over a virtual network.
@@ -679,9 +682,6 @@ property: **hw:mem_page_size=large**.
 .. important:: After controller-0 is unlocked, changing vswitch_type would
    require locking and unlocking all computes (and/or AIO-SX controllers)
    in order to apply the change.
-
-.. attention:: In a virtual environment, OVS-DPDK is NOT supported, only OVS
-   is supported.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 Configure data interfaces
@@ -853,6 +853,12 @@ to construct the application tarballs:
 Stage application for deployment
 ********************************
 
+On controller-0, acquire Keystone administrative privileges:
+
+::
+
+   controller-0:~$ source /etc/platform/openrc
+
 Transfer the stx-openstack application tarball onto your active controller.
 
 Once the tarball is on the controller, use the system CLI to upload
@@ -860,7 +866,7 @@ the application tarball:
 
 ::
 
-   system application-upload stx-openstack
+   system application-upload <stx-openstack application tarball>.tgz
    system application-list
 
 The stx-openstack application tarball has a metadata.yaml file which contains

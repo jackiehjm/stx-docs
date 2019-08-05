@@ -307,11 +307,12 @@ To power up the virtual server, use the following command form:
 
     $ sudo virsh start <server-xml-name>
 
-Following is an example where <server-xml-name> is "duplex-controller-0":
+Following is an example where <server-xml-name> is
+"controllerstorage-controller-0":
 
 ::
 
-    $ sudo virsh start duplex-controller-0
+    $ sudo virsh start controllerstorage-controller-0
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Access a virtual server console
@@ -629,9 +630,9 @@ specified in the command line:
           In the near future, a command alias called "bootstrap-controller"
           will be provided for ease of use.
 
-------------------------------------
+-------------------------
 Provisioning the platform
-------------------------------------
+-------------------------
 
 The following subsections describe how to provision the
 server being used as controller-0.
@@ -652,7 +653,6 @@ for controller-0:
 
 ::
 
-   source /etc/platform/openrc
    OAM_IF=enp0s3
    MGMT_IF=enp0s8
    system host-if-modify controller-0 lo -c none
@@ -688,6 +688,9 @@ These servers provide network time synchronization:
 *********************************
 Configure the host's vSwitch type
 *********************************
+
+.. attention:: In a virtual environment, OVS-DPDK is NOT supported, only OVS
+   is supported.
 
 This section describes how to configure the Virtual Switch required for the
 stx-openstack application, which allows network entities to connect to virtual
@@ -732,9 +735,6 @@ property: **hw:mem_page_size=large**.
 .. important:: After controller-0 is unlocked, changing vswitch_type would
    require locking and unlocking all computes (and/or AIO Controllers) in
    order to apply the change.
-
-.. attention:: In a virtual environment, OVS-DPDK is NOT supported, only OVS
-   is supported.
 
 *****************************************************************
 Prepare the host for running the containerized OpenStack services
@@ -796,14 +796,12 @@ Follow these steps to verify the controller-0 configuration:
       | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
       +----+--------------+-------------+----------------+-------------+--------------+
 
-
 --------------------------
 Installing remaining hosts
 --------------------------
 
 The following sub-sections describe how to install the
 remaining hosts.
-
 
 **************
 PXE boot hosts
@@ -840,7 +838,6 @@ Configure the host personalities as follows:
 
 ::
 
-   source /etc/platform/openrc
    system host-update 2 personality=controller
    system host-update 3 personality=worker hostname=compute-0
    system host-update 4 personality=worker hostname=compute-1
@@ -874,7 +871,6 @@ and compute node function:
 
 ::
 
-   source /etc/platform/openrc
    system host-label-assign controller-1 openstack-control-plane=enabled
    for NODE in compute-0 compute-1; do
      system host-label-assign $NODE  openstack-compute-node=enabled
@@ -886,7 +882,7 @@ and compute node function:
 Provisioning controller-1
 -------------------------
 
-The following sub-sections describe how to provision controller-1
+The following sub-sections describe how to provision controller-1.
 
 ******************************
 Add interfaces on controller-1
@@ -896,7 +892,6 @@ Add the OAM interface and the Cluster-Host interface on controller-1:
 
 ::
 
-   source /etc/platform/openrc
    system host-if-modify -n oam0 -c platform controller-1 $(system host-if-list -a controller-1 | awk '/enp0s3/{print $2}')
    system interface-network-assign controller-1 oam0 oam
    system interface-network-assign controller-1 mgmt0 cluster-host
@@ -907,11 +902,10 @@ Unlock controller-1
 
 Use the following procedure to unlock controller-1:
 
-1. Source the "openrc" file and unlock the controller:
+1. Unlock controller-1:
 
    ::
 
-      source /etc/platform/openrc
       system host-unlock controller-1
 
 2. Wait for the node to become available:
@@ -1000,7 +994,7 @@ Use the following to create the volume group for Nova:
    for COMPUTE in compute-0 compute-1; do
      echo "Configuring Nova local for: $COMPUTE"
      ROOT_DISK=$(system host-show ${COMPUTE} | grep rootfs | awk '{print $4}')
-     ROOT_DISK_UUID=$(system host-disk-list ${COMPUTE} --nowrap | awk /${ROOT_DISK}/'{print $2}')
+     ROOT_DISK_UUID=$(system host-disk-list ${COMPUTE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
      PARTITION_SIZE=10
      NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${COMPUTE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
      NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
@@ -1023,8 +1017,8 @@ Use the following to configure data interfaces for compute nodes:
    SPL=/tmp/tmp-system-port-list
    SPIL=/tmp/tmp-system-host-if-list
 
-   # configure the datanetworks in sysinv, prior to referencing it in
-   the ``system host-if-modify`` command'.
+   # configure the datanetworks in sysinv, prior to referencing it
+   # in the ``system host-if-modify`` command'.
    system datanetwork-add ${PHYSNET0} vlan
    system datanetwork-add ${PHYSNET1} vlan
 
@@ -1215,7 +1209,7 @@ the application tarball:
 
 ::
 
-   system application-upload stx-openstack
+   system application-upload <stx-openstack application tarball>.tgz
    system application-list
 
 stx-openstack application tarball has a metadata.yaml file which contains the
@@ -1335,18 +1329,22 @@ Make adaptations based on lab config:
    openstack network create --project ${ADMINID} --provider-network-type=vlan --provider-physical-network=${PHYSNET0} --provider-segment=400 ${PUBLICNET}
    openstack network create --project ${ADMINID} --provider-network-type=vlan --provider-physical-network=${PHYSNET1} --provider-segment=500 ${PRIVATENET}
    openstack network create --project ${ADMINID} ${INTERNALNET}
+
    PUBLICNETID=`openstack network list | grep ${PUBLICNET} | awk '{print $2}'`
    PRIVATENETID=`openstack network list | grep ${PRIVATENET} | awk '{print $2}'`
    INTERNALNETID=`openstack network list | grep ${INTERNALNET} | awk '{print $2}'`
    EXTERNALNETID=`openstack network list | grep ${EXTERNALNET} | awk '{print $2}'`
+
    openstack subnet create --project ${ADMINID} ${PUBLICSUBNET} --network ${PUBLICNET} --subnet-range 192.168.101.0/24
    openstack subnet create --project ${ADMINID} ${PRIVATESUBNET} --network ${PRIVATENET} --subnet-range 192.168.201.0/24
    openstack subnet create --project ${ADMINID} ${INTERNALSUBNET} --gateway none --network ${INTERNALNET} --subnet-range 10.1.1.0/24
    openstack subnet create --project ${ADMINID} ${EXTERNALSUBNET} --gateway 192.168.1.1 --no-dhcp --network ${EXTERNALNET} --subnet-range 192.168.51.0/24 --ip-version 4
    openstack router create ${PUBLICROUTER}
    openstack router create ${PRIVATEROUTER}
+
    PRIVATEROUTERID=`openstack router list | grep ${PRIVATEROUTER} | awk '{print $2}'`
    PUBLICROUTERID=`openstack router list | grep ${PUBLICROUTER} | awk '{print $2}'`
+
    openstack router set ${PUBLICROUTER} --external-gateway ${EXTERNALNETID} --disable-snat
    openstack router set ${PRIVATEROUTER} --external-gateway ${EXTERNALNETID} --disable-snat
    openstack router add subnet ${PUBLICROUTER} ${PUBLICSUBNET}
