@@ -564,7 +564,7 @@ Use these commands to set up external connectivity:
 
    export CONTROLLER0_OAM_CIDR=10.10.10.10/24
    export DEFAULT_OAM_GATEWAY=10.10.10.1
-   sudo ip address add dev $CONTROLLER0_OAM_CIDR enp2s1
+   sudo ip address add $CONTROLLER0_OAM_CIDR dev enp2s1
    sudo ip link set up dev enp2s1
    sudo ip route add default via $DEFAULT_OAM_GATEWAY dev enp2s1
    ping 8.8.8.8
