@@ -1059,8 +1059,9 @@ Unlock the storage hosts
 
 ::
 
-   system host-unlock storage-0
-   system host-unlock storage-1
+   for STORAGE in storage-0 storage-1; do
+      system host-unlock $STORAGE
+   done
 
 4. Test that the Ceph cluster is operational:
 
