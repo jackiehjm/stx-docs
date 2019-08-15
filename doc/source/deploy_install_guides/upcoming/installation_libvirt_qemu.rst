@@ -73,14 +73,14 @@ This rc file shows the defaults as part of the scripts:
 
 
 *************************
-Install stx-tools project
+Install tools project
 *************************
 
-Clone the stx-tools project into a working directory.
+Clone the tools project into a working directory.
 
 ::
 
-   git clone https://git.openstack.org/openstack/stx-tools.git
+   git clone https://opendev.org/starlingx/tools.git
 
 
 It is convenient to set up a shortcut to the deployment script
@@ -88,7 +88,7 @@ directory:
 
 ::
 
-   SCRIPTS=$(pwd)/stx-tools/deployment/libvirt
+   SCRIPTS=$(pwd)/tools/deployment/libvirt
 
 
 If you created a configuration, load it from stxcloud.rc:
