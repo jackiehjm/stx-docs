@@ -262,7 +262,7 @@ Typically, you clone this project while in your home directory:
 ::
 
    $ cd $HOME
-   $ git clone https://opendev.org/starlingx/tools
+   $ git clone https://opendev.org/starlingx/tools.git
 
 ****************************************
 Installing requirements and dependencies
