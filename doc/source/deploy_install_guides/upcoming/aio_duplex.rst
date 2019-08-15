@@ -934,7 +934,7 @@ Configure the data interfaces as follows:
    NOWRAP="--nowrap"
 
    echo ">>> Configuring OAM Network"
-   system host-if-modify -n oam0 -c platform ${COMPUTE} $(system host-if-list-a $COMPUTE  $NOWRAP | awk -v OAM_IF=$OAM_IF '{if ($4 == OAM_IF) { print $2;}}')
+   system host-if-modify -n oam0 -c platform ${COMPUTE} $(system host-if-list -a $COMPUTE  $NOWRAP | awk -v OAM_IF=$OAM_IF '{if ($4 == OAM_IF) { print $2;}}')
    system interface-network-assign controller-1 oam0 oam
 
    echo ">>> Configuring Cluster Host Interface"
