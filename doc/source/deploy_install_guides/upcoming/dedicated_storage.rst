@@ -1037,8 +1037,9 @@ Add the cluster-host interface on storage hosts
 
 ::
 
-   system interface-network-assign storage-0 $(system host-if-list -a storage-0 | awk '/mgmt0/{print $2}') cluster-host
-   system interface-network-assign storage-1 $(system host-if-list -a storage-1 | awk '/mgmt0/{print $2}') cluster-host
+   for STORAGE in storage-0 storage-1; do
+      system interface-network-assign $STORAGE $(system host-if-list -a $STORAGE | awk '/mgmt0/{print $2}') cluster-host
+   done
 
 *******************************
 Add an OSD to the storage hosts
@@ -1048,8 +1049,10 @@ Add an OSD to the storage hosts
 
 ::
 
-   system host-stor-add storage-0 $(system host-disk-list storage-0 | awk '/sdb/{print $2}')
-   system host-stor-add storage-1 $(system host-disk-list storage-1 | awk '/sdb/{print $2}')
+   for STORAGE in storage-0 storage-1; do
+      system host-stor-add $STORAGE $(system host-disk-list $STORAGE | awk '/sdb/{print $2}')
+   done
+
 
 ************************
 Unlock the storage hosts
