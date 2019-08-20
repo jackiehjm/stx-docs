@@ -226,7 +226,7 @@ user's home directory.
 ::
 
    $ cd $HOME
-   $ git clone https://opendev.org/starlingx/tools
+   $ git clone https://opendev.org/starlingx/tools.git
 
 ****************************************
 Installing requirements and dependencies
