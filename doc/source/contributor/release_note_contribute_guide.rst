@@ -13,27 +13,27 @@ be found at: https://docs.openstack.org/reno
 Locations
 ---------
 
-StarlingX Release Notes documentation exists in the following projects:
+StarlingX release notes documentation exists in the following projects:
 
--  **stx-clients:** StarlingX Client Libraries
--  **stx-config:** StarlingX System Configuration Management
--  **stx-distcloud:** StarlingX Distributed Cloud
--  **stx-distcloud-client:** StarlingX Distributed Cloud Client
--  **stx-fault:** StarlingX Fault Management
--  **stx-gui:**  StarlingX Horizon plugins for new StarlingX services
--  **stx-ha:** StarlingX High Availability/Process Monitoring/Service Management
--  **stx-integ:** StarlingX Integration and Packaging
--  **stx-metal:** StarlingX Bare Metal and Node Management, Hardware Maintenance
--  **stx-nfv:** StarlingX NFVI Orchestration
--  **stx-tools:** StarlingX Build Tools
--  **stx-update:** StarlingX Installation/Update/Patching/Backup/Restore
--  **stx-upstream:** StarlingX Upstream Packaging
+-  `starlingx/clients`_: StarlingX Client Libraries
+-  `starlingx/config`_: StarlingX System Configuration Management
+-  `starlingx/distcloud`_: StarlingX Distributed Cloud
+-  `starlingx/distcloud-client`_: StarlingX Distributed Cloud Client
+-  `starlingx/fault`_: StarlingX Fault Management
+-  `starlingx/gui`_:  StarlingX Horizon plugins for new StarlingX services
+-  `starlingx/ha`_: StarlingX High Availability/Process Monitoring/Service Management
+-  `starlingx/integ`_: StarlingX Integration and Packaging
+-  `starlingx/metal`_: StarlingX Bare Metal and Node Management, Hardware Maintenance
+-  `starlingx/nfv`_: StarlingX NFVI Orchestration
+-  `starlingx/tools`_: StarlingX Build Tools
+-  `starlingx/update`_: StarlingX Installation/Update/Patching/Backup/Restore
+-  `starlingx/upstream`_: StarlingX Upstream Packaging
 
 --------------------
 Directory Structures
 --------------------
 
-The directory structure of Release documentation under each StarlingX project
+The directory structure of release documentation under each StarlingX project
 repository is fixed.  Here is an example showing **stx-confi** StarlingX System
 Configuration Management:
 
@@ -81,7 +81,7 @@ Release Notes Files
 
 The following shows the YAML source file for the stx-config StarlingX System
 Configuration Management:
-`Release Summary r/2018.10 <http://git.openstack.org/cgit/openstack/stx-config/tree/releasenotes/notes/release-summary-6738ff2f310f9b57.yaml>`_
+`Release Summary R1.0 <http://git.openstack.org/cgit/openstack/stx-config/tree/releasenotes/notes/release-summary-6738ff2f310f9b57.yaml>`_
 
 ::
 
@@ -202,3 +202,19 @@ Release Team Workflow
    Git tag.
 #. Generate the Reno Report.
 #. Add your change and submit for review.
+
+
+
+.. _starlingx/clients: https://opendev.org/starlingx/clients
+.. _starlingx/config: https://opendev.org/starlingx/config
+.. _starlingx/distcloud: https://opendev.org/starlingx/distcloud
+.. _starlingx/distcloud-client: https://opendev.org/starlingx/distcloud-client
+.. _starlingx/fault: https://opendev.org/starlingx/fault
+.. _starlingx/gui: https://opendev.org/starlingx/gui
+.. _starlingx/ha: https://opendev.org/starlingx/ha
+.. _starlingx/integ: https://opendev.org/starlingx/integ
+.. _starlingx/metal: https://opendev.org/starlingx/metal
+.. _starlingx/nfv: https://opendev.org/starlingx/nfv
+.. _starlingx/tools: https://opendev.org/starlingx/tools
+.. _starlingx/update: https://opendev.org/starlingx/update
+.. _starlingx/upstream: https://opendev.org/starlingx/upstream

@@ -4,13 +4,12 @@
 Contribute
 ==========
 
-Please use the following guides when contributing to the StarlingX
-documentation. Additional information about contributing to
-OpenStack documentation can be found in the
-`OpenStack API documentation guide`_ and the
-`OpenStack Documentation Contributor Guide <https://docs.openstack.org/doc-contrib-guide/index.html>`_.
+The following guides provide detailed instructions on the contribution workflow
+and conventions to be considered when contributing to the StarlingX documentation.
 
-.. _`OpenStack API documentation guide`: https://docs.openstack.org/doc-contrib-guide/api-guides.html
+---------------------------
+Contribute to documentation
+---------------------------
 
 .. toctree::
    :maxdepth: 1
@@ -19,39 +18,40 @@ OpenStack documentation can be found in the
    release_note_contribute_guide
    doc_contribute_guide
 
-For information on the StarlingX development process, see the following:
+-------------------
+Development process
+-------------------
+
+For information on the StarlingX development process, refer to the following guide:
 
 .. toctree::
    :maxdepth: 1
 
    development_process
 
-Build guides for StarlingX are release-specific.
-The following list provides help on choosing the correct
-build guide based on a release:
+---------------
+Build StarlingX
+---------------
 
-- The "current" release is the most recent officially released version of StarlingX.
-  Following is the current build guide:
+For instructions on how to build StarlingX, refer to the following guides (build
+guides for StarlingX are release-specific).
 
-  .. toctree::
-     :maxdepth: 1
+.. toctree::
+   :maxdepth: 1
 
-     build_guides/current/index
+   build_guides/current/index
+   build_guides/r1_release/index
 
-- The "latest" release is the forthcoming version under development.
-  Following is the latest build guide:
+--------------------
+Additional resources
+--------------------
 
-  .. toctree::
-     :maxdepth: 1
+Additional information about contributing to OpenStack documentation can be found
+in the following guides:
 
-     build_guides/latest/index
+* `OpenStack API documentation guide`_
+* `OpenStack Documentation Contributor Guide`_
 
-- The "archived" build guides are as follows:
+.. _`OpenStack Documentation Contributor Guide`: https://docs.openstack.org/doc-contrib-guide/index.html
 
-  * Currently, no archived build guides exist.
-
-
-
-.. When a new release of developer guides occurs, follow the steps in the
-   commented block of the /installation_guide/index.rst file.
-
+.. _`OpenStack API documentation guide`: https://docs.openstack.org/doc-contrib-guide/api-guides.html

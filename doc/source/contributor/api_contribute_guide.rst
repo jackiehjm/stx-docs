@@ -15,25 +15,25 @@ https://docs.openstack.org/doc-contrib-guide/api-guides.html.
 
 StarlingX API Reference documentation exists in the following projects:
 
--  **stx-config:** StarlingX System Configuration Management
--  **stx-docs:** StarlingX Documentation
+-  `starlingx/config`_: StarlingX System Configuration Management
+-  `starlingx/docs`_: StarlingX Documentation
 
-   -  **stx-python-cinderclient** // i.e. only StarlingX-specific
+   -  *stx-python-cinderclient* // only StarlingX-specific
       extensions to Cinder API are documented here
-   -  **stx-nova** // i.e. only StarlingX-specific extensions to Nova
+   -  *stx-nova* // only StarlingX-specific extensions to Nova
       API are documented here
-   -  **stx-glance** // i.e. only StarlingX-specific extensions to
+   -  *stx-glance* // only StarlingX-specific extensions to
       Glance API are documented here
-   -  **stx-neutron** // i.e. only StarlingX-specific extensions to
+   -  *stx-neutron* // only StarlingX-specific extensions to
       Neutron API are documented here
 
--  **stx-distcloud:** StarlingX Distributed Cloud
--  **stx-fault:** StarlingX Fault Management
--  **stx-ha:** StarlingX High Availability/Process Monitoring/Service
+-  `starlingx/distcloud`_: StarlingX Distributed Cloud
+-  `starlingx/fault`_: StarlingX Fault Management
+-  `starlingx/ha`_: StarlingX High Availability/Process Monitoring/Service
    Management
--  **stx-metal:** StarlingX Bare Metal and Node Management, Hardware
+-  `starlingx/metal`_: StarlingX Bare Metal and Node Management, Hardware
    Maintenance
--  **stx-nfv:** StarlingX NFVI Orchestration
+-  `starlingx/nfv`_: StarlingX NFVI Orchestration
 
 --------------------
 Directory Structures
@@ -41,7 +41,7 @@ Directory Structures
 
 The directory structure of the API Reference documentation under each
 StarlingX project repository is fixed. Here is an example showing
-**stx-config** StarlingX System Configuration Management
+`starlingx/config`_ StarlingX System Configuration Management
 
 ::
 
@@ -69,7 +69,7 @@ service in each StarlingX project are as follows:
 -  **tox.ini** modifications to add the configuration to build the API
    reference locally
 
-See stx-config [Doc] OpenStack API Reference Guide as an example of this
+See `starlingx/config`_ [Doc] OpenStack API Reference Guide as an example of this
 first commit: https://review.openstack.org/#/c/603258/
 
 ----------------------------
@@ -79,7 +79,7 @@ Creating the RST Source File
 Once the API Documentation service has been enabled, you create the RST
 source files that document the API operations under the same API
 Reference documentation project directory. The following shows the RST
-source file for the **stx-config** StarlingX System Configuration
+source file for the `starlingx/config`_ StarlingX System Configuration
 Management: Configuration API v1
 
 ::
@@ -98,7 +98,7 @@ description of the document, and the table-of-contents structure with
 depth restrictions. The **index.rst** file resides in the same folder as
 the RST source file.
 
-Here is an example using the **stx-config** StarlingX System
+Here is an example using the `starlingx/config`_ StarlingX System
 Configuration Management: Configuration API v1:
 
 ::
@@ -109,7 +109,7 @@ Configuration Management: Configuration API v1:
 	    |___index.rst
 
 The syntax of the **index.rst** file is fixed. Following shows the
-**index.rst** file used in the **stx-config**:
+**index.rst** file used in the `starlingx/config`_:
 
 ::
 
@@ -330,3 +330,19 @@ the **index.html** file.
 
 **NOTE:** The PDF build uses a different tox environment and is
 currently not supported for StarlingX.
+
+
+
+
+.. _starlingx/config: https://opendev.org/starlingx/config
+.. _starlingx/docs: https://opendev.org/starlingx/docs
+.. _starlingx/distcloud: https://opendev.org/starlingx/distcloud
+.. _starlingx/fault: https://opendev.org/starlingx/fault
+.. _starlingx/ha: https://opendev.org/starlingx/ha
+.. _starlingx/metal: https://opendev.org/starlingx/metal
+.. _starlingx/nfv: https://opendev.org/starlingx/nfv
+
+.. _starlingx/tools: https://opendev.org/starlingx/tools
+.. _starlingx/update: https://opendev.org/starlingx/update
+.. _starlingx/upstream: https://opendev.org/starlingx/upstream
+
