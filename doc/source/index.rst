@@ -1,24 +1,25 @@
-=======================
-StarlingX Documentation
-=======================
+======================================
+Welcome to the StarlingX Documentation
+======================================
 
-Welcome to the StarlingX documentation. This is the documentation for release
-stx.2018.10. Additional information about this release is available in the
-:ref:`release-notes`.
+The latest release of StarlingX is StarlingX R2.0. Additional information about
+this release is available in the :ref:`release-notes`.
 
-For more information about the project, consult the
+For more information about the StarlingX project, refer to the
 `Project Specifications <specs/index.html>`__.
 
---------
-Sections
---------
+-------------
+Documentation
+-------------
+
+The documentation is organized into the following sections:
 
 .. toctree::
    :maxdepth: 1
 
    introduction/index
    deploy_install_guides/index
-   operation_guides/index
+   api-ref/index
    contributor/index
    releasenotes/index
    developer_resources/index
@@ -27,34 +28,35 @@ Sections
 Projects
 --------
 
-StarlingX contains a number of sub-projects that include additional
-Edge Cloud support services and clients:
+StarlingX contains a number of sub-projects that include additional edge cloud
+support services and clients. API documentation and release notes for each
+project are found on the specific project page:
 
-* `Bare Metal <stx-metal/index.html>`__
-* `Clients <stx-clients/index.html>`__
-* `Config <stx-config/index.html>`__
-* `Distributed Cloud <stx-distcloud/index.html>`__
-* `Distributed Cloud Client <stx-distcloud-client/index.html>`__
-* `Fault Management <stx-fault/index.html>`__
-* `High Availability <stx-ha/index.html>`__
-* `Horizon Plugin (GUI) <stx-gui/index.html>`__
-* `Integration <stx-integ/index.html>`__
-* `NFV <stx-nfv/index.html>`__
-* `Software Updates <stx-update/index.html>`__
-* `Upstream <stx-upstream/index.html>`__
+* `Bare Metal <metal/index.html>`__
+* `Clients <clients/index.html>`__
+* `Config <config/index.html>`__
+* `Distributed Cloud <distcloud/index.html>`__
+* `Distributed Cloud Client <distcloud-client/index.html>`__
+* `Fault Management <fault/index.html>`__
+* `High Availability <ha/index.html>`__
+* `Horizon Plugin (GUI) <gui/index.html>`__
+* `Integration <integ/index.html>`__
+* `NFV <nfv/index.html>`__
+* `Software Updates <update/index.html>`__
+* `Upstream <upstream/index.html>`__
 
-There are several supporting projects and repositories:
+Supporting projects and repositories:
 
-* `Tools <stx-tools/index.html>`__
+* `Tools <tools/index.html>`__
 
 ----------
 Contribute
 ----------
 
 StarlingX utilizes tooling and CI/CD environments from the OpenStack
-Foundation. The source is hosted on `OpenStack's Gerrit server`_.
+Foundation. The source is hosted on `OpenDev's Git server`_.
 
-.. _`OpenStack's Gerrit server`: https://git.starlingx.io
+.. _`OpenDev's Git server`: https://opendev.org/starlingx
 
 Additional information regarding contributing to the project can be
 found in the :ref:`StarlingX contributor guides <contribute>`.

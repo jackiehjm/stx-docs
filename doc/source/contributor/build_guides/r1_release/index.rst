@@ -1,13 +1,15 @@
 ==========================
-Build guide StarlingX R2.0
+Build guide StarlingX R1.0
 ==========================
 
-This section describes the steps for building a StarlingX ISO from the R2.0
+This section describes the steps for building a StarlingX ISO from the R1.0
 StarlingX release.
 
 ------------
 Requirements
 ------------
+
+The recommended minimum requirements include:
 
 *********************
 Hardware requirements
@@ -149,23 +151,23 @@ Create a workspace directory
 
       $ mkdir -p $HOME/starlingx/
 
-*********************
-Install tools project
-*********************
+*************************
+Install stx-tools project
+*************************
 
-#. Under your $HOME directory, clone the <tools> project:
+#. Under your $HOME directory, clone the <stx-tools> project:
 
    .. code:: sh
 
       $ cd $HOME
-      $ git clone https://opendev.org/starlingx/tools.git
+      $ git clone https://git.starlingx.io/stx-tools
 
-#. Navigate to the *<$HOME/tools>* project
+#. Navigate to the *<$HOME/stx-tools>* project
    directory:
 
    .. code:: sh
 
-      $ cd $HOME/tools/
+      $ cd $HOME/stx-tools/
 
 -----------------------------
 Prepare the base Docker image
@@ -219,7 +221,7 @@ to build the base Docker image.
       ENV ftp_proxy " http://your.actual_ftp_proxy.com:your_port "
       RUN echo " proxy=http://your-proxy.com:port " >> /etc/yum.conf
 
-#. The ``tb.sh`` script automates the base Docker image build:
+#. The ``tb.sh`` script automates the Base Docker image build:
 
    .. code:: sh
 
@@ -229,8 +231,8 @@ to build the base Docker image.
 Build the CentOS mirror repository
 ----------------------------------
 
-The creation of the StarlingX ISO relies on a repository of RPM binaries,
-RPM sources, and tar compressed files. This section describes how to build
+The creation of the StarlingX ISO relies on a repository of RPM Binaries,
+RPM Sources, and Tar Compressed files. This section describes how to build
 this CentOS mirror repository.
 
 *******************************
@@ -239,12 +241,12 @@ Run repository Docker container
 
 | Run the following commands under a terminal identified as "**One**":
 
-#. Navigate to the *$HOME/tools/centos-mirror-tool* project
+#. Navigate to the *$HOME/stx-tools/centos-mirror-tool* project
    directory:
 
    .. code:: sh
 
-      $ cd $HOME/tools/centos-mirror-tools/
+      $ cd $HOME/stx-tools/centos-mirror-tools/
 
 #. Launch the Docker container using the previously created base Docker image
    *<repository>:<tag>*. As /localdisk is defined as the workdir of the
@@ -290,7 +292,7 @@ Verify packages
    ::
 
       # cat logs/*_missing_*.log
-      # cat logs/*_failmoved_*.log
+      # cat logs/*_failmove_*.log
 
 #. In case missing or failed packages do exist, which is usually caused by
    network instability (or timeout), you need to download the packages
@@ -307,7 +309,7 @@ from downloading the packages:
 
 ::
 
-   /home/<user>/tools/centos-mirror-tools/output
+   /home/<user>/stx-tools/centos-mirror-tools/output
    └── stx-r1
        └── CentOS
            └── pike
@@ -337,13 +339,13 @@ as "**Two**", run the following commands:
 
       $ mkdir -p $HOME/starlingx/mirror/CentOS/
 
-#. Copy the built CentOS mirror repository built under
-   *$HOME/tools/centos-mirror-tool* to the *$HOME/starlingx/mirror/*
+#. Copy the built CentOS Mirror Repository built under
+   *$HOME/stx-tools/centos-mirror-tool* to the *$HOME/starlingx/mirror/*
    workspace directory:
 
    .. code:: sh
 
-      $ cp -r $HOME/tools/centos-mirror-tools/output/stx-r1/ $HOME/starlingx/mirror/CentOS/
+      $ cp -r $HOME/stx-tools/centos-mirror-tools/output/stx-r1/ $HOME/starlingx/mirror/CentOS/
 
 
 -------------------------
@@ -360,11 +362,11 @@ Run building Docker container
 
       $ mkdir -p $HOME/starlingx/workspace
 
-#. Navigate to the *$HOME/tools* project directory:
+#. Navigate to the *$HOME/stx-tools* project directory:
 
    .. code:: sh
 
-      $ cd $HOME/tools
+      $ cd $HOME/stx-tools
 
 #. Verify environment variables:
 
@@ -389,20 +391,20 @@ Download source code repositories
 *********************************
 
 #. From the terminal identified as "**Two**", which is now inside the
-   building Docker container, start the internal environment:
+   Building Docker container, start the internal environment:
 
    .. code:: sh
 
       $ eval $(ssh-agent)
       $ ssh-add
 
-#. Use the repo tool to create a local clone of the manifest
-   Git repository based on the "master" branch:
+#. Use the repo tool to create a local clone of the stx-manifest
+   Git repository based on the "r/2018.10" branch:
 
    .. code:: sh
 
       $ cd $MY_REPO_ROOT_DIR
-      $ repo init -u https://opendev.org/starlingx/manifest -m default.xml
+      $ repo init -u https://git.starlingx.io/stx-manifest -m default.xml -b r/2018.10
 
 #. Synchronize the repository:
 
@@ -438,8 +440,7 @@ Download source code repositories
 Build packages
 **************
 
-#. Go back to the terminal identified as "**Two**", which is the building
-   Docker container.
+#. Go back to the terminal identified as "**Two**", which is the Building Docker container.
 
 #. **Temporal!** Build-Pkgs Errors. Be prepared to have some missing /
    corrupted rpm and tarball packages generated during
@@ -585,7 +586,7 @@ Limitations
 Method (in brief)
 *****************
 
-#. Reference builds
+#. Reference Builds
 
    -  A server in the regional office performs regular (e.g. daily)
       automated builds using existing methods. These builds are called
@@ -745,8 +746,8 @@ the last full build. Your build script might look like this ...
    # update software
    repo init -u ${BUILD_REPO_URL} -b ${BUILD_BRANCH}
    repo sync --force-sync
-   $MY_REPO_ROOT_DIR/tools/toCOPY/generate-cgcs-centos-repo.sh
-   $MY_REPO_ROOT_DIR/tools/toCOPY/populate_downloads.sh
+   $MY_REPO_ROOT_DIR/stx-tools/toCOPY/generate-cgcs-centos-repo.sh
+   $MY_REPO_ROOT_DIR/stx-tools/toCOPY/populate_downloads.sh
 
    # User can optionally define BUILD_METHOD equal to one of 'FULL', 'AVOIDANCE', or 'AUTO'
    # Sanitize BUILD_METHOD
