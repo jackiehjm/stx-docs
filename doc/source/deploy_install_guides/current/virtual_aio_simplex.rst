@@ -51,17 +51,18 @@ or 2x Port LAG in the deployment.
 
 .. incl-ipv6-note-end:
 
---------------------------
-Physical host requirements
---------------------------
+------------------------------------
+Physical host requirements and setup
+------------------------------------
 
 .. incl-virt-physical-host-req-start:
 
 This section describes:
 
-* system requirements for the workstation hosting the virtual machine(s) where StarlingX will be deployed
+* System requirements for the workstation hosting the virtual machine(s) where
+  StarlingX will be deployed
 
-* host setup
+* Host setup
 
 *********************
 Hardware requirements
@@ -121,6 +122,14 @@ Set up the host with the following steps:
     ufw disable
     ufw status
 
+
+   .. note::
+
+      On Ubuntu 16.04, if apparmor-profile modules were installed as shown in
+      the example above, you must reboot the server to fully install the
+      apparmor-profile modules.
+
+
 #. Get the StarlingX ISO. This can be from a private StarlingX build or from the public Cengn
    StarlingX build off 'master' branch, as shown below:
 
@@ -130,11 +139,11 @@ Set up the host with the following steps:
 
 .. incl-virt-physical-host-req-end:
 
------------------------------------------------------
-Preparing the virtual environment and virtual servers
------------------------------------------------------
+---------------------------------------
+Prepare virtual environment and servers
+---------------------------------------
 
-Prepare the virtual environment and virtual servers with the following steps:
+On the host, prepare the virtual environment and virtual servers.
 
 #. Set up virtual platform networks for virtual deployment:
 
@@ -147,14 +156,12 @@ Prepare the virtual environment and virtual servers with the following steps:
 
    * simplex-controller-0
 
-   .. note::
+   The following command will start/virtually power on:
 
-      The following command will start/virtually power on:
+   * the 'simplex-controller-0' virtual server
+   * the X-based graphical virt-manager application
 
-      * the 'simplex-controller-0' virtual server 
-      * the X-based graphical virt-manager application
-
-      If there is no X-server present, then errors will occur.
+   If there is no X-server present, then errors will occur.
 
    ::
 
@@ -172,12 +179,12 @@ Install the StarlingX Kubernetes platform
 Install software on controller-0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the last step of "Prepare the virtual environment and virtual servers", the
+In the last step of `Prepare virtual environment and servers`_, the
 controller-0 virtual server 'simplex-controller-0' was started by the
 :command:`setup_configuration.sh` command.
 
-Attach to the console of virtual controller-0 and select the appropriate
-installer menu options to start the non-interactive install of
+On the host, attach to the console of virtual controller-0 and select the
+appropriate installer menu options to start the non-interactive install of
 StarlingX software on controller-0.
 
 .. note::
@@ -193,7 +200,7 @@ StarlingX software on controller-0.
 Make the following menu selections in the installer:
 
 #. First menu: Select 'All-in-one Controller Configuration'
-#. Second menu: Select 'Graphical Console'
+#. Second menu: Select 'Serial Console'
 #. Third menu: Select 'Standard Security Profile'
 
 Wait for the non-interactive install of software to complete and for the server
@@ -203,6 +210,8 @@ machine.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Bootstrap system on controller-0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+On virtual controller-0:
 
 #. Log in using the username / password of "sysadmin" / "sysadmin".
    When logging in for the first time, you will be forced to change the password.
@@ -228,28 +237,34 @@ Bootstrap system on controller-0
 
 #. Specify user configuration overrides for the Ansible bootstrap playbook.
 
-   Ansible is used to bootstrap StarlingX on controller-0:
+   Ansible is used to bootstrap StarlingX on controller-0. Key files for Ansible
+   configuration are:
 
-   * The default Ansible inventory file, ``/etc/ansible/hosts``, contains a single
-     host: localhost.
-   * The Ansible bootstrap playbook is at:
-     ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml``
-   * The default configuration values for the bootstrap playbook are in:
-     ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/host_vars/default.yml``
-   * By default Ansible looks for and imports user configuration override files
-     for hosts in the sysadmin home directory ($HOME), for example: ``$HOME/<hostname>.yml``
+   ``/etc/ansible/hosts``
+      The default Ansible inventory file. Contains a single host: localhost.
+
+   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml``
+      The Ansible bootstrap playbook.
+
+   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/host_vars/default.yml``
+      The default configuration values for the bootstrap playbook.
+
+   sysadmin home directory ($HOME)
+      The default location where Ansible looks for and imports user
+      configuration override files for hosts. For example: ``$HOME/<hostname>.yml``.
+
 
    Specify the user configuration override file for the Ansible bootstrap
-   playbook, by either:
+   playbook using one of the following methods:
 
-   * Copying the default.yml file listed above to ``$HOME/localhost.yml`` and edit
-     the configurable values as desired, based on the commented instructions in
-     the file.
+   * Copy the default.yml file listed above to ``$HOME/localhost.yml`` and edit
+     the configurable values as desired (use the commented instructions in
+     the file).
 
    or
 
-   * Creating the minimal user configuration override file as shown in the
-     example below:
+   * Create the minimal user configuration override file as shown in the example
+     below:
 
      ::
 
@@ -271,24 +286,10 @@ Bootstrap system on controller-0
         EOF
 
 
-   If you are using IPv6, provide IPv6 configuration overrides. Note that all
-   addressing, except pxeboot_subnet, should be updated to IPv6 addressing.
-   Example IPv6 override values are shown below:
+   Additional Ansible bootstrap configurations for advanced use cases are available:
 
-   ::
+   * :ref:`IPv6 <ansible_bootstrap_ipv6>`
 
-      dns_servers:
-      ‐ 2001:4860:4860::8888
-      ‐ 2001:4860:4860::8844
-      pxeboot_subnet: 169.254.202.0/24
-      management_subnet: 2001:db8:2::/64
-      cluster_host_subnet: 2001:db8:3::/64
-      cluster_pod_subnet: 2001:db8:4::/64
-      cluster_service_subnet: 2001:db8:4::/112
-      external_oam_subnet: 2001:db8:1::/64
-      external_oam_gateway_address: 2001:db8::1
-      external_oam_floating_address: 2001:db8::2
-      management_multicast_subnet: ff08::1:1:0/124
 
 #. Run the Ansible bootstrap playbook:
 
@@ -302,6 +303,8 @@ Bootstrap system on controller-0
 ^^^^^^^^^^^^^^^^^^^^^^
 Configure controller-0
 ^^^^^^^^^^^^^^^^^^^^^^
+
+On virtual controller-0:
 
 #. Acquire admin credentials:
 
@@ -331,30 +334,16 @@ Configure controller-0
 
 #. Configure data interfaces for controller-0.
 
+   .. important::
 
-   .. note::
+      **This step is required only if the StarlingX OpenStack application
+      (stx-openstack) will be installed.**
 
-      This step is **required** for OpenStack and optional for Kubernetes. For
-      example, do this step if using SRIOV network attachments in application
-      containers.
+      1G Huge Pages are not supported in the virtual environment and there is no
+      virtual NIC supporting SRIOV. For that reason, data interfaces are not
+      applicable in the virtual environment for the Kubernetes-only scenario.
 
-   For Kubernetes SRIOV network attachments:
-
-   * Configure the SRIOV device plugin:
-
-     ::
-
-        system host-label-assign controller-0 sriovdp=enabled
-
-   * If planning on running DPDK in containers on this host, configure the number
-     of 1G Huge pages required on both NUMA nodes:
-
-     ::
-
-        system host-memory-modify controller-0 0 -1G 100
-        system host-memory-modify controller-0 1 -1G 100
-
-   For both Kubernetes and OpenStack:
+   For OpenStack only:
 
    ::
 
@@ -396,10 +385,10 @@ Configure controller-0
 OpenStack-specific host configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. warning::
+.. important::
 
-   The following configuration is required only if the StarlingX OpenStack
-   application (stx-openstack) will be installed.
+   **This step is required only if the StarlingX OpenStack application
+   (stx-openstack) will be installed.**
 
 #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
    support of installing the stx-openstack manifest/helm-charts later.
@@ -446,7 +435,7 @@ OpenStack-specific host configuration
 Unlock controller-0
 ^^^^^^^^^^^^^^^^^^^
 
-Unlock controller-0 to bring it into service:
+Unlock virtual controller-0 to bring it into service:
 
 ::
 
@@ -482,7 +471,7 @@ Install StarlingX OpenStack
 
 Other than the OpenStack-specific configurations required in the underlying
 StarlingX/Kubernetes infrastructure (described in the installation steps for the
-Starlingx Kubernetes platform above), the installation of containerized OpenStack
+StarlingX Kubernetes platform above), the installation of containerized OpenStack
 for StarlingX is independent of deployment configuration. Refer to the
 :doc:`Install OpenStack guide <install_openstack>`
 for installation instructions.

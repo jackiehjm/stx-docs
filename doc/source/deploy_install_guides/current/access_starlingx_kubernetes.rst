@@ -10,6 +10,9 @@ Access StarlingX Kubernetes
 Local CLIs
 ----------
 
+In order to access the StarlingX and Kubernetes commands on controller-O, first
+follow these steps:
+
 #. Log in to controller-0 via the console or SSH with a sysadmin/<sysadmin-password>.
 
 #. Acquire Keystone admin and Kubernetes admin credentials:
@@ -27,7 +30,8 @@ example:
 
 ::
 
-	[sysadmin@controller-0 ~(keystone_admin)]$ system host-list
+	system host-list
+
 	+----+--------------+-------------+----------------+-------------+--------------+
 	| id | hostname     | personality | administrative | operational | availability |
 	+----+--------------+-------------+----------------+-------------+--------------+
@@ -44,7 +48,7 @@ Access StarlingX fault management commands using the :command:`fm` command, for 
 
 ::
 
-	[sysadmin@controller-0 ~(keystone_admin)]$ fm alarm-list
+	fm alarm-list
 
 *******************
 Kubernetes commands
@@ -54,7 +58,8 @@ Access Kubernetes commands using the :command:`kubectl` command, for example:
 
 ::
 
-	[sysadmin@controller-0 ~(keystone_admin)]$ kubectl get nodes
+	kubectl get nodes
+
 	NAME           STATUS   ROLES    AGE     VERSION
 	controller-0   Ready    master   5d19h   v1.13.5
 
@@ -89,7 +94,7 @@ Kubernetes dashboard
 
 The Kubernetes dashboard is not installed by default.
 
-To install the Kubernetes dashboard:
+To install the Kubernetes dashboard, execute the following steps on controller-0:
 
 #. Use the kubernetes-dashboard helm chart from the stable helm repository with
    the override values shown below:
