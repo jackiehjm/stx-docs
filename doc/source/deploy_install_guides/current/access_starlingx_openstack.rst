@@ -42,8 +42,8 @@ Local CLIs
 OpenStack CLI commands
 **********************
 
-Access OpenStack CLI commands for the StarlingX OpenStack Cloud Application using the 
-:command:`openstack` command, for example:
+Access OpenStack CLI commands for the StarlingX OpenStack cloud application
+using the :command:`openstack` command. For example:
 
 ::
 

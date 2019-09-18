@@ -22,38 +22,37 @@ Description
 Hardware requirements
 ---------------------
 
-The recommended minimum requirements for the bare metal servers for the various
-host types are:
+The recommended minimum requirements for bare metal servers for various host
+types are:
 
 +-------------------------+-----------------------------------------------------------+
 | Minimum Requirement     | All-in-one Controller Node                                |
 +=========================+===========================================================+
-| Number of Servers       |  1                                                        |
+| Number of servers       |  1                                                        |
 +-------------------------+-----------------------------------------------------------+
-| Minimum Processor Class | - Dual-CPU Intel® Xeon® E5 26xx Family (SandyBridge)      |
+| Minimum processor class | - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge)      |
 |                         |   8 cores/socket                                          |
 |                         |                                                           |
 |                         | or                                                        |
 |                         |                                                           |
-|                         | - Single-CPU Intel® Xeon® D-15xx Family, 8 cores          |
+|                         | - Single-CPU Intel® Xeon® D-15xx family, 8 cores          |
 |                         |   (low-power/low-cost option)                             |
 +-------------------------+-----------------------------------------------------------+
-| Minimum Memory          | 64 GB                                                     |
+| Minimum memory          | 64 GB                                                     |
 +-------------------------+-----------------------------------------------------------+
-| Primary Disk            | 500 GB SDD or NVMe                                        |
+| Primary disk            | 500 GB SDD or NVMe                                        |
 +-------------------------+-----------------------------------------------------------+
-| Additional Disks        | - 1 or more 500 GB (min. 10K RPM) for Ceph OSD            |
+| Additional disks        | - 1 or more 500 GB (min. 10K RPM) for Ceph OSD            |
 |                         | - Recommended, but not required: 1 or more SSDs or NVMe   |
 |                         |   drives for Ceph journals (min. 1024 MiB per OSD         |
 |                         |   journal)                                                |
 |                         | - For OpenStack, recommend 1 or more 500 GB (min. 10K     |
-|                         |   RPM)                                                    |
-|                         |   for VM local ephemeral storage                          |
+|                         |   RPM) for VM local ephemeral storage                     |
 +-------------------------+-----------------------------------------------------------+
-| Minimum Network Ports   | - OAM: 1x1GE                                              |
+| Minimum network ports   | - OAM: 1x1GE                                              |
 |                         | - Data: 1 or more x 10GE                                  |
 +-------------------------+-----------------------------------------------------------+
-| BIOS Settings           | - Hyper-Threading technology enabled                      |
+| BIOS settings           | - Hyper-Threading technology enabled                      |
 |                         | - Virtualization technology enabled                       |
 |                         | - VT for directed I/O enabled                             |
 |                         | - CPU power and performance policy set to performance     |
@@ -99,8 +98,6 @@ Installing StarlingX Kubernetes
 Create a bootable USB with the StarlingX ISO
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create a bootable USB with the StarlingX ISO.
-
 Refer to :doc:`/deploy_install_guides/bootable_usb` for instructions on how to
 create a bootable USB on your system.
 
@@ -108,7 +105,7 @@ create a bootable USB on your system.
 Install software on controller-0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. incl-install-software-controller-0-start:
+.. incl-install-software-controller-0-aio-start:
 
 #. Insert the bootable USB into a bootable USB port on the host you are
    configuring as controller-0.
@@ -120,7 +117,7 @@ Install software on controller-0
 
 #. Make the following menu selections in the installer:
 
-   #. First menu: Select 'Standard Controller Configuration'
+   #. First menu: Select 'All-in-one Controller Configuration'
    #. Second menu: Select 'Graphical Console' or 'Textual Console' depending on
       your terminal access to the console port
    #. Third menu: Select 'Standard Security Profile'
@@ -128,13 +125,11 @@ Install software on controller-0
 #. Wait for non-interactive install of software to complete and server to reboot.
    This can take 5-10 minutes, depending on the performance of the server.
 
-.. incl-install-software-controller-0-end:
+.. incl-install-software-controller-0-aio-end:
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Bootstrap system on controller-0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. incl-bootstrap-sys-controller-0-start:
 
 #. Login using the username / password of "sysadmin" / "sysadmin".
    When logging in for the first time, you will be forced to change the password.
@@ -149,9 +144,10 @@ Bootstrap system on controller-0
       (repeat) New Password:
 
 #. External connectivity is required to run the Ansible bootstrap playbook. The
-   StarlingX boot image will DHCP out all interfaces so the server may have obtained an IP address 
-   and have external IP connectivity if a DHCP server is present in your environment. 
-   Verify this using the :command:`ip add` and :command:`ping 8.8.8.8` commands.
+   StarlingX boot image will DHCP out all interfaces so the server may have
+   obtained an IP address and have external IP connectivity if a DHCP server is
+   present in your environment. Verify this using the :command:`ip addr` and
+   :command:`ping 8.8.8.8` commands.
 
    Otherwise, manually configure an IP address and default IP route. Use the
    PORT, IP-ADDRESS/SUBNET-LENGTH and GATEWAY-IP-ADDRESS applicable to your
@@ -166,27 +162,32 @@ Bootstrap system on controller-0
 
 #. Specify user configuration overrides for the Ansible bootstrap playbook.
 
-   Ansible is used to bootstrap StarlingX on controller-0:
+   Ansible is used to bootstrap StarlingX on controller-0. Key files for Ansible
+   configuration are:
 
-   * The default Ansible inventory file, ``/etc/ansible/hosts``, contains a single
-     host: localhost.
-   * The Ansible bootstrap playbook is at:
-     ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml``
-   * The default configuration values for the bootstrap playbook are in:
-     ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/host_vars/default.yml``
-   * By default Ansible looks for and imports user configuration override files
-     for hosts in the sysadmin home directory ($HOME), for example: ``OME/<hostname>.yml``
+   ``/etc/ansible/hosts``
+      The default Ansible inventory file. Contains a single host: localhost.
 
-   Specify the user configuration override file for the ansible bootstrap
-   playbook, by either:
+   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml``
+      The Ansible bootstrap playbook.
 
-   * Copying the default.yml file listed above to ``$HOME/localhost.yml`` and editing
-     the configurable values as desired, based on the commented instructions in
-     the file.
+   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/host_vars/default.yml``
+      The default configuration values for the bootstrap playbook.
+
+   sysadmin home directory ($HOME)
+      The default location where Ansible looks for and imports user
+      configuration override files for hosts. For example: ``$HOME/<hostname>.yml``.
+
+   Specify the user configuration override file for the Ansible bootstrap
+   playbook using one of the following methods:
+
+   * Copy the default.yml file listed above to ``$HOME/localhost.yml`` and edit
+     the configurable values as desired (use the commented instructions in
+     the file).
 
    or
 
-   * Creating the minimal user configuration override file as shown in the
+   * Create the minimal user configuration override file as shown in the
      example below, using the OAM IP SUBNET and IP ADDRESSing applicable to your
      deployment environment:
 
@@ -194,7 +195,7 @@ Bootstrap system on controller-0
 
         cd ~
         cat <<EOF > localhost.yml
-        system_mode: standard
+        system_mode: simplex
 
         dns_servers:
           - 8.8.8.8
@@ -203,37 +204,15 @@ Bootstrap system on controller-0
         external_oam_subnet: <OAM-IP-SUBNET>/<OAM-IP-SUBNET-LENGTH>
         external_oam_gateway_address: <OAM-GATEWAY-IP-ADDRESS>
         external_oam_floating_address: <OAM-FLOATING-IP-ADDRESS>
-        external_oam_node_0_address: <OAM-CONTROLLER-0-IP-ADDRESS>
-        external_oam_node_1_address: <OAM-CONTROLLER-1-IP-ADDRESS>
 
         admin_username: admin
         admin_password: <sysadmin-password>
         ansible_become_pass: <sysadmin-password>
         EOF
 
-   If you are using IPv6, provide IPv6 configuration overrides. Note that all
-   addressing, except pxeboot_subnet, should be updated to IPv6 addressing.
-   Example IPv6 override values are shown below:
+   Additional Ansible bootstrap configurations for advanced use cases are available:
 
-   ::
-
-      dns_servers:
-      ‐ 2001:4860:4860::8888
-      ‐ 2001:4860:4860::8844
-      pxeboot_subnet: 169.254.202.0/24
-      management_subnet: 2001:db8:2::/64
-      cluster_host_subnet: 2001:db8:3::/64
-      cluster_pod_subnet: 2001:db8:4::/64
-      cluster_service_subnet: 2001:db8:4::/112
-      external_oam_subnet: 2001:db8:1::/64
-      external_oam_gateway_address: 2001:db8::1
-      external_oam_floating_address: 2001:db8::2
-      external_oam_node_0_address: 2001:db8::3
-      external_oam_node_1_address: 2001:db8::4
-      management_multicast_subnet: ff08::1:1:0/124
-
-   Note that the external_oam_node_0_address, and external_oam_node_1_address
-   parameters are not required for the AIO‐SX installation.
+   * :ref:`IPv6 <ansible_bootstrap_ipv6>`
 
 #. Run the Ansible bootstrap playbook:
 
@@ -243,8 +222,6 @@ Bootstrap system on controller-0
 
    Wait for Ansible bootstrap playbook to complete.
    This can take 5-10 minutes, depending on the performance of the host machine.
-
-.. incl-bootstrap-sys-controller-0-end:
 
 ^^^^^^^^^^^^^^^^^^^^^^
 Configure controller-0
@@ -258,9 +235,9 @@ Configure controller-0
 
       source /etc/platform/openrc
 
-#. Configure the OAM and MGMT interfaces of controller-0 and specify the attached
-   networks. Use the OAM and MGMT port names, e.g. eth0, applicable to your
-   deployment environment.
+#. Configure the OAM and MGMT interfaces of controller-0 and specify the
+   attached networks. Use the OAM and MGMT port names, for example eth0, that are
+   applicable to your deployment environment.
 
    ::
 
@@ -283,14 +260,15 @@ Configure controller-0
 
       system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org
 
-#. Configure data interfaces for controller-0. Use the DATA port names, e.g.
+#. Configure data interfaces for controller-0. Use the DATA port names, for example
    eth0, applicable to your deployment environment.
 
-   .. note::
+   .. important::
 
-      This step is **required** for OpenStack and optional for Kubernetes. For
-      example, do this step if using SRIOV network attachments in application
-      containers.
+      This step is **required** for OpenStack.
+
+      This step is optional for Kubernetes: Do this step if using SRIOV network
+      attachments in hosted application containers.
 
    For Kubernetes SRIOV network attachments:
 
@@ -351,10 +329,10 @@ Configure controller-0
 OpenStack-specific host configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. warning::
+.. important::
 
-   The following configuration is required only if the StarlingX OpenStack
-   application (stx-openstack) will be installed.
+   **This step is required only if the StarlingX OpenStack application
+   (stx-openstack) will be installed.**
 
 #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
    support of installing the stx-openstack manifest and helm-charts later.
@@ -370,13 +348,13 @@ OpenStack-specific host configuration
 
    StarlingX has OVS (kernel-based) vSwitch configured as default:
 
-   * Running in a container; defined within the helm charts of stx-openstack
+   * Runs in a container; defined within the helm charts of stx-openstack
      manifest.
    * Shares the core(s) assigned to the platform.
 
    If you require better performance, OVS-DPDK should be used:
 
-   * Running directly on the host (i.e. NOT containerized).
+   * Runs directly on the host (it is not containerized).
    * Requires that at least 1 core be assigned/dedicated to the vSwitch function.
 
    To deploy the default containerized OVS:
@@ -389,7 +367,7 @@ OpenStack-specific host configuration
    OVS defined in the helm charts of stx-openstack manifest.
 
    To deploy OVS-DPDK (OVS with the Data Plane Development Kit, which is
-   supported only on bare metal hardware, run the following command:
+   supported only on bare metal hardware), run the following command:
 
    ::
 
@@ -405,8 +383,8 @@ OpenStack-specific host configuration
 
    .. note::
 
-      After controller-0 is unlocked, changing vswitch_type would require
-      locking and unlocking all computes (and/or AIO Controllers) in order to
+      After controller-0 is unlocked, changing vswitch_type requires
+      locking and unlocking all computes (and/or AIO Controllers) to
       apply the change.
 
 #. **For OpenStack only:** Set up disk partition for nova-local volume group,

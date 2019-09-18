@@ -14,6 +14,10 @@ Description
    :start-after: incl-aio-duplex-intro-start:
    :end-before: incl-aio-duplex-intro-end:
 
+The bare metal AIO-DX deployment configuration may be extended with up to four
+worker/compute nodes (not shown in the diagram). Installation instructions for
+these additional nodes are described in `Extending capacity with worker / compute nodes`_.
+
 .. include:: virtual_aio_simplex.rst
    :start-after: incl-ipv6-note-start:
    :end-before: incl-ipv6-note-end:
@@ -22,15 +26,15 @@ Description
 Hardware requirements
 ---------------------
 
-The recommended minimum requirements for the Bare Metal Servers for the various
-host types are:
+The recommended minimum requirements for bare metal servers for various host
+types are:
 
 +-------------------------+-----------------------------------------------------------+
 | Minimum Requirement     | All-in-one Controller Node                                |
 +=========================+===========================================================+
-| Number of Servers       | 2                                                         |
+| Number of servers       | 2                                                         |
 +-------------------------+-----------------------------------------------------------+
-| Minimum Processor Class | - Dual-CPU Intel® Xeon® E5 26xx Family (SandyBridge)      |
+| Minimum processor class | - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge)      |
 |                         |   8 cores/socket                                          |
 |                         |                                                           |
 |                         | or                                                        |
@@ -38,21 +42,21 @@ host types are:
 |                         | - Single-CPU Intel® Xeon® D-15xx family, 8 cores          |
 |                         |   (low-power/low-cost option)                             |
 +-------------------------+-----------------------------------------------------------+
-| Minimum Memory          | 64 GB                                                     |
+| Minimum memory          | 64 GB                                                     |
 +-------------------------+-----------------------------------------------------------+
-| Primary Disk            | 500 GB SDD or NVMe                                        |
+| Primary disk            | 500 GB SDD or NVMe                                        |
 +-------------------------+-----------------------------------------------------------+
-| Additional Disks        | - 1 or more 500 GB (min. 10K RPM) for Ceph OSD            |
+| Additional disks        | - 1 or more 500 GB (min. 10K RPM) for Ceph OSD            |
 |                         | - Recommended, but not required: 1 or more SSDs or NVMe   |
 |                         |   drives for Ceph journals (min. 1024 MiB per OSD journal)|
 |                         | - For OpenStack, recommend 1 or more 500 GB (min. 10K RPM)|
 |                         |   for VM local ephemeral storage                          |
 +-------------------------+-----------------------------------------------------------+
-| Minimum Network Ports   | - Mgmt/Cluster: 1x10GE                                    |
+| Minimum network ports   | - Mgmt/Cluster: 1x10GE                                    |
 |                         | - OAM: 1x1GE                                              |
 |                         | - Data: 1 or more x 10GE                                  |
 +-------------------------+-----------------------------------------------------------+
-| BIOS Settings           | - Hyper-Threading technology enabled                      |
+| BIOS settings           | - Hyper-Threading technology enabled                      |
 |                         | - Virtualization technology enabled                       |
 |                         | - VT for directed I/O enabled                             |
 |                         | - CPU power and performance policy set to performance     |
@@ -80,8 +84,6 @@ Installing StarlingX Kubernetes
 Create a bootable USB with the StarlingX ISO
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create a bootable USB with the StarlingX ISO.
-
 Refer to :doc:`/deploy_install_guides/bootable_usb` for instructions on how to
 create a bootable USB on your system.
 
@@ -90,16 +92,106 @@ Install software on controller-0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. include:: bare_metal_aio_simplex.rst
-   :start-after: incl-install-software-controller-0-start:
-   :end-before: incl-install-software-controller-0-end:
+   :start-after: incl-install-software-controller-0-aio-start:
+   :end-before: incl-install-software-controller-0-aio-end:
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Bootstrap system on controller-0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. include:: bare_metal_aio_simplex.rst
-   :start-after: incl-bootstrap-sys-controller-0-start:
-   :end-before: incl-bootstrap-sys-controller-0-end:
+#. Login using the username / password of "sysadmin" / "sysadmin".
+   When logging in for the first time, you will be forced to change the password.
+
+   ::
+
+      Login: sysadmin
+      Password:
+      Changing password for sysadmin.
+      (current) UNIX Password: sysadmin
+      New Password:
+      (repeat) New Password:
+
+#. External connectivity is required to run the Ansible bootstrap playbook. The
+   StarlingX boot image will DHCP out all interfaces so the server may have
+   obtained an IP address and have external IP connectivity if a DHCP server is
+   present in your environment. Verify this using the :command:`ip addr` and
+   :command:`ping 8.8.8.8` commands.
+
+   Otherwise, manually configure an IP address and default IP route. Use the
+   PORT, IP-ADDRESS/SUBNET-LENGTH and GATEWAY-IP-ADDRESS applicable to your
+   deployment environment.
+
+   ::
+
+      sudo ip address add <IP-ADDRESS>/<SUBNET-LENGTH> dev <PORT>
+      sudo ip link set up dev <PORT>
+      sudo ip route add default via <GATEWAY-IP-ADDRESS> dev <PORT>
+      ping 8.8.8.8
+
+#. Specify user configuration overrides for the Ansible bootstrap playbook.
+
+   Ansible is used to bootstrap StarlingX on controller-0. Key files for Ansible
+   configuration are:
+
+   ``/etc/ansible/hosts``
+      The default Ansible inventory file. Contains a single host: localhost.
+
+   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml``
+      The Ansible bootstrap playbook.
+
+   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/host_vars/default.yml``
+      The default configuration values for the bootstrap playbook.
+
+   sysadmin home directory ($HOME)
+      The default location where Ansible looks for and imports user
+      configuration override files for hosts. For example: ``$HOME/<hostname>.yml``.
+
+   Specify the user configuration override file for the Ansible bootstrap
+   playbook using one of the following methods:
+
+   * Copy the default.yml file listed above to ``$HOME/localhost.yml`` and edit
+     the configurable values as desired (use the commented instructions in
+     the file).
+
+   or
+
+   * Create the minimal user configuration override file as shown in the
+     example below, using the OAM IP SUBNET and IP ADDRESSing applicable to your
+     deployment environment:
+
+     ::
+
+        cd ~
+        cat <<EOF > localhost.yml
+        system_mode: duplex
+
+        dns_servers:
+          - 8.8.8.8
+          - 8.8.4.4
+
+        external_oam_subnet: <OAM-IP-SUBNET>/<OAM-IP-SUBNET-LENGTH>
+        external_oam_gateway_address: <OAM-GATEWAY-IP-ADDRESS>
+        external_oam_floating_address: <OAM-FLOATING-IP-ADDRESS>
+        external_oam_node_0_address: <OAM-CONTROLLER-0-IP-ADDRESS>
+        external_oam_node_1_address: <OAM-CONTROLLER-1-IP-ADDRESS>
+
+        admin_username: admin
+        admin_password: <sysadmin-password>
+        ansible_become_pass: <sysadmin-password>
+        EOF
+
+   Additional Ansible bootstrap configurations for advanced use cases are available:
+
+   * :ref:`IPv6 <ansible_bootstrap_ipv6>`
+
+#. Run the Ansible bootstrap playbook:
+
+   ::
+
+      ansible-playbook /usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml
+
+   Wait for Ansible bootstrap playbook to complete.
+   This can take 5-10 minutes, depending on the performance of the host machine.
 
 ^^^^^^^^^^^^^^^^^^^^^^
 Configure controller-0
@@ -137,7 +229,7 @@ Install software on controller-1 node
    configure the personality of the node.
 
 #. On the console of controller-0, list hosts to see newly discovered controller-1
-   host, that is, host with hostname of None:
+   host (hostname=None):
 
    ::
 
@@ -175,8 +267,8 @@ Configure controller-1
 ^^^^^^^^^^^^^^^^^^^^^^
 
 #. Configure the OAM and MGMT interfaces of controller-1 and specify the
-   attached networks. Use the OAM and MGMT port names, e.g. eth0, applicable to
-   your deployment environment:
+   attached networks. Use the OAM and MGMT port names, for example eth0, that are
+   applicable to your deployment environment:
 
    (Note that the MGMT interface is partially set up automatically by the network
    install procedure.)
@@ -189,14 +281,15 @@ Configure controller-1
       system interface-network-assign controller-1 $OAM_IF oam
       system interface-network-assign controller-1 $MGMT_IF cluster-host
 
-#. Configure data interfaces for controller-1. Use the DATA port names, e.g.
+#. Configure data interfaces for controller-1. Use the DATA port names, for example
    eth0, applicable to your deployment environment.
 
-   .. note::
+   .. important::
 
-      This step is **required** for OpenStack and optional for Kubernetes. For
-      example, do this step if using SRIOV network attachments in application
-      containers.
+      This step is **required** for OpenStack.
+
+      This step is optional for Kubernetes: Do this step if using SRIOV network
+      attachments in hosted application containers.
 
    For Kubernetes SRIOV network attachments:
 
@@ -258,10 +351,10 @@ Configure controller-1
 OpenStack-specific host configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. warning::
+.. important::
 
-   The following configuration is required only if the StarlingX OpenStack
-   application (stx-openstack) will be installed.
+   **This step is required only if the StarlingX OpenStack application
+   (stx-openstack) will be installed.**
 
 #. **For OpenStack only:** Assign OpenStack host labels to controller-1 in
    support of installing the stx-openstack manifest and helm-charts later.
@@ -307,7 +400,8 @@ Unlock controller-1 in order to bring it into service:
   system host-unlock controller-1
 
 Controller-1 will reboot in order to apply configuration changes and come into
-service. This can take 5-10 minutes, depending on the performance of the host machine.
+service. This can take 5-10 minutes, depending on the performance of the host
+machine.
 
 When it completes, your Kubernetes cluster is up and running.
 
@@ -351,9 +445,9 @@ Uninstall StarlingX OpenStack
 Extending capacity with worker / compute nodes
 ----------------------------------------------
 
-**************************************************
-Install software on controller-1 and compute nodes
-**************************************************
+*********************************
+Install software on compute nodes
+*********************************
 
 #. Power on the compute servers and force them to network boot with the
    appropriate BIOS boot options for your particular server.
@@ -361,8 +455,8 @@ Install software on controller-1 and compute nodes
 #. As the compute servers boot, a message appears on their console instructing
    you to configure the personality of the node.
 
-#. On the console of controller-0, list hosts to see newly discovered compute hosts,
-   that is, hosts with hostname of None:
+#. On the console of controller-0, list hosts to see newly discovered compute
+   hosts (hostname=None):
 
    ::
 
@@ -416,8 +510,33 @@ Configure compute nodes
          system interface-network-assign $COMPUTE mgmt0 cluster-host
       done
 
-#. Configure data interfaces for compute nodes. Use the DATA port names, e.g.
-   eth0, applicable to your deployment environment.
+#. Configure data interfaces for compute nodes. Use the DATA port names, for
+   example eth0, that are applicable to your deployment environment.
+
+   .. important::
+
+      This step is **required** for OpenStack.
+
+      This step is optional for Kubernetes: Do this step if using SRIOV network
+      attachments in hosted application containers.
+
+   For Kubernetes SRIOV network attachments:
+
+   * Configure SRIOV device plug in:
+
+     ::
+
+         system host-label-assign controller-1 sriovdp=enabled
+
+   * If planning on running DPDK in containers on this host, configure the number
+     of 1G Huge pages required on both NUMA nodes:
+
+     ::
+
+           system host-memory-modify controller-1 0 -1G 100
+           system host-memory-modify controller-1 1 -1G 100
+
+   For both Kubernetes and OpenStack:
 
    ::
 
@@ -457,10 +576,10 @@ Configure compute nodes
 OpenStack-specific host configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. warning::
+.. important::
 
-   The following configuration is required only if the StarlingX OpenStack
-   application (stx-openstack) will be installed.
+   **This step is required only if the StarlingX OpenStack application
+   (stx-openstack) will be installed.**
 
 #. **For OpenStack only:** Assign OpenStack host labels to the compute nodes in
    support of installing the stx-openstack manifest and helm-charts later.
@@ -507,5 +626,6 @@ Unlock compute nodes in order to bring them into service:
   done
 
 The compute nodes will reboot to apply configuration changes and come into
-service. This can take 5-10 minutes, depending on the performance of the host machine.
+service. This can take 5-10 minutes, depending on the performance of the host
+machine.
 

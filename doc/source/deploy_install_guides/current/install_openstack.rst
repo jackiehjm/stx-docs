@@ -10,7 +10,7 @@ These installation instructions assume that you have completed the following
 OpenStack-specific configuration tasks that are required by the underlying
 StarlingX Kubernetes platform:
 
-* All nodes have been labelled appropriately for their OpenStack role(s).
+* All nodes have been labeled appropriately for their OpenStack role(s).
 * The vSwitch type has been configured.
 * The nova-local volume group has been configured on any node's host, if running
   the compute function.
@@ -27,7 +27,9 @@ Install application manifest and helm-charts
 
    	wget http://mirror.starlingx.cengn.ca/mirror/starlingx/release/2.0.0/centos/outputs/helm-charts/stx-openstack-1.0-17-centos-stable-latest.tgz
 
-#. Load the stx-openstack application's helm chart definitions into Starlingx:
+#. Load the stx-openstack application's package into StarlingX. The tarball
+   package contains stx-openstack's Airship Armada manifest and stx-openstack's
+   set of helm charts:
 
    ::
 
@@ -35,7 +37,7 @@ Install application manifest and helm-charts
 
    This will:
 
-   * Load the helm charts.
+   * Load the Armada manifest and helm charts.
    * Internally manage helm chart override values for each chart.
    * Automatically generate system helm chart overrides for each chart based on
      the current state of the underlying StarlingX Kubernetes platform and the
