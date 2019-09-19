@@ -45,6 +45,7 @@ R2.0 bare metal installation
    current/access_starlingx_openstack
    current/install_openstack
    current/uninstall_delete_openstack
+   current/ansible_bootstrap_configs
 
 ---------------------
 Upcoming R3.0 release

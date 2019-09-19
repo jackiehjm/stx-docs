@@ -12,8 +12,9 @@ Description
 
 .. incl-aio-duplex-intro-start:
 
-The All-in-one Duplex (AIO-DX) deployment option provides all three cloud
-functions (controller, compute, and storage) on two servers.
+The All-in-one Duplex (AIO-DX) deployment option provides a pair of high
+availability (HA) servers with each server providing all three cloud functions
+(controller, compute, and storage).
 
 An AIO-DX configuration provides the following benefits:
 
@@ -22,9 +23,10 @@ An AIO-DX configuration provides the following benefits:
   physical servers
 * High availability (HA) services run on the controller function across two
   physical servers in either active/active or active/standby mode
-* A storage backend solution using a two-node CEPH deployment across two servers
+* A storage back end solution using a two-node CEPH deployment across two servers
 * Virtual machines scheduled on both compute functions
 * Protection against overall server hardware fault, where
+
   * All controller HA services go active on the remaining healthy server
   * All virtual machines are recovered on the remaining healthy server
 
@@ -40,19 +42,19 @@ An AIO-DX configuration provides the following benefits:
    :start-after: incl-ipv6-note-start:
    :end-before: incl-ipv6-note-end:
 
---------------------------
-Physical host requirements
---------------------------
+------------------------------------
+Physical host requirements and setup
+------------------------------------
 
 .. include:: virtual_aio_simplex.rst
    :start-after: incl-virt-physical-host-req-start:
    :end-before: incl-virt-physical-host-req-end:
 
------------------------------------------------------
-Preparing the virtual environment and virtual servers
------------------------------------------------------
+---------------------------------------
+Prepare virtual environment and servers
+---------------------------------------
 
-Prepare the virtual environment and virtual servers with the following steps:
+On the host, prepare the virtual environment and virtual servers.
 
 #. Set up virtual platform networks for virtual deployment:
 
@@ -66,14 +68,12 @@ Prepare the virtual environment and virtual servers with the following steps:
    * duplex-controller-0
    * duplex-controller-1
 
-   .. note::
+   The following command will start/virtually power on:
 
-      The following command will start/virtually power on:
+   * the 'duplex-controller-0' virtual server
+   * the X-based graphical virt-manager application
 
-      * the 'duplex-controller-0' virtual server
-      * the X-based graphical virt-manager application
-
-      If there is no X-server present, then errors are returned.
+   If there is no X-server present, then errors are returned.
 
    ::
 
@@ -95,7 +95,7 @@ In the last step of "Prepare the virtual environment and virtual servers" the
 controller-0 virtual server 'duplex-controller-0' was started by the
 :command:`setup_configuration.sh` command.
 
-Attach to the console of virtual controller-0 and select the appropriate
+On the host, attach to the console of virtual controller-0 and select the appropriate
 installer menu options to start the non-interactive install of
 StarlingX software on controller-0.
 
@@ -112,7 +112,7 @@ StarlingX software on controller-0.
 Make the following menu selections in the installer:
 
 #. First menu: Select 'All-in-one Controller Configuration'
-#. Second menu: Select 'Graphical Console'
+#. Second menu: Select 'Serial Console'
 #. Third menu: Select 'Standard Security Profile'
 
 Wait for the non-interactive install of software to complete and for the server
@@ -122,6 +122,8 @@ machine.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Bootstrap system on controller-0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+On virtual controller-0:
 
 #. Log in using the username / password of "sysadmin" / "sysadmin".
    When logging in for the first time, you will be forced to change the password.
@@ -147,28 +149,34 @@ Bootstrap system on controller-0
 
 #. Specify user configuration overrides for the Ansible bootstrap playbook.
 
-   Ansible is used to bootstrap StarlingX on controller-0:
+   Ansible is used to bootstrap StarlingX on controller-0. Key files for Ansible
+   configuration are:
 
-   * The default Ansible inventory file, ``/etc/ansible/hosts``, contains a single
-     host: localhost.
-   * The Ansible bootstrap playbook is at:
-     ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml``
-   * The default configuration values for the bootstrap playbook are in
-     ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/host_vars/default.yml``
-   * By default Ansible looks for and imports user configuration override files
-     for hosts in the sysadmin home directory ($HOME), for example: ``$HOME/<hostname>.yml``
+   ``/etc/ansible/hosts``
+      The default Ansible inventory file. Contains a single host: localhost.
 
-   Specify the user configuration override file for the ansible bootstrap
-   playbook, by either:
+   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml``
+      The Ansible bootstrap playbook.
 
-   * Copying the default.yml file listed above to ``$HOME/localhost.yml`` and edit
-     the configurable values as desired, based on the commented instructions in
-     the file.
+   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/host_vars/default.yml``
+      The default configuration values for the bootstrap playbook.
+
+   sysadmin home directory ($HOME)
+      The default location where Ansible looks for and imports user
+      configuration override files for hosts. For example: ``$HOME/<hostname>.yml``.
+
+
+   Specify the user configuration override file for the Ansible bootstrap
+   playbook using one of the following methods:
+
+   * Copy the default.yml file listed above to ``$HOME/localhost.yml`` and edit
+     the configurable values as desired (use the commented instructions in
+     the file).
 
    or
 
-   * Creating the minimal user configuration override file as shown in the
-     example below:
+   * Create the minimal user configuration override file as shown in the example
+     below:
 
      ::
 
@@ -191,26 +199,9 @@ Bootstrap system on controller-0
         ansible_become_pass: <sysadmin-password>
         EOF
 
-   If you are using IPv6, provide IPv6 configuration overrides. Note that all
-   addressing, except pxeboot_subnet, should be updated to IPv6 addressing.
-   Example IPv6 override values are shown below:
+   Additional Ansible bootstrap configurations for advanced use cases are available:
 
-   ::
-
-      dns_servers:
-      ‐ 2001:4860:4860::8888
-      ‐ 2001:4860:4860::8844
-      pxeboot_subnet: 169.254.202.0/24
-      management_subnet: 2001:db8:2::/64
-      cluster_host_subnet: 2001:db8:3::/64
-      cluster_pod_subnet: 2001:db8:4::/64
-      cluster_service_subnet: 2001:db8:4::/112
-      external_oam_subnet: 2001:db8:1::/64
-      external_oam_gateway_address: 2001:db8::1
-      external_oam_floating_address: 2001:db8::2
-      external_oam_node_0_address: 2001:db8::3
-      external_oam_node_1_address: 2001:db8::4
-      management_multicast_subnet: ff08::1:1:0/124
+   * :ref:`IPv6 <ansible_bootstrap_ipv6>`
 
 #. Run the Ansible bootstrap playbook:
 
@@ -224,6 +215,8 @@ Bootstrap system on controller-0
 ^^^^^^^^^^^^^^^^^^^^^^
 Configure controller-0
 ^^^^^^^^^^^^^^^^^^^^^^
+
+On virtual controller-0:
 
 #. Acquire admin credentials:
 
@@ -263,28 +256,16 @@ Configure controller-0
 
 #. Configure data interfaces for controller-0.
 
-   .. note::
+   .. important::
 
-      This step is **required** for OpenStack and optional for Kubernetes.
-      For example, do this step if you are using SRIOV network attachments in
-      application containers.
+      **This step is required only if the StarlingX OpenStack application
+      (stx-openstack) will be installed.**
 
-   For Kubernetes SRIOV network attachments:
+      1G Huge Pages are not supported in the virtual environment and there is no
+      virtual NIC supporting SRIOV. For that reason, data interfaces are not
+      applicable in the virtual environment for the Kubernetes-only scenario.
 
-   * Configure the SRIOV device plugin:
-     ::
-
-       system host-label-assign controller-0 sriovdp=enabled
-
-   * If planning on running DPDK in containers on this host, configure the number
-     of 1G Huge pages required on both NUMA nodes:
-
-     ::
-
-        system host-memory-modify controller-0 0 -1G 100
-        system host-memory-modify controller-0 1 -1G 100
-
-   For both Kubernetes and OpenStack:
+   For OpenStack only:
 
    ::
 
@@ -326,10 +307,10 @@ Configure controller-0
 OpenStack-specific host configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. warning::
+.. important::
 
-   The following configuration is required only if the StarlingX OpenStack
-   application (stx-openstack) will be installed.
+   **This step is required only if the StarlingX OpenStack application
+   (stx-openstack) will be installed.**
 
 #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
    support of installing the stx-openstack manifest/helm-charts later.
@@ -376,7 +357,7 @@ OpenStack-specific host configuration
 Unlock controller-0
 ^^^^^^^^^^^^^^^^^^^
 
-Unlock controller-0 to bring it into service:
+Unlock virtual controller-0 to bring it into service:
 
 ::
 
@@ -389,9 +370,8 @@ service. This can take 5-10 minutes, depending on the performance of the host ma
 Install software on controller-1 node
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Power on the controller-1 virtual server, 'duplex-controller-1', and force it
-   to network boot by pressing F12 and selecting 'lan' as the alternative boot
-   option:
+#. On the host, power on the controller-1 virtual server, 'duplex-controller-1'. It will
+   automatically attempt to network boot over the management network:
 
    ::
 
@@ -406,8 +386,8 @@ Install software on controller-1 node
    As controller-1 VM boots, a message appears on its console instructing you to
    configure the personality of the node.
 
-#. On the console of controller-0, list hosts to see the newly discovered
-   controller-1 host, that is, the host with hostname of None:
+#. On the console of virtual controller-0, list hosts to see the newly discovered
+   controller-1 host (hostname=None):
 
    ::
 
@@ -419,7 +399,8 @@ Install software on controller-1 node
     | 2  | None         | None        | locked         | disabled    | offline      |
     +----+--------------+-------------+----------------+-------------+--------------+
 
-#. Using the host id, set the personality of this host to 'controller':
+#. On virtual controller-0, using the host id, set the personality of this host
+   to 'controller':
 
    ::
 
@@ -443,42 +424,31 @@ Install software on controller-1 node
 Configure controller-1
 ^^^^^^^^^^^^^^^^^^^^^^
 
+On virtual controller-0:
+
 #. Configure the OAM and MGMT interfaces of controller-1 and specify the
    attached networks. Note that the MGMT interface is partially set up
    automatically by the network install procedure.
 
    ::
 
-      OAM_IF= enp7s1
+      OAM_IF=enp7s1
       system host-if-modify controller-1 $OAM_IF -c platform
       system interface-network-assign controller-1 $OAM_IF oam
       system interface-network-assign controller-1 mgmt0 cluster-host
 
 #. Configure data interfaces for controller-1.
 
-   .. note::
+   .. important::
 
-      This step is **required** for OpenStack and optional for Kubernetes. For
-      example, do this step if using SRIOV network attachments in application
-      containers.
+      **This step is required only if the StarlingX OpenStack application
+      (stx-openstack) will be installed.**
 
-   For Kubernetes SRIOV network attachments:
+      1G Huge Pages are not supported in the virtual environment and there is no
+      virtual NIC supporting SRIOV. For that reason, data interfaces are not
+      applicable in the virtual environment for the Kubernetes-only scenario.
 
-   * Configure SRIOV device plugin:
-
-     ::
-
-        system host-label-assign controller-1 sriovdp=enabled
-
-   * If planning on running DPDK in containers on this hosts, configure the number
-     of 1G Huge pages required on both NUMA nodes:
-
-     ::
-
-      system host-memory-modify controller-1 0 -1G 100
-      system host-memory-modify controller-1 1 -1G 100
-
-   For both Kubernetes and OpenStack:
+   For OpenStack only:
 
    ::
 
@@ -521,10 +491,10 @@ Configure controller-1
 OpenStack-specific host configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. warning::
+.. important::
 
-   The following configuration is required only if the StarlingX OpenStack
-   application (stx-openstack) will be installed.
+   **This step is required only if the StarlingX OpenStack application
+   (stx-openstack) will be installed.**
 
 #. **For OpenStack only:** Assign OpenStack host labels to controller-1 in
    support of installing the stx-openstack manifest/helm-charts later:
@@ -559,7 +529,7 @@ OpenStack-specific host configuration
 Unlock controller-1
 ^^^^^^^^^^^^^^^^^^^
 
-Unlock controller-1 in order to bring it into service:
+Unlock virtual controller-1 in order to bring it into service:
 
 ::
 

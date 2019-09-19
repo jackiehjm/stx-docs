@@ -13,20 +13,20 @@ Description
 .. incl-controller-storage-intro-start:
 
 The Standard with Controller Storage deployment option provides two high
-availability (HA) controller nodes and two - 10 compute nodes.
+availability (HA) controller nodes and a pool of up to 10 compute nodes.
 
 A Standard with Controller Storage configuration provides the following benefits:
 
 * A pool of up to 10 compute nodes
 * High availability (HA) services run across the controller nodes in either
   active/active or active/standby mode
-* A storage backend solution using a two-node CEPH deployment across two
+* A storage back end solution using a two-node CEPH deployment across two
   controller servers
 * Protection against overall controller and compute node failure, where
 
   * On overall controller node failure, all controller HA services go active on
     the remaining healthy controller node
-  * On overall compute node failuer, virtual machines and containers are
+  * On overall compute node failure, virtual machines and containers are
     recovered on the remaining healthy compute nodes
 
 .. figure:: figures/starlingx-deployment-options-controller-storage.png
@@ -41,17 +41,19 @@ A Standard with Controller Storage configuration provides the following benefits
    :start-after: incl-ipv6-note-start:
    :end-before: incl-ipv6-note-end:
 
---------------------------
-Physical host requirements
---------------------------
+------------------------------------
+Physical host requirements and setup
+------------------------------------
 
 .. include:: virtual_aio_simplex.rst
    :start-after: incl-virt-physical-host-req-start:
    :end-before: incl-virt-physical-host-req-end:
 
------------------------------------------------------
-Preparing the virtual environment and virtual servers
------------------------------------------------------
+---------------------------------------
+Prepare virtual environment and servers
+---------------------------------------
+
+On the host, prepare the virtual environment and virtual servers.
 
 #. Set up virtual platform networks for virtual deployment:
 
@@ -60,23 +62,19 @@ Preparing the virtual environment and virtual servers
      bash setup_network.sh
 
 #. Create the XML definitions for the virtual servers required by this
-   configuration option.
-
-   This creates the XML virtual server definition for:
+   configuration option. This creates the XML virtual server definition for:
 
    * controllerstorage-controller-0
    * controllerstorage-controller-1
-   * controllerstorage-compute-0
-   * controllerstorage-compute-1
+   * controllerstorage-worker-0
+   * controllerstorage-worker-1
 
-   .. note::
+   The following command will start/virtually power on:
 
-      The following command will start/virtually power on:
+   * the 'controllerstorage-controller-0' virtual server
+   * the X-based graphical virt-manager application
 
-      * the 'controllerstorage-controller-0' virtual server
-      * the X-based graphical virt-manager application
-
-      If there is no X-server present, then errors are returned.
+   If there is no X-server present, then errors are returned.
 
    ::
 
@@ -98,7 +96,7 @@ In the last step of "Prepare the virtual environment and virtual servers" the
 controller-0 virtual server 'controllerstorage-controller-0' was started by the
 :command:`setup_configuration.sh` command.
 
-Attach to the console of virtual controller-0 and select the appropriate
+On the host, attach to the console of virtual controller-0 and select the appropriate
 installer menu options to start the non-interactive install of
 StarlingX software on controller-0.
 
@@ -114,8 +112,8 @@ StarlingX software on controller-0.
 
 Make the following menu selections in the installer:
 
-#. First menu: Select 'Standard Configuration'
-#. Second menu: Select 'Graphical Console'
+#. First menu: Select 'Standard Controller Configuration'
+#. Second menu: Select 'Serial Console'
 #. Third menu: Select 'Standard Security Profile'
 
 Wait for the non-interactive install of software to complete and for the server
@@ -125,6 +123,8 @@ machine.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Bootstrap system on controller-0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+On virtual controller-0:
 
 #. Log in using the username / password of "sysadmin" / "sysadmin".
    When logging in for the first time, you will be forced to change the password.
@@ -150,34 +150,40 @@ Bootstrap system on controller-0
 
 #. Specify user configuration overrides for the Ansible bootstrap playbook.
 
-   Ansible is used to bootstrap StarlingX on controller-0:
+   Ansible is used to bootstrap StarlingX on controller-0. Key files for Ansible
+   configuration are:
 
-   * The default Ansible inventory file, ``/etc/ansible/hosts``, contains a single
-     host: localhost.
-   * The Ansible bootstrap playbook is at:
-     ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml``
-   * The default configuration values for the bootstrap playbook are in:
-     ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/host_vars/default.yml``
-   * By default Ansible looks for and imports user configuration override files
-     for hosts in the sysadmin home directory ($HOME), for example: ``$HOME/<hostname>.yml``
+   ``/etc/ansible/hosts``
+      The default Ansible inventory file. Contains a single host: localhost.
 
-   Specify the user configuration override file for the ansible bootstrap
-   playbook, by either:
+   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml``
+      The Ansible bootstrap playbook.
 
-   * Copying the default.yml file listed above to ``$HOME/localhost.yml`` and edit
-     the configurable values as desired, based on the commented instructions in
-     the file.
+   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/host_vars/default.yml``
+      The default configuration values for the bootstrap playbook.
+
+   sysadmin home directory ($HOME)
+      The default location where Ansible looks for and imports user
+      configuration override files for hosts. For example: ``$HOME/<hostname>.yml``.
+
+
+   Specify the user configuration override file for the Ansible bootstrap
+   playbook using one of the following methods:
+
+   * Copy the default.yml file listed above to ``$HOME/localhost.yml`` and edit
+     the configurable values as desired (use the commented instructions in
+     the file).
 
    or
 
-   * Creating the minimal user configuration override file as shown in the
-     example below:
+   * Create the minimal user configuration override file as shown in the example
+     below:
 
      ::
 
         cd ~
         cat <<EOF > localhost.yml
-        system_mode: standard
+        system_mode: duplex
 
         dns_servers:
           - 8.8.8.8
@@ -194,26 +200,9 @@ Bootstrap system on controller-0
         ansible_become_pass: <sysadmin-password>
         EOF
 
-   If you are using IPv6, provide IPv6 configuration overrides. Note that all
-   addressing, except pxeboot_subnet, should be updated to IPv6 addressing.
-   Example IPv6 override values are shown below:
+   Additional Ansible bootstrap configurations for advanced use cases are available:
 
-   ::
-
-      dns_servers:
-      ‐ 2001:4860:4860::8888
-      ‐ 2001:4860:4860::8844
-      pxeboot_subnet: 169.254.202.0/24
-      management_subnet: 2001:db8:2::/64
-      cluster_host_subnet: 2001:db8:3::/64
-      cluster_pod_subnet: 2001:db8:4::/64
-      cluster_service_subnet: 2001:db8:4::/112
-      external_oam_subnet: 2001:db8:1::/64
-      external_oam_gateway_address: 2001:db8::1
-      external_oam_floating_address: 2001:db8::2
-      external_oam_node_0_address: 2001:db8::3
-      external_oam_node_1_address: 2001:db8::4
-      management_multicast_subnet: ff08::1:1:0/124
+   * :ref:`IPv6 <ansible_bootstrap_ipv6>`
 
 #. Run the Ansible bootstrap playbook:
 
@@ -227,6 +216,8 @@ Bootstrap system on controller-0
 ^^^^^^^^^^^^^^^^^^^^^^
 Configure controller-0
 ^^^^^^^^^^^^^^^^^^^^^^
+
+On virtual controller-0:
 
 #. Acquire admin credentials:
 
@@ -269,10 +260,10 @@ Configure controller-0
 OpenStack-specific host configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. warning::
+.. important::
 
-   The following configuration is required only if the StarlingX OpenStack
-   application (stx-openstack) will be installed.
+   **This step is required only if the StarlingX OpenStack application
+   (stx-openstack) will be installed.**
 
 #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
    support of installing the stx-openstack manifest/helm-charts later.
@@ -293,9 +284,9 @@ OpenStack-specific host configuration
 Unlock controller-0
 ^^^^^^^^^^^^^^^^^^^
 
-Unlock controller-0 in order to bring it into service:
+Unlock virtual controller-0 in order to bring it into service:
 
-  ::
+::
 
     system host-unlock controller-0
 
@@ -306,9 +297,9 @@ service. This can take 5-10 minutes, depending on the performance of the host ma
 Install software on controller-1 and compute nodes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Power on the controller-1 virtual server, 'controllerstorage-controller-1',
-   and force it to network boot by pressing F12 and selecting 'lan' as the
-   alternative boot option:
+#. On the host, power on the controller-1 virtual server,
+   'controllerstorage-controller-1'. It will automatically attempt to network
+   boot over the management network:
 
    ::
 
@@ -323,8 +314,8 @@ Install software on controller-1 and compute nodes
    As controller-1 VM boots, a message appears on its console instructing you to
    configure the personality of the node.
 
-#. On console of controller-0, list hosts to see newly discovered
-   controller-1 host, that is, host with hostname of None:
+#. On console of virtual controller-0, list hosts to see the newly discovered
+   controller-1 host (hostname=None):
 
    ::
 
@@ -336,7 +327,8 @@ Install software on controller-1 and compute nodes
       | 2  | None         | None        | locked         | disabled    | offline      |
       +----+--------------+-------------+----------------+-------------+--------------+
 
-#. Using the host id, set the personality of this host to 'controller':
+#. On virtual controller-0, using the host id, set the personality of this host
+   to 'controller':
 
    ::
 
@@ -345,13 +337,34 @@ Install software on controller-1 and compute nodes
    This initiates the install of software on controller-1.
    This can take 5-10 minutes, depending on the performance of the host machine.
 
-#. While waiting on this, repeat the same procedure for
-   'controllerstorage-compute-0' and 'controllerstorage-compute-1', except for
-   setting the personality to 'worker' and assigning a unique hostname, for example:
+#. While waiting on the previous step to complete, start up and set the personality
+   for 'controllerstorage-worker-0' and 'controllerstorage-worker-1'. Set the
+   personality to 'worker' and assign a unique hostname for each.
+
+   For example, start 'controllerstorage-worker-0' from the host:
+
+   ::
+
+      virsh start controllerstorage-worker-0
+
+   Wait for new host (hostname=None) to be discovered by checking
+   ‘system host-list’ on virtual controller-0:
 
    ::
 
       system host-update 3 personality=worker hostname=compute-0
+
+   Repeat for 'controllerstorage-worker-1'. On the host:
+
+   ::
+
+      virsh start controllerstorage-worker-1
+
+   And wait for new host (hostname=None) to be discovered by checking
+   ‘system host-list’ on virtual controller-0:
+
+   ::
+
       system host-update 4 personality=worker hostname=compute-1
 
 #. Wait for the software installation on controller-1, compute-0, and compute-1 to
@@ -374,9 +387,9 @@ Install software on controller-1 and compute nodes
 Configure controller-1
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Configure the OAM and MGMT interfaces of controller-0 and specify the attached
-networks. Note that the MGMT interface is partially set up automatically by the network
-install procedure.
+Configure the OAM and MGMT interfaces of virtual controller-0 and specify the
+attached networks. Note that the MGMT interface is partially set up by the
+network install procedure.
 
 ::
 
@@ -389,10 +402,10 @@ install procedure.
 OpenStack-specific host configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. warning::
+.. important::
 
-   The following configuration is required only if the StarlingX OpenStack
-   application (stx-openstack) will be installed.
+   **This step is required only if the StarlingX OpenStack application
+   (stx-openstack) will be installed.**
 
 **For OpenStack only:** Assign OpenStack host labels to controller-1 in support
 of installing the stx-openstack manifest/helm-charts later:
@@ -405,7 +418,7 @@ of installing the stx-openstack manifest/helm-charts later:
 Unlock controller-1
 ^^^^^^^^^^^^^^^^^^^
 
-Unlock controller-1 in order to bring it into service:
+Unlock virtual controller-1 in order to bring it into service:
 
 ::
 
@@ -417,6 +430,8 @@ service. This can take 5-10 minutes, depending on the performance of the host ma
 ^^^^^^^^^^^^^^^^^^^^^^^
 Configure compute nodes
 ^^^^^^^^^^^^^^^^^^^^^^^
+
+On virtual controller-0:
 
 #. Add the third Ceph monitor to compute-0:
 
@@ -455,33 +470,16 @@ Configure compute nodes
 
 #. Configure data interfaces for compute nodes.
 
-   .. note::
+   .. important::
 
-      This step is **required** for OpenStack and optional for Kubernetes. For
-      example, do this step if using SRIOV network attachments in application
-      containers.
+      **This step is required only if the StarlingX OpenStack application
+      (stx-openstack) will be installed.**
 
-   For Kubernetes SRIOV network attachments:
+      1G Huge Pages are not supported in the virtual environment and there is no
+      virtual NIC supporting SRIOV. For that reason, data interfaces are not
+      applicable in the virtual environment for the Kubernetes-only scenario.
 
-   * Configure the SRIOV device plugin:
-
-     ::
-
-        for COMPUTE in compute-0 compute-1; do
-          system host-label-assign ${COMPUTE} sriovdp=enabled
-        done
-
-   * If planning on running DPDK in containers on this host, configure the number
-     of 1G Huge pages required on both NUMA nodes:
-
-     ::
-
-        for COMPUTE in compute-0 compute-1; do
-           system host-memory-modify ${COMPUTE} 0 -1G 100
-           system host-memory-modify ${COMPUTE} 1 -1G 100
-        done
-
-   For both Kubernetes and OpenStack:
+   For OpenStack only:
 
    ::
 
@@ -521,10 +519,10 @@ Configure compute nodes
 OpenStack-specific host configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. warning::
+.. important::
 
-   The following configuration is required only if the StarlingX OpenStack
-   application (stx-openstack) will be installed.
+   **This step is required only if the StarlingX OpenStack application
+   (stx-openstack) will be installed.**
 
 #. **For OpenStack only:** Assign OpenStack host labels to the compute nodes in
    support of installing the stx-openstack manifest/helm-charts later:
@@ -553,16 +551,11 @@ OpenStack-specific host configuration
         system host-pv-add ${COMPUTE} nova-local ${NOVA_PARTITION_UUID}
       done
 
-      for COMPUTE in compute-0 compute-1; do
-        echo ">>> Wait for partition $NOVA_PARTITION_UUID to be ready."
-        while true; do system host-disk-partition-list $COMPUTE --nowrap | grep $NOVA_PARTITION_UUID | grep Ready; if [ $? -eq 0 ]; then break; fi; sleep 1; done
-      done
-
 ^^^^^^^^^^^^^^^^^^^^
 Unlock compute nodes
 ^^^^^^^^^^^^^^^^^^^^
 
-Unlock compute nodes to bring them into service:
+Unlock virtual compute nodes to bring them into service:
 
 ::
 
@@ -576,6 +569,8 @@ service. This can take 5-10 minutes, depending on the performance of the host ma
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Add Ceph OSDs to controllers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+On virtual controller-0:
 
 #. Add OSDs to controller-0:
 
