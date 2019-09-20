@@ -1,11 +1,16 @@
 ---
 - project:
     templates:
-      - publish-stx-docs
       - stx-api-ref-jobs
     check:
       jobs:
         - openstack-tox-linters
+        - openstack-tox-docs
     gate:
       jobs:
         - openstack-tox-linters
+        - openstack-tox-docs
+    promote:
+      jobs:
+        # Special publishing job for this repo
+        - promote-stx-tox-docs-site
