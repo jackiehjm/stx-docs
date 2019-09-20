@@ -28,7 +28,7 @@ The documentation is organized into the following sections:
 Projects
 --------
 
-StarlingX contains a number of sub-projects that include additional edge cloud
+StarlingX contains multiple sub-projects that include additional edge cloud
 support services and clients. API documentation and release notes for each
 project are found on the specific project page:
 
