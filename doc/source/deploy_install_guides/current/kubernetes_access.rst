@@ -1,6 +1,9 @@
-===========================
-Access StarlingX Kubernetes
-===========================
+================================
+Access StarlingX Kubernetes R2.0
+================================
+
+Use local/remote CLIs, GUIs, and/or REST APIs to access and manage StarlingX
+Kubernetes and hosted containerized applications.
 
 .. contents::
    :local:

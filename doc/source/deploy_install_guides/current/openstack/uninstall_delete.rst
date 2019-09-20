@@ -1,9 +1,9 @@
-===================
-Uninstall OpenStack
-===================
+=============================
+Uninstall StarlingX OpenStack
+=============================
 
 This section provides additional commands for uninstalling and deleting the
-OpenStack application.
+StarlingX OpenStack application.
 
 .. warning::
 

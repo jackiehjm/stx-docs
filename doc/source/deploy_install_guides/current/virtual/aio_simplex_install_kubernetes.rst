@@ -1,185 +1,19 @@
-﻿===============================
-Virtual All-in-one Simplex R2.0
-===============================
+==============================================
+Install StarlingX Kubernetes on Virtual AIO-SX
+==============================================
+
+This section describes the steps to install the StarlingX Kubernetes platform
+on a **StarlingX R2.0 virtual All-in-one Simplex** deployment configuration.
 
 .. contents::
    :local:
    :depth: 1
 
------------
-Description
------------
-
-.. incl-aio-simplex-intro-start:
-
-The All-in-one Simplex (AIO-SX) deployment option provides all three cloud
-functions (controller, compute, and storage) on a single server.
-
-An AIO-SX configuration provides the following benefits:
-
-* Only a small amount of cloud processing and storage power is required
-* Application consolidation using multiple virtual machines on a single pair of
-  physical servers
-* A storage backend solution using a single-node CEPH deployment
-
-An AIO-SX deployment provides no protection against overall server hardware
-fault, as protection is either not required or provided at a higher level.
-Hardware component protection can be enable with, for example, a hardware RAID
-or 2x Port LAG in the deployment.
-
-
-.. figure:: figures/starlingx-deployment-options-simplex.png
-   :scale: 50%
-   :alt: All-in-one Simplex deployment configuration
-
-   *Figure 1: All-in-one Simplex deployment configuration*
-
-.. incl-aio-simplex-intro-end:
-
-.. incl-ipv6-note-start:
-
-.. note::
-
-   By default, StarlingX uses IPv4. To use StarlingX with IPv6:
-
-   * The entire infrastructure and cluster configuration must be IPv6, with the
-     exception of the PXE boot network.
-
-   * Not all external servers are reachable via IPv6 addresses (e.g. Docker
-     registries). Depending on your infrastructure, it may be necessary to deploy
-     a NAT64/DNS64 gateway to translate the IPv4 addresses to IPv6.
-
-.. incl-ipv6-note-end:
-
-------------------------------------
-Physical host requirements and setup
-------------------------------------
-
-.. incl-virt-physical-host-req-start:
-
-This section describes:
-
-* System requirements for the workstation hosting the virtual machine(s) where
-  StarlingX will be deployed
-
-* Host setup
-
-*********************
-Hardware requirements
-*********************
-
-The host system should have at least:
-
-* **Processor:** x86_64 only supported architecture with BIOS enabled hardware
-  virtualization extensions
-
-* **Cores:** 8
-
-* **Memory:** 32GB RAM
-
-* **Hard Disk:** 500GB HDD
-
-* **Network:** One network adapter with active Internet connection
-
-*********************
-Software requirements
-*********************
-
-The host system should have at least:
-
-* A workstation computer with Ubuntu 16.04 LTS 64-bit
-
-All other required packages will be installed by scripts in the StarlingX tools repository.
-
-**********
-Host setup
-**********
-
-Set up the host with the following steps:
-
-#. Update OS:
-
-   ::
-
-    apt-get update
-
-#. Clone the StarlingX tools repository:
-
-   ::
-
-    apt-get install -y git
-    cd $HOME
-    git clone https://opendev.org/starlingx/tools
-
-#. Install required packages:
-
-   ::
-
-    cd $HOME/tools/deployment/libvirt/
-    bash install_packages.sh
-    apt install -y apparmor-profiles
-    apt-get install -y ufw
-    ufw disable
-    ufw status
-
-
-   .. note::
-
-      On Ubuntu 16.04, if apparmor-profile modules were installed as shown in
-      the example above, you must reboot the server to fully install the
-      apparmor-profile modules.
-
-
-#. Get the StarlingX ISO. This can be from a private StarlingX build or from the public Cengn
-   StarlingX build off 'master' branch, as shown below:
-
-   ::
-
-    wget http://mirror.starlingx.cengn.ca/mirror/starlingx/release/2.0.0/centos/outputs/iso/bootimage.iso
-
-.. incl-virt-physical-host-req-end:
-
----------------------------------------
-Prepare virtual environment and servers
----------------------------------------
-
-On the host, prepare the virtual environment and virtual servers.
-
-#. Set up virtual platform networks for virtual deployment:
-
-   ::
-
-    bash setup_network.sh
-
-#. Create the XML definitions for the virtual servers required by this
-   configuration option. This creates the XML virtual server definition for:
-
-   * simplex-controller-0
-
-   The following command will start/virtually power on:
-
-   * the 'simplex-controller-0' virtual server
-   * the X-based graphical virt-manager application
-
-   If there is no X-server present, then errors will occur.
-
-   ::
-
-    bash setup_configuration.sh -c simplex -i ./bootimage.iso
-
---------------------
-StarlingX Kubernetes
---------------------
-
-*****************************************
-Install the StarlingX Kubernetes platform
-*****************************************
-
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 Install software on controller-0
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 
-In the last step of `Prepare virtual environment and servers`_, the
+In the last step of "Prepare virtual environment and servers", the
 controller-0 virtual server 'simplex-controller-0' was started by the
 :command:`setup_configuration.sh` command.
 
@@ -207,9 +41,9 @@ Wait for the non-interactive install of software to complete and for the server
 to reboot. This can take 5-10 minutes, depending on the performance of the host
 machine.
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 Bootstrap system on controller-0
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 
 On virtual controller-0:
 
@@ -300,9 +134,9 @@ On virtual controller-0:
    Wait for Ansible bootstrap playbook to complete.
    This can take 5-10 minutes, depending on the performance of the host machine.
 
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 Configure controller-0
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 
 On virtual controller-0:
 
@@ -381,9 +215,11 @@ On virtual controller-0:
     system host-disk-list controller-0 | awk '/\/dev\/sdb/{print $2}' | xargs -i system host-stor-add controller-0 {}
     system host-stor-list controller-0
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*************************************
 OpenStack-specific host configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*************************************
+
+.. incl-config-controller-0-openstack-specific-aio-simplex-start:
 
 .. important::
 
@@ -400,7 +236,7 @@ OpenStack-specific host configuration
      system host-label-assign controller-0 openvswitch=enabled
      system host-label-assign controller-0 sriov=enabled
 
-#. **For OpenStack only**: A vSwitch is required.
+#. **For OpenStack only:** A vSwitch is required.
 
    The default vSwitch is containerized OVS that is packaged with the
    stx-openstack manifest/helm-charts. StarlingX provides the option to use
@@ -431,9 +267,11 @@ OpenStack-specific host configuration
      echo ">>> Wait for partition $NOVA_PARTITION_UUID to be ready."
      while true; do system host-disk-partition-list $COMPUTE --nowrap | grep $NOVA_PARTITION_UUID | grep Ready; if [ $? -eq 0 ]; then break; fi; sleep 1; done
 
-^^^^^^^^^^^^^^^^^^^
+.. incl-config-controller-0-openstack-specific-aio-simplex-end:
+
+-------------------
 Unlock controller-0
-^^^^^^^^^^^^^^^^^^^
+-------------------
 
 Unlock virtual controller-0 to bring it into service:
 
@@ -444,60 +282,8 @@ Unlock virtual controller-0 to bring it into service:
 Controller-0 will reboot to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host machine.
 
-When it completes, your Kubernetes cluster is up and running.
+----------
+Next steps
+----------
 
-***************************
-Access StarlingX Kubernetes
-***************************
-
-.. incl-access-starlingx-kubernetes-start:
-
-Use local/remote CLIs, GUIs, and/or REST APIs to access and manage StarlingX
-Kubernetes and hosted containerized applications. Refer to details on accessing
-the StarlingX Kubernetes cluster in the
-:doc:`Access StarlingX Kubernetes guide <access_starlingx_kubernetes>`.
-
-.. incl-access-starlingx-kubernetes-end:
-
--------------------
-StarlingX OpenStack
--------------------
-
-***************************
-Install StarlingX OpenStack
-***************************
-
-.. incl-install-starlingx-openstack-start:
-
-Other than the OpenStack-specific configurations required in the underlying
-StarlingX/Kubernetes infrastructure (described in the installation steps for the
-StarlingX Kubernetes platform above), the installation of containerized OpenStack
-for StarlingX is independent of deployment configuration. Refer to the
-:doc:`Install OpenStack guide <install_openstack>`
-for installation instructions.
-
-.. incl-install-starlingx-openstack-end:
-
-**************************
-Access StarlingX OpenStack
-**************************
-
-.. incl-access-starlingx-openstack-start:
-
-Use local/remote CLIs, GUIs and/or REST APIs to access and manage StarlingX
-OpenStack and hosted virtualized applications. Refer to details on accessing
-StarlingX OpenStack in the
-:doc:`Access StarlingX OpenStack guide <access_starlingx_openstack>`.
-
-.. incl-access-starlingx-openstack-end:
-
-*****************************
-Uninstall StarlingX OpenStack
-*****************************
-
-.. incl-uninstall-starlingx-openstack-start:
-
-Refer to the :doc:`Uninstall OpenStack guide <uninstall_delete_openstack>` for
-instructions on how to uninstall and delete the OpenStack application.
-
-.. incl-uninstall-starlingx-openstack-end:
+.. include:: ../kubernetes_install_next.txt

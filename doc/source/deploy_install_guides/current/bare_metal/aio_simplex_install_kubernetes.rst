@@ -1,111 +1,26 @@
-﻿==================================
-Bare metal All-in-one Simplex R2.0
-==================================
+=================================================
+Install StarlingX Kubernetes on Bare Metal AIO-SX
+=================================================
+
+This section describes the steps to install the StarlingX Kubernetes platform
+on a **StarlingX R2.0 bare metal All-in-one Simplex** deployment configuration.
 
 .. contents::
    :local:
    :depth: 1
 
------------
-Description
------------
-
-.. include:: virtual_aio_simplex.rst
-   :start-after: incl-aio-simplex-intro-start:
-   :end-before: incl-aio-simplex-intro-end:
-
-.. include:: virtual_aio_simplex.rst
-   :start-after: incl-ipv6-note-start:
-   :end-before: incl-ipv6-note-end:
-
 ---------------------
-Hardware requirements
+Create a bootable USB
 ---------------------
-
-The recommended minimum requirements for bare metal servers for various host
-types are:
-
-+-------------------------+-----------------------------------------------------------+
-| Minimum Requirement     | All-in-one Controller Node                                |
-+=========================+===========================================================+
-| Number of servers       |  1                                                        |
-+-------------------------+-----------------------------------------------------------+
-| Minimum processor class | - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge)      |
-|                         |   8 cores/socket                                          |
-|                         |                                                           |
-|                         | or                                                        |
-|                         |                                                           |
-|                         | - Single-CPU Intel® Xeon® D-15xx family, 8 cores          |
-|                         |   (low-power/low-cost option)                             |
-+-------------------------+-----------------------------------------------------------+
-| Minimum memory          | 64 GB                                                     |
-+-------------------------+-----------------------------------------------------------+
-| Primary disk            | 500 GB SDD or NVMe                                        |
-+-------------------------+-----------------------------------------------------------+
-| Additional disks        | - 1 or more 500 GB (min. 10K RPM) for Ceph OSD            |
-|                         | - Recommended, but not required: 1 or more SSDs or NVMe   |
-|                         |   drives for Ceph journals (min. 1024 MiB per OSD         |
-|                         |   journal)                                                |
-|                         | - For OpenStack, recommend 1 or more 500 GB (min. 10K     |
-|                         |   RPM) for VM local ephemeral storage                     |
-+-------------------------+-----------------------------------------------------------+
-| Minimum network ports   | - OAM: 1x1GE                                              |
-|                         | - Data: 1 or more x 10GE                                  |
-+-------------------------+-----------------------------------------------------------+
-| BIOS settings           | - Hyper-Threading technology enabled                      |
-|                         | - Virtualization technology enabled                       |
-|                         | - VT for directed I/O enabled                             |
-|                         | - CPU power and performance policy set to performance     |
-|                         | - CPU C state control disabled                            |
-|                         | - Plug & play BMC detection disabled                      |
-+-------------------------+-----------------------------------------------------------+
-
----------------------
-Preparing the servers
----------------------
-
-.. incl-prepare-servers-start:
-
-Prior to starting the StarlingX installation, the bare metal servers must be in the
-following condition:
-
-* Physically installed
-
-* Cabled for power
-
-* Cabled for networking
-
-  * Far-end switch ports should be properly configured to realize the networking
-    shown in Figure 1.
-
-* All disks wiped
-
-  * Ensures that servers will boot from either the network or USB storage (if present)
-
-* Powered off
-
-.. incl-prepare-servers-end:
-
---------------------
-StarlingX Kubernetes
---------------------
-
-*******************************
-Installing StarlingX Kubernetes
-*******************************
-
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Create a bootable USB with the StarlingX ISO
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Refer to :doc:`/deploy_install_guides/bootable_usb` for instructions on how to
-create a bootable USB on your system.
+create a bootable USB with the StarlingX ISO on your system.
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 Install software on controller-0
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 
-.. incl-install-software-controller-0-aio-start:
+.. incl-install-software-controller-0-aio-simplex-start:
 
 #. Insert the bootable USB into a bootable USB port on the host you are
    configuring as controller-0.
@@ -125,11 +40,11 @@ Install software on controller-0
 #. Wait for non-interactive install of software to complete and server to reboot.
    This can take 5-10 minutes, depending on the performance of the server.
 
-.. incl-install-software-controller-0-aio-end:
+.. incl-install-software-controller-0-aio-simplex-end:
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 Bootstrap system on controller-0
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 
 #. Login using the username / password of "sysadmin" / "sysadmin".
    When logging in for the first time, you will be forced to change the password.
@@ -210,9 +125,7 @@ Bootstrap system on controller-0
         ansible_become_pass: <sysadmin-password>
         EOF
 
-   Additional Ansible bootstrap configurations for advanced use cases are available:
-
-   * :ref:`IPv6 <ansible_bootstrap_ipv6>`
+   Additional :doc:`ansible_bootstrap_configs` are available for advanced use cases.
 
 #. Run the Ansible bootstrap playbook:
 
@@ -223,11 +136,11 @@ Bootstrap system on controller-0
    Wait for Ansible bootstrap playbook to complete.
    This can take 5-10 minutes, depending on the performance of the host machine.
 
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 Configure controller-0
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 
-.. incl-config-controller-0-start:
+.. incl-config-controller-0-aio-simplex-start:
 
 #. Acquire admin credentials:
 
@@ -325,9 +238,9 @@ Configure controller-0
       system host-disk-list controller-0 | awk '/\/dev\/sdb/{print $2}' | xargs -i system host-stor-add controller-0 {}
       system host-stor-list controller-0
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*************************************
 OpenStack-specific host configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*************************************
 
 .. important::
 
@@ -410,11 +323,13 @@ OpenStack-specific host configuration
       echo ">>> Wait for partition $NOVA_PARTITION_UUID to be ready."
       while true; do system host-disk-partition-list $COMPUTE --nowrap | grep $NOVA_PARTITION_UUID | grep Ready; if [ $? -eq 0 ]; then break; fi; sleep 1; done
 
-.. incl-config-controller-0-end:
+.. incl-config-controller-0-aio-simplex-end:
 
-^^^^^^^^^^^^^^^^^^^
+-------------------
 Unlock controller-0
-^^^^^^^^^^^^^^^^^^^
+-------------------
+
+.. incl-unlock-controller-0-aio-simplex-start:
 
 Unlock controller-0 in order to bring it into service:
 
@@ -422,43 +337,13 @@ Unlock controller-0 in order to bring it into service:
 
   system host-unlock controller-0
 
-Controller-0 will reboot in order to apply configuration change and come into
+Controller-0 will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host machine.
 
-When it completes, your Kubernetes cluster is up and running.
+.. incl-unlock-controller-0-aio-simplex-end:
 
-***************************
-Access StarlingX Kubernetes
-***************************
+----------
+Next steps
+----------
 
-.. include:: virtual_aio_simplex.rst
-   :start-after: incl-access-starlingx-kubernetes-start:
-   :end-before: incl-access-starlingx-kubernetes-end:
-
--------------------
-StarlingX OpenStack
--------------------
-
-***************************
-Install StarlingX OpenStack
-***************************
-
-.. include:: virtual_aio_simplex.rst
-   :start-after: incl-install-starlingx-openstack-start:
-   :end-before: incl-install-starlingx-openstack-end:
-
-**************************
-Access StarlingX OpenStack
-**************************
-
-.. include:: virtual_aio_simplex.rst
-   :start-after: incl-access-starlingx-openstack-start:
-   :end-before: incl-access-starlingx-openstack-end:
-
-*****************************
-Uninstall StarlingX OpenStack
-*****************************
-
-.. include:: virtual_aio_simplex.rst
-   :start-after: incl-uninstall-starlingx-openstack-start:
-   :end-before: incl-uninstall-starlingx-openstack-end:
+.. include:: ../kubernetes_install_next.txt

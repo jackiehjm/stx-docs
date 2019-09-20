@@ -2,6 +2,9 @@
 Access StarlingX OpenStack
 ==========================
 
+Use local/remote CLIs, GUIs and/or REST APIs to access and manage StarlingX
+OpenStack and hosted virtualized applications.
+
 .. contents::
    :local:
    :depth: 1

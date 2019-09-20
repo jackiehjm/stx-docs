@@ -6,9 +6,9 @@ Bare metal Standard with Ironic R2.0
    :local:
    :depth: 1
 
-------------
-Introduction
-------------
+--------
+Overview
+--------
 
 Ironic is an OpenStack project that provisions bare metal machines. For
 information about the Ironic project, see
@@ -18,7 +18,7 @@ End user applications can be deployed on bare metal servers (instead of
 virtual machines) by configuring OpenStack Ironic and deploying a pool of 1 or
 more bare metal servers.
 
-.. figure:: figures/starlingx-deployment-options-ironic.png
+.. figure:: ../figures/starlingx-deployment-options-ironic.png
    :scale: 90%
    :alt: Standard with Ironic deployment configuration
 
@@ -54,9 +54,9 @@ Installation options
 StarlingX currently supports only a bare metal installation of Ironic with a
 standard configuration, either:
 
-* :ref:`Bare metal Standard with Controller Storage R2.0 <bm_standard_controller_r2>`
+* :doc:`controller_storage`
 
-* :ref:`Bare metal Standard with Dedicated Storage R2.0 <bm_standard_dedicated_r2>`
+* :doc:`dedicated_storage`
 
 
 This guide assumes that you have a standard deployment installed and configured
