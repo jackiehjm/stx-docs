@@ -24,22 +24,22 @@ Description
 Hardware requirements
 ---------------------
 
-The recommended minimum requirements for the Bare Metal Servers for the various
-host types are:
+The recommended minimum requirements for bare metal servers for various host
+types are:
 
 +---------------------+-----------------------+-----------------------+-----------------------+
-| Minimum Requirement | Controller Node       | Compute Node          |                       |
+| Minimum Requirement | Controller Node       | Storage Node          | Compute Node          |
 +=====================+=======================+=======================+=======================+
-| Number of Servers   | 2                     | 2-9                   | 2-100                 |
+| Number of servers   | 2                     | 2-9                   | 2-100                 |
 +---------------------+-----------------------+-----------------------+-----------------------+
-| Minimum Processor   | Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket     |
-| Class               |                                                                       |
+| Minimum processor   | Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket     |
+| class               |                                                                       |
 +---------------------+-----------------------+-----------------------+-----------------------+
-| Minimum Memory      | 64 GB                 | 64 GB                 | 32 GB                 |
+| Minimum memory      | 64 GB                 | 64 GB                 | 32 GB                 |
 +---------------------+-----------------------+-----------------------+-----------------------+
-| Primary Disk        | 500 GB SDD or NVM     | 120 GB (min. 10k RPM) | 120 GB (min. 10k RPM) |
+| Primary disk        | 500 GB SDD or NVM     | 120 GB (min. 10k RPM) | 120 GB (min. 10k RPM) |
 +---------------------+-----------------------+-----------------------+-----------------------+
-| Additional Disks    | None                  | - 1 or more 500 GB    | - For OpenStack,      |
+| Additional disks    | None                  | - 1 or more 500 GB    | - For OpenStack,      |
 |                     |                       |   (min.10K RPM) for   |   recommend 1 or more |
 |                     |                       |   Ceph OSD            |   500 GB (min. 10K    |
 |                     |                       | - Recommended, but    |   RPM) for VM         |
@@ -50,12 +50,12 @@ host types are:
 |                     |                       |   MiB per OSD         |                       |
 |                     |                       |   journal)            |                       |
 +---------------------+-----------------------+-----------------------+-----------------------+
-| Minimum Network     | - Mgmt/Cluster:       | - Mgmt/Cluster:       | - Mgmt/Cluster:       |
-| Ports               |   1x10GE              |   1x10GE              |   1x10GE              |
+| Minimum network     | - Mgmt/Cluster:       | - Mgmt/Cluster:       | - Mgmt/Cluster:       |
+| ports               |   1x10GE              |   1x10GE              |   1x10GE              |
 |                     | - OAM: 1x1GE          |                       | - Data: 1 or more     |
 |                     |                       |                       |   x 10GE              |
 +---------------------+-----------------------+-----------------------+-----------------------+
-| BIOS Settings       | - Hyper-Threading technology enabled                                  |
+| BIOS settings       | - Hyper-Threading technology enabled                                  |
 |                     | - Virtualization technology enabled                                   |
 |                     | - VT for directed I/O enabled                                         |
 |                     | - CPU power and performance policy set to performance                 |
@@ -83,8 +83,6 @@ Installing StarlingX Kubernetes
 Create a bootable USB with the StarlingX ISO
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create a bootable USB with the StarlingX ISO.
-
 Refer to :doc:`/deploy_install_guides/bootable_usb` for instructions on how to
 create a bootable USB on your system.
 
@@ -92,25 +90,25 @@ create a bootable USB on your system.
 Install software on controller-0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. include:: bare_metal_aio_simplex.rst
-   :start-after: incl-install-software-controller-0-start:
-   :end-before: incl-install-software-controller-0-end:
+.. include:: bare_metal_controller_storage.rst
+   :start-after: incl-install-software-controller-0-standard-start:
+   :end-before: incl-install-software-controller-0-standard-end:
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Bootstrap system on controller-0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. include:: bare_metal_aio_simplex.rst
-   :start-after: incl-bootstrap-sys-controller-0-start:
-   :end-before: incl-bootstrap-sys-controller-0-end:
+.. include:: bare_metal_controller_storage.rst
+   :start-after: incl-bootstrap-sys-controller-0-standard-start:
+   :end-before: incl-bootstrap-sys-controller-0-standard-end:
 
 ^^^^^^^^^^^^^^^^^^^^^^
 Configure controller-0
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. include:: bare_metal_aio_simplex.rst
-   :start-after: incl-config-controller-0-start:
-   :end-before: incl-config-controller-0-end:
+.. include:: bare_metal_controller_storage.rst
+   :start-after: incl-config-controller-0-storage-start:
+   :end-before: incl-config-controller-0-storage-end:
 
 ^^^^^^^^^^^^^^^^^^^
 Unlock controller-0
@@ -131,7 +129,7 @@ Install software on controller-1, storage nodes and compute nodes
    configure the personality of the node.
 
 #. On the console of controller-0, list hosts to see newly discovered controller-1
-   host, that is, host with hostname of None:
+   host (hostname=None):
 
    ::
 
@@ -152,25 +150,43 @@ Install software on controller-1, storage nodes and compute nodes
    This initiates the install of software on controller-1.
    This can take 5-10 minutes, depending on the performance of the host machine.
 
-#. While waiting, repeat the same procedure for storage-0 server and the
-   storage-1, except for setting the personality to 'storage' and assigning a
-   unique hostname, as shown below:
+#. While waiting for the previous step to complete, power on the storage-0 and
+   storage-1 servers. Set the personality to 'storage' and assign a unique
+   hostname for each.
+
+   For example, power on storage-0 and wait for the new host (hostname=None) to
+   be discovered by checking 'system host-list':
 
    ::
 
-     system host-update 3 personality=storage hostname=storage-0
-	 system host-update 4 personality=storage hostname=storage-1
+   		system host-update 3 personality=storage
+
+   Repeat for storage-1. Power on storage-1 and wait for the new host
+   (hostname=None) to be discovered by checking 'system host-list':
+
+   ::
+
+   		system host-update 4 personality=storage
 
    This initiates the software installation on storage-0 and storage-1.
    This can take 5-10 minutes, depending on the performance of the host machine.
 
-#. While waiting, repeat the same procedure for compute-0 server and
-   compute-1 server, except for setting the personality to 'worker' and
-   assigning a unique hostname, as shown below:
+#. While waiting for the previous step to complete, power on the compute-0 and
+   compute-1 servers. Set the personality to 'worker' and assign a unique
+   hostname for each.
+
+   For example, power on compute-0 and wait for the new host (hostname=None) to
+   be discovered by checking 'system host-list':
 
    ::
 
      system host-update 5 personality=worker hostname=compute-0
+
+   Repeat for compute-1. Power on compute-1 and wait for the new host
+   (hostname=None) to be discovered by checking 'system host-list':
+
+   ::
+
 	 system host-update 6 personality=worker hostname=compute-1
 
    This initiates the install of software on compute-0 and compute-1.
@@ -220,7 +236,7 @@ Configure storage nodes
 
    ::
 
-	for COMPUTE in compute-0 compute-1; do
+	for COMPUTE in storage-0 storage-1; do
 	   system interface-network-assign $COMPUTE mgmt0 cluster-host
 	done
 
@@ -267,7 +283,8 @@ Unlock storage nodes in order to bring them into service:
 	done
 
 The storage nodes will reboot in order to apply configuration changes and come
-into service. This can take 5-10 minutes, depending on the performance of the host machine.
+into service. This can take 5-10 minutes, depending on the performance of the
+host machine.
 
 ^^^^^^^^^^^^^^^^^^^^^^^
 Configure compute nodes
@@ -284,18 +301,19 @@ Configure compute nodes
 	   system interface-network-assign $COMPUTE mgmt0 cluster-host
 	done
 
-#. Configure data interfaces for compute nodes. Use the DATA port names, e.g.
-   eth0, applicable to your deployment environment.
+#. Configure data interfaces for compute nodes. Use the DATA port names, for
+   example eth0, that are applicable to your deployment environment.
 
-   .. note::
+   .. important::
 
-      This step is **required** for OpenStack and optional for Kubernetes. For
-      example, do this step if using SRIOV network attachments in application
-      containers.
+      This step is **required** for OpenStack.
+
+      This step is optional for Kubernetes: Do this step if using SRIOV network
+      attachments in hosted application containers.
 
    For Kubernetes SRIOV network attachments:
 
-   * Configure the SRIOV device plugin:
+   * Configure the SRIOV device plug in:
 
      ::
 
@@ -353,10 +371,10 @@ Configure compute nodes
 OpenStack-specific host configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. warning::
+.. important::
 
-   The following configuration is required only if the StarlingX OpenStack
-   application (stx-openstack) will be installed.
+   **This step is required only if the StarlingX OpenStack application
+   (stx-openstack) will be installed.**
 
 #. **For OpenStack only:** Assign OpenStack host labels to the compute nodes in
    support of installing the stx-openstack manifest and helm-charts later.
@@ -402,8 +420,9 @@ Unlock compute nodes in order to bring them into service:
 	   system host-unlock $COMPUTE
 	done
 
-The compute nodes will reboot in order to apply configuration changes and come into
-service. This can take 5-10 minutes, depending on the performance of the host machine.
+The compute nodes will reboot in order to apply configuration changes and come
+into service. This can take 5-10 minutes, depending on the performance of the
+host machine.
 
 Your Kubernetes cluster is up and running.
 

@@ -25,8 +25,8 @@ follow these steps:
 StarlingX system and host management commands
 *********************************************
 
-Access StarlingX system and host management commands using the :command:`system` command, for
-example:
+Access StarlingX system and host management commands using the :command:`system`
+command. For example:
 
 ::
 

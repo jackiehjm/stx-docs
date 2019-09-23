@@ -27,11 +27,30 @@ Example IPv6 override values are shown below:
    external_oam_subnet: 2001:db8:1::/64
    external_oam_gateway_address: 2001:db8::1
    external_oam_floating_address: 2001:db8::2
-   management_multicast_subnet: ff08::1:1:0/124
-
-For configurations with more than one node, additionally provide:
-
-::
-
    external_oam_node_0_address: 2001:db8::3
    external_oam_node_1_address: 2001:db8::4
+   management_multicast_subnet: ff08::1:1:0/124
+
+.. note::
+
+   The external_oam_node_0_address, and external_oam_node_1_address parameters
+   are not required for the AIO‐SX installation.
+
+------------
+Proxy server
+------------
+
+Content needed.
+
+----------------
+Private registry
+----------------
+
+Content needed.
+
+----------------------
+Authenticated registry
+----------------------
+
+Content needed.
+
