@@ -1,6 +1,10 @@
-===========================================
-Additional Ansible bootstrap configurations
-===========================================
+================================
+Ansible Bootstrap Configurations
+================================
+
+.. contents::
+   :local:
+   :depth: 1
 
 .. _ansible_bootstrap_ipv6:
 

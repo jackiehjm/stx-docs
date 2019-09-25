@@ -1,89 +1,25 @@
-﻿.. _bm_standard_controller_r2:
+===========================================================================
+Install StarlingX Kubernetes on Bare Metal Standard with Controller Storage
+===========================================================================
 
-================================================
-Bare metal Standard with Controller Storage R2.0
-================================================
+This section describes the steps to install the StarlingX Kubernetes platform
+on a **StarlingX R2.0 bare metal Standard with Controller Storage** deployment
+configuration.
 
 .. contents::
    :local:
    :depth: 1
 
------------
-Description
------------
-
-.. include:: virtual_controller_storage.rst
-   :start-after: incl-controller-storage-intro-start:
-   :end-before: incl-controller-storage-intro-end:
-
-.. include:: virtual_aio_simplex.rst
-   :start-after: incl-ipv6-note-start:
-   :end-before: incl-ipv6-note-end:
-
 ---------------------
-Hardware requirements
+Create a bootable USB
 ---------------------
-
-The recommended minimum requirements for bare metal servers for various host
-types are:
-
-+-------------------------+-----------------------------+-----------------------------+
-| Minimum Requirement     | Controller Node             | Compute Node                |
-+=========================+=============================+=============================+
-| Number of servers       | 2                           | 2-10                        |
-+-------------------------+-----------------------------+-----------------------------+
-| Minimum processor class | - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge)      |
-|                         |   8 cores/socket                                          |
-+-------------------------+-----------------------------+-----------------------------+
-| Minimum memory          | 64 GB                       | 32 GB                       |
-+-------------------------+-----------------------------+-----------------------------+
-| Primary disk            | 500 GB SDD or NVMe          | 120 GB (Minimum 10k RPM)    |
-+-------------------------+-----------------------------+-----------------------------+
-| Additional disks        | - 1 or more 500 GB (min.    | - For OpenStack, recommend  |
-|                         |   10K RPM) for Ceph OSD     |   1 or more 500 GB (min.    |
-|                         | - Recommended, but not      |   10K RPM) for VM local     |
-|                         |   required: 1 or more SSDs  |   ephemeral storage         |
-|                         |   or NVMe drives for Ceph   |                             |
-|                         |   journals (min. 1024 MiB   |                             |
-|                         |   per OSD journal)          |                             |
-+-------------------------+-----------------------------+-----------------------------+
-| Minimum network ports   | - Mgmt/Cluster: 1x10GE      | - Mgmt/Cluster: 1x10GE      |
-|                         | - OAM: 1x1GE                | - Data: 1 or more x 10GE    |
-+-------------------------+-----------------------------+-----------------------------+
-| BIOS settings           | - Hyper-Threading technology enabled                      |
-|                         | - Virtualization technology enabled                       |
-|                         | - VT for directed I/O enabled                             |
-|                         | - CPU power and performance policy set to performance     |
-|                         | - CPU C state control disabled                            |
-|                         | - Plug & play BMC detection disabled                      |
-+-------------------------+-----------------------------+-----------------------------+
-
----------------
-Prepare Servers
----------------
-
-.. include:: bare_metal_aio_simplex.rst
-   :start-after: incl-prepare-servers-start:
-   :end-before: incl-prepare-servers-end:
-
---------------------
-StarlingX Kubernetes
---------------------
-
-*******************************
-Installing StarlingX Kubernetes
-*******************************
-
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Create a bootable USB with the StarlingX ISO
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Refer to :doc:`/deploy_install_guides/bootable_usb` for instructions on how to
-create a bootable USB on your system.
+create a bootable USB with the StarlingX ISO on your system.
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 Install software on controller-0
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 
 .. incl-install-software-controller-0-standard-start:
 
@@ -107,9 +43,9 @@ Install software on controller-0
 
 .. incl-install-software-controller-0-standard-end:
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 Bootstrap system on controller-0
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 
 .. incl-bootstrap-sys-controller-0-standard-start:
 
@@ -194,9 +130,7 @@ Bootstrap system on controller-0
         ansible_become_pass: <sysadmin-password>
         EOF
 
-   Additional Ansible bootstrap configurations for advanced use cases are available:
-
-   * :ref:`IPv6 <ansible_bootstrap_ipv6>`
+   Additional :doc:`ansible_bootstrap_configs` are available for advanced use cases.
 
 #. Run the Ansible bootstrap playbook:
 
@@ -210,9 +144,9 @@ Bootstrap system on controller-0
 .. incl-bootstrap-sys-controller-0-standard-end:
 
 
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 Configure controller-0
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 
 .. incl-config-controller-0-storage-start:
 
@@ -247,9 +181,9 @@ Configure controller-0
 
    	 system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*************************************
 OpenStack-specific host configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*************************************
 
 .. important::
 
@@ -308,17 +242,22 @@ OpenStack-specific host configuration
 
 .. incl-config-controller-0-storage-end:
 
-^^^^^^^^^^^^^^^^^^^
+-------------------
 Unlock controller-0
-^^^^^^^^^^^^^^^^^^^
+-------------------
 
-.. include:: bare_metal_aio_duplex.rst
-   :start-after: incl-unlock-controller-0-start:
-   :end-before: incl-unlock-controller-0-end:
+Unlock controller-0 in order to bring it into service:
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+::
+
+  system host-unlock controller-0
+
+Controller-0 will reboot in order to apply configuration changes and come into
+service. This can take 5-10 minutes, depending on the performance of the host machine.
+
+--------------------------------------------------
 Install software on controller-1 and compute nodes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------------------------
 
 #. Power on the controller-1 server and force it to network boot with the
    appropriate BIOS boot options for your particular server.
@@ -383,9 +322,9 @@ Install software on controller-1 and compute nodes
 	 | 4  | compute-1    | compute     | locked         | disabled    | online       |
 	 +----+--------------+-------------+----------------+-------------+--------------+
 
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 Configure controller-1
-^^^^^^^^^^^^^^^^^^^^^^
+----------------------
 
 .. incl-config-controller-1-start:
 
@@ -404,9 +343,9 @@ install procedure.)
 	system interface-network-assign controller-1 $OAM_IF oam
 	system interface-network-assign controller-1 $MGMT_IF cluster-host
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*************************************
 OpenStack-specific host configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*************************************
 
 .. important::
 
@@ -422,9 +361,9 @@ of installing the stx-openstack manifest and helm-charts later.
 
 .. incl-config-controller-1-end:
 
-^^^^^^^^^^^^^^^^^^^
+-------------------
 Unlock controller-1
-^^^^^^^^^^^^^^^^^^^
+-------------------
 
 .. incl-unlock-controller-1-start:
 
@@ -440,9 +379,9 @@ machine.
 
 .. incl-unlock-controller-1-end:
 
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 Configure compute nodes
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
 #. Add the third Ceph monitor to compute-0:
 
@@ -545,9 +484,9 @@ Configure compute nodes
   		  set +ex
   		done
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*************************************
 OpenStack-specific host configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*************************************
 
 .. important::
 
@@ -586,9 +525,9 @@ OpenStack-specific host configuration
 	   while true; do system host-disk-partition-list $COMPUTE --nowrap | grep $NOVA_PARTITION_UUID | grep Ready; if [ $? -eq 0 ]; then break; fi; sleep 1; done
 	 done
 
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 Unlock compute nodes
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 Unlock compute nodes in order to bring them into service:
 
@@ -601,9 +540,9 @@ Unlock compute nodes in order to bring them into service:
 The compute nodes will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host machine.
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
 Add Ceph OSDs to controllers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
 
 #. Add OSDs to controller-0:
 
@@ -635,40 +574,8 @@ Add Ceph OSDs to controllers
 
 	 system host-stor-list $HOST
 
-Your Kubernetes cluster is up and running.
+----------
+Next steps
+----------
 
-***************************
-Access StarlingX Kubernetes
-***************************
-
-.. include:: virtual_aio_simplex.rst
-   :start-after: incl-access-starlingx-kubernetes-start:
-   :end-before: incl-access-starlingx-kubernetes-end:
-
--------------------
-StarlingX OpenStack
--------------------
-
-***************************
-Install StarlingX OpenStack
-***************************
-
-.. include:: virtual_aio_simplex.rst
-   :start-after: incl-install-starlingx-openstack-start:
-   :end-before: incl-install-starlingx-openstack-end:
-
-**************************
-Access StarlingX OpenStack
-**************************
-
-.. include:: virtual_aio_simplex.rst
-   :start-after: incl-access-starlingx-openstack-start:
-   :end-before: incl-access-starlingx-openstack-end:
-
-*****************************
-Uninstall StarlingX OpenStack
-*****************************
-
-.. include:: virtual_aio_simplex.rst
-   :start-after: incl-uninstall-starlingx-openstack-start:
-   :end-before: incl-uninstall-starlingx-openstack-end:
+.. include:: ../kubernetes_install_next.txt

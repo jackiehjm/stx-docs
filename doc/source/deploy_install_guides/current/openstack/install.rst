@@ -1,12 +1,8 @@
-=================
-Install OpenStack
-=================
+===========================
+Install StarlingX OpenStack
+===========================
 
-.. contents::
-   :local:
-   :depth: 1
-
-These installation instructions assume that you have completed the following
+These instructions assume that you have completed the following
 OpenStack-specific configuration tasks that are required by the underlying
 StarlingX Kubernetes platform:
 
@@ -60,12 +56,10 @@ Install application manifest and helm-charts
 
    	watch -n 5 system application-list
 
-   When it completes, your OpenStack cloud is up and running.
+----------
+Next steps
+----------
 
---------------------------
-Access StarlingX OpenStack
---------------------------
+Your OpenStack cloud is now up and running.
 
-.. include:: virtual_aio_simplex.rst
-   :start-after: incl-access-starlingx-openstack-start:
-   :end-before: incl-access-starlingx-openstack-end:
+See :doc:`access` for details on how to access StarlingX OpenStack.

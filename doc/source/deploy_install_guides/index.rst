@@ -12,40 +12,10 @@ Latest release (stable)
 
 StarlingX R2.0 is the latest officially released version of StarlingX.
 
-*************************
-R2.0 virtual installation
-*************************
-
 .. toctree::
    :maxdepth: 1
 
-   current/virtual_aio_simplex
-   current/virtual_aio_duplex
-   current/virtual_controller_storage
-   current/virtual_dedicated_storage
-
-****************************
-R2.0 bare metal installation
-****************************
-
-.. toctree::
-   :maxdepth: 1
-
-   current/bare_metal_aio_simplex
-   current/bare_metal_aio_duplex
-   current/bare_metal_controller_storage
-   current/bare_metal_dedicated_storage
-   current/bare_metal_ironic
-
-.. toctree::
-   :maxdepth: 1
-   :hidden:
-
-   current/access_starlingx_kubernetes
-   current/access_starlingx_openstack
-   current/install_openstack
-   current/uninstall_delete_openstack
-   current/ansible_bootstrap_configs
+   current/index
 
 ---------------------
 Upcoming R3.0 release
