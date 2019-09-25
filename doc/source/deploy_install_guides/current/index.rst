@@ -30,6 +30,10 @@ Install StarlingX Kubernetes on bare metal
    bare_metal/controller_storage
    bare_metal/dedicated_storage
    bare_metal/ironic
+
+.. toctree::
+   :hidden:
+
    bare_metal/ansible_bootstrap_configs
 
 -----------------
