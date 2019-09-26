@@ -27,26 +27,20 @@ The upcoming R3 release is the forthcoming version of StarlingX under developmen
 Archived releases
 -----------------
 
-**************
-StarlingX R1.0
-**************
-
 .. toctree::
    :maxdepth: 1
 
    r1_release/index
-   r1_release/simplex
-   r1_release/duplex
-   r1_release/controller_storage
-   r1_release/dedicated_storage
 
 
+.. Add common files to toctree
 
 .. toctree::
    :maxdepth: 1
    :hidden:
 
    bootable_usb
+
 
 .. Steps you must take when a new release of the deployment and installation
    guides occurs:

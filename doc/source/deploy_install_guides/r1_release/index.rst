@@ -1,6 +1,6 @@
-=======================
-Installation guide R1.0
-=======================
+===========================
+StarlingX R1.0 Installation
+===========================
 
 This is the installation guide for the StarlingX R1.0 release. If this is not the
 installation guide you want to use, see the
@@ -270,13 +270,20 @@ Deployment options
 
 -  Standard controller
 
-   - :doc:`StarlingX Cloud with Dedicated Storage R1.0 </deploy_install_guides/r1_release/dedicated_storage>`
-   - :doc:`StarlingX Cloud with Controller Storage R1.0 </deploy_install_guides/r1_release/controller_storage>`
+   .. toctree::
+      :maxdepth: 1
+
+      controller_storage
+      dedicated_storage
 
 -  All-in-one
 
-   - :doc:`StarlingX Cloud Duplex R1.0 </deploy_install_guides/r1_release/duplex>`
-   - :doc:`StarlingX Cloud Simplex R1.0 </deploy_install_guides/r1_release/simplex>`
+   .. toctree::
+      :maxdepth: 1
+
+      simplex
+      duplex
+
 
 .. toctree::
    :hidden:
