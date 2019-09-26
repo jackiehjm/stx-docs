@@ -15,7 +15,7 @@ StarlingX R2.0 is the latest officially released version of StarlingX.
 .. toctree::
    :maxdepth: 1
 
-   current/index
+   r2_release/index
 
 ---------------------
 Upcoming R3.0 release

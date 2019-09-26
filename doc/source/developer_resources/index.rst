@@ -4,13 +4,9 @@
 Developer Resources
 ===================
 
-StarlingX developer resources exist that help you understand the
+StarlingX developer resources provide information to help you understand the
 architecture of the documentation, how to navigate the StarlingX
-source code, and understand the development process.
-
-The developer guide is release-specific.
-The following list provides help on choosing the correct
-developer guide based on a release:
+source code, and to understand the development process.
 
 .. toctree::
    :maxdepth: 1

@@ -39,7 +39,7 @@ guides for StarlingX are release-specific).
 .. toctree::
    :maxdepth: 1
 
-   build_guides/current/index
+   build_guides/r2_release/index
    build_guides/r1_release/index
 
 --------------------
