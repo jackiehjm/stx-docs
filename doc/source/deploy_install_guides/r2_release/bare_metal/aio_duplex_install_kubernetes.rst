@@ -40,7 +40,9 @@ Bootstrap system on controller-0
       New Password:
       (repeat) New Password:
 
-#. External connectivity is required to run the Ansible bootstrap playbook. The
+#. Verify and/or configure IP connectivity.
+
+   External connectivity is required to run the Ansible bootstrap playbook. The
    StarlingX boot image will DHCP out all interfaces so the server may have
    obtained an IP address and have external IP connectivity if a DHCP server is
    present in your environment. Verify this using the :command:`ip addr` and
@@ -65,10 +67,10 @@ Bootstrap system on controller-0
    ``/etc/ansible/hosts``
       The default Ansible inventory file. Contains a single host: localhost.
 
-   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml``
+   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap.yml``
       The Ansible bootstrap playbook.
 
-   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/host_vars/default.yml``
+   ``/usr/share/ansible/stx-ansible/playbooks/host_vars/bootstrap/default.yml``
       The default configuration values for the bootstrap playbook.
 
    sysadmin home directory ($HOME)
@@ -78,17 +80,22 @@ Bootstrap system on controller-0
    Specify the user configuration override file for the Ansible bootstrap
    playbook using one of the following methods:
 
-   * Copy the default.yml file listed above to ``$HOME/localhost.yml`` and edit
-     the configurable values as desired (use the commented instructions in
-     the file).
+   #. Use a copy of the default.yml file listed above to provide your overrides.
 
-   or
+      The default.yml file lists all available parameters for bootstrap
+      configuration with a brief description for each parameter in the file comments.
 
-   * Create the minimal user configuration override file as shown in the
-     example below, using the OAM IP SUBNET and IP ADDRESSing applicable to your
-     deployment environment:
+      To use this method, copy the default.yml file listed above to
+      ``$HOME/localhost.yml`` and edit the configurable values as desired.
 
-     ::
+   #. Create a minimal user configuration override file.
+
+      To use this method, create your override file at ``$HOME/localhost.yml``
+      and provide the minimum required parameters for the deployment configuration
+      as shown in the example below. Use the OAM IP SUBNET and IP ADDRESSing
+      applicable to your deployment environment.
+
+      ::
 
         cd ~
         cat <<EOF > localhost.yml
