@@ -142,15 +142,17 @@ On virtual controller-0:
 
    ::
 
-    source /etc/platform/openrc
+     source /etc/platform/openrc
 
-#. Configure the OAM interface of controller-0:
+#. Configure the OAM interface of controller-0 and specify the attached network
+   as "oam". Use the OAM port name, for example eth0, that is applicable to your
+   deployment environment:
 
    ::
 
-    OAM_IF=enp7s1
-    system host-if-modify controller-0 $OAM_IF -c platform
-    system interface-network-assign controller-0 $OAM_IF oam
+     OAM_IF=enp7s1
+     system host-if-modify controller-0 $OAM_IF -c platform
+     system interface-network-assign controller-0 $OAM_IF oam
 
 #. Configure NTP Servers for network time synchronization:
 

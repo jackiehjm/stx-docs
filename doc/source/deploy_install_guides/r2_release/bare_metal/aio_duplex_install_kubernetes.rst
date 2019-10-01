@@ -133,9 +133,109 @@ Bootstrap system on controller-0
 Configure controller-0
 ----------------------
 
+#. Acquire admin credentials:
+
+   ::
+
+     source /etc/platform/openrc
+
+#. Configure the OAM and MGMT interfaces of controller-0 and specify the
+   attached networks. Use the OAM and MGMT port names, for example eth0, that are
+   applicable to your deployment environment.
+
+   ::
+
+     OAM_IF=<OAM-PORT>
+     MGMT_IF=<MGMT-PORT>
+     system host-if-modify controller-0 lo -c none
+     IFNET_UUIDS=$(system interface-network-list controller-0 | awk '{if ($6=="lo") print $4;}')
+     for UUID in $IFNET_UUIDS; do
+         system interface-network-remove ${UUID}
+     done
+     system host-if-modify controller-0 $OAM_IF -c platform
+     system interface-network-assign controller-0 $OAM_IF oam
+     system host-if-modify controller-0 $MGMT_IF -c platform
+     system interface-network-assign controller-0 $MGMT_IF mgmt
+     system interface-network-assign controller-0 $MGMT_IF cluster-host
+
+#. Configure NTP Servers for network time synchronization:
+
+   ::
+
+     system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org
+
+#. Configure data interfaces for controller-0. Use the DATA port names, for example
+   eth0, applicable to your deployment environment.
+
+   .. important::
+
+      This step is **required** for OpenStack.
+
+      This step is optional for Kubernetes: Do this step if using SRIOV network
+      attachments in hosted application containers.
+
+   For Kubernetes SRIOV network attachments:
+
+   * Configure the SRIOV device plugin
+
+     ::
+
+       system host-label-assign controller-0 sriovdp=enabled
+
+   * If planning on running DPDK in containers on this host, configure the number
+     of 1G Huge pages required on both NUMA nodes.
+
+     ::
+
+       system host-memory-modify controller-0 0 -1G 100
+       system host-memory-modify controller-0 1 -1G 100
+
+   For both Kubernetes and OpenStack:
+
+   ::
+
+      DATA0IF=<DATA-0-PORT>
+      DATA1IF=<DATA-1-PORT>
+      export COMPUTE=controller-0
+      PHYSNET0='physnet0'
+      PHYSNET1='physnet1'
+      SPL=/tmp/tmp-system-port-list
+      SPIL=/tmp/tmp-system-host-if-list
+      system host-port-list ${COMPUTE} --nowrap > ${SPL}
+      system host-if-list -a ${COMPUTE} --nowrap > ${SPIL}
+      DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
+      DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
+      DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
+      DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
+      DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
+      DATA1PORTNAME=$(cat  $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
+      DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
+      DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
+
+      system datanetwork-add ${PHYSNET0} vlan
+      system datanetwork-add ${PHYSNET1} vlan
+
+      system host-if-modify -m 1500 -n data0 -c data ${COMPUTE} ${DATA0IFUUID}
+      system host-if-modify -m 1500 -n data1 -c data ${COMPUTE} ${DATA1IFUUID}
+      system interface-datanetwork-assign ${COMPUTE} ${DATA0IFUUID} ${PHYSNET0}
+      system interface-datanetwork-assign ${COMPUTE} ${DATA1IFUUID} ${PHYSNET1}
+
+#. Add an OSD on controller-0 for ceph:
+
+   ::
+
+      echo ">>> Add OSDs to primary tier"
+      system host-disk-list controller-0
+      system host-disk-list controller-0 | awk '/\/dev\/sdb/{print $2}' | xargs -i system host-stor-add controller-0 {}
+      system host-stor-list controller-0
+
+*************************************
+OpenStack-specific host configuration
+*************************************
+
 .. include:: aio_simplex_install_kubernetes.rst
-   :start-after: incl-config-controller-0-aio-simplex-start:
-   :end-before: incl-config-controller-0-aio-simplex-end:
+   :start-after: incl-config-controller-0-openstack-specific-aio-simplex-start:
+   :end-before: incl-config-controller-0-openstack-specific-aio-simplex-end:
 
 -------------------
 Unlock controller-0

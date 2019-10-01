@@ -149,32 +149,21 @@ Bootstrap system on controller-0
 Configure controller-0
 ----------------------
 
-.. incl-config-controller-0-aio-simplex-start:
-
 #. Acquire admin credentials:
 
    ::
 
-      source /etc/platform/openrc
+     source /etc/platform/openrc
 
-#. Configure the OAM and MGMT interfaces of controller-0 and specify the
-   attached networks. Use the OAM and MGMT port names, for example eth0, that are
-   applicable to your deployment environment.
+#. Configure the OAM interface of controller-0 and specify the attached network
+   as "oam". Use the OAM port name, for example eth0, that is applicable to your
+   deployment environment:
 
    ::
 
-      OAM_IF=<OAM-PORT>
-      MGMT_IF=<MGMT-PORT>
-      system host-if-modify controller-0 lo -c none
-      IFNET_UUIDS=$(system interface-network-list controller-0 | awk '{if ($6=="lo") print $4;}')
-      for UUID in $IFNET_UUIDS; do
-          system interface-network-remove ${UUID}
-      done
-      system host-if-modify controller-0 $OAM_IF -c platform
-      system interface-network-assign controller-0 $OAM_IF oam
-      system host-if-modify controller-0 $MGMT_IF -c platform
-      system interface-network-assign controller-0 $MGMT_IF mgmt
-      system interface-network-assign controller-0 $MGMT_IF cluster-host
+     OAM_IF=<OAM-PORT>
+     system host-if-modify controller-0 $OAM_IF -c platform
+     system interface-network-assign controller-0 $OAM_IF oam
 
 #. Configure NTP Servers for network time synchronization:
 
@@ -212,44 +201,46 @@ Configure controller-0
 
    ::
 
-      DATA0IF=<DATA-0-PORT>
-      DATA1IF=<DATA-1-PORT>
-      export COMPUTE=controller-0
-      PHYSNET0='physnet0'
-      PHYSNET1='physnet1'
-      SPL=/tmp/tmp-system-port-list
-      SPIL=/tmp/tmp-system-host-if-list
-      system host-port-list ${COMPUTE} --nowrap > ${SPL}
-      system host-if-list -a ${COMPUTE} --nowrap > ${SPIL}
-      DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
-      DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
-      DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
-      DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
-      DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
-      DATA1PORTNAME=$(cat  $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
-      DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
-      DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
+     DATA0IF=<DATA-0-PORT>
+     DATA1IF=<DATA-1-PORT>
+     export COMPUTE=controller-0
+     PHYSNET0='physnet0'
+     PHYSNET1='physnet1'
+     SPL=/tmp/tmp-system-port-list
+     SPIL=/tmp/tmp-system-host-if-list
+     system host-port-list ${COMPUTE} --nowrap > ${SPL}
+     system host-if-list -a ${COMPUTE} --nowrap > ${SPIL}
+     DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
+     DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
+     DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
+     DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
+     DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
+     DATA1PORTNAME=$(cat  $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
+     DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
+     DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
 
-      system datanetwork-add ${PHYSNET0} vlan
-      system datanetwork-add ${PHYSNET1} vlan
+     system datanetwork-add ${PHYSNET0} vlan
+     system datanetwork-add ${PHYSNET1} vlan
 
-      system host-if-modify -m 1500 -n data0 -c data ${COMPUTE} ${DATA0IFUUID}
-      system host-if-modify -m 1500 -n data1 -c data ${COMPUTE} ${DATA1IFUUID}
-      system interface-datanetwork-assign ${COMPUTE} ${DATA0IFUUID} ${PHYSNET0}
-      system interface-datanetwork-assign ${COMPUTE} ${DATA1IFUUID} ${PHYSNET1}
+     system host-if-modify -m 1500 -n data0 -c data ${COMPUTE} ${DATA0IFUUID}
+     system host-if-modify -m 1500 -n data1 -c data ${COMPUTE} ${DATA1IFUUID}
+     system interface-datanetwork-assign ${COMPUTE} ${DATA0IFUUID} ${PHYSNET0}
+     system interface-datanetwork-assign ${COMPUTE} ${DATA1IFUUID} ${PHYSNET1}
 
 #. Add an OSD on controller-0 for ceph:
 
    ::
 
-      echo ">>> Add OSDs to primary tier"
-      system host-disk-list controller-0
-      system host-disk-list controller-0 | awk '/\/dev\/sdb/{print $2}' | xargs -i system host-stor-add controller-0 {}
-      system host-stor-list controller-0
+     echo ">>> Add OSDs to primary tier"
+     system host-disk-list controller-0
+     system host-disk-list controller-0 | awk '/\/dev\/sdb/{print $2}' | xargs -i system host-stor-add controller-0 {}
+     system host-stor-list controller-0
 
 *************************************
 OpenStack-specific host configuration
 *************************************
+
+.. incl-config-controller-0-openstack-specific-aio-simplex-start:
 
 .. important::
 
@@ -261,10 +252,10 @@ OpenStack-specific host configuration
 
    ::
 
-      system host-label-assign controller-0 openstack-control-plane=enabled
-      system host-label-assign controller-0 openstack-compute-node=enabled
-      system host-label-assign controller-0 openvswitch=enabled
-      system host-label-assign controller-0 sriov=enabled
+     system host-label-assign controller-0 openstack-control-plane=enabled
+     system host-label-assign controller-0 openstack-compute-node=enabled
+     system host-label-assign controller-0 openvswitch=enabled
+     system host-label-assign controller-0 sriov=enabled
 
 #. **For OpenStack only:** Configure the system setting for the vSwitch.
 
@@ -283,7 +274,7 @@ OpenStack-specific host configuration
 
    ::
 
-      system modify --vswitch_type none
+     system modify --vswitch_type none
 
    Do not run any vSwitch directly on the host, instead, use the containerized
    OVS defined in the helm charts of stx-openstack manifest.
@@ -293,8 +284,8 @@ OpenStack-specific host configuration
 
    ::
 
-      system modify --vswitch_type ovs-dpdk
-      system host-cpu-modify -f vswitch -p0 1 controller-0
+     system modify --vswitch_type ovs-dpdk
+     system host-cpu-modify -f vswitch -p0 1 controller-0
 
    Once vswitch_type is set to OVS-DPDK, any subsequent nodes created will
    default to automatically assigning 1 vSwitch core for AIO controllers and 2
@@ -314,25 +305,25 @@ OpenStack-specific host configuration
 
    ::
 
-      export COMPUTE=controller-0
+     export COMPUTE=controller-0
 
-      echo ">>> Getting root disk info"
-      ROOT_DISK=$(system host-show ${COMPUTE} | grep rootfs | awk '{print $4}')
-      ROOT_DISK_UUID=$(system host-disk-list ${COMPUTE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
-      echo "Root disk: $ROOT_DISK, UUID: $ROOT_DISK_UUID"
+     echo ">>> Getting root disk info"
+     ROOT_DISK=$(system host-show ${COMPUTE} | grep rootfs | awk '{print $4}')
+     ROOT_DISK_UUID=$(system host-disk-list ${COMPUTE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
+     echo "Root disk: $ROOT_DISK, UUID: $ROOT_DISK_UUID"
 
-      echo ">>>> Configuring nova-local"
-      NOVA_SIZE=34
-      NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${COMPUTE} ${ROOT_DISK_UUID} ${NOVA_SIZE})
-      NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
-      system host-lvg-add ${COMPUTE} nova-local
-      system host-pv-add ${COMPUTE} nova-local ${NOVA_PARTITION_UUID}
-      sleep 2
+     echo ">>>> Configuring nova-local"
+     NOVA_SIZE=34
+     NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${COMPUTE} ${ROOT_DISK_UUID} ${NOVA_SIZE})
+     NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
+     system host-lvg-add ${COMPUTE} nova-local
+     system host-pv-add ${COMPUTE} nova-local ${NOVA_PARTITION_UUID}
+     sleep 2
 
-      echo ">>> Wait for partition $NOVA_PARTITION_UUID to be ready."
-      while true; do system host-disk-partition-list $COMPUTE --nowrap | grep $NOVA_PARTITION_UUID | grep Ready; if [ $? -eq 0 ]; then break; fi; sleep 1; done
+     echo ">>> Wait for partition $NOVA_PARTITION_UUID to be ready."
+     while true; do system host-disk-partition-list $COMPUTE --nowrap | grep $NOVA_PARTITION_UUID | grep Ready; if [ $? -eq 0 ]; then break; fi; sleep 1; done
 
-.. incl-config-controller-0-aio-simplex-end:
+.. incl-config-controller-0-openstack-specific-aio-simplex-end:
 
 -------------------
 Unlock controller-0
