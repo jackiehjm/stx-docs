@@ -119,11 +119,9 @@ On virtual controller-0:
         ansible_become_pass: <sysadmin-password>
         EOF
 
-
-   Additional Ansible bootstrap configurations for advanced use cases are available:
-
-   * :ref:`IPv6 <ansible_bootstrap_ipv6>`
-
+   Refer to :doc:`/deploy_install_guides/r2_release/ansible_bootstrap_configs`
+   for information on additional Ansible bootstrap configurations for advanced
+   Ansible bootstrap scenarios.
 
 #. Run the Ansible bootstrap playbook:
 

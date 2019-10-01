@@ -34,7 +34,7 @@ Install StarlingX Kubernetes on bare metal
 .. toctree::
    :hidden:
 
-   bare_metal/ansible_bootstrap_configs
+   ansible_bootstrap_configs
 
 -----------------
 Access Kubernetes

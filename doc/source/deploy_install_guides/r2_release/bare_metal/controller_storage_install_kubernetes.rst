@@ -117,7 +117,7 @@ Bootstrap system on controller-0
       as shown in the example below. Use the OAM IP SUBNET and IP ADDRESSing
       applicable to your deployment environment.
 
-     ::
+      ::
 
         cd ~
         cat <<EOF > localhost.yml
@@ -138,7 +138,9 @@ Bootstrap system on controller-0
         ansible_become_pass: <sysadmin-password>
         EOF
 
-   Additional :doc:`ansible_bootstrap_configs` are available for advanced use cases.
+   Refer to :doc:`/deploy_install_guides/r2_release/ansible_bootstrap_configs`
+   for information on additional Ansible bootstrap configurations for advanced
+   Ansible bootstrap scenarios.
 
 #. Run the Ansible bootstrap playbook:
 
