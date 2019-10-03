@@ -306,7 +306,7 @@ Configure controller-1
       MGMT_IF=<MGMT-PORT>
       system host-if-modify controller-1 $OAM_IF -c platform
       system interface-network-assign controller-1 $OAM_IF oam
-      system interface-network-assign controller-1 $MGMT_IF cluster-host
+      system interface-network-assign controller-1 mgmt0 cluster-host
 
 #. Configure data interfaces for controller-1. Use the DATA port names, for example
    eth0, applicable to your deployment environment.
@@ -412,9 +412,6 @@ OpenStack-specific host configuration
       system host-lvg-add ${COMPUTE} nova-local
       system host-pv-add ${COMPUTE} nova-local ${NOVA_PARTITION_UUID}
       sleep 2
-
-      echo ">>> Wait for partition $NOVA_PARTITION_UUID to be ready."
-      while true; do system host-disk-partition-list $COMPUTE --nowrap | grep $NOVA_PARTITION_UUID | grep Ready; if [ $? -eq 0 ]; then break; fi; sleep 1; done
 
 -------------------
 Unlock controller-1
