@@ -264,9 +264,6 @@ OpenStack-specific host configuration
      system host-pv-add ${COMPUTE} nova-local ${NOVA_PARTITION_UUID}
      sleep 2
 
-     echo ">>> Wait for partition $NOVA_PARTITION_UUID to be ready."
-     while true; do system host-disk-partition-list $COMPUTE --nowrap | grep $NOVA_PARTITION_UUID | grep Ready; if [ $? -eq 0 ]; then break; fi; sleep 1; done
-
 .. incl-config-controller-0-openstack-specific-aio-simplex-end:
 
 -------------------

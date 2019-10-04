@@ -530,11 +530,6 @@ OpenStack-specific host configuration
 	   system host-pv-add ${COMPUTE} nova-local ${NOVA_PARTITION_UUID}
 	 done
 
-	 for COMPUTE in compute-0 compute-1; do
-	   echo ">>> Wait for partition $NOVA_PARTITION_UUID to be ready."
-	   while true; do system host-disk-partition-list $COMPUTE --nowrap | grep $NOVA_PARTITION_UUID | grep Ready; if [ $? -eq 0 ]; then break; fi; sleep 1; done
-	 done
-
 --------------------
 Unlock compute nodes
 --------------------
