@@ -21,7 +21,12 @@ StarlingX R2.0 is the latest officially released version of StarlingX.
 Upcoming R3.0 release
 ---------------------
 
-The upcoming R3 release is the forthcoming version of StarlingX under development.
+StarlingX R3.0 is the forthcoming version of StarlingX under development.
+
+.. toctree::
+   :maxdepth: 1
+
+   r3_release/index
 
 -----------------
 Archived releases
@@ -42,57 +47,25 @@ Archived releases
    bootable_usb
 
 
-.. Steps you must take when a new release of the deployment and installation
-   guides occurs:
+.. Making a new release
+.. 1. Archive the previous 'latest' release.
+      Move the toctree link from the Latest release section into the Archived
+      releases toctree.
+.. 2. Make the previous 'upcoming' release the new 'latest.'
+      Move the toctree link from the Upcoming release section into the Latest
+      release. Update narrative text for the Latest release section to use the
+      latest version.
+.. 3. Add new 'upcoming' release.
+      If the new upcoming release docs arent ready, remove toctree from Upcoming
+      section and just leave narrative text. Update text for the upcoming release
+      version. Once the new upcoming docs are ready, add them in the toctree here.
 
-.. 1. Archive the "current" release:
-         1. Rename the "current" folder to the release name to the release number eg. "r1_release".
-         2. Go into the renamed folder (i.e. the old "current" folder) and update all links in the *.rst
-         files to use the new path (e.g. :doc:`Libvirt/QEMU </installation_guide/current/installation_libvirt_qemu>`
-         becomes
-         :doc:`Libvirt/QEMU </installation_guide/<rX_release>/installation_libvirt_qemu>`
-         3. You might want to change your working directory to /<Year_Month> and use Git to grep for
-         the "current" string (i.e. 'git grep "current" *').  For each applicable occurrence, make
-         the call whether or not to convert the string to the actual archived string "<Year_Month>".
-         Be sure to scrub all files for the "current" string in both the "installation_guide"
-         and "developer_guide" folders downward.
-   2. Add the new "current" release:
-         1. Rename the existing "upcoming" folders to "current".  This assumes that "upcoming" represented
-         the under-development release that just officially released.
-         2. Get inside your new folder (i.e. the old "upcoming" folder) and update all links in the *.rst
-         files to use the new path (e.g. :doc:`Libvirt/QEMU </installation_guide/latest/installation_libvirt_qemu>`
-         becomes
-         :doc:`Libvirt/QEMU </installation_guide/current/installation_libvirt_qemu>`
-         3. Again, scrub all files as per step 1.3 above.
-         4. Because the "upcoming" release is now available, make sure to update these pages:
-            - index
-            - installation guide
-            - developer guide
-            - release notes
-   3. Create a new "upcoming" release, which are the installation and developer guides under development:
-         1. Copy your "current" folders and rename them "upcoming".
-         2. Make sure the new files have the correct version in the page title and intro
-         sentence (e.g. '2019.10.rc1 Installation Guide').
-         3. Make sure all files in new "upcoming" link to the correct versions of supporting
-         docs.  You do this through the doc link, so that it resolves to the top of the page
-         (e.g. :doc:`/installation_guide/latest/index`)
-         4. Make sure the new release index is labeled with the correct version name
-         (e.g .. _index-2019-05:)
-         5. Add the archived version to the toctree on this page.  You want all possible versions
-         to build.
-         6. Since you are adding a new version ("upcoming") *before* it is available
-         (e.g. to begin work on new docs), make sure page text still directs user to the
-         "current" release and not to the under development version of the manuals.
-
-
-
-
-
-
-
-
-
-
-
-
-
+..      Adding new release docs
+      .. 1. Make sure the most recent release versioned docs are complete for that
+            release.
+      .. 2. Make a copy of the most recent release folder e.g. 'r2_release.' Rename the
+            folder for the new release e.g. 'r3_release'.
+      .. 3. Search and replace all references to previous release number with the new
+            release number. For example replace all 'R2.0' with 'R3.0.' Also search and
+            replease any links that may have a specific release in the path.
+      .. 4. Link new version on this page (the index page).

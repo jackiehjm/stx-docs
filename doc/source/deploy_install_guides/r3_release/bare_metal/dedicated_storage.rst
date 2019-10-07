@@ -1,5 +1,6 @@
-﻿============================================================
-Bare metal Standard with Dedicated Storage Installation R2.0
+﻿
+============================================================
+Bare metal Standard with Dedicated Storage Installation R3.0
 ============================================================
 
 --------

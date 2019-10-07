@@ -1,0 +1,23 @@
+The All-in-one Duplex (AIO-DX) deployment option provides a pair of high
+availability (HA) servers with each server providing all three cloud functions
+(controller, compute, and storage).
+
+An AIO-DX configuration provides the following benefits:
+
+* Only a small amount of cloud processing and storage power is required
+* Application consolidation using multiple virtual machines on a single pair of
+  physical servers
+* High availability (HA) services run on the controller function across two
+  physical servers in either active/active or active/standby mode
+* A storage back end solution using a two-node CEPH deployment across two servers
+* Virtual machines scheduled on both compute functions
+* Protection against overall server hardware fault, where
+
+  * All controller HA services go active on the remaining healthy server
+  * All virtual machines are recovered on the remaining healthy server
+
+.. figure:: ../figures/starlingx-deployment-options-duplex.png
+   :scale: 50%
+   :alt: All-in-one Duplex deployment configuration
+
+   *Figure 1: All-in-one Duplex deployment configuration*
