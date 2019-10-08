@@ -53,4 +53,6 @@ deployment configuration.
 
      bash setup_configuration.sh -c dedicatedstorage -i ./bootimage.iso
 
-   If there is no X-server present, then errors are returned.
+   If there is no X-server present errors will occur and the X-based GUI for the
+   virt-manager application will not start. The virt-manager GUI is not absolutely
+   required and you can safely ignore errors and continue.
