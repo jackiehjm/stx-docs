@@ -10,12 +10,12 @@ configuration.
    :local:
    :depth: 1
 
---------------------------------------------
-Create a bootable USB with the StarlingX ISO
---------------------------------------------
+-------------------
+Create bootable USB
+-------------------
 
 Refer to :doc:`/deploy_install_guides/bootable_usb` for instructions on how to
-create a bootable USB on your system.
+create a bootable USB with the StarlingX ISO on your system.
 
 --------------------------------
 Install software on controller-0
@@ -249,7 +249,7 @@ Configure compute nodes
 
    For Kubernetes SRIOV network attachments:
 
-   * Configure the SRIOV device plug in:
+   * Configure SRIOV device plug in:
 
      ::
 

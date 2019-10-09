@@ -14,8 +14,8 @@ configuration.
 Install software on controller-0
 --------------------------------
 
-In the last step of "Prepare the virtual environment and virtual servers" the
-controller-0 virtual server 'dedicatedstorage-controller-0' was started by the
+In the last step of :doc:`dedicated_storage_environ`, the controller-0 virtual
+server 'dedicatedstorage-controller-0' was started by the
 :command:`setup_configuration.sh` command.
 
 On the host, attach to the console of virtual controller-0 and select the appropriate

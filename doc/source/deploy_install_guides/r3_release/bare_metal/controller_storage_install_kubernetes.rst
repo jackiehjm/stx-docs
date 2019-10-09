@@ -10,9 +10,9 @@ configuration.
    :local:
    :depth: 1
 
----------------------
-Create a bootable USB
----------------------
+-------------------
+Create bootable USB
+-------------------
 
 Refer to :doc:`/deploy_install_guides/bootable_usb` for instructions on how to
 create a bootable USB with the StarlingX ISO on your system.
@@ -316,7 +316,7 @@ Install software on controller-1 and compute nodes
      system host-update 4 personality=worker hostname=compute-1
 
 #. Wait for the software installation on controller-1, compute-0, and compute-1 to
-   complete, for all servers to reboot, and for to all show as locked/disabled/online in
+   complete, for all servers to reboot, and for all to show as locked/disabled/online in
    'system host-list'.
 
    ::

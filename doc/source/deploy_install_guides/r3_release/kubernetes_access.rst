@@ -86,16 +86,14 @@ GUI
 StarlingX Horizon GUI
 *********************
 
-Access the StarlingX Horizon GUI in your browser using the OAM floating IP
-address. For example: `\http://<oam-floating-ip-address>:8080`.
+Access the StarlingX Horizon GUI with the following steps:
 
-To determine your OAM floating IP address, use:
+#. Enter the OAM floating IP address in your browser:
+   `\http://<oam-floating-ip-address>:8080`
 
-::
+   Discover your OAM floating IP address with the :command:`system oam-show` command.
 
-  system oam-show
-
-Log in to Horizon with an admin/<sysadmin-password>.
+#. Log in to Horizon with an admin/<sysadmin-password>.
 
 ********************
 Kubernetes dashboard
@@ -158,16 +156,15 @@ To install the Kubernetes dashboard, execute the following steps on controller-0
 
 	kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
 
-#. Access the Kubernetes dashboard GUI in your browser using the OAM floating IP
-   address. For example: `\https://<oam-floating-ip-address>:30000`.
 
-   To determine your OAM floating IP address, use:
+Access the Kubernetes dashboard GUI with the following steps:
 
-   ::
+#. Enter the OAM floating IP address in your browser:
+   `\https://<oam-floating-ip-address>:30000`.
 
-   	 system oam-show
+   Discover your OAM floating IP address with the :command:`system oam-show` command.
 
-#. Log in with the ``admin-user`` TOKEN.
+#. Log in to the Kubernetes dashboard using the ``admin-user`` token.
 
 ---------
 REST APIs

@@ -16,9 +16,9 @@ Physical host requirements and setup
 
 .. include:: physical_host_req.txt
 
------------------------------------------
-Preparing virtual environment and servers
------------------------------------------
+---------------------------------------
+Prepare virtual environment and servers
+---------------------------------------
 
 The following steps explain how to prepare the virtual environment and servers
 on a physical host for a StarlingX R2.0 virtual Standard with Dedicated Storage

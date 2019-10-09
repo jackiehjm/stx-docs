@@ -13,9 +13,7 @@ on a **StarlingX R2.0 virtual All-in-one Simplex** deployment configuration.
 Install software on controller-0
 --------------------------------
 
-In the last step of "Prepare virtual environment and servers", the
-controller-0 virtual server 'simplex-controller-0' was started by the
-:command:`setup_configuration.sh` command.
+In the last step of :doc:`aio_simplex_environ`, the controller-0 virtual server 'simplex-controller-0' was started by the :command:`setup_configuration.sh` command.
 
 On the host, attach to the console of virtual controller-0 and select the
 appropriate installer menu options to start the non-interactive install of

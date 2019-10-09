@@ -30,7 +30,7 @@ host types are:
 | Primary disk        | 500 GB SDD or NVM     | 120 GB (min. 10k RPM) | 120 GB (min. 10k RPM) |
 +---------------------+-----------------------+-----------------------+-----------------------+
 | Additional disks    | None                  | - 1 or more 500 GB    | - For OpenStack,      |
-|                     |                       |   (min.10K RPM) for   |   recommend 1 or more |
+|                     |                       |   (min. 10K RPM) for  |   recommend 1 or more |
 |                     |                       |   Ceph OSD            |   500 GB (min. 10K    |
 |                     |                       | - Recommended, but    |   RPM) for VM         |
 |                     |                       |   not required: 1 or  |   ephemeral storage   |
