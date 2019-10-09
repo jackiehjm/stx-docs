@@ -89,7 +89,7 @@ Bootstrap system on controller-0
    ``/etc/ansible/hosts``
       The default Ansible inventory file. Contains a single host: localhost.
 
-   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap.yml``
+   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml``
       The Ansible bootstrap playbook.
 
    ``/usr/share/ansible/stx-ansible/playbooks/host_vars/bootstrap/default.yml``

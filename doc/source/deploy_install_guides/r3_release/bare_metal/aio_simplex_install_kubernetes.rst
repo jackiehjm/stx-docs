@@ -140,7 +140,7 @@ Bootstrap system on controller-0
 
    ::
 
-      ansible-playbook /usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml
+      ansible-playbook /usr/share/ansible/stx-ansible/playbooks/bootstrap.yml
 
    Wait for Ansible bootstrap playbook to complete.
    This can take 5-10 minutes, depending on the performance of the host machine.

@@ -80,7 +80,7 @@ On virtual controller-0:
    ``/etc/ansible/hosts``
       The default Ansible inventory file. Contains a single host: localhost.
 
-   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml``
+   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap.yml``
       The Ansible bootstrap playbook.
 
    ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/host_vars/default.yml``
@@ -132,7 +132,7 @@ On virtual controller-0:
 
    ::
 
-      ansible-playbook /usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml
+      ansible-playbook /usr/share/ansible/stx-ansible/playbooks/bootstrap.yml
 
    Wait for Ansible bootstrap playbook to complete.
    This can take 5-10 minutes, depending on the performance of the host machine.
