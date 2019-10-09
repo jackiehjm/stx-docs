@@ -105,7 +105,7 @@ Configure Ironic network on deployed standard StarlingX
 
       system interface-network-assign controller-1 enp2s0 ironic-net
       system host-if-modify -n ironic -c platform \
-      --ipv4-mode static --ipv4-pool ironic-pool controller-0 enp2s0
+      --ipv4-mode static --ipv4-pool ironic-pool controller-1 enp2s0
 
       # Apply the OpenStack Ironic node labels
       system host-label-assign controller-1 openstack-ironic=enabled
@@ -155,6 +155,9 @@ Apply stx-openstack application
 Re-apply the stx-openstack application to apply the changes to Ironic:
 
 ::
+
+   system helm-chart-attribute-modify stx-openstack ironic openstack \
+   --enabled true
 
    system application-apply stx-openstack
 
@@ -271,7 +274,7 @@ Create an Ironic node
    ::
 
       openstack baremetal node set --driver-info \
-      pxe_template='/var/lib/openstack/lib64/python2.7/site-packages/ironic/drivers/modules/ipxe_config.template'\
+      pxe_template='/var/lib/openstack/lib64/python2.7/site-packages/ironic/drivers/modules/ipxe_config.template' \
       ironic-test0
 
 #. Create a port to identify the specific port used by the Ironic node.
