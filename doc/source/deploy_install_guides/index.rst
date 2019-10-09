@@ -6,6 +6,8 @@ Installation and deployment guides for StarlingX are release-specific.
 Each guide provides instruction on a specific StarlingX configuration
 (e.g. All-in-one Simplex).
 
+.. _latest_release:
+
 -----------------------
 Latest release (stable)
 -----------------------
