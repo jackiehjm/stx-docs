@@ -33,14 +33,13 @@ For information on the StarlingX development process, refer to the following gui
 Build StarlingX
 ---------------
 
-For instructions on how to build StarlingX, refer to the following guides (build
-guides for StarlingX are release-specific).
+Refer to the StarlingX Build Guide for instructions on how to build a StarlingX
+ISO image.
 
 .. toctree::
    :maxdepth: 1
 
-   build_guides/r2_release/index
-   build_guides/r1_release/index
+   build_guide
 
 --------------------
 Additional resources
