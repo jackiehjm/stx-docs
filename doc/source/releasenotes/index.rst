@@ -9,6 +9,8 @@ You can find details about a release on the specific release page.
 +------------------------+---------------------+-------------------------------+
 | Version                | Release Date        | Notes                         |
 +========================+=====================+===============================+
+| StarlingX R2.0.1       | 2019-10             | :doc:`r2_0_1_release`         |
++------------------------+---------------------+-------------------------------+
 | StarlingX R2.0         | 2019-09             | :doc:`r2_release`             |
 +------------------------+---------------------+-------------------------------+
 | StarlingX R1.0         | 2018-10             | :doc:`r1_release`             |
@@ -20,6 +22,7 @@ You can find details about a release on the specific release page.
 
    r1_release
    r2_release
+   r2_0_1_release
 
 ------------------------------
 Project-specific release notes
