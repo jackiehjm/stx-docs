@@ -13,5 +13,6 @@ source code, and to understand the development process.
 
    navigate_source_code
    architecture_docs
+   starlingx_patching
    Project Specifications <https://docs.starlingx.io/specs/>
 
