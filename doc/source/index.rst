@@ -61,3 +61,17 @@ Foundation. The source is hosted on `OpenDev's Git server`_.
 Additional information regarding contributing to the project can be
 found in the :ref:`StarlingX contributor guides <contribute>`.
 
+----------
+Governance
+----------
+
+StarlingX is a top-level OpenStack Foundation pilot project that is governed by
+two separate bodies: The `OpenStack Foundation Board of Directors`_ and the
+`StarlingX Technical Steering Committee`_.
+
+See `StarlingX Governance`_ for additional information about StarlingX project
+governance.
+
+.. _`OpenStack Foundation Board of Directors`: https://wiki.openstack.org/wiki/Governance/Foundation
+.. _`StarlingX Technical Steering Committee`: https://docs.starlingx.io/governance/reference/tsc/
+.. _`StarlingX Governance`: https://docs.starlingx.io/governance/
