@@ -122,7 +122,7 @@ To install the Kubernetes dashboard, execute the following steps on controller-0
 	  name: kubernetes-dashboard
 	EOF
 
-	helm helm repo update
+	helm repo update
 
 	helm install stable/kubernetes-dashboard --name dashboard -f dashboard-values.yaml
 
