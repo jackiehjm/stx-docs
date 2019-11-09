@@ -1,6 +1,6 @@
-==================================
-Installation and Deployment Guides
-==================================
+===================
+Installation Guides
+===================
 
 Installation and deployment guides for StarlingX are release-specific.
 Each guide provides instruction on a specific StarlingX configuration
