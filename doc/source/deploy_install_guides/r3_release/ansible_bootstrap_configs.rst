@@ -75,31 +75,37 @@ url
    * Domain. For example:
 
      ::
+
        example.domain
 
    * Domain with port. For example:
 
      ::
+
        example.domain:5000
 
    * IPv4 address. For example:
 
      ::
+
        1.2.3.4
 
    * IPv4 address with port. For example:
 
      ::
+
        1.2.3.4:5000
 
    * IPv6 address. For example:
 
      ::
+
        FD01::0100
 
    * IPv6 address with port. For example:
 
      ::
+
        [FD01::0100]:5000
 
 username
@@ -118,11 +124,15 @@ unified
    supports the same set of alternate registry values of `url`, `username`, and
    `password`.
 
-is_secure_registry
+secure
    Specifies whether the registry(s) supports HTTPS (secure) or HTTP (not secure).
    Applies to all alternate registries. A boolean value. The default value is
    True (secure, HTTPS).
 
+.. note::
+
+   The ``secure`` parameter was formerly called ``is_secure_registry``. It was
+   renamed in StarlingX R3.0.
 
 If an alternate registry is specified to be secure (using HTTPS), the certificate
 used by the registry may not be signed by a well-known Certificate Authority (CA).
@@ -155,9 +165,9 @@ registry certificate:
        url:
      unified:
        url: my.registry.io
+       secure: True
        username: myreguser
        password: myregP@ssw0rd
-     is_secure_registry: True
 
   ssl_ca_cert: /path/to/ssl_ca_cert_file
 
