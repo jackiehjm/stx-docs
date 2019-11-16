@@ -70,7 +70,7 @@ in each StarlingX project are as follows:
    locally
 
 See stx-config [Doc] Release Notes Management as an example of this first commit:
-https://review.openstack.org/#/c/603257/
+https://review.opendev.org/#/c/603257/
 
 Once the Release Notes Documentation service has been enabled, you can create a new
 release notes.
