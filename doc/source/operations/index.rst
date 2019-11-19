@@ -18,9 +18,7 @@ General Operation
    fault_management
    host_management
    lldp_monitor
-   patching
    storage_util_display
-   upgrade
 
 --------------------
 Kubernetes Operation
