@@ -12,6 +12,7 @@ General Configuration
    brand_config
    cert_config
    host_config
+   host_interface_network_config
    system_config
    time_sync_config
 
