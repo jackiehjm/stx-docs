@@ -114,7 +114,7 @@ Then upload your public key to your GitHub and Gerrit account profiles:
 
 * `Upload to Github <https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account>`__
 
-* `Upload to Gerrit <https://review.openstack.org/#/settings/ssh-keys>`__
+* `Upload to Gerrit <https://review.opendev.org/#/settings/ssh-keys>`__
 
 ****************************
 Create a workspace directory

@@ -70,7 +70,7 @@ service in each StarlingX project are as follows:
    reference locally
 
 See `starlingx/config`_ [Doc] OpenStack API Reference Guide as an example of this
-first commit: https://review.openstack.org/#/c/603258/
+first commit: https://review.opendev.org/#/c/603258/
 
 ----------------------------
 Creating the RST Source File
