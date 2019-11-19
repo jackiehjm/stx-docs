@@ -19,7 +19,10 @@ The documentation is organized into the following sections:
 
    introduction/index
    deploy_install_guides/index
+   configuration/index
+   operations/index
    api-ref/index
+   cli_ref/index
    contributor/index
    releasenotes/index
    developer_resources/index
