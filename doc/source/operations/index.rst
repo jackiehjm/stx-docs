@@ -19,6 +19,7 @@ General Operation
    host_management
    lldp_monitor
    storage_util_display
+   tsn
 
 --------------------
 Kubernetes Operation
