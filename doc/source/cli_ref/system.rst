@@ -189,6 +189,8 @@ Host IPMI configuration and management
 ``host-sensorgroup-show``
     Show host sensor group attributes.
 
+.. _sys_app_management:
+
 **********************
 Application management
 **********************
