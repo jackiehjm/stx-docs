@@ -176,7 +176,7 @@ Configure storage nodes
 	   system interface-network-assign $COMPUTE mgmt0 cluster-host
 	done
 
-#. Add OSDs to storage-0:
+#. Add OSDs to storage-0. The following example adds OSDs to the `sdb` disk:
 
    ::
 
@@ -191,7 +191,7 @@ Configure storage nodes
 
 	system host-stor-list $HOST
 
-#. Add OSDs to storage-1:
+#. Add OSDs to storage-1. The following example adds OSDs to the `sdb` disk:
 
    ::
 

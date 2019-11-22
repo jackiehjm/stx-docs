@@ -47,6 +47,7 @@ Archived releases
    :hidden:
 
    bootable_usb
+   nvme_config
 
 
 .. Making a new release

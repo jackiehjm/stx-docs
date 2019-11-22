@@ -549,7 +549,7 @@ service. This can take 5-10 minutes, depending on the performance of the host ma
 Add Ceph OSDs to controllers
 ----------------------------
 
-#. Add OSDs to controller-0:
+#. Add OSDs to controller-0. The following example adds OSDs to the `sdb` disk:
 
    ::
 
@@ -564,7 +564,7 @@ Add Ceph OSDs to controllers
 
 	 system host-stor-list $HOST
 
-#. Add OSDs to controller-1:
+#. Add OSDs to controller-1. The following example adds OSDs to the `sdb` disk:
 
    ::
 
