@@ -63,35 +63,51 @@ Install-time-only parameters
 * ``docker_https_proxy``
 * ``docker_no_proxy``
 
-**Docker Registries**
+**Docker Registry Overrides**
 
 * ``docker_registries``
 
   * ``k8s.gcr.io``
 
     * ``url``
+    * ``username``
+    * ``password``
+    * ``secure``
 
   * ``gcr.io``
 
     * ``url``
+    * ``username``
+    * ``password``
+    * ``secure``
 
   * ``quay.io``
 
     * ``url``
+    * ``username``
+    * ``password``
+    * ``secure``
 
   * ``docker.io``
 
     * ``url``
+    * ``username``
+    * ``password``
+    * ``secure``
 
   * ``docker.elastic.co``
 
     * ``url``
+    * ``username``
+    * ``password``
+    * ``secure``
 
   * ``defaults``
 
     * ``url``
-
-  * ``secure``
+    * ``username``
+    * ``password``
+    * ``secure``
 
 **Certificates**
 
@@ -214,12 +230,22 @@ password
 
 Additional configuration options in the `docker_registries` structure are:
 
-unified
-   A special public registry key which, if defined, will specify that images
-   from all public registries should be retrieved from this single source.
-   Alternate registry values, if specified, are ignored. The `unified` key
-   supports the same set of alternate registry values of `url`, `username`, and
-   `password`.
+defaults
+   A special public registry key which defines common values to be applied to
+   all overrideable public registries. If only the `defaults` registry
+   is defined, it will apply `url`, `username`, and `password` for all
+   registries.
+
+   If values under specific registries are defined, they will override the
+   values defined in the defaults registry.
+
+   .. note::
+
+      The `defaults` key was formerly called `unified`. It was renamed
+      in StarlingX R3.0 and updated semantics were applied.
+
+      This change affects anyone with a StarlingX installation prior to R3.0 that
+      specifies alternate Docker registries using the `unified` key.
 
 secure
    Specifies whether the registry(s) supports HTTPS (secure) or HTTP (not secure).
@@ -243,26 +269,34 @@ ssl_ca_cert
    certificate must be in PEM format and the file may contain a single CA
    certificate or multiple CA certificates in a bundle.
 
+The following example will apply `url`, `username`, and `password` to all
+registries.
 
-The following example specifies a single alternate registry from which to
-bootstrap StarlingX, where the images of the public registries have been
-copied to the single alternate registry. It additionally defines an alternate
-registry certificate:
+::
+
+   docker_registries:
+     defaults:
+       url: my.registry.io
+       username: myreguser
+       password: myregP@ssw0rd
+
+The next example applies `username` and `password` from the defaults registry
+to all public registries. `url` is different for each public registry. It
+additionally specifies an alternate CA certificate.
 
 ::
 
   docker_registries:
      k8s.gcr.io:
-       url:
+       url: my.k8sregistry.io
      gcr.io:
-       url:
+       url: my.gcrregistry.io
      quay.io:
-       url:
+       url: my.quayregistry.io
      docker.io:
-       url:
-     unified:
+       url: my.dockerregistry.io
+     defaults:
        url: my.registry.io
-       secure: True
        username: myreguser
        password: myregP@ssw0rd
 
