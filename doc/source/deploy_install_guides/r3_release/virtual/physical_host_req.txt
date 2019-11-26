@@ -46,7 +46,7 @@ Set up the host with the following steps:
 
     apt-get install -y git
     cd $HOME
-    git clone https://opendev.org/starlingx/tools
+    git clone https://opendev.org/starlingx/tools.git
 
 #. Install required packages:
 
