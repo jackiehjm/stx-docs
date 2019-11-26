@@ -32,6 +32,7 @@ Kubernetes Operation
    k8s_docker_reg_management
    k8s_persistent_vol_claims
    k8s_sriov_config
+   k8s_qat_device_plugin
 
 -------------------
 OpenStack Operation
