@@ -2,12 +2,109 @@
 Ansible Bootstrap Configurations
 ================================
 
-This section describes additional Ansible bootstrap configurations for advanced
-Ansible bootstrap scenarios.
+This section describes Ansible bootstrap configuration options.
 
 .. contents::
    :local:
    :depth: 1
+
+
+.. _install-time-only-params:
+
+----------------------------
+Install-time-only parameters
+----------------------------
+
+Some Ansible bootstrap parameters can not be changed or are very difficult to
+change after installation is complete.
+
+Review the set of install-time-only parameters before installation and confirm
+that your values for these parameters are correct for the desired installation.
+
+.. note::
+
+   If you notice an incorrect install-time-only parameter value *before you
+   unlock controller-0 for the first time*, you can re-run the Ansible bootstrap
+   playbook with updated override values and the updated values will take effect.
+
+****************************
+Install-time-only parameters
+****************************
+
+**System Properties**
+
+* ``system_mode``
+* ``distributed_cloud_role``
+
+**Network Properties**
+
+* ``pxeboot_subnet``
+* ``pxeboot_start_address``
+* ``pxeboot_end_address``
+* ``management_subnet``
+* ``management_start_address``
+* ``management_end_address``
+* ``cluster_host_subnet``
+* ``cluster_host_start_address``
+* ``cluster_host_end_address``
+* ``cluster_pod_subnet``
+* ``cluster_pod_start_address``
+* ``cluster_pod_end_address``
+* ``cluster_service_subnet``
+* ``cluster_service_start_address``
+* ``cluster_service_end_address``
+* ``management_multicast_subnet``
+* ``management_multicast_start_address``
+* ``management_multicast_end_address``
+
+**Docker Proxies**
+
+* ``docker_http_proxy``
+* ``docker_https_proxy``
+* ``docker_no_proxy``
+
+**Docker Registries**
+
+* ``docker_registries``
+
+  * ``k8s.gcr.io``
+
+    * ``url``
+
+  * ``gcr.io``
+
+    * ``url``
+
+  * ``quay.io``
+
+    * ``url``
+
+  * ``docker.io``
+
+    * ``url``
+
+  * ``docker.elastic.co``
+
+    * ``url``
+
+  * ``defaults``
+
+    * ``url``
+
+  * ``secure``
+
+**Certificates**
+
+* ``k8s_root_ca_cert``
+* ``k8s_root_ca_key``
+
+**Kubernetes Parameters**
+
+* ``apiserver_oidc``
+
+  * ``client_id``
+  * ``issuer_id``
+  * ``username_claim``
 
 ----
 IPv6
@@ -45,7 +142,7 @@ Example IPv6 override values are shown below:
 Private registry
 ----------------
 
-To bootstrap StarlingX requires pulling container images for multiple system
+To bootstrap StarlingX you must pull container images for multiple system
 services. By default these container images are pulled from public registries:
 k8s.gcr.io, gcr.io, quay.io, and docker.io.
 
@@ -63,7 +160,7 @@ controller-0, and on :command:`system application-apply` of application packages
 The `docker_registries` structure is a map of public registries and the
 alternate registry values for each public registry. For each public registry the
 key is a fully scoped registry name of a public registry (for example "k8s.gcr.io")
-and the alternate registry URL and username/password (if authenticated). 
+and the alternate registry URL and username/password (if authenticated).
 
 url
    The fully scoped registry name (and optionally namespace/) for the alternate

@@ -86,10 +86,11 @@ On virtual controller-0:
    ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/host_vars/default.yml``
       The default configuration values for the bootstrap playbook.
 
-   sysadmin home directory ($HOME)
+   ``sysadmin home directory ($HOME)``
       The default location where Ansible looks for and imports user
       configuration override files for hosts. For example: ``$HOME/<hostname>.yml``.
 
+   .. include:: ../ansible_install_time_only.txt
 
    Specify the user configuration override file for the Ansible bootstrap
    playbook using one of the following methods:
