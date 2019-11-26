@@ -44,6 +44,15 @@ Install StarlingX Kubernetes on bare metal
 
    ansible_bootstrap_configs
 
+-------------------------------------------------
+Install StarlingX Distributed Cloud on bare metal
+-------------------------------------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   distributed_cloud/index
+
 -----------------
 Access Kubernetes
 -----------------
@@ -61,3 +70,4 @@ StarlingX OpenStack
    :maxdepth: 2
 
    openstack/index
+
