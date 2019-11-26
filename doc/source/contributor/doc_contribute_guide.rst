@@ -20,8 +20,8 @@ You can clone these repositories by:
 
 ::
 
-   $ git clone https://opendev.org/starlingx/docs
-   $ git clone https://opendev.org/starlingx/specs
+   $ git clone https://opendev.org/starlingx/docs.git
+   $ git clone https://opendev.org/starlingx/specs.git
 
 These projects contain hierarchy that organizes the documentation by topic:
 
