@@ -160,9 +160,13 @@ At the subcloud location:
 4. On the server designated for controller-0, install the StarlingX
    Kubernetes software from USB or a PXE Boot server.
 
-5. Establish an L3 connection to the SystemController by enabling the OAM /
-   Management interface on the subcloud controller using the ``config_management``
-   script. This example uses the OAM interface for simplicity.
+5. Establish an L3 connection to the SystemController by enabling the OAM
+   interface (with OAM IP/subnet) on the subcloud controller using the
+   ``config_management`` script.
+
+   .. note:: This step should **not** use an interface that uses the MGMT
+             IP/subnet because the MGMT IP subnet will get moved to the loopback
+             address by the Ansible bootstrap playbook during installation.
 
    Be prepared to provide the following information:
 
@@ -199,15 +203,6 @@ At the subcloud location:
         Configuring management interface... DONE
         RTNETLINK answers: File exists
         Adding route to System Controller... DONE
-
-   .. note:: The subcloud bootstrapping interface in step 5 can be any interface
-             that has connectivity to the SystemController, for example the OAM or
-             management interfaces.
-
-             This example uses the OAM interface for simplicity, because it removes
-             several configuration steps. Using the management interface requires
-             the creation of an additional temporary IP address/subnet on the
-             management interface for bootstrapping.
 
 At the SystemController:
 
