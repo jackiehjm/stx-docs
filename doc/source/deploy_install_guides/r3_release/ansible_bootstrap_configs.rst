@@ -339,15 +339,15 @@ docker_no_proxy
         - 1.2.3.4
         - 5.6.7.8
 
--------------------------------
-K8S Root CA Certificate and Key
--------------------------------
+--------------------------------------
+Kubernetes root CA certificate and key
+--------------------------------------
 
-By default the K8S Root CA Certificate and Key are auto-generated and result in
-the use of self-signed certificates for the Kubernetes API server. In the case
-where self-signed certificates are not acceptable, use the bootstrap override
-values `k8s_root_ca_cert` and `k8s_root_ca_key` to specify the certificate and
-key for the Kubernetes root CA.
+By default the Kubernetes Root CA Certificate and Key are auto-generated and
+result in the use of self-signed certificates for the Kubernetes API server. In
+the case where self-signed certificates are not acceptable, use the bootstrap
+override values `k8s_root_ca_cert` and `k8s_root_ca_key` to specify the
+certificate and key for the Kubernetes root CA.
 
 k8s_root_ca_cert
    Specifies the certificate for the Kubernetes root CA. The `k8s_root_ca_cert`
@@ -385,3 +385,38 @@ apiserver_cert_sans
 
 StarlingX automatically updates this parameter to include IP records for the OAM
 floating IP and both OAM unit IP addresses.
+
+----------------------------------------------------
+OpenID Connect authentication for Kubernetes cluster
+----------------------------------------------------
+
+The Kubernetes cluster can be configured to use an external OpenID Connect
+:abbr:`IDP (identity provider)`, such as Azure Active Directory, Salesforce, or
+Google, for Kubernetes API authentication.
+
+By default, OpenID Connect authentication is disabled. To enable OpenID Connect,
+use the following configuration values in the Ansible bootstrap overrides file
+to specify the IDP for OpenID Connect:
+
+::
+
+    apiserver_oidc:
+      client_id:
+      issuer_url:
+      username_claim:
+
+When the three required fields of the `apiserver_oidc` parameter are defined,
+OpenID Connect is considered active. The values will be used to configure the
+Kubernetes cluster to use the specified external OpenID Connect IDP for
+Kubernetes API authentication.
+
+In addition, you will need to configure the external OpenID Connect IDP and any
+required OpenID client application according to the specific IDP's documentation.
+
+If not configuring OpenID Connect, all values should be absent from the
+configuration file.
+
+.. note::
+
+   Default authentication via service account tokens is always supported,
+   even when OpenID Connect authentication is configured.
