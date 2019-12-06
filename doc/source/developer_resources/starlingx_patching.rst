@@ -12,41 +12,40 @@ This section describes how to update StarlingX systems using patches.
 Introduction
 ------------
 
-StarlingX supports updating an already deployed StarlingX system. The
-StarlingX patching feature provides the capability to update StarlingX systems
-before the next major version is released. It can be used for bug fixes,
-security vulnerabilities, feature enhancements, etc.
+Deployed StarlingX systems can be updated using the StarlingX patching
+feature, which provides the capability to update StarlingX systems before the
+next major version is released. It can be used for bug fixes, security
+vulnerabilities, feature enhancements, etc.
 
-There are two kinds of patches supported by StarlingX patching: in-service
-patches and reboot-required patches. In-service patches don’t require a reboot
-for those hosts to be patched. Only affected processes need to be restarted.
-For reboot-required patches, a host reboot operation is necessary to make the
-changes take effect. Hosts to be patched should be locked before applying the
-patch and unlocked after the patch is applied.
+StarlingX patching supports two kinds of patches:
 
-This document introduces the patching feature from the developer's
-perspective rather than being a product user guide. It pays more
-attention to the patching process, rather than covering all aspects of
-the patching.
+*  *In-service* patches, which don’t require a reboot for those hosts to be
+   patched. Only affected processes need to be restarted.
 
-Roughly speaking, the whole patching process can be divided into two stages:
-patch generation and patch applying. In the following sections, we describe
-the details of the two stages.
+*  *Reboot-required* patches, which require a host reboot operation to make the
+   changes take effect. Hosts to be patched should be locked before applying the
+   patch and unlocked after the patch is applied.
+
+This document describes the patching process from the developer's perspective,
+rather than being a product user guide. The patching process can be divided
+into two stages: patch generation and patch applying, which are described in
+the following sections.
+
 
 ----------------
 Generate a patch
 ----------------
 
 A StarlingX patch includes one or more rpms that contain some updates to the
-system. Before starting to generate a patch, we need to identify rpms to be
+system. Before starting to generate a patch, you must identify rpms to be
 installed against the deployed system.
 
 *****************************
 Identify rpms to be installed
 *****************************
 
-First we need to figure out what the software version of the deployed system
-is. This can be done using either the StarlingX Horizon GUI or using the CLI.
+First, figure out the software version of the deployed system, using either
+the StarlingX Horizon GUI or using the CLI.
 
 ###############
 Use Horizon GUI
@@ -98,29 +97,36 @@ Use StarlingX CLI
 	+----------------------+--------------------------------------+
 
 
-After we figure out the software version, we can check the latest StarlingX
-build to identify updated rpms against that version, and then select one or
-more rpms for patch generation.
+After you figure out the software version, check the latest StarlingX
+build to identify updated rpms against that version. Select one or
+more rpms for patch generation and continue to the next section.
 
 *************
 Build patches
 *************
 
-Once rpms to be installed are determined, we need to set up an environment for
-patch build. As a StarlingX developer, the easiest way to set up such an
-environment is using StarlingX build container. We just need to make a few
-changes to the build container.
+After you determine the rpms to be installed, set up an environment for
+patch build. As a StarlingX developer, the easiest way to set up this type of
+environment is to use a StarlingX build container, with a few changes.
 
-Here we assume a StarlingX build container has been set up by following `the
-build guide <https://docs.starlingx.io/contributor/build_guide.html>`_,
-StarlingX source code has been downloaded, and the rpms to be installed are
-already available in the build container filesystem. Then we can start to set
-up the patch build environment. Please note that this environment is intended
-for developers looking to work on this feature and is not intended to be used
-for a StarlingX-based product.
+#############
+Prerequisites
+#############
+
+*  Set up a StarlingX build container following `the
+   build guide <https://docs.starlingx.io/contributor/build_guide.html>`_.
+
+*  Download StarlingX source code.
+
+*  Be sure that the rpms to be installed are already available in the build
+   container filesystem.
+
+Set up the patch build environment using the steps below. Note that
+this environment is intended for developers working on this feature
+and is not intended to be used for a StarlingX-based product.
 
 #. Install two python packages ``crypto`` and ``pycrypto``, which are the
-   python dependencies of cgcs-patch package.
+   python dependencies of the ``cgcs-patch`` package.
 
    ::
 
@@ -132,7 +138,7 @@ for a StarlingX-based product.
    point to cgcs-patch package in the repo. This avoids the need to install
    cgcs-patch or manually set the PLATFORM_RELEASE variable.
 
-   We can check the detailed usage of the patch build command using:
+   View the details of the patch build command using the command:
    ``$MY_REPO/stx/stx-update/extras/scripts/patch_build.sh -h``
 
    ::
@@ -159,17 +165,17 @@ for a StarlingX-based product.
 		                            combined node
 		--all-nodes <rpm>           New package for all node types
 
-   We need to specify the patch id, whether a reboot is required or not, any
-   dependent patches, the file path of rpms, etc. For new rpm packages, we
-   need to specify which hosts require them using options, for example
+   You must specify the patch id, whether a reboot is required or not, any
+   dependent patches, the file path of rpms, etc. For new rpm packages, you
+   must specify which hosts require them using options, for example
    ``--controller``.
 
-   Once the command is finished, we will get a patch file with the name
+   When the command is finished, you get a patch file with the name
    ``<patch-id>.patch``.
 
-Let’s deep dive a little bit into the generated patch.
+Let’s dive a little deeper into the generated patch.
 
-#. The patch file is just a gzip compressed package. We can check it
+#. The patch file is a gzip compressed package. Check it
    using the :command:`file` command. Below is an example, including command output.
 
    ::
@@ -178,8 +184,8 @@ Let’s deep dive a little bit into the generated patch.
 	001.patch: gzip compressed data, was "001.patch", last modified:
 	Fri Aug 16 05:56:59 2019, max compression
 
-#. We can easily unzip the patch file. There are four files, ``software.tar``,
-   ``metadata.tar``, ``signature``, and ``signature.v2``, in the patch.
+#. Unzip the patch file to discover four files, ``software.tar``,
+   ``metadata.tar``, ``signature``, and ``signature.v2``.
 
    ::
 
@@ -191,32 +197,31 @@ Let’s deep dive a little bit into the generated patch.
 	├── signature.v2
 	└── software.tar
 
-   *  Unzip ``software.tar`` and we find that it contains all rpms to be
-      installed. Please note that all rpms have been signed during patch
-      build by using the key
+   *  Unzip ``software.tar`` to find that it contains all rpms to be
+      installed. Note that all rpms have been signed during patch
+      build using the key
       ``$MY_REPO/build-tools/signing/ima_signing_key.priv``.
 
-   *  There is only one file ``metadata.xml`` in ``metadata.tar``, and it
-      includes all the information provided by the patch build command. It will
-      be used by the StarlingX patching runtime system.
+   *  ``metadata.tar`` contains only one file ``metadata.xml``, which
+      includes all the information provided by the patch build command. It is
+      used by the StarlingX patching runtime system.
 
    *  ``signature`` is a combination of the md5 values of ``software.tar`` and
       ``metadata.tar``.
 
    *  ``signature.v2`` is a signature file for ``software.tar`` and
-      ``metadata.tar``. In this case, it is generated by utilizing the key file
+      ``metadata.tar``. In this case, it is generated using the key file
       ``$MY_REPO/build-tools/signing/dev-private-key.pem``.
 
 -------------
 Apply a patch
 -------------
 
-Once patches are generated, we can manually apply them to an applicable
+Once patches are generated, you can manually apply them to an applicable
 StarlingX system. Both the StarlingX Horizon GUI and the CLI support the patch
-applying operation. To show more details, this example uses the CLI.
+applying operation. This example uses the CLI to show more detail.
 
-The life cycle of a patch consists of four states: Available,
-Partial-Apply, Applied, and Partial-Remove.
+The life cycle of a patch consists of the following states:
 
 * **Available**: A patch in the Available state means it has been put into the
   patch storage area, but it has not been put into the software update
@@ -235,7 +240,7 @@ Partial-Apply, Applied, and Partial-Remove.
   patch has not been removed from all hosts that installed it. It may have been
   removed from some hosts, but not all.
 
-Before applying a patch, we need to upload it to the file system of the active
+Before applying a patch, you must upload it to the file system of the active
 controller. Uploading can be performed in many ways. Here is an example using
 ``scp``.
 
@@ -245,9 +250,8 @@ controller. Uploading can be performed in many ways. Here is an example using
 
 
 The StarlingX patching system provides the client tool ``sw-patch``, which can
-perform all types of patching operations. Let’s check what operations
-``sw-patch`` supports. As shown below, there are many commands, like upload,
-apply, query, host-install, delete, remove, etc.
+perform all types of patching operations. The many operations supported by
+``sw-patch`` are listed below.
 
 ::
 
@@ -320,9 +324,9 @@ apply, query, host-install, delete, remove, etc.
 
 	    --os-region-name: Send the request to a specified region
 
-In the following example, we demonstrate how to apply a patch to the system
-with these commands. This example applies an in-service patch which should be
-installed on all hosts in the system, and the StarlingX system is 2+2+2
+The following example demonstrates how to apply a patch to the system using
+``sw-patch`` commands. This example applies an in-service patch to be
+installed on all hosts in the system, and the StarlingX system is in a 2+2+2
 configuration.
 
 #. Upload the patch to the patching storage area using the
@@ -333,9 +337,8 @@ configuration.
 	controller-0:~$ sudo sw-patch upload 001.patch
 	001 is now available
 
-   After that, we can check the status of the patch with
-   :command:`sw-patch query`. It indicates that the patch is available
-   in the system now.
+   Check the status of the patch with the :command:`sw-patch query` command.
+   The “Patch State” value indicates that the patch is available in the system.
 
    ::
 
@@ -344,7 +347,7 @@ configuration.
 	========  ==  =======  ===========
 	001       N    19.09    Available
 
-   We also can check the status of all hosts in the cluster with the
+   Check the status of all hosts in the cluster with the
    :command:`sw-patch query-hosts` command.
 
    ::
@@ -359,21 +362,21 @@ configuration.
 	storage-0     192.178.204.12       Yes             No          19.09   idle
 	storage-1     192.178.204.11       Yes             No          19.09   idle
 
-   “Patch Current” indicates whether there are patches pending for installation or
-   removal on the host or not. “Yes” means no patch pending, and “No” means there
-   is at least one patch pending.
+   The “Patch Current” value indicates whether or not there are patches
+   pending for installation or removal on the host. “Yes” means no patch
+   pending, and “No” means there is at least one patch pending.
 
-#. Once the patch is in the Available state, we can trigger patch applying
-   using the :command:`sw-patch apply` command.
+#. Once the patch is in the Available state, trigger patch applying using the
+   :command:`sw-patch apply` command.
 
    ::
 
 	controller-0:/$ sudo sw-patch apply 001
 	001 is now in the repo
 
-   Let’s check the status of the patch and the hosts again. As shown below, the
-   patch is in Partial-Apply state because it has not been installed on any host
-   yet. The “Patch Current” of all hosts are all “No” state.
+   Check the status of the patch and the hosts again. As shown below, the
+   patch is in the Partial-Apply state because it has not been installed on
+   any host yet. The “Patch Current” value for all hosts are “No”.
 
    ::
 
@@ -395,8 +398,8 @@ configuration.
 	storage-1     192.178.204.11       No              No          19.09   idle
 
 #. Install the patch on each host. In this case, it is an in-service patch, so
-   we don’t need to lock hosts. If the patch is a reboot-required patch, each
-   node must be locked before the patch can be installed.
+   you don’t need to lock hosts. (If the patch is a reboot-required patch, each
+   node must be locked before the patch can be installed.)
 
    ::
 
@@ -404,9 +407,9 @@ configuration.
 	...
 	Installation was successful.
 
-   Check the host status again. We find that the “Patch Current” of
-   controller-0 has changed to “Yes”. Other “Patch Current” are still “No”,
-   which is expected.
+   Check the host status again. The “Patch Current” value of controller-0 has
+   changed to “Yes” and the other “Patch Current” values are still “No”, which
+   is expected.
 
    ::
 
@@ -420,8 +423,7 @@ configuration.
 	storage-0     192.178.204.12       No              No          19.09   idle
 	storage-1     192.178.204.11       No              No          19.09   idle
 
-   To install the patch on all hosts, we need to execute the command against
-   each host.
+   To install the patch on all hosts, execute the command against each host.
 
    ::
 
@@ -441,10 +443,9 @@ configuration.
 	...
 	Installation was successful.
 
-   By checking the status of the patch and the hosts, we can see the patch has
-   been installed on all hosts as shown in the status of the hosts. The “Patch
-   Current” of the hosts changed to “Yes” and the patch status changed to
-   “Applied”.
+   Check the status of the patch and the hosts. The patch has been installed
+   on all hosts as shown below. The “Patch Current” value of the hosts changed
+   to “Yes” and the "Patch State" value changed to “Applied”.
 
    ::
 
@@ -465,30 +466,29 @@ configuration.
 	storage-0     192.178.204.12       Yes             No          19.09   idle
 	storage-1     192.178.204.11       Yes             No          19.09   idle
 
-   At this time, we have updated the changes of the patch ``001.patch`` to the
+   This output confirms that the patch ``001.patch`` has been applied to the
    whole system.
 
 StarlingX patching also supports patch removal, using the
 :command:`sw-patch remove` and :command:`sw-patch host-install` commands. The
-procedure is very similar to that of patch applying.
+procedure is similar to that of patch applying and is not described here.
 
 -------------------
 Patch orchestration
 -------------------
 
-In the example shown above, we updated the hosts in the cluster one by one.
-For a case where the cluster size is very large, the updating process will
-take a long time, and the situation will be even worse for reboot-required
-patches. The updating operation becomes very inefficient and can be a burden
-to the cluster administrator. StarlingX has an advanced feature called patch
-orchestration. It allows the whole system to be patched with a few operations,
-which greatly reduces the administrator's effort required for system updating.
-The operations can be performed using the CLI, the Horizon GUI, or the VIM
-RESTful API.
+In the example shown above, the hosts in the cluster were updated one by one.
+For a case where the cluster size is very large, the updating process takes a
+long time, and the situation takes longer for reboot-required patches. The
+updating operation becomes very inefficient and can be a burden to the cluster
+administrator. StarlingX has an advanced feature called *patch orchestration*.
+It allows the whole system to be patched with a few operations, which
+simplifies update tasks for the cluster administrator. The operations can be
+performed using the CLI, the Horizon GUI, or the VIM RESTful API.
 
-#. The StarlingX CLI contains the client tool ``sw-manager``. It can be used
-   to perform patch orchestration. As shown below, we can use it to create and
-   apply a patch strategy, then the whole system will be updated.
+#. Using the StarlingX CLI client tool ``sw-manager``, you can create and
+   apply a patch strategy, which then updates the whole system. The supported
+   options are listed below.
 
    ::
 
@@ -546,7 +546,7 @@ RESTful API.
 #. Using the Horizon GUI, click :menuselection:`Admin > Platform > Software Management`
    and click the :guilabel:`Patch Orchestration` tab.
 
-#. Using the VIM api, `<http://\<oam_ip\>:4545>`_
+#. Using the VIM API, `<http://\<oam_ip\>:4545>`_
 
    +--------+---------------------------------------+----------------------------+
    | Method | URI                                   | Description                |
@@ -563,20 +563,18 @@ RESTful API.
    |        | actions                               | strategy                   |
    +--------+---------------------------------------+----------------------------+
 
-   To orchestrate patch applying, Patch Orchestration requires the system to be in
-   good condition. For example:
+   The system must be in good condition to use patch orchestration. For example:
 
-   * All hosts must be in the state of unlocked-enabled-available
+   * All hosts must be in the state of unlocked-enabled-available.
    * The system is clear of alarms.
    * Enough spare worker nodes for VM migration.
-   * …
 
 --------------
 Current status
 --------------
 
 * The whole patching source code is already in StarlingX repositories, across
-  several projects, like “update”, “nfv”.
+  several projects, like “update” and “nfv”.
 
 * Patch generation and manual patch application have been roughly verified for
   both in-service patches and reboot-required patches. They are working.
