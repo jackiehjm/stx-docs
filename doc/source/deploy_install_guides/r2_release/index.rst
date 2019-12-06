@@ -2,6 +2,14 @@
 StarlingX R2.0 Installation
 ===========================
 
+.. important::
+
+   Changes in the underlying StarlingX infrastructure have occurred
+   since the R2.0 release. Due to these changes, the R2.0 installation
+   instructions may not work as described.
+
+   Installation of the the :ref:`latest_release` is recommended.
+
 StarlingX provides a pre-defined set of standard
 :doc:`deployment configurations </introduction/deploy_options>`. Most deployment options may
 be installed in a virtual environment or on bare metal.

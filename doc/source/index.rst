@@ -5,7 +5,7 @@ Welcome to the StarlingX Documentation
 StarlingX is a fully integrated edge cloud software stack that provides
 everything needed to deploy an edge cloud on one, two, or up to 100 servers.
 
-**The latest release of StarlingX is StarlingX R2.0.** Additional information
+**The latest release of StarlingX is StarlingX R3.0.** Additional information
 about this release is available in the :ref:`release-notes`.
 
 For more information about the StarlingX project, refer to the
@@ -22,9 +22,9 @@ For more information about the StarlingX project, refer to the
 Get started
 -----------
 
-To get started fast with StarlingX, try the :doc:`Virtual All-in-one Simplex
-installation </deploy_install_guides/r3_release/virtual/aio_simplex>`, which
-requires a minimum of hardware and configuration.
+To get started fast with StarlingX, try the
+:doc:`Virtual All-in-one Simplex installation </deploy_install_guides/r3_release/virtual/aio_simplex>`,
+which requires a minimum of hardware and configuration.
 
 Learn more about StarlingX:
 
