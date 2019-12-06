@@ -15,7 +15,7 @@ Installation
 ------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    dedicated_storage_environ
    dedicated_storage_install_kubernetes

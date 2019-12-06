@@ -15,7 +15,7 @@ Installation
 ------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    aio_simplex_hardware
    aio_simplex_install_kubernetes

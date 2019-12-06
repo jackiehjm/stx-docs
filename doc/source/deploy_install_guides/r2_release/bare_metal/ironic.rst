@@ -60,7 +60,7 @@ with 2x controllers and at least 1x compute node, with the StarlingX OpenStack
 application (stx-openstack) applied.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    ironic_hardware
    ironic_install

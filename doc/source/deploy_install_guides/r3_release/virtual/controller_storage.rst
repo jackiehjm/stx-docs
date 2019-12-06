@@ -15,7 +15,7 @@ Installation
 ------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    controller_storage_environ
    controller_storage_install_kubernetes

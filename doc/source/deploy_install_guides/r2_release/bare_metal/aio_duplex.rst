@@ -19,7 +19,7 @@ Installation
 ------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    aio_duplex_hardware
    aio_duplex_install_kubernetes
