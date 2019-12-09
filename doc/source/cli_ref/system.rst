@@ -76,6 +76,8 @@ for a variety of StarlingX use cases. For example:
 Local Docker registry management
 ********************************
 
+.. incl-cli-local-docker-reg-start:
+
 Local Docker registry management commands enable you to remove images and
 free disk resources consumed by the local Docker registry. This is required if
 the local Docker registry's file system (`docker-distribution`) becomes full.
@@ -83,14 +85,37 @@ the local Docker registry's file system (`docker-distribution`) becomes full.
 ``registry-garbage-collect``
     Run the registry garbage collector.
 
+    This frees up the space on the file system used by deleted images. In rare
+    cases, the system may trigger a `swact` in the small time window when
+    garbage-collect is running. This may cause the registry to get stuck in
+    read-only mode. If this occurs, run garbage-collect again to take the
+    registry out of read-only mode.
+
 ``registry-image-delete``
     Remove the specified Docker image from the local registry.
+
+    The image should be specified in the form :command:`name:tag`. This command
+    only removes the image from the local Docker registry. It does not free
+    space on the file system.
+
+    .. note::
+
+       Any stx-openstack images in a system with stx-openstack applied should
+       not be deleted. If space is needed, you can delete the older tags of
+       stx-openstack images, but do not delete the most recent one. Deleting
+       both the registry stx-openstack images and the one from the Docker
+       cache will prevent failed pods from recovering. If this happens,
+       manually download the deleted images from the same source as
+       application-apply and push it to the local registry under the same
+       name and tag.
 
 ``registry-image-list``
     List all images in local docker registry.
 
 ``registry-image-tags``
     List all tags for a Docker image from the local registry.
+
+.. incl-cli-local-docker-reg-end:
 
 *****************************************
 Host/controller file system configuration
