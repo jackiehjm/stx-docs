@@ -7,6 +7,11 @@ Contribute
 The following guides provide detailed instructions on the contribution workflow
 and conventions to be considered when contributing to the StarlingX documentation.
 
+StarlingX utilizes tooling and CI/CD environments from the OpenStack
+Foundation. The source is hosted on `OpenDev's Git server`_.
+
+.. _`OpenDev's Git server`: https://opendev.org/starlingx
+
 ---------------------------
 Contribute to documentation
 ---------------------------

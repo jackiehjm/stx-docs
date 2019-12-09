@@ -2,67 +2,82 @@
 Welcome to the StarlingX Documentation
 ======================================
 
-The latest release of StarlingX is StarlingX R2.0. Additional information about
-this release is available in the :ref:`release-notes`.
+StarlingX is a fully integrated edge cloud software stack that provides
+everything needed to deploy an edge cloud on one, two, or up to 100 servers.
+
+**The latest release of StarlingX is StarlingX R2.0.** Additional information
+about this release is available in the :ref:`release-notes`.
 
 For more information about the StarlingX project, refer to the
-`Project Specifications <specs/index.html>`__.
+`StarlingX wiki <https://wiki.openstack.org/wiki/StarlingX>`__.
+
+.. Note::
+
+   Community contributions to the documentation are welcome! If you see an empty
+   topic and want to contribute, refer to the linked story in the topic for details.
+
+   Additional information in the :doc:`Contributor guide </contributor/index>`.
+
+-----------
+Get started
+-----------
+
+To get started fast with StarlingX, try the Virtual All-in-one Simplex installation for the :ref:`latest release <latest_release>`, which requires a minimum of hardware and configuration.
+
+Learn more about StarlingX:
+
+.. toctree::
+   :maxdepth: 2
+
+   introduction/index
+
+-------------------
+Installation guides
+-------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   deploy_install_guides/index
 
 -------------
-Documentation
+Configuration
 -------------
 
-The documentation is organized into the following sections:
+.. toctree::
+   :maxdepth: 2
+
+   configuration/index
+
+----------------
+Operation guides
+----------------
+
+.. toctree::
+   :maxdepth: 2
+
+   operations/index
+
+---------
+Reference
+---------
+
+.. toctree::
+   :maxdepth: 2
+
+   api-ref/index
+   cli_ref/index
+
+-------------------
+General information
+-------------------
 
 .. toctree::
    :maxdepth: 1
 
-   introduction/index
-   deploy_install_guides/index
-   configuration/index
-   operations/index
-   api-ref/index
-   cli_ref/index
    contributor/index
    releasenotes/index
    developer_resources/index
-
---------
-Projects
---------
-
-StarlingX contains multiple sub-projects that include additional edge cloud
-support services and clients. API documentation and release notes for each
-project are found on the specific project page:
-
-* `Bare Metal <metal/index.html>`__
-* `Clients <clients/index.html>`__
-* `Config <config/index.html>`__
-* `Distributed Cloud <distcloud/index.html>`__
-* `Distributed Cloud Client <distcloud-client/index.html>`__
-* `Fault Management <fault/index.html>`__
-* `High Availability <ha/index.html>`__
-* `Horizon Plugin (GUI) <gui/index.html>`__
-* `Integration <integ/index.html>`__
-* `NFV <nfv/index.html>`__
-* `Software Updates <update/index.html>`__
-* `Upstream <upstream/index.html>`__
-
-Supporting projects and repositories:
-
-* `Tools <tools/index.html>`__
-
-----------
-Contribute
-----------
-
-StarlingX utilizes tooling and CI/CD environments from the OpenStack
-Foundation. The source is hosted on `OpenDev's Git server`_.
-
-.. _`OpenDev's Git server`: https://opendev.org/starlingx
-
-Additional information regarding contributing to the project can be
-found in the :ref:`StarlingX contributor guides <contribute>`.
 
 ----------
 Governance
@@ -78,3 +93,8 @@ governance.
 .. _`OpenStack Foundation Board of Directors`: https://wiki.openstack.org/wiki/Governance/Foundation
 .. _`StarlingX Technical Steering Committee`: https://docs.starlingx.io/governance/reference/tsc/
 .. _`StarlingX Governance`: https://docs.starlingx.io/governance/
+
+
+
+
+

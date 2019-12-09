@@ -28,3 +28,30 @@ Learn more about StarlingX:
    terms
    deploy_options
    consuming
+
+.. _stx_projects:
+
+--------
+Projects
+--------
+
+StarlingX contains multiple sub-projects that include additional edge cloud
+support services and clients. API documentation and release notes for each
+project are found on the specific project page:
+
+* `Bare Metal <metal/index.html>`__
+* `Clients <clients/index.html>`__
+* `Config <config/index.html>`__
+* `Distributed Cloud <distcloud/index.html>`__
+* `Distributed Cloud Client <distcloud-client/index.html>`__
+* `Fault Management <fault/index.html>`__
+* `High Availability <ha/index.html>`__
+* `Horizon Plugin (GUI) <gui/index.html>`__
+* `Integration <integ/index.html>`__
+* `NFV <nfv/index.html>`__
+* `Software Updates <update/index.html>`__
+* `Upstream <upstream/index.html>`__
+
+Supporting projects and repositories:
+
+* `Tools <tools/index.html>`__
