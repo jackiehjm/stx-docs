@@ -52,32 +52,41 @@ For a full description of usage and optional arguments for a specific
 Alarm and event display
 ***********************
 
+The fault management (fm) alarm and event type commands enable the display of
+active alarms and historical events.
+
 ``alarm-delete``
 	Delete an active alarm.
 
 ``alarm-list``
 	List all active alarms.
 
+  An active alarm is an alarm that is currently set and typically needs operator
+  attention in order to clear the alarm.
+
 ``alarm-show``
 	Show an active alarm.
+
+  An active alarm is an alarm that is currently set and typically needs operator
+  attention in order to clear the alarm.
 
 ``alarm-summary``
 	Show a summary of active alarms.
 
 ``event-list``
-	List event logs.
+	List event logs. Displays alarm sets, alarm clears, and customer log type events.
 
 ``event-show``
-	Show a event log.
+	Show a event log. Displays alarm sets, alarm clears, and customer log type events.
 
 ``event-suppress``
-	Suppress specified event ID's.
+	Suppress specified event IDs.
 
 ``event-suppress-list``
-	List Suppressed event ID's
+	List Suppressed event IDs
 
 ``event-unsuppress``
-	Unsuppress specified event ID's.
+	Unsuppress specified event IDs.
 
 ``event-unsuppress-all``
-	Unsuppress all event ID's.
+	Unsuppress all event IDs.

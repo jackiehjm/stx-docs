@@ -3,7 +3,8 @@ dcmanager
 =========
 
 :command:`dcmanager` is the command-line interface for the Distributed Cloud
-Manager APIs.
+Manager APIs. :command:`dcmanager` is applicable only in the `SystemController`
+region of the central cloud in a distributed cloud configuration.
 
 This page documents the :command:`dcmanager` command in StarlingX R3.0.
 
@@ -53,6 +54,9 @@ For a full description of usage and optional arguments for a specific
 Distributed cloud centralized alarms
 ************************************
 
+Displays the aggregated counts of critical, major, minor, and warning alarms
+across all subclouds.
+
 ``alarm summary``
 	List alarm summaries of subclouds.
 
@@ -60,8 +64,14 @@ Distributed cloud centralized alarms
 Distributed cloud subcloud installation
 ***************************************
 
+This set of commands provides subcloud management, including basic add, delete,
+list, show, and update operations on a subcloud.
+
 ``subcloud add``
 	Add a new subcloud.
+
+	Note that this command will create the subcloud in the central cloud's
+	database as well as run the Ansible bootstrap playbook on the new subcloud.
 
 ``subcloud delete``
 	Delete subcloud details from the database.
@@ -70,24 +80,31 @@ Distributed cloud subcloud installation
 	List subclouds.
 
 ``subcloud manage``
-	Manage a subcloud.
+	Manage a subcloud. Refers to whether or not the subcloud is being actively
+	synchronized with the central cloud.
 
 ``subcloud show``
 	Show the details of a subcloud.
 
 ``subcloud unmanage``
-	Unmanage a subcloud.
+	Unmanage a subcloud. Refers to whether or not the subcloud is being actively
+	synchronized with the central cloud.
 
 ``subcloud update``
 	Update attributes of a subcloud.
 
-***************************************
-Distributed cloud patching and updating
-***************************************
+***********************************
+Distributed cloud patching/updating
+***********************************
 
 .. important::
 
    The following commands are not supported upstream.
+
+The :command:`patch-strategy` commands create, apply, and monitor the
+orchestration of software patch application (or updates) across all subclouds
+and all hosts of subclouds. :command:`patch-strategy` commands orchestrate
+software updates across an entire distributed cloud solution.
 
 ``patch-strategy abort``
 	Abort a patch strategy.
