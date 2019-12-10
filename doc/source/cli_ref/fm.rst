@@ -59,13 +59,13 @@ active alarms and historical events.
 	Delete an active alarm.
 
 ``alarm-list``
-	List all active alarms.
+  List all active alarms.
 
   An active alarm is an alarm that is currently set and typically needs operator
   attention in order to clear the alarm.
 
 ``alarm-show``
-	Show an active alarm.
+  Show an active alarm.
 
   An active alarm is an alarm that is currently set and typically needs operator
   attention in order to clear the alarm.
