@@ -22,7 +22,9 @@ For more information about the StarlingX project, refer to the
 Get started
 -----------
 
-To get started fast with StarlingX, try the Virtual All-in-one Simplex installation for the :ref:`latest release <latest_release>`, which requires a minimum of hardware and configuration.
+To get started fast with StarlingX, try the :doc:`Virtual All-in-one Simplex
+installation </deploy_install_guides/r3_release/virtual/aio_simplex>`, which
+requires a minimum of hardware and configuration.
 
 Learn more about StarlingX:
 
