@@ -55,6 +55,14 @@ For a full description of usage and optional arguments for a specific
 Certificate management
 **********************
 
+Certificate management commands allow you to install custom certificates
+for a variety of StarlingX use cases. For example:
+
+* StarlingX REST APIs and StarlingX Horizon web server.
+* StarlingX local Docker registry.
+* OpenStack REST APIs and OpenStack Horizon web server.
+* StarlingX trusted certificate authority(s).
+
 ``certificate-install``
     Install certificate.
 
@@ -67,6 +75,10 @@ Certificate management
 ********************************
 Local Docker registry management
 ********************************
+
+Local Docker registry management commands enable you to remove images and
+free disk resources consumed by the local Docker registry. This is required if
+the local Docker registry's file system (`docker-distribution`) becomes full.
 
 ``registry-garbage-collect``
     Run the registry garbage collector.
@@ -83,6 +95,15 @@ Local Docker registry management
 *****************************************
 Host/controller file system configuration
 *****************************************
+
+Host/controller file system configuration commands manage file systems on hosts.
+These commands primarily support the ability to resize the file systems.
+
+Use :command:`host-fs-*` commands to manage un-synchronized file systems on controller and
+compute nodes.
+
+Use :command:`controllerfs-*` commands to manage drbd-synchronized file systems on controller
+nodes.
 
 ``host-fs-list``
     Show list of host file systems.
@@ -111,6 +132,13 @@ Host/controller file system configuration
 ********************
 System configuration
 ********************
+
+The following set of commands enable configuration of:
+
+* Basic system attributes
+* OAM IP address(es), subnet, and gateway
+* Remote DNS servers for StarlingX hosts
+* Time synchronization protocols, for example: NPT and/or PTP
 
 ``modify``
     Modify system attributes.
@@ -146,6 +174,15 @@ System configuration
 System configuration service-parameter
 **************************************
 
+Service parameters provide a generic mechanism to configure a variety of
+configurable parameters in StarlingX, including:
+
+* HTTP and HTTPS ports
+* StarlingX Horizon authentication lockout parameters
+* StarlingX Keystone token expiration
+* StarlingX host management parameters such as heartbeat intervals and host boot
+  timeouts
+
 ``service-parameter-add``
     Add service parameter.
 
@@ -167,6 +204,13 @@ System configuration service-parameter
 **************************************
 Host IPMI configuration and management
 **************************************
+
+The :command:`host-sensor*` commands provide the ability to:
+
+* Display the sensors collected from hosts over IPMI.
+* Define thresholds.
+* Configure behavior when thresholds are crossed (for example ignore, log, or
+  reset).
 
 ``host-sensor-list``
     List sensors.
@@ -192,6 +236,13 @@ Host IPMI configuration and management
 **********************
 Application management
 **********************
+
+StarlingX provides an application package management that combines Airship
+Armada and Kubernetes Helm. The StarlingX application management provides:
+
+* System Helm overrides to automatically apply StarlingX applications according
+  to the particular StarlingX configuration currently running.
+* Management for user specified Helm overrides.
 
 ``helm-chart-attribute-modify``
     Modify Helm chart attributes.
@@ -236,6 +287,10 @@ Application management
 SNMP configuration
 ******************
 
+StarlingX supports a simple SNMPv2c agent. All fault management alarms and events
+are sent out as SNMP traps. SNMP GET requests are supported in an active alarm
+table and a historical events table.
+
 ``snmp-comm-add``
     Add a new SNMP community.
 
@@ -264,6 +319,11 @@ SNMP configuration
 ******************
 Host configuration
 ******************
+
+Host commands manage the general configuration of a StarlingX host. This
+includes assignment of CPU cores to platform or hosted applications, the
+configuration of amount and size for memory huge pages, and the configuration of
+Kubernetes node labels.
 
 ``host-list``
     List hosts.
@@ -315,6 +375,10 @@ Host configuration
 Host operational commands
 *************************
 
+The following set of commands provides operational host commands, including
+taking a host in and out of service (lock/unlock), resetting a host, rebooting a
+host, and powering a host on and off.
+
 ``host-lock``
     Lock a host.
 
@@ -343,6 +407,9 @@ Host operational commands
 Host interface configuration
 ****************************
 
+The following set of commands manages the display and configuration of host
+interfaces.
+
 ``host-ethernet-port-list``
     List host Ethernet ports.
 
@@ -350,30 +417,38 @@ Host interface configuration
     Show host Ethernet port attributes.
 
 ``host-port-list``
-    List host ports.
+    List host ports. Displays the L1 host ports and their attributes.
 
 ``host-port-show``
-    Show host port details.
+    Show host port details. Displays the L1 host ports and their attributes.
 
 ``host-if-add``
-    Add an interface.
+    Add an interface. Adds L2 host interfaces (Ethernet, VLAN, and
+    LAG type L2 host interfaces).
 
 ``host-if-delete``
-    Delete an interface.
+    Delete an interface. Deletes L2 host interfaces (Ethernet, VLAN, and
+    LAG type L2 host interfaces).
 
 ``host-if-list``
-    List interfaces.
+    List interfaces. Displays L2 host interfaces (Ethernet, VLAN, and
+    LAG type L2 host interfaces).
 
 ``host-if-modify``
-    Modify interface attributes.
+    Modify interface attributes. Modifies L2 host interfaces (Ethernet, VLAN, and
+    LAG type L2 host interfaces).
 
 ``host-if-show``
-    Show interface attributes.
-
+    Show interface attributes. Displays L2 host interfaces (Ethernet, VLAN, and
+    LAG type L2 host interfaces).
 
 ****************************************************
 Host platform L2 network, IP addressing, and routing
 ****************************************************
+
+The following set of commands defines types of L2 platform networks, assignment
+of L2 platform networks to interfaces, and configuration of L3 IP interfaces and
+routing.
 
 ``network-add``
     Add a network.
@@ -442,6 +517,11 @@ Host platform L2 network, IP addressing, and routing
 Host data networks
 ******************
 
+The following set of commands defines types of L2 data networks and assignment of
+L2 data networks to interfaces. Data networks represent the underlying L2
+networks for Kubernetes SRIOV/PCIPASSTHROUGH network attachments or OpenStack
+tenant networks.
+
 ``datanetwork-add``
     Add a data network.
 
@@ -473,6 +553,9 @@ Host data networks
 Host disk configuration
 ***********************
 
+The following set of commands enables the display and configuration of host disks,
+volume groups, and disk partitions.
+
 ``host-disk-list``
     List disks.
 
@@ -481,21 +564,6 @@ Host disk configuration
 
 ``host-disk-wipe``
     Wipe disk and GPT format it.
-
-``host-stor-add``
-    Add a storage to a host.
-
-``host-stor-delete``
-    Delete a stor.
-
-``host-stor-list``
-    List host storage.
-
-``host-stor-show``
-    Show storage attributes.
-
-``host-stor-update``
-    Modify journal attributes for OSD.
 
 ``host-lvg-add``
     Add a local volume group.
@@ -524,12 +592,6 @@ Host disk configuration
 ``host-pv-show``
     Show physical volume attributes.
 
-``cluster-list``
-    List clusters.
-
-``cluster-show``
-    Show cluster attributes.
-
 ``host-disk-partition-add``
     Add a disk partition to a disk of a specified host.
 
@@ -545,24 +607,45 @@ Host disk configuration
 ``host-disk-partition-show``
     Show disk partition attributes.
 
-``storage-tier-add``
-    Add a storage tier to a disk of a specified cluster.
-
-``storage-tier-delete``
-    Delete a storage tier.
-
-``storage-tier-list``
-    List storage tiers.
-
-``storage-tier-modify``
-    Modify the attributes of a storage tier.
-
-``storage-tier-show``
-    Show storage tier attributes.
-
 ******************
 CEPH configuration
 ******************
+
+The following set of commands is used to configure and manage CEPH OSDs, CEPH
+tiers, and CEPH storage cluster backends.
+
+``ceph-mon-add``
+
+``ceph-mon-delete``
+
+``ceph-mon-list``
+    List CEPH mons.
+
+``ceph-mon-modify``
+
+``ceph-mon-show``
+    Show ceph_mon of a specific host.
+
+``cluster-list``
+    List clusters.
+
+``cluster-show``
+    Show cluster attributes.
+
+``host-stor-add``
+    Add a storage to a host.
+
+``host-stor-delete``
+    Delete a stor.
+
+``host-stor-list``
+    List host storage.
+
+``host-stor-show``
+    Show storage attributes.
+
+``host-stor-update``
+    Modify journal attributes for OSD.
 
 ``storage-backend-add``
     Add a storage backend.
@@ -579,23 +662,27 @@ CEPH configuration
 ``storage-backend-show``
     Show a storage backend.
 
-``ceph-mon-add``
+``storage-tier-add``
+    Add a storage tier to a disk of a specified cluster.
 
-``ceph-mon-delete``
+``storage-tier-delete``
+    Delete a storage tier.
 
-``ceph-mon-list``
-    List ceph mons.
+``storage-tier-list``
+    List storage tiers.
 
-``ceph-mon-modify``
+``storage-tier-modify``
+    Modify the attributes of a storage tier.
 
-``ceph-mon-show``
-    Show ceph_mon of a specific host.
+``storage-tier-show``
+    Show storage tier attributes.
 
 **************************
 Host PCI device management
 **************************
 
-Host PCI device management commands (not including NICs).
+The following set of commands provides host PCI device management (not including
+NICs).
 
 ``host-device-list``
     List devices.
@@ -609,6 +696,9 @@ Host PCI device management commands (not including NICs).
 ******************************
 Host LLDP operational commands
 ******************************
+
+The following set of commands displays neighbor information learned from the
+Link Layer Discovery Protocol (LLDP), which runs on all host interfaces.
 
 ``host-lldp-agent-list``
     List host LLDP agents.
@@ -625,6 +715,10 @@ Host LLDP operational commands
 ******************************
 Controller services management
 ******************************
+
+The following set of commands enables display of services running on the StarlingX
+controllers/masters. Optional services can be enabled or disabled using these
+commands.
 
 ``servicenode-list``
     List service nodes.

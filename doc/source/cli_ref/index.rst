@@ -2,7 +2,7 @@
 CLI Reference
 =============
 
-StarlingX project command line utility reference.
+Reference for the StarlingX project command line interface (CLI).
 
 .. toctree::
    :maxdepth: 1
