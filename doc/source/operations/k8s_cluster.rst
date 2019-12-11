@@ -20,7 +20,7 @@ StarlingX Kubernetes is a private cloud software project that deploys a
 Kubernetes cluster on dedicated physical servers. With a range of deployment
 configurations, it can be deployed from the data center to the edge of the
 network. This provides a single solution to deploy your containerized
-applications, regardless of where they are located. It's ability to scale both
+applications, regardless of where they are located. Its ability to scale both
 large and small makes StarlingX Kubernetes ideal for edge deployments.
 
 StarlingX Kubernetes provides a fully-managed solution that includes both Day-1
@@ -36,11 +36,11 @@ and Day-2 operations with respect to managing a cloud native platform:
   * Kubernetes software
   * Supporting open-source software such as Ceph, Apache, and Postgres.
 * Log and performance metrics are collected and reported for both hardware and
-  software components
+  software components.
 * Security is addressed across a variety of attack surfaces that includes TLS
   support, user authentication/authorization, and network firewalls on all
   external interfaces, with support for technologies such as UEFI Secure Boot,
-  signed software updates
+  signed software updates.
 
 All of the above solutions are fully-integrated and ready-to-deploy with default
 configurations that optimize performance and scalability.
@@ -146,7 +146,7 @@ StarlingX application package manager
 *************************************
 
 Use the StarlingX :command:`system application-*` commands to manage
-containerized application deployment from the command-line.
+containerized application deployment from the commandline.
 
 StarlingX application management provides a wrapper around
 `Airship Armada <https:// opendev.org/airship/armada.git>`_ and
@@ -197,15 +197,15 @@ Use the following commands with the StarlingX application manager:
 	Delete a Helm chart’s user-overrides for a particular namespace.
 
 ``application-apply``
-	Apply or reapply the application manifest and Helm charts. This command will
-	install or update the existing installation of the application based on its
+	Apply or reapply the application manifest and Helm charts. This command
+	installs or updates the existing installation of the application based on its
 	Armada manifest, Helm charts, and Helm charts’ combined system and user overrides.
 
 ``application-abort``
 	Abort the current application operation.
 
 ``application-update``
-	Update the deployed application to a different version
+	Update the deployed application to a different version.
 
 ``application-remove``
 	Uninstall an application.
