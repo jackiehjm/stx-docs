@@ -608,18 +608,18 @@ volume groups, and disk partitions.
     Show disk partition attributes.
 
 ******************
-CEPH configuration
+Ceph configuration
 ******************
 
-The following set of commands is used to configure and manage CEPH OSDs, CEPH
-tiers, and CEPH storage cluster backends.
+The following set of commands is used to configure and manage Ceph OSDs, Ceph
+tiers, and Ceph storage cluster backends.
 
 ``ceph-mon-add``
 
 ``ceph-mon-delete``
 
 ``ceph-mon-list``
-    List CEPH mons.
+    List Ceph mons.
 
 ``ceph-mon-modify``
 

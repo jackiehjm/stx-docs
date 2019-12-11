@@ -222,7 +222,7 @@ Configure controller-0
       system interface-datanetwork-assign ${COMPUTE} ${DATA0IFUUID} ${PHYSNET0}
       system interface-datanetwork-assign ${COMPUTE} ${DATA1IFUUID} ${PHYSNET1}
 
-#. Add an OSD on controller-0 for ceph. The following example adds an OSD
+#. Add an OSD on controller-0 for Ceph. The following example adds an OSD
    to the `sdb` disk:
 
    ::
@@ -368,7 +368,7 @@ Configure controller-1
       system interface-datanetwork-assign ${COMPUTE} ${DATA0IFUUID} ${PHYSNET0}
       system interface-datanetwork-assign ${COMPUTE} ${DATA1IFUUID} ${PHYSNET1}
 
-#. Add an OSD on controller-1 for ceph:
+#. Add an OSD on controller-1 for Ceph:
 
    ::
 

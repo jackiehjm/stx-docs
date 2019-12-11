@@ -35,7 +35,7 @@ Cloud with Dedicated Storage includes:
   nodes in either active/active or active/standby mode.
 - Pool of up to 100 compute nodes for hosting virtual machines and virtual
   networks.
-- 2-9x node HA CEPH storage cluster for hosting virtual volumes, images, and
+- 2-9x node HA Ceph storage cluster for hosting virtual volumes, images, and
   object storage that supports a replication factor of 2 or 3.
 
   Storage nodes are deployed in replication groups of 2 or 3. Replication
@@ -320,7 +320,7 @@ Set up one provider network of the vlan type, named providernet-a:
 Adding a Ceph storage backend at installation
 *********************************************
 
-Add CEPH Storage backend:
+Add Ceph Storage backend:
 
 ::
 
@@ -350,7 +350,7 @@ Add CEPH Storage backend:
    | 55f49f86-3e01-4d03-a014-42e1b55ba487 | file-store | file    | configured  | None               | glance   |...
    +--------------------------------------+------------+---------+-------------+--------------------+----------+...
 
-Confirm CEPH storage is configured:
+Confirm Ceph storage is configured:
 
 ::
 
@@ -871,7 +871,7 @@ unlocked, enabled, and available:
    +----+--------------+-------------+----------------+-------------+--------------+
 
 ******************************
-Checking StarlingX CEPH health
+Checking StarlingX Ceph health
 ******************************
 
 ::

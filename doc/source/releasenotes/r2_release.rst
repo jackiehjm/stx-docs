@@ -138,7 +138,7 @@ StoryBoard entries for the features.
   `2003395, <https://storyboard.openstack.org/#!/story/2003395>`_
   `2005212 <https://storyboard.openstack.org/#!/story/2005212>`_
 
-* ceph upgrade to mimic:
+* Ceph upgrade to mimic:
 
   `2004540, <https://storyboard.openstack.org/#!/story/2004540>`_
   `2003605 <https://storyboard.openstack.org/#!/story/2003605>`_

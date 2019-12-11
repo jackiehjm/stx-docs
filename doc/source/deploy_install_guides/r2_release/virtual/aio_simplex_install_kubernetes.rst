@@ -205,7 +205,7 @@ On virtual controller-0:
     system interface-datanetwork-assign ${COMPUTE} ${DATA0IFUUID} ${PHYSNET0}
     system interface-datanetwork-assign ${COMPUTE} ${DATA1IFUUID} ${PHYSNET1}
 
-#. Add an OSD on controller-0 for ceph:
+#. Add an OSD on controller-0 for Ceph:
 
    ::
 
