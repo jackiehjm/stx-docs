@@ -18,7 +18,7 @@ Host Interface and Network Configuration
 Interface class configuration
 -----------------------------
 
-The interface class that the logical network interface is connected to. Valid
+The interface class to which the logical network interface is connected. Valid
 classes are:
 
 ``platform``
@@ -39,7 +39,7 @@ classes are:
 	configuration (dual use).
 
 ``pci-passthrough``
-	For a PCI pass through interface or for an interface that can be used in
+	For a PCI passthrough interface or for an interface that can be used in
 	either configuration (dual use).
 
 -----------------------
@@ -181,7 +181,7 @@ The OAM network is required for external control and board management access. It
 can be used for container payload external connectivity, depending on
 container payload application network requirements.
 
-To assign an interface to a platform network:
+Assign an interface to a platform network with the command:
 
 ::
 
@@ -196,7 +196,7 @@ Replace parameters with values suitable to your installation. Parameters are:
 	A name for the interface.
 
 ``NETWORK``
-	The name or ID of the platform network to assign the interface to.
+	The name or ID of the platform network to which the interface will be assigned.
 
 *************
 Data networks
@@ -211,7 +211,7 @@ support the application networks. Multiple data networks may be configured as
 required and realized over the same or different physical networks. Access to
 external networks is typically (although not always) granted to worker nodes
 using a data network. The extent of this connectivity, including access to the
-open Internet, is application dependent.
+open Internet, is application-dependent.
 
 Data networks are created by the administrator to make use of an underlying set
 of resources on a physical network.
@@ -228,13 +228,13 @@ Three types of data networks may be implemented in StarlingX:
    networks connected by Layer 3 routers, using a VNI identifier. This allows
    multiple data networks over physically separated Layer 2 networks.
 
-To list the names of the data networks:
+List the names of the data networks with the command:
 
 ::
 
   system datanetwork-list
 
-To view details of a data network:
+View details of a data network with the command:
 
 ::
 
@@ -245,7 +245,7 @@ Replace parameters with values suitable to your installation. Parameters are:
 ``DATA_NETWORK``
 	The name or UUID of the data network.
 
-To add a data network:
+Add a data network with the command:
 
 ::
 
@@ -279,7 +279,7 @@ Replace parameters with values suitable to your installation. Parameters are:
 ``TYPE``
 	The type of data network to be created (flat, vlan, or vxlan).
 
-To assign an interface to a data network:
+Assign an interface to a data network with the command:
 
 ::
 
@@ -294,5 +294,5 @@ Replace parameters with values suitable to your installation. Parameters are:
 	A name for the interface.
 
 ``DATA_NETWORK``
-	The name or ID of the data network to assign the interface to.
+	The name or ID of the data network to which the interface will be assigned.
 
