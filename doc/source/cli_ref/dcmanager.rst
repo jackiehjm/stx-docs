@@ -80,15 +80,15 @@ list, show, and update operations on a subcloud.
 	List subclouds.
 
 ``subcloud manage``
-	Manage a subcloud. Refers to whether or not the subcloud is being actively
-	synchronized with the central cloud.
+	Manage a subcloud. Enables the active synchronization of data between the
+	central cloud and the subcloud.
 
 ``subcloud show``
 	Show the details of a subcloud.
 
 ``subcloud unmanage``
-	Unmanage a subcloud. Refers to whether or not the subcloud is being actively
-	synchronized with the central cloud.
+	Unmanage a subcloud. Disables the active synchronization of data between the
+	central cloud and the subcloud.
 
 ``subcloud update``
 	Update attributes of a subcloud.
