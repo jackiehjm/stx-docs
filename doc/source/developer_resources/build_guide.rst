@@ -2,7 +2,12 @@
 StarlingX Build Guide
 =====================
 
-This section describes the steps for building an ISO image from a StarlingX release.
+This section describes the steps for building an ISO image from a StarlingX
+release.
+
+.. contents::
+   :local:
+   :depth: 1
 
 ------------
 Requirements

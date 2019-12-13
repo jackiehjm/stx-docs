@@ -1,16 +1,13 @@
 .. _contribute:
 
-==========
-Contribute
-==========
+==================
+Contributor Guides
+==================
 
-The following guides provide detailed instructions on the contribution workflow
-and conventions to be considered when contributing to the StarlingX documentation.
+Welcome to the StarlingX community! We are glad you are here.
 
-StarlingX utilizes tooling and CI/CD environments from the OpenStack
-Foundation. The source is hosted on `OpenDev's Git server`_.
-
-.. _`OpenDev's Git server`: https://opendev.org/starlingx
+If you are new to the project, take a moment to review the
+`StarlingX wiki <https://wiki.openstack.org/wiki/StarlingX>`_.
 
 ---------------------------
 Contribute to documentation
@@ -19,43 +16,26 @@ Contribute to documentation
 .. toctree::
    :maxdepth: 1
 
+   doc_contribute_guide
    api_contribute_guide
    release_note_contribute_guide
-   doc_contribute_guide
 
--------------------
-Development process
--------------------
+------------------
+Contribute to code
+------------------
 
-For information on the StarlingX development process, refer to the following guide:
+StarlingX follows the
+`OpenStack developer contribution guidelines <https://docs.openstack.org/infra/manual/developers.html>`_. Additional StarlingX-specific resources are listed below.
 
 .. toctree::
    :maxdepth: 1
 
    development_process
-
----------------
-Build StarlingX
----------------
-
-Refer to the StarlingX Build Guide for instructions on how to build a StarlingX
-ISO image.
-
-.. toctree::
-   :maxdepth: 1
-
-   build_guide
+   Code Submission Guidelines <https://wiki.openstack.org/wiki/StarlingX/CodeSubmissionGuidelines>
 
 --------------------
 Additional resources
 --------------------
 
-Additional information about contributing to OpenStack documentation can be found
-in the following guides:
-
-* `OpenStack API documentation guide`_
-* `OpenStack Documentation Contributor Guide`_
-
-.. _`OpenStack Documentation Contributor Guide`: https://docs.openstack.org/doc-contrib-guide/index.html
-
-.. _`OpenStack API documentation guide`: https://docs.openstack.org/doc-contrib-guide/api-guides.html
+* `StarlingX wiki <https://wiki.openstack.org/wiki/StarlingX>`_
+* :doc:`/developer_resources/index`

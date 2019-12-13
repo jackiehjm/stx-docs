@@ -250,7 +250,7 @@ Unload firewall and disable firewall on boot:
 Getting the StarlingX ISO image
 -------------------------------
 
-Follow the instructions from the :doc:`/contributor/build_guide` to build a
+Follow the instructions from the :doc:`/developer_resources/build_guide` to build a
 StarlingX ISO image.
 
 **********

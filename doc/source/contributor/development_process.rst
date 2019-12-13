@@ -2,9 +2,11 @@
 StarlingX Development Process
 =============================
 
+This section describes the StarlingX development process.
+
 .. contents::
    :local:
-   :depth: 2
+   :depth: 1
 
 ------------
 Introduction
