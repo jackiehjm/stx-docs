@@ -12,23 +12,19 @@ Each guide provides instruction on a specific StarlingX configuration
 Latest release (stable)
 -----------------------
 
-StarlingX R2.0 is the latest officially released version of StarlingX.
-
-.. toctree::
-   :maxdepth: 1
-
-   r2_release/index
-
----------------------
-Upcoming R3.0 release
----------------------
-
-StarlingX R3.0 is the forthcoming version of StarlingX under development.
+StarlingX R3.0 is the latest officially released version of StarlingX.
 
 .. toctree::
    :maxdepth: 1
 
    r3_release/index
+
+---------------------
+Upcoming R4.0 release
+---------------------
+
+StarlingX R4.0 is the forthcoming version of StarlingX under development.
+
 
 -----------------
 Archived releases
@@ -37,6 +33,7 @@ Archived releases
 .. toctree::
    :maxdepth: 1
 
+   r2_release/index
    r1_release/index
 
 

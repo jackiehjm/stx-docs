@@ -2,14 +2,6 @@
 StarlingX R3.0 Installation
 ===========================
 
-.. Note::
-
-   StarlingX R3.0 is the upcoming release currently under development. Instructions
-   and examples may change with the final release of R3.0.
-
-   Community contributions to the documentation are welcome! If you see an empty
-   topic and want to contribute, refer to the linked story in the topic for details.
-
 StarlingX provides a pre-defined set of standard
 :doc:`deployment configurations </introduction/deploy_options>`. Most deployment options may
 be installed in a virtual environment or on bare metal.
