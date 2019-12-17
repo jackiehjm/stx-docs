@@ -1,13 +1,17 @@
 ===============================
-Release notes contributor guide
+Release Notes Contributor Guide
 ===============================
 
 Release notes for StarlingX projects are managed using Reno allowing release
 notes go through the same review process used for managing code changes.
 Release documentation information comes from YAML source files stored in the
-project repository, that when built in conjuction with RST source files,
+project repository, that when built in conjunction with RST source files,
 generate HTML files. More details about the Reno Release Notes Manager can
 be found at: https://docs.openstack.org/reno
+
+.. contents::
+   :local:
+   :depth: 1
 
 ---------
 Locations
@@ -15,27 +19,26 @@ Locations
 
 StarlingX release notes documentation exists in the following projects:
 
--  `starlingx/clients`_: StarlingX Client Libraries
--  `starlingx/config`_: StarlingX System Configuration Management
--  `starlingx/distcloud`_: StarlingX Distributed Cloud
--  `starlingx/distcloud-client`_: StarlingX Distributed Cloud Client
--  `starlingx/fault`_: StarlingX Fault Management
--  `starlingx/gui`_:  StarlingX Horizon plugins for new StarlingX services
--  `starlingx/ha`_: StarlingX High Availability/Process Monitoring/Service Management
--  `starlingx/integ`_: StarlingX Integration and Packaging
--  `starlingx/metal`_: StarlingX Bare Metal and Node Management, Hardware Maintenance
--  `starlingx/nfv`_: StarlingX NFVI Orchestration
--  `starlingx/tools`_: StarlingX Build Tools
--  `starlingx/update`_: StarlingX Installation/Update/Patching/Backup/Restore
--  `starlingx/upstream`_: StarlingX Upstream Packaging
+*  `starlingx/clients`_: StarlingX Client Libraries
+*  `starlingx/config`_: StarlingX System Configuration Management
+*  `starlingx/distcloud`_: StarlingX Distributed Cloud
+*  `starlingx/distcloud-client`_: StarlingX Distributed Cloud Client
+*  `starlingx/fault`_: StarlingX Fault Management
+*  `starlingx/gui`_:  StarlingX Horizon plugins for new StarlingX services
+*  `starlingx/ha`_: StarlingX High Availability/Process Monitoring/Service Management
+*  `starlingx/integ`_: StarlingX Integration and Packaging
+*  `starlingx/metal`_: StarlingX Bare Metal and Node Management, Hardware Maintenance
+*  `starlingx/nfv`_: StarlingX NFVI Orchestration
+*  `starlingx/tools`_: StarlingX Build Tools
+*  `starlingx/update`_: StarlingX Installation/Update/Patching/Backup/Restore
+*  `starlingx/upstream`_: StarlingX Upstream Packaging
 
 --------------------
-Directory Structures
+Directory structures
 --------------------
 
 The directory structure of release documentation under each StarlingX project
-repository is fixed.  Here is an example showing **stx-confi** StarlingX System
-Configuration Management:
+repository is fixed.  This example shows the ``stx-confi`` project:
 
 ::
 
@@ -51,23 +54,35 @@ Configuration Management:
 The initial modifications and additions to enable the API Documentation service
 in each StarlingX project are as follows:
 
--  **.gitignore** modifications to ignore the building directories and HTML files
-   for the Release Notes
--  **.zuul.yaml** modifications to add the jobs to build and publish the api-ref
-   document
--  **releasenotes/notes/** directory creation to store your release notes files
-   in YAML format
--  **releasenotes/source** directory creation to store your API Reference project
-   directory
--  **releasenotes/source/conf.py** configuration file to determine the HTML theme,
-   Sphinx extensions and project information
--  **releasenotes/source/index.rst** source file to create your index RST source
-   file
--  **releasenotes/source/unrelased.rst** source file to avoid breaking  the real
-   release notes build job on the master branch
--  **doc/requiremets.txt** modifications to add the os-api-ref Sphinx extension
--  **tox.ini** modifications to add the configuration to build the API reference
-   locally
+``.gitignore``
+	Modifications to ignore the building directories and HTML files for the
+	release notes.
+
+``.zuul.yaml``
+	Modifications to add jobs to build and publish the ``api-ref`` document.
+
+``releasenotes/notes``
+	Directory created to store your release notes files in YAML format.
+
+``releasenotes/source``
+	Directory created to store your API reference project directory.
+
+``releasenotes/source/conf.py``
+	Configuration file to determine the HTML theme, Sphinx extensions, and
+	project information.
+
+``releasenotes/source/index.rst``
+	Source file to create your index RST source file.
+
+``releasenotes/source/unrelased.rst``
+	Source file to avoid breaking the real release notes build job on the master
+	branch.
+
+``doc/requiremets.txt``
+	Modifications to add the ``os-api-ref`` Sphinx extension.
+
+``tox.ini``
+	Modifications to add the configuration to build the API reference locally.
 
 See stx-config [Doc] Release Notes Management as an example of this first commit:
 https://review.opendev.org/#/c/603257/
@@ -76,11 +91,11 @@ Once the Release Notes Documentation service has been enabled, you can create a 
 release notes.
 
 -------------------
-Release Notes Files
+Release notes files
 -------------------
 
-The following shows the YAML source file for the stx-config StarlingX System
-Configuration Management:
+The following shows the YAML source file for the stx-config project:
+
 `Release Summary R1.0 <http://git.openstack.org/cgit/openstack/stx-config/tree/releasenotes/notes/release-summary-6738ff2f310f9b57.yaml>`_
 
 ::
@@ -89,12 +104,12 @@ Configuration Management:
 	├── notes
 	│   └── release-summary-6738ff2f310f9b57.yaml
 
-
-To create a new release note that document your code changes via tox newnote environment:
+To create a new release note that documents your code changes via the
+tox newnote environment:
 
 $ tox -e newnote hello-my-change
 
-A YAML source file is created with a unique name under releasenote/notes/ directory:
+A YAML source file is created with a unique name under ``releasenote/notes/`` directory:
 
 ::
 
@@ -102,7 +117,7 @@ A YAML source file is created with a unique name under releasenote/notes/ direct
 	├── notes
 	│   ├── hello-my-change-dcef4b934a670160.yaml
 
-The content are gound into logical sections based in the default template used by reno:
+The content is grouped into logical sections based in the default template used by reno:
 
 ::
 
@@ -118,75 +133,8 @@ The content are gound into logical sections based in the default template used b
 Modify the content in the YAML source file based on
 `reStructuredText <http://www.sphinx-doc.org/en/stable/rest.html>`_ format.
 
---------------------------
-Closing Out a Bug or Story
---------------------------
-
-If you are modifying a document as a result of a defect or
-feature that is associated with a StoryBoard Story or Launchpad
-Bug, you must take steps to link your submission (Gerrit Review)
-to the story or bug.
-
-To link a story, add the following lines in your
-commit message.
-Be sure to use the actual story ID and task ID with the commit:
-
-* Story: $story_id
-* Task: $task_id
-
-Following is an example that links a Gerrit Review with Story
-2003375 and Task 2444:
-
-::
-
-   Change the tox.ini directory regarding tox.ini dependencies
-
-   Story: 2003375
-   Task: 24444
-
-**NOTE:** You must provide a blank line before the lines
-used to identify the story and the task.
-If you do not provide this line, your submission will not
-link to the Storyboard's story.
-
-To link a bug, add the approprite lines in your commit message.
-Be sure to provide the actual bug numbers:
-
-* Closes-Bug: $bug_id
-* Partial-Bug: $bug_id
-* Related-Bug: $bug_id
-
-If your fix requires multiple commits, use "Partial-Bug"
-for all the commits except the final one.
-For the final commit, use "Closes-Bug".
-
-Following is an example commit message that closes out bug
-1804024:
-
-::
-
-   AIO Hardware Requirements: Updated AIO HW requirements.
-
-   Added Small HW form factor information simplex/duplex
-   AIO hardware requirements.
-
-   Closes-Bug: #1804024
-
-When you associate a story or bug with a Gerrit review, Gerrit
-automatically updates the status of the story or bug once the
-commit is merged.
-Again, be sure to provide a blank line just before the line
-identifying the bug.
-
-You can find more information on the StarlingX code submission
-guidelines on the
-`wiki <https://wiki.openstack.org/wiki/StarlingX/CodeSubmissionGuidelines>`_.
-
-To see the list of defects against StarlingX, see the
-`Launchpad Application <https://bugs.launchpad.net/starlingx>`_.
-
 ------------------
-Developer Workflow
+Developer workflow
 ------------------
 
 #. Start common development workflow to create your change: "Hello My Change".
@@ -195,15 +143,13 @@ Developer Workflow
 #. Add your change including its release notes and submit for review.
 
 ---------------------
-Release Team Workflow
+Release team workflow
 ---------------------
 
 #. Start development work to prepare the release. This might include a
    Git tag.
 #. Generate the Reno Report.
 #. Add your change and submit for review.
-
-
 
 .. _starlingx/clients: https://opendev.org/starlingx/clients
 .. _starlingx/config: https://opendev.org/starlingx/config

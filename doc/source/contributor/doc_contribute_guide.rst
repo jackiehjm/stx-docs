@@ -1,288 +1,433 @@
 ===============================
-Documentation contributor guide
+Documentation Contributor Guide
 ===============================
 
-This guide provides information that allows you to contribute to the
-`StarlingX documentation <https://docs.starlingx.io/>`_.
+This section describes the guidelines for contributing to the StarlingX
+documentation.
 
-Information common to OpenStack workflow, writing styles, and conventions
-is not included in this guide. Instead refer to the
+.. contents::
+   :local:
+   :depth: 1
+
+------------------
+General guidelines
+------------------
+
+The StarlingX documentation uses reStructuredText (RST) markup syntax with
+Sphinx extensions. Most writing and markup conventions are based on the
 `OpenStack Documentation Contributor Guide <https://docs.openstack.org/doc-contrib-guide/index.html>`_.
 
----------
-Locations
----------
+When writing documentation, follow the StarlingX documentation guidelines:
 
-StarlingX documentation consists of several types of manuals and is found
-in the `starlingx/docs`_ and `starlingx/specs`_ repositories.
+* `Writing style`_
+* `RST conventions`_
 
-You can clone these repositories by:
+Verify that your changes render properly by `building the documentation locally <https://docs.openstack.org/doc-contrib-guide/docs-builds.html>`_.
+
+******************
+Contribute content
+******************
+
+If you are looking for work to complete, review these reports:
+
+* Refer to the `StarlingX documentation StoryBoard <https://storyboard.openstack.org/#!/project/starlingx/docs>`_ for topics that need content. Many topics have stub pages in the documentation with a link to the associated story.
+
+* Find open `documentation bugs on Launchpad <https://bugs.launchpad.net/starlingx/+bugs?field.tag=stx.docs>`_.
+
+
+When creating a Gerrit review, link the associated story, task, or bug in the
+comment, according to `Starlingx Code Submission Guidelines <https://wiki.openstack.org/wiki/StarlingX/CodeSubmissionGuidelines>`_.
+
+For example, link a story and task in a comment:
 
 ::
 
-   $ git clone https://opendev.org/starlingx/docs.git
-   $ git clone https://opendev.org/starlingx/specs.git
+  Brief description of change.
 
-These projects contain hierarchy that organizes the documentation by topic:
+  Detailed description of change.
 
-Installation Guide
-    Describes how to install StarlingX onto Bare Metal or into a virtual
-    environment.
+  Story: $story_id
+  Task: $task_id
 
-Developer Guide
-    Describes how to build a StarlingX ISO image from the "master" branch.
+Or, to link to the bug that the review fixes:
 
-Project Specifications
-    Describes specifications, specification templates, and processes for
-    submitting a specification.
+::
 
-REST API Reference
-    Describes StarlingX APIs.
+  Brief description of bug fix.
 
-Release Notes
-    Provides release-specific information.
+  Detailed description of bug fix.
 
-Contribute
-    Provides guides on how to contribute to StarlingX API documentation,
-    release notes, and general documentation.
+  Closes-Bug: $bug_id
 
---------------------
-Directory Structures
---------------------
+-----------------
+Docs organization
+-----------------
 
-Directory structures vary depending on the type of documentation involved.
-Think of the structure as one or more RST files per book.
+Documentation for StarlingX is organized into the following sections:
 
-* A simple book consists of a single **index.rst** file.
-* A more complicated book could consist of an **index.rst** file as the book's
-  landing page and a set of additional RST files for major sections of the book.
+:doc:`/introduction/index`
+  Overview of the StarlingX project.
 
-The structure for the API Reference documentation deserves some extra explanation.
-Most RST files for the API Reference content reside in top-level
-StarlingX repositories, for example `starlingx/metal`_ or `starlingx/config`_.
-However, four API Reference RST files reside in `starlingx/docs`_,
-in **/api-ref/source**:
+:doc:`/deploy_install_guides/index`
+  Release-specific installation and deployment guides.
 
-* "Block Storage"
-* "Compute"
-* "Image"
-* "Network".
+:doc:`/configuration/index`
+  Configuration references for post-installation StarlingX system configuration.
 
-While there is a **/api-ref/source/index.rst** file along
-side these other four RST files, it exists only because the Sphinx process
-needs that index file to build out the final web documentation tree.
-The actual landing page (content) for the API Reference documents
-is in the **/doc/source/api-ref/index.rst** file.
+:doc:`/operations/index`
+  System administration and maintenance guides.
 
-In the `starlingx/specs`_ project, the **/doc/source/index.rst**
-file is the main landing page for the StarlingX specifications page
-(<https://docs.starlingx.io/specs/index.html>`_).
+:doc:`/api-ref/index`
+  REST API references for the StarlingX project. For additional information about
+  where REST API documentation is located, see `API documentation`_.
 
-The **/specs/2019.03** area contains the RST files for approved and
+:doc:`/cli_ref/index`
+  Reference for the StarlingX project command line interface (CLI).
+
+:doc:`/developer_resources/index`
+  Resources for developers using or building StarlingX.
+
+:doc:`/releasenotes/index`
+  Release notes for all StarlingX releases.
+
+:doc:`/contributor/index`
+  Overview and guidelines for contributing to StarlingX documentation.
+
+*****************
+API documentation
+*****************
+
+The structure and location of the REST API documentation deserves extra explanation.
+
+Most REST API content is generated from the StarlingX project associated with the
+API. For example, the documentation for the StarlingX metal REST API is
+generated from the `metal repository <https://opendev.org/starlingx/metal>`_.
+
+API references for StarlingX extensions are part of the docs repository, located
+in the ``api-ref`` project:
+
+* StarlingX extensions to the OpenStack Block Storage API
+* StarlingX extensions to the OpenStack Compute API
+* StarlingX extensions to the OpenStack Image API
+* StarlingX extensions to the OpenStack Networking API
+
+The ``api-ref`` project also contains index pages used by Sphinx to
+generate the final content tree. Note that the REST API landing page used to
+render content in the generated website is found in the ``doc`` project.
+
+For additional information on the API documentation, refer to :doc:`api_contribute_guide`.
+
+******************
+Spec documentation
+******************
+
+Spec documentation is found in the
+`Starlingx specs project <https://opendev.org/starlingx/specs>`_.
+
+The ``specs/2019.03`` directory contains the documentation files for approved and
 implemented specs.
 
------------------
-Updating a Manual
------------------
+-------------
+Writing style
+-------------
 
-If you need to update an existing manual, you need to find the appropriate RST
-source file, make your modifications, test them (i.e. build the manual), and
-then submit the changes to Gerrit for approval.
+StarlingX documentation follows many (but not all!) of the writing style
+guidelines described in the `OpenStack documentation writing style guide <https://docs.openstack.org/doc-contrib-guide/writing-style.html>`_. Differences
+between the StarlingX and OpenStack practices are highlighted below.
 
------------------
-Creating a Manual
------------------
+* Use Title Case for page titles. For example:
 
-Creating a new manual involves at minimum providing a new **index.rst** file.
-If the manual is more complex with additional content outside of the
-**index.rst** file, you need to provide additional RST files as well.
+  ::
 
-As an example, consider a new manual that resides in **/doc/source/my-guide**.
-Furthermore, suppose this manual's **index.rst** file contained two
-links to additional complicated topics: "Topic 1" and
-"Topic 2".
+    ===============================
+    Documentation Contributor Guide
+    ===============================
 
-The content for the new manual exists in three files:
+* Start section titles with an action verb, but not a gerund (word that ends with -ing). For example:
 
-* **/doc/source/my-guide/index.rst**
-* **/doc/source/my-guide/topic_1.rst**
-* **/doc/source/my-guide/topic_2.rst**
+  ::
 
-Following shows the hierarchy:
+    ------------------
+    Configure endpoint
+    ------------------
 
-::
+---------------
+RST conventions
+---------------
 
-    ├── doc
-    │   └── source
-    │       ├── my_guide
-    │       │   ├── index.rst
-    │       │   ├── topic_1.rst
-    │       │   ├── topic_2.rst
+StarlingX documentation follows many (but not all!) of the RST conventions
+described in the `OpenStack documentation RST conventions guide <https://docs.openstack.org/doc-contrib-guide/rst-conv.html>`_. If RST markup is
+not listed in this section's quick reference, refer to the OpenStack guide.
 
+For detailed information about RST and Sphinx extensions, refer to the following
+documents:
 
------------------------
-Creating the Index File
------------------------
+* `Sphinx documentation <http://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
+* `reStructuredText primer <http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_
 
-The **index.rst** file provides captioning, a brief
-description of the document, and the table-of-contents (TOC) structure
-with instructions on how to display or hide sub-topics.
+-------------------
+RST quick reference
+-------------------
 
-The syntax of the **index.rst** file is fixed. Following shows the
-sample **index.rst** file for the new guide:
+.. contents::
+   :local:
+   :depth: 1
 
-::
+********
+Acronyms
+********
 
-     ========
-     My Guide
-     ========
+Define acronym at first instance on page. After definition, use acronym only.
 
-     The new guide.
-
-     - :ref:`Topic 1 <topic_1>`
-     - :ref:`Topic 2 <topic_2>`
-
-     .. toctree::
-        :hidden:
-
-        topic_1
-        topic_2
-
-Following are explanations for each of the four areas of the
-**index.rst** file:
-
--  **Reference title:** Literal title that is used in the rendered
-   document.
-   In this case it is "My Guide".
--  **Reference summary:** Literal summary of the rendered document.
-   In this case it is "The new guide."
--  **Table-of-Contents tree structure and sub-topic parameters:** The
-   directive to create a TOC and to specify the embedded topic links
-   should remain hidden.
-   If you want sub-topics to be part of the TOC, use the
-   ":maxdepth: x" directive where "x" is the depth you desire for
-   sub-topics in the TOC.
--  **RST source file root name:** The source files to use as content.
-   In this case, the file references are "topic_1" and "topic_2".
-   These reference the **topic_1.rst** and **topic_2.rst** files
-   in the same folder as the **index.rst** file.
-
-----------------------------------------------------
-Integrating the New Guide Into the Documentation Set
-----------------------------------------------------
-
-The previous section described how you can provide the files
-you need to create a new guide.
-This section describes how to add your new guide to the table of contents in the 
-documentation site.
-
-The **/doc/source/index.rst** file contains the structure
-that defines the StarlingX Documentation landing page.
-Inside the file, is a "Sections" area that lists the documents
-that appear in the table of contents.
-Add your new guide to the toctree definition in the index.rst file.
-
---------------------------
-Closing Out a Bug or Story
---------------------------
-
-If you are modifying a document as a result of a defect or
-feature that is associated with a StoryBoard Story or Launchpad
-Bug, you must take steps to link your submission (Gerrit Review)
-to the story or bug.
-
-To link a story, add the following lines in your
-commit message.
-Be sure to use the actual story ID and task ID with the commit:
-
-* Story: $story_id
-* Task: $task_id
-
-Following is an example that links a Gerrit Review with Story
-2003375 and Task 2444:
+**Input:**
 
 ::
 
-   Change the tox.ini directory regarding tox.ini dependencies
+  :abbr:`CPU (Central Processing Unit)`
 
-   Story: 2003375
-   Task: 24444
+**Output:**
 
-**NOTE:** You must provide a blank line before the lines
-used to identify the Story and the Task.
-Furthermore, you must place these lines as the last lines
-in your commit message.
-If you do not follow these guidelines, your submission will not
-link to the Storyboard's story.
+:abbr:`CPU (Central Processing Unit)`
 
-To link a bug, add the appropriate lines in your commit message.
-Be sure to provide the actual bug numbers:
+************
+Code samples
+************
 
-* Closes-Bug: $bug_id
-* Partial-Bug: $bug_id
-* Related-Bug: $bug_id
+Format code snippets as standalone literal blocks.
 
-If your fix requires multiple commits, use "Partial-Bug"
-for all the commits except the final one.
-For the final commit, use "Closes-Bug".
-
-Following is an example commit message that closes out bug
-1804024:
+**Input:**
 
 ::
 
-   AIO Hardware Requirements: Updated AIO HW requirements.
+  ::
 
-   Added Small HW form factor information simplex/duplex
-   AIO hardware requirements.
+    ping 8.8.8.8
 
-   Closes-Bug: #1804024
-
-When you associate a story or bug with a Gerrit review, Gerrit
-automatically updates the status of the story or bug once the
-commit is merged.
-Again, be sure to provide a blank line just before the line
-identifying the bug.
-
-You can find more information on the StarlingX code submission
-guidelines on the
-`wiki <https://wiki.openstack.org/wiki/StarlingX/CodeSubmissionGuidelines>`_.
-
-To see the list of defects against StarlingX, see the
-`Launchpad Application <https://bugs.launchpad.net/starlingx>`_.
-
---------------------------
-Building the Documentation
---------------------------
-
-To build the documentation locally in HTML format, use the
-following command:
-
-.. code:: sh
-
-   $ tox -e docs
-
-The resulting HTML files will be located in the **/doc/build**
-directory:
+**Output:**
 
 ::
 
-     starlingx/docs/doc/
-     ├── build
-     │   └── html
+    ping 8.8.8.8
 
-----------------------------------
-Viewing the Rendered Documentation
-----------------------------------
+********
+Commands
+********
 
-To view the rendered documentation in a browser, open up
-the **index.html** file in your browser.
+Format commands using the Sphinx ``command`` role.
 
-**NOTE:** The PDF build uses a different tox environment and is
-currently not supported for StarlingX.
+**Input:**
+
+::
+
+  :command:`system help`
+
+**Output:**
+
+Use the :command:`system help` command for the full list of options.
+
+****************
+Cross-references
+****************
+
+Cross-reference to arbitrary locations in a document using the ``ref`` role and a
+named target. Named targets must precede a section heading. For more information
+on references, see
+`Internal Hyperlink Targets <http://docutils.sourceforge.net/docs/user/rst/quickref.html#internal-hyperlink-targets>`_
+
+**Input:**
+
+::
+
+  .. _my_named_target:
+
+  ~~~~~~~~~~
+  My section
+  ~~~~~~~~~~
+
+  This is the section we want to reference.
+
+  ...
+
+  This is the reference to :ref:`my_named_target`.
+
+**Output:**
+
+.. _my_named_target:
+
+~~~~~~~~~~
+My section
+~~~~~~~~~~
+
+This is the section we want to reference.
+
+...
+
+This is the reference to :ref:`my_named_target`.
+
+******************
+Information blocks
+******************
+
+Emphasize information using notices (an 'admonition' in Sphinx). Different types of notices exist to emphasize degrees of information importance.
+
+**Input:**
+
+::
+
+  .. note::
+
+     Use a ``note`` for a generic message.
+
+  .. seealso::
+
+     Use ``seealso`` for extra but helpful information.
+
+  .. important::
+
+     Use ``important`` for details that can be easily missed, but should not be
+     ignored by a user and are valuable before proceeding.
+
+  .. warning::
+
+     Use ``warning`` to call out information the user must understand
+     to avoid negative consequences.
+
+**Output:**
+
+.. note::
+
+   Use a ``note`` for a generic message.
+
+.. seealso::
+
+   Use ``seealso`` for extra but helpful information.
+
+.. important::
+
+   Use ``important`` for details that can be easily missed, but should not be
+   ignored by a user and are valuable before proceeding.
+
+.. warning::
+
+   Use ``warning`` to call out information the user must understand
+   to avoid negative consequences.
 
 
-.. _starlingx/docs: https://opendev.org/starlingx/docs
-.. _starlingx/specs: https://opendev.org/starlingx/specs
-.. _starlingx/metal: https://opendev.org/starlingx/metal
-.. _starlingx/config: https://opendev.org/starlingx/config
+***************
+Inline elements
+***************
+
+Format most inline elements such as filenames and paths, code fragments, parameters, or
+options with double back ticks.
+
+**Input:**
+::
+
+  ``/path/to/file.name``
+  ``--option``
+
+**Output:**
+
+Open the ``/path/to/file.name`` file.
+
+Optionally pass the ``--option`` with the command.
+
+Refer to the
+`OpenStack Inline elements guide <https://docs.openstack.org/doc-contrib-guide/rst-conv/inline-markups.html>`_
+for markup for other inline elements.
+
+*****
+Lists
+*****
+
+Use a bulleted list for a sequence of items whose order does not matter, such as a list of features.
+
+**Input:**
+
+::
+
+  * Banana
+  * Apple
+  * Orange
+
+**Output:**
+
+* Banana
+* Apple
+* Orange
+
+Use an enumerated list for a sequence of items whose order matters, such as in an ordered sequence of installation steps.
+
+**Input:**
+
+::
+
+  #. Wash apple.
+  #. Peel apple.
+  #. Eat apple.
+
+**Output:**
+
+#. Wash apple.
+#. Peel apple.
+#. Eat apple.
+
+Use a definition list for an unordered list where each item has a short definition, such as term/definition pairs.
+
+**Input:**
+
+::
+
+  Command A
+    Description of command A.
+
+  Command B
+    Description of command B.
+
+**Output:**
+
+Command A
+  Description of command A.
+
+Command B
+  Description of command B.
+
+****************
+Section headings
+****************
+
+Use up to three levels of headings in one file using the following characters:
+
+* Heading 1 (Page Title in Title Case) - underline and overline with equal signs;
+
+  * Heading 2 (Major page sections in Sentence case) - underline and overline with dashes;
+
+    * Heading 3 (subsections in Sentence case) - underline and overline with asterisks.
+
+Example RST:
+
+.. code-block:: rest
+
+   ==============
+   Document Title
+   ==============
+
+   Introduce the topic using 1-2 concise sentences. It should tell the user what
+   info can be found on this page.
+
+   .. contents::  // Use a local TOC to aid user navigation in the page
+      :local:
+      :depth: 1
+
+   ---------------
+   Section heading
+   ---------------
+
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+   ******************
+   Subsection heading
+   ******************
+
+   Integer sed tortor nisi. Vivamus feugiat, urna in posuere gravida, ligula nunc hendrerit magna, nec tristique ex tortor non lorem.
+
