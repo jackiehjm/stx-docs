@@ -18,7 +18,7 @@ For additional information about the OpenStack guideline, refer to the
 Locations
 ---------
 
-StarlingX API reference documentation exists in the following projects:
+StarlingX API reference documentation exists in the following repositories:
 
 *  `starlingx/config`_: StarlingX System Configuration Management
 *  `starlingx/docs`_: StarlingX Documentation
@@ -33,12 +33,11 @@ StarlingX API reference documentation exists in the following projects:
       Neutron API are documented here
 
 *  `starlingx/distcloud`_: StarlingX Distributed Cloud
-*  `starlingx/fault`_: StarlingX Fault Management
-*  `starlingx/ha`_: StarlingX High Availability/Process Monitoring/Service
-   Management
+*  `starlingx/fault`_: StarlingX Fault Management, part of StarlingX Flock Services
+*  `starlingx/ha`_: StarlingX High Availability/Process Monitoring/Service Management, part of StarlingX Flock Services
 *  `starlingx/metal`_: StarlingX Bare Metal and Node Management, Hardware
-   Maintenance
-*  `starlingx/nfv`_: StarlingX NFVI Orchestration
+   Maintenance, part of StarlingX Flock Services
+*  `starlingx/nfv`_: StarlingX NFVI Orchestration, part of StarlingX Flock Services
 
 --------------------
 Directory structures
