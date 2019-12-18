@@ -1,0 +1,75 @@
+The following sections describe system requirements and host setup for a
+workstation hosting virtual machine(s) where StarlingX will be deployed.
+
+*********************
+Hardware requirements
+*********************
+
+The host system should have at least:
+
+* **Processor:** x86_64 only supported architecture with BIOS enabled hardware
+  virtualization extensions
+
+* **Cores:** 8
+
+* **Memory:** 32GB RAM
+
+* **Hard Disk:** 500GB HDD
+
+* **Network:** One network adapter with active Internet connection
+
+*********************
+Software requirements
+*********************
+
+The host system should have at least:
+
+* A workstation computer with Ubuntu 16.04 LTS 64-bit
+
+All other required packages will be installed by scripts in the StarlingX tools repository.
+
+**********
+Host setup
+**********
+
+Set up the host with the following steps:
+
+#. Update OS:
+
+   ::
+
+    apt-get update
+
+#. Clone the StarlingX tools repository:
+
+   ::
+
+    apt-get install -y git
+    cd $HOME
+    git clone https://opendev.org/starlingx/tools.git
+
+#. Install required packages:
+
+   ::
+
+    cd $HOME/tools/deployment/libvirt/
+    bash install_packages.sh
+    apt install -y apparmor-profiles
+    apt-get install -y ufw
+    ufw disable
+    ufw status
+
+
+   .. note::
+
+      On Ubuntu 16.04, if apparmor-profile modules were installed as shown in
+      the example above, you must reboot the server to fully install the
+      apparmor-profile modules.
+
+
+#. Get the StarlingX ISO. This can be from a private StarlingX build or from the public Cengn
+   StarlingX build off 'master' branch, as shown below:
+
+   ::
+
+    wget http://mirror.starlingx.cengn.ca/mirror/starlingx/release/2.0.0/centos/outputs/iso/bootimage.iso

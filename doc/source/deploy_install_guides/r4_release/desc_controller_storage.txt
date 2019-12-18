@@ -1,0 +1,22 @@
+The Standard with Controller Storage deployment option provides two high
+availability (HA) controller nodes and a pool of up to 10 compute nodes.
+
+A Standard with Controller Storage configuration provides the following benefits:
+
+* A pool of up to 10 compute nodes
+* High availability (HA) services run across the controller nodes in either
+  active/active or active/standby mode
+* A storage back end solution using a two-node CEPH deployment across two
+  controller servers
+* Protection against overall controller and compute node failure, where
+
+  * On overall controller node failure, all controller HA services go active on
+    the remaining healthy controller node
+  * On overall compute node failure, virtual machines and containers are
+    recovered on the remaining healthy compute nodes
+
+.. figure:: ../figures/starlingx-deployment-options-controller-storage.png
+   :scale: 50%
+   :alt: Standard with Controller Storage deployment configuration
+
+   *Figure 1: Standard with Controller Storage deployment configuration*
