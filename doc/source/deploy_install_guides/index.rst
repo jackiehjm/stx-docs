@@ -25,6 +25,11 @@ Upcoming R4.0 release
 
 StarlingX R4.0 is the forthcoming version of StarlingX under development.
 
+.. toctree::
+   :maxdepth: 1
+
+   r4_release/index
+
 
 -----------------
 Archived releases
