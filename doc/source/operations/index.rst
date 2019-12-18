@@ -33,6 +33,7 @@ Kubernetes Operation
    k8s_persistent_vol_claims
    k8s_sriov_config
    k8s_qat_device_plugin
+   k8s_gpu_device_plugin
 
 -------------------
 OpenStack Operation
