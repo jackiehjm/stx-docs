@@ -158,14 +158,37 @@ Configure controller-0
      source /etc/platform/openrc
 
 #. Configure the OAM interface of controller-0 and specify the attached network
-   as "oam". Use the OAM port name, for example eth0, that is applicable to your
-   deployment environment:
+   as "oam". Use the OAM port name that is applicable to your deployment
+   environment, for example eth0:
 
    ::
 
      OAM_IF=<OAM-PORT>
      system host-if-modify controller-0 $OAM_IF -c platform
      system interface-network-assign controller-0 $OAM_IF oam
+
+#. If the system is a subcloud in a distributed cloud environment, then the mgmt
+   network and cluster-host networks must be configured on an actual interface
+   and not left on the loopback interface.
+
+   .. important::
+
+      Complete this step only if the system is a subcloud in a distributed cloud
+      environment!
+
+   For example:
+
+   ::
+
+     MGMT_IF=<MGMT-PORT>
+     system host-if-modify controller-0 lo -c none
+     IFNET_UUIDS=$(system interface-network-list controller-0 | awk '{if ($6=="lo") print $4;}')
+     for UUID in $IFNET_UUIDS; do
+         system interface-network-remove ${UUID}
+     done
+     system host-if-modify controller-0 $MGMT_IF -c platform
+     system interface-network-assign controller-0 $MGMT_IF mgmt
+     system interface-network-assign controller-0 $MGMT_IF cluster-host
 
 #. Configure NTP Servers for network time synchronization:
 

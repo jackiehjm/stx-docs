@@ -204,9 +204,9 @@ At the subcloud location:
         RTNETLINK answers: File exists
         Adding route to System Controller... DONE
 
-At the SystemController:
+At the System Controller:
 
-1. Create a ``bootstrap-values.yml`` overrides file for the subcloud, for
+1. Create a ``bootstrap-values.yml`` override file for the subcloud. For
    example:
 
    .. code:: yaml
@@ -215,14 +215,20 @@ At the SystemController:
       name: "subcloud1"
       description: "Ottawa Site"
       location: "YOW"
+
       management_subnet: 192.168.101.0/24
       management_start_address: 192.168.101.2
       management_end_address: 192.168.101.50
       management_gateway_address: 192.168.101.1
+
       external_oam_subnet: 10.10.10.0/24
       external_oam_gateway_address: 10.10.10.1
       external_oam_floating_address: 10.10.10.12
+
       systemcontroller_gateway_address: 192.168.204.101
+
+   .. important:: The `management_*` entries in the override file are required
+      for all installation types, including AIO-Simplex.
 
 2. Add the subcloud using the CLI command below:
 
@@ -273,7 +279,10 @@ At the SystemController:
    - For Standard with dedicated storage nodes:
      `Bare metal Standard with Dedicated Storage Installation R3.0 <https://docs.starlingx.io/deploy_install_guides/r3_release/bare_metal/dedicated_storage.html>`_
 
-5. Add routes from the subcloud to the controller management network:
+On the active controller for each subcloud:
+
+#. Add a route from the subcloud to the controller management network to enable
+   the subcloud to go online. Use the following command:
 
    .. code:: sh
 
@@ -285,5 +294,3 @@ At the SystemController:
    .. code:: sh
 
       system host-route-add 1 enp0s8 192.168.204.0 24 192.168.101.1
-
-   Repeat this step for each host of the subcloud.
