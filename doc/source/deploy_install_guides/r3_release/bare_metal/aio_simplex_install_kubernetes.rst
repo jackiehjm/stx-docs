@@ -268,7 +268,9 @@ OpenStack-specific host configuration
      manifest.
    * Shares the core(s) assigned to the platform.
 
-   If you require better performance, OVS-DPDK should be used:
+   If you require better performance, OVS-DPDK (OVS with the Data Plane
+   Development Kit, which is supported only on bare metal hardware) should be
+   used:
 
    * Runs directly on the host (it is not containerized).
    * Requires that at least 1 core be assigned/dedicated to the vSwitch function.
@@ -282,8 +284,7 @@ OpenStack-specific host configuration
    Do not run any vSwitch directly on the host, instead, use the containerized
    OVS defined in the helm charts of stx-openstack manifest.
 
-   To deploy OVS-DPDK (OVS with the Data Plane Development Kit, which is
-   supported only on bare metal hardware), run the following command:
+   To deploy OVS-DPDK, run the following command:
 
    ::
 
@@ -294,8 +295,33 @@ OpenStack-specific host configuration
    default to automatically assigning 1 vSwitch core for AIO controllers and 2
    vSwitch cores for computes.
 
-   When using OVS-DPDK, virtual machines must be configured to use a flavor with
-   property: hw:mem_page_size=large
+   When using OVS-DPDK, configure vSwitch memory per NUMA node with the following
+   command:
+
+   ::
+
+      system host-memory-modify -f <function> -1G <1G hugepages number> <hostname or id> <processor>
+
+   For example:
+
+   ::
+
+      system host-memory-modify -f vswitch -1G 1 compute-0 0
+
+   VMs created in an OVS-DPDK environment must be configured to use huge pages
+   to enable networking and must use a flavor with property: hw:mem_page_size=large
+
+   Configure the huge pages for VMs in an OVS-DPDK environment with the command:
+
+   ::
+
+      system host-memory-modify -1G <1G hugepages number> <hostname or id> <processor>
+
+   For example:
+
+   ::
+
+      system host-memory-modify compute-0 0 -1G 10
 
    .. note::
 
