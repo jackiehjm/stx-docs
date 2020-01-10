@@ -258,6 +258,8 @@ The :command:`host-sensor*` commands provide the ability to:
 ``host-sensorgroup-show``
     Show host sensor group attributes.
 
+.. _sys_app_management:
+
 **********************
 Application management
 **********************

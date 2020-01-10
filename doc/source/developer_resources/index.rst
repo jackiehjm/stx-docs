@@ -11,6 +11,6 @@ Developer Resources
    navigate_source_code
    architecture_docs
    starlingx_patching
-   move_version
+   move_to_new_openstack_version_in_starlingx
    Project Specifications <https://docs.starlingx.io/specs/>
 
