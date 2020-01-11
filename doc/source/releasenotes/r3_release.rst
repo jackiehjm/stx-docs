@@ -96,3 +96,50 @@ StoryBoard entries for the features.
   `2005860, <https://storyboard.openstack.org/#!/story/2005860>`_
 
   `2006347 <https://storyboard.openstack.org/#!/story/2006347>`_
+
+-------------------------
+Known limitations in R3.0
+-------------------------
+
+The following are known limitations in the StarlingX R3.0 release. Workarounds
+are suggested where applicable. Note that these limitations are considered
+temporary and will likely be resolved in a future release.
+
+********************************
+Changing Keystone admin password
+********************************
+
+After the Keystone admin password is changed, kube-system namespace registry
+secrets must be manually updated.
+Tracking Launchpad: https://bugs.launchpad.net/starlingx/+bug/1853017
+
+It is recommended that the Keystone admin password not be changed unless necessary.
+
+**Workaround:** If you must update the WRCP's Keystone admin user password in R3.0,
+you must also manually update the kube-system namespace's registry secrets that
+hold the admin password for image pulls:
+
+#. Update the WRCP Keystone admin user password:
+
+   ::
+
+     openstack user set --password newP@ssw0rd admin
+
+#. Update the kube-system namespace's `registry-local-secret` secret:
+
+   ::
+
+     kubectl -n kube-system create secret docker-registry registry-local-secret --docker-server=registry.local:9001 --docker-username=admin --docker-password=newP@ssw0rd -o yaml --dry-run=true > registry-local-secret-update.yaml
+     kubectl -n kube-system replace secret registry-local-secret -f registry-local-secret-update.yaml
+
+#. Update the kube-system namespace's `default-registry-key` secret:
+
+   ::
+
+     kubectl -n kube-system create secret docker-registry default-registry-key --docker-server=registry.local:9001 --docker-username=admin --docker-password=newP@ssw0rd -o yaml --dry-run=true > default-registry-key-update.yaml
+     kubectl -n kube-system replace secret default-registry-key -f default-registry-key-update.yaml
+
+In a distributed cloud deployment, the registry secrets must also be updated on
+all subclouds in the system.
+
+
