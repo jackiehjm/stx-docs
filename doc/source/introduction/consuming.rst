@@ -15,9 +15,10 @@ themselves. Here are three ways in which you can consume StarlingX.
 Deploy the open source code
 ---------------------------
 
-You can use the open source software directly. Our community partner CENGN has
-an archive containing ready to run ISO images of the current StarlingX releases
-and daily builds.
+You can use the open source software directly. Our community partner CENGN provides
+a StarlingX mirror with ready to run ISO images of the current StarlingX releases and
+daily builds. View the
+`CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_.
 
 As previously mentioned, these images are not signed and thus do not support
 secure boot or live software updates. You can also build your own images.
@@ -26,6 +27,8 @@ The StarlingX community recommends that users planning to deploy the open source
 software use the release images, which have been tested and validated by the
 community. Developers planning to work against the tip of the source trees
 typically use the daily builds.
+
+
 
 ---------------------------------------
 Deploy an internal version of StarlingX
