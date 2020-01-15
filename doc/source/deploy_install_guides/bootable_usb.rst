@@ -22,13 +22,8 @@ Create a bootable USB drive on Linux\*
 
       sudo -s
 
-#. Get the StarlingX ISO.
-   This can be from a private StarlingX build or from the public Cengn StarlingX
-   build off the 'master' branch as shown below:
-
-   ::
-
-      wget http://mirror.starlingx.cengn.ca/mirror/starlingx/release/2.0.0/centos/outputs/iso/bootimage.iso
+#. Get the StarlingX ISO from the
+   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_. Alternately, you can use an ISO from a private StarlingX build.
 
 #. Navigate to the directory with the ISO.
 
@@ -69,13 +64,8 @@ Create a bootable USB drive on macOS\*
 
 #. Launch the Terminal app.
 
-#. Get the StarlingX ISO.
-   This can be from a private StarlingX build or from the public Cengn StarlingX
-   build off the 'master' branch as shown below:
-
-   ::
-
-      curl -O http://mirror.starlingx.cengn.ca/mirror/starlingx/release/2.0.0/centos/outputs/iso/bootimage.iso
+#. Get the StarlingX ISO from the
+   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_. Alternately, you can use an ISO from a private StarlingX build.
 
 #. Navigate to the directory with the ISO.
 
@@ -117,11 +107,8 @@ Create a bootable USB drive on macOS\*
 Create a bootable USB drive on Windows\*
 ----------------------------------------
 
-#. Get the StarlingX ISO.
-   This can be from a private StarlingX build or from the public Cengn StarlingX
-   build off the 'master' branch:
-
-   http://mirror.starlingx.cengn.ca/mirror/starlingx/release/2.0.0/centos/outputs/iso/bootimage.iso
+#. Get the StarlingX ISO from the
+   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_. Alternately, you can use an ISO from a private StarlingX build.
 
 #. Download the `Rufus`_ utility to burn the image onto a USB drive.
    **Only use the latest version of Rufus**.

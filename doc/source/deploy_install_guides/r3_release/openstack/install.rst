@@ -15,21 +15,17 @@ StarlingX Kubernetes platform:
 Install application manifest and helm-charts
 --------------------------------------------
 
-#. Get the StarlingX OpenStack application (stx-openstack) manifest and helm-charts.
-   This can be from a private StarlingX build or, as shown below, from the public
-   Cengen StarlingX build off ``master`` branch:
-
-   ::
-
-   	wget http://mirror.starlingx.cengn.ca/mirror/starlingx/release/2.0.0/centos/outputs/helm-charts/stx-openstack-1.0-17-centos-stable-latest.tgz
+#. Get the latest StarlingX OpenStack application (stx-openstack) manifest and
+   helm-charts. This can be from a private StarlingX build or from the public
+   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_.
 
 #. Load the stx-openstack application's package into StarlingX. The tarball
    package contains stx-openstack's Airship Armada manifest and stx-openstack's
-   set of helm charts:
+   set of helm charts. For example:
 
    ::
 
-   	system application-upload stx-openstack-1.0-17-centos-stable-latest.tgz
+   	system application-upload stx-openstack-<version>-centos-stable-latest.tgz
 
    This will:
 
