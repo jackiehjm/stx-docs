@@ -282,7 +282,7 @@ At the System Controller:
 On the active controller for each subcloud:
 
 #. Add a route from the subcloud to the controller management network to enable
-   the subcloud to go online. Use the following command:
+   the subcloud to go online. For each host in the subcloud:
 
    .. code:: sh
 
@@ -294,3 +294,4 @@ On the active controller for each subcloud:
    .. code:: sh
 
       system host-route-add 1 enp0s8 192.168.204.0 24 192.168.101.1
+
