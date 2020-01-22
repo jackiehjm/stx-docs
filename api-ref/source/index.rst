@@ -1,6 +1,6 @@
-=======================
-stx-docs API Reference
-=======================
+=============
+StarlingX API
+=============
 
 StarlingX Project API References:
 
@@ -22,4 +22,3 @@ StarlingX also has API References for the modified OpenStack APIs:
    api-ref-image-v2-cgcs-ext
    api-ref-networking-v2-cgcs-ext
 
-:ref:`search`

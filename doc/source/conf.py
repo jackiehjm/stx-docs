@@ -21,7 +21,7 @@ import pbr.version
 
 # -- Project information -----------------------------------------------------
 
-project = 'stx-docs'
+project = u'StarlingX'
 copyright = '2018, StarlingX'
 author = 'StarlingX'
 
