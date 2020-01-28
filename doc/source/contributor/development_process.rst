@@ -227,7 +227,7 @@ process is very similar.
 
 The steps described in the StarlingX Build Guide in the
 `Developer environment setup section
-<https://docs.starlingx.io/contributor/
+<https://docs.starlingx.io/developer_resources/
 build_guide.html#development-environment-setup>`_
 must be completed before any of the steps described here.
 
@@ -239,7 +239,7 @@ Clone the desired StarlingX source repos using either:
 
 Or clone all of the repos using the :command:`repo` tool as described in the
 `StarlingX build guide
-<https://docs.starlingx.io/contributor/build_guide.html>`_:
+<https://docs.starlingx.io/developer_resources/build_guide.html>`_:
 
 ::
 

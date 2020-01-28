@@ -114,7 +114,7 @@ Prerequisites
 #############
 
 *  Set up a StarlingX build container following `the
-   build guide <https://docs.starlingx.io/contributor/build_guide.html>`_.
+   build guide <https://docs.starlingx.io/developer_resources/build_guide.html>`_.
 
 *  Download StarlingX source code.
 
