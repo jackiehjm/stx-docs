@@ -8,6 +8,7 @@ Developer Resources
    :maxdepth: 1
 
    build_guide
+   Layered_Build.rst
    navigate_source_code
    architecture_docs
    starlingx_patching
