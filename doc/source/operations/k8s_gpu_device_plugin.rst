@@ -24,11 +24,11 @@ You can pre-install the ``intel-gpu-plugin`` daemonset as follows:
 #. Assign the ``intelgpu`` label to each node that should have the Intel GPU
    plugin enabled. This will make any GPU devices on a given node available for
    scheduling to containers. The following example assigns the ``intelgpu``
-   label to the compute-0 node.
+   label to the worker-0 node.
 
    ::
 
-      $ NODE=compute-0
+      $ NODE=worker-0
       $ system host-lock $NODE
       $ system host-label-assign $NODE intelgpu=enabled
       $ system host-unlock $NODE

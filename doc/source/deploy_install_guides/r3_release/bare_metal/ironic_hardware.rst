@@ -23,15 +23,15 @@ For controller nodes:
 * Additional NIC port on both controller nodes for connecting to the
   ironic-provisioning-net.
 
-For compute nodes:
+For worker nodes:
 
 * If using a flat data network for the Ironic provisioning network, an additional
-  NIC port on one of the compute nodes is required.
+  NIC port on one of the worker nodes is required.
 
 * Alternatively, use a VLAN data network for the Ironic provisioning network and
-  simply add the new data network to an existing interface on the compute node.
+  simply add the new data network to an existing interface on the worker node.
 
-* Additional switch ports / configuration for new ports on controller, compute,
+* Additional switch ports / configuration for new ports on controller, worker,
   and Ironic nodes, for connectivity to the Ironic provisioning network.
 
 -----------------------------------

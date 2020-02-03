@@ -124,10 +124,11 @@ Host/controller file system configuration
 Host/controller file system configuration commands manage file systems on hosts.
 These commands primarily support the ability to resize the file systems.
 
-Use :command:`host-fs-*` commands to manage un-synchronized file systems on controller and
-compute nodes.
+Use :command:`host-fs-*` commands to manage un-synchronized file systems on
+controller and worker nodes.
 
-Use :command:`controllerfs-*` commands to manage drbd-synchronized file systems on controller
+Use :command:`controllerfs-*` commands to manage drbd-synchronized file systems
+on controller
 nodes.
 
 ``host-fs-list``

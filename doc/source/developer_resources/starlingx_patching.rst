@@ -355,8 +355,8 @@ configuration.
 	controller-0:/$ sudo sw-patch query-hosts
 	Hostname      IP Address      Patch Current  Reboot Required  Release State
 	============  ==============  =============  ===============  ======  =====
-	compute-0     192.178.204.7        Yes             No          19.09   idle
-	compute-1     192.178.204.9        Yes             No          19.09   idle
+	worker-0      192.178.204.7        Yes             No          19.09   idle
+	worker-1      192.178.204.9        Yes             No          19.09   idle
 	controller-0  192.178.204.3        Yes             No          19.09   idle
 	controller-1  192.178.204.4        Yes             No          19.09   idle
 	storage-0     192.178.204.12       Yes             No          19.09   idle
@@ -390,8 +390,8 @@ configuration.
 	controller-0:~$ sudo sw-patch query-hosts
 	Hostname      IP Address      Patch Current  Reboot Required  Release State
 	============  ==============  =============  ===============  ======  =====
-	compute-0     192.178.204.7        No              No          19.09   idle
-	compute-1     192.178.204.9        No              No          19.09   idle
+	worker-0      192.178.204.7        No              No          19.09   idle
+	worker-1      192.178.204.9        No              No          19.09   idle
 	controller-0  192.178.204.3        No              No          19.09   idle
 	controller-1  192.178.204.4        No              No          19.09   idle
 	storage-0     192.178.204.12       No              No          19.09   idle
@@ -416,8 +416,8 @@ configuration.
 	controller-0:~$ sudo sw-patch query-hosts
 	Hostname      IP Address    Patch Current    Reboot Required  Release State
 	============  ==============  =============  ===============  ======  =====
-	compute-0     192.178.204.7        No              No          19.09   idle
-	compute-1     192.178.204.9        No              No          19.09   idle
+	worker-0      192.178.204.7        No              No          19.09   idle
+	worker-1      192.178.204.9        No              No          19.09   idle
 	controller-0  192.178.204.3        Yes             No          19.09   idle
 	controller-1  192.178.204.4        No              No          19.09   idle
 	storage-0     192.178.204.12       No              No          19.09   idle
@@ -430,10 +430,10 @@ configuration.
 	controller-0:~$ sudo sw-patch host-install controller-1
 	....
 	Installation was successful.
-	controller-0:~$ sudo sw-patch host-install compute-0
+	controller-0:~$ sudo sw-patch host-install worker-0
 	....
 	Installation was successful.
-	controller-0:~$ sudo sw-patch host-install compute-1
+	controller-0:~$ sudo sw-patch host-install worker-1
 	....
 	Installation was successful.
 	controller-0:~$ sudo sw-patch host-install storage-0
@@ -459,8 +459,8 @@ configuration.
 	controller-0:~$ sudo sw-patch query-hosts
 	Hostname      IP Address      Patch Current Reboot Required  Release  State
 	============  ==============  ============  ===============  =======  =====
-	compute-0     192.178.204.7        Yes             No          19.09   idle
-	compute-1     192.178.204.9        Yes             No          19.09   idle
+	worker-0      192.178.204.7        Yes             No          19.09   idle
+	worker-1      192.178.204.9        Yes             No          19.09   idle
 	controller-0  192.178.204.3        Yes             No          19.09   idle
 	controller-1  192.178.204.4        Yes             No          19.09   idle
 	storage-0     192.178.204.12       Yes             No          19.09   idle

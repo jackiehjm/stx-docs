@@ -478,7 +478,7 @@ Build installer
 ---------------
 
 To get your StarlingX ISO ready to use, you must create the initialization
-files used to boot the ISO, additional controllers, and compute nodes.
+files used to boot the ISO, additional controllers, and worker nodes.
 
 **NOTE:** You only need this procedure during your first build and
 every time you upgrade the kernel.

@@ -1,10 +1,10 @@
 The All-in-one Simplex (AIO-SX) deployment option provides all three cloud
-functions (controller, compute, and storage) on a single server with the
+functions (controller, worker, and storage) on a single server with the
 following benefits:
 
 * Requires only a small amount of cloud processing and storage power
-* Application consolidation using multiple virtual machines on a single pair of
-  physical servers
+* Application consolidation using multiple containers or virtual machines on a
+  single pair of physical servers
 * A storage backend solution using a single-node CEPH deployment
 
 .. figure:: ../figures/starlingx-deployment-options-simplex.png
