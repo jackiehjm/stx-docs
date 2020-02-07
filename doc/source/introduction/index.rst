@@ -31,6 +31,7 @@ Learn more about StarlingX:
    terms
    deploy_options
    consuming
+   StarlingX Project Overview (PDF) <https://www.starlingx.io/collateral/StarlingX_Onboarding_Deck_for_Web.pdf>
 
 .. _stx_projects:
 
