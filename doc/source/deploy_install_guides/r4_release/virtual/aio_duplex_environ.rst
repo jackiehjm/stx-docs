@@ -19,10 +19,6 @@ Physical host requirements and setup
 Prepare virtual environment and servers
 ---------------------------------------
 
-The following steps explain how to prepare the virtual environment and servers
-on a physical host for a StarlingX R4.0 virtual All-in-one Duplex deployment
-configuration.
-
 #. Prepare virtual environment.
 
    Set up the virtual platform networks for virtual deployment:

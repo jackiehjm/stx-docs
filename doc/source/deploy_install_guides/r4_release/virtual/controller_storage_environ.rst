@@ -20,10 +20,6 @@ Physical host requirements and setup
 Prepare virtual environment and servers
 ---------------------------------------
 
-The following steps explain how to prepare the virtual environment and servers
-on a physical host for a StarlingX R4.0 virtual Standard with Controller Storage
-deployment configuration.
-
 #. Prepare virtual environment.
 
    Set up virtual platform networks for virtual deployment:

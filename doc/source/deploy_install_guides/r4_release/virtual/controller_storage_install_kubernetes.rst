@@ -237,9 +237,9 @@ Unlock virtual controller-0 in order to bring it into service:
 Controller-0 will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host machine.
 
---------------------------------------------------
-Install software on controller-1 and compute nodes
---------------------------------------------------
+-------------------------------------------------
+Install software on controller-1 and worker nodes
+-------------------------------------------------
 
 #. On the host, power on the controller-1 virtual server,
    'controllerstorage-controller-1'. It will automatically attempt to network
@@ -296,7 +296,7 @@ Install software on controller-1 and compute nodes
 
    ::
 
-      system host-update 3 personality=worker hostname=compute-0
+      system host-update 3 personality=worker hostname=worker-0
 
    Repeat for 'controllerstorage-worker-1'. On the host:
 
@@ -309,9 +309,9 @@ Install software on controller-1 and compute nodes
 
    ::
 
-      system host-update 4 personality=worker hostname=compute-1
+      system host-update 4 personality=worker hostname=worker-1
 
-#. Wait for the software installation on controller-1, compute-0, and compute-1 to
+#. Wait for the software installation on controller-1, worker-0, and worker-1 to
    complete, for all virtual servers to reboot, and for all to show as
    locked/disabled/online in 'system host-list'.
 
@@ -323,8 +323,8 @@ Install software on controller-1 and compute nodes
       +----+--------------+-------------+----------------+-------------+--------------+
       | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
       | 2  | controller-1 | controller  | locked         | disabled    | online       |
-      | 3  | compute-0    | compute     | locked         | disabled    | online       |
-      | 4  | compute-1    | compute     | locked         | disabled    | online       |
+      | 3  | worker-0     | worker      | locked         | disabled    | online       |
+      | 4  | worker-1     | worker      | locked         | disabled    | online       |
       +----+--------------+-------------+----------------+-------------+--------------+
 
 ----------------------
@@ -379,22 +379,22 @@ service. This can take 5-10 minutes, depending on the performance of the host ma
 
 .. incl-unlock-controller-1-virt-controller-storage-end:
 
------------------------
-Configure compute nodes
------------------------
+----------------------
+Configure worker nodes
+----------------------
 
 On virtual controller-0:
 
-#. Add the third Ceph monitor to compute-0:
+#. Add the third Ceph monitor to a worker node:
 
    (The first two Ceph monitors are automatically assigned to controller-0 and
    controller-1.)
 
    ::
 
-      system ceph-mon-add compute-0
+      system ceph-mon-add worker-0
 
-#. Wait for the compute node monitor to complete configuration:
+#. Wait for the worker node monitor to complete configuration:
 
    ::
 
@@ -406,21 +406,21 @@ On virtual controller-0:
       +--------------------------------------+-------+--------------+------------+------+
       | 64176b6c-e284-4485-bb2a-115dee215279 | 20    | controller-1 | configured | None |
       | a9ca151b-7f2c-4551-8167-035d49e2df8c | 20    | controller-0 | configured | None |
-      | f76bc385-190c-4d9a-aa0f-107346a9907b | 20    | compute-0    | configured | None |
+      | f76bc385-190c-4d9a-aa0f-107346a9907b | 20    | worker-0     | configured | None |
       +--------------------------------------+-------+--------------+------------+------+
 
-#. Assign the cluster-host network to the MGMT interface for the compute nodes.
+#. Assign the cluster-host network to the MGMT interface for the worker nodes.
 
    Note that the MGMT interfaces are partially set up automatically by the
    network install procedure.
 
    ::
 
-      for COMPUTE in compute-0 compute-1; do
-         system interface-network-assign $COMPUTE mgmt0 cluster-host
+      for NODE in worker-0 worker-1; do
+         system interface-network-assign $NODE mgmt0 cluster-host
       done
 
-#. Configure data interfaces for compute nodes.
+#. Configure data interfaces for worker nodes.
 
    .. important::
 
@@ -447,11 +447,11 @@ On virtual controller-0:
       system datanetwork-add ${PHYSNET0} vlan
       system datanetwork-add ${PHYSNET1} vlan
 
-      for COMPUTE in compute-0 compute-1; do
-        echo "Configuring interface for: $COMPUTE"
+      for NODE in worker-0 worker-1; do
+        echo "Configuring interface for: $NODE"
         set -ex
-        system host-port-list ${COMPUTE} --nowrap > ${SPL}
-        system host-if-list -a ${COMPUTE} --nowrap > ${SPIL}
+        system host-port-list ${NODE} --nowrap > ${SPL}
+        system host-if-list -a ${NODE} --nowrap > ${SPIL}
         DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
         DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
         DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
@@ -460,10 +460,10 @@ On virtual controller-0:
         DATA1PORTNAME=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
         DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
         DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
-        system host-if-modify -m 1500 -n data0 -c data ${COMPUTE} ${DATA0IFUUID}
-        system host-if-modify -m 1500 -n data1 -c data ${COMPUTE} ${DATA1IFUUID}
-        system interface-datanetwork-assign ${COMPUTE} ${DATA0IFUUID} ${PHYSNET0}
-        system interface-datanetwork-assign ${COMPUTE} ${DATA1IFUUID} ${PHYSNET1}
+        system host-if-modify -m 1500 -n data0 -c data ${NODE} ${DATA0IFUUID}
+        system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
+        system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
+        system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
         set +ex
       done
 
@@ -476,12 +476,12 @@ OpenStack-specific host configuration
    **This step is required only if the StarlingX OpenStack application
    (stx-openstack) will be installed.**
 
-#. **For OpenStack only:** Assign OpenStack host labels to the compute nodes in
+#. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
    support of installing the stx-openstack manifest/helm-charts later:
 
    ::
 
-      for NODE in compute-0 compute-1; do
+      for NODE in worker-0 worker-1; do
         system host-label-assign $NODE  openstack-compute-node=enabled
         system host-label-assign $NODE  openvswitch=enabled
         system host-label-assign $NODE  sriov=enabled
@@ -492,32 +492,32 @@ OpenStack-specific host configuration
 
    ::
 
-      for COMPUTE in compute-0 compute-1; do
-        echo "Configuring Nova local for: $COMPUTE"
-        ROOT_DISK=$(system host-show ${COMPUTE} | grep rootfs | awk '{print $4}')
-        ROOT_DISK_UUID=$(system host-disk-list ${COMPUTE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
+      for NODE in worker-0 worker-1; do
+        echo "Configuring Nova local for: $NODE"
+        ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
+        ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
         PARTITION_SIZE=10
-        NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${COMPUTE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
+        NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
         NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
-        system host-lvg-add ${COMPUTE} nova-local
-        system host-pv-add ${COMPUTE} nova-local ${NOVA_PARTITION_UUID}
+        system host-lvg-add ${NODE} nova-local
+        system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
       done
 
---------------------
-Unlock compute nodes
---------------------
+-------------------
+Unlock worker nodes
+-------------------
 
 .. incl-unlock-compute-nodes-virt-controller-storage-start:
 
-Unlock virtual compute nodes to bring them into service:
+Unlock virtual worker nodes to bring them into service:
 
 ::
 
-  for COMPUTE in compute-0 compute-1; do
-     system host-unlock $COMPUTE
+  for NODE in worker-0 worker-1; do
+     system host-unlock $NODE
   done
 
-The compute nodes will reboot in order to apply configuration changes and come into
+The worker nodes will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host machine.
 
 .. incl-unlock-compute-nodes-virt-controller-storage-end:
