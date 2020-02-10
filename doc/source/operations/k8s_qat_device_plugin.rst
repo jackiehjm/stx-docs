@@ -29,11 +29,11 @@ section describes the steps to enable the Intel QAT device plugin for
 discovering and advertising QAT VF resources to Kubernetes host.
 
 #. Verify QuickAssist SR-IOV virtual functions are configured on a specified
-   node after StarlingX is installed. This example uses the ``compute-0`` node.
+   node after StarlingX is installed. This example uses the worker-0 node.
 
    ::
 
-      $ ssh compute-0
+      $ ssh worker-0
       $ for i in 0442 0443 37c9 19e3; do lspci -d 8086:$i; done
 
    .. note::
@@ -41,11 +41,11 @@ discovering and advertising QAT VF resources to Kubernetes host.
     The Intel QAT device plugin only supports QAT VF resources in the current
     release.
 
-#. Assign the ``intelqat`` label to the node (compute-0 in this example).
+#. Assign the ``intelqat`` label to the node (worker-0 in this example).
 
    ::
 
-      $ NODE=compute-0
+      $ NODE=worker-0
       $ system host-lock $NODE
       $ system host-label-assign $NODE intelqat=enabled
       $ system host-unlock $NODE

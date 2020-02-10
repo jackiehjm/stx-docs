@@ -6,20 +6,22 @@ The following definitions describe key concepts and terminology that are
 commonly used in the StarlingX community and in this documentation.
 
 All-in-one Controller Node
-  A single physical node that provides a controller function, compute function,
+  A single physical node that provides a controller function, worker function,
   and storage function.
 
 Bare Metal
   A node running without hypervisors (for example, application workloads run
   directly on the operating system which runs directly on the hardware).
 
-Compute or Worker
+Worker
   A node within a StarlingX edge cloud that is dedicated to running application
-  workloads. There can be 0 to 99 compute nodes in a StarlingX edge
-  cloud.
+  workloads. There can be 0 to 99 worker nodes in a StarlingX edge cloud.
 
   - Runs virtual switch for realizing virtual networks.
   - Provides L3 routing and NET services.
+
+  In a configuration running OpenStack, a worker node is labeled as 'compute' and
+  may be referred to as a compute node.
 
 Controller
   A node within a StarlingX edge cloud that runs the cloud management software
@@ -36,7 +38,7 @@ Data Network(s)
   Networks on which the OpenStack / Neutron provider networks are realized and
   become the VM tenant networks.
 
-  Only compute type and all-in-one type nodes are required to be connected to
+  Only worker-type and all-in-one-type nodes are required to be connected to
   the data network(s). These node types require one or more interface(s) on the
   data network(s).
 

@@ -19,12 +19,12 @@ All-in-one Duplex (*Duplex* or *AIO-DX*)
 Standard with Controller Storage
   This configuration allows for 1 or 2 controller nodes that also provide
   storage for the edge cloud. The configuration also allows for between 1 and
-  99 compute nodes to run application workloads. This configuration works best
+  99 worker nodes to run application workloads. This configuration works best
   for edge clouds with smaller storage needs.
 
 Standard with Dedicated Storage
   This configuration has dedicated storage nodes in addition to the controller
-  and compute nodes. This configuration is used for edge clouds that require
+  and worker nodes. This configuration is used for edge clouds that require
   larger amounts of storage.
 
 Standard with Ironic

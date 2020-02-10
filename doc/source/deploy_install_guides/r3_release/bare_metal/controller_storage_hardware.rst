@@ -18,7 +18,7 @@ The recommended minimum hardware requirements for bare metal servers for various
 host types are:
 
 +-------------------------+-----------------------------+-----------------------------+
-| Minimum Requirement     | Controller Node             | Compute Node                |
+| Minimum Requirement     | Controller Node             | Worker Node                 |
 +=========================+=============================+=============================+
 | Number of servers       | 2                           | 2-10                        |
 +-------------------------+-----------------------------+-----------------------------+

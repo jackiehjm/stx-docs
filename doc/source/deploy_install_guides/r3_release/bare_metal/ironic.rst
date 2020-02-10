@@ -56,8 +56,8 @@ standard configuration, either:
 
 
 This guide assumes that you have a standard deployment installed and configured
-with 2x controllers and at least 1x compute node, with the StarlingX OpenStack
-application (stx-openstack) applied.
+with 2x controllers and at least 1x compute-labeled worker node, with the
+StarlingX OpenStack application (stx-openstack) applied.
 
 .. toctree::
    :maxdepth: 1

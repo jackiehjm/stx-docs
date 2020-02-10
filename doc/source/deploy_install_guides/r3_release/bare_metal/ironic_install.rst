@@ -113,14 +113,14 @@ Configure Ironic network on deployed standard StarlingX
       # Unlock the node to apply changes
       system host-unlock controller-1
 
-#. Configure the new interface (for Ironic) on one of the compute nodes and
-   assign it to the Ironic data network. This example uses the data network
-   `ironic-data` that was named in a previous step.
+#. Configure the new interface (for Ironic) on one of the compute-labeled worker
+   nodes and assign it to the Ironic data network. This example uses the data
+   network `ironic-data` that was named in a previous step.
 
    ::
 
-      system interface-datanetwork-assign compute-0 eno1 ironic-data
-      system host-if-modify -n ironicdata -c data compute-0 eno1
+      system interface-datanetwork-assign worker-0 eno1 ironic-data
+      system host-if-modify -n ironicdata -c data worker-0 eno1
 
 ****************************
 Generate user Helm overrides

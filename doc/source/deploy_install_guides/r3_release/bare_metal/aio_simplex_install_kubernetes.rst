@@ -228,13 +228,13 @@ Configure controller-0
 
      DATA0IF=<DATA-0-PORT>
      DATA1IF=<DATA-1-PORT>
-     export COMPUTE=controller-0
+     export NODE=controller-0
      PHYSNET0='physnet0'
      PHYSNET1='physnet1'
      SPL=/tmp/tmp-system-port-list
      SPIL=/tmp/tmp-system-host-if-list
-     system host-port-list ${COMPUTE} --nowrap > ${SPL}
-     system host-if-list -a ${COMPUTE} --nowrap > ${SPIL}
+     system host-port-list ${NODE} --nowrap > ${SPL}
+     system host-if-list -a ${NODE} --nowrap > ${SPIL}
      DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
      DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
      DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
@@ -247,10 +247,10 @@ Configure controller-0
      system datanetwork-add ${PHYSNET0} vlan
      system datanetwork-add ${PHYSNET1} vlan
 
-     system host-if-modify -m 1500 -n data0 -c data ${COMPUTE} ${DATA0IFUUID}
-     system host-if-modify -m 1500 -n data1 -c data ${COMPUTE} ${DATA1IFUUID}
-     system interface-datanetwork-assign ${COMPUTE} ${DATA0IFUUID} ${PHYSNET0}
-     system interface-datanetwork-assign ${COMPUTE} ${DATA1IFUUID} ${PHYSNET1}
+     system host-if-modify -m 1500 -n data0 -c data ${NODE} ${DATA0IFUUID}
+     system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
+     system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
+     system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
 
 #. Add an OSD on controller-0 for Ceph. The following example adds an OSD
    to the `sdb` disk:
@@ -316,7 +316,7 @@ OpenStack-specific host configuration
 
    Once vswitch_type is set to OVS-DPDK, any subsequent nodes created will
    default to automatically assigning 1 vSwitch core for AIO controllers and 2
-   vSwitch cores for computes.
+   vSwitch cores for compute-labeled worker nodes.
 
    When using OVS-DPDK, configure vSwitch memory per NUMA node with the following
    command:
@@ -329,7 +329,7 @@ OpenStack-specific host configuration
 
    ::
 
-      system host-memory-modify -f vswitch -1G 1 compute-0 0
+      system host-memory-modify -f vswitch -1G 1 worker-0 0
 
    VMs created in an OVS-DPDK environment must be configured to use huge pages
    to enable networking and must use a flavor with property: hw:mem_page_size=large
@@ -344,32 +344,32 @@ OpenStack-specific host configuration
 
    ::
 
-      system host-memory-modify compute-0 0 -1G 10
+      system host-memory-modify worker-0 0 -1G 10
 
    .. note::
 
       After controller-0 is unlocked, changing vswitch_type requires
-      locking and unlocking all computes (and/or AIO Controllers) to
-      apply the change.
+      locking and unlocking all compute-labeled worker nodes (and/or AIO
+      controllers) to apply the change.
 
 #. **For OpenStack only:** Set up disk partition for nova-local volume group,
    which is needed for stx-openstack nova ephemeral disks.
 
    ::
 
-     export COMPUTE=controller-0
+     export NODE=controller-0
 
      echo ">>> Getting root disk info"
-     ROOT_DISK=$(system host-show ${COMPUTE} | grep rootfs | awk '{print $4}')
-     ROOT_DISK_UUID=$(system host-disk-list ${COMPUTE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
+     ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
+     ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
      echo "Root disk: $ROOT_DISK, UUID: $ROOT_DISK_UUID"
 
      echo ">>>> Configuring nova-local"
      NOVA_SIZE=34
-     NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${COMPUTE} ${ROOT_DISK_UUID} ${NOVA_SIZE})
+     NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${NOVA_SIZE})
      NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
-     system host-lvg-add ${COMPUTE} nova-local
-     system host-pv-add ${COMPUTE} nova-local ${NOVA_PARTITION_UUID}
+     system host-lvg-add ${NODE} nova-local
+     system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
      sleep 2
 
 .. incl-config-controller-0-openstack-specific-aio-simplex-end:
