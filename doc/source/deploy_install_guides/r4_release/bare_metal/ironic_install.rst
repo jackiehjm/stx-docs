@@ -37,13 +37,13 @@ used to clean Ironic nodes and install the end-user's image. The cleaning done
 by the deployment image wipes the disks and tests connectivity to the Ironic
 conductor on the controller nodes via the Ironic Python Agent (IPA).
 
-The Ironic deployment Stein image (**Ironic-kernel** and **Ironic-ramdisk**)
+The latest Ironic deployment image (**Ironic-kernel** and **Ironic-ramdisk**)
 can be found here:
 
-* `Ironic-kernel coreos_production_pxe-stable-stein.vmlinuz
-  <https://tarballs.openstack.org/ironic-python-agent/coreos/files/coreos_production_pxe-stable-stein.vmlinuz>`__
-* `Ironic-ramdisk coreos_production_pxe_image-oem-stable-stein.cpio.gz
-  <https://tarballs.openstack.org/ironic-python-agent/coreos/files/coreos_production_pxe_image-oem-stable-stein.cpio.gz>`__
+* `Ironic-kernel ipa-centos8-master.kernel
+  <https://tarballs.openstack.org/ironic-python-agent-builder/dib/files/ipa-centos8-master.kernel>`__
+* `Ironic-ramdisk ipa-centos8.initramfs
+  <https://tarballs.openstack.org/ironic-python-agent-builder/dib/files/ipa-centos8-master.initramfs>`__
 
 
 *******************************************************
