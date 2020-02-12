@@ -160,11 +160,25 @@ Configure controller-0
      system interface-network-assign controller-0 $MGMT_IF mgmt
      system interface-network-assign controller-0 $MGMT_IF cluster-host
 
-#. Configure NTP Servers for network time synchronization:
+#. Configure NTP servers for network time synchronization:
 
    ::
 
      system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org
+
+#. Configure Ceph storage backend
+
+   .. important::
+
+      This step is required only if your application requires
+      persistent storage.
+
+      **If you want to install the StarlingX Openstack application
+      (stx-openstack) this step is mandatory.**
+
+   ::
+
+    system storage-backend-add ceph --confirmed
 
 #. Configure data interfaces for controller-0. Use the DATA port names, for example
    eth0, applicable to your deployment environment.
@@ -224,6 +238,10 @@ Configure controller-0
 
 #. Add an OSD on controller-0 for Ceph. The following example adds an OSD
    to the `sdb` disk:
+
+   .. important::
+
+      This step requires a configured Ceph storage backend
 
    ::
 
@@ -369,6 +387,10 @@ Configure controller-1
       system interface-datanetwork-assign ${COMPUTE} ${DATA1IFUUID} ${PHYSNET1}
 
 #. Add an OSD on controller-1 for Ceph:
+
+   .. important::
+
+      This step requires a configured Ceph storage backend
 
    ::
 
