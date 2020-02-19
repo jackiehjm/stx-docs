@@ -59,3 +59,6 @@ project are found on the specific project page:
 Supporting projects and repositories:
 
 * `Tools </tools/index.html>`__
+
+For additional information about project teams, refer to the
+`StarlingX wiki <https://wiki.openstack.org/wiki/StarlingX>`_.
