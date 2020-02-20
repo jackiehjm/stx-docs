@@ -62,6 +62,12 @@ Configure controller-0
 Unlock controller-0
 -------------------
 
+    .. important::
+
+       Make sure the Ceph storage backend is configured. If it is
+       not configured, you will not be able to configure storage
+       nodes.
+
 Unlock virtual controller-0 in order to bring it into service:
 
 ::

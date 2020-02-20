@@ -13,7 +13,8 @@ on a **StarlingX R4.0 virtual All-in-one Simplex** deployment configuration.
 Install software on controller-0
 --------------------------------
 
-In the last step of :doc:`aio_simplex_environ`, the controller-0 virtual server 'simplex-controller-0' was started by the :command:`setup_configuration.sh` command.
+In the last step of :doc:`aio_simplex_environ`, the controller-0 virtual server 'simplex-controller-0'
+was started by the :command:`setup_configuration.sh` command.
 
 On the host, attach to the console of virtual controller-0 and select the
 appropriate installer menu options to start the non-interactive install of
@@ -153,7 +154,7 @@ On virtual controller-0:
      system host-if-modify controller-0 $OAM_IF -c platform
      system interface-network-assign controller-0 $OAM_IF oam
 
-#. Configure NTP Servers for network time synchronization:
+#. Configure NTP servers for network time synchronization:
 
    .. note::
 
@@ -164,6 +165,20 @@ On virtual controller-0:
    ::
 
     system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org
+
+#. Configure Ceph storage backend
+
+   .. important::
+
+      This step required only if your application requires
+      persistent storage.
+
+      **If you want to install the StarlingX Openstack application
+      (stx-openstack) this step is mandatory.**
+
+   ::
+
+    system storage-backend-add ceph --confirmed
 
 #. Configure data interfaces for controller-0.
 
@@ -207,6 +222,10 @@ On virtual controller-0:
     system interface-datanetwork-assign ${COMPUTE} ${DATA1IFUUID} ${PHYSNET1}
 
 #. Add an OSD on controller-0 for Ceph:
+
+   .. important::
+
+      This step requires a configured Ceph storage backend
 
    ::
 
