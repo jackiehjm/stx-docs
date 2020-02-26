@@ -9,55 +9,62 @@ documentation.
    :local:
    :depth: 1
 
-------------------
-General guidelines
-------------------
+----------
+Quickstart
+----------
 
 The StarlingX documentation uses reStructuredText (RST) markup syntax with
-Sphinx extensions. Most writing and markup conventions are based on the
-`OpenStack Documentation Contributor Guide <https://docs.openstack.org/doc-contrib-guide/index.html>`_.
+Sphinx extensions. It uses the same contribution setup and workflow as the OpenStack documentation.
 
-When writing documentation, follow the StarlingX documentation guidelines:
+* `OpenStack Documentation Contributor Guide <https://docs.openstack.org/doc-contrib-guide/index.html>`_.
 
-* `Writing style`_
-* `RST conventions`_
+**********************
+Setup for contribution
+**********************
 
-Verify that your changes render properly by `building the documentation locally <https://docs.openstack.org/doc-contrib-guide/docs-builds.html>`_.
+Follow the OpenStack instructions `Setting up for contribution <https://docs.openstack.org/doc-contrib-guide/quickstart/first-timers.html#setting-up-for-contribution>`_.
 
-******************
-Contribute content
-******************
+*************
+Make a change
+*************
 
-If you are looking for work to complete, review these reports:
+#. Make changes following the OpenStack instructions for
 
-* Refer to the `StarlingX documentation StoryBoard <https://storyboard.openstack.org/#!/project/starlingx/docs>`_ for topics that need content. Many topics have stub pages in the documentation with a link to the associated story.
+   #. `Starting a change <https://docs.openstack.org/infra/manual/developers.html#starting-a-change>`_
+   #. `Committing a change <https://docs.openstack.org/doc-contrib-guide/quickstart/first-timers.html#committing-a-change>`_.
+
+      .. note::
+
+         StarlingX requires the use of a **Signed-off-by** header. Use the
+         :command:`-s` option with :command:`git commit`.
+
+
+#. When writing documentation, follow `Writing style`_ and `RST conventions`_.
+
+#. Build the documentation locally to verify your changes before committing.
+   Follow the OpenStack instructions for
+   `Building documentation <https://docs.openstack.org/doc-contrib-guide/docs-builds.html>`_.
+
+#. If needed, follow up with edits to your patch following the OpenStack
+   instructions for `Responding to requests <https://docs.openstack.org/doc-contrib-guide/quickstart/first-timers.html#responding-to-requests>`_.
+
+
+--------------------------
+Find tasks and help needed
+--------------------------
+
+If you are looking for work to complete:
+
+* Refer to the
+  `StarlingX documentation StoryBoard <https://storyboard.openstack.org/#!/project/starlingx/docs>`_ for topics that need content. Many topics have stub pages in the documentation
+  with a link to the associated story.
 
 * Find open `documentation bugs on Launchpad <https://bugs.launchpad.net/starlingx/+bugs?field.tag=stx.docs>`_.
 
 
-When creating a Gerrit review, link the associated story, task, or bug in the
-comment, according to `Starlingx Code Submission Guidelines <https://wiki.openstack.org/wiki/StarlingX/CodeSubmissionGuidelines>`_.
-
-For example, link a story and task in a comment:
-
-::
-
-  Brief description of change.
-
-  Detailed description of change.
-
-  Story: $story_id
-  Task: $task_id
-
-Or, to link to the bug that the review fixes:
-
-::
-
-  Brief description of bug fix.
-
-  Detailed description of bug fix.
-
-  Closes-Bug: $bug_id
+If you make a contribution that has an the associated story, task, or bug in the
+comment, link to the related story or bug as described in the
+:ref:`Code Submission Guidelines <link-review-to-story>`.
 
 -----------------
 Docs organization

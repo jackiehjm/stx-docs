@@ -1,3 +1,5 @@
+.. _code-submission-guide:
+
 ==========================
 Code Submission Guidelines
 ==========================
@@ -45,6 +47,8 @@ Code review process
   any non-nit issues, it is expected that any nits should be fixed at that time.
 * For more details, refer the Openstack code review process, documented in the
   `Openstack Developer Guide <https://docs.openstack.org/infra/manual/developers.html#code-review>`_
+
+.. _link-review-to-story:
 
 ----------------------------
 Link reviews to story or bug
