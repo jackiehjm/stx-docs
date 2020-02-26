@@ -14,6 +14,7 @@ Developer Resources
    navigate_source_code
    architecture_docs
    starlingx_patching
+   build_docker_image
    move_to_new_openstack_version_in_starlingx
    mirror_repo
    Project Specifications <https://docs.starlingx.io/specs/>
