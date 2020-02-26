@@ -4,11 +4,13 @@
 Developer Resources
 ===================
 
+
 .. toctree::
    :maxdepth: 1
 
    build_guide
-   Layered_Build.rst
+   Layered_Build
+   code-submission-guide
    navigate_source_code
    architecture_docs
    starlingx_patching
