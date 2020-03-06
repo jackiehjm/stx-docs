@@ -175,15 +175,17 @@ text-based configuration file named ``localrc``:
 localrc configuration file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create your ``localrc`` configuration file. For example:
+Create your ``localrc`` configuration file. Make sure PROJECT and LAYER should
+be set to compiler/distro/flock. For example:
 
 ::
 
        # tbuilder localrc
        MYUNAME=<your user name>
-       PROJECT=starlingx
+       PROJECT=<layer>
        HOST_PREFIX=$HOME/starlingx/workspace
        HOST_MIRROR_DIR=$HOME/starlingx/mirror
+       LAYER=<layer>
 
 ***************************
 Build the base Docker image
@@ -200,6 +202,7 @@ to build the base Docker image.
       ENV http_proxy " http://your.actual_http_proxy.com:your_port "
       ENV https_proxy " https://your.actual_https_proxy.com:your_port "
       ENV ftp_proxy " http://your.actual_ftp_proxy.com:your_port "
+      ENV no_proxy "127.0.0.1"
       RUN echo " proxy=http://your-proxy.com:port " >> /etc/yum.conf
 
 #. The ``tb.sh`` script automates the base Docker image build:
