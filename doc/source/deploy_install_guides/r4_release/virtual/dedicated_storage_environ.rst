@@ -20,6 +20,13 @@ Physical host requirements and setup
 Prepare virtual environment and servers
 ---------------------------------------
 
+.. note::
+
+    The following commands for host, virtual environment setup, and host
+    power-on use KVM / virsh for virtual machine and VM management
+    technology. For an alternative virtualization environment, see:
+    :doc:`Install StarlingX in VirtualBox <install_virtualbox>`.
+
 #. Prepare virtual environment.
 
    Set up virtual platform networks for virtual deployment:
