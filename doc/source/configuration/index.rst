@@ -25,6 +25,7 @@ Kubernetes Configuration
    :maxdepth: 1
 
    k8s_persistent_vol
+   k8s_auth_winactivedir
 
 -----------------------
 OpenStack Configuration

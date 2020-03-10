@@ -118,10 +118,6 @@ Install-time-only parameters
 
 * ``apiserver_oidc``
 
-  * ``client_id``
-  * ``issuer_id``
-  * ``username_claim``
-
 ----
 IPv6
 ----
