@@ -25,7 +25,7 @@ Install application manifest and helm-charts
 
    ::
 
-   	system application-upload stx-openstack-<version>-centos-stable-latest.tgz
+        system application-upload stx-openstack-<version>-centos-stable-latest.tgz
 
    This will:
 
@@ -36,11 +36,12 @@ Install application manifest and helm-charts
      recommended StarlingX configuration of OpenStack services.
 
 #. Apply the stx-openstack application in order to bring StarlingX OpenStack into
-   service.
+   service. If your environment is preconfigured with a proxy server, then make sure
+   HTTPS proxy is set before applying stx-openstack.
 
    ::
 
-   	system application-apply stx-openstack
+        system application-apply stx-openstack
 
 #. Wait for the activation of stx-openstack to complete.
 
@@ -50,7 +51,7 @@ Install application manifest and helm-charts
 
    ::
 
-   	watch -n 5 system application-list
+        watch -n 5 system application-list
 
 ----------
 Next steps
