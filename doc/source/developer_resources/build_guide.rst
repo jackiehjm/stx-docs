@@ -71,9 +71,9 @@ Installation requirements and dependencies
 
    ::
 
-     sudo useradd -m -d /home/<user> <user>
-     sudo sh -c "echo '<user> ALL=(ALL:ALL) ALL' >> /etc/sudoers"
-     sudo su -c <user>
+     sudo useradd -s /bin/bash -d /home/<user> -m -G sudo <user>
+     sudo passwd <user>
+     sudo su - <user>
 
 
 #. Set up Git.
