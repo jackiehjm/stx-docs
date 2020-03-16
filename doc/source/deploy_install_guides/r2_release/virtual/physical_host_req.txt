@@ -67,8 +67,11 @@ Set up the host with the following steps:
       apparmor-profile modules.
 
 
-#. Get the StarlingX ISO. This can be from a private StarlingX build or from the public Cengn
-   StarlingX build off 'master' branch, as shown below:
+#. Get the StarlingX ISO. This can be from a private StarlingX build or from
+   the public `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_.
+
+   For example, to get the ISO for the StarlingX R2.0 build, use the command
+   shown below:
 
    ::
 
