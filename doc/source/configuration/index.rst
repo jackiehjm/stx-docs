@@ -13,6 +13,7 @@ General Configuration
    cert_config
    host_config
    host_interface_network_config
+   docker_proxy_config
    system_config
    time_sync_config
 

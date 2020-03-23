@@ -35,13 +35,21 @@ Install application manifest and helm-charts
      the current state of the underlying StarlingX Kubernetes platform and the
      recommended StarlingX configuration of OpenStack services.
 
-#. Apply the stx-openstack application in order to bring StarlingX OpenStack into
-   service. If your environment is preconfigured with a proxy server, then make sure
-   HTTPS proxy is set before applying stx-openstack.
+#. Apply the stx-openstack application in order to bring StarlingX OpenStack
+   into service. If your environment is preconfigured with a proxy server, then
+   make sure HTTPS proxy is set before applying stx-openstack.
 
    ::
 
         system application-apply stx-openstack
+
+   .. note::
+
+        To set the HTTPS proxy at bootstrap time, refer to
+        `Ansible Bootstrap Configurations <https://docs.starlingx.io/deploy_install_guides/r3_release/ansible_bootstrap_configs.html#docker-proxy>`_.
+
+        To set the HTTPS proxy after installation, refer to
+        `Docker Proxy Configuration <https://docs.starlingx.io/configuration/docker_proxy_config.html>`_.
 
 #. Wait for the activation of stx-openstack to complete.
 
