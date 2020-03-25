@@ -34,7 +34,6 @@ Make the following menu selections in the installer:
 
 #. First menu: Select 'All-in-one Controller Configuration'
 #. Second menu: Select 'Serial Console'
-#. Third menu: Select 'Standard Security Profile'
 
 Wait for the non-interactive install of software to complete and for the server
 to reboot. This can take 5-10 minutes, depending on the performance of the host

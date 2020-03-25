@@ -36,7 +36,6 @@ Install software on controller-0
    #. First menu: Select 'Standard Controller Configuration'
    #. Second menu: Select 'Graphical Console' or 'Textual Console' depending on
       your terminal access to the console port
-   #. Third menu: Select 'Standard Security Profile'
 
 #. Wait for non-interactive install of software to complete and server to reboot.
    This can take 5-10 minutes, depending on the performance of the server.

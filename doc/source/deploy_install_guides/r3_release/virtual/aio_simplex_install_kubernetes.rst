@@ -13,7 +13,9 @@ on a **StarlingX R3.0 virtual All-in-one Simplex** deployment configuration.
 Install software on controller-0
 --------------------------------
 
-In the last step of :doc:`aio_simplex_environ`, the controller-0 virtual server 'simplex-controller-0' was started by the :command:`setup_configuration.sh` command.
+In the last step of :doc:`aio_simplex_environ`, the controller-0 virtual server
+'simplex-controller-0' was started by the :command:`setup_configuration.sh`
+command.
 
 On the host, attach to the console of virtual controller-0 and select the
 appropriate installer menu options to start the non-interactive install of
@@ -33,7 +35,6 @@ Make the following menu selections in the installer:
 
 #. First menu: Select 'All-in-one Controller Configuration'
 #. Second menu: Select 'Serial Console'
-#. Third menu: Select 'Standard Security Profile'
 
 Wait for the non-interactive install of software to complete and for the server
 to reboot. This can take 5-10 minutes, depending on the performance of the host
