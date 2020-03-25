@@ -339,6 +339,8 @@ docker_no_proxy
         - 1.2.3.4
         - 5.6.7.8
 
+.. _k8s-root-ca-cert-key-r4:
+
 --------------------------------------
 Kubernetes root CA certificate and key
 --------------------------------------
