@@ -142,12 +142,20 @@ On virtual controller-0:
         admin_username: admin
         admin_password: <sysadmin-password>
         ansible_become_pass: <sysadmin-password>
+
+        # Add these lines to configure Docker to use a proxy server
+        # docker_http_proxy: http://my.proxy.com:1080
+        # docker_https_proxy: https://my.proxy.com:1443
+        # docker_no_proxy:
+        #   - 1.2.3.4
+
         EOF
 
    Refer to :doc:`/deploy_install_guides/r3_release/ansible_bootstrap_configs`
    for information on additional Ansible bootstrap configurations for advanced
-   Ansible bootstrap scenarios, such as docker-proxies when deploying behind a
-   firewall, etc.
+   Ansible bootstrap scenarios, such as Docker proxies when deploying behind a
+   firewall, etc. Refer to :doc:`/../../configuration/docker_proxy_config` for
+   details about Docker proxy settings.
 
 #. Run the Ansible bootstrap playbook:
 
@@ -260,6 +268,19 @@ On virtual controller-0:
     system host-disk-list controller-0
     system host-disk-list controller-0 | awk '/\/dev\/sdb/{print $2}' | xargs -i system host-stor-add controller-0 {}
     system host-stor-list controller-0
+
+#. If required, and not already done as part of bootstrap, configure Docker to
+   use a proxy server.
+
+   #. List Docker proxy parameters:
+
+      ::
+
+       system service-parameter-list platform docker
+
+   #. Refer to :doc:`/../../configuration/docker_proxy_config` for
+      details about Docker proxy settings.
+
 
 *************************************
 OpenStack-specific host configuration
