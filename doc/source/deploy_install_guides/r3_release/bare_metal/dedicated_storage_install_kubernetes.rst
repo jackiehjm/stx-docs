@@ -52,7 +52,8 @@ Unlock controller-0 in order to bring it into service:
   system host-unlock controller-0
 
 Controller-0 will reboot in order to apply configuration changes and come into
-service. This can take 5-10 minutes, depending on the performance of the host machine.
+service. This can take 5-10 minutes, depending on the performance of the host
+machine.
 
 -----------------------------------------------------------------
 Install software on controller-1, storage nodes, and worker nodes
@@ -64,8 +65,8 @@ Install software on controller-1, storage nodes, and worker nodes
 #. As controller-1 boots, a message appears on its console instructing you to
    configure the personality of the node.
 
-#. On the console of controller-0, list hosts to see newly discovered controller-1
-   host (hostname=None):
+#. On the console of controller-0, list hosts to see newly discovered
+   controller-1 host (hostname=None):
 
    ::
 
@@ -256,8 +257,8 @@ Configure worker nodes
 		   system host-label-assign ${NODE} sriovdp=enabled
 		done
 
-   * If planning on running DPDK in containers on this host, configure the number
-     of 1G Huge pages required on both NUMA nodes:
+   * If planning on running DPDK in containers on this host, configure the
+     number of 1G Huge pages required on both NUMA nodes:
 
      ::
 
