@@ -9,12 +9,14 @@ Code reviews
 ------------
 
 * Use Gerrit for StarlingX code reviews
-* Follow the Openstack Git Commit Good Practice [[GitCommitMessages|here]]
-* Add the core reviewers for the affected sub-project to the review as well as
+* Follow the OpenStack Git Commit Good Practice for
+  `Git Commit Messages <https://wiki.openstack.org/wiki/GitCommitMessages>`_
+* Add the core reviewers for the affected sub-project to the review, as well as
   any other interested reviewers
 
-  * The core reviewers are listed on each sub-project wiki pages. Refer to the
-    list of `sub-projects <https://wiki.openstack.org/wiki/StarlingX#StarlingX_Projects>`_
+  * The core reviewers are listed in each sub-project repository. Refer to the
+    list of
+    `sub-project repos <https://review.opendev.org/#/admin/groups/?filter=starlingx>`_
   * In order for code to get merged, two core reviewers must give the review +2.
     A final Workflow +1 from one core reviewer will allow the code to merge.
     Typically, the final W+1 is done by the second core reviewer.
@@ -41,12 +43,14 @@ Code review process
 * If line-specific issues are raised by a reviewer, it is expected that the
   committer leaves line-specific comments indicating that it has been addressed
   (this could be a simple as replying with "Done"), or if not, why not. General
-  comments applying to the whole review should be replied to in the general comments.
+  comments applying to the whole review should be replied to in the general
+  comments.
 * Reviewers may prefix comments with "nit:". This indicates a fix that would be
-  nice but would not block merging the commit. If a new revision is needed to fix
-  any non-nit issues, it is expected that any nits should be fixed at that time.
-* For more details, refer the Openstack code review process, documented in the
-  `Openstack Developer Guide <https://docs.openstack.org/infra/manual/developers.html#code-review>`_
+  nice but would not block merging the commit. If a new revision is needed to
+  fix any non-nit issues, it is expected that any nits should be fixed at that
+  time.
+* For more details, refer the OpenStack code review process, documented in the
+  `OpenStack Developer Guide <https://docs.openstack.org/infra/manual/developers.html#code-review>`_
 
 .. _link-review-to-story:
 
@@ -54,9 +58,9 @@ Code review process
 Link reviews to story or bug
 ----------------------------
 
-* For traceability, always link your code change to a story or bug. The story/bug
-  will give reviewers context for the code changes. This will also be used to
-  help determine the relative priority of the code changes.
+* For traceability, always link your code change to a story or bug. The
+  story/bug will give reviewers context for the code changes. This will also be
+  used to help determine the relative priority of the code changes.
 * Gerrit will update the status of the story/bug automatically once the code is
   merged.
 * Linking to StoryBoard Stories: Specify the story and task ID in the commit
@@ -65,7 +69,8 @@ Link reviews to story or bug
   * Story: $story_id
   * Task: $task_id
   * Example: https://review.openstack.org/#/c/590083/
-* Linking to Launchpad Bugs: Specify the Bug ID in the commit message as follows:
+* Linking to Launchpad Bugs: Specify the Bug ID in the commit message as
+  follows:
 
   * Closes-Bug: $bug_id -- use 'Closes-Bug' if the commit is intended to fully
     fix and close the bug being referenced.
@@ -121,9 +126,10 @@ Patch rebase
 ------------
 
 * During patch re-base, there is a chance that patches can be applied by
-  treating the patch line numbers as approximate, rather than a strict requirement,
-  just so long as the before/after context seems to be correct. They require
-  fuzzing during the patch apply, and an .orig files will be created as the
-  consequence of applying patches that are not clean.
+  treating the patch line numbers as approximate, rather than a strict
+  requirement, just so long as the before/after context seems to be correct.
+  They require fuzzing during the patch apply, and an .orig file will be
+  created as the consequence of applying patches that are not clean.
+
 * In StarlingX, we will not accept fuzzing patches. All patches are required to
   be re-based cleanly so that no fuzzing and no .orig files are generated.
