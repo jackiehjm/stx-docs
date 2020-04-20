@@ -34,12 +34,24 @@ StarlingX software on controller-0.
 
 Make the following menu selections in the installer:
 
-#. First menu: Select 'Standard Controller Configuration'
-#. Second menu: Select 'Serial Console'
+#. First menu: Select 'Standard Controller Configuration'.
+#. Second menu: Select 'Serial Console'.
 
-Wait for the non-interactive install of software to complete and for the server
-to reboot. This can take 5-10 minutes depending on the performance of the host
-machine.
+   .. figure:: ../figures/starlingx-standard-controller-configuration.png
+      :scale: 47%
+      :alt: starlingx-controller-configuration
+
+      *Figure 1: StarlingX Controller Configuration*
+
+
+   .. figure:: ../figures/starlingx-aio-serial-console.png
+      :alt: starlingx--serial-console
+
+      *Figure 2: StarlingX Serial Console*
+
+   Wait for the non-interactive install of software to complete and for the server
+   to reboot. This can take 5-10 minutes depending on the performance of the host
+   machine.
 
 --------------------------------
 Bootstrap system on controller-0
@@ -61,14 +73,9 @@ Configure controller-0
 Unlock controller-0
 -------------------
 
-Unlock virtual controller-0 in order to bring it into service:
-
-::
-
-  system host-unlock controller-0
-
-Controller-0 will reboot in order to apply configuration changes and come into
-service. This can take 5-10 minutes, depending on the performance of the host machine.
+.. include:: controller_storage_install_kubernetes.rst
+   :start-after: incl-unlock-controller-0-virt-controller-storage-start:
+   :end-before: incl-unlock-controller-0-virt-controller-storage-end:
 
 -----------------------------------------------------------------
 Install software on controller-1, storage nodes, and worker nodes
@@ -381,6 +388,25 @@ Unlock worker nodes
 .. include:: controller_storage_install_kubernetes.rst
    :start-after: incl-unlock-compute-nodes-virt-controller-storage-start:
    :end-before: incl-unlock-compute-nodes-virt-controller-storage-end:
+
+.. note::
+
+   Check the status of the controller, worker and storage nodes. It should
+   now show "unlocked", "enabled" and "available".
+
+::
+
+ [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
+ +----+--------------+-------------+----------------+-------------+--------------+
+ | id | hostname     | personality | administrative | operational | availability |
+ +----+--------------+-------------+----------------+-------------+--------------+
+ | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
+ | 2  | controller-1 | controller  | unlocked       | enabled     | available    |
+ | 3  | compute-0    | worker      | unlocked       | enabled     | available    |
+ | 4  | compute-1    | worker      | unlocked       | enabled     | available    |
+ | 5  | storage-0    | storage     | unlocked       | enabled     | available    |
+ | 6  | storage-1    | storage     | unlocked       | enabled     | available    |
+ +----+--------------+-------------+----------------+-------------+--------------+
 
 ----------
 Next steps
