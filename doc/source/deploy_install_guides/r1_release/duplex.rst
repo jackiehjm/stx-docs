@@ -121,7 +121,7 @@ All-In-One Duplex is deployed include the following:
 
 -  Primary disk:
 
-   -  500 GB SDD or NVMe
+   -  500 GB SSD or NVMe
 
 -  Additional disks:
 

@@ -108,7 +108,7 @@ be deployed, include:
    -  Minimum memory: 64 GB.
    -  Hard drives:
 
-      -  Primary hard drive, minimum 500 GB SDD or NVMe.
+      -  Primary hard drive, minimum 500 GB SSD or NVMe.
       -  0 or more 500 GB disks (min. 10K RPM).
 
    -  Network ports:

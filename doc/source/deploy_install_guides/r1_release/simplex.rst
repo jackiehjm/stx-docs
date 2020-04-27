@@ -83,7 +83,7 @@ All-In-One Simplex is deployed are as follows:
 
 -  Primary disk:
 
-   -  500 GB SDD or NVMe
+   -  500 GB SSD or NVMe
 
 -  Additional disks:
 

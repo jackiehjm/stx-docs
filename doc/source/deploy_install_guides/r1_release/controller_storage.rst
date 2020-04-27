@@ -82,7 +82,7 @@ Controller Storage is deployed include:
 
 -  Primary disk:
 
-   -  500 GB SDD or NVMe controller
+   -  500 GB SSD or NVMe controller
    -  120 GB (min. 10K RPM) compute
 
 -  Additional disks:
