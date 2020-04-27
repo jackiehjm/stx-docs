@@ -111,8 +111,25 @@ using the :command:`openstack` command. For example:
 
 ::
 
-	[sysadmin@controller-0 ~(keystone_admin)]$ openstack flavor list
-	[sysadmin@controller-0 ~(keystone_admin)]$ openstack image list
+        controller-0:~$ export OS_CLOUD=openstack_helm
+        controller-0:~$ openstack flavor list
+        controller-0:~$ openstack image list
+
+The image below shows a typical successful run.
+
+.. figure:: ../figures/starlingx-access-openstack-flavorlist.png
+   :alt: starlingx-access-openstack-flavorlist
+   :scale: 50%
+
+   *Figure 1: StarlingX OpenStack Flavorlist*
+
+
+.. figure:: ../figures/starlingx-access-openstack-command.png
+   :alt: starlingx-access-openstack-command
+   :scale: 50%
+
+   *Figure 2: StarlingX OpenStack Commands*
+
 
 ----------
 Remote CLI
