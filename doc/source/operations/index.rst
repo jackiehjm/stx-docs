@@ -34,6 +34,7 @@ Kubernetes Operation
    k8s_sriov_config
    k8s_qat_device_plugin
    k8s_gpu_device_plugin
+   kata_container
 
 -------------------
 OpenStack Operation
