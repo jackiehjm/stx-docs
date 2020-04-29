@@ -26,6 +26,7 @@ Kubernetes Configuration
 
    k8s_persistent_vol
    k8s_auth_winactivedir
+   k8s_upgrade
 
 -----------------------
 OpenStack Configuration
