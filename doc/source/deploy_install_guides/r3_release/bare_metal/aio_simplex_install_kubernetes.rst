@@ -32,12 +32,23 @@ Install software on controller-0
 
 #. Make the following menu selections in the installer:
 
-   #. First menu: Select 'All-in-one Controller Configuration'
-   #. Second menu: Select 'Graphical Console' or 'Textual Console' depending on
-      your terminal access to the console port
+   #. First menu: Select 'All-in-one Controller Configuration'.
+   #. Second menu: Select 'Graphical Console' or 'Serial Console' depending on
+      your terminal access to the console port.
 
-#. Wait for non-interactive install of software to complete and server to reboot.
-   This can take 5-10 minutes, depending on the performance of the server.
+      .. figure:: ../figures/starlingx-aio-controller-configuration.png
+         :alt: starlingx-controller-configuration
+
+         *Figure 1: StarlingX Controller Configuration*
+
+
+      .. figure:: ../figures/starlingx-aio-serial-console.png
+         :alt: starlingx-serial-console
+
+         *Figure 2: StarlingX Serial Console*
+
+Wait for non-interactive install of software to complete and server to reboot.
+This can take 5-10 minutes, depending on the performance of the server.
 
 .. incl-install-software-controller-0-aio-simplex-end:
 
@@ -155,6 +166,14 @@ Bootstrap system on controller-0
    Wait for Ansible bootstrap playbook to complete.
    This can take 5-10 minutes, depending on the performance of the host machine.
 
+   The image below shows a typical successful run.
+
+   .. figure:: ../figures/starlingx-release3-ansible-bootstrap-simplex.png
+      :alt: ansible bootstarp install screen
+      :width: 800
+
+      *Figure 3: StarlingX Ansible Bootstrap*
+
 ----------------------
 Configure controller-0
 ----------------------
@@ -164,6 +183,17 @@ Configure controller-0
    ::
 
      source /etc/platform/openrc
+
+#. At this stage, you can see the controller status, it will be in the locked state.
+
+   ::
+
+    [sysadmin@localhost ~(keystone_admin)]$ system host-list
+    +----+--------------+-------------+----------------+-------------+--------------+
+    | id | hostname     | personality | administrative | operational | availability |
+    +----+--------------+-------------+----------------+-------------+--------------+
+    | 1  | controller-0 | controller  | locked         | disabled    | online       |
+    +----+--------------+-------------+----------------+-------------+--------------+
 
 #. Configure the OAM interface of controller-0 and specify the attached network
    as "oam". Use the OAM port name that is applicable to your deployment
@@ -408,6 +438,68 @@ Unlock controller-0 in order to bring it into service:
 
 Controller-0 will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host machine.
+
+.. note::
+
+   Once the controller comes back up, check the status of controller-0. It should
+   now show "unlocked", "enabled", "available" and "provisioned".
+
+::
+
+ [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
+ +----+--------------+-------------+----------------+-------------+--------------+
+ | id | hostname     | personality | administrative | operational | availability |
+ +----+--------------+-------------+----------------+-------------+--------------+
+ | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
+ +----+--------------+-------------+----------------+-------------+--------------+
+ [sysadmin@controller-0 ~(keystone_admin)]$
+
+ ===============================================
+  [sysadmin@controller-0 ~(keystone_admin)]$ system host-show controller-0
+ +-----------------------+------------------------------------------------------------ ----------+
+ | Property              | Value                                                                |
+ +-----------------------+------------------------------------------------------------ ----------+
+ | action                | none                                                                 |
+ | administrative        | unlocked                                                             |
+ | availability          | available                                                            |
+ | bm_ip                 | None                                                                 |
+ | bm_type               | none                                                                 |
+ | bm_username           | None
+ | boot_device           | /dev/disk/by-path/pci-0000:00:1f.2-ata-1.0                           |
+ | capabilities          | {u'stor_function': u'monitor', u'Personality': u'Controller-Active'} |
+ | clock_synchronization | ntp                                                                  |
+ | config_applied        | 03e22d8b-1b1f-4c52-9500-96afad295d9a                                 |
+ | config_status         | None                                                                 |
+ | config_target         | 03e22d8b-1b1f-4c52-9500-96afad295d9a                                 |
+ | console               | ttyS0,115200                                                         |
+ | created_at            | 2020-03-09T12:34:34.866469+00:00                                     |
+ | hostname              | controller-0                                                         |
+ | id                    | 1                                                                    |
+ | install_output        | text                                                                 |
+ | install_state         | None                                                                 |
+ | install_state_info    | None                                                                 |
+ | inv_state             | inventoried                                                          |
+ | invprovision          | provisioned                                                          |
+ | location              | {}                                                                   |
+ | mgmt_ip               | 192.168.204.2                                                        |
+ | mgmt_mac              | 00:00:00:00:00:00                                                    |
+ | operational           | enabled                                                              |
+ | personality           | controller                                                           |
+ | reserved              | False                                                                |
+ | rootfs_device         | /dev/disk/by-path/pci-0000:00:1f.2-ata-1.0                           |
+ | serialid              | None                                                                 |
+ | software_load         | 19.12                                                                |
+ | subfunction_avail     | available                                                            |
+ | subfunction_oper      | enabled                                                              |
+ | subfunctions          | controller,worker                                                    |
+ | task                  |                                                                      |
+ | tboot                 | false                                                                |
+ | ttys_dcd              | None                                                                 |
+ | updated_at            | 2020-03-09T14:10:42.362846+00:00                                     |
+ | uptime                | 991                                                                  |
+ | uuid                  | 66aa842e-84a2-4041-b93e-f0275cde8784                                 |
+ | vim_progress_status   | services-enabled                                                     |
+ +-----------------------+------------------------------------------------------------ ----------+
 
 .. incl-unlock-controller-0-aio-simplex-end:
 

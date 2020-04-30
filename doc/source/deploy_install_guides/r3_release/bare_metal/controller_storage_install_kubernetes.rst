@@ -33,12 +33,24 @@ Install software on controller-0
 
 #. Make the following menu selections in the installer:
 
-   #. First menu: Select 'Standard Controller Configuration'
-   #. Second menu: Select 'Graphical Console' or 'Textual Console' depending on
-      your terminal access to the console port
+   #. First menu: Select 'Standard Controller Configuration'.
+   #. Second menu: Select 'Graphical Console' or 'Serial Console' depending on
+      your terminal access to the console port.
 
-#. Wait for non-interactive install of software to complete and server to reboot.
-   This can take 5-10 minutes, depending on the performance of the server.
+      .. figure:: ../figures/starlingx-standard-controller-configuration.png
+         :scale: 47%
+         :alt: starlingx-controller-configuration
+
+         *Figure 1: StarlingX Controller Configuration*
+
+
+      .. figure:: ../figures/starlingx-aio-serial-console.png
+         :alt: starlingx--serial-console
+
+         *Figure 2: StarlingX Serial Console*
+
+      Wait for non-interactive install of software to complete and server to reboot.
+      This can take 5-10 minutes, depending on the performance of the server.
 
 .. incl-install-software-controller-0-standard-end:
 
@@ -160,6 +172,14 @@ Bootstrap system on controller-0
 
    Wait for Ansible bootstrap playbook to complete.
    This can take 5-10 minutes, depending on the performance of the host machine.
+
+   The image below shows a typical successful run.
+
+   .. figure:: ../figures/starlingx-release3-ansible-bootstrap-simplex.png
+      :alt: ansible bootstrap install screen
+      :width: 800
+
+      *Figure 3: StarlingX Ansible Bootstrap*
 
 .. incl-bootstrap-sys-controller-0-standard-end:
 
@@ -304,6 +324,8 @@ OpenStack-specific host configuration
 Unlock controller-0
 -------------------
 
+.. incl-unlock-controller-0-storage-start:
+
 Unlock controller-0 in order to bring it into service:
 
 ::
@@ -312,6 +334,58 @@ Unlock controller-0 in order to bring it into service:
 
 Controller-0 will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host machine.
+
+.. note::
+
+   Once the controller comes back up, check the status of controller-0. It should
+   now show "unlocked", "enabled", "available" and "provisioned".
+
+::
+
+ [sysadmin@controller-0 ~(keystone_admin)]$ system host-show controller-0
+ +-----------------------+----------------------------------------------------------------------+
+ | Property              | Value                                                                |
+ +-----------------------+----------------------------------------------------------------------+
+ | action                | none                                                                 |
+ | administrative        | unlocked                                                             |
+ | availability          | available                                                            |
+ | bm_ip                 | None                                                                 |
+ | bm_type               | none                                                                 |
+ | bm_username           | None                                                                 |
+ | boot_device           | /dev/disk/by-path/pci-0000:00:17.0-ata-1.0                           |
+ | capabilities          | {u'stor_function': u'monitor', u'Personality': u'Controller-Active'} |
+ | clock_synchronization | ntp                                                                  |
+ | config_applied        | 4bb28c10-7546-49be-8cf9-afc82fccf6fb                                 |
+ | config_status         | None                                                                 |
+ | config_target         | 4bb28c10-7546-49be-8cf9-afc82fccf6fb                                 |
+ | console               | ttyS0,115200                                                         |
+ | created_at            | 2020-04-22T06:03:45.823265+00:00                                     |
+ | hostname              | controller-0                                                         |
+ | id                    | 1                                                                    |
+ | install_output        | text                                                                 |
+ | install_state         | None                                                                 |
+ | install_state_info    | None                                                                 |
+ | inv_state             | inventoried                                                          |
+ | invprovision          | provisioned                                                          |
+ | location              | {}                                                                   |
+ | mgmt_ip               | 10.10.54.11                                                          |
+ | mgmt_mac              | a4:bf:01:54:97:96                                                    |
+ | operational           | enabled                                                              |
+ | personality           | controller                                                           |
+ | reserved              | False                                                                |
+ | rootfs_device         | /dev/disk/by-path/pci-0000:00:17.0-ata-1.0                           |
+ | serialid              | None                                                                 |
+ | software_load         | 20.01                                                                |
+ | task                  |                                                                      |
+ | tboot                 | false                                                                |
+ | ttys_dcd              | None                                                                 |
+ | updated_at            | 2020-04-22T10:36:37.034403+00:00                                     |
+ | uptime                | 15224                                                                |
+ | uuid                  | 770f6596-f631-489b-83c0-e64099748243                                 |
+ | vim_progress_status   | services-enabled                                                     |
+ +-----------------------+----------------------------------------------------------------------+
+
+.. incl-unlock-controller-0-storage-end:
 
 -------------------------------------------------
 Install software on controller-1 and worker nodes
@@ -433,6 +507,51 @@ Unlock controller-1 in order to bring it into service:
 Controller-1 will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host
 machine.
+
+::
+
+ [sysadmin@controller-0 ~(keystone_admin)]$ system host-show controller-1
+ +-----------------------+-----------------------------------------------------------------------+
+ | Property              | Value                                                                 |
+ +-----------------------+-----------------------------------------------------------------------+
+ | action                | none                                                                  |
+ | administrative        | unlocked                                                              |
+ | availability          | available                                                             |
+ | bm_ip                 | None                                                                  |
+ | bm_type               | none                                                                  |
+ | bm_username           | None                                                                  |
+ | boot_device           | /dev/sda                                                              |
+ | capabilities          | {u'stor_function': u'monitor', u'Personality': u'Controller-Standby'} |
+ | clock_synchronization | ntp                                                                   |
+ | config_applied        | 4bb28c10-7546-49be-8cf9-afc82fccf6fb                                  |
+ | config_status         | None                                                                  |
+ | config_target         | 4bb28c10-7546-49be-8cf9-afc82fccf6fb                                  |
+ | console               | ttyS0,115200                                                          |
+ | created_at            | 2020-04-22T06:45:14.914066+00:00                                      |
+ | hostname              | controller-1                                                          |
+ | id                    | 4                                                                     |
+ | install_output        | text                                                                  |
+ | install_state         | completed                                                             |
+ | install_state_info    | None                                                                  |
+ | inv_state             | inventoried                                                           |
+ | invprovision          | provisioned                                                           |
+ | location              | {}                                                                    |
+ | mgmt_ip               | 10.10.54.12                                                           |
+ | mgmt_mac              | a4:bf:01:55:05:eb                                                     |
+ | operational           | enabled                                                               |
+ | personality           | controller                                                            |
+ | reserved              | False                                                                 |
+ | rootfs_device         | /dev/sda                                                              |
+ | serialid              | None                                                                  |
+ | software_load         | 20.01                                                                 |
+ | task                  |                                                                       |
+ | tboot                 | false                                                                 |
+ | ttys_dcd              | None                                                                  |
+ | updated_at            | 2020-04-22T10:37:11.563565+00:00                                      |
+ | uptime                | 1611                                                                  |
+ | uuid                  | c296480a-3303-4e1a-a131-178a0d7d5a6d                                  |
+ | vim_progress_status   | services-enabled                                                      |
+ +-----------------------+-----------------------------------------------------------------------+
 
 .. incl-unlock-controller-1-end:
 
@@ -581,6 +700,8 @@ OpenStack-specific host configuration
 Unlock worker nodes
 --------------------
 
+.. incl-unlock-worker-baremetal-start:
+
 Unlock worker nodes in order to bring them into service:
 
 ::
@@ -591,6 +712,8 @@ Unlock worker nodes in order to bring them into service:
 
 The worker nodes will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host machine.
+
+.. incl-unlock-worker-baremetal-end:
 
 ----------------------------
 Add Ceph OSDs to controllers
@@ -625,6 +748,23 @@ Add Ceph OSDs to controllers
      done
 
      system host-stor-list $HOST
+
+.. note::
+
+   Check the status of the controller and worker nodes. It should
+   now show "unlocked", "enabled" and "available".
+
+::
+
+ [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
+ +----+--------------+-------------+----------------+-------------+--------------+
+ | id | hostname     | personality | administrative | operational | availability |
+ +----+--------------+-------------+----------------+-------------+--------------+
+ | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
+ | 2  | compute-0    | worker      | unlocked       | enabled     | available    |
+ | 3  | compute-1    | worker      | unlocked       | enabled     | available    |
+ | 4  | controller-1 | controller  | unlocked       | enabled     | available    |
+ +----+--------------+-------------+----------------+-------------+--------------+
 
 ----------
 Next steps

@@ -140,6 +140,14 @@ Bootstrap system on controller-0
    Wait for Ansible bootstrap playbook to complete.
    This can take 5-10 minutes, depending on the performance of the host machine.
 
+   The image below shows a typical successful run.
+
+   .. figure:: ../figures/starlingx-release3-ansible-bootstrap-simplex.png
+      :alt: ansible bootstrap install screen
+      :width: 800
+
+      *Figure 3: StarlingX Ansible Bootstrap*
+
 ----------------------
 Configure controller-0
 ----------------------
@@ -451,6 +459,62 @@ Unlock controller-1 in order to bring it into service:
 Controller-1 will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host
 machine.
+
+::
+
+ [sysadmin@controller-1 ~(keystone_admin)]$ system host-list
+ +----+--------------+-------------+----------------+-------------+--------------+
+ | id | hostname     | personality | administrative | operational | availability |
+ +----+--------------+-------------+----------------+-------------+--------------+
+ | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
+ | 2  | controller-1 | controller  | unlocked       | enabled     | available    |
+ +----+--------------+-------------+----------------+-------------+--------------+
+
+ [sysadmin@controller-1 ~(keystone_admin)]$ system host-show controller-1
+ +-----------------------+----------------------------------------------------------------------+
+ | Property              | Value                                                                |
+ +-----------------------+----------------------------------------------------------------------+
+ | action                | none                                                                 |
+ | administrative        | unlocked                                                             |
+ | availability          | available                                                            |
+ | bm_ip                 | None                                                                 |
+ | bm_type               | none                                                                 |
+ | bm_username           | None                                                                 |
+ | boot_device           | /dev/sda                                                             |
+ | capabilities          | {u'stor_function': u'monitor', u'Personality': u'Controller-Active'} |
+ | clock_synchronization | ntp                                                                  |
+ | config_applied        | 19e0dada-c2ac-4faf-a513-b713c07441af                                 |
+ | config_status         | None                                                                 |
+ | config_target         | 19e0dada-c2ac-4faf-a513-b713c07441af                                 |
+ | console               | ttyS0,115200                                                         |
+ | created_at            | 2020-04-22T02:42:06.956004+00:00                                     |
+ | hostname              | controller-1                                                         |
+ | id                    | 2                                                                    |
+ | install_output        | text                                                                 |
+ | install_state         | completed                                                            |
+ | install_state_info    | None                                                                 |
+ | inv_state             | inventoried                                                          |
+ | invprovision          | provisioned                                                          |
+ | location              | {}                                                                   |
+ | mgmt_ip               | 10.10.53.12                                                          |
+ | mgmt_mac              | a4:bf:01:55:03:bb                                                    |
+ | operational           | enabled                                                              |
+ | personality           | controller                                                           |
+ | reserved              | False                                                                |
+ | rootfs_device         | /dev/sda                                                             |
+ | serialid              | None                                                                 |
+ | software_load         | 20.01                                                                |
+ | subfunction_avail     | available                                                            |
+ | subfunction_oper      | enabled                                                              |
+ | subfunctions          | controller,worker                                                    |
+ | task                  |                                                                      |
+ | tboot                 | false                                                                |
+ | ttys_dcd              | None                                                                 |
+ | updated_at            | 2020-04-22T12:20:25.248838+00:00                                     |
+ | uptime                | 10587                                                                |
+ | uuid                  | 41296fac-5b16-4c52-9296-5b720100f8b5                                 |
+ | vim_progress_status   | services-enabled                                                     |
+ +-----------------------+----------------------------------------------------------------------+
 
 ----------
 Next steps

@@ -45,15 +45,9 @@ Configure controller-0
 Unlock controller-0
 -------------------
 
-Unlock controller-0 in order to bring it into service:
-
-::
-
-  system host-unlock controller-0
-
-Controller-0 will reboot in order to apply configuration changes and come into
-service. This can take 5-10 minutes, depending on the performance of the host
-machine.
+.. include:: controller_storage_install_kubernetes.rst
+   :start-after: incl-unlock-controller-0-storage-start:
+   :end-before: incl-unlock-controller-0-storage-end:
 
 -----------------------------------------------------------------
 Install software on controller-1, storage nodes, and worker nodes
@@ -343,17 +337,28 @@ OpenStack-specific host configuration
 Unlock worker nodes
 -------------------
 
-Unlock worker nodes in order to bring them into service:
+.. include:: controller_storage_install_kubernetes.rst
+   :start-after: incl-unlock-worker-baremetal-start:
+   :end-before: incl-unlock-worker-baremetal-end:
+
+.. note::
+
+   Check the status of the controller, worker and storage nodes. It should
+   now show "unlocked", "enabled" and "available".
 
 ::
 
-	for NODE in worker-0 worker-1; do
-	   system host-unlock $NODE
-	done
-
-The worker nodes will reboot in order to apply configuration changes and come
-into service. This can take 5-10 minutes, depending on the performance of the
-host machine.
+ [sysadmin@controller-0 ~(keystone_admin)]$ system host-list
+ +----+--------------+-------------+----------------+-------------+--------------+
+ | id | hostname     | personality | administrative | operational | availability |
+ +----+--------------+-------------+----------------+-------------+--------------+
+ | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
+ | 2  | compute-0    | worker      | unlocked       | enabled     | available    |
+ | 3  | compute-1    | worker      | unlocked       | enabled     | available    |
+ | 4  | controller-1 | controller  | unlocked       | enabled     | available    |
+ | 5  | storage-0    | storage     | unlocked       | enabled     | available    |
+ | 6  | storage-1    | storage     | unlocked       | enabled     | available    |
+ +----+--------------+-------------+----------------+-------------+--------------+
 
 ----------
 Next steps

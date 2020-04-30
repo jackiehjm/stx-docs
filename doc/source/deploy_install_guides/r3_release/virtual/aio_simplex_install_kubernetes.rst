@@ -36,20 +36,20 @@ Make the following menu selections in the installer:
 #. First menu: Select 'All-in-one Controller Configuration'
 #. Second menu: Select 'Serial Console'
 
-.. figure:: ../figures/starlingx-aio-controller-configuration.png
-   :alt: starlingx-controller-configuration
+   .. figure:: ../figures/starlingx-aio-controller-configuration.png
+      :alt: starlingx-controller-configuration
 
-   *Figure 1: StarlingX Controller Configuration*
+      *Figure 1: StarlingX Controller Configuration*
 
 
-.. figure:: ../figures/starlingx-aio-serial-console.png
-   :alt: starlingx--serial-console
+   .. figure:: ../figures/starlingx-aio-serial-console.png
+      :alt: starlingx--serial-console
 
-   *Figure 2: StarlingX Serial Console*
+      *Figure 2: StarlingX Serial Console*
 
-Wait for the non-interactive install of software to complete and for the server
-to reboot. This can take 5-10 minutes, depending on the performance of the host
-machine.
+   Wait for the non-interactive install of software to complete and for the server
+   to reboot. This can take 5-10 minutes, depending on the performance of the host
+   machine.
 
 --------------------------------
 Bootstrap system on controller-0
@@ -337,6 +337,8 @@ OpenStack-specific host configuration
 Unlock controller-0
 -------------------
 
+.. incl-unlock-controller-0-virt-aio-simplex-start:
+
 Unlock virtual controller-0 to bring it into service:
 
 ::
@@ -407,6 +409,8 @@ service. This can take 5-10 minutes, depending on the performance of the host ma
  | uuid                  | 66aa842e-84a2-4041-b93e-f0275cde8784                                 |
  | vim_progress_status   | services-enabled                                                     |
  +-----------------------+------------------------------------------------------------ ----------+
+
+.. incl-unlock-controller-0-virt-aio-simplex-end:
 
 ----------
 Next steps
