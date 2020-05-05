@@ -106,6 +106,12 @@ subcloud Management and OAM IP subnet and the SystemController Management and
 OAM IP subnet, respectively. For more information, see the
 `Install a Subcloud`_ section later in this guide.
 
+.. note::
+
+    All messaging between SystemControllers and Subclouds uses the ``admin``
+    REST API service endpoints which, in this distributed cloud environment,
+    are all configured for secure HTTPS. Certificates for these HTTPS
+    connections are managed internally by StarlingX.
 
 ---------------------------------------
 Install and provision the central cloud
