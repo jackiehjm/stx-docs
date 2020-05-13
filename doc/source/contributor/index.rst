@@ -25,13 +25,14 @@ Contribute to code
 ------------------
 
 StarlingX follows the
-`OpenStack developer contribution guidelines <https://docs.openstack.org/infra/manual/developers.html>`_. Additional StarlingX-specific resources are listed below.
+`OpenStack developer contribution guidelines <https://docs.openstack.org/infra/manual/developers.html>`_.
+Additional StarlingX-specific resources are listed below.
 
 .. toctree::
    :maxdepth: 1
 
    development_process
-   Code Submission Guidelines <https://wiki.openstack.org/wiki/StarlingX/CodeSubmissionGuidelines>
+   ../developer_resources/code-submission-guide
 
 --------------------
 Additional resources
