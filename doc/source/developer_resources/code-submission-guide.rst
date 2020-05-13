@@ -89,6 +89,10 @@ Pre-review and pre-submission testing
 * For the majority of cases, it is expected that the author completes their
   testing before posting a review.
 * Make sure the new code compiles and builds successfully.
+* For each package being modified, update the ``TIS_PATCH_VER`` variable in
+  the centos/build_srpm.data. This ensures that packages are versioned
+  correctly and the latest version will be used. If up-versioning a
+  package then reset ``TIS_PATCH_VER`` to 0.
 * Run tox tests (flake8, py27, etc) successfully. These can all be run manually
   prior to launching a review.
 * Update existing automated unit tests and add new ones when applicable.
