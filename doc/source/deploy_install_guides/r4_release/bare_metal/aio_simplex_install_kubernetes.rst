@@ -129,7 +129,7 @@ Bootstrap system on controller-0
         external_oam_floating_address: <OAM-FLOATING-IP-ADDRESS>
 
         admin_username: admin
-        admin_password: <sysadmin-password>
+        admin_password: <admin-password>
         ansible_become_pass: <sysadmin-password>
         EOF
 

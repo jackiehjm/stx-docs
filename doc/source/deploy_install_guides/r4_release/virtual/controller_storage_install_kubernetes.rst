@@ -120,7 +120,7 @@ On virtual controller-0:
         external_oam_node_1_address: 10.10.10.4
 
         admin_username: admin
-        admin_password: <sysadmin-password>
+        admin_password: <admin-password>
         ansible_become_pass: <sysadmin-password>
         EOF
 
