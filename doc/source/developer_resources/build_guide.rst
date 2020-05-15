@@ -9,6 +9,8 @@ R3.0 and earlier release.
    :local:
    :depth: 1
 
+.. _Requirements:
+
 ------------
 Requirements
 ------------
@@ -36,6 +38,8 @@ A workstation computer with:
 * Proxy settings configured, if required (See
   http://lists.starlingx.io/pipermail/starlingx-discuss/2018-July/000136.html for more details)
 * Public SSH key
+
+.. _Development-environment-setup:
 
 -----------------------------
 Development environment setup
@@ -139,6 +143,8 @@ Install tools project
 
      cd $HOME/tools/
 
+.. _Prepare_the_base_Docker_image:
+
 -----------------------------
 Prepare the base Docker image
 -----------------------------
@@ -207,6 +213,8 @@ Build the CentOS mirror repository
 The creation of the StarlingX ISO relies on a repository of RPM binaries,
 RPM sources, and tar compressed files. This section describes how to build
 this CentOS mirror repository.
+
+.. _Run_building_Docker_container:
 
 *****************************
 Run building Docker container
@@ -457,6 +465,8 @@ Build the image:
 ::
 
   build-iso
+
+.. _Build-installer:
 
 ---------------
 Build installer

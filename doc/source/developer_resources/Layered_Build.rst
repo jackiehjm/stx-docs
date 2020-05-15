@@ -1,6 +1,8 @@
-=============
-Layered Build
-=============
+.. _Layered-Build:
+
+=======================
+Layered Build Reference
+=======================
 
 What is build layering?
 -----------------------
