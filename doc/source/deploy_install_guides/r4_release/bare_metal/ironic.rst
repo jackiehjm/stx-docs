@@ -14,8 +14,14 @@ End user applications can be deployed on bare metal servers (instead of
 virtual machines) by configuring OpenStack Ironic and deploying a pool of 1 or
 more bare metal servers.
 
+.. note::
+
+   If you are behind a corporate firewall or proxy, you need to set proxy
+   settings. Refer to :doc:`/../../configuration/docker_proxy_config` for
+   details.
+
 .. figure:: ../figures/starlingx-deployment-options-ironic.png
-   :scale: 90%
+   :scale: 50%
    :alt: Standard with Ironic deployment configuration
 
    *Figure 1: Standard with Ironic deployment configuration*
