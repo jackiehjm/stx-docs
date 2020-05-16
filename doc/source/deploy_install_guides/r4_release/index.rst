@@ -18,6 +18,12 @@ Install StarlingX Kubernetes in a virtual environment
    virtual/controller_storage
    virtual/dedicated_storage
 
+.. toctree::
+   :hidden:
+
+   virtual/config_virtualbox_netwk
+   virtual/install_virtualbox
+
 ------------------------------------------
 Install StarlingX Kubernetes on bare metal
 ------------------------------------------
