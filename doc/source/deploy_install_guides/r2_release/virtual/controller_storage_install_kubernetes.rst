@@ -83,7 +83,7 @@ On virtual controller-0:
    ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/bootstrap.yml``
       The Ansible bootstrap playbook.
 
-   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap/host_vars/default.yml``
+   ``/usr/share/ansible/stx-ansible/playbooks/host_vars/bootstrap/default.yml``
       The default configuration values for the bootstrap playbook.
 
    sysadmin home directory ($HOME)
