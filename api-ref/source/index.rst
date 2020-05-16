@@ -12,13 +12,5 @@ StarlingX Project API References:
 * `NFV <https://docs.starlingx.io/stx-nfv/index.html>`__
 * `Software Updates <https://docs.starlingx.io/stx-update/index.html>`__
 
-StarlingX also has API References for the modified OpenStack APIs:
 
-.. toctree::
-   :maxdepth: 1
-
-   api-ref-blockstorage-v2-cgcs-ext
-   api-ref-compute-v2-cgcs-ext
-   api-ref-image-v2-cgcs-ext
-   api-ref-networking-v2-cgcs-ext
 
