@@ -103,8 +103,9 @@ routing. The settings required to connect a subcloud to the SystemController
 are specified when a subcloud is defined. A gateway router is required to
 complete the L3 connections, which will provide IP routing between the
 subcloud Management and OAM IP subnet and the SystemController Management and
-OAM IP subnet, respectively. For more information, see the
-`Install a Subcloud`_ section later in this guide.
+OAM IP subnet, respectively. The SystemController bootstraps the subclouds via
+the OAM network, and manages them via the management network. For more
+information, see the `Install a Subcloud`_ section later in this guide.
 
 
 ---------------------------------------
@@ -162,7 +163,8 @@ At the subcloud location:
 
 5. Establish an L3 connection to the SystemController by enabling the OAM
    interface (with OAM IP/subnet) on the subcloud controller using the
-   ``config_management`` script.
+   ``config_management`` script. This step is for subcloud ansible bootstrap
+   preparation.
 
    .. note:: This step should **not** use an interface that uses the MGMT
              IP/subnet because the MGMT IP subnet will get moved to the loopback
@@ -182,6 +184,9 @@ At the subcloud location:
 
    .. note:: To exit without completing the script, use ``CTRL+C``. Allow a few minutes for
              the script to finish.
+
+   .. note:: The `config_management` in the code snippet configures the OAM
+             interface/address/gateway.
 
    .. code:: sh
 
@@ -230,6 +235,11 @@ At the System Controller:
    .. important:: The `management_*` entries in the override file are required
       for all installation types, including AIO-Simplex.
 
+   .. important:: The `management_subnet` must not overlap with any other subclouds.
+
+   .. note:: The `systemcontroller_gateway_address` is the address of central
+             cloud management network gateway.
+
 2. Add the subcloud using the CLI command below:
 
    .. code:: sh
@@ -239,7 +249,7 @@ At the System Controller:
 
    Where:
 
-   - *<ip_address>* is the bootstrap_ip set earlier on the subcloud.
+   - *<ip_address>* is the OAM interface address set earlier on the subcloud.
    - *<config_file>* is the Ansible override configuration file, ``bootstrap-values.yml``,
      created earlier in step 1.
 
