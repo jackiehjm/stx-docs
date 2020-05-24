@@ -35,6 +35,8 @@ OpenStack Configuration
 .. toctree::
    :maxdepth: 1
 
+   openstack_cinder_config
    openstack_ironic_config
    openstack_swift_config
+
 
