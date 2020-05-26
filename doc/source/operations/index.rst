@@ -20,6 +20,7 @@ General Operation
    lldp_monitor
    storage_util_display
    tsn
+   ceph_cluster_migration
 
 --------------------
 Kubernetes Operation
