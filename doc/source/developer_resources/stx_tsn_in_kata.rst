@@ -10,62 +10,62 @@ Enable TSN in Kata Containers
 Background
 ----------
 
-`Time sensitive networking (TSN) <https://1.ieee802.org/tsn/>`_ is a set of
+`Time Sensitive Networking (TSN) <https://1.ieee802.org/tsn/>`_ is a set of
 standards developed by the IEEE 802.1 Working Group (WG) with the aim of
 guaranteeing determinism in delivering time-sensitive traffic with low and
 bounded latency, while allowing non-time-sensitive traffic to be carried through
 the same network.
 
-As a cloud infrastructure software stack for the edge, TSN is a very important
-feature for StarlingX as the deterministic low latency is required by edge
-applications in industrial IOT, video delivery and other ultra-low latency use
-cases. Furthermore, TSN support in containers naturally becomes a demand for
-StarlingX as StarlingX is a cloud-native platform.
+As a cloud infrastructure software stack for the edge,
+:abbr:`TSN (Time Sensitive Networking)` is a very important feature for
+StarlingX as the deterministic low latency is required by edge applications in
+industrial IOT, video delivery and other ultra-low latency use cases.
+Furthermore, because StarlingX is a cloud-native platform, TSN support in
+containers naturally becomes a requirement for StarlingX.
 
-The challenge is some TSN features are only available on Linux from 4.19 or higher
-version. StarlingX is built on top of CentOS. As of StarlingX 3.0 release, it is
-based on CentOS 7 which provides a Linux 3.10 kernel with some backported patches
-(StarlingX CentOS 8 upgrade would be finished by 5.0 release as planned). As
-we all know, generic containers share the same kernel with the host.
+A challenge is that some TSN features are only available on Linux kernel
+version 4.19 or higher. StarlingX is built on top of CentOS. The StarlingX 3.0
+release (currently available) is based on CentOS 7, which provides a Linux 3.10
+kernel with some backported patches. (The StarlingX team plans to
+upgrade to CentOS 8 in a future release.)
 
-Fortunately, StarlingX already supported Kata containers on the master branch,
-and it will become an officially supported feature from StarlingX 4.0 release.
-A Kata container has its own kernel which doesn't depend on the kernel of the
-host. Therefore, TSN support in containers on StarlingX starts from Kata
-container.
+Generic containers share the same kernel as the host. However, a Kata Container
+has its own kernel, which does not depend on the kernel of the host.
+Fortunately, StarlingX already supports Kata Containers on the master branch,
+and it will become an officially supported feature in the StarlingX 4.0 release.
+Therefore, TSN support in containers on StarlingX begins with Kata Containers.
 
 `Kata Containers <https://katacontainers.io/>`_ is an open source project to
 build a secure container runtime with lightweight virtual machines that feel
-and perform like containers but provide stronger workload isolation using
+and perform like containers, but provide stronger workload isolation using
 hardware virtualization technology as a second layer of defense.
 
------------------------------------------------------
-How to build a Linux kernel with TSN support for Kata
------------------------------------------------------
+---------------------------------------------------------
+Build a Linux kernel with TSN support for Kata Containers
+---------------------------------------------------------
 
 As of writing this article, the latest Kata release is Kata 1.11.0-rc0. This
 release includes a Linux 5.4.32 kernel image with Kata patches. Though the
 kernel version is high enough, TSN features are not fully enabled in the kernel
-build. It is needed to build a customized kernel image based on the same
-code base. Below is a guide about how to build a customized kernel image for
-Kata.
+build, so you must build a customized kernel image. The following steps describe
+how to build a customized kernel image for Kata.
 
-#. Get the ``packaging`` repository of Kata
+#. Get the ``packaging`` repository of Kata Containers:
 
    ::
 
      git clone https://github.com/kata-containers/packaging.git
 
-#. Prepare the building environment by executing the command in the directory
-   ``packaging/kernel``.
+#. Prepare the build environment by executing this command in the directory
+   ``packaging/kernel``:
 
    ::
 
      ./build-kernel.sh -v 5.4.32 -f -d setup
 
-#. Prepare a kernel config file ``stx.conf`` with TSN-related options enabled
-   as shown below, and put it in the directory.
-   ``~/go/src/github.com/kata-containers/packaging/kernel/configs/fragments/x86_64``.
+#. Prepare a kernel configuration file, ``stx.conf``, with TSN-related options
+   enabled as shown below. Put it in the directory
+   ``~/go/src/github.com/kata-containers/packaging/kernel/configs/fragments/x86_64``:
 
    ::
 
@@ -81,43 +81,42 @@ Kata.
      # vlan
      CONFIG_VLAN_8021Q=y
 
-#. Re-run setup command to update stx.conf to the config
+#. Re-run the setup command to update ``stx.conf`` to the desired configuration:
 
    ::
 
      ./build-kernel.sh -v 5.4.32 -f -d setup
 
-#. Build the kernel image
+#. Build the kernel image:
 
    ::
 
      ./build-kernel.sh -v 5.4.32 -f -d build
 
-#. Install the built kernel images to the destination directory
+#. Install the built kernel images to the destination directory:
 
    ::
 
      sudo ./build-kernel.sh -v 5.4.32 -f -d install
 
-Once these commands are done, there are two built kernel images
-``vmlinux.container`` and ``vmlinuz.container`` available in the directory
+When these commands are done, two built kernel images, ``vmlinux.container``
+and ``vmlinuz.container``, will be available in the directory
 ``/usr/share/kata-containers``. Save the two files for later use.
 
----------------------------------------------
-How to build a container image with TSN stack
----------------------------------------------
+--------------------------------------
+Build a container image with TSN stack
+--------------------------------------
 
-Besides TSN support in the kernel, there are still some packages required to
-build TSN stack. For example,
-`LinuxPTP <http://linuxptp.sourceforge.net/>`_ is an implementation of
-`the Precision Time Protocol (PTP)
-<https://en.wikipedia.org/wiki/Precision_Time_Protocol>`_
+Certain packages are required to build the TSN stack. For example,
+`LinuxPTP <http://linuxptp.sourceforge.net/>`_ is an implementation of the
+`Precision Time Protocol (PTP) <https://en.wikipedia.org/wiki/Precision_Time_Protocol>`_
 according to IEEE standard 1588 for Linux.
 
-Here is the dockerfile used to build the container image. ``Ubuntu 20.04`` was
-chosen as the base image for packages with newer versions. ``python3-dateutil``,
-``python3-numpy``, and ``python3-matplotlib`` were installed for performance
-testing. Here the built container image was named as ``kata_tsn_image``.
+The example below shows the dockerfile used to build the container image.
+``Ubuntu 20.04`` was chosen as the base image for packages with newer versions.
+``python3-dateutil``, ``python3-numpy``, and ``python3-matplotlib`` were
+installed for performance testing. The built container image was named
+``kata_tsn_image``.
 
 ::
 
@@ -127,12 +126,12 @@ testing. Here the built container image was named as ``kata_tsn_image``.
       linuxptp vlan libjansson4 python3-dateutil python3-numpy \
       python3-matplotlib
 
------------------------------------------
-How to set up an experimental TSN network
------------------------------------------
+----------------------------------
+Set up an experimental TSN network
+----------------------------------
 
-An experimental TSN network as shown in `Figure 1` was set up to verify the TSN
-functionality in Kata containers. The network is composed of a switch with
+The experimental TSN network shown in `Figure 1` was used to verify the TSN
+functionality in Kata Containers. The network was composed of a switch with
 TSN capability and four hosts.
 
 .. figure:: ./figures/stx_tsn_network_diagram.png
@@ -140,63 +139,60 @@ TSN capability and four hosts.
     :height: 300px
     :align: center
 
-    Figure 1: An Experimental TSN Network
+    *Figure 1: Experimental TSN network*
 
-#. The TSN switch is made by a generic PC with a TSN switch card
+#. The TSN switch used a generic PC with a TSN switch card
    `PCIe-0400-TSN <https://www.kontron.com/products/systems/tsn-switches/
    network-interfaces-tsn/pcie-0400-tsn-network-interface-card.html>`_ inserted.
-   Please refer to
-   `the User Guide of PCIe-0400-TSN
+   Please refer to the
+   `PCIe-0400-TSN User Guide
    <https://www.kontron.com/downloads/manuals/
    userguide_pcie-0400-tsn_v0.13.pdf?product=151637>`_
-   for detailed configurations.
+   for detailed configuration options.
 
-#. The hosts are four
+#. The hosts were four
    `Intel Hades Canyon NUC <https://simplynuc.com/hades-canyon/>`_
-   which are equipped with two NICs each. One of the two NICs is
-   `Intel I210 NIC <https://ark.intel.com/content/www/us/en/ark/products/series/
-   64399/intel-ethernet-controller-i210-series.html>`_
-   which has TSN support.
+   which were equipped with two NICs each. One of the two NICs was the
+   `Intel Ethernet Controller I210 series <https://ark.intel.com/content/www/us/en/ark/products/series/64399/intel-ethernet-controller-i210-series.html>`_
+   which had TSN support.
 
-   * ``Node 1`` is the latest StarlingX built from the master branch which
-     supports Kata containers. ``Node 1`` will be used as the data sender in the
-     later test.
+   * ``Node 1`` used the latest StarlingX built from the master branch which
+     supports Kata containers. ``Node 1`` was used as the data sender in the
+     tests in this guide.
 
    * ``Node 2``, ``Node 3``, and ``Node 4`` were all installed with
-     `Ubuntu 18.04`. ``Node 2`` additionally installed ``LinuxPTP`` which will be
-     used as the data receiver. ``Node 3`` and ``Node 4`` will be used to
+     Ubuntu 18.04. ``Node 2`` additionally installed ``LinuxPTP`` which was
+     used as the data receiver. ``Node 3`` and ``Node 4`` were used to
      send/receive best-effort traffic to stress the TSN network.
 
-------------------------------------------
-How to enable and verify TSN functionality
-------------------------------------------
+-----------------------------------
+Enable and verify TSN functionality
+-----------------------------------
 
-Till now, the preparation is done. It is time to enable and verify the TSN
-functionality in Kata containers. The whole process can be summarized as three
-steps:
+Preparation is complete and you can enable and verify the TSN functionality in
+Kata Containers. The whole process can be summarized in three steps:
 
-#. Perform the time synchronization across the whole TSN network.
+#. Perform time synchronization across the whole TSN network.
 
-#. Create a Kata container with Intel I210 passed into.
+#. Launch a Kata Container with a physical NIC passed in.
 
-#. Make necessary configurations on the Kata container and the TSN switch to
-   enable TSN functionality. After that, run some tests to verify the TSN
+#. Make necessary configuration changes to the Kata Container and the TSN switch
+   to enable TSN functionality. After that, run tests to verify the TSN
    functionality.
 
 ***********************************************************
 Step 1. Perform time synchronization across the TSN network
 ***********************************************************
 
-Two programs, ``ptp4l`` and ``phc2sys`` coming from the project ``LinuxPTP``
-were used to do the job. Here is how the time synchronization was performed on
-the TSN network.
+Two programs from the ``LinuxPTP`` project, ``ptp4l`` and ``phc2sys``,
+were used to do time synchronization on the TSN network.
 
 .. figure:: ./figures/time_sync_topology.png
     :width: 500px
     :height: 300px
     :align: center
 
-    Figure 2: Time Synchronization Topology
+    *Figure 2: Time synchronization topology*
 
 #. Configure NTP servers on the TSN switch and ``Node 1 (StarlingX)`` to
    synchronize their system clocks with the external clock.
@@ -211,66 +207,68 @@ the TSN network.
 #. Launch ``phc2sys`` on ``Node 2 (Ubuntu)`` to synchronize its system clock
    with its PTP clock.
 
-The time synchronization on the Kata container will be deferred to ``Step 3``.
+Time synchronization on the Kata Container is done later in this process.
 
-There is no need to do the time synchronization on ``Node 3`` and ``Node 4``
-since they are only used to send/receive best-effort traffic in the experiment.
+You do not need to set up time synchronization on ``Node 3`` and ``Node 4``
+since they were used to send/receive best-effort traffic in the experiment.
 
-*****************************************************
-Step 2. Launch a Kata container with I210 passed into
-*****************************************************
+*************************************************************
+Step 2. Launch a Kata Container with a physical NIC passed in
+*************************************************************
 
-Before creating a Kata container, the two kernel images ``vmlinux.container``
-and ``vmlinuz.container`` should be copied to the directory
+Before creating a Kata Container, copy the two kernel images ``vmlinux.container``
+and ``vmlinuz.container`` to the directory
 ``/usr/share/kata-containers/`` of ``Node 1 (StarlingX)``.
 
-The I210 NIC on the host needs to be passed into a Kata container. Here is
-how to achieve it. More details can be found at
-"`How To Pass a Physical NIC Into a Kata Container
-<https://github.com/kata-containers/documentation/pull/619/files>`_"
+The Intel Ethernet Controller I210 on the host must be passed into a Kata
+Container by completing the following steps. More details can be found at
+`How To Pass a Physical NIC Into a Kata Container
+<https://github.com/kata-containers/documentation/pull/619/files>`_.
 
-::
 
-  1. Find the pci address of the I210 NIC. Here the pci address is
-     "0000:05:00.0" and the ID is "8086:157b" which are used in the
-     following steps.
-     lspci -nn -D | grep Ethernet
-     0000:00:1f.6 Ethernet controller [0200]: Intel Corporation Ethernet Connection (2) I219-LM [8086:15b7] (rev 31)
-     0000:05:00.0 Ethernet controller [0200]: Intel Corporation I210 Gigabit Network Connection [8086:157b] (rev 03)
+#.  Configure the Kata Container:
 
-  2. export BDF="0000:05:00.0"
+    ::
 
-  3. readlink -e /sys/bus/pci/devices/$BDF/iommu_group
-     /sys/kernel/iommu_groups/16
+       # Find the PCI address of the I210 NIC. Here the PCI address is
+       # "0000:05:00.0" and the ID is "8086:157b" which are used in the
+       # following steps.
+       lspci -nn -D | grep Ethernet
+       0000:00:1f.6 Ethernet controller [0200]: Intel Corporation Ethernet Connection (2) I219-LM [8086:15b7] (rev 31)
+       0000:05:00.0 Ethernet controller [0200]: Intel Corporation I210 Gigabit Network Connection [8086:157b] (rev 03)
 
-  4. echo $BDF | sudo tee /sys/bus/pci/devices/$BDF/driver/unbind
+       export BDF="0000:05:00.0"
 
-  5. sudo modprobe vfio-pci
+       readlink -e /sys/bus/pci/devices/$BDF/iommu_group
+       /sys/kernel/iommu_groups/16
 
-  6. echo 8086 157b | sudo tee /sys/bus/pci/drivers/vfio-pci/new_id
+       echo $BDF | sudo tee /sys/bus/pci/devices/$BDF/driver/unbind
 
-  7. echo $BDF | sudo tee --append /sys/bus/pci/drivers/vfio-pci/bind
+       sudo modprobe vfio-pci
 
-  8. ls -l /dev/vfio
-     total 0
-     crw------- 1 root root  241,  0 May 18 15:38 16
-     crw-rw-rw- 1 root root  10, 196 May 18 15:37 vfio
+       echo 8086 157b | sudo tee /sys/bus/pci/drivers/vfio-pci/new_id
 
-  9. Edit "the file /usr/share/defaults/kata-containers/configuration.toml" to
-     set "hotplug_vfio_on_root_bus" to true.
+       echo $BDF | sudo tee --append /sys/bus/pci/drivers/vfio-pci/bind
 
-Once these configurations are done, a Kata container can be created with the
-I210 NIC passed into. Assume the name of the container image is
-``kata_tsn_image``.
+       ls -l /dev/vfio
+       total 0
+       crw------- 1 root root  241,  0 May 18 15:38 16
+       crw-rw-rw- 1 root root  10, 196 May 18 15:37 vfio
 
-::
+       # Edit the /usr/share/defaults/kata-containers/configuration.toml file to
+       # set `hotplug_vfio_on_root_bus` to true.
 
-  sudo docker run -it -d --runtime=kata-runtime --rm --device \
-        /dev/vfio/16 -v /dev:/dev --privileged --name tsn \
-        kata_tsn_image /bin/bash
+#.  Create a Kata Container with the Intel Ethernet Controller I210 passed in.
+    In this example, the name of the container image was ``kata_tsn_image``.
 
-Once it is done, the I210 NIC can be seen in the created container with the name
-``eth1``.
+    ::
+
+      sudo docker run -it -d --runtime=kata-runtime --rm --device \
+            /dev/vfio/16 -v /dev:/dev --privileged --name tsn \
+            kata_tsn_image /bin/bash
+
+    When completed, the I210 NIC was seen in the created container with the name
+    ``eth1``.
 
 ***************************************
 Step 3. Config and test TSN performance
@@ -281,15 +279,15 @@ The sample application
 <https://github.com/intel/iotg_tsn_ref_sw/tree/apollolake-i/sample-app-taprio>`_
 was used in the test. Minor changes were made on the code to format the
 output to adapt to the two tools (``nl-calc`` and ``nl-report``) provided by
-the project
-`netlatency <https://github.com/kontron/netlatency>`_ to plot the result.
+the
+`netlatency <https://github.com/kontron/netlatency>`_ project and plot the result.
 
-Three test cases were defined in the experiment. Among the three test cases,
-``sample-app-taprio`` was running in the Kata container as the data sender and
+Three test cases were defined in the experiment. For all three test cases,
+``sample-app-taprio`` was running in the Kata Container as the data sender and
 running on ``Node 2`` as the data receiver. Common configurations for
 ``sample-app-taprio`` are listed here.
 
-.. csv-table:: Table 1: Common Configurations for sample-app-taprio
+.. csv-table:: Table 1: Configuration of sample-app-taprio
    :header: "Option", "Value"
 
    "Cycle Time", "2ms"
@@ -298,24 +296,25 @@ running on ``Node 2`` as the data receiver. Common configurations for
    "VLAN Priority code point", "6"
    "SO_PRIORITY", "6"
 
-In the test, three performance indicators were measured.
+During the test, three performance indicators were measured.
 
-.. csv-table:: Table 2: Performance Indicators
+.. csv-table:: Table 2: Performance indicators
    :header: "Indicator", "Meaning"
 
-   "Scheduled times", "the time from the beginning of a cycle to the NIC of the receiver receives the packet"
-   "RT application latency", "the time from the beginning of a cycle to when calling the send function"
-   "TSN Network jitter", "the jitter of scheduled times"
+   "Scheduled times", "Time from the beginning of a cycle to when the NIC receives the packet"
+   "RT application latency", "Time from the beginning of a cycle to when the send function is called"
+   "TSN Network jitter", "Jitter of scheduled times"
 
-* Case 1, no TSN feature enabled. ``sample-app-taprio`` sends a packet at the
-  beginning of each cycle.
+* Case 1:  TSN not enabled.
 
-  Need to perform time synchronization on the Kata container before executing
-  ``sample-app-taprio``.
+  ``sample-app-taprio`` sent a packet at the beginning of each cycle.
+
+  Before ``sample-app-taprio`` was executed, time synchronization was performed
+  on the Kata Container.
 
 ::
 
-  # launch ptp programs, ptp4l and phc2sys, to synchronize the PTP clock and
+  # Launch PTP programs, ptp4l and phc2sys, to synchronize the PTP clock and
   # the system clock.
   ptp4l -f /etc/ptp4l.cfg -m &
   phc2sys -s eth1 -c CLOCK_REALTIME -w -O 0 -m &
@@ -347,50 +346,50 @@ In the test, three performance indicators were measured.
     :height: 400px
     :align: center
 
-    Figure 3: Performance Report of Case 1
+    *Figure 3: Case 1 performance report*
 
-As shown in `Figure 3`, the indicator of ``RT application latency`` ranged from
-`28.184us` to `1259.387us`. There are two reasons for that:
+As shown in `Figure 3`, the ``RT application latency`` indicator ranged from
+28.184us to 1259.387us, due to the following reasons:
 
 #. Standard kernels instead of real-time kernels were used for both StarlingX
-   platform and the Kata container (for now, Kata containers only supports
-   standard kernel).
+   platform and the Kata Container. (Kata Containers supports the standard
+   kernel.)
 
-#. ``sample-app-taprio`` was running on the Kata container instead of the
+#. ``sample-app-taprio`` was running on the Kata Container instead of the
    host.
 
-Since TSN features were not enabled in this case, there are no any controls on
-``Scheduled times``. It depended on the indicator of
-``RT application latency`` and the behavior of the whole network. As shown in
-the figure, it ranged from `69.824us` to `2487.357us`, and its jitter can reach
-`1ms`.
+Since TSN features were not enabled, there were no controls on
+``Scheduled times``, and its behavior depended on the ``RT application latency``
+indicator and the behavior of the whole network. As shown in
+the figure, it ranged from 69.824us to 2487.357us, and the measured jitter
+reached 1ms.
 
-* Case 2,
-  enable two qdiscs,
-  `TAPRIO <http://man7.org/linux/man-pages/man8/tc-taprio.8.html>`_  and
-  `ETF <http://man7.org/linux/man-pages/man8/tc-etf.8.html>`_, on the Kata
-  container. `sample-app-taprio` had additional configurations as shown
-  in Table 3. Considering the big variance of ``RT application latency`` got in
-  `Case 1`, the transmitting time was set at `1250us`.
+* Case 2:  Enable two qdiscs on the Kata Container.
 
-.. csv-table:: Table 3: Additional Configurations for Case 2
+  `TAPRIO <http://man7.org/linux/man-pages/man8/tc-taprio.8.html>`_ and
+  `ETF <http://man7.org/linux/man-pages/man8/tc-etf.8.html>`_ were used.
+  ``sample-app-taprio`` had additional configuration settings as shown
+  in *Table 3*. Considering the large variance of ``RT application latency`` in
+  Case 1, the transmitting time was set at 1250us.
+
+.. csv-table:: Table 3: Case 2 configuration
    :header: "Option", "Value"
 
    "Transmit Window", "[1200us, 1300us]"
    "Offset in Window", "50us"
 
-Make necessary configurations on the Kata container before executing
+Make necessary configuration changes on the Kata Container before executing
 ``sample-app-taprio``.
 
 ::
 
-  # change the number of multi-purpose channels
+  # Change the number of multi-purpose channels
   ethtool -L eth1 combined 4
 
-  # delete existing qdiscs
+  # Delete existing qdiscs
   tc qdisc del dev eth1 root
 
-  # enable taprio qdisc, SO_PRIORITY 6 was mapped to traffic class 1.
+  # Enable taprio qdisc, SO_PRIORITY 6 was mapped to traffic class 1.
   tc -d qdisc replace dev eth1 parent root handle 100 taprio num_tc 4 \
         map 3 3 3 3 3 3 1 3 3 3 3 3 3 3 3 3 \
         queues 1@0 1@1 1@2 1@3 \
@@ -405,17 +404,17 @@ Make necessary configurations on the Kata container before executing
         sched-entry S 08 100000 \
         clockid CLOCK_TAI
 
-  # enable etf qdisc on queue 1 which corresponds to traffic class 1
+  # Enable etf qdisc on queue 1 which corresponds to traffic class 1
   tc qdisc replace dev eth1 parent 100:2 etf clockid CLOCK_TAI \
         delta 5000000 offload
 
-  # create vlan interface and set egress map.
+  # Create vlan interface and set egress map.
   ip link add link eth1 name eth1.3 type vlan id 3
   vconfig set_egress_map eth1.3 6 6
   ifconfig eth1 up
   ip link set eth1.3 up
 
-  # launch ptp programs, ptp4l and phc2sys, to synchronize the PTP clock and
+  # Launch PTP programs, ptp4l and phc2sys, to synchronize the PTP clock and
   # the system clock.
   ptp4l -f /etc/ptp4l.cfg -m &
   phc2sys -s eth1 -c CLOCK_REALTIME -w -O 0 -m &
@@ -425,18 +424,20 @@ Make necessary configurations on the Kata container before executing
     :height: 400px
     :align: center
 
-    Figure 4: Performance Report of Case 2
+    *Figure 4: Case 2 performance report*
 
-In this test, the indicator of ``RT Application latency`` got similar result
-with that of `Case 1`. It is expected since there are no any optimizations done
-on it. ``Scheduled times`` was well controlled (ranged from `1253.188us` to
-`1253.343us`) which indicates the TSN feature is functional. The indicator of
-``TSN Network jitter`` also proved it.
+In this test, ``RT Application latency`` showed similar results
+to Case 1. This was expected, since there were no optimizations made.
+``Scheduled times`` was well controlled (ranged from 1253.188us to
+1253.343us), which indicates the TSN feature was functional. The measured
+``TSN Network jitter`` also proves TSN was functional.
 
-* Case 3, based on the setting of `Case 2`, enable
+* Case 3: Stress test.
+
+  This scenario used the Case 2 settings and enabled
   `802.1qbv <http://www.ieee802.org/1/pages/802.1bv.html>`_ support on the TSN
-  switch, and ``iperf3`` were running on ``Node 3`` and ``Node 4`` to transfer
-  massive best-effort traffic to stress the overall network communication.
+  switch. Also, ``iperf3`` was used on ``Node 3`` and ``Node 4`` for massive
+  best-effort traffic to stress the overall network communication.
 
 ::
 
@@ -475,20 +476,20 @@ on it. ``Scheduled times`` was well controlled (ranged from `1253.188us` to
     :height: 400px
     :align: center
 
-    Figure 5: Performance Report of Case 3
+    *Figure 5: Case 3 performance report*
 
-The result was very similar with that of `Case 2`. It demonstrated that even a
-great amount of best-effort traffic was sent to the TSN network, the
-time-sensitive packets sent from ``sample-app-taprio`` was not impacted. The
+The results were very similar to Case 2. The test demonstrated that even when
+a large amount of best-effort traffic was sent to the TSN network, the
+time-sensitive packets sent from ``sample-app-taprio`` were not impacted. The
 determinism was still guaranteed.
 
 -------
 Summary
 -------
 
-In this guide, we introduced how to enable TSN support in Kata containers on
-StarlingX platform. The experimental results demonstrated the capability of
-TSN in Kata containers. The cycle time (2ms) is not small enough for
-some critical use cases. In the future, some optimizations could be
-done to achieve better performance, such as, replacing standard kernel
-with real-time kernel.
+In this guide, we introduced how to enable TSN support in Kata Containers on the
+StarlingX platform. The experimental results demonstrated the capability of TSN
+in Kata Containers. Currently, the cycle time (2ms) is not low enough for some
+critical use cases. In the future, optimizations could be made to achieve
+better performance, such as replacing the standard kernel with a real-time
+kernel.
