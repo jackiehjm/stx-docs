@@ -38,8 +38,8 @@ The items labeled *a* and *b* in the figure indicate two configuration files:
     *   {controller OAM gateway IP/floating IP/host IP}
     *   {controller management floating IP/host IP}
     *   {controller cluster gateway IP}
-    *   10.96.0.1
-    *   10.96.0.10
+    *   10.96.0.1 {apiserver cluster IP for Kubernetes}
+    *   10.96.0.10 {coredns cluster IP for Kubernetes}
     *   `*.cluster.local`
 
 *   Configuration file *b* lists container runtime proxy variables

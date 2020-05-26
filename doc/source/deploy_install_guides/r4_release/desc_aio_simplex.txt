@@ -7,6 +7,12 @@ following benefits:
   single pair of physical servers
 * A storage backend solution using a single-node CEPH deployment
 
+.. note::
+
+   If you are behind a corporate firewall or proxy, you need to set proxy
+   settings. Refer to :doc:`/../../configuration/docker_proxy_config` for
+   details.
+
 .. figure:: ../figures/starlingx-deployment-options-simplex.png
    :scale: 50%
    :alt: All-in-one Simplex deployment configuration

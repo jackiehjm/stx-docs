@@ -45,11 +45,11 @@ Configure controller-0
 Unlock controller-0
 -------------------
 
-   .. important::
+.. important::
 
-      Make sure the Ceph storage backend is configured. If it is
-      not configured, you will not be able to configure storage
-      nodes.
+  Make sure the Ceph storage backend is configured. If it is
+  not configured, you will not be able to configure storage
+  nodes.
 
 Unlock controller-0 in order to bring it into service:
 
@@ -75,13 +75,13 @@ Install software on controller-1, storage nodes, and worker nodes
 
    ::
 
-	system host-list
-	+----+--------------+-------------+----------------+-------------+--------------+
-	| id | hostname     | personality | administrative | operational | availability |
-	+----+--------------+-------------+----------------+-------------+--------------+
-	| 1  | controller-0 | controller  | unlocked       | enabled     | available    |
-	| 2  | None         | None        | locked         | disabled    | offline      |
-	+----+--------------+-------------+----------------+-------------+--------------+
+    system host-list
+    +----+--------------+-------------+----------------+-------------+--------------+
+    | id | hostname     | personality | administrative | operational | availability |
+    +----+--------------+-------------+----------------+-------------+--------------+
+    | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
+    | 2  | None         | None        | locked         | disabled    | offline      |
+    +----+--------------+-------------+----------------+-------------+--------------+
 
 #. Using the host id, set the personality of this host to 'controller':
 
@@ -101,14 +101,14 @@ Install software on controller-1, storage nodes, and worker nodes
 
    ::
 
-   		system host-update 3 personality=storage
+        system host-update 3 personality=storage
 
    Repeat for storage-1. Power on storage-1 and wait for the new host
    (hostname=None) to be discovered by checking 'system host-list':
 
    ::
 
-   		system host-update 4 personality=storage
+        system host-update 4 personality=storage
 
    This initiates the software installation on storage-0 and storage-1.
    This can take 5-10 minutes, depending on the performance of the host machine.
@@ -128,7 +128,7 @@ Install software on controller-1, storage nodes, and worker nodes
 
    ::
 
-	 system host-update 6 personality=worker hostname=worker-1
+     system host-update 6 personality=worker hostname=worker-1
 
    This initiates the install of software on worker-0 and worker-1.
 
@@ -138,17 +138,17 @@ Install software on controller-1, storage nodes, and worker nodes
 
    ::
 
-	 system host-list
-	 +----+--------------+-------------+----------------+-------------+--------------+
-	 | id | hostname     | personality | administrative | operational | availability |
-	 +----+--------------+-------------+----------------+-------------+--------------+
-	 | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
-	 | 2  | controller-1 | controller  | locked         | disabled    | online       |
-	 | 3  | storage-0    | storage     | locked         | disabled    | online       |
-	 | 4  | storage-1    | storage     | locked         | disabled    | online       |
-	 | 5  | worker-0     | worker      | locked         | disabled    | online       |
-	 | 6  | worker-1     | worker      | locked         | disabled    | online       |
-	 +----+--------------+-------------+----------------+-------------+--------------+
+     system host-list
+     +----+--------------+-------------+----------------+-------------+--------------+
+     | id | hostname     | personality | administrative | operational | availability |
+     +----+--------------+-------------+----------------+-------------+--------------+
+     | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
+     | 2  | controller-1 | controller  | locked         | disabled    | online       |
+     | 3  | storage-0    | storage     | locked         | disabled    | online       |
+     | 4  | storage-1    | storage     | locked         | disabled    | online       |
+     | 5  | worker-0     | worker      | locked         | disabled    | online       |
+     | 6  | worker-1     | worker      | locked         | disabled    | online       |
+     +----+--------------+-------------+----------------+-------------+--------------+
 
 ----------------------
 Configure controller-1
@@ -177,39 +177,39 @@ Configure storage nodes
 
    ::
 
-	for NODE in storage-0 storage-1; do
-	   system interface-network-assign $NODE mgmt0 cluster-host
-	done
+    for NODE in storage-0 storage-1; do
+       system interface-network-assign $NODE mgmt0 cluster-host
+    done
 
 #. Add OSDs to storage-0. The following example adds OSDs to the `sdb` disk:
 
    ::
 
-	HOST=storage-0
-	DISKS=$(system host-disk-list ${HOST})
-	TIERS=$(system storage-tier-list ceph_cluster)
-	OSDs="/dev/sdb"
-	for OSD in $OSDs; do
-	   system host-stor-add ${HOST} $(echo "$DISKS" | grep "$OSD" | awk '{print $2}') --tier-uuid $(echo "$TIERS" | grep storage | awk '{print $2}')
-	   while true; do system host-stor-list ${HOST} | grep ${OSD} | grep configuring; if [ $? -ne 0 ]; then break; fi; sleep 1; done
-	done
+    HOST=storage-0
+    DISKS=$(system host-disk-list ${HOST})
+    TIERS=$(system storage-tier-list ceph_cluster)
+    OSDs="/dev/sdb"
+    for OSD in $OSDs; do
+       system host-stor-add ${HOST} $(echo "$DISKS" | grep "$OSD" | awk '{print $2}') --tier-uuid $(echo "$TIERS" | grep storage | awk '{print $2}')
+       while true; do system host-stor-list ${HOST} | grep ${OSD} | grep configuring; if [ $? -ne 0 ]; then break; fi; sleep 1; done
+    done
 
-	system host-stor-list $HOST
+    system host-stor-list $HOST
 
 #. Add OSDs to storage-1. The following example adds OSDs to the `sdb` disk:
 
    ::
 
-	HOST=storage-1
-	DISKS=$(system host-disk-list ${HOST})
-	TIERS=$(system storage-tier-list ceph_cluster)
-	OSDs="/dev/sdb"
-	for OSD in $OSDs; do
-	    system host-stor-add ${HOST} $(echo "$DISKS" | grep "$OSD" | awk '{print $2}') --tier-uuid $(echo "$TIERS" | grep storage | awk '{print $2}')
-	    while true; do system host-stor-list ${HOST} | grep ${OSD} | grep configuring; if [ $? -ne 0 ]; then break; fi; sleep 1; done
-	done
+    HOST=storage-1
+    DISKS=$(system host-disk-list ${HOST})
+    TIERS=$(system storage-tier-list ceph_cluster)
+    OSDs="/dev/sdb"
+    for OSD in $OSDs; do
+        system host-stor-add ${HOST} $(echo "$DISKS" | grep "$OSD" | awk '{print $2}') --tier-uuid $(echo "$TIERS" | grep storage | awk '{print $2}')
+        while true; do system host-stor-list ${HOST} | grep ${OSD} | grep configuring; if [ $? -ne 0 ]; then break; fi; sleep 1; done
+    done
 
-	system host-stor-list $HOST
+    system host-stor-list $HOST
 
 --------------------
 Unlock storage nodes
@@ -219,9 +219,9 @@ Unlock storage nodes in order to bring them into service:
 
 ::
 
-	for STORAGE in storage-0 storage-1; do
-	   system host-unlock $STORAGE
-	done
+    for STORAGE in storage-0 storage-1; do
+       system host-unlock $STORAGE
+    done
 
 The storage nodes will reboot in order to apply configuration changes and come
 into service. This can take 5-10 minutes, depending on the performance of the
@@ -238,9 +238,9 @@ Configure worker nodes
 
    ::
 
-	for NODE in worker-0 worker-1; do
-	   system interface-network-assign $NODE mgmt0 cluster-host
-	done
+    for NODE in worker-0 worker-1; do
+       system interface-network-assign $NODE mgmt0 cluster-host
+    done
 
 #. Configure data interfaces for worker nodes. Use the DATA port names, for
    example eth0, that are applicable to your deployment environment.
@@ -258,55 +258,55 @@ Configure worker nodes
 
      ::
 
-		for NODE in worker-0 worker-1; do
-		   system host-label-assign ${NODE} sriovdp=enabled
-		done
+        for NODE in worker-0 worker-1; do
+           system host-label-assign ${NODE} sriovdp=enabled
+        done
 
    * If planning on running DPDK in containers on this host, configure the number
      of 1G Huge pages required on both NUMA nodes:
 
      ::
 
-		for NODE in worker-0 worker-1; do
-		   system host-memory-modify ${NODE} 0 -1G 100
-		   system host-memory-modify ${NODE} 1 -1G 100
-		done
+        for NODE in worker-0 worker-1; do
+           system host-memory-modify ${NODE} 0 -1G 100
+           system host-memory-modify ${NODE} 1 -1G 100
+        done
 
    For both Kubernetes and OpenStack:
 
    ::
 
-	 	DATA0IF=<DATA-0-PORT>
-		DATA1IF=<DATA-1-PORT>
-		PHYSNET0='physnet0'
-		PHYSNET1='physnet1'
-		SPL=/tmp/tmp-system-port-list
-		SPIL=/tmp/tmp-system-host-if-list
+        DATA0IF=<DATA-0-PORT>
+        DATA1IF=<DATA-1-PORT>
+        PHYSNET0='physnet0'
+        PHYSNET1='physnet1'
+        SPL=/tmp/tmp-system-port-list
+        SPIL=/tmp/tmp-system-host-if-list
 
-		# configure the datanetworks in sysinv, prior to referencing it
-		# in the ``system host-if-modify`` command'.
-		system datanetwork-add ${PHYSNET0} vlan
-		system datanetwork-add ${PHYSNET1} vlan
+        # configure the datanetworks in sysinv, prior to referencing it
+        # in the ``system host-if-modify`` command'.
+        system datanetwork-add ${PHYSNET0} vlan
+        system datanetwork-add ${PHYSNET1} vlan
 
-		for NODE in worker-0 worker-1; do
-		  echo "Configuring interface for: $NODE"
-		  set -ex
-		  system host-port-list ${NODE} --nowrap > ${SPL}
-		  system host-if-list -a ${NODE} --nowrap > ${SPIL}
-		  DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
-		  DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
-		  DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
-		  DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
-		  DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
-		  DATA1PORTNAME=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
-		  DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
-		  DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
-		  system host-if-modify -m 1500 -n data0 -c data ${NODE} ${DATA0IFUUID}
-		  system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
-		  system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
-		  system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
-		  set +ex
-		done
+        for NODE in worker-0 worker-1; do
+          echo "Configuring interface for: $NODE"
+          set -ex
+          system host-port-list ${NODE} --nowrap > ${SPL}
+          system host-if-list -a ${NODE} --nowrap > ${SPIL}
+          DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
+          DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
+          DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
+          DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
+          DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
+          DATA1PORTNAME=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
+          DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
+          DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
+          system host-if-modify -m 1500 -n data0 -c data ${NODE} ${DATA0IFUUID}
+          system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
+          system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
+          system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
+          set +ex
+        done
 
 *************************************
 OpenStack-specific host configuration
@@ -322,27 +322,27 @@ OpenStack-specific host configuration
 
    ::
 
-	for NODE in worker-0 worker-1; do
-	  system host-label-assign $NODE  openstack-compute-node=enabled
-	  system host-label-assign $NODE  openvswitch=enabled
-	  system host-label-assign $NODE  sriov=enabled
-	done
+    for NODE in worker-0 worker-1; do
+      system host-label-assign $NODE  openstack-compute-node=enabled
+      system host-label-assign $NODE  openvswitch=enabled
+      system host-label-assign $NODE  sriov=enabled
+    done
 
 #. **For OpenStack only:** Set up disk partition for nova-local volume group,
    which is needed for stx-openstack nova ephemeral disks.
 
    ::
 
-	for NODE in worker-0 worker-1; do
-	  echo "Configuring Nova local for: $NODE"
-	  ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
-	  ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
-	  PARTITION_SIZE=10
-	  NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
-	  NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
-	  system host-lvg-add ${NODE} nova-local
-	  system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
-	done
+    for NODE in worker-0 worker-1; do
+      echo "Configuring Nova local for: $NODE"
+      ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
+      ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
+      PARTITION_SIZE=10
+      NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
+      NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
+      system host-lvg-add ${NODE} nova-local
+      system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
+    done
 
 -------------------
 Unlock worker nodes
@@ -352,9 +352,9 @@ Unlock worker nodes in order to bring them into service:
 
 ::
 
-	for NODE in worker-0 worker-1; do
-	   system host-unlock $NODE
-	done
+    for NODE in worker-0 worker-1; do
+       system host-unlock $NODE
+    done
 
 The worker nodes will reboot in order to apply configuration changes and come
 into service. This can take 5-10 minutes, depending on the performance of the

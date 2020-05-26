@@ -25,7 +25,7 @@ Install application manifest and helm-charts
 
    ::
 
-   	system application-upload stx-openstack-<version>-centos-stable-latest.tgz
+     system application-upload stx-openstack-<version>-centos-stable-latest.tgz
 
    This will:
 
@@ -36,11 +36,20 @@ Install application manifest and helm-charts
      recommended StarlingX configuration of OpenStack services.
 
 #. Apply the stx-openstack application in order to bring StarlingX OpenStack into
-   service.
+   service. If your environment is preconfigured with a proxy server, then
+   make sure HTTPS proxy is set before applying stx-openstack.
 
    ::
 
-   	system application-apply stx-openstack
+     system application-apply stx-openstack
+
+   .. note::
+
+        To set the HTTPS proxy at bootstrap time, refer to
+        `Ansible Bootstrap Configurations <https://docs.starlingx.io/deploy_install_guides/r3_release/ansible_bootstrap_configs.html#docker-proxy>`_.
+
+        To set the HTTPS proxy after installation, refer to
+        `Docker Proxy Configuration <https://docs.starlingx.io/configuration/docker_proxy_config.html>`_.
 
 #. Wait for the activation of stx-openstack to complete.
 
@@ -50,7 +59,7 @@ Install application manifest and helm-charts
 
    ::
 
-   	watch -n 5 system application-list
+     watch -n 5 system application-list
 
 ----------
 Next steps
