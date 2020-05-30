@@ -33,6 +33,7 @@ Additional StarlingX-specific resources are listed below.
 
    development_process
    ../developer_resources/code-submission-guide
+   ../developer_resources/debug_issues
 
 --------------------
 Additional resources
