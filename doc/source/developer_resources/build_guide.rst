@@ -531,15 +531,27 @@ Additional notes
 Build avoidance
 ---------------
 
+The foundational principle of build avoidance is that it is faster to download
+the rpms than it is to build them. This typically true when the host for
+reference builds and the consumer are close to each other and share a high speed
+link. It is not practical for ``mirror.starlingx.cengn.ca`` to serve as a
+provider of reference builds for the world. The real goal is for a corporate
+office to have a provider of reference builds to the designers within their
+corporate network.
+
+.. contents::
+   :local:
+   :depth: 1
+
 *******
 Purpose
 *******
 
-Greatly reduce build times after using "repo" to syncronized a local repository
-with an upstream source (i.e. "repo sync"). Build avoidance works well for
+Build avoidance can greatly reduce build times after using ``repo`` to synchronize a local repository
+with an upstream source (i.e. ``repo sync``). Build avoidance works well for
 designers working within a regional office. Starting from a new workspace,
-"build-pkgs" typically requires three or more hours to complete. Build avoidance
-reduces this step to approximately 20 minutes.
+``build-pkgs`` typically requires three or more hours to complete. Build
+avoidance can reduce this step to approximately 20 minutes.
 
 ***********
 Limitations
@@ -552,100 +564,233 @@ Limitations
 * Not likely to be useful to solo designers, or teleworkers that wish to compile
   on using their home computers. Build avoidance downloads build artifacts from a reference build, and WAN speeds are generally too slow.
 
-*****************
-Method (in brief)
-*****************
+************************
+Reference build overview
+************************
 
-#. Reference builds
+* A server in the regional office performs regular (e.g. daily) automated
+  builds using existing methods. These builds are called *reference builds*.
+* The builds are timestamped and preserved for some time (i.e. a number of weeks).
+* A build CONTEXT, which is a file produced by ``build-pkgs`` at location
+  ``$MY_WORKSPACE/CONTEXT``, is captured. It is a bash script that can cd to
+  each and every Git and check out the SHA that contributed to the build.
+* For each package built, a file captures the md5sums of all the source code
+  inputs required to build that package. These files are also produced by
+  ``build-pkgs`` at location ``$MY_WORKSPACE//rpmbuild/SOURCES//srpm_reference.md5``.
+* All these build products are accessible locally (e.g. a regional office)
+  using ``rsync``.
 
-   * A server in the regional office performs regular (e.g. daily) automated
-     builds using existing methods. These builds are called "reference builds".
-   * The builds are timestamped and preserved for some time (i.e. a number of weeks).
-   * A build CONTEXT, which is a file produced by "build-pkgs" at location
-     *$MY_WORKSPACE/CONTEXT*, is captured. It is a bash script that can cd to
-     each and every Git and checkout the SHA that contributed to the build.
-   * For each package built, a file captures the md5sums of all the source code
-     inputs required to build that package. These files are also produced by
-     "build-pkgs" at location *$MY_WORKSPACE//rpmbuild/SOURCES//srpm_reference.md5*.
-   * All these build products are accessible locally (e.g. a regional office)
-     using "rsync".
+  .. Note::
 
-     **NOTE:** Other protocols can be added later.
+      Other protocols can be added later.
 
-#. Designers
+On the reference builds side:
 
-   * Request a build avoidance build. Recommended after you have
-     done synchronized the repository (i.e. "repo sync").
+* Build contexts of all builds are collected into a common directory.
+* Context files are prefixed by the build time stamp allowing chronological traversal of the files.
 
-     ::
+On the consumer side:
 
-        repo sync
-        generate-cgcs-centos-repo.sh
-        populate_downloads.sh
-        build-pkgs --build-avoidance
+* The set of available reference build context are downloaded.
+* Traverse the set of available build contexts from newest to oldest.
 
-   * Use combinations of additional arguments, environment variables, and a
-     configuration file unique to the regional office to specify an URL
-     to the reference builds.
+  * If all SHA of all gits in a candidate reference build are also present in the local git context, stop traversal and use this reference build.
 
-     * Using a configuration file to specify the location of your reference build:
-
-       ::
-
-           mkdir -p $MY_REPO/local-build-data
-
-           cat <<- EOF > $MY_REPO/local-build-data/build_avoidance_source
-           # Optional, these are already the default values.
-           BUILD_AVOIDANCE_DATE_FORMAT="%Y%m%d"
-           BUILD_AVOIDANCE_TIME_FORMAT="%H%M%S"
-           BUILD_AVOIDANCE_DATE_TIME_DELIM="T"
-           BUILD_AVOIDANCE_DATE_TIME_POSTFIX="Z"
-           BUILD_AVOIDANCE_DATE_UTC=1
-           BUILD_AVOIDANCE_FILE_TRANSFER="rsync"
-
-           # Required, unique values for each regional office
-           BUILD_AVOIDANCE_USR="jenkins"
-           BUILD_AVOIDANCE_HOST="stx-builder.mycompany.com"
-           BUILD_AVOIDANCE_DIR="/localdisk/loadbuild/jenkins/StarlingX_Reference_Build"
-           EOF
-
-     * Using command-line arguments to specify the location of your reference
-       build:
-
-       ::
-
-           build-pkgs --build-avoidance --build-avoidance-dir /localdisk/loadbuild/jenkins/StarlingX_Reference_Build --build-avoidance-host stx-builder.mycompany.com --build-avoidance-user jenkins
-
-   * Prior to your build attempt, you need to accept the host key. Doing so
-     prevents "rsync" failures on a "yes/no" prompt. You only have to do this once.
-
-     ::
-
-         grep -q $BUILD_AVOIDANCE_HOST $HOME/.ssh/known_hosts
-         if [ $? != 0 ]; then
-         ssh-keyscan $BUILD_AVOIDANCE_HOST >> $HOME/.ssh/known_hosts
-         fi
+  * If selected reference build is newer than the last (if any) reference build that was downloaded, then download the selected build context, else do nothing.
 
 
-   * "build-pkgs" does the following:
+*************
+Prerequisites
+*************
 
-     * From newest to oldest, scans the CONTEXTs of the various reference builds.
-       Selects the first (i.e. most recent) context that satisfies the following
-       requirement: every Git the SHA specifies in the CONTEXT is present.
-     * The selected context might be slightly out of date, but not by more than
-       a day. This assumes daily reference builds are run.
-     * If the context has not been previously downloaded, then download it now.
-       This means you need to download select portions of the reference build
-       workspace into the designer's workspace. This includes all the SRPMS,
-       RPMS, MD5SUMS, and miscellaneous supporting files. Downloading these files
-       usually takes about 10 minutes over an office LAN.
-     * The designer could have additional commits or uncommitted changes not
-       present in the reference builds. Affected packages are identified by the
-       differing md5sum's.  In these cases, the packages are re-built. Re-builds
-       usually take five or more minutes, depending on the packages that have changed.
 
-   * What if no valid reference build is found? Then build-pkgs will fall back
-     to a regular build.
+* Reference build server data file
+
+  * Data file describing your reference build server is required in the location
+    ``$MY_REPO/local-build-data/build_avoidance_source``. (This file is not
+    supplied by the StarlingX gits.)
+
+  * Required fields and hypothetical values for the data file include:
+
+    ::
+
+       BUILD_AVOIDANCE_DATE_FORMAT="%Y%m%d"
+       BUILD_AVOIDANCE_TIME_FORMAT="%H%M%S"
+       BUILD_AVOIDANCE_DATE_TIME_DELIM="T"
+       BUILD_AVOIDANCE_DATE_TIME_POSTFIX="Z"
+       BUILD_AVOIDANCE_DATE_UTC=0
+
+       BUILD_AVOIDANCE_FILE_TRANSFER="rsync"
+
+       BUILD_AVOIDANCE_USR="jenkins"
+       BUILD_AVOIDANCE_HOST="my-builder.my-company.com"
+       BUILD_AVOIDANCE_DIR="/localdisk/loadbuild/jenkins/master"
+
+* Reference build server requirements
+
+  * The reference build server should build regularly, e.g. daily.
+  * The ``MY_WORKSPACE`` variable set prior to a reference build follows the format:
+
+    ::
+
+      TIMESTAMP=$(date +${BUILD_AVOIDANCE_DATE_FORMAT}${BUILD_AVOIDANCE_DATE_TIME_DELIM}${BUILD_AVOIDANCE_TIME_FORMAT}${BUILD_AVOIDANCE_DATE_TIME_POSTFIX})
+      export MY_WORKSPACE=${BUILD_AVOIDANCE_DIR}/${TIMESTAMP}
+
+  * Builds should be preserved for a useful period of time.  e.g. at least two weeks.
+
+  * The reference build server is configured to accept rsync requirements. It
+    serves files under the ``BUILD_AVOIDANCE_DIR`` directory, which is
+    ``/localdisk/loadbuild/jenkins/master`` in this example.
+
+***********************************
+Download a selected reference build
+***********************************
+
+The list of artifacts to download is captured in the datafile
+``$MY_REPO/build-data/build_avoidance_source``.
+
+The following paths are relative to ``$MY_WORKSPACE/$BUILD_TYPE``
+
+::
+
+  BUILD_AVOIDANCE_SRPM_DIRECTORIES="inputs srpm_assemble rpmbuild/SRPMS rpmbuild/SOURCES"
+  BUILD_AVOIDANCE_SRPM_FILES=""
+  BUILD_AVOIDANCE_RPM_DIRECTORIES="results rpmbuild/RPMS rpmbuild/SPECS repo/cgcs-tis-repo/dependancy-cache"
+  BUILD_AVOIDANCE_RPM_FILES=".platform_release"
+
+Details of the files and directories downloaded include:
+
+* ``inputs`` = Working directory used to assemble srpms from git or tarball
+* ``srpm_assemble`` = Working directory used to assemble srpms from upstream
+  srpms
+* ``rpmbuild/SRPMS`` = Assembled stx src.rpms to build
+* ``rpmbuild/SOURCES`` = Additional per package metadata data collected to
+  support build avoidance
+* ``rpmbuild/SOURCES/<package-name>/srpm_reference.md5`` = md5sums of all files
+  that go into building the STX src.rpm
+* ``results`` = Per package build logs and artifacts generated by mockchain
+* ``rpmbuild/RPMS`` = Build RPMs
+* ``rpmbuild/SPECS`` = Spec files of build RPMs
+* ``repo/cgcs-tis-repo/dependancy-cache`` = build-pkgs data summarizing:
+
+  * The 'Requires' of RPMs
+  * The 'BuildRequires' of src.rpms
+  * Which RPMs are derived from which src.rpms
+*  ``.platform_release`` = Platform release value
+
+On the reference builds side, the only extra step to support build avoidance is
+to generate ``rpmbuild/SOURCES/<package-name>/srpm_reference.md5`` files.
+
+On the consumer side, for each build type:
+
+* For each file or subdirectory listed in
+  ``$MY_REPO/build-data/build_avoidance_source``, ``rsync`` the file or
+  directory with options to preserve the file time stamp.
+
+*********************
+Build tool operations
+*********************
+
+The build tools automatically perform the tasks described below. There are no
+required configuration steps for setting up reference builds and no actions for
+consuming reference builds.
+
+For each build type and for each package, build src.rpms:
+
+* Generate a list of input files for the current package.
+* Generate a srpm_reference.md5 file for the current inputs.
+* Compare srpm_reference.md5 files for current and reference builds. If
+  differences are found (list of files, or md5sum of those files), then rebuild
+  this src.rpm.
+
+For each build type, for each package, and for the list of RPMs built by
+src.rpm:
+
+* If rpm is missing, must rebuild package.
+* If rpm is wrong version, must rebuild package.
+* If rpm older than src.rpm, must rebuild package.
+
+  .. Note::
+
+      Assumes reference build and consumer are on NTP time, and any drift is
+      well below the download time for the reference build.
+
+****************
+Designer actions
+****************
+
+* Request a build avoidance build. Recommended after you have
+  synchronized the repository using ``repo sync`` as shown below:
+
+  ::
+
+    repo sync
+    generate-cgcs-centos-repo.sh
+    populate_downloads.sh
+    build-pkgs --build-avoidance
+
+* Use combinations of additional arguments, environment variables, and a
+  configuration file unique to the regional office to specify an URL
+  to the reference builds.
+
+* Using a configuration file to specify the location of your reference build:
+
+  ::
+
+     mkdir -p $MY_REPO/local-build-data
+
+     cat <<- EOF > $MY_REPO/local-build-data/build_avoidance_source
+     # Optional, these are already the default values.
+     BUILD_AVOIDANCE_DATE_FORMAT="%Y%m%d"
+     BUILD_AVOIDANCE_TIME_FORMAT="%H%M%S"
+     BUILD_AVOIDANCE_DATE_TIME_DELIM="T"
+     BUILD_AVOIDANCE_DATE_TIME_POSTFIX="Z"
+     BUILD_AVOIDANCE_DATE_UTC=1
+     BUILD_AVOIDANCE_FILE_TRANSFER="rsync"
+
+     # Required, unique values for each regional office
+     BUILD_AVOIDANCE_USR="jenkins"
+     BUILD_AVOIDANCE_HOST="stx-builder.mycompany.com"
+     BUILD_AVOIDANCE_DIR="/localdisk/loadbuild/jenkins/StarlingX_Reference_Build"
+     EOF
+
+* Using command-line arguments to specify the location of your reference
+  build:
+
+  ::
+
+    build-pkgs --build-avoidance --build-avoidance-dir /localdisk/loadbuild/jenkins/StarlingX_Reference_Build --build-avoidance-host stx-builder.mycompany.com --build-avoidance-user jenkins
+
+* You must accept the host key **before** your build attempt to prevent
+  ``rsync`` failures on a ``yes/no`` prompt. You only have to do this once.
+
+  ::
+
+     grep -q $BUILD_AVOIDANCE_HOST $HOME/.ssh/known_hosts
+     if [ $? != 0 ]; then
+     ssh-keyscan $BUILD_AVOIDANCE_HOST >> $HOME/.ssh/known_hosts
+     fi
+
+
+* ``build-pkgs`` does the following:
+
+  * From newest to oldest, scans the CONTEXTs of the various reference builds.
+    Selects the first (i.e. most recent) context that satisfies the following
+    requirement: every Git the SHA specifies in the CONTEXT is present.
+  * The selected context might be slightly out of date, but not by more than
+    a day. This assumes daily reference builds are run.
+  * If the context has not been previously downloaded, then download it now.
+    This means you need to download select portions of the reference build
+    workspace into the designer's workspace. This includes all the SRPMS,
+    RPMS, MD5SUMS, and miscellaneous supporting files. Downloading these files
+    usually takes about 10 minutes over an office LAN.
+  * The designer could have additional commits or uncommitted changes not
+    present in the reference builds. Affected packages are identified by the
+    differing md5sum values. In these cases, the packages are rebuilt. Rebuilds
+    usually take five or more minutes, depending on the packages that have changed.
+
+* What if no valid reference build is found? Then ``build-pkgs`` will fall back
+  to a regular build.
 
 ****************
 Reference builds
@@ -656,11 +801,11 @@ Reference builds
   Jenkins, cron, or similar tools can trigger these builds.
 * Each build is saved to a unique directory, and preserved for a time that is
   reflective of how long a designer might be expected to work on a private branch
-  without syncronizing with the master branch. This takes about two weeks.
+  without synchronizing with the master branch. This takes about two weeks.
 
-* The *MY_WORKSPACE* directory for the build shall have a common root
-  directory, and a leaf directory that is a sortable time stamp. The
-  suggested format is *YYYYMMDDThhmmss*.
+* We recommend that the ``MY_WORKSPACE`` directory for the build has a common
+  root directory, and a leaf directory that is a sortable time stamp. The
+  suggested format is ``YYYYMMDDThhmmss``.
 
   ::
 
@@ -670,25 +815,25 @@ Reference builds
     MY_WORKSPACE=${BUILD_AVOIDANCE_DIR}/${BUILD_TIMESTAMP}
 
 * Designers can access all build products over the internal network of the
-  regional office. The current prototype employs "rsync". Other protocols that
+  regional office. The current prototype employs ``rsync``. Other protocols that
   can efficiently share, copy, or transfer large directories of content can be
   added as needed.
 
-^^^^^^^^^^^^^^
+**************
 Advanced usage
-^^^^^^^^^^^^^^
+**************
 
-Can the reference build itself use build avoidance? Yes it can.
-Can it reference itself? Yes it can.
-In both these cases, caution is advised. To protect against any possible
+Can the reference build itself use build avoidance? Yes, it can.
+Can it reference itself? Yes, it can.
+However, in both these cases, caution is advised. To protect against any possible
 'divergence from reality', you should limit how many steps you remove
 a build avoidance build from a full build.
 
 Suppose we want to implement a self-referencing daily build in an
 environment where a full build already occurs every Saturday.
 To protect ourselves from a
-build failure on Saturday we also want a limit of seven days since
-the last full build. Your build script might look like this ...
+build failure on Saturday, we also want a limit of seven days since
+the last full build. Your build script might look like this:
 
 ::
 
@@ -767,10 +912,8 @@ the last full build. Your build script might look like this ...
    fi
    ...
 
-A final note....
-
 To use the full build day as your avoidance build reference point,
-modify the "build-pkgs" commands above to use "--build-avoidance-day ",
+modify the ``build-pkgs`` commands above to use ``--build-avoidance-day``,
 as shown in the following two examples:
 
 ::
