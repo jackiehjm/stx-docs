@@ -6,8 +6,6 @@
 # full list see the documentation:
 # http://www.sphinx-doc.org/en/master/config
 
-import pbr.version
-
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -24,17 +22,6 @@ import pbr.version
 project = u'StarlingX'
 copyright = '2018, StarlingX'
 author = 'StarlingX'
-
-# The version info for the project you're documenting, acts as replacement for
-# |version| and |release|, also used in various other places throughout the
-# built documents.
-#
-version_info = pbr.version.VersionInfo('python-openstackclient')
-
-# The short X.Y version.
-version = ''
-# The full version, including alpha/beta/rc tags.
-release = ''
 
 
 # -- General configuration ---------------------------------------------------
@@ -77,6 +64,12 @@ exclude_patterns = []
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
+# General information about the project.
+openstackdocs_repo_name = 'openstack/stx-docs'
+openstackdocs_project = 'StarlingX'
+openstackdocs_auto_name = False
+openstackdocs_bug_project = 'starlingx'
+openstackdocs_bug_tag = 'stx.docs'
 
 # -- Options for HTML output -------------------------------------------------
 
