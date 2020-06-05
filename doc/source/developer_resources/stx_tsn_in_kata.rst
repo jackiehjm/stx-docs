@@ -258,13 +258,26 @@ Container by completing the following steps. More details can be found at
        # Edit the /usr/share/defaults/kata-containers/configuration.toml file to
        # set `hotplug_vfio_on_root_bus` to true.
 
+#.  Configure Docker to support Kata Container:
+
+    ::
+
+       sudo mkdir -p /etc/systemd/system/docker.service.d/
+       cat <<EOF | sudo tee /etc/systemd/system/docker.service.d/kata-containers.conf
+       [Service]
+       ExecStart=
+       ExecStart=/usr/bin/dockerd -D --add-runtime kata-runtime=/usr/bin/kata-runtime
+       EOF
+       sudo systemctl daemon-reload
+       sudo systemctl restart docker
+
 #.  Create a Kata Container with the Intel Ethernet Controller I210 passed in.
     In this example, the name of the container image was ``kata_tsn_image``.
 
     ::
 
       sudo docker run -it -d --runtime=kata-runtime --rm --device \
-            /dev/vfio/16 -v /dev:/dev --privileged --name tsn \
+            /dev/vfio/16 -v /dev:/dev --cap-add NET_ADMIN --name tsn \
             kata_tsn_image /bin/bash
 
     When completed, the I210 NIC was seen in the created container with the name
