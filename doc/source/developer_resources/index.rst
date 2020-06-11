@@ -17,6 +17,7 @@ Developer Resources
    build_docker_image
    move_to_new_openstack_version_in_starlingx
    mirror_repo
+   backup_restore
    Project Specifications <https://docs.starlingx.io/specs/>
    stx_ipv6_deployment
    stx_tsn_in_kata
