@@ -527,6 +527,18 @@ Additional notes
 * StarlingX is in active development.  Consequently, it is possible that a
   future version will change to a more generic solution.
 
+.. _Build-stx-openstack-app:
+
+-------------------------------------
+Build StarlingX OpenStack application
+-------------------------------------
+
+Use the following command:
+
+::
+
+  $MY_REPO_ROOT_DIR/cgcs-root/build-tools/build-helm-charts.sh
+
 ---------------
 Build avoidance
 ---------------
