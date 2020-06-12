@@ -72,10 +72,16 @@ in the external DNS server that owns `my-company.com`.
 Local CLI
 ---------
 
-Access OpenStack using the local CLI with the following steps:
+Access OpenStack using the local CLI with one of the following methods.
 
-#. Log in to controller-0 via the console or SSH with a sysadmin/<sysadmin-password>.
-   *Do not use* source /etc/platform/openrc .
+**Method 1**
+
+You can use this method on either controller, active or standby.
+
+#. Log in to the desired controller via the console or SSH with a
+   sysadmin/<sysadmin-password>.
+
+   **Do not** use ``source /etc/platform/openrc``.
 
 #. Set the CLI context to the StarlingX OpenStack Cloud Application and set up
    OpenStack admin credentials:
@@ -102,6 +108,31 @@ Access OpenStack using the local CLI with the following steps:
 
 	export OS_CLOUD=openstack_helm
 
+**Method 2**
+
+Use this method to access StarlingX Kubernetes commands and StarlingX OpenStack
+commands in the same shell. You can only use this method on the active
+controller.
+
+#.  Log in to the active controller via the console or SSH with a
+    sysadmin/<sysadmin-password>.
+
+#.  Set the CLI context to the StarlingX OpenStack Cloud Application and set up
+    OpenStack admin credentials:
+
+    ::
+
+        sed '/export OS_AUTH_URL/c\export OS_AUTH_URL=http://keystone.openstack.svc.cluster.local/v3' /etc/platform/openrc > ~/openrc.os
+        source ./openrc.os
+
+    .. note::
+
+        To switch between StarlingX Kubernetes/Platform credentials and StarlingX
+        OpenStack credentials, use ``source /etc/platform/openrc`` or
+        ``source ./openrc.os`` respectively.
+
+
+
 **********************
 OpenStack CLI commands
 **********************
@@ -112,6 +143,16 @@ using the :command:`openstack` command. For example:
 ::
 
         controller-0:~$ export OS_CLOUD=openstack_helm
+        controller-0:~$ openstack flavor list
+        controller-0:~$ openstack image list
+
+.. note::
+
+    If you are using Method 2 described above, use these commands:
+
+    ::
+
+        controller-0:~$ source ./openrc.os
         controller-0:~$ openstack flavor list
         controller-0:~$ openstack image list
 
