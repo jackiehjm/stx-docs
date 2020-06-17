@@ -11,6 +11,7 @@ General Operation
 
    app_management
    backup_restore_container
+   ceph_cluster_migration
    controller_service_manage
    cpu_manager
    dedicate_cpu_container
@@ -20,7 +21,6 @@ General Operation
    lldp_monitor
    storage_util_display
    tsn
-   ceph_cluster_migration
 
 --------------------
 Kubernetes Operation
