@@ -24,8 +24,10 @@ Kubernetes Configuration
 .. toctree::
    :maxdepth: 1
 
-   k8s_persistent_vol
    k8s_auth_winactivedir
+   k8s_persistent_vol
+   k8s_pod_sec_policies
+   k8s_res_policies
    k8s_upgrade
 
 -----------------------
