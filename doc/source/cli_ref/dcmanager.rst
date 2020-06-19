@@ -68,13 +68,18 @@ This set of commands provides subcloud management, including basic add, delete,
 list, show, and update operations on a subcloud.
 
 ``subcloud add``
-	Add a new subcloud.
+  Add a new subcloud.
 
-	Note that this command will create the subcloud in the central cloud's
-	database as well as run the Ansible bootstrap playbook on the new subcloud.
+  Note that this command will create the subcloud in the central cloud's
+  database, run the Ansible bootstrap playbook on the new subcloud, and
+  optionally run a deployment playbook.
 
 ``subcloud delete``
 	Delete subcloud details from the database.
+
+``subcloud-deploy upload``
+    Upload the optional deployment playbook, helm chart, and overrides to be
+    used with ``subcloud add``.
 
 ``subcloud list``
 	List subclouds.
@@ -82,6 +87,10 @@ list, show, and update operations on a subcloud.
 ``subcloud manage``
 	Manage a subcloud. Enables the active synchronization of data between the
 	central cloud and the subcloud.
+
+``subcloud reconfig``
+  Re-run the deployment playbook on a subcloud using an updated configuration
+  file.
 
 ``subcloud show``
 	Show the details of a subcloud.
