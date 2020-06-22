@@ -4,6 +4,14 @@
 Code Submission Guidelines
 ==========================
 
+StarlingX follows the
+`OpenStack developer contribution guidelines <https://docs.openstack.org/infra/manual/developers.html>`_.
+This guide contains StarlingX-specific tasks and guidelines.
+
+.. contents::
+   :local:
+   :depth: 2
+
 ------------
 Code reviews
 ------------
@@ -92,7 +100,9 @@ Pre-review and pre-submission testing
 * For each package being modified, update the ``TIS_PATCH_VER`` variable in
   the centos/build_srpm.data. This ensures that packages are versioned
   correctly and the latest version will be used. If up-versioning a
-  package then reset ``TIS_PATCH_VER`` to 0.
+  package, then reset ``TIS_PATCH_VER`` to 0.
+* Check build dependencies of a new or modified package using
+  ``build-pkgs --dep-test <pkg>`` (see details below).
 * Run tox tests (flake8, py27, etc) successfully. These can all be run manually
   prior to launching a review.
 * Update existing automated unit tests and add new ones when applicable.
@@ -103,6 +113,30 @@ Pre-review and pre-submission testing
 * Add the details of the testing performed as a comment in the review so that
   the core reviewers are aware of it. It will save time if they don't have to
   ask for this information and wait for it to be added.
+
+************************
+Check build dependencies
+************************
+
+When you upversion a package or make significant changes to its build scripts
+(spec files, make files, auto-config, etc.), you must test the build
+dependencies of the modified package.
+
+First, complete a full build using ``build-pkgs``.
+
+Next, use ``build-pkgs --dep-test <pkg>`` to test the build dependencies.
+
+You may think that if your package passes a full build (``build-pkgs``), that
+all dependencies have been checked, however, this is **not** the case. When
+doing a full build, the build environment is not wiped clean between packages.
+This means that the environment might (or might not) have a tool or library
+required by your package, which is not listed as a ``BuildRequires`` in its spec
+file. Your package may build successfully one time, but might not build the next
+time, depending on which packages were scheduled to build in the same
+environment before your package.
+
+The ``--dep-test`` option rebuilds one specific package in a clean environment
+and provides an effective test of the BuildRequires for that package.
 
 -------------------------
 Early review and feedback
