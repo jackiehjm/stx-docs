@@ -9,6 +9,7 @@ Developer Resources
    :maxdepth: 1
 
    build_guide
+   layered_build_guide
    Layered_Build
    backup_restore
    build_docker_image
