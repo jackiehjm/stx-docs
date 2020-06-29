@@ -16,8 +16,13 @@ Install application manifest and helm-charts
 --------------------------------------------
 
 #. Get the latest StarlingX OpenStack application (stx-openstack) manifest and
-   helm-charts. This can be from a private StarlingX build or from the public
-   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_.
+   helm charts. Use one of the following options:
+
+   *  Private StarlingX build. See :ref:`Build-stx-openstack-app` for details.
+   *  Public download from
+      `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_.
+
+      After you select a release, helm charts are located in ``centos/outputs/helm-charts``.
 
 #. Load the stx-openstack application's package into StarlingX. The tarball
    package contains stx-openstack's Airship Armada manifest and stx-openstack's
