@@ -20,6 +20,7 @@ Developer Resources
    mirror_repo
    move_to_new_openstack_version_in_starlingx
    navigate_source_code
+   packaging_ref
    Project Specifications <https://docs.starlingx.io/specs/>
    architecture_docs
    starlingx_patching
