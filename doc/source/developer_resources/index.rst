@@ -11,6 +11,7 @@ Developer Resources
    build_guide
    layered_build_guide
    Layered_Build
+   Layered_Build_cn
    backup_restore
    build_docker_image
    code-submission-guide
