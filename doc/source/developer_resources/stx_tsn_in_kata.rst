@@ -197,15 +197,98 @@ were used to do time synchronization on the TSN network.
 #. Configure NTP servers on the TSN switch and ``Node 1 (StarlingX)`` to
    synchronize their system clocks with the external clock.
 
-#. Launch ``phc2sys`` on the TSN switch to synchronize its PTP clock with its
+#. Launch ``phc2sys`` on the TSN switch to synchronize its PTP clock from its
    system clock.
+
+   ::
+
+     # ptp1 is the ptp clock of the TSN interface. We could get this index
+     # by "ethtool -T <tsn_interface>".
+     sudo phc2sys -c /dev/ptp1 -s CLOCK_REALTIME -w -O 0 &
 
 #. Launch ``ptp4l`` on both the TSN switch and ``Node 2 (Ubuntu)`` to
    synchronize their PTP clocks. The TSN switch's PTP clock was set as the
    master clock by default.
 
+   ::
+
+     # For TSN switch
+     sudo ptp4l -f /etc/ptp4l-switch.cfg
+
+     # For Node
+     sudo ptp4l -f /etc/ptp4l-node.cfg
+
+     # The content of ptp4l-switch.cfg is shown below.
+     # "gmCapable" is "1" for switch node, and "0" for all other nodes.
+     [global]
+     gmCapable               1
+     priority1               128
+     priority2               128
+     logAnnounceInterval     1
+     logSyncInterval         -3
+     syncReceiptTimeout      3
+     neighborPropDelayThresh 800
+     min_neighbor_prop_delay -20000000
+     assume_two_step         1
+     path_trace_enabled      1
+     follow_up_info          1
+
+     # Generic MAC to broadcast L2 PTP to many NICs (ie. diff MACs)
+     ptp_dst_mac             01:1B:19:00:00:00
+     network_transport       L2
+     delay_mechanism         P2P
+
+     # Additional Config Parameters
+     tx_timestamp_timeout    100
+     summary_interval        0
+
+     [CE01]
+     transportSpecific 0x1
+
+     [CE02]
+     transportSpecific 0x1
+
+     [CE03]
+     transportSpecific 0x1
+
+     [CE04]
+     transportSpecific 0x1
+
+
+     # The content of ptp4l-node.cfg is shown below.
+     # enp5s0 is the tsn interface in the node. Please update it if per your environment.
+     [global]
+     gmCapable               0
+     priority1               128
+     priority2               128
+     logAnnounceInterval     1
+     logSyncInterval         -3
+     syncReceiptTimeout      3
+     neighborPropDelayThresh 800
+     min_neighbor_prop_delay -20000000
+     assume_two_step         1
+     path_trace_enabled      1
+     follow_up_info          0
+
+     # Generic MAC to broadcast L2 PTP to many NICs (ie. diff MACs)
+     ptp_dst_mac             01:1B:19:00:00:00
+     network_transport       L2
+     delay_mechanism         P2P
+
+     # Additional Config Parameters
+     tx_timestamp_timeout    100
+     summary_interval        0
+
+     [enp5s0]
+     transportSpecific 0x1
+
 #. Launch ``phc2sys`` on ``Node 2 (Ubuntu)`` to synchronize its system clock
-   with its PTP clock.
+   from its PTP clock.
+
+   ::
+
+     # enp5s0 is the tsn interface in the node.
+     sudo phc2sys -s enp5s0 -c CLOCK_REALTIME -w -O 0 &
 
 Time synchronization on the Kata Container is done later in this process.
 
@@ -276,8 +359,9 @@ Container by completing the following steps. More details can be found at
 
     ::
 
-      sudo docker run -it -d --runtime=kata-runtime --rm --device \
-            /dev/vfio/16 -v /dev:/dev --cap-add NET_ADMIN --name tsn \
+      # 2 cpus are needed. 1 dedicated for send or receive data.
+      sudo docker run -it -d --runtime=kata-runtime --cpus 2 --rm --device \
+            /dev/vfio/16 -v /dev:/dev --privileged --name tsn \
             kata_tsn_image /bin/bash
 
     When completed, the I210 NIC was seen in the created container with the name
