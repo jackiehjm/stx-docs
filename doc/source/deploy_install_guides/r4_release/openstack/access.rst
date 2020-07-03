@@ -72,35 +72,65 @@ in the external DNS server that owns `my-company.com`.
 Local CLI
 ---------
 
-Access OpenStack using the local CLI with the following steps:
+Access OpenStack using the local CLI with one of the following methods.
 
-#. Log in to controller-0 via the console or SSH with a sysadmin/<sysadmin-password>.
-   *Do not use* source /etc/platform/openrc .
+**Method 1**
+
+You can use this method on either controller, active or standby.
+
+#. Log in to the desired controller via the console or SSH with a
+   sysadmin/<sysadmin-password>.
+
+   **Do not** use ``source /etc/platform/openrc``.
 
 #. Set the CLI context to the StarlingX OpenStack Cloud Application and set up
    OpenStack admin credentials:
 
    ::
 
-   	sudo su -
-	mkdir -p /etc/openstack
-	tee /etc/openstack/clouds.yaml << EOF
-	clouds:
-	  openstack_helm:
-	    region_name: RegionOne
-	    identity_api_version: 3
-	    endpoint_type: internalURL
-	    auth:
-	      username: 'admin'
-	      password: '<sysadmin-password>'
-	      project_name: 'admin'
-	      project_domain_name: 'default'
-	      user_domain_name: 'default'
-	      auth_url: 'http://keystone.openstack.svc.cluster.local/v3'
-	EOF
-	exit
+    sudo su -
+    mkdir -p /etc/openstack
+    tee /etc/openstack/clouds.yaml << EOF
+    clouds:
+      openstack_helm:
+        region_name: RegionOne
+        identity_api_version: 3
+        endpoint_type: internalURL
+        auth:
+          username: 'admin'
+          password: '<sysadmin-password>'
+          project_name: 'admin'
+          project_domain_name: 'default'
+          user_domain_name: 'default'
+          auth_url: 'http://keystone.openstack.svc.cluster.local/v3'
+    EOF
+    exit
 
-	export OS_CLOUD=openstack_helm
+    export OS_CLOUD=openstack_helm
+
+**Method 2**
+
+Use this method to access StarlingX Kubernetes commands and StarlingX OpenStack
+commands in the same shell. You can only use this method on the active
+controller.
+
+#.  Log in to the active controller via the console or SSH with a
+    sysadmin/<sysadmin-password>.
+
+#.  Set the CLI context to the StarlingX OpenStack Cloud Application and set up
+    OpenStack admin credentials:
+
+    ::
+
+        sed '/export OS_AUTH_URL/c\export OS_AUTH_URL=http://keystone.openstack.svc.cluster.local/v3' /etc/platform/openrc > ~/openrc.os
+        source ./openrc.os
+
+    .. note::
+
+        To switch between StarlingX Kubernetes/Platform credentials and StarlingX
+        OpenStack credentials, use ``source /etc/platform/openrc`` or
+        ``source ./openrc.os`` respectively.
+
 
 **********************
 OpenStack CLI commands
@@ -111,8 +141,34 @@ using the :command:`openstack` command. For example:
 
 ::
 
-	[sysadmin@controller-0 ~(keystone_admin)]$ openstack flavor list
-	[sysadmin@controller-0 ~(keystone_admin)]$ openstack image list
+        controller-0:~$ export OS_CLOUD=openstack_helm
+        controller-0:~$ openstack flavor list
+        controller-0:~$ openstack image list
+
+.. note::
+
+    If you are using Method 2 described above, use these commands:
+
+    ::
+
+        controller-0:~$ source ./openrc.os
+        controller-0:~$ openstack flavor list
+        controller-0:~$ openstack image list
+
+The image below shows a typical successful run.
+
+.. figure:: ../figures/starlingx-access-openstack-flavorlist.png
+   :alt: starlingx-access-openstack-flavorlist
+   :scale: 50%
+
+   *Figure 1: StarlingX OpenStack Flavorlist*
+
+
+.. figure:: ../figures/starlingx-access-openstack-command.png
+   :alt: starlingx-access-openstack-command
+   :scale: 50%
+
+   *Figure 2: StarlingX OpenStack Commands*
 
 ----------
 Remote CLI
@@ -129,7 +185,7 @@ following address:
 
 ::
 
-	http://<oam-floating-ip-address>:31000
+    http://<oam-floating-ip-address>:31000
 
 Log in to the Containerized OpenStack Horizon GUI with an admin/<sysadmin-password>.
 
@@ -175,43 +231,43 @@ The following command will request the Keystone token:
 
 ::
 
-	curl -i   -H "Content-Type: application/json"   -d
-	'{ "auth": {
-	    "identity": {
-	      "methods": ["password"],
-	      "password": {
-	        "user": {
-	          "name": "admin",
-	          "domain": { "id": "default" },
-	          "password": "St8rlingX*"
-	        }
-	      }
-	    },
-	    "scope": {
-	      "project": {
-	        "name": "admin",
-	        "domain": { "id": "default" }
-	      }
-	    }
-	  }
-	}'   http://keystone.openstack.svc.cluster.local:80/v3/auth/tokens
+    curl -i   -H "Content-Type: application/json"   -d
+    '{ "auth": {
+        "identity": {
+          "methods": ["password"],
+          "password": {
+            "user": {
+              "name": "admin",
+              "domain": { "id": "default" },
+              "password": "St8rlingX*"
+            }
+          }
+        },
+        "scope": {
+          "project": {
+            "name": "admin",
+            "domain": { "id": "default" }
+          }
+        }
+      }
+    }'   http://keystone.openstack.svc.cluster.local:80/v3/auth/tokens
 
 The token will be returned in the "X-Subject-Token" header field of the response:
 
 ::
 
-	HTTP/1.1 201 CREATED
-	Date: Wed, 02 Oct 2019 18:27:38 GMT
-	Content-Type: application/json
-	Content-Length: 8128
-	Connection: keep-alive
-	X-Subject-Token: gAAAAABdlOwafP71DXZjbyEf4gsNYA8ftso910S-RdJhg0fnqWuMGyMUhYUUJSossuUIitrvu2VXYXDNPbnaGzFveOoXxYTPlM6Fgo1aCl6wW85zzuXqT6AsxoCn95OMFhj_HHeYNPTkcyjbuW-HH_rJfhuUXt85iytZ_YAQQUfSXM7N3zAk7Pg
-	Vary: X-Auth-Token
-	x-openstack-request-id: req-d1bbe060-32f0-4cf1-ba1d-7b38c56b79fb
+    HTTP/1.1 201 CREATED
+    Date: Wed, 02 Oct 2019 18:27:38 GMT
+    Content-Type: application/json
+    Content-Length: 8128
+    Connection: keep-alive
+    X-Subject-Token: gAAAAABdlOwafP71DXZjbyEf4gsNYA8ftso910S-RdJhg0fnqWuMGyMUhYUUJSossuUIitrvu2VXYXDNPbnaGzFveOoXxYTPlM6Fgo1aCl6wW85zzuXqT6AsxoCn95OMFhj_HHeYNPTkcyjbuW-HH_rJfhuUXt85iytZ_YAQQUfSXM7N3zAk7Pg
+    Vary: X-Auth-Token
+    x-openstack-request-id: req-d1bbe060-32f0-4cf1-ba1d-7b38c56b79fb
 
-	{"token": {"is_domain": false,
+    {"token": {"is_domain": false,
 
-		...
+        ...
 
 You can set an environment variable to hold the token value from the response.
 For example:
@@ -228,46 +284,46 @@ The following command will request a list of all Nova flavors:
 
 ::
 
-	curl -i http://nova.openstack.svc.cluster.local:80/v2.1/flavors -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:${TOKEN}" | tail -1 | python -m json.tool
+    curl -i http://nova.openstack.svc.cluster.local:80/v2.1/flavors -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:${TOKEN}" | tail -1 | python -m json.tool
 
 The list will be returned in the response. For example:
 
 ::
 
-	 % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-	                                 Dload  Upload   Total   Spent    Left  Speed
-	100  2529  100  2529    0     0  24187      0 --:--:-- --:--:-- --:--:-- 24317
-	{
-	    "flavors": [
-	        {
-	            "id": "04cfe4e5-0d8c-49b3-ba94-54371e13ddce",
-	            "links": [
-	                {
-	                    "href": "http://nova.openstack.svc.cluster.local/v2.1/flavors/04cfe4e5-0d8c-49b3-ba94-54371e13ddce",
-	                    "rel": "self"
-	                },
-	                {
-	                    "href": "http://nova.openstack.svc.cluster.local/flavors/04cfe4e5-0d8c-49b3-ba94-54371e13ddce",
-	                    "rel": "bookmark"
-	                }
-	            ],
-	            "name": "m1.tiny"
-	        },
-	        {
-	            "id": "14c725b1-1658-48ec-90e6-05048d269e89",
-	            "links": [
-	                {
-	                    "href": "http://nova.openstack.svc.cluster.local/v2.1/flavors/14c725b1-1658-48ec-90e6-05048d269e89",
-	                    "rel": "self"
-	                },
-	                {
-	                    "href": "http://nova.openstack.svc.cluster.local/flavors/14c725b1-1658-48ec-90e6-05048d269e89",
-	                    "rel": "bookmark"
-	                }
-	            ],
-	            "name": "medium.dpdk"
-	        },
-	        {
+     % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100  2529  100  2529    0     0  24187      0 --:--:-- --:--:-- --:--:-- 24317
+    {
+        "flavors": [
+            {
+                "id": "04cfe4e5-0d8c-49b3-ba94-54371e13ddce",
+                "links": [
+                    {
+                        "href": "http://nova.openstack.svc.cluster.local/v2.1/flavors/04cfe4e5-0d8c-49b3-ba94-54371e13ddce",
+                        "rel": "self"
+                    },
+                    {
+                        "href": "http://nova.openstack.svc.cluster.local/flavors/04cfe4e5-0d8c-49b3-ba94-54371e13ddce",
+                        "rel": "bookmark"
+                    }
+                ],
+                "name": "m1.tiny"
+            },
+            {
+                "id": "14c725b1-1658-48ec-90e6-05048d269e89",
+                "links": [
+                    {
+                        "href": "http://nova.openstack.svc.cluster.local/v2.1/flavors/14c725b1-1658-48ec-90e6-05048d269e89",
+                        "rel": "self"
+                    },
+                    {
+                        "href": "http://nova.openstack.svc.cluster.local/flavors/14c725b1-1658-48ec-90e6-05048d269e89",
+                        "rel": "bookmark"
+                    }
+                ],
+                "name": "medium.dpdk"
+            },
+            {
 
-	        	...
+                ...
 
