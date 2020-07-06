@@ -136,6 +136,14 @@ Install tools project
      cd $HOME
      git clone https://opendev.org/starlingx/tools.git
 
+   The command above fetches the tools project from the latest master. Use the
+   commands below to switch to the tools project for STX3.0 and STX2.0 respectively.
+
+   ::
+
+     git checkout remotes/origin/r/stx.3.0
+     git checkout remotes/origin/r/stx.2.0
+
 #. Navigate to the *<$HOME/tools>* project
    directory:
 
@@ -330,33 +338,29 @@ downloading the packages:
 ::
 
    /localdisk/designer/<user>/<project>/stx-tools/centos-mirror-tools/output
-       └── stx-r1
-            └── CentOS
-                └── pike
-                    ├── Binary
-                    │   ├── EFI
-                    │   │   └── BOOT
-                    │   │       └── fonts
-                    │   ├── images
-                    │   │   └── pxeboot
-                    │   ├── isolinux
-                    │   ├── LiveOS
-                    │   ├── noarch
-                    │   └── x86_64
-                    ├── downloads
-                    │   ├── integrity
-                    │   │   ├── evm
-                    │   │   └── ima
-                    │   └── puppet
-                    │       └── packstack
-                    │           └── puppet
-                    │               └── modules
-                    ├── layer_build_info
-                    ├── layer_image_inc
-                    ├── layer_pkg_lists
-                    ├── layer_wheels_inc
-                    └── Source
-
+   .
+   └── stx-r1
+       └── CentOS
+           └── pike
+               ├── Binary
+               │   ├── EFI
+               │   │   └── BOOT
+               │   │       └── fonts
+               │   ├── images
+               │   │   └── pxeboot
+               │   ├── isolinux
+               │   ├── LiveOS
+               │   ├── noarch
+               │   └── x86_64
+               ├── downloads
+               │   ├── integrity
+               │   │   ├── evm
+               │   │   └── ima
+               │   └── puppet
+               │       └── packstack
+               │           └── puppet
+               │               └── modules
+               └── Source
 
 *******************************
 Copy CentOS mirror repository
@@ -364,19 +368,21 @@ Copy CentOS mirror repository
 
 Exit from the building Docker container. Run the following commands:
 
-#. Navigate to CentOS mirror directory *mirror/CentOS* under your *starlingx*
-   workspace directory:
+#. Change the mirror folder owner to the current user and create CentOS folder
+   using the commands below:
 
    ::
 
-     cd $HOME/starlingx/mirror/CentOS/
+     sudo chown $USER: $HOME/starlingx/mirror
+     mkdir -p $HOME/starlingx/mirror/CentOS/
+     chmod -R ug+w $HOME/starlingx/mirror
 
 #. Copy the built CentOS mirror repository *$HOME/starlingx/mirror/*
    workspace directory:
 
    ::
 
-     cp -r $HOME/starlingx/workspace/localdisk/designer/<user>/<project>/stx-tools/centos-mirror-tools/output/stx-r1 .
+      cp -r $HOME/starlingx/workspace/localdisk/designer/<user>/<project>/stx-tools/centos-mirror-tools/output/stx-r1 $HOME/starlingx/mirror/CentOS/
 
 
 -------------------------
@@ -491,9 +497,8 @@ This builds *rpm* and *anaconda* packages. Then run:
   update-pxe-network-installer
 
 The *update-pxe-network-installer* covers the steps detailed in
-*$MY_REPO/stx/stx-metal/installer/initrd/README*. This script
-creates three files on
-*/localdisk/loadbuild/pxe-network-installer/output*.
+*$MY_REPO/stx/metal/installer/initrd/README*. This script creates three files on
+*/localdisk/loadbuild/<user>/<project>/pxe-network-installer/output*.
 
 ::
 
@@ -501,26 +506,36 @@ creates three files on
    new-squashfs.img
    new-vmlinuz
 
-Rename the files as follows:
+Rename the files, as the file system is read only in the container, exit from
+the container and follow the commands below to rename the files:
+
 
 ::
 
-   initrd.img
-   squashfs.img
-   vmlinuz
+   cd $HOME/starlingx/workspace/localdisk/loadbuild/<user>/<project>/pxe-network-installer/output
+   sudo mv new-initrd.img initrd.img
+   sudo mv new-squashfs.img squashfs.img
+   sudo mv new-vmlinuz vmlinuz
 
 Two ways exist for using these files:
 
-#. Store the files in the */import/mirror/CentOS/stx-installer/* folder
-   for future use.
+#. Store the files in the */import/mirrors/CentOS/stx-installer/* folder for
+   future use. Follow the commands below to store files:
+
+   ::
+
+     cp -r $HOME/starlingx/workspace/localdisk/loadbuild/<user>/<project>/pxe-network-installer/output/* $HOME/starlingx/mirror/CentOS/stx-installer/
 #. Store the files in an arbitrary location and modify the
-   *$MY_REPO/stx/stx-metal/installer/pxe-network-installer/centos/build_srpm.data*
+   *$MY_REPO/stx/metal/installer/pxe-network-installer/centos/build_srpm.data*
    file to point to these files.
 
-Recreate the *pxe-network-installer* package and rebuild the image:
+Enter the StarlingX container, recreate the *pxe-network-installer* package, and
+rebuild the image using the commands below:
 
 ::
 
+  cd $HOME/tools/
+  ./tb.sh exec
   build-pkgs --clean pxe-network-installer
   build-pkgs pxe-network-installer
   build-iso
