@@ -24,5 +24,6 @@ Developer Resources
    architecture_docs
    starlingx_patching
    stx_ipv6_deployment
+   stx_opcua
 
 
