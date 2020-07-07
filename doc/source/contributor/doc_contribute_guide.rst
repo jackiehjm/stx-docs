@@ -14,7 +14,8 @@ Quickstart
 ----------
 
 The StarlingX documentation uses reStructuredText (RST) markup syntax with
-Sphinx extensions. It uses the same contribution setup and workflow as the OpenStack documentation.
+Sphinx extensions. It uses the same contribution setup and workflow as the
+OpenStack documentation.
 
 * `OpenStack Documentation Contributor Guide <https://docs.openstack.org/doc-contrib-guide/index.html>`_.
 
@@ -22,13 +23,14 @@ Sphinx extensions. It uses the same contribution setup and workflow as the OpenS
 Setup for contribution
 **********************
 
-Follow the OpenStack instructions `Setting up for contribution <https://docs.openstack.org/doc-contrib-guide/quickstart/first-timers.html#setting-up-for-contribution>`_.
+Follow the OpenStack instructions for `setting up for contribution
+<https://docs.openstack.org/doc-contrib-guide/quickstart/first-timers.html#setting-up-for-contribution>`_.
 
 *************
 Make a change
 *************
 
-#. Make changes following the OpenStack instructions for
+#. Make changes following the OpenStack instructions for:
 
    #. `Starting a change <https://docs.openstack.org/infra/manual/developers.html#starting-a-change>`_
    #. `Committing a change <https://docs.openstack.org/doc-contrib-guide/quickstart/first-timers.html#committing-a-change>`_.
@@ -55,11 +57,13 @@ Find tasks and help needed
 
 If you are looking for work to complete:
 
-* Refer to the
-  `StarlingX documentation StoryBoard <https://storyboard.openstack.org/#!/project/starlingx/docs>`_ for topics that need content. Many topics have stub pages in the documentation
-  with a link to the associated story.
+* Refer to the `StarlingX documentation StoryBoard
+  <https://storyboard.openstack.org/#!/project/starlingx/docs>`_ for topics that
+  need content. Many topics have stub pages in the documentation with a link to
+  the associated story.
 
-* Find open `documentation bugs on Launchpad <https://bugs.launchpad.net/starlingx/+bugs?field.tag=stx.docs>`_.
+* Find open `documentation bugs on Launchpad
+  <https://bugs.launchpad.net/starlingx/+bugs?field.tag=stx.docs>`_.
 
 
 If you make a contribution that has an the associated story, task, or bug in the
@@ -85,8 +89,8 @@ Documentation for StarlingX is organized into the following sections:
   System administration and maintenance guides.
 
 :doc:`/api-ref/index`
-  REST API references for the StarlingX project. For additional information about
-  where REST API documentation is located, see `API documentation`_.
+  REST API references for the StarlingX project. For additional information
+  about where REST API documentation is located, see `API documentation`_.
 
 :doc:`/cli_ref/index`
   Reference for the StarlingX project command line interface (CLI).
@@ -104,10 +108,11 @@ Documentation for StarlingX is organized into the following sections:
 API documentation
 *****************
 
-The structure and location of the REST API documentation deserves extra explanation.
+The structure and location of the REST API documentation deserves extra
+explanation.
 
-Most REST API content is generated from the StarlingX project associated with the
-API. For example, the documentation for the StarlingX metal REST API is
+Most REST API content is generated from the StarlingX project associated with
+the API. For example, the documentation for the StarlingX metal REST API is
 generated from the `metal repository <https://opendev.org/starlingx/metal>`_.
 
 API references for StarlingX extensions are part of the docs repository, located
@@ -122,7 +127,8 @@ The ``api-ref`` project also contains index pages used by Sphinx to
 generate the final content tree. Note that the REST API landing page used to
 render content in the generated website is found in the ``doc`` project.
 
-For additional information on the API documentation, refer to :doc:`api_contribute_guide`.
+For additional information on the API documentation, refer to
+:doc:`api_contribute_guide`.
 
 ******************
 Spec documentation
@@ -131,15 +137,16 @@ Spec documentation
 Spec documentation is found in the
 `Starlingx specs project <https://opendev.org/starlingx/specs>`_.
 
-The ``specs/2019.03`` directory contains the documentation files for approved and
-implemented specs.
+The ``specs/2019.03`` directory contains the documentation files for approved
+and implemented specs.
 
 -------------
 Writing style
 -------------
 
 StarlingX documentation follows many (but not all!) of the writing style
-guidelines described in the `OpenStack documentation writing style guide <https://docs.openstack.org/doc-contrib-guide/writing-style.html>`_. Differences
+guidelines described in the `OpenStack documentation writing style guide
+<https://docs.openstack.org/doc-contrib-guide/writing-style.html>`_. Differences
 between the StarlingX and OpenStack practices are highlighted below.
 
 * Use Title Case for page titles. For example:
@@ -150,7 +157,8 @@ between the StarlingX and OpenStack practices are highlighted below.
     Documentation Contributor Guide
     ===============================
 
-* Start section titles with an action verb, but not a gerund (word that ends with -ing). For example:
+* Start section titles with an action verb. Do not use a gerund (word that ends
+  with -ing). For example:
 
   ::
 
@@ -239,7 +247,7 @@ Cross-references
 Cross-reference to arbitrary locations in a document using the ``ref`` role and a
 named target. Named targets must precede a section heading. For more information
 on references, see
-`Internal Hyperlink Targets <http://docutils.sourceforge.net/docs/user/rst/quickref.html#internal-hyperlink-targets>`_
+`Internal Hyperlink Targets <http://docutils.sourceforge.net/docs/user/rst/quickref.html#internal-hyperlink-targets>`_.
 
 **Input:**
 
@@ -275,7 +283,8 @@ This is the reference to :ref:`my_named_target`.
 Information blocks
 ******************
 
-Emphasize information using notices (an 'admonition' in Sphinx). Different types of notices exist to emphasize degrees of information importance.
+Emphasize information using notices (an *admonition* in Sphinx). Different types
+of notices exist to emphasize degrees of information importance.
 
 **Input:**
 
@@ -324,8 +333,8 @@ Emphasize information using notices (an 'admonition' in Sphinx). Different types
 Inline elements
 ***************
 
-Format most inline elements such as filenames and paths, code fragments, parameters, or
-options with double back ticks.
+Format most inline elements such as filenames and paths, code fragments,
+parameters, or options with double back ticks.
 
 **Input:**
 ::
@@ -347,7 +356,8 @@ for markup for other inline elements.
 Lists
 *****
 
-Use a bulleted list for a sequence of items whose order does not matter, such as a list of features.
+Use a bulleted list for a sequence of items whose order does not matter, such as
+a list of features.
 
 **Input:**
 
@@ -363,7 +373,8 @@ Use a bulleted list for a sequence of items whose order does not matter, such as
 * Apple
 * Orange
 
-Use an enumerated list for a sequence of items whose order matters, such as in an ordered sequence of installation steps.
+Use an enumerated list for a sequence of items whose order matters, such as in
+an ordered sequence of installation steps.
 
 **Input:**
 
@@ -379,7 +390,8 @@ Use an enumerated list for a sequence of items whose order matters, such as in a
 #. Peel apple.
 #. Eat apple.
 
-Use a definition list for an unordered list where each item has a short definition, such as term/definition pairs.
+Use a definition list for an unordered list where each item has a short
+definition, such as term/definition pairs.
 
 **Input:**
 
