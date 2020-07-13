@@ -88,25 +88,25 @@ You can use this method on either controller, active or standby.
 
    ::
 
-   	sudo su -
-	mkdir -p /etc/openstack
-	tee /etc/openstack/clouds.yaml << EOF
-	clouds:
-	  openstack_helm:
-	    region_name: RegionOne
-	    identity_api_version: 3
-	    endpoint_type: internalURL
-	    auth:
-	      username: 'admin'
-	      password: '<sysadmin-password>'
-	      project_name: 'admin'
-	      project_domain_name: 'default'
-	      user_domain_name: 'default'
-	      auth_url: 'http://keystone.openstack.svc.cluster.local/v3'
-	EOF
-	exit
+    sudo su -
+    mkdir -p /etc/openstack
+    tee /etc/openstack/clouds.yaml << EOF
+    clouds:
+      openstack_helm:
+        region_name: RegionOne
+        identity_api_version: 3
+        endpoint_type: internalURL
+        auth:
+          username: 'admin'
+          password: '<sysadmin-password>'
+          project_name: 'admin'
+          project_domain_name: 'default'
+          user_domain_name: 'default'
+          auth_url: 'http://keystone.openstack.svc.cluster.local/v3'
+    EOF
+    exit
 
-	export OS_CLOUD=openstack_helm
+    export OS_CLOUD=openstack_helm
 
 **Method 2**
 
@@ -187,7 +187,7 @@ following address:
 
 ::
 
-	http://<oam-floating-ip-address>:31000
+    http://<oam-floating-ip-address>:31000
 
 Log in to the Containerized OpenStack Horizon GUI with an admin/<sysadmin-password>.
 
@@ -233,43 +233,43 @@ The following command will request the Keystone token:
 
 ::
 
-	curl -i   -H "Content-Type: application/json"   -d
-	'{ "auth": {
-	    "identity": {
-	      "methods": ["password"],
-	      "password": {
-	        "user": {
-	          "name": "admin",
-	          "domain": { "id": "default" },
-	          "password": "St8rlingX*"
-	        }
-	      }
-	    },
-	    "scope": {
-	      "project": {
-	        "name": "admin",
-	        "domain": { "id": "default" }
-	      }
-	    }
-	  }
-	}'   http://keystone.openstack.svc.cluster.local:80/v3/auth/tokens
+    curl -i   -H "Content-Type: application/json"   -d
+    '{ "auth": {
+        "identity": {
+          "methods": ["password"],
+          "password": {
+            "user": {
+              "name": "admin",
+              "domain": { "id": "default" },
+              "password": "St8rlingX*"
+            }
+          }
+        },
+        "scope": {
+          "project": {
+            "name": "admin",
+            "domain": { "id": "default" }
+          }
+        }
+      }
+    }'   http://keystone.openstack.svc.cluster.local:80/v3/auth/tokens
 
 The token will be returned in the "X-Subject-Token" header field of the response:
 
 ::
 
-	HTTP/1.1 201 CREATED
-	Date: Wed, 02 Oct 2019 18:27:38 GMT
-	Content-Type: application/json
-	Content-Length: 8128
-	Connection: keep-alive
-	X-Subject-Token: gAAAAABdlOwafP71DXZjbyEf4gsNYA8ftso910S-RdJhg0fnqWuMGyMUhYUUJSossuUIitrvu2VXYXDNPbnaGzFveOoXxYTPlM6Fgo1aCl6wW85zzuXqT6AsxoCn95OMFhj_HHeYNPTkcyjbuW-HH_rJfhuUXt85iytZ_YAQQUfSXM7N3zAk7Pg
-	Vary: X-Auth-Token
-	x-openstack-request-id: req-d1bbe060-32f0-4cf1-ba1d-7b38c56b79fb
+    HTTP/1.1 201 CREATED
+    Date: Wed, 02 Oct 2019 18:27:38 GMT
+    Content-Type: application/json
+    Content-Length: 8128
+    Connection: keep-alive
+    X-Subject-Token: gAAAAABdlOwafP71DXZjbyEf4gsNYA8ftso910S-RdJhg0fnqWuMGyMUhYUUJSossuUIitrvu2VXYXDNPbnaGzFveOoXxYTPlM6Fgo1aCl6wW85zzuXqT6AsxoCn95OMFhj_HHeYNPTkcyjbuW-HH_rJfhuUXt85iytZ_YAQQUfSXM7N3zAk7Pg
+    Vary: X-Auth-Token
+    x-openstack-request-id: req-d1bbe060-32f0-4cf1-ba1d-7b38c56b79fb
 
-	{"token": {"is_domain": false,
+    {"token": {"is_domain": false,
 
-		...
+        ...
 
 You can set an environment variable to hold the token value from the response.
 For example:
@@ -286,46 +286,46 @@ The following command will request a list of all Nova flavors:
 
 ::
 
-	curl -i http://nova.openstack.svc.cluster.local:80/v2.1/flavors -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:${TOKEN}" | tail -1 | python -m json.tool
+    curl -i http://nova.openstack.svc.cluster.local:80/v2.1/flavors -X GET -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token:${TOKEN}" | tail -1 | python -m json.tool
 
 The list will be returned in the response. For example:
 
 ::
 
-	 % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-	                                 Dload  Upload   Total   Spent    Left  Speed
-	100  2529  100  2529    0     0  24187      0 --:--:-- --:--:-- --:--:-- 24317
-	{
-	    "flavors": [
-	        {
-	            "id": "04cfe4e5-0d8c-49b3-ba94-54371e13ddce",
-	            "links": [
-	                {
-	                    "href": "http://nova.openstack.svc.cluster.local/v2.1/flavors/04cfe4e5-0d8c-49b3-ba94-54371e13ddce",
-	                    "rel": "self"
-	                },
-	                {
-	                    "href": "http://nova.openstack.svc.cluster.local/flavors/04cfe4e5-0d8c-49b3-ba94-54371e13ddce",
-	                    "rel": "bookmark"
-	                }
-	            ],
-	            "name": "m1.tiny"
-	        },
-	        {
-	            "id": "14c725b1-1658-48ec-90e6-05048d269e89",
-	            "links": [
-	                {
-	                    "href": "http://nova.openstack.svc.cluster.local/v2.1/flavors/14c725b1-1658-48ec-90e6-05048d269e89",
-	                    "rel": "self"
-	                },
-	                {
-	                    "href": "http://nova.openstack.svc.cluster.local/flavors/14c725b1-1658-48ec-90e6-05048d269e89",
-	                    "rel": "bookmark"
-	                }
-	            ],
-	            "name": "medium.dpdk"
-	        },
-	        {
+     % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100  2529  100  2529    0     0  24187      0 --:--:-- --:--:-- --:--:-- 24317
+    {
+        "flavors": [
+            {
+                "id": "04cfe4e5-0d8c-49b3-ba94-54371e13ddce",
+                "links": [
+                    {
+                        "href": "http://nova.openstack.svc.cluster.local/v2.1/flavors/04cfe4e5-0d8c-49b3-ba94-54371e13ddce",
+                        "rel": "self"
+                    },
+                    {
+                        "href": "http://nova.openstack.svc.cluster.local/flavors/04cfe4e5-0d8c-49b3-ba94-54371e13ddce",
+                        "rel": "bookmark"
+                    }
+                ],
+                "name": "m1.tiny"
+            },
+            {
+                "id": "14c725b1-1658-48ec-90e6-05048d269e89",
+                "links": [
+                    {
+                        "href": "http://nova.openstack.svc.cluster.local/v2.1/flavors/14c725b1-1658-48ec-90e6-05048d269e89",
+                        "rel": "self"
+                    },
+                    {
+                        "href": "http://nova.openstack.svc.cluster.local/flavors/14c725b1-1658-48ec-90e6-05048d269e89",
+                        "rel": "bookmark"
+                    }
+                ],
+                "name": "medium.dpdk"
+            },
+            {
 
-	        	...
+                ...
 
