@@ -16,8 +16,13 @@ Install application manifest and helm-charts
 --------------------------------------------
 
 #. Get the latest StarlingX OpenStack application (stx-openstack) manifest and
-   helm-charts. This can be from a private StarlingX build or from the public
-   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_.
+   helm charts. Use one of the following options:
+
+   *  Private StarlingX build. See :ref:`Build-stx-openstack-app` for details.
+   *  Public download from
+      `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_.
+
+      After you select a release, helm charts are located in ``centos/outputs/helm-charts``.
 
 #. Load the stx-openstack application's package into StarlingX. The tarball
    package contains stx-openstack's Airship Armada manifest and stx-openstack's
@@ -46,7 +51,7 @@ Install application manifest and helm-charts
    .. note::
 
         To set the HTTPS proxy at bootstrap time, refer to
-        `Ansible Bootstrap Configurations <https://docs.starlingx.io/deploy_install_guides/r3_release/ansible_bootstrap_configs.html#docker-proxy>`_.
+        `Ansible Bootstrap Configurations <https://docs.starlingx.io/deploy_install_guides/r4_release/ansible_bootstrap_configs.html#docker-proxy>`_.
 
         To set the HTTPS proxy after installation, refer to
         `Docker Proxy Configuration <https://docs.starlingx.io/configuration/docker_proxy_config.html>`_.
