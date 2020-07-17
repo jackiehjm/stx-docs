@@ -282,8 +282,23 @@ following at the top:
 
 The BASE is passed by build-stx-images.sh as a build argument.
 
+Options supported by BUILDER=docker image directives files include:
+
+*  LABEL: the image name
+*  PROJECT: main project name
+*  DOCKER\_REPO: main project source git repo
+*  DOCKER\_REF: git branch or tag for main project source repo (default "master")
+*  DOCKER\_PATCHES: list of patch files to apply to DOCKER\_REPO, relative to the local dir
+*  DOCKER\_CONTEXT: path to build context source, relative to the local dir (default "docker")
+*  DOCKER\_FILE: path to Dockerfile, relative to the local dir (default "docker/Dockerfile")
+
+   .. note::
+
+     DOCKER\_CONTEXT and DOCKER\_FILE are mutually exclusive to DOCKER\_REPO, DOCKER\_REF and DOCKER\_PATCHES.
+
 For an example of a BUILDER=docker image, see
-https://opendev.org/starlingx/integ/src/branch/master/virt/libvirt/centos/
+https://opendev.org/starlingx/oidc-auth-armada-app/src/branch/master/dex/centos/dex.stable_docker_image
+
 
 ^^^^^^
 "loci"
@@ -295,8 +310,9 @@ source. The image directives file for BUILDER=loci images allows you to
 specify supporting python modules or packages to be installed, in
 addition to specifying the main project source repo and/or branch. In
 addition, the build-stx-images.sh supports specifying an additional
-customization command that is applied to the loci-built image. Options
-supported by BUILD=loci image directives files that are passed on to
+customization command that is applied to the loci-built image.
+
+Options supported by BUILDER=loci image directives files that are passed on to
 loci include:
 
 *  LABEL: the image name
