@@ -384,6 +384,7 @@ Exit from the building Docker container. Run the following commands:
 
       cp -r $HOME/starlingx/workspace/localdisk/designer/<user>/<project>/stx-tools/centos-mirror-tools/output/stx-r1 $HOME/starlingx/mirror/CentOS/
 
+.. _create_stx_pkgs:
 
 -------------------------
 Create StarlingX packages
