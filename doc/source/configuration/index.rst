@@ -13,6 +13,7 @@ General Configuration
    cert_config
    host_config
    host_interface_network_config
+   intel_n3000_fpga
    docker_proxy_config
    system_config
    time_sync_config
