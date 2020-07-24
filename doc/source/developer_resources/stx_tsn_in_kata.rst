@@ -44,7 +44,7 @@ hardware virtualization technology as a second layer of defense.
 Build a Linux kernel with TSN support for Kata Containers
 ---------------------------------------------------------
 
-As of writing this article, the latest Kata release is Kata 1.11.0-rc0. This
+As of writing this article, the latest Kata release is Kata 1.11.0. This
 release includes a Linux 5.4.32 kernel image with Kata patches. Though the
 kernel version is high enough, TSN features are not fully enabled in the kernel
 build, so you must build a customized kernel image. The following steps describe
@@ -150,20 +150,80 @@ TSN capability and four hosts.
    userguide_pcie-0400-tsn_v0.13.pdf?product=151637>`_
    for detailed configuration options.
 
-#. The hosts were four
+#. Check the Kontron documentation about the kernel drivers that are provided.
+   The TSN switch has to run the recommended OS (the OS for which there are Kontron drivers).
+   The TSN switch must run a RT kernel too. The Kontron card has drivers for kernel 4.9.11
+   as of ``kontron-tsn-starter-kit-r6`` driver package.
+
+#. After installing the required OS that matches the version of the drivers for the Kontron card
+   you must install the packages recommended in the Kontron manual. After properly installing
+   the drivers for the Kontron card there should be 7 new Ethernet interfaces.
+   These network interfaces have to be configured to use ``network`` and not ``NetworkManager``.
+   Use the configuration files listed below. Besides the 7 interfaces belonging to the Kontron card,
+   the main network interface should also be configured (listed here as ``eth0``).
+
+   ::
+
+     sudo systemctl stop NetworkManager
+     sudo systemctl disable NetworkManager
+     sudo systemctl enable network
+     # Add the following network scripts
+     # /etc/sysconfig/network-scripts/ifcfg-deipce0
+     DEVICE=deipce0
+     TYPE=bridge
+     ONBOOT=yes
+     BOOTPROTO=none
+     ZONE=trusted
+     IPV6INT="no"
+     NM_CONTROLLED="no"
+     # /etc/sysconfig/network-scripts/ifcfg-eth0
+     DEVICE=eth0
+     TYPE=Ethernet
+     ONBOOT=yes
+     BOOTPROTO=none
+     ZONE=trusted
+     IPV6INT="no"
+     NM_CONTROLLED="no"
+     # /etc/sysconfig/network-scripts/ifcfg-SE01
+     DEVICE=SE01
+     TYPE=Ethernet
+     ONBOOT=yes
+     BOOTPROTO=none
+     ZONE=trusted
+     IPV6INT="no"
+     NM_CONTROLLED="no"# /etc/sysconfig/network-scripts/ifcfg-CE01
+     # /etc/sysconfig/network-scripts/ifcfg-CE02
+     # /etc/sysconfig/network-scripts/ifcfg-CE03
+     # /etc/sysconfig/network-scripts/ifcfg-CE04
+     # /etc/sysconfig/network-scripts/ifcfg-IE01
+     # take CE01 as an example, other ports are similar
+     # you need to add 4 more configs for ifcfg-CE02, ifcfg-CE03, ifcfg-CE04 and ifcfg-IE01
+     DEVICE=CE01
+     TYPE=Ethernet
+     BRIDGE=deipce0
+     ONBOOT=yes
+     BOOTPROTO=none
+     ZONE=trusted
+     IPV6INT="no"
+     NM_CONTROLLED="no"
+
+#. The hosts are four
    `Intel Hades Canyon NUC <https://simplynuc.com/hades-canyon/>`_
-   which were equipped with two NICs each. One of the two NICs was the
+   which were equipped with two NICs each. One of the two NICs is the
    `Intel Ethernet Controller I210 series <https://ark.intel.com/content/www/us/en/ark/products/series/64399/intel-ethernet-controller-i210-series.html>`_
-   which had TSN support.
+   which has TSN support.
 
    * ``Node 1`` used the latest StarlingX built from the master branch which
      supports Kata containers. ``Node 1`` was used as the data sender in the
-     tests in this guide.
+     tests in this guide. When installing StarlingX it is recommended that ovs-dpdk is not enabled.
+     Current Kata container (version 1.11.0) may have conflict with the vfio device created by dpdk.
 
    * ``Node 2``, ``Node 3``, and ``Node 4`` were all installed with
      Ubuntu 18.04. ``Node 2`` additionally installed ``LinuxPTP`` which was
      used as the data receiver. ``Node 3`` and ``Node 4`` were used to
      send/receive best-effort traffic to stress the TSN network.
+
+
 
 -----------------------------------
 Enable and verify TSN functionality
@@ -194,8 +254,10 @@ were used to do time synchronization on the TSN network.
 
     *Figure 2: Time synchronization topology*
 
-#. Configure NTP servers on the TSN switch and ``Node 1 (StarlingX)`` to
-   synchronize their system clocks with the external clock.
+#. Configure NTP servers on the TSN switch and on ``Node 1 (StarlingX)``
+   to synchronize their system clocks with the external clock.
+   A usable ``NTP server`` is a server that you can access on the network you are in.
+   Failure to setup a reachable NTP server can result in failure of testing TSN capability.
 
 #. Launch ``phc2sys`` on the TSN switch to synchronize its PTP clock from its
    system clock.
@@ -206,6 +268,8 @@ were used to do time synchronization on the TSN network.
      # by "ethtool -T <tsn_interface>".
      sudo phc2sys -c /dev/ptp1 -s CLOCK_REALTIME -w -O 0 &
 
+   Use ``syslog`` whenever you want to check the status of ``phc2sys`` or ``ptp4l``.
+
 #. Launch ``ptp4l`` on both the TSN switch and ``Node 2 (Ubuntu)`` to
    synchronize their PTP clocks. The TSN switch's PTP clock was set as the
    master clock by default.
@@ -213,12 +277,14 @@ were used to do time synchronization on the TSN network.
    ::
 
      # For TSN switch
-     sudo ptp4l -f /etc/ptp4l-switch.cfg
+     sudo ptp4l -f /etc/ptp4l-switch.cfg &
 
-     # For Node
-     sudo ptp4l -f /etc/ptp4l-node.cfg
+     # For Ubuntu node
+     sudo ptp4l -f /etc/ptp4l-node.cfg &
 
-     # The content of ptp4l-switch.cfg is shown below.
+   The content of ptp4l-switch.cfg is shown below.
+   ::
+
      # "gmCapable" is "1" for switch node, and "0" for all other nodes.
      [global]
      gmCapable               1
@@ -255,7 +321,9 @@ were used to do time synchronization on the TSN network.
      transportSpecific 0x1
 
 
-     # The content of ptp4l-node.cfg is shown below.
+   The content of ptp4l-node.cfg is shown below.
+   ::
+
      # enp5s0 is the tsn interface in the node. Please update it if per your environment.
      [global]
      gmCapable               0
@@ -294,6 +362,18 @@ Time synchronization on the Kata Container is done later in this process.
 
 You do not need to set up time synchronization on ``Node 3`` and ``Node 4``
 since they were used to send/receive best-effort traffic in the experiment.
+
+The ``Ubuntu node`` and the ``StarlingX container`` must be configured to have vlan interfaces.
+Before setting up anything else, you must run the commands below on the ``Ubuntu node``
+(the ``StarlingX container`` is configured later on in ``Case 2``):
+
+::
+
+   # INTERFACE is the name of the I210 network card (the TSN network card)
+   INTERFACE=enp5s0
+   ip link add link $INTERFACE name ${INTERFACE}.3 type vlan id 3
+   ifconfig $INTERFACE up
+   ip link set ${INTERFACE}.3 up
 
 *************************************************************
 Step 2. Launch a Kata Container with a physical NIC passed in
@@ -337,6 +417,7 @@ Container by completing the following steps. More details can be found at
        total 0
        crw------- 1 root root  241,  0 May 18 15:38 16
        crw-rw-rw- 1 root root  10, 196 May 18 15:37 vfio
+       # There should be only one vfio device there, the device that has been passed through.
 
        # Edit the /usr/share/defaults/kata-containers/configuration.toml file to
        # set `hotplug_vfio_on_root_bus` to true.
@@ -361,11 +442,10 @@ Container by completing the following steps. More details can be found at
 
       # 2 cpus are needed. 1 dedicated for send or receive data.
       sudo docker run -it -d --runtime=kata-runtime --cpus 2 --rm --device \
-            /dev/vfio/16 -v /dev:/dev --privileged --name tsn \
-            kata_tsn_image /bin/bash
+            /dev/vfio/16 -v /dev:/dev --cap-add SYS_NICE --cap-add SYS_TIME --cap-add NET_ADMIN \
+            --name tsn kata_tsn_image /bin/bash
 
-    When completed, the I210 NIC was seen in the created container with the name
-    ``eth1``.
+    When completed, the I210 NIC should be shown in the created container with the name ``eth1``.
 
 ***************************************
 Step 3. Config and test TSN performance
