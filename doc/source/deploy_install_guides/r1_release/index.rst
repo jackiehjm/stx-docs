@@ -8,11 +8,11 @@ StarlingX R1.0 Installation
    since the R1.0 release. Due to these changes, the R1.0 installation
    instructions may not work as described.
 
-   Installation of the the :ref:`latest_release` is recommended.
+   Installation of the current :ref:`latest_release` is recommended.
 
-This is the installation guide for the StarlingX R1.0 release. If this is not the
-installation guide you want to use, see the
-:doc:`available installation guides </deploy_install_guides/index>`.
+This is the installation guide for the StarlingX R1.0 release. If this is not
+the installation guide you want to use, see the :doc:`available installation
+guides </deploy_install_guides/index>`.
 
 ------------
 Introduction
