@@ -1,18 +1,10 @@
 ===========================
-StarlingX R2.0 Installation
+StarlingX R5.0 Installation
 ===========================
 
-.. important::
-
-   Changes in the underlying StarlingX infrastructure have occurred
-   since the R2.0 release. Due to these changes, the R2.0 installation
-   instructions may not work as described.
-
-   Installation of the current :ref:`latest_release` is recommended.
-
-StarlingX provides a pre-defined set of standard :doc:`deployment configurations
-</introduction/deploy_options>`. Most deployment options may be installed in a
-virtual environment or on bare metal.
+StarlingX provides a pre-defined set of standard
+:doc:`deployment configurations </introduction/deploy_options>`. Most deployment options may
+be installed in a virtual environment or on bare metal.
 
 -----------------------------------------------------
 Install StarlingX Kubernetes in a virtual environment
@@ -25,6 +17,12 @@ Install StarlingX Kubernetes in a virtual environment
    virtual/aio_duplex
    virtual/controller_storage
    virtual/dedicated_storage
+
+.. toctree::
+   :hidden:
+
+   virtual/config_virtualbox_netwk
+   virtual/install_virtualbox
 
 ------------------------------------------
 Install StarlingX Kubernetes on bare metal
@@ -44,6 +42,15 @@ Install StarlingX Kubernetes on bare metal
 
    ansible_bootstrap_configs
 
+-------------------------------------------------
+Install StarlingX Distributed Cloud on bare metal
+-------------------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   distributed_cloud/index
+
 -----------------
 Access Kubernetes
 -----------------
@@ -61,3 +68,4 @@ Access StarlingX OpenStack
    :maxdepth: 1
 
    openstack/index
+
