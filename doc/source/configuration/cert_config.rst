@@ -56,8 +56,9 @@ self-signed certificate is automatically installed. In order to connect, remote
 clients must be configured to accept the self-signed certificate without
 verifying it. This is called *insecure mode*.
 
-For secure-mode connections, a CA-signed certificate is required. Using a
-CA-signed certificate is strongly recommended.
+For secure-mode connections, a CA-signed certificate, or an ICA (intermediate
+CA) signed certificate is required. Using a CA or ICA signed certificate is
+strongly recommended.
 
 *   To install (or update) the certificate used by StarlingX REST API
     applications and the StarlingX Horizon GUI:
@@ -65,8 +66,12 @@ CA-signed certificate is strongly recommended.
 
     ~(keystone_admin)]$ system certificate-install -m ssl <keyAndCert.pem>
 
-    where ``<keyAndCert.pem>`` == a PEM file containing both the private key and
-    the signed public certificate.
+    where ``<keyAndCert.pem>`` == a PEM file containing both the private key
+    and the signed public certificate. In the case of an ICA signed certificate,
+    the PEM file also contains the intermediate CA certificates. The certificates
+    in the file should be ordered such that each of the certificates is signed
+    by the succeeding one, with the public certificate as the very first in the
+    list.
 
     You can update the certificate used by StarlingX platform at any time after
     installation.
@@ -111,8 +116,8 @@ Local Docker registry
 
 HTTPS is always enabled for the local Docker registry. Similarly, a self-signed
 certificate is used by default, however, we recommend that you update the
-certificate with a certificate signed by a Certificate Authority after
-installation.
+certificate with a certificate signed by a Certificate Authority or an
+intermediate Certificate Authority after installation.
 
 *   To install (or update) the certificate used by the local Docker registry:
     ::
@@ -120,7 +125,10 @@ installation.
     ~(keystone_admin)]$ system certificate-install -m docker_registry <keyAndCert.pem>
 
     where ``<keyAndCert.pem>`` == a PEM file containing both the private key and
-    the signed public certificate.
+    the signed public certificate. In the case of an ICA signed certificate, the
+    PEM file also contains the intermediate CA certificates. The certificates in
+    the file should be ordered such that each of the certificates is signed by
+    the succeeding one, with the public certificate as the very first in the list.
 
     Note that the CA-signed certificate for the registry must have at least the
     following :abbr:`SANs (Subject Alternative Names)`:
