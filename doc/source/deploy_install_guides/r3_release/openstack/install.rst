@@ -30,7 +30,7 @@ Install application manifest and helm-charts
 
    ::
 
-        system application-upload stx-openstack-<version>-centos-stable-latest.tgz
+        system application-upload stx-openstack-<version>-centos-stable-versioned.tgz
 
    This will:
 
