@@ -12,7 +12,7 @@ ISO image
 
 The pre-built ISO and Docker images for StarlingX release 4.0 are located at
 `CENGN’s StarlingX mirror
-<http://mirror.starlingx.cengn.ca/mirror/starlingx/release>`_.
+<http://mirror.starlingx.cengn.ca/mirror/starlingx/release/4.0.1/centos/flock/outputs/>`_.
 
 ------
 Branch
