@@ -15,9 +15,9 @@ StarlingX Kubernetes platform:
 Install application manifest and helm-charts
 --------------------------------------------
 
-#. Modify the size of the docker_lv filesystem. By default, the size of docker_lv filesystem
-   is 30G which is not enough for stx-openstack installation. Use the "host-fs-modify" CLI to
-   increase the filesystem.
+#. Modify the size of the docker_lv filesystem. By default, the size of the
+   docker_lv filesystem is 30G, which is not enough for stx-openstack
+   installation. Use the ``host-fs-modify`` CLI to increase the filesystem size.
 
    The syntax is:
 
@@ -54,7 +54,7 @@ Install application manifest and helm-charts
 
    ::
 
-     system application-upload stx-openstack-<version>-centos-stable-latest.tgz
+     system application-upload stx-openstack-<version>-centos-stable-versioned.tgz
 
    This will:
 
