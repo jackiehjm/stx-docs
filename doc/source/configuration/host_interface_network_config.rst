@@ -2,13 +2,7 @@
 Host Interface and Network Configuration
 ========================================
 
-.. note::
-
-   This page needs additional content! See the story for additional information
-   about what is needed: `Add Host Interface and Networking Configuration Guide <https://storyboard.openstack.org/#!/story/2006865>`_
-
-   For information about contributing to the StarlingX documentation, see the
-   :doc:`/contributor/doc_contribute_guide`.
+This guide describes the following:
 
 .. contents::
    :local:
@@ -22,25 +16,25 @@ The interface class to which the logical network interface is connected. Valid
 classes are:
 
 ``platform``
-	Can be one of the following:
+    Can be one of the following:
 
-	* ``mgmt``: For the internal management network.
-  	* ``cluster-host``: For the Kubernetes cluster network.
-  	* ``oam``: For the OAM network.
-  	* ``pxeboot``: For the PXE boot platform network.
+    * ``mgmt``: For the internal management network.
+    * ``cluster-host``: For the Kubernetes cluster network.
+    * ``oam``: For the OAM network.
+    * ``pxeboot``: For the PXE boot platform network.
 
 ``data``
-	Applicable only for StarlingX OpenStack. Used to indicate that the interface
-	attaches to a data network providing the underlying network for OpenStack
-	Neutron tenant networks.
+    Applicable only for StarlingX OpenStack. Used to indicate that the interface
+    attaches to a data network providing the underlying network for OpenStack
+    Neutron tenant networks.
 
 ``pci-sriov``
-	For a PCI SR-IOV interface or for an interface that can be used in either
-	configuration (dual use).
+    For a PCI SR-IOV interface or for an interface that can be used in either
+    configuration (dual use).
 
 ``pci-passthrough``
-	For a PCI passthrough interface or for an interface that can be used in
-	either configuration (dual use).
+    For a PCI passthrough interface or for an interface that can be used in
+    either configuration (dual use).
 
 -----------------------
 Interface configuration
@@ -66,30 +60,30 @@ Configure an Ethernet interface to a network using the following commands:
 Replace parameters with values suitable to your installation. Parameters are:
 
 ``IF_NAME``
-	A name for the interface.
+    A name for the interface.
 
 ``MTU``
-	The MTU for the interface.
+    The MTU for the interface.
 
 ``IF_CLASS``
-	The class of the interface. Valid classes are platform, data, pci-sriov,
-	and pci-passthrough.
+    The class of the interface. Valid classes are platform, data, pci-sriov,
+    and pci-passthrough.
 
 ``HOST_NAME``
-	The name or UUID of the host.
+    The name or UUID of the host.
 
 ``ETH_NAME``
-	The name or UUID of the Ethernet interface to use.
+    The name or UUID of the Ethernet interface to use.
 
 ``IP4_MODE``
-	The mode for assigning IPv4 addresses to a data interface (static or pool).
+    The mode for assigning IPv4 addresses to a data interface (static or pool).
 
 ``IP6_MODE``
-	The mode for assigning IPv6 addresses to a data interface (static or pool).
+    The mode for assigning IPv6 addresses to a data interface (static or pool).
 
 ``ADDR_POOL``
-	The name of an IPv4 or IPv6 address pool, for use with the pool mode of IP
-	address assignment for data interfaces.
+    The name of an IPv4 or IPv6 address pool, for use with the pool mode of IP
+    address assignment for data interfaces.
 
 
 ****************************
@@ -105,20 +99,20 @@ Create a VLAN interface with the :command:`system host-if-add` command:
 Replace parameters with values suitable to your installation. Parameters are:
 
 ``ETH_NAME``
-	The name or UUID of the Ethernet interface to use.
+    The name or UUID of the Ethernet interface to use.
 
 ``HOST_NAME``
-	The name or UUID of the host.
+    The name or UUID of the host.
 
 ``IF_CLASS``
-	The class of the interface. Valid classes are platform, data, pci-sriov,
-	and pci-passthrough.
+    The class of the interface. Valid classes are platform, data, pci-sriov,
+    and pci-passthrough.
 
 ``IF_NAME``
-	A name or UUID for the interface (required).
+    A name or UUID for the interface (required).
 
 ``VLAN_ID``
-	The VLAN identifier for the network.
+    The VLAN identifier for the network.
 
 ***************************
 LAG interface configuration
@@ -134,22 +128,22 @@ command:
 Replace parameters with values suitable to your installation. Parameters are:
 
 ``AEMODE``
-	The link aggregation mode (active-backup, balanced, 802.3ad).
+    The link aggregation mode (active_standby, balanced, 802.3ad).
 
 ``ETH_NAME_1``, ``ETH_NAME_2``
-	The names or UUIDs of the member Ethernet interfaces.
+    The names or UUIDs of the member Ethernet interfaces.
 
 ``HOST_NAME``
-	The name or UUID of the host.
+    The name or UUID of the host.
 
 ``IF_NAME``
-	A name for the interface.
+    A name for the interface.
 
 ``MTU``
-	The MTU for the interface.
+    The MTU for the interface.
 
 ``TX_HASH_POLICY``
-	The balanced tx distribution hash policy (layer2, layer2+3, layer3+4).
+    The balanced tx distribution hash policy (layer2, layer2+3, layer3+4).
 
 ------------------------------------
 Network configuration and assignment
@@ -172,10 +166,11 @@ VLAN (tagged) on the same port.
 
 The cluster host network is required by all deployment configurations to support
 a Kubernetes cluster. It is used for private container-to-container networking
-within a cluster. It can be used for external connectivity of container workloads.
-If the cluster host network is not used for external connectivity of container
-workloads, then either the OAM port or other configured ports on both the
-controller and worker nodes can be used for connectivity to external networks.
+within a cluster. It can be used for external connectivity of container
+workloads. If the cluster host network is not used for external connectivity of
+container workloads, then either the OAM port or other configured ports on both
+the controller and worker nodes can be used for connectivity to external
+networks.
 
 The OAM network is required for external control and board management access. It
 can be used for container payload external connectivity, depending on
@@ -190,13 +185,14 @@ Assign an interface to a platform network with the command:
 Replace parameters with values suitable to your installation. Parameters are:
 
 ``HOST_NAME``
-	The name or UUID of the host.
+    The name or UUID of the host.
 
 ``IF_NAME``
-	A name for the interface.
+    A name for the interface.
 
 ``NETWORK``
-	The name or ID of the platform network to which the interface will be assigned.
+    The name or ID of the platform network to which the interface will
+    be assigned.
 
 *************
 Data networks
@@ -243,7 +239,7 @@ View details of a data network with the command:
 Replace parameters with values suitable to your installation. Parameters are:
 
 ``DATA_NETWORK``
-	The name or UUID of the data network.
+    The name or UUID of the data network.
 
 Add a data network with the command:
 
@@ -254,30 +250,34 @@ Add a data network with the command:
 Replace parameters with values suitable to your installation. Parameters are:
 
 ``DESCRIPTION``
-	A description of the data network.
+    A description of the data network.
 
 ``MTU``
-	The MTU of the data network. NOTE: To attach to the data network, data
-	interfaces must be configured with an equal or larger MTU.
+    The MTU of the data network.
+
+    .. note::
+
+            To attach to the data network, data interfaces must be configured
+            with an equal or larger MTU.
 
 ``PORT``
-	The port of the data network.
+    The port of the data network.
 
 ``GROUP``
-	The multicast group of the data network.
+    The multicast group of the data network.
 
 ``TTL``
-	The time-to-live of the data network.
+    The time-to-live of the data network.
 
 ``MODE``
-	For networks of type vxlan only, mode can be either dynamic or static. If
-	set to dynamic, group must also be specified.
+    For networks of type vxlan only, mode can be either dynamic or static. If
+    set to dynamic, group must also be specified.
 
 ``NAME``
-	The name assigned to the data network.
+    The name assigned to the data network.
 
 ``TYPE``
-	The type of data network to be created (flat, vlan, or vxlan).
+    The type of data network to be created (flat, vlan, or vxlan).
 
 Assign an interface to a data network with the command:
 
@@ -288,11 +288,11 @@ Assign an interface to a data network with the command:
 Replace parameters with values suitable to your installation. Parameters are:
 
 ``HOST_NAME``
-	The name or UUID of the host.
+    The name or UUID of the host.
 
 ``IF_NAME``
-	A name for the interface.
+    A name for the interface.
 
 ``DATA_NETWORK``
-	The name or ID of the data network to which the interface will be assigned.
+    The name or ID of the data network to which the interface will be assigned.
 
