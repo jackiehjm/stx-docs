@@ -65,7 +65,7 @@ for VirtualBox VMs.
 
 * Minimum disk size requirements:
 
-  * Controller nodes:
+  * Controller nodes (minimum of 2 disks required):
 
     * Disk 1: 201GB disk
     * Disk 2: 10GB disk (Note: Use 30GB if you are planning to work on the
