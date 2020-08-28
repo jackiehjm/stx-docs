@@ -12,8 +12,8 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
+import os
+import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
 
@@ -70,6 +70,12 @@ openstackdocs_project = 'StarlingX'
 openstackdocs_auto_name = False
 openstackdocs_bug_project = 'starlingx'
 openstackdocs_bug_tag = 'stx.docs'
+
+
+# Common substitution strings such as organization, product
+# and document names.
+rst_prolog = open('./shared/strings.txt', 'r').read()
+
 
 # -- Options for HTML output -------------------------------------------------
 

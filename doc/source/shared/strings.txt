@@ -1,0 +1,39 @@
+.. Common string substitutions for brand customization.
+.. NOTE: Do not use underscores in these substitution names.
+.. For more information, see
+.. https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#substitutions
+
+.. Organization name
+.. |org| replace:: StarlingX
+
+.. Short and long product names such as "StarlingX" and "Acme Co. StarlingX"
+.. |prod| replace:: StarlingX
+.. |prod-long| replace:: StarlingX
+.. |prod-os| replace:: StarlingX OpenStack
+
+.. Guide names, will be formatted in italics by default.
+.. |node-doc| replace:: :title:`StarlingX Node Configuration and Management`
+.. |planning-doc| replace:: :title:`StarlingX Planning`
+.. |sec-doc| replace:: :title:`StarlingX Security`
+.. |inst-doc| replace:: :title:`StarlingX Installation`
+.. |stor-doc| replace:: :title:`StarlingX Storage Configuration and Management`
+.. |intro-doc| replace:: :title:`StarlingX Introduction`
+.. |fault-doc| replace:: :title:`StarlingX Fault Management`
+.. |sysconf-doc| replace:: :title:`StarlingX System Configuration`
+.. |backup-doc| replace:: :title:`StarlingX Backup and Restore`
+.. |deploy-doc| replace:: :title:`StarlingX Deployment Configurations`
+.. |distcloud-doc| replace:: :title:`StarlingX Distributed Cloud`
+.. |usertasks-doc| replace:: :title:`StarlingX User Tasks`
+.. |admintasks-doc| replace:: :title:`StarlingX Administrator Tasks`
+.. |datanet-doc| replace:: :title:`StarlingX Data Networks`
+
+.. Task-oriented headings that should not appear in TOC
+.. These are used with the .. rubric:: directive. For example:
+.. .. rubric:: |postreq|
+
+.. |context| replace:: About this task
+.. |prereq| replace:: Prerequisites
+.. |proc| replace:: Procedure
+.. |postreq| replace:: Postrequisites
+.. |result| replace:: Results
+.. |eg| replace:: Example
