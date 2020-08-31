@@ -53,22 +53,27 @@
 .. |NUMA| replace:: :abbr:`NUMA (Non-Uniform Memory Access)`
 .. |NVMe| replace:: :abbr:`NVMe (Non-Volatile Memory express)`
 .. |OAM| replace:: :abbr:`OAM (Operations, administration and management)`
+.. |OIDC| replace:: :abbr:`OIDC (OpenID Connect)`
 .. |ONAP| replace:: :abbr:`ONAP (Open Network Automation Program)`
 .. |OSD| replace:: :abbr:`OSD (Object Storage Device)`
 .. |OSDs| replace:: :abbr:`OSDs (Object Storage Devices)`
 .. |PAC| replace:: :abbr:`PAC (Programmable Acceleration Card)`
 .. |PCI| replace:: :abbr:`PCI (Peripheral Component Interconnect)`
 .. |PDU| replace:: :abbr:`PDU (Packet Data Unit)`
+.. |PEM| replace:: :abbr:`PEM (Privacy Enhanced Mail)`
 .. |PF| replace:: :abbr:`PF (Physical Function)`
 .. |PHB| replace:: :abbr:`PHB (Per-Hop Behavior)`
 .. |PQDN| replace:: :abbr:`PDQN (Partially Qualified Domain Name)`
 .. |PQDNs| replace:: :abbr:`PQDNs (Partially Qualified Domain Names)`
+.. |PSP| replace:: :abbr:`PSP (Pod Security Policy)`
+.. |PSPs| replace:: :abbr:`PSPs (Pod Security Policies)`
 .. |PTP| replace:: :abbr:`PTP (Precision Time Protocol)`
 .. |PVC| replace:: :abbr:`PVC (Persistent Volume Claim)`
 .. |PVCs| replace:: :abbr:`PVCs (Persistent Volume Claims)`
 .. |PXE| replace:: :abbr:`PXE (Preboot Execution Environment)`
 .. |QoS| replace:: :abbr:`QoS (Quality of Service)`
 .. |RAID| replace:: :abbr:`RAID (Redundant Array of Inexpensive Disks)`
+.. |RBAC| replace:: :abbr:`RBAC (Role-Based Access Control)`
 .. |RPC| replace:: :abbr:`RPC (Remote Procedure Call)`
 .. |SAN| replace:: :abbr:`SAN (Subject Alternative Name)`
 .. |SANs| replace:: :abbr:`SANs (Subject Alternative Names)`
@@ -76,6 +81,7 @@
 .. |SATA| replace:: :abbr:`SATA (Serial AT Attachment)`
 .. |SLA| replace:: :abbr:`SLA (Service Level Agreement)`
 .. |SLAs| replace:: :abbr:`SLAs (Service Level Agreements)`
+.. |SM| replace:: :abbr:`SM (Service Manager)`
 .. |SNAT| replace:: :abbr:`SNAT (Source Network Address Translation)`
 .. |SNMP| replace:: :abbr:`SNMP (Simple Network Management Protocol)`
 .. |SRIOV| replace:: :abbr:`SR-IOV (Single Root I/O Virtualization)`
@@ -84,9 +90,11 @@
 .. |SSH| replace:: :abbr:`SSH (Secure Shell)`
 .. |SSL| replace:: :abbr:`SSL (Secure Socket Layer)`
 .. |STP| replace:: :abbr:`STP (Spanning Tree Protocol)`
-.. |TPM| replace:: :abbr:`TPM (Trusted Platform Module)`
 .. |TFTP| replace:: :abbr:`TFTP (Trivial File Transfer Protocol)`
+.. |TLS| replace:: :abbr:`TLS (Transport Layer Security)`
 .. |ToR| replace:: :abbr:`ToR (Top-of-Rack)`
+.. |TPM| replace:: :abbr:`TPM (Trusted Platform Module)`
+.. |TPMs| replace:: :abbr:`TPMs (Trusted Platform Modules)`
 .. |UDP| replace:: :abbr:`UDP (User Datagram Protocol)`
 .. |UEFI| replace:: :abbr:`UEFI (Unified Extensible Firmware Interface)`
 .. |VF| replace:: :abbr:`VF (Virtual Function)`
@@ -96,9 +104,9 @@
 .. |VM| replace:: :abbr:`VM (Virtual Machine)`
 .. |VMs| replace:: :abbr:`VMs (Virtual Machines)`
 .. |VNC| replace:: :abbr:`VNC (Virtual Network Computing)`
-.. |VPC| replace:: :abbr:`VPC (Virtual Port Channel)`
 .. |VNI| replace:: :abbr:`VNI (VXLAN Network Interface)`
 .. |VNIs| replace:: :abbr:`VNIs (VXLAN Network Interfaces)`
+.. |VPC| replace:: :abbr:`VPC (Virtual Port Channel)`
 .. |VXLAN| replace:: :abbr:`VXLAN (Virtual eXtensible Local Area Network)`
 .. |VXLANs| replace:: :abbr:`VXLANs (Virtual eXtensible Local Area Networks)`
 .. |XML| replace:: :abbr:`XML (eXtensible Markup Language)`

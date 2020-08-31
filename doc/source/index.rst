@@ -93,6 +93,15 @@ Node Management
    
    node_management/index
 
+--------
+Security
+--------
+
+.. toctree::
+   :maxdepth: 2
+
+   security/index
+
 --------------------
 System Configuration
 --------------------
