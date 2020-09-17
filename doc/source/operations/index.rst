@@ -11,7 +11,6 @@ General Operation
 
    app_management
    backup_restore_container
-   ceph_cluster_migration
    controller_service_manage
    cpu_manager
    dedicate_cpu_container
@@ -19,6 +18,7 @@ General Operation
    fault_management
    host_management
    lldp_monitor
+   storage_migration_from_ceph_to_rook
    storage_util_display
    tsn
 
