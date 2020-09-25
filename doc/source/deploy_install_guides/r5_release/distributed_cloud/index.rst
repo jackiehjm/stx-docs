@@ -130,9 +130,6 @@ controller-0. Set the system parameter *distributed_cloud_role* to
 management network IP address range to exclude IP addresses reserved for
 gateway routers providing routing to the subclouds' management subnets.
 
-.. note:: Worker hosts and data networks are not used in the
-          central cloud.
-
 Procedure:
 
 - Follow the StarlingX R5.0 installation procedures with the extra step noted below:
