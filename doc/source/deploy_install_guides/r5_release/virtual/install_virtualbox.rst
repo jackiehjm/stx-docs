@@ -67,7 +67,7 @@ for VirtualBox VMs.
 
   * Controller nodes (minimum of 2 disks required):
 
-    * Disk 1: 201GB disk
+    * Disk 1: 240GB disk
     * Disk 2: 10GB disk (Note: Use 30GB if you are planning to work on the
       analytics.)
 
