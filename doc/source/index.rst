@@ -72,8 +72,17 @@ Data Network Configuration and Management Guides
 
 .. toctree::
    :maxdepth: 2
-
+   
    datanet/index
+
+---------------
+Node Management
+---------------
+
+.. toctree::
+   :maxdepth: 2
+   
+   node_management/index
 
 --------------------
 System Configuration

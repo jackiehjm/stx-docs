@@ -44,6 +44,14 @@
 .. File name prefix, as in stx-remote-cli-<version>.tgz. May also be
    used in sample domain names etc.
 
+.. File name prefix, as in stx-remote-cli-<version>.tgz. May also be 
+   used in sample domain names etc.
+   Note: This substitution is used in tabular output. Strings with lenghts
+   other than 3 will cause table borders to misalign. You can pad shorter 
+   substitutions with an escaped leading space, as in replace:: \  yz
+   You need to insert two spaces after the backslash to preserve one in 
+   the outpout.
+
 .. |prefix| replace:: stx
 
 .. space character. Needed for padding in tabular output. Currently
