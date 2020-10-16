@@ -75,6 +75,15 @@ Data Network Configuration and Management Guides
 
    datanet/index
 
+--------------------
+System Configuration
+--------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   system_configuration/index
+
 ----------------
 Fault Management
 ----------------
@@ -90,7 +99,7 @@ User Tasks
 
 .. toctree::
    :maxdepth: 2
-   
+
    usertasks/index
 
 ----------------

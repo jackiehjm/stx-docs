@@ -1,4 +1,4 @@
-.. Common string substitutions for brand customization.
+.. Common string substitutions for brand customization and consistency.
 .. NOTE: Do not use underscores in these substitution names.
 .. For more information, see
 .. https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#substitutions
@@ -11,7 +11,7 @@
 .. |prod-long| replace:: StarlingX
 .. |prod-os| replace:: StarlingX OpenStack
 
-.. Guide names, will be formatted in italics by default.
+.. Guide names; will be formatted in italics by default.
 .. |node-doc| replace:: :title:`StarlingX Node Configuration and Management`
 .. |planning-doc| replace:: :title:`StarlingX Planning`
 .. |sec-doc| replace:: :title:`StarlingX Security`
@@ -41,27 +41,65 @@
 .. Name of downloads location
 .. |dnload-loc| replace:: a StarlingX mirror
 
-.. File name prefix, as in stx-remote-cli-<version>.tgz. May also be 
-.. used in sample domain names etc.
+.. File name prefix, as in stx-remote-cli-<version>.tgz. May also be
+   used in sample domain names etc.
+
 .. |prefix| replace:: stx
+
+.. space character. Needed for padding in tabular output. Currently
+   used where |prefix| replacement is a length shorter than 3.
+   To insert a space, use "replace:: \  \" (with two spaces)
+   To insert no spaces, use "replace:: \"
+
+.. |s| replace:: \
 
 .. Common and domain-specific sbbreviations.
 .. Plural forms must be defined seperately from singular as
 .. replacements like |PVC|s won't work.
 
+.. Please keep this list alphabetical.
+
+.. |AE| replace:: :abbr:`AE (Aggregated Ethernet)`
+.. |AIO| replace:: :abbr:`AIO (All-In-One)`
+.. |AVS| replace:: :abbr:`AVS (Application Virtual Switch)`
 .. |BGP| replace:: :abbr:`BGP (Border Gateway Protocol)`
+.. |BMC| replace:: :abbr:`BMC (Board Management Controller)`
+.. |BMCs| replace:: :abbr:`BMCs (Board Management Controllers)`
 .. |CNI| replace:: :abbr:`CNI (Container Networking Interface)`
+.. |CSK| replace:: :abbr:`CSK (Code Signing Key)`
+.. |CSKs| replace:: :abbr:`CSKs (Code Signing Keys)`
+.. |DPDK| replace:: :abbr:`DPDK (Data Plane Development Kit)`
+.. |FEC| replace:: :abbr:`FEC (Forward Error Correction)`
+.. |FPGA| replace:: :abbr:`FPGA (Field Programmable Gate Array)`
+.. |GNP| replace:: :abbr:`GNP (Global Network Policy)`
 .. |IPMI| replace:: :abbr:`IPMI (Intelligent Platform Management Interface)`
+.. |LACP| replace:: :abbr:`LACP (Link Aggregation Control Protocol)`
 .. |LAG| replace:: :abbr:`LAG (Link Aggregation)`
 .. |LDAP| replace:: :abbr:`LDAP (Lightweight Directory Access Protocol)`
+.. |LDPC| replace:: :abbr:`LDPC (Low-Density Parity Check)`
+.. |LLDP| replace:: :abbr:`LLDP (Link Layer Discovery Protocol)`
+.. |MTU| replace:: :abbr:`MTU (Maximum Transmission Unit)`
+.. |MAC| replace:: :abbr:`MAC (Media Access Control)`
 .. |MEC| replace:: :abbr:`MEC (Multi-access Edge Computing)`
-.. |NVMe| replace:: :abbr:`NVMe (Non Volatile Memory express)`
+.. |MNFA| replace:: :abbr:`MNFA (Multi-Node Failure Avoidance)`
+.. |MOTD| replace:: :abbr:`MOTD (Message of the Day)`
+.. |NIC| replace:: :abbr:`NIC (Network Interface Card)`
+.. |NICs| replace:: :abbr:`NICs (Network Interface Cards)`
+.. |NTP| replace:: :abbr:`NTP (Network Time Protocol)`
+.. |NUMA| replace:: :abbr:`NUMA (Non-Uniform Memory Access)`
+.. |NVMe| replace:: :abbr:`NVMe (Non-Volatile Memory express)`
 .. |OAM| replace:: :abbr:`OAM (Operations, administration and management)`
 .. |OSD| replace:: :abbr:`OSD (Object Storage Device)`
 .. |OSDs| replace:: :abbr:`OSDs (Object Storage Devices)`
+.. |PAC| replace:: :abbr:`PAC (Programmable Acceleration Card)`
+.. |PCI| replace:: :abbr:`PCI (Peripheral Component Interconnect)`
+.. |PDU| replace:: :abbr:`PDU (Packet Data Unit)`
+.. |PTP| replace:: :abbr:`PTP (Precision Time Protocol)`
 .. |PVC| replace:: :abbr:`PVC (Persistent Volume Claim)`
 .. |PVCs| replace:: :abbr:`PVCs (Persistent Volume Claims)`
 .. |PXE| replace:: :abbr:`PXE (Preboot Execution Environment)`
+.. |QoS| replace:: :abbr:`QoS (Quality of Service)`
+.. |RPC| replace:: :abbr:`RPC (Remote Procedure Call)`
 .. |SAS| replace:: :abbr:`SAS (Serial Attached SCSI)`
 .. |SATA| replace:: :abbr:`SATA (Serial AT Attachment)`
 .. |SNMP| replace:: :abbr:`SNMP (Simple Network Management Protocol)`
@@ -69,4 +107,9 @@
 .. |SSD| replace:: :abbr:`SSD (Solid State Drive)`
 .. |SSH| replace:: :abbr:`SSH (Secure Shell)`
 .. |ToR| replace:: :abbr:`ToR (Top-of-Rack)`
-
+.. |UDP| replace:: :abbr:`UDP (User Datagram Protocol)`
+.. |VLAN| replace:: :abbr:`VLAN (Virtual Local Area Network)`
+.. |VM| replace:: :abbr:`VM (Virtual Machine)`
+.. |VMs| replace:: :abbr:`VMs (Virtual Machines)`
+.. |VNC| replace:: :abbr:`VNC (Virtual Network Computing)`
+.. |VXLAN| replace:: :abbr:`VXLAN (Virtual eXtensible Local Area Network)`
