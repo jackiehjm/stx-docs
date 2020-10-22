@@ -472,14 +472,15 @@ should be done and reviewed in the team's
 `regularly scheduled calls.
 <https://wiki.openstack.org/wiki/Starlingx/Meetings>`_
 
-The OpenDev Foundation holds a project teams gathering (PTG) every 6 months,
-currently as part of the Foundation Summit meeting. Review and planning for
-new features are discussed as part of the StarlingX PTG meeting. The
-StarlingX release cycle is tied to the OpenStack release cycle so planning
-features for the next release at the PTG is a great time for the community
-to come together and discuss the technical issues face to face.
+The Open Infrastructure Foundation holds a `project teams gathering (PTG)
+<https://www.openstack.org/ptg/>`_ every 6 months. The PTG is often scheduled
+close to the time of other Open Infrastructure events. Review and planning for
+new features are discussed as part of the StarlingX PTG meeting. The StarlingX
+release cycle is tied to the OpenStack release cycle, so planning features for
+the next release at the PTG is a great time for the community to come together
+and discuss the technical issues face to face.
 
-Some features may span multiple StarlingX sub-projects. In that case
+Some features may span multiple StarlingX sub-projects. In that case,
 the sub-project PLs should consult with the TSC for how the work should
 be done early in the planning phase.
 
@@ -524,17 +525,13 @@ have been merged by the core reviewers.
 Release phase
 ^^^^^^^^^^^^^
 
-The StarlingXj
-`release sub-project
-<https://wiki.openstack.org/wiki/StarlingX/Releases>`_
-has the overall responsibility to
-manage the deliver of StarlingX releases. The team tracks new features
-as they are planned and developed and can move content into or out
-of StarlingX releases. All but the smallest features will likely require
-close collaboration with the release team. See the
-`StarlingX Release Process
-<https://wiki.openstack.org/wiki/StarlingX/Release_Plan>`_
-for more details on the release process.
+The StarlingX `release sub-project <https://wiki.openstack.org/wiki/StarlingX/Releases>`_
+has the overall responsibility to manage the delivery of StarlingX releases. The
+team tracks new features as they are planned and developed and can move content
+into or out of StarlingX releases. All but the smallest features will likely
+require close collaboration with the release team. See the `StarlingX Release
+Process <https://wiki.openstack.org/wiki/StarlingX/Release_Plan>`_ for more
+details on the release process.
 
 Once a software feature is included in a StarlingX release, the release
 phase is complete.

@@ -91,14 +91,14 @@ General information
 Governance
 ----------
 
-StarlingX is a top-level OpenStack Foundation pilot project that is governed by
-two separate bodies: The `OpenStack Foundation Board of Directors`_ and the
-`StarlingX Technical Steering Committee`_.
+StarlingX is a top-level Open Infrastructure Foundation confirmed project that
+is governed by two separate bodies: The `Open Infrastructure Foundation Board of
+Directors`_ and the `StarlingX Technical Steering Committee`_.
 
 See `StarlingX Governance`_ for additional information about StarlingX project
 governance.
 
-.. _`OpenStack Foundation Board of Directors`: https://wiki.openstack.org/wiki/Governance/Foundation
+.. _`Open Infrastructure Foundation Board of Directors`: https://openinfra.dev/about/board/
 .. _`StarlingX Technical Steering Committee`: https://docs.starlingx.io/governance/reference/tsc/
 .. _`StarlingX Governance`: https://docs.starlingx.io/governance/
 
