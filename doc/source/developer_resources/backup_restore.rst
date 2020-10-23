@@ -353,7 +353,7 @@ Steps:
 
         #. Unlock controller-1.
 
-        **Standard (without controller storage)**
+        **Standard (with controller storage)**
 
         i. Unlock controller-0 and wait for it to boot. After unlock, you will
            see all nodes, including storage nodes, as offline.
@@ -365,7 +365,7 @@ Steps:
 
         #. Unlock compute nodes and wait for them to be available.
 
-        **Standard (with controller storage)**
+        **Standard (without controller storage)**
 
         i. Unlock controller-0 and wait for it to boot. After unlock, you will
            see all nodes, except storage nodes, as offline. If
