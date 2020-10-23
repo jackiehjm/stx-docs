@@ -57,6 +57,15 @@ Configuration
 
    configuration/index
 
+------------------------------------------------
+Data Network Configuration and Management Guides
+------------------------------------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   datanet/index   
+
 ----------------
 Fault Management
 ----------------

@@ -1,0 +1,101 @@
+.. Data networks file, created by
+   sphinx-quickstart on Thu Sep  3 15:14:59 2020.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+=============
+Data Networks
+=============
+
+----------
+Kubernetes
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   data-network-management-data-networks
+
+***********************************
+Displaying data network information
+***********************************
+
+.. toctree::
+   :maxdepth: 1
+
+   displaying-data-network-information-using-horizon
+   displaying-data-network-information-using-the-cli
+   the-data-network-topology-view
+
+*********************************************
+Adding, assigning, and removing data networks
+*********************************************
+
+.. toctree::
+   :maxdepth: 1
+
+   adding-data-networks-using-the-cli
+   assigning-a-data-network-to-an-interface
+   removing-a-data-network-using-the-cli
+
+-------------------
+StarlingX OpenStack
+-------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   data-networks-overview
+
+*******************
+VXLAN data networks
+*******************
+
+.. toctree::
+   :maxdepth: 1
+
+   dynamic-vxlan
+   static-vxlan
+   differences-between-dynamic-and-static-vxlan-modes
+
+**************************
+Adding segmentation ranges
+**************************
+
+.. toctree::
+   :maxdepth: 1
+
+   adding-segmentation-ranges-using-the-cli
+
+************************************
+Data network interface configuration
+************************************
+
+.. toctree::
+   :maxdepth: 1
+
+   configuring-data-interfaces
+   configuring-data-interfaces-for-vxlans
+
+******************************
+MTU values of a data interface
+******************************
+
+.. toctree::
+   :maxdepth: 1
+
+   changing-the-mtu-of-a-data-interface-using-the-cli
+   changing-the-mtu-of-a-data-interface
+
+***********************************
+VXLAN data network setup completion
+***********************************
+
+.. toctree::
+   :maxdepth: 1
+
+   adding-a-static-ip-address-to-a-data-interface
+   managing-data-interface-static-ip-addresses-using-the-cli
+   using-ip-address-pools-for-data-interfaces
+   managing-ip-address-pools-using-the-cli
+   adding-and-maintaining-routes-for-a-vxlan-network
