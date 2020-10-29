@@ -1,0 +1,71 @@
+============================
+|prod-long| Fault Management
+============================
+
+-   Fault Management Overview
+
+    -   :ref:`Fault Management Overview <fault-management-overview>`
+
+-   The Global Alarm Banner
+
+    -   :ref:`The Global Alarm Banner <the-global-alarm-banner>`
+
+-   Viewing Active Alarms
+
+    -   :ref:`Viewing Active Alarms Using Horizon <viewing-active-alarms-using-horizon>`
+    -   :ref:`Viewing Active Alarms Using the CLI <viewing-active-alarms-using-the-cli>`
+    -   :ref:`Viewing Alarm Details Using the CLI <viewing-alarm-details-using-the-cli>`
+
+-   Viewing the Event Log
+
+    -   :ref:`Viewing the Event Log Using Horizon <viewing-the-event-log-using-horizon>`
+    -   :ref:`Viewing the Event Log Using the CLI <viewing-the-event-log-using-the-cli>`
+
+-   Deleting an Alarm
+
+    -   :ref:`Deleting an Alarm Using the CLI <deleting-an-alarm-using-the-cli>`
+
+-   Events Suppression
+
+    -   :ref:`Events Suppression Overview <events-suppression-overview>`
+    -   :ref:`Suppressing and Unsuppressing Events <suppressing-and-unsuppressing-events>`
+    -   :ref:`Viewing Suppressed Alarms Using the CLI <viewing-suppressed-alarms-using-the-cli>`
+    -   :ref:`Suppressing an Alarm Using the CLI <suppressing-an-alarm-using-the-cli>`
+    -   :ref:`Unsuppressing an Alarm Using the CLI <unsuppressing-an-alarm-using-the-cli>`
+
+-   CLI Commands and Paged Output
+
+    -   :ref:`CLI Commands and Paged Output <cli-commands-and-paged-output>`
+
+-   SNMP
+
+    -   :ref:`SNMP Overview <snmp-overview>`
+    -   :ref:`Enabling SNMP Support <enabling-snmp-support>`
+    -   :ref:`Traps <traps>`
+
+        -   :ref:`Configuring SNMP Trap Destinations <configuring-snmp-trap-destinations>`
+
+    -   :ref:`SNMP Event Table <snmp-event-table>`
+    -   :ref:`Adding an SNMP Community String Using the CLI <adding-an-snmp-community-string-using-the-cli>`
+    -   :ref:`Setting SNMP Identifying Information <setting-snmp-identifying-information>`
+
+-   :ref:`Troubleshooting Log Collection <troubleshooting-log-collection>`
+-   Cloud Platform Alarm Messages
+
+    -   :ref:`Alarm Messages Overview <alarm-messages-overview>`
+    -   :ref:`100 Series Alarm Messages <100-series-alarm-messages>`
+    -   :ref:`200 Series Alarm Messages <200-series-alarm-messages>`
+    -   :ref:`300 Series Alarm Messages <300-series-alarm-messages>`
+    -   :ref:`400 Series Alarm Messages <400-series-alarm-messages>`
+    -   :ref:`500 Series Alarm Messages <500-series-alarm-messages>`
+    -   :ref:`750 Series Alarm Messages <750-series-alarm-messages>`
+    -   :ref:`800 Series Alarm Messages <800-series-alarm-messages>`
+    -   :ref:`900 Series Alarm Messages <900-series-alarm-messages>`
+
+-   Cloud Platform Customer Log Messages
+
+    -   :ref:`200 Series Maintenance Customer Log Messages <200-series-maintenance-customer-log-messages>`
+    -   :ref:`400 Series Customer Log Messages <400-series-customer-log-messages>`
+    -   :ref:`900 Series Orchestration Customer Log Messages <900-series-orchestration-customer-log-messages>`
+
+

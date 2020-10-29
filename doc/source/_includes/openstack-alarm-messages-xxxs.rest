@@ -1,0 +1,36 @@
+The system inventory and maintenance service reports system changes with
+different degrees of severity. Use the reported alarms to monitor the overall
+health of the system.
+
+For more information, see :ref:`Overview <openstack-fault-management-overview>`.
+
+In the following tables, the severity of the alarms is represented by one or
+more letters, as follows:
+
+.. _alarm-messages-300s-ul-jsd-jkg-vp:
+
+-   C: Critical
+
+-   M: Major
+
+-   m: Minor
+
+-   W: Warning
+
+A slash-separated list of letters is used when the alarm can be triggered with
+one of several severity levels.
+
+An asterisk \(\*\) indicates the management-affecting severity, if any. A
+management-affecting alarm is one that cannot be ignored at the indicated
+severity level or higher by using relaxed alarm rules during an orchestrated
+patch or upgrade operation.
+
+
+Differences exist between the terminology emitted by some alarms and that
+used in the CLI, GUI, and elsewhere in the documentations:
+
+-   References to provider networks in alarms refer to data networks.
+
+-   References to data networks in alarms refer to physical networks.
+
+-   References to tenant networks in alarms refer to project networks.

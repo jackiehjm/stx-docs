@@ -1,0 +1,15 @@
+The Customer Logs include events that do not require immediate user action.
+
+The following types of events are included in the Customer Logs. The severity of the events is represented in the table by one or more letters, as follows:
+
+.. _customer-log-messages-401s-services-ul-jsd-jkg-vp:
+
+-   C: Critical
+
+-   M: Major
+
+-   m: Minor
+
+-   W: Warning
+
+-   NA: Not applicable

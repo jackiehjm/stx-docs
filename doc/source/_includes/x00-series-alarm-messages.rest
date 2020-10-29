@@ -1,0 +1,33 @@
+
+.. rsg1586183719424
+.. _alarm-messages-overview:
+
+Alarm messages are numerically coded by the type of alarm.
+
+For more information, see
+:ref:`Fault Management Overview <fault-management-overview>`.
+
+In the alarm description tables, the severity of the alarms is represented by
+one or more letters, as follows:
+
+.. _alarm-messages-overview-ul-jsd-jkg-vp:
+
+-   C: Critical
+
+-   M: Major
+
+-   m: Minor
+
+-   W: Warning
+
+A slash-separated list of letters is used when the alarm can be triggered with
+one of several severity levels.
+
+An asterisk \(\*\) indicates the management-affecting severity, if any. A
+management-affecting alarm is one that cannot be ignored at the indicated
+severity level or higher by using relaxed alarm rules during an orchestrated
+patch or upgrade operation.
+
+.. note::
+    **Degrade Affecting Severity: Critical** indicates a node will be
+    degraded if the alarm reaches a Critical level.
