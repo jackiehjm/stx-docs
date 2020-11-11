@@ -32,27 +32,27 @@ You can use CLI commands to work with historical alarms and logs in the event lo
 
     Optional arguments:
 
-    **-q QUERY, --query QUERY**
+    ``-q QUERY, --query QUERY``
         \- key\[op\]data\_type::value; list. data\_type is optional, but if
         supplied must be string, integer, float, or boolean.
 
-    **-l NUMBER, --limit NUMBER**
+    ``-l NUMBER, --limit NUMBER``
         Maximum number of event logs to return.
 
-    **--alarms**
+    ``--alarms``
         Show historical alarms set/clears only.
 
-    **--logs**
+    ``--logs``
         Show customer logs only.
 
-    **--include\_suppress**
+    ``--include\_suppress``
         Show suppressed alarms as well as unsuppressed alarms.
 
-    **--uuid**
+    ``--uuid``
         Include the unique event UUID in the listing such that it can be used
         in displaying event details with :command:`fm event-show` <uuid>.
 
-    **-nopaging**
+    ``-nopaging``
         Disable output paging.
 
         For details on CLI paging, see
@@ -96,7 +96,7 @@ You can use CLI commands to work with historical alarms and logs in the event lo
         +-----------+-----+-----+--------------------+-----------------+---------+
 
     .. note::
-        You can also use the --nopaging option to avoid paging long event
+        You can also use the ``--nopaging`` option to avoid paging long event
         lists.
 
     In the following example, the :command:`fm event-list` command shows

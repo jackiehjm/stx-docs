@@ -6,8 +6,8 @@
 Configure SNMP Trap Destinations
 ================================
 
-SNMP trap destinations are hosts configured in |prod| to receive unsolicited
-SNMP notifications.
+:abbr:`SNMP (Simple Network Management Protocol)` trap destinations are hosts
+configured in |prod| to receive unsolicited SNMP notifications.
 
 .. rubric:: |context|
 

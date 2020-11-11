@@ -53,13 +53,13 @@ Collect Tool Caveats and Usage
 
 -   For systems with an up-time of more than 2 months, use the date range options.
 
-    Use --start-date for the collection of logs on and after a given date:
+    Use ``--start-date`` for the collection of logs on and after a given date:
 
     .. code-block:: none
 
         (keystone_admin)$ collect [--start-date | -s] <YYYYMMDD>
 
-    Use --end-date for the collection of logs on and before a given date :
+    Use ``--end-date`` for the collection of logs on and before a given date:
 
     .. code-block:: none
 

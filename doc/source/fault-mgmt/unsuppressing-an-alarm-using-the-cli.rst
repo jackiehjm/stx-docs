@@ -20,16 +20,16 @@ If you need to reactivate a suppressed alarm, you can do so using the CLI.
 
     where
 
-    **<alarm-id>**
-        is a comma separated list of **Alarm ID** s of alarms to unsuppress.
+    ``<alarm-id>``
+        is a comma separated **Alarm ID** list of alarms to unsuppress.
 
-    **--nowrap**
+    ``--nowrap``
         disables output wrapping.
 
-    **--nopaging**
+    ``--nopaging``
         disables paged output
 
-    **--uuid**
+    ``--uuid``
         includes the alarm type UUIDs in the output.
 
     Alarm type\(s\) with the specified <alarm-id\(s\)> will be unsuppressed.
