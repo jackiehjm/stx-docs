@@ -215,10 +215,10 @@ ISO镜像内容完全由文件来定义： ::
    cd /stx-tools/centos-mirror-tools
    download_mirror.sh -c ./yum.conf.sample -n -g
    ...
-   ln -s /import/mirrors/CentOS/stx-r1/CentOS/downloads/ $MY_REPO/stx/
-   populate_downloads.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   ln -s /import/mirrors/CentOS/stx/CentOS/downloads/ $MY_REPO/stx/
+   populate_downloads.sh /import/mirrors/CentOS/stx/CentOS/
    ...
-   generate-cgcs-centos-repo.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   generate-local-repo.sh /import/mirrors/CentOS/stx/CentOS/
    ...
    build-pkgs
    build-iso
@@ -236,10 +236,10 @@ ISO镜像内容完全由文件来定义： ::
    ...
    download_mirror.sh
    ...
-   ln -s /import/mirrors/CentOS/stx-r1/CentOS/downloads/ $MY_REPO/stx/
-   populate_downloads.sh /import/mirrors/CentOS/stx-r1/CentOS/pike/
+   ln -s /import/mirrors/CentOS/stx/CentOS/downloads/ $MY_REPO/stx/
+   populate_downloads.sh /import/mirrors/CentOS/stx/CentOS/
    ...
-   generate-cgcs-centos-repo.sh /import/mirrors/CentOS/stx-r1/CentOS/pike/
+   generate-local-repo.sh /import/mirrors/CentOS/stx/CentOS/
    ...
    build-pkgs
    build-pkgs --installer
@@ -258,10 +258,10 @@ ISO镜像内容完全由文件来定义： ::
    ...
    download_mirror.sh
    ...
-   ln -s /import/mirrors/CentOS/stx-r1/CentOS/downloads/ $MY_REPO/stx/
-   populate_downloads.sh /import/mirrors/CentOS/stx-r1/CentOS/pike/
+   ln -s /import/mirrors/CentOS/stx/CentOS/downloads/ $MY_REPO/stx/
+   populate_downloads.sh /import/mirrors/CentOS/stx/CentOS/
    ...
-   generate-cgcs-centos-repo.sh /import/mirrors/CentOS/stx-r1/CentOS/pike/
+   generate-local-repo.sh /import/mirrors/CentOS/stx/CentOS/
    ...
    build-pkgs
    build-pkgs --installer
@@ -286,10 +286,10 @@ ISO镜像内容完全由文件来定义： ::
    ...
    download_mirror.sh
    ...
-   ln -s /import/mirrors/CentOS/stx-r1/CentOS/downloads/ $MY_REPO/stx/
-   populate_downloads.sh /import/mirrors/CentOS/stx-r1/CentOS/pike/
+   ln -s /import/mirrors/CentOS/stx/CentOS/downloads/ $MY_REPO/stx/
+   populate_downloads.sh /import/mirrors/CentOS/stx/CentOS/
    ...
-   generate-cgcs-centos-repo.sh /import/mirrors/CentOS/stx-r1/CentOS/pike/
+   generate-local-repo.sh /import/mirrors/CentOS/stx/CentOS/
    ...
    build-pkgs
    build-pkgs --installer
@@ -345,10 +345,10 @@ ISO镜像内容完全由文件来定义： ::
       stx-tools/centos-mirror-tools/config/centos/flock/required_layer_iso_inc.cfg
    download_mirror.sh
    ...
-   ln -s /import/mirrors/CentOS/stx-r1/CentOS/downloads/ $MY_REPO/stx/
-   populate_downloads.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   ln -s /import/mirrors/CentOS/stx/CentOS/downloads/ $MY_REPO/stx/
+   populate_downloads.sh /import/mirrors/CentOS/stx/CentOS/
    ...
-   generate-cgcs-centos-repo.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   generate-local-repo.sh /import/mirrors/CentOS/stx/CentOS/
 
 选项 b)使用一个替代的配置文件目录
 
@@ -363,12 +363,12 @@ ISO镜像内容完全由文件来定义： ::
       config.tmp/centos/flock/required_layer_iso_inc.cfg
    download_mirror.sh
    ...
-   ln -s /import/mirrors/CentOS/stx-r1/CentOS/downloads/ $MY_REPO/stx/
-   populate_downloads.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   ln -s /import/mirrors/CentOS/stx/CentOS/downloads/ $MY_REPO/stx/
+   populate_downloads.sh /import/mirrors/CentOS/stx/CentOS/
    ...
-   generate-cgcs-centos-repo.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   generate-local-repo.sh /import/mirrors/CentOS/stx/CentOS/
 
-选项 c)提供命令行参数来赋值给 downloads.sh 和 generate-cgcs-centos-repo.sh 脚本文件，并直接覆盖 url ::
+选项 c)提供命令行参数来赋值给 downloads.sh 和 generate-local-repo.sh 脚本文件，并直接覆盖 url ::
 
    download_mirror.sh \\
       -L distro,std,file:///localdisk/loadbuild/<my-project>-distro/std/rpmbuild/RPMS/rpm.lst \\
@@ -377,16 +377,16 @@ ISO镜像内容完全由文件来定义： ::
       -I distro,std,file:///localdisk/loadbuild/<my-project>-distro/std/image.inc \\
       -I distro,dev,file:///localdisk/loadbuild/<my-project>-distro/std/image-dev.inc
    ...
-   ln -s /import/mirrors/CentOS/stx-r1/CentOS/downloads/ $MY_REPO/stx/
-   populate_downloads.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   ln -s /import/mirrors/CentOS/stx/CentOS/downloads/ $MY_REPO/stx/
+   populate_downloads.sh /import/mirrors/CentOS/stx/CentOS/
    ...
-   generate-cgcs-centos-repo.sh \\
+   generate-local-repo.sh \\
       --layer-pkg-url=distro,std,file:///localdisk/loadbuild/<my-project>-distro/std/rpmbuild/RPMS/rpm.lst \\
       --layer-pkg-url=distro,rt,file:///localdisk/loadbuild/<my-project>-distro/rt/rpmbuild/RPMS/rpm.lst \\
       --layer-pkg-url=distro,installer,file:///localdisk/loadbuild/<my-project>-distro/installer/rpmbuild/RPMS/rpm.lst \\
       --layer-inc-url=distro,std,file:///localdisk/loadbuild/<my-project>-distro/std/image.inc \\
       --layer-inc-url=distro,dev,file:///localdisk/loadbuild/<my-project>-distro/std/image-dev.inc \\
-      /import/mirrors/CentOS/stx-r1/CentOS/
+      /import/mirrors/CentOS/stx/CentOS/
 
 然后继续构建，接下来将导出我们自己的安装程序。 ::
 
@@ -496,13 +496,13 @@ compiler,dev,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/com
 
 在build flock layer的时候会去读这个 ``require_layer_iso_inc.cfg`` 或者下面的命令修改layer的image.inc ::
 
-   generate-cgcs-centos-repo.sh \\
+   generate-local-repo.sh \\
       --layer-pkg-url=distro,std,file:///localdisk/loadbuild/<my-project>-distro/std/rpmbuild/RPMS/rpm.lst \\
       --layer-pkg-url=distro,rt,file:///localdisk/loadbuild/<my-project>-distro/rt/rpmbuild/RPMS/rpm.lst \\
       --layer-pkg-url=distro,installer,file:///localdisk/loadbuild/<my-project>-distro/installer/rpmbuild/RPMS/rpm.lst \\
       --layer-inc-url=distro,std,file:///localdisk/loadbuild/<my-project>-distro/std/image.inc \\
       --layer-inc-url=distro,dev,file:///localdisk/loadbuild/<my-project>-distro/std/image-dev.inc \\
-      /import/mirrors/CentOS/stx-r1/CentOS/
+      /import/mirrors/CentOS/stx/CentOS/
 
-编译flock layer时候，会在``cgcs-root/cgcs-centos-repo/layer_image_inc``, 包含distro和compiler layer的image.inc
+编译flock layer时候，会在``cgcs-root/local-repo/layer_image_inc``, 包含distro和compiler layer的image.inc
 build-iso的时候会被使用。
