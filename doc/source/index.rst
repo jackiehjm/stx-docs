@@ -75,6 +75,15 @@ Fault management
 
    fault-mgmt/index
 
+----------
+User Tasks
+----------
+
+.. toctree::
+   :maxdepth: 2
+   
+   usertasks/index
+
 ----------------
 Operation guides
 ----------------

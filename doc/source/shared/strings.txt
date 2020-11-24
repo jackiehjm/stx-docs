@@ -37,3 +37,10 @@
 .. |postreq| replace:: Postrequisites
 .. |result| replace:: Results
 .. |eg| replace:: Example
+
+.. Name of downloads location
+.. |dnload-loc| replace:: a StarlingX mirror
+
+.. File name prefix, as in stx-remote-cli-<version>.tgz. May also be 
+.. used in sample domain names etc.
+.. |prefix| replace:: stx
