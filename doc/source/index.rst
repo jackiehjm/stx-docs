@@ -39,6 +39,15 @@ Learn more about StarlingX:
 
    introduction/index
 
+---------------
+Planning guides
+---------------
+
+.. toctree::
+   :maxdepth: 2
+
+   deploy/index
+
 -------------------
 Installation guides
 -------------------
@@ -67,7 +76,7 @@ Data Network Configuration and Management Guides
    datanet/index
 
 ----------------
-Fault management
+Fault Management
 ----------------
 
 .. toctree::

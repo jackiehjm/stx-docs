@@ -44,3 +44,27 @@
 .. File name prefix, as in stx-remote-cli-<version>.tgz. May also be 
 .. used in sample domain names etc.
 .. |prefix| replace:: stx
+
+.. Common and domain-specific sbbreviations.
+.. Plural forms must be defined seperately from singular as
+.. replacements like |PVC|s won't work.
+
+.. |BGP| replace:: :abbr:`BGP (Border Gateway Protocol)`
+.. |CNI| replace:: :abbr:`CNI (Container Networking Interface)`
+.. |IPMI| replace:: :abbr:`IPMI (Intelligent Platform Management Interface)`
+.. |LAG| replace:: :abbr:`LAG (Link Aggregation)`
+.. |MEC| replace:: :abbr:`MEC (Multi-access Edge Computing)`
+.. |NVMe| replace:: :abbr:`NVMe (Non Volatile Memory express)`
+.. |OAM| replace:: :abbr:`OAM (Operations, administration and management)`
+.. |OSD| replace:: :abbr:`OSD (Object Storage Device)`
+.. |OSDs| replace:: :abbr:`OSDs (Object Storage Devices)`
+.. |PVC| replace:: :abbr:`PVC (Persistent Volume Claim)`
+.. |PVCs| replace:: :abbr:`PVCs (Persistent Volume Claims)`
+.. |SAS| replace:: :abbr:`SAS (Serial Attached SCSI)`
+.. |SATA| replace:: :abbr:`SATA (Serial AT Attachment)`
+.. |SNMP| replace:: :abbr:`SNMP (Simple Network Management Protocol)`
+.. |SRIOV| replace:: :abbr:`SR-IOV (Single Root I/O Virtualization)`
+.. |SSD| replace:: :abbr:`SSD (Solid State Drive)`
+.. |SSH| replace:: :abbr:`SSH (Secure Shell)`
+.. |ToR| replace:: :abbr:`ToR (Top-of-Rack)`
+
