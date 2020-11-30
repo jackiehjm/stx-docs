@@ -11,8 +11,10 @@ system.
 
 .. rubric:: |context|
 
-Manually deleting an alarm should not be done unless it is absolutely
-clear that there is no reason for the alarm to be active.
+.. warning::
+
+   Manually deleting an alarm should not be done unless it is absolutely
+   clear that there is no reason for the alarm to be active.
 
 You can use the command :command:`fm alarm-delete` to manually delete an alarm
 that remains active/set for no apparent reason, which may happen in rare

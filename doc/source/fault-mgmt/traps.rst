@@ -6,8 +6,9 @@
 Traps
 =====
 
-|prod| supports SNMP traps. Traps send unsolicited information to monitoring
-software when significant events occur.
+|prod| supports :abbr:`SNMP (Simple Network Management Protocol)` traps. Traps
+send unsolicited information to monitoring software when significant events
+occur.
 
 The following traps are defined.
 
@@ -28,7 +29,9 @@ The following traps are defined.
 -   **wrsAlarmHierarchicalClear**
 
 .. note::
-    Customer Logs always result in **wrsAlarmMessage** traps.
+    Customer Logs always result in **wrsAlarmMessage** traps. |prod| uses Wind
+    River Systems (**wrs**) Enterprise Registration and Alarm MIBs. See
+    :ref:`SNMP Overview <snmp-overview>` for details.
 
 For Critical, Major, Minor, Warning, and Message traps, all variables in the
 active alarm table are included as varbinds \(variable bindings\), where each

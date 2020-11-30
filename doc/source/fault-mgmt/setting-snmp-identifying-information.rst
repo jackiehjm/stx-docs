@@ -6,8 +6,8 @@
 Set SNMP Identifying Information
 ================================
 
-You can set SNMP system information including name, location and contact
-details.
+You can set :abbr:`SNMP (Simple Network Management Protocol)` system
+information including name, location and contact details.
 
 .. rubric:: |proc|
 

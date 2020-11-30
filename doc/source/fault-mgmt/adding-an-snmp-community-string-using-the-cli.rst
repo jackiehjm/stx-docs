@@ -6,8 +6,8 @@
 Add an SNMP Community String Using the CLI
 ==========================================
 
-To enable SNMP services you need to define one or more SNMP community strings
-using the command line interface.
+To enable :abbr:`SNMP (Simple Network Management Protocol)` services you need
+to define one or more SNMP community strings using the command line interface.
 
 .. rubric:: |context|
 

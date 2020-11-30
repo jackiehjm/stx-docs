@@ -24,8 +24,8 @@ CLI fault management commands that perform paging include:
 -   :command:`fm event-unsuppress-all`
 
 
-To turn paging off, use the --nopaging option for the above commands. The
---nopaging option is useful for bash script writers.
+To turn paging off, use the ``--nopaging`` option for the above commands. The
+``--nopaging`` option is useful for bash script writers.
 
 .. _cli-commands-and-paged-output-section-N10074-N1001C-N10001:
 

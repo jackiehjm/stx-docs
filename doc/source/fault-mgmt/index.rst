@@ -88,9 +88,20 @@ SNMP
    enabling-snmp-support
    traps
    configuring-snmp-trap-destinations
+   snmp-active-alarm-table
    snmp-event-table
    adding-an-snmp-community-string-using-the-cli
    setting-snmp-identifying-information
+
+**********************************
+Distributed Cloud alarm management
+**********************************
+
+.. toctree::
+   :maxdepth: 1
+
+   alarms-management-for-distributed-cloud
+   cli-commands-for-dc-alarms-management
 
 ******************************
 Troubleshooting log collection

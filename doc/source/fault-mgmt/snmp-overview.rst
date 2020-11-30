@@ -6,7 +6,11 @@
 SNMP Overview
 =============
 
-|prod| can generate SNMP traps for |prod| Alarm Events and Customer Log Events.
+|prod| can generate :abbr:`SNMP (Simple Network Management Protocol)` traps for
+|prod| Alarm Events and Customer Log Events.
+
+|prod| also supports SNMP GETs and WALKs of an Active Alarm table and a
+historical Event (alarm SET/CLEAR and log) table.
 
 This includes alarms based on hardware sensors monitored by board management
 controllers.
