@@ -64,7 +64,7 @@ Data Network Configuration and Management Guides
 .. toctree::
    :maxdepth: 2
 
-   datanet/index   
+   datanet/index
 
 ----------------
 Fault management
@@ -74,15 +74,6 @@ Fault management
    :maxdepth: 2
 
    fault-mgmt/index
-
-------------------------------------------------
-Data Network Configuration and Management Guides
-------------------------------------------------
-
-.. toctree::
-   :maxdepth: 2
-
-   datanet/index 
 
 ----------------
 Operation guides
