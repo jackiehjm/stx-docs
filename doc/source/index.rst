@@ -129,6 +129,15 @@ User Tasks
 
    usertasks/index
 
+-------
+Storage
+-------
+
+.. toctree::
+   :maxdepth: 2
+
+   storage/index
+
 ----------------
 Operation guides
 ----------------
