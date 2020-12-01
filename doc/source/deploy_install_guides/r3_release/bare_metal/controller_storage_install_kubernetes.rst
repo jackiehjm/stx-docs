@@ -434,7 +434,7 @@ Install software on controller-1 and worker nodes
 
    ::
 
-     system host-update 4 personality=worker hostname=worker-1-1
+     system host-update 4 personality=worker hostname=worker-1
 
 #. Wait for the software installation on controller-1, worker-0, and worker-1 to
    complete, for all servers to reboot, and for all to show as locked/disabled/online in
@@ -459,7 +459,7 @@ Configure controller-1
 
 .. incl-config-controller-1-start:
 
-Configure the OAM and MGMT interfaces of controller-0 and specify the attached
+Configure the OAM and MGMT interfaces of controller-1 and specify the attached
 networks. Use the OAM and MGMT port names, for example eth0, that are applicable
 to your deployment environment.
 
