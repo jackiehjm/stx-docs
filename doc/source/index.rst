@@ -102,6 +102,15 @@ Operation guides
 
    operations/index
 
+------------------
+Backup and restore
+------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   backup/index
+
 ---------
 Reference
 ---------
