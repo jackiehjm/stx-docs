@@ -358,7 +358,7 @@ At this stage you must point the flock layer to pick up your custom
 distro layer content.  The location of lower layer content is encoded
 in config files found under ``stx-tools/centos-mirror-tools/config/<os>/<layer-to-build>``
 in files ``required_layer_pkgs.cfg`` and ``required_layer_iso_inc.cfg``.
-Both files use a comma seperated three field lines... ``<lower-layer>,<type>,<url>``  
+Both files use a comma seperated three field lines... ``<lower-layer>,<type>,<url>``
 e.g. ::
 
    cat stx-tools/centos-mirror-tools/config/centos/flock/required_layer_pkgs.cfg

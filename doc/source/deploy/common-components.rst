@@ -77,7 +77,7 @@ A number of components are common to most |prod| deployment configurations.
     connectivity or it can be deployed as an internal network.
 
     **External Network Connectivity with EXTERNAL cluster host network**
-        The |CNI| service, Calico, 
+        The |CNI| service, Calico,
         provides private tunneled networking between hosted containers on the
         external cluster host network.
 

@@ -422,7 +422,7 @@ you just built
     ## Note:  You may need to be root to run Docker commands on your build system.  If so, "sudo -s"
     docker images
     # Locate the image of interest you just built in the output, should be at or near the top of the list, then
-    # save the image of interest as a compressed tarball.  It could be rather large. 
+    # save the image of interest as a compressed tarball.  It could be rather large.
     docker save <image id> | gzip -9 >container_filename.tgz
     # scp container_filename.tgz to the active controller, then
     # ssh to active controller, then run the following instructions there:

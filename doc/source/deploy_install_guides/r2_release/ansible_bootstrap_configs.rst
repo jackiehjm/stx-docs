@@ -63,7 +63,7 @@ controller-0, and on :command:`system application-apply` of application packages
 The `docker_registries` structure is a map of public registries and the
 alternate registry values for each public registry. For each public registry the
 key is a fully scoped registry name of a public registry (for example "k8s.gcr.io")
-and the alternate registry URL and username/password (if authenticated). 
+and the alternate registry URL and username/password (if authenticated).
 
 url
    The fully scoped registry name (and optionally namespace/) for the alternate

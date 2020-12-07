@@ -1,5 +1,5 @@
 =========================
-Time Sensitive Networking 
+Time Sensitive Networking
 =========================
 
 This guide describes how to deploy and run Time Sensitive Networking (TSN)

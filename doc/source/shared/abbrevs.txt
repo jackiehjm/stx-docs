@@ -62,6 +62,7 @@
 .. |QoS| replace:: :abbr:`QoS (Quality of Service)`
 .. |RAID| replace:: :abbr:`RAID (Redundant Array of Inexpensive Disks)`
 .. |RPC| replace:: :abbr:`RPC (Remote Procedure Call)`
+.. |SANs| replace:: :abbr:`SANs (Subject Alternative Names)`
 .. |SAS| replace:: :abbr:`SAS (Serial Attached SCSI)`
 .. |SATA| replace:: :abbr:`SATA (Serial AT Attachment)`
 .. |SNAT| replace:: :abbr:`SNAT (Source Network Address Translation)`

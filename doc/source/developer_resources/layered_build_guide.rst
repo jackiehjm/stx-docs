@@ -848,11 +848,11 @@ Build the image:
 ----------------------
 :ref:`Build-installer`
 ----------------------
-Layered build has the same procedure for build installer as StarlingX R3.0 build 
+Layered build has the same procedure for build installer as StarlingX R3.0 build
 except for the changes in path of files as below. Click the heading above for details.
 
-#. The steps covered by the script **update-pxe-network-installer** is detailed in 
-   $MY_REPO/stx/stx-metal/installer/initrd/README. This script creates three files on 
+#. The steps covered by the script **update-pxe-network-installer** is detailed in
+   $MY_REPO/stx/stx-metal/installer/initrd/README. This script creates three files on
    /localdisk/loadbuild/stx/flock/pxe-network-installer/output.
 
 #. The path for **build_srpm.data** is $MY_REPO/stx/metal/installer/pxe-network-installer/centos/.

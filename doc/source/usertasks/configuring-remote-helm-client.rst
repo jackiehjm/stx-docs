@@ -136,7 +136,7 @@ You can now use the private Tiller server remotely or locally by specifying the
         --home "./.helm"
 
 .. seealso::
-    :ref:`Configuring Container-backed Remote CLIs 
+    :ref:`Configuring Container-backed Remote CLIs
     <kubernetes-user-tutorials-configuring-container-backed-remote-clis-and-clients>`
 
     :ref:`Using Container-backed Remote CLIs

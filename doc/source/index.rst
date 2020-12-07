@@ -111,6 +111,15 @@ Fault Management
 
    fault-mgmt/index
 
+-----------
+Admin Tasks
+-----------
+
+.. toctree::
+   :maxdepth: 2
+
+   admintasks/index
+
 ----------
 User Tasks
 ----------

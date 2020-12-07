@@ -11,8 +11,8 @@ Kubernetes CPU manager static policy.
 
 .. rubric:: |prereq|
 
-You will need to enable this CPU management mechanism before applying a 
-policy. 
+You will need to enable this CPU management mechanism before applying a
+policy.
 
 .. See |admintasks-doc|: :ref:`Optimizing Application Performance
    <kubernetes-cpu-manager-policies>` for details.
