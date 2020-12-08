@@ -28,12 +28,12 @@ The syntax is:
 
 ::
 
-    system host-fs-add <hostname or id> <fs name=size>
+    system host-fs-add <hostname or id> <fs-name=size>
 
 Where:
 
 *   ``hostname or id`` is the location where the file system will be added.
-*   ``fs name`` is the file system name.
+*   ``fs-name`` is the file system name.
 *   ``size`` is an integer indicating the file system size in Gigabytes.
 
 When the command completes, a new partition named ``/opt/conversion`` is
@@ -83,7 +83,7 @@ following CLI command:
 
 ::
 
-    system host-fs-modify <hostname or id> <fs name=size>
+    system host-fs-modify <hostname or id> <fs-name=size>
 
 For example:
 
@@ -102,7 +102,7 @@ The syntax is:
 
 ::
 
-    system host-fs-delete <hostname or id> <fs name>
+    system host-fs-delete <hostname or id> <fs-name>
 
 When ``image-conversion`` is removed, the ``/opt/conversion`` partition is also
 removed.
