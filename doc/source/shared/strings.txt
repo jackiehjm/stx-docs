@@ -53,6 +53,7 @@
 .. |CNI| replace:: :abbr:`CNI (Container Networking Interface)`
 .. |IPMI| replace:: :abbr:`IPMI (Intelligent Platform Management Interface)`
 .. |LAG| replace:: :abbr:`LAG (Link Aggregation)`
+.. |LDAP| replace:: :abbr:`LDAP (Lightweight Directory Access Protocol)`
 .. |MEC| replace:: :abbr:`MEC (Multi-access Edge Computing)`
 .. |NVMe| replace:: :abbr:`NVMe (Non Volatile Memory express)`
 .. |OAM| replace:: :abbr:`OAM (Operations, administration and management)`
@@ -60,6 +61,7 @@
 .. |OSDs| replace:: :abbr:`OSDs (Object Storage Devices)`
 .. |PVC| replace:: :abbr:`PVC (Persistent Volume Claim)`
 .. |PVCs| replace:: :abbr:`PVCs (Persistent Volume Claims)`
+.. |PXE| replace:: :abbr:`PXE (Preboot Execution Environment)`
 .. |SAS| replace:: :abbr:`SAS (Serial Attached SCSI)`
 .. |SATA| replace:: :abbr:`SATA (Serial AT Attachment)`
 .. |SNMP| replace:: :abbr:`SNMP (Simple Network Management Protocol)`
