@@ -175,7 +175,7 @@ Install software on controller-1, storage nodes, and compute nodes
 
    ::
 
-      ssystem host-update 6 personality=worker hostname=compute-1
+      system host-update 6 personality=worker hostname=compute-1
 
    This initiates software installation on compute-0 and compute-1.
 

@@ -181,7 +181,7 @@ Install software on controller-1, storage nodes, and worker nodes
 
    ::
 
-      ssystem host-update 6 personality=worker hostname=worker-1
+      system host-update 6 personality=worker hostname=worker-1
 
    This initiates software installation on worker-0 and worker-1.
 
