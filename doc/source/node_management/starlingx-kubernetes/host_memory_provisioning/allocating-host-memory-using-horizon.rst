@@ -10,9 +10,6 @@ You can edit the platform, vSwitch, and Application page memory allocations
 for a |NUMA| node from the Horizon Web
 interface using the **Memory** tab on the Host Inventory pane.
 
-vSwitch supports |AVS| and is only applicable on an openstack-compute labeled
-worker node, when running the |prod-os| OpenStack application.
-
 Due to limitations in Kubernetes, only a single huge page size can be used
 per host.
 
@@ -22,8 +19,7 @@ typically also use 1GiB huge pages. However, the vSwitch page size can be
 changed to 2MiB, in which case the application would also use 2MiB huge
 pages.
 
-You must also provision one 1GiB huge page
-per |NUMA| node prior to unlocking a
+You must also provision one 1GiB huge page per |NUMA| node prior to unlocking a
 worker or an |AIO| controller.
 
 .. rubric:: |prereq|
@@ -95,3 +91,7 @@ informative message is displayed.
 #.  Click **Save**.
 
 #.  Unlock the host and wait for it to be reported as **Available**.
+
+.. only:: partner
+
+    .. include:: ../../../_includes/avs-note.rest

@@ -67,30 +67,43 @@
 
 .. Please keep this list alphabetical.
 
+.. |ACL| replace:: :abbr:`ACL (Access Control List)`
 .. |AE| replace:: :abbr:`AE (Aggregated Ethernet)`
 .. |AIO| replace:: :abbr:`AIO (All-In-One)`
-.. |AVS| replace:: :abbr:`AVS (Application Virtual Switch)`
+.. |AVP| replace:: :abbr:`AVP (Accelerated Virtual Port)`
 .. |BGP| replace:: :abbr:`BGP (Border Gateway Protocol)`
 .. |BMC| replace:: :abbr:`BMC (Board Management Controller)`
 .. |BMCs| replace:: :abbr:`BMCs (Board Management Controllers)`
+.. |BOOTP| replace:: :abbr:`BOOTP (Boot Protocol)`
+.. |BPDU| replace:: :abbr:`BPDU (Bridge Protocol Data Unit)`
+.. |BPDUs| replace:: :abbr:`BPDUs (Bridge Protocol Data Units)`
+.. |CA| replace:: :abbr:`CA (Certificate Authority)`
 .. |CNI| replace:: :abbr:`CNI (Container Networking Interface)`
+.. |CoW| replace:: :abbr:`CoW (Copy on Write)`
 .. |CSK| replace:: :abbr:`CSK (Code Signing Key)`
 .. |CSKs| replace:: :abbr:`CSKs (Code Signing Keys)`
+.. |DHCP| replace:: :abbr:`DHCP (Dynamic Host Configuration Protoco)`
 .. |DPDK| replace:: :abbr:`DPDK (Data Plane Development Kit)`
+.. |DRBD| replace:: :abbr:`DRBD (Distributed Replicated Block Device)`
+.. |DSCP| replace:: :abbr:`DSCP (Differentiated Services Code Point)`
+.. |DVR| replace:: :abbr:`DVR (Distributed Virtual Router)`
 .. |FEC| replace:: :abbr:`FEC (Forward Error Correction)`
 .. |FPGA| replace:: :abbr:`FPGA (Field Programmable Gate Array)`
+.. |FQDN| replace:: :abbr:`FQDN (Fully Qualified Domain Name)`
 .. |GNP| replace:: :abbr:`GNP (Global Network Policy)`
+.. |IGMP| replace:: :abbr:`IGMP (Internet Group Management Protocol)`
 .. |IPMI| replace:: :abbr:`IPMI (Intelligent Platform Management Interface)`
 .. |LACP| replace:: :abbr:`LACP (Link Aggregation Control Protocol)`
 .. |LAG| replace:: :abbr:`LAG (Link Aggregation)`
 .. |LDAP| replace:: :abbr:`LDAP (Lightweight Directory Access Protocol)`
 .. |LDPC| replace:: :abbr:`LDPC (Low-Density Parity Check)`
 .. |LLDP| replace:: :abbr:`LLDP (Link Layer Discovery Protocol)`
-.. |MTU| replace:: :abbr:`MTU (Maximum Transmission Unit)`
 .. |MAC| replace:: :abbr:`MAC (Media Access Control)`
 .. |MEC| replace:: :abbr:`MEC (Multi-access Edge Computing)`
+.. |MLD| replace:: :abbr:`MLD (Multicast Listener Discovery)`
 .. |MNFA| replace:: :abbr:`MNFA (Multi-Node Failure Avoidance)`
 .. |MOTD| replace:: :abbr:`MOTD (Message of the Day)`
+.. |MTU| replace:: :abbr:`MTU (Maximum Transmission Unit)`
 .. |NIC| replace:: :abbr:`NIC (Network Interface Card)`
 .. |NICs| replace:: :abbr:`NICs (Network Interface Cards)`
 .. |NTP| replace:: :abbr:`NTP (Network Time Protocol)`
@@ -102,22 +115,35 @@
 .. |PAC| replace:: :abbr:`PAC (Programmable Acceleration Card)`
 .. |PCI| replace:: :abbr:`PCI (Peripheral Component Interconnect)`
 .. |PDU| replace:: :abbr:`PDU (Packet Data Unit)`
+.. |PHB| replace:: :abbr:`PHB (Per-Hop Behavior)`
 .. |PTP| replace:: :abbr:`PTP (Precision Time Protocol)`
 .. |PVC| replace:: :abbr:`PVC (Persistent Volume Claim)`
 .. |PVCs| replace:: :abbr:`PVCs (Persistent Volume Claims)`
 .. |PXE| replace:: :abbr:`PXE (Preboot Execution Environment)`
 .. |QoS| replace:: :abbr:`QoS (Quality of Service)`
+.. |RAID| replace:: :abbr:`RAID (Redundant Array of Inexpensive Disks)`
 .. |RPC| replace:: :abbr:`RPC (Remote Procedure Call)`
 .. |SAS| replace:: :abbr:`SAS (Serial Attached SCSI)`
 .. |SATA| replace:: :abbr:`SATA (Serial AT Attachment)`
+.. |SNAT| replace:: :abbr:`SNAT (Source Network Address Translation)`
 .. |SNMP| replace:: :abbr:`SNMP (Simple Network Management Protocol)`
 .. |SRIOV| replace:: :abbr:`SR-IOV (Single Root I/O Virtualization)`
 .. |SSD| replace:: :abbr:`SSD (Solid State Drive)`
+.. |SSDs| replace:: :abbr:`SSDs (Solid State Drives)`
 .. |SSH| replace:: :abbr:`SSH (Secure Shell)`
+.. |SSL| replace:: :abbr:`SSL (Secure Socket Layer)`
+.. |STP| replace:: :abbr:`STP (Spanning Tree Protocol)`
+.. |TPM| replace:: :abbr:`TPM (Trusted Platform Module)`
 .. |ToR| replace:: :abbr:`ToR (Top-of-Rack)`
 .. |UDP| replace:: :abbr:`UDP (User Datagram Protocol)`
+.. |UEFI| replace:: :abbr:`UEFI (Unified Extensible Firmware Interface)`
+.. |VF| replace:: :abbr:`VF (Virtual Function)`
+.. |VFs| replace:: :abbr:`VFs (Virtual Functions)`
 .. |VLAN| replace:: :abbr:`VLAN (Virtual Local Area Network)`
+.. |VLANs| replace:: :abbr:`VLANs (Virtual Local Area Networks)`
 .. |VM| replace:: :abbr:`VM (Virtual Machine)`
 .. |VMs| replace:: :abbr:`VMs (Virtual Machines)`
 .. |VNC| replace:: :abbr:`VNC (Virtual Network Computing)`
+.. |VPC| replace:: :abbr:`VPC (Virtual Port Channel)`
 .. |VXLAN| replace:: :abbr:`VXLAN (Virtual eXtensible Local Area Network)`
+.. |VXLANs| replace:: :abbr:`VXLANs (Virtual eXtensible Local Area Networks)`

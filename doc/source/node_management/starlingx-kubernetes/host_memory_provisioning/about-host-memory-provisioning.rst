@@ -37,13 +37,6 @@ partitioned using 1 GiB huge pages by default. You can change this for
 individual |NUMA| nodes to use 2 MiB huge
 pages for systems without 1 GiB huge page support.
 
-When the vSwitch type is set to |AVS|, the application huge
-pages size must match the vSwitch huge pages size. For example, if
-vSwitch uses 1GiB huge pages, only 1GiB huge pages can be allocated
-for the application. You must also provision one 1GiB huge page per
-|NUMA| node prior to unlocking a worker or an |AIO| controller if vswitch\_type
-is set to |AVS|.
-
 You can use the :command:`system host-memory-list` and
 :command:`system host-memory-show` commands to see how much memory is
 available for applications. This information is also shown on the **Memory**
@@ -51,3 +44,7 @@ tab of the Host Inventory page \(see :ref:`Memory Tab <memory-tab>`\).
 
 For individual containers \(or hosted applications if you are running
 OpenStack\), you can specify which page size is required.
+
+.. only:: partner
+
+   .. include:: ../../../_includes/about-host-memory-provisioning.rest

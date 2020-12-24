@@ -7,10 +7,7 @@ Allocate Host Memory Using the CLI
 ==================================
 
 You can edit the platform, vSwitch and huge page memory allocations for a
-|NUMA| node from the CLI. vSwitch
-supports |AVS| and is only
-applicable on an **openstack-compute** labeled worker node when running
-the |prod-os| OpenStack application.
+|NUMA| node from the CLI. 
 
 Due to limitations in Kubernetes, only a single huge page size can be used
 per host.
@@ -20,9 +17,8 @@ Since the vSwitch uses 1GiB huge page by default, the application will
 typically also use 1GiB huge pages. However, the vSwitch page size can be
 changed to 2MiB, in which case the application would also use 2MiB huge pages.
 
-You must also provision one 1GiB huge page per
-|NUMA| node prior to unlocking a worker
-or an |AIO| controller.
+You must also provision one 1GiB huge page per |NUMA| node prior to unlocking a
+worker or an |AIO| controller.
 
 .. rubric:: |proc|
 
@@ -168,3 +164,7 @@ or an |AIO| controller.
         | 2  | controller-1 | controller  | unlocked       | enabled     | available    |
         | 3  | worker-0     | worker      | unlocked       | enabled     | available    |
         +----+--------------+-------------+----------------+-------------+--------------+
+
+.. only:: partner
+
+    .. include:: ../../../_includes/avs-note.rest

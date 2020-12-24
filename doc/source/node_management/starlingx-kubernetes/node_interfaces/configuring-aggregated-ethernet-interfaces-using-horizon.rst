@@ -12,16 +12,10 @@ web interface.
 
 |prod| supports up to four ports in a |LAG|.
 
-.. note::
-    When running the |prod-os| OpenStack application with WRS |AVS| vSwitch,
-    you must use |AVS| accelerated data interfaces to use |LACP| or
-    active/standby mode on a data interface attached to a data network.
-    For non-accelerated data interfaces, only load-balanced mode is supported
-
-For general information about interface provisioning,
-see :ref:`Interface Provisioning <interface-provisioning>`.
-For more about the available settings for different types of interface,
-see :ref:`Interface Settings <interface-settings>`.
+For general information about interface provisioning, see :ref:`Interface
+Provisioning <interface-provisioning>`. For more about the available settings
+for different types of interface, see :ref:`Interface Settings
+<interface-settings>`.
 
 .. rubric:: |proc|
 
@@ -72,3 +66,7 @@ see :ref:`Interface Settings <interface-settings>`.
 .. rubric:: |result|
 
 The interface is created and attached to the network.
+
+.. only:: partner
+
+   .. include:: ../../../_includes/configuring-aggregated-ethernet-interfaces-using-horizon.rest

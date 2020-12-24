@@ -11,16 +11,8 @@ Ethernet interfaces to networks.
 
 |prod| supports up to four ports in a |LAG|.
 
-.. note::
-    You must use |AVS| accelerated
-    data interfaces to use |LACP|
-    or active/standby mode on a data interface attached to a data network
-    when running the |prod-os| application with
-    the |prod| |AVS| vSwitch. For
-    non-accelerated data interfaces, only load-balanced mode is supported.
-
-For more about link aggregation modes and policies,
-see :ref:`Link Aggregation Settings <link-aggregation-settings>`.
+For more about link aggregation modes and policies, see :ref:`Link Aggregation
+Settings <link-aggregation-settings>`.
 
 .. rubric:: |proc|
 
@@ -102,3 +94,7 @@ see :ref:`Link Aggregation Settings <link-aggregation-settings>`.
         ~(keystone_admin)$ system host-if-add controller-0 -a balanced -x layer2 ae0 ae enp0s9 enp0s10
         ~(keystone_admin)$ system interface-datanetwork-assign controller-0 ae0 providernet-net-a
         ~(keystone_admin)$ system interface-datanetwork-assign controller-0 ae0 providernet-net-b
+
+.. only:: partner
+
+    ../../../_includes/configuring-aggregated-ethernet-interfaces-using-the-cli.rest

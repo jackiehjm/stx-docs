@@ -27,13 +27,13 @@ the |SRIOV| interfaces.
 
 .. xbooklink  See |datanet-doc|:`Adding Data Networks using the CLI <adding-data-networks-using-the-cli>`.
 
-You must create an |SRIOV| interface before you can provision a VF interface.
+You must create an |SRIOV| interface before you can provision a |VF| interface.
 For more information, see :ref:`Provision SR-IOV Interfaces using the CLI
 <provisioning-sr-iov-interfaces-using-the-cli>`.
 
 .. rubric:: |proc|
 
-#.  Lock the host to which you will assign a VF interface.
+#.  Lock the host to which you will assign a |VF| interface.
 
     For example:
 
@@ -89,7 +89,7 @@ For more information, see :ref:`Provision SR-IOV Interfaces using the CLI
 
     **numvfs**
         The number of virtual functions to enable on the device. This must
-        be less than the number of VFs configured on the parent |SRIOV|
+        be less than the number of |VFs| configured on the parent |SRIOV|
         interface.
 
     **drivername**
@@ -103,10 +103,10 @@ For more information, see :ref:`Provision SR-IOV Interfaces using the CLI
 
         .. note::
 
-            -   Applications backed by Mellanox |AVS| should use the
-                netdevice VF driver
+            -   Applications backed by Mellanox AVS should use the
+                netdevice |VF| driver
 
-            -   If the driver for the VF interface and parent SR-IOV
+            -   If the driver for the |VF| interface and parent |SRIOV|
                 interface differ, a separate data network should be created
                 for each interface.
 
@@ -116,7 +116,7 @@ For more information, see :ref:`Provision SR-IOV Interfaces using the CLI
         "data-net-a,data-net-b". To specify a single data network,
         omit the quotes.
 
-    For example, to create VF interface sriov2 as a subinterface of pci-sriov
+    For example, to create |VF| interface sriov2 as a subinterface of pci-sriov
     interface sriov1 with 8 virtual functions bound to vfio and attached data
     network datanet-b, do the following:
 
