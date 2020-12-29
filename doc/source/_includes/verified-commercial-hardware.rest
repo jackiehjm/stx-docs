@@ -1,0 +1,2 @@
+.. [#] See |datanet-doc| for addtional information.
+.. [#] PCI passthrough support for Mellanox CX3 is deprecated.

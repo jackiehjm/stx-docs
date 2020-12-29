@@ -43,16 +43,8 @@
 
 .. File name prefix, as in stx-remote-cli-<version>.tgz. May also be
    used in sample domain names etc.
-
-.. File name prefix, as in stx-remote-cli-<version>.tgz. May also be 
-   used in sample domain names etc.
-   Note: This substitution is used in tabular output. Strings with lenghts
-   other than 3 will cause table borders to misalign. You can pad shorter 
-   substitutions with an escaped leading space, as in replace:: \  yz
-   You need to insert two spaces after the backslash to preserve one in 
-   the outpout.
-
-.. |prefix| replace:: stx
+   
+.. |prefix| replace:: stx   
 
 .. space character. Needed for padding in tabular output. Currently
    used where |prefix| replacement is a length shorter than 3.
@@ -61,7 +53,15 @@
 
 .. |s| replace:: \
 
-.. Common and domain-specific sbbreviations.
+
+.. Table row alternation inline override. Alternation styling is confused
+.. by spans. Applies to all tables in an rST file.
+
+.. |row-alt-off| raw:: html
+
+   <style>table.docutils tr.row-odd {background-color: #fff;}</style>
+
+.. Common and domain-specific abbreviations.
 .. Plural forms must be defined seperately from singular as
 .. replacements like |PVC|s won't work.
 
@@ -71,6 +71,7 @@
 .. |AE| replace:: :abbr:`AE (Aggregated Ethernet)`
 .. |AIO| replace:: :abbr:`AIO (All-In-One)`
 .. |AVP| replace:: :abbr:`AVP (Accelerated Virtual Port)`
+.. |AWS| replace:: :abbr:`AWS (Amazon Web Services)`
 .. |BGP| replace:: :abbr:`BGP (Border Gateway Protocol)`
 .. |BMC| replace:: :abbr:`BMC (Board Management Controller)`
 .. |BMCs| replace:: :abbr:`BMCs (Board Management Controllers)`

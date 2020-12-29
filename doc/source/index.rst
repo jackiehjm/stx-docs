@@ -39,9 +39,18 @@ Learn more about StarlingX:
 
    introduction/index
 
----------------
-Planning guides
----------------
+--------
+Planning
+--------
+
+.. toctree::
+   :maxdepth: 2
+   
+   planning/index
+
+-----------------
+Deployment guides
+-----------------
 
 .. toctree::
    :maxdepth: 2
