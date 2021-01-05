@@ -42,6 +42,20 @@ Data Network(s)
   the data network(s). These node types require one or more interface(s) on the
   data network(s).
 
+Deployment Tools
+  Tools that make the process of distributing, installing, and managing updates.
+
+Edge Computing
+  The delivery of computing capabilities to the logical extremes of a network in
+  order to improve the performance, operating cost and reliability of
+  applications and services. By shortening the distance between devices and the
+  resources that serve them, and also reducing network hops, edge computing
+  mitigates the latency and bandwidth constraints of today's Internet, ushering in
+  new classes of applications.
+
+  From `Open Glossary of Edge Computing <https://github.com/State-of-the-
+  Edge/glossary/blob/master/edge-glossary.md#edge-computing>`_
+
 Infra Network
   A deprecated optional network that was historically used for access to the
   storage cluster.
@@ -49,12 +63,19 @@ Infra Network
   If this optional network is used, all node types are required to be connected
   to the INFRA network.
 
+IoT (Internet of Things)
+  A system of computing devices that can operate with little/no human interaction.
+
 IPMI Network
   An optional network on which Intelligent Platform Management Interface
   (IPMI) interfaces of all nodes are connected. The network must be reachable
   using L3/IP from the controller's OAM interfaces.
 
   You can optionally connect all node types to the IPMI network.
+
+Kubernetes Cluster
+  A set of machines that has a common control plane for running orchestrated
+  applications.
 
 Management Network
   A private network (that is, not connected externally), typically 10GE, used
@@ -77,11 +98,17 @@ Node Interfaces
     EtherChannel (MEC).
   - VLAN on either single-port ETH interface or two-port LAG interface.
 
-OAM Network
+|OAM| Network
   The network on which all external StarlingX platform APIs are exposed,
   (that is, REST APIs, Horizon web server, SSH, and SNMP), typically 1GE.
 
   Only controller type nodes are required to be connected to the OAM network.
+
+Open Source Cloud Platform
+  A set of services that can be used to build cloud infrastructure. The source
+  code of the services is available under an open source license that allows
+  access and re-distribution of the codebase. The software components are created
+  and maintained with an open development process through collaboration.
 
 PXEBoot Network
   An optional network for controllers to boot/install other nodes over the
@@ -109,6 +136,13 @@ PXEBoot Network
 
     - You must configure separate, per-region PXEBoot networks.
 
+StarlingX
+  StarlingX is an open source, complete cloud infrastructure software stack for
+  the edge used by the most demanding applications in industrial IoT, telecom,
+  and other use cases. The platform creates a fusion between OpenStack and
+  Kubernetes to provide a robust and flexible environment for all kinds of
+  workloads, let them be containerized, virtualized or bare metal.
+
 Storage
   A node within a StarlingX edge cloud that is dedicated to providing file and
   object storage to application workloads. There can be 0 or more storage nodes
@@ -119,6 +153,9 @@ Storage
     factor of two or three, journal caching, and class tiering.
   - Provides HA persistent storage for images, virtual volumes (that is, block
     storage), and object storage.
+
+Virtualization
+  The act of creating a virtual version of CPU, network or storage device.
 
 Virtual Machines (VM)
   An instance of a node provided by software (a hypervisor), which runs within
