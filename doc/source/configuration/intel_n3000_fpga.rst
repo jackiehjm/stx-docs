@@ -2,11 +2,10 @@
 Host FPGA Configuration - Intel N3000
 =====================================
 
-This guide describes how to configure and integrate an Intel N3000
-:abbr:`FPGA (Field Programmable Gate Array)` :abbr:`PAC (Programmable Acceleration Card)`
-on StarlingX.
+This guide describes how to configure and integrate an Intel N3000 |FPGA|
+|PAC| on StarlingX.
 
-.. contents::
+.. contents:: |minitoc|
    :local:
    :depth: 1
 
@@ -15,15 +14,15 @@ Overview
 --------
 
 The `Intel FPGA PAC N3000 <https://www.intel.com/content/www/us/en/programmable/products/boards_and_kits/dev-kits/altera/intel-fpga-pac-n3000/overview.html>`_ contains two Intel
-XL710 NICs, memory, and an Intel FPGA. The system discovers and inventories the
-device as a NIC, with the XL710 ports available in the host port list and host
+XL710 |NICs|, memory, and an Intel |FPGA|. The system discovers and inventories the
+device as a |NIC|, with the XL710 ports available in the host port list and host
 interface list.
 
 --------------------
 Update device images
 --------------------
 
-The Intel FPGA PAC N3000 as shipped from the factory is expected to have
+The Intel |FPGA| |PAC| N3000 as shipped from the factory is expected to have
 production BMC and factory images. The following procedure describes how to
 update the user image on a host.
 
@@ -35,35 +34,35 @@ Device image types:
 *   functional-key:  The functional device image performs the desired work on
     behalf of the application. If a rootkey device image has been written to the
     hardware, then the functional image will only be accepted if it has been
-    signed by a :abbr:`CSK (code-signing key)` generated from the root key which has
+    signed by a |CSK| generated from the root key which has
     not been revoked.
 
-*   key-revocation:  The key-revocation device image will revoke a CSK. If a
+*   key-revocation:  The key-revocation device image will revoke a |CSK|. If a
     root-key device image has been written to the hardware, then the
     key-revocation device image will only be accepted if it has been signed by
     the root key.
 
-The following items are specific to the Intel FPGA PAC N3000:
+The following items are specific to the Intel |FPGA| |PAC| N3000:
 
 *   The root-key image is called the *root entry hash bitstream* and can only be
     set once.
 *   The functional device image is known as the *user image*.
 *   The key-revocation device image is known as the *CSK ID cancellation
     bitstream*.
-*   CSKs are revoked by specifying an integer CSK ID.
-*   128 CSK ID cancellation slots exist.
+*   |CSKs| are revoked by specifying an integer |CSK| ID.
+*   128 |CSK| ID cancellation slots exist.
 
 
-For the Intel FPGA PAC N3000, a CSK is revoked by specifying an integer ID, and
-all CSKs with that ID will be revoked. Writing the root-key device image or a
-key-revocation device image is essentially permanent. Reverting to factory
-status requires physical access to the card and specialized equipment.
+For the Intel |FPGA| |PAC| N3000, a |CSK| is revoked by specifying an integer
+ID, and all |CSKs| with that ID will be revoked. Writing the root-key device
+image or a key-revocation device image is essentially permanent. Reverting to
+factory status requires physical access to the card and specialized equipment.
 
 #.  Upload the device image.
 
     To upload a root-key device image:
 
-    ::
+    .. code-block:: none
 
         ~(keystone_admin)$ system device-image-upload imagefile root-key pci_vendor
         pci_device --key-signature key_signature --name imagename --description
@@ -71,7 +70,7 @@ status requires physical access to the card and specialized equipment.
 
     To upload a functional device image:
 
-    ::
+    .. code-block:: none
 
         ~(keystone_admin)$ system device-image-upload imagefile functional pci_vendor
         pci_device --functional bitstream_id --name imagename --description description
@@ -79,7 +78,7 @@ status requires physical access to the card and specialized equipment.
 
     To upload a revocation key device image:
 
-    ::
+    .. code-block:: none
 
         ~(keystone_admin)$ system device-image-upload imagefile key-revocation
         pci_vendor pci_device --revoke-key-id revoke_key_id --name imagename --
@@ -87,7 +86,7 @@ status requires physical access to the card and specialized equipment.
 
     where:
 
-    ::
+    .. code-block:: none
 
         imagefile       # The filepath of the binary device image file.
         pci_vendor      # The hexadecimal string identifying the PCI vendor ID of the device this image applies to.
@@ -101,20 +100,20 @@ status requires physical access to the card and specialized equipment.
 
 #.  Assign a device label to the device.
 
-    Labels are key-value pairs that are assigned to host PCI devices and are
+    Labels are key-value pairs that are assigned to host |PCI| devices and are
     used to specify attributes of the devices. Labels can be used to identify
-    certain properties of the PCI devices where the same device image can be
+    certain properties of the |PCI| devices where the same device image can be
     used.
 
     The command syntax is:
 
-    ::
+    .. code-block:: none
 
         system host-device-label-assign [--overwrite] hostname_or_id pci_name_or_address
         name=value [name=value ...]
 
-    Overwrite the label using the ``--overwrite`` option. This option
-    is not allowed while the image update is in progress after running
+    Overwrite the label using the ``--overwrite`` option. This option is not
+    allowed while the image update is in progress after running
     ``host-device-image-update``. Once assigned, a device label can be
     referenced by multiple ``device-image-apply`` commands.
 
@@ -130,19 +129,19 @@ status requires physical access to the card and specialized equipment.
 
     *   Apply a device image to all supported devices:
 
-        ::
+        .. code-block:: none
 
             ~(keystone_admin)$ system device-image-apply image_uuid
 
     *   Alternatively, apply a device image to devices with a specified label:
 
-        ::
+        .. code-block:: none
 
             ~(keystone_admin)$ system device-image-apply image_uuid key1=value1
 
 #.  Write pending device images on the host to hardware.
 
-    ::
+    .. code-block:: none
 
         ~(keystone)admin)$ system host-device-image-update hostname
 
@@ -156,7 +155,7 @@ status requires physical access to the card and specialized equipment.
     Root and revocation key updates can be expected to take 1-2 minutes.
 
     Functional image updates can take approximately 40 minutes for the Intel
-    FPGA PAC N3000.
+    |FPGA| |PAC| N3000.
 
     *   Once a device update is complete, ``system device-image-state-list``
         will show the status as completed for that device/image.
@@ -170,8 +169,8 @@ status requires physical access to the card and specialized equipment.
 #.  (Optional) Upload, apply, and update any additional key-revocation device
     images or functional device images as needed.
 
-    New device images can be uploaded as needed, and already-uploaded images can
-    be applied with new labels. Devices can also have new labels applied to
+    New device images can be uploaded as needed, and already-uploaded images
+    can be applied with new labels. Devices can also have new labels applied to
     them, and any device images with matching labels will be automatically
     applied.
 
@@ -179,9 +178,9 @@ status requires physical access to the card and specialized equipment.
 Device management commands
 --------------------------
 
-This section lists the commands used to control the Intel FPGA PAC N3000.
+This section lists the commands used to control the Intel |FPGA| |PAC| N3000.
 
-::
+.. code-block:: none
 
     Listing uploaded device images
         system device-image-list
@@ -208,15 +207,15 @@ This section lists the commands used to control the Intel FPGA PAC N3000.
 Enable Forward Error Correction
 -------------------------------
 
-The Intel FPGA PAC N3000 supports :abbr:`FEC (forward error correction)`
-capabilities, which are exposed as a PCI device. The PCI device can be used by a
-`DPDK <https://www.dpdk.org/>`_ enabled container application to perform accelerated 5G LDPC encoding and
-decoding operations.
+The Intel |FPGA| |PAC| N3000 supports |FEC| capabilities, which are exposed as
+a |PCI| device. The |PCI| device can be used by a `DPDK
+<https://www.dpdk.org/>`_ enabled container application to perform accelerated
+5G LDPC encoding and decoding operations.
 
-After the FPGA device is programmed, the list of host devices shows the FEC
+After the |FPGA| device is programmed, the list of host devices shows the |FEC|
 device with device ID 0xd8f, as shown below.
 
-::
+.. code-block:: none
 
     system host-device-list <worker-node>
 
@@ -227,12 +226,12 @@ device with device ID 0xd8f, as shown below.
     +------------------+--------------+----------+-----------+-----------+---------------------------+-------------------------+-------------------------------------+-----------+---------+
     ...
 
-To enable the FEC device for SR-IOV, set the number of virtual functions (VFs)
-and set the appropriate userspace drivers for the physical function (PF) and VF.
+To enable the |FEC| device for |SRIOV|, set the number of |VFs| and set the
+appropriate userspace drivers for the |PF| and |VF|.
 
 For example:
 
-::
+.. code-block:: none
 
     system host-lock <worker>
     system host-device-modify <worker> <name> --driver <vf driver> --vf-driver <vf driver> -N <number of vfs>
@@ -245,16 +244,16 @@ For example:
     - igb_uio
     - vfio
 
-To pass the FEC device to a container, enter the following requests/limits
+To pass the |FEC| device to a container, enter the following requests/limits
 into the pod specification:
 
-::
+.. code-block:: none
 
     intel.com/intel_fpga_fec: '<number of vfs>'
 
 For example:
 
-::
+.. code-block:: none
 
     apiVersion: v1
     kind: Pod
@@ -293,10 +292,10 @@ For example:
 Configure NICs for SR-IOV
 -------------------------
 
-You can configure the Intel XL710 NICs for SR-IOV by first identifying the NICs
-on the Intel FPGA PAC N3000 using the following command:
+You can configure the Intel XL710 NICs for |SRIOV| by first identifying the
+|NICs| on the Intel |FPGA| |PAC| N3000 using the following command:
 
-::
+.. code-block:: none
 
     system host-port-list <worker>
 
@@ -307,12 +306,12 @@ on the Intel FPGA PAC N3000 using the following command:
     +--------------------------------------+------------+----------+--------------+--------+-----------+-------------+------------------------------------------------+
     ...
 
-Next, set the number of virtual functions (VFs) and set the appropriate
-userspace drivers for the VF.
+Next, set the number of |VFs| and set the appropriate
+userspace drivers for the |VF|.
 
 For example:
 
-::
+.. code-block:: none
 
     system host-lock <worker>
     system host-if-list -a <worker>
