@@ -2,9 +2,9 @@
 .. sla1552680666298
 .. _suppressing-and-unsuppressing-events:
 
-=================================
-Suppress and Unsuppressing Events
-=================================
+==============================
+Suppress and Unsuppress Events
+==============================
 
 You can set events to a suppressed state and toggle them back to unsuppressed.
 

@@ -303,10 +303,10 @@ Run the node feature discovery helm chart
    starlingx-kubernetes/running-the-node-feature-discovery-helm-chart
 
 *************
-Provision BCM
+Provision BMC
 *************
 
-Provision BCM using Horizon
+Provision BMC using Horizon
 ***************************
 
 .. toctree::
@@ -315,7 +315,7 @@ Provision BCM using Horizon
    starlingx-kubernetes/provisioning_bmc/provisioning-board-management-control-from-horizon
    starlingx-kubernetes/provisioning_bmc/deprovisioning-board-management-control-from-horizon
 
-Provision BCM using the CLI
+Provision BMC using the CLI
 ***************************
 
 .. toctree::

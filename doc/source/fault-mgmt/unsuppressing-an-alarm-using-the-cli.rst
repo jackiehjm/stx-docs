@@ -2,9 +2,9 @@
 .. maj1552680619436
 .. _unsuppressing-an-alarm-using-the-cli:
 
-====================================
-Unsuppressing an Alarm Using the CLI
-====================================
+=================================
+Unsuppress an Alarm Using the CLI
+=================================
 
 If you need to reactivate a suppressed alarm, you can do so using the CLI.
 
