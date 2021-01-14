@@ -16,10 +16,12 @@
 .. |BPDU| replace:: :abbr:`BPDU (Bridge Protocol Data Unit)`
 .. |BPDUs| replace:: :abbr:`BPDUs (Bridge Protocol Data Units)`
 .. |CA| replace:: :abbr:`CA (Certificate Authority)`
+.. |CAs| replace:: :abbr:`CAs (Certificate Authorities)`
 .. |CNI| replace:: :abbr:`CNI (Container Networking Interface)`
 .. |CoW| replace:: :abbr:`CoW (Copy on Write)`
 .. |CSK| replace:: :abbr:`CSK (Code Signing Key)`
 .. |CSKs| replace:: :abbr:`CSKs (Code Signing Keys)`
+.. |CVE| replace:: :abbr:`CVE (Common Vulnerabilities and Exposures)`
 .. |DHCP| replace:: :abbr:`DHCP (Dynamic Host Configuration Protoco)`
 .. |DPDK| replace:: :abbr:`DPDK (Data Plane Development Kit)`
 .. |DRBD| replace:: :abbr:`DRBD (Distributed Replicated Block Device)`
@@ -30,6 +32,7 @@
 .. |FQDN| replace:: :abbr:`FQDN (Fully Qualified Domain Name)`
 .. |GNP| replace:: :abbr:`GNP (Global Network Policy)`
 .. |IGMP| replace:: :abbr:`IGMP (Internet Group Management Protocol)`
+.. |IoT| replace:: :abbr:`IoT (Internet of Things)`
 .. |IPMI| replace:: :abbr:`IPMI (Intelligent Platform Management Interface)`
 .. |LACP| replace:: :abbr:`LACP (Link Aggregation Control Protocol)`
 .. |LAG| replace:: :abbr:`LAG (Link Aggregation)`
@@ -48,6 +51,7 @@
 .. |NUMA| replace:: :abbr:`NUMA (Non-Uniform Memory Access)`
 .. |NVMe| replace:: :abbr:`NVMe (Non-Volatile Memory express)`
 .. |OAM| replace:: :abbr:`OAM (Operations, administration and management)`
+.. |ONAP| replace:: :abbr:`ONAP (Open Network Automation Program)`
 .. |OSD| replace:: :abbr:`OSD (Object Storage Device)`
 .. |OSDs| replace:: :abbr:`OSDs (Object Storage Devices)`
 .. |PAC| replace:: :abbr:`PAC (Programmable Acceleration Card)`
@@ -62,9 +66,12 @@
 .. |QoS| replace:: :abbr:`QoS (Quality of Service)`
 .. |RAID| replace:: :abbr:`RAID (Redundant Array of Inexpensive Disks)`
 .. |RPC| replace:: :abbr:`RPC (Remote Procedure Call)`
+.. |SAN| replace:: :abbr:`SAN (Subject Alternative Name)`
 .. |SANs| replace:: :abbr:`SANs (Subject Alternative Names)`
 .. |SAS| replace:: :abbr:`SAS (Serial Attached SCSI)`
 .. |SATA| replace:: :abbr:`SATA (Serial AT Attachment)`
+.. |SLA| replace:: :abbr:`SLA (Service Level Agreement)`
+.. |SLAs| replace:: :abbr:`SLAs (Service Level Agreements)`
 .. |SNAT| replace:: :abbr:`SNAT (Source Network Address Translation)`
 .. |SNMP| replace:: :abbr:`SNMP (Simple Network Management Protocol)`
 .. |SRIOV| replace:: :abbr:`SR-IOV (Single Root I/O Virtualization)`

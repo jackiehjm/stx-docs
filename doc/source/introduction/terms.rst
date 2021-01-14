@@ -3,7 +3,7 @@ Basic Terminology
 =================
 
 The following definitions describe key concepts and terminology that are
-commonly used in the StarlingX community and in this documentation.
+commonly used in the |org| community and in this documentation.
 
 All-in-one Controller Node
   A single physical node that provides a controller function, worker function,
@@ -14,19 +14,19 @@ Bare Metal
   directly on the operating system which runs directly on the hardware).
 
 Worker
-  A node within a StarlingX edge cloud that is dedicated to running application
-  workloads. There can be 0 to 99 worker nodes in a StarlingX edge cloud.
+  A node within a |prod| edge cloud that is dedicated to running application
+  workloads. There can be 0 to 99 worker nodes in a |prod| edge cloud.
 
   - Runs virtual switch for realizing virtual networks.
   - Provides L3 routing and NET services.
 
-  In a configuration running OpenStack, a worker node is labeled as 'compute' and
-  may be referred to as a compute node.
+  In a configuration running OpenStack, a worker node is labeled as 'compute'
+  and may be referred to as a compute node.
 
 Controller
-  A node within a StarlingX edge cloud that runs the cloud management software
+  A node within a |prod| edge cloud that runs the cloud management software
   (*control plane*). There can be either one or two controller nodes in a
-  StarlingX edge cloud.
+  |prod| edge cloud.
 
   - Runs cloud control functions for managing cloud resources.
   - Runs all OpenStack control functions, such as managing images, virtual
@@ -43,15 +43,16 @@ Data Network(s)
   data network(s).
 
 Deployment Tools
-  Tools that make the process of distributing, installing, and managing updates.
+  Tools that make the process of distributing, installing, and managing
+  updates.
 
 Edge Computing
-  The delivery of computing capabilities to the logical extremes of a network in
-  order to improve the performance, operating cost and reliability of
+  The delivery of computing capabilities to the logical extremes of a network
+  in order to improve the performance, operating cost and reliability of
   applications and services. By shortening the distance between devices and the
   resources that serve them, and also reducing network hops, edge computing
-  mitigates the latency and bandwidth constraints of today's Internet, ushering in
-  new classes of applications.
+  mitigates the latency and bandwidth constraints of today's Internet, ushering
+  in new classes of applications.
 
   From `Open Glossary of Edge Computing <https://github.com/State-of-the-
   Edge/glossary/blob/master/edge-glossary.md#edge-computing>`_
@@ -64,14 +65,15 @@ Infra Network
   to the INFRA network.
 
 IoT (Internet of Things)
-  A system of computing devices that can operate with little/no human interaction.
+  A system of computing devices that can operate with little/no human
+  interaction.
 
 IPMI Network
   An optional network on which Intelligent Platform Management Interface
   (IPMI) interfaces of all nodes are connected. The network must be reachable
   using L3/IP from the controller's OAM interfaces.
 
-  You can optionally connect all node types to the IPMI network.
+  You can optionally connect all node types to the |IPMI| network.
 
 Kubernetes Cluster
   A set of machines that has a common control plane for running orchestrated
@@ -81,7 +83,7 @@ Management Network
   A private network (that is, not connected externally), typically 10GE, used
   for the following:
 
-  - Internal OpenStack / StarlingX monitoring and control.
+  - Internal OpenStack / |prod| monitoring and control.
   - VM I/O access to a storage cluster.
 
   All nodes are required to be connected to the management network.
@@ -99,16 +101,17 @@ Node Interfaces
   - VLAN on either single-port ETH interface or two-port LAG interface.
 
 |OAM| Network
-  The network on which all external StarlingX platform APIs are exposed,
-  (that is, REST APIs, Horizon web server, SSH, and SNMP), typically 1GE.
+  The network on which all external |prod| platform APIs are exposed,
+  (that is, REST APIs, Horizon web server, |SSH|, and |SNMP|), typically 1GE.
 
   Only controller type nodes are required to be connected to the OAM network.
 
 Open Source Cloud Platform
   A set of services that can be used to build cloud infrastructure. The source
   code of the services is available under an open source license that allows
-  access and re-distribution of the codebase. The software components are created
-  and maintained with an open development process through collaboration.
+  access and re-distribution of the codebase. The software components are
+  created and maintained with an open development process through
+  collaboration.
 
 PXEBoot Network
   An optional network for controllers to boot/install other nodes over the
@@ -125,7 +128,7 @@ PXEBoot Network
     - IPv6 does not support PXEBoot. Therefore, you must configure an IPv4
       PXEBoot network.
 
-  - Cases where the management network must be VLAN tagged:
+  - Cases where the management network must be |VLAN| tagged:
 
     - Most server's BIOS do not support PXEBooting over tagged networks.
       Therefore, you must configure an untagged PXEBoot network.
@@ -136,17 +139,17 @@ PXEBoot Network
 
     - You must configure separate, per-region PXEBoot networks.
 
-StarlingX
-  StarlingX is an open source, complete cloud infrastructure software stack for
-  the edge used by the most demanding applications in industrial IoT, telecom,
-  and other use cases. The platform creates a fusion between OpenStack and
-  Kubernetes to provide a robust and flexible environment for all kinds of
+|prod|
+  |prod| is an open source, complete cloud infrastructure software stack
+  for the edge used by the most demanding applications in industrial |IoT|,
+  telecom, and other use cases. The platform creates a fusion between OpenStack
+  and Kubernetes to provide a robust and flexible environment for all kinds of
   workloads, let them be containerized, virtualized or bare metal.
 
 Storage
-  A node within a StarlingX edge cloud that is dedicated to providing file and
-  object storage to application workloads. There can be 0 or more storage nodes
-  within a StarlingX edge cloud.
+  A node within a |prod| edge cloud that is dedicated to providing file
+  and object storage to application workloads. There can be 0 or more storage
+  nodes within a |prod| edge cloud.
 
   - Runs CEPH distributed storage software.
   - Part of an HA multi-node CEPH storage cluster supporting a replication
