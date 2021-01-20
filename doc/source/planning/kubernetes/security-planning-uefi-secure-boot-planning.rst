@@ -2,9 +2,9 @@
 .. qzw1552672165570
 .. _security-planning-uefi-secure-boot-planning:
 
-=========================
-UEFI Secure Boot Planning
-=========================
+====================================
+Kubernetes UEFI Secure Boot Planning
+====================================
 
 |UEFI| Secure Boot Planning allows you to authenticate modules before they are
 allowed to execute.

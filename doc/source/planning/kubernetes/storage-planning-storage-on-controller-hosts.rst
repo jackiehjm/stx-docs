@@ -11,7 +11,7 @@ system configuration files, local Docker images, container's ephemeral
 filesystems, the local Docker registry container image store, platform backup,
 and the system backup operations.
 
-.. contents:: In this section:
+.. contents:: |minitoc|
    :local:
    :depth: 1
 
@@ -119,7 +119,7 @@ command increases the scratch filesystem size to 10 GB:
 **Backup storage**
     This is the storage allotment for backup operations. This is a backup area,
     where:
-    
+
     backup=2\*database+platform size
 
 **Docker Storage**

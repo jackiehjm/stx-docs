@@ -13,7 +13,7 @@ These include:
 
 .. _installation-and-resource-planning-https-access-planning-d18e34:
 
-.. contents::
+.. contents:: |minitoc|
    :local:
    :depth: 1
 

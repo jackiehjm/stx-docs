@@ -8,7 +8,7 @@ System Hardware Requirements
 
 |prod| has been tested to work with specific hardware configurations:
 
-.. contents::
+.. contents:: |minitoc|
    :local:
    :depth: 1
 

@@ -35,8 +35,8 @@
 
 .. File name prefix, as in stx-remote-cli-<version>.tgz. May also be
    used in sample domain names etc.
-   
-.. |prefix| replace:: stx   
+
+.. |prefix| replace:: stx
 
 .. space character. Needed for padding in tabular output. Currently
    used where |prefix| replacement is a length shorter than 3.
@@ -44,3 +44,7 @@
    To insert no spaces, use "replace:: \"
 
 .. |s| replace:: \
+
+.. product capabilities
+
+.. |max-workers| replace:: 99

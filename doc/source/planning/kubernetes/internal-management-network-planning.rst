@@ -2,9 +2,9 @@
 .. lla1552670572043
 .. _internal-management-network-planning:
 
-====================================
-Internal Management Network Planning
-====================================
+===============================================
+Kubernetes Internal Management Network Planning
+===============================================
 
 The internal management network is a private network, visible only to the hosts
 in the cluster.

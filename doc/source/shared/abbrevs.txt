@@ -22,7 +22,7 @@
 .. |CSK| replace:: :abbr:`CSK (Code Signing Key)`
 .. |CSKs| replace:: :abbr:`CSKs (Code Signing Keys)`
 .. |CVE| replace:: :abbr:`CVE (Common Vulnerabilities and Exposures)`
-.. |DHCP| replace:: :abbr:`DHCP (Dynamic Host Configuration Protoco)`
+.. |DHCP| replace:: :abbr:`DHCP (Dynamic Host Configuration Protocol)`
 .. |DPDK| replace:: :abbr:`DPDK (Data Plane Development Kit)`
 .. |DRBD| replace:: :abbr:`DRBD (Distributed Replicated Block Device)`
 .. |DSCP| replace:: :abbr:`DSCP (Differentiated Services Code Point)`
@@ -30,6 +30,7 @@
 .. |FEC| replace:: :abbr:`FEC (Forward Error Correction)`
 .. |FPGA| replace:: :abbr:`FPGA (Field Programmable Gate Array)`
 .. |FQDN| replace:: :abbr:`FQDN (Fully Qualified Domain Name)`
+.. |FQDNs| replace:: :abbr:`FQDNs (Fully Qualified Domain Names)`
 .. |GNP| replace:: :abbr:`GNP (Global Network Policy)`
 .. |IGMP| replace:: :abbr:`IGMP (Internet Group Management Protocol)`
 .. |IoT| replace:: :abbr:`IoT (Internet of Things)`
@@ -59,6 +60,8 @@
 .. |PDU| replace:: :abbr:`PDU (Packet Data Unit)`
 .. |PF| replace:: :abbr:`PF (Physical Function)`
 .. |PHB| replace:: :abbr:`PHB (Per-Hop Behavior)`
+.. |PQDN| replace:: :abbr:`PDQN (Partially Qualified Domain Name)`
+.. |PQDNs| replace:: :abbr:`PQDNs (Partially Qualified Domain Names)`
 .. |PTP| replace:: :abbr:`PTP (Precision Time Protocol)`
 .. |PVC| replace:: :abbr:`PVC (Persistent Volume Claim)`
 .. |PVCs| replace:: :abbr:`PVCs (Persistent Volume Claims)`
@@ -93,6 +96,8 @@
 .. |VMs| replace:: :abbr:`VMs (Virtual Machines)`
 .. |VNC| replace:: :abbr:`VNC (Virtual Network Computing)`
 .. |VPC| replace:: :abbr:`VPC (Virtual Port Channel)`
+.. |VNI| replace:: :abbr:`VNI (VXLAN Network Interface)`
+.. |VNIs| replace:: :abbr:`VNIs (VXLAN Network Interfaces)`
 .. |VXLAN| replace:: :abbr:`VXLAN (Virtual eXtensible Local Area Network)`
 .. |VXLANs| replace:: :abbr:`VXLANs (Virtual eXtensible Local Area Networks)`
 .. |XML| replace:: :abbr:`XML (eXtensible Markup Language)`

@@ -2,9 +2,9 @@
 .. svs1552672428539
 .. _verified-commercial-hardware:
 
-============================
-Verified Commercial Hardware
-============================
+=======================================
+Kubernetes Verified Commercial Hardware
+=======================================
 
 Verified and approved hardware components for use with |prod| are listed
 here.

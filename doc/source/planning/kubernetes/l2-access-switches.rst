@@ -2,9 +2,9 @@
 .. kvt1552671101079
 .. _l2-access-switches:
 
-==================
-L2 Access Switches
-==================
+=============================
+Kubernetes L2 Access Switches
+=============================
 
 L2 access switches connect the |prod| hosts to the different networks. Proper
 configuration of the access ports is necessary to ensure proper traffic flow.

@@ -15,7 +15,7 @@ Bare Metal
 
 Worker
   A node within a |prod| edge cloud that is dedicated to running application
-  workloads. There can be 0 to 99 worker nodes in a |prod| edge cloud.
+  workloads. There can be 0 to |max-workers| worker nodes in a |prod| edge cloud.
 
   - Runs virtual switch for realizing virtual networks.
   - Provides L3 routing and NET services.

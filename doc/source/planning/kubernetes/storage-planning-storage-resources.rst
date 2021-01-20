@@ -12,7 +12,7 @@ storage hosts if they are present.
 The |prod| storage configuration is highly flexible. The specific configuration
 depends on the type of system installed, and the requirements of the system.
 
-.. contents:: In this section:
+.. contents:: |minitoc|
    :local:
    :depth: 1
 

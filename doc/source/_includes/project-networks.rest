@@ -1,0 +1,4 @@
+.. vxlan-begin
+
+-   To minimize flooding of multicast packets, |IGMP| and |MLD| snooping is
+    recommended on all Layer 2 switches.
