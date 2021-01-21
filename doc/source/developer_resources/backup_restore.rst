@@ -342,11 +342,25 @@ Steps:
 
         **AIO-SX**
 
-        Unlock controller-0 and wait for it to boot.
+        i. Unlock controller-0 and wait for it to boot.
+
+        #. Applications should transition from `restore-requested` to
+           `applying` and make a final transition to `applied` state. If
+           applications transition from `applying` to `restore-requested`
+           state, ensure there is network access and access to the Docker
+           registry. The process is repeated once per minute until all
+           applications are transitioned to the `applied` state.
 
         **AIO-DX**
 
         i. Unlock controller-0 and wait for it to boot.
+
+        #. Applications should transition from `restore-requested` to
+           `applying` and make a final transition to `applied` state. If
+           applications transition from `applying` to `restore-requested`
+           state, ensure there is network access and access to the Docker
+           registry. The process is repeated once per minute until all
+           applications are transitioned to the `applied` state.
 
         #. Reinstall controller-1 (boot it from PXE, wait for it to become
            `online`).
@@ -357,6 +371,13 @@ Steps:
 
         i. Unlock controller-0 and wait for it to boot. After unlock, you will
            see all nodes, including storage nodes, as offline.
+
+        #. Applications should transition from `restore-requested` to
+           `applying` and make a final transition to `applied` state. If
+           applications transition from `applying` to `restore-requested`
+           state, ensure there is network access and access to the Docker
+           registry. The process is repeated once per minute until all
+           applications are transitioned to the `applied` state.
 
         #. Reinstall controller-1 and compute nodes (boot them from PXE, wait
            for them to become `online`).
@@ -373,6 +394,13 @@ Steps:
            and in the `available` state throughout the procedure. Otherwise,
            storage nodes must be powered off.
 
+        #. Applications should transition from `restore-requested` to
+           `applying` and make a final transition to `applied` state. If
+           applications transition from `applying` to `restore-requested`
+           state, ensure there is network access and access to the Docker
+           registry. The process is repeated once per minute until all
+           applications are transitioned to the `applied` state.
+
         #. Reinstall controller-1 and compute nodes (boot them from PXE, wait
            for them to become `online`).
 
@@ -384,7 +412,9 @@ Steps:
 
         #. (Optional) Reinstall storage nodes.
 
-    #.  Re-apply applications (e.g. OpenStack) to force pods to restart.
+    #.  Wait for Calico and Coredns pods to start. Run the
+        ``system restore-complete`` command. Type 750.006 alarms will disappear
+        one at a time, as the applications are being auto-applied.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 OpenStack application backup and restore
