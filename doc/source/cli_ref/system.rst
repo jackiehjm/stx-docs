@@ -5,7 +5,7 @@ system
 :command:`system` is the command-line interface for System Inventory and
 Maintenance.
 
-This page documents the :command:`system` command in StarlingX R3.0.
+This page documents the :command:`system` command in |prod|.
 
 .. contents::
    :local:
@@ -56,12 +56,12 @@ Certificate management
 **********************
 
 Certificate management commands allow you to install custom certificates
-for a variety of StarlingX use cases. For example:
+for a variety of |prod| use cases. For example:
 
-* StarlingX REST APIs and StarlingX Horizon web server.
-* StarlingX local Docker registry.
+* |prod| REST APIs and |prod| Horizon web server.
+* |prod| local Docker registry.
 * OpenStack REST APIs and OpenStack Horizon web server.
-* StarlingX trusted certificate authority(s).
+* |prod| trusted certificate authority(s).
 
 ``certificate-install``
     Install certificate.
@@ -163,7 +163,7 @@ The following set of commands enable configuration of:
 
 * Basic system attributes
 * OAM IP address(es), subnet, and gateway
-* Remote DNS servers for StarlingX hosts
+* Remote DNS servers for |prod| hosts
 * Time synchronization protocols, for example: NPT and/or PTP
 
 ``modify``
@@ -201,12 +201,12 @@ System configuration service-parameter
 **************************************
 
 Service parameters provide a generic mechanism to configure a variety of
-configurable parameters in StarlingX, including:
+configurable parameters in |prod|, including:
 
 * HTTP and HTTPS ports
-* StarlingX Horizon authentication lockout parameters
-* StarlingX Keystone token expiration
-* StarlingX host management parameters such as heartbeat intervals and host boot
+* |prod| Horizon authentication lockout parameters
+* |prod| Keystone token expiration
+* |prod| host management parameters such as heartbeat intervals and host boot
   timeouts
 
 ``service-parameter-add``
@@ -265,11 +265,11 @@ The :command:`host-sensor*` commands provide the ability to:
 Application management
 **********************
 
-StarlingX provides an application package management that combines Airship
-Armada and Kubernetes Helm. The StarlingX application management provides:
+|prod| provides an application package management that combines Airship
+Armada and Kubernetes Helm. The |prod| application management provides:
 
-* System Helm overrides to automatically apply StarlingX applications according
-  to the particular StarlingX configuration currently running.
+* System Helm overrides to automatically apply |prod| applications according
+  to the particular |prod| configuration currently running.
 * Management for user specified Helm overrides.
 
 ``helm-chart-attribute-modify``
@@ -315,40 +315,15 @@ Armada and Kubernetes Helm. The StarlingX application management provides:
 SNMP configuration
 ******************
 
-StarlingX supports a simple SNMPv2c agent. All fault management alarms and events
-are sent out as SNMP traps. SNMP GET requests are supported in an active alarm
-table and a historical events table.
+|prod| supports SNMPv2c and SNMPv3, but it is now configured using Helm charts.
 
-``snmp-comm-add``
-    Add a new SNMP community.
-
-``snmp-comm-delete``
-    Delete an SNMP community.
-
-``snmp-comm-list``
-    List community strings.
-
-``snmp-comm-show``
-    Show SNMP community attributes.
-
-``snmp-trapdest-add``
-    Create a new SNMP trap destination.
-
-``snmp-trapdest-delete``
-    Delete an SNMP trap destination.
-
-``snmp-trapdest-list``
-    List SNMP trap destinations.
-
-``snmp-trapdest-show``
-    Show a SNMP trap destination.
-
+For more information, see |fault-doc|: :ref:`SNMP overview <snmp-overview>`.
 
 ******************
 Host configuration
 ******************
 
-Host commands manage the general configuration of a StarlingX host. This
+Host commands manage the general configuration of a |prod| host. This
 includes assignment of CPU cores to platform or hosted applications, the
 configuration of amount and size for memory huge pages, and the configuration of
 Kubernetes node labels.
@@ -744,7 +719,7 @@ Link Layer Discovery Protocol (LLDP), which runs on all host interfaces.
 Controller services management
 ******************************
 
-The following set of commands enables display of services running on the StarlingX
+The following set of commands enables display of services running on the |prod|
 controllers/masters. Optional services can be enabled or disabled using these
 commands.
 
