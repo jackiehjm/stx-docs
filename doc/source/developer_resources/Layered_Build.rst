@@ -258,10 +258,10 @@ be much faster. ::
    cd /stx-tools/centos-mirror-tools
    download_mirror.sh -c ./yum.conf.sample -n -g
    ...
-   ln -s /import/mirrors/CentOS/stx-r1/CentOS/downloads/ $MY_REPO/stx/
-   populate_downloads.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   ln -s /import/mirrors/CentOS/stx/CentOS/downloads/ $MY_REPO/stx/
+   populate_downloads.sh /import/mirrors/CentOS/stx/CentOS/
    ...
-   generate-cgcs-centos-repo.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   generate-local-repo.sh /import/mirrors/CentOS/stx/CentOS/
    ...
    build-pkgs
    build-iso
@@ -281,10 +281,10 @@ required), then it's just ... ::
    ...
    download_mirror.sh
    ...
-   ln -s /import/mirrors/CentOS/stx-r1/CentOS/downloads/ $MY_REPO/stx/
-   populate_downloads.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   ln -s /import/mirrors/CentOS/stx/CentOS/downloads/ $MY_REPO/stx/
+   populate_downloads.sh /import/mirrors/CentOS/stx/CentOS/
    ...
-   generate-cgcs-centos-repo.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   generate-local-repo.sh /import/mirrors/CentOS/stx/CentOS/
    ...
    build-pkgs
    build-pkgs --installer
@@ -305,10 +305,10 @@ required), then it's just ... ::
    ...
    download_mirror.sh
    ...
-   ln -s /import/mirrors/CentOS/stx-r1/CentOS/downloads/ $MY_REPO/stx/
-   populate_downloads.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   ln -s /import/mirrors/CentOS/stx/CentOS/downloads/ $MY_REPO/stx/
+   populate_downloads.sh /import/mirrors/CentOS/stx/CentOS/
    ...
-   generate-cgcs-centos-repo.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   generate-local-repo.sh /import/mirrors/CentOS/stx/CentOS/
    ...
    build-pkgs
    build-pkgs --installer
@@ -335,10 +335,10 @@ Set up an independent build environment for each layer.
    ...
    download_mirror.sh
    ...
-   ln -s /import/mirrors/CentOS/stx-r1/CentOS/downloads/ $MY_REPO/stx/
-   populate_downloads.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   ln -s /import/mirrors/CentOS/stx/CentOS/downloads/ $MY_REPO/stx/
+   populate_downloads.sh /import/mirrors/CentOS/stx/CentOS/
    ...
-   generate-cgcs-centos-repo.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   generate-local-repo.sh /import/mirrors/CentOS/stx/CentOS/
    ...
    build-pkgs
    build-pkgs --installer
@@ -399,10 +399,10 @@ Using option 'b' (see below) would be safer.
       stx-tools/centos-mirror-tools/config/centos/flock/required_layer_iso_inc.cfg
    download_mirror.sh
    ...
-   ln -s /import/mirrors/CentOS/stx-r1/CentOS/downloads/ $MY_REPO/stx/
-   populate_downloads.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   ln -s /import/mirrors/CentOS/stx/CentOS/downloads/ $MY_REPO/stx/
+   populate_downloads.sh /import/mirrors/CentOS/stx/CentOS/
    ...
-   generate-cgcs-centos-repo.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   generate-local-repo.sh /import/mirrors/CentOS/stx/CentOS/
 
 Option b) Use an alternative config directory.
 
@@ -423,13 +423,13 @@ with command line arguments.
       config.tmp/centos/flock/required_layer_iso_inc.cfg
    download_mirror.sh
    ...
-   ln -s /import/mirrors/CentOS/stx-r1/CentOS/downloads/ $MY_REPO/stx/
-   populate_downloads.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   ln -s /import/mirrors/CentOS/stx/CentOS/downloads/ $MY_REPO/stx/
+   populate_downloads.sh /import/mirrors/CentOS/stx/CentOS/
    ...
-   generate-cgcs-centos-repo.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   generate-local-repo.sh /import/mirrors/CentOS/stx/CentOS/
 
 Option c) supply command line arguments to ``populate_downloads.sh`` and
-``generate-cgcs-centos-repo.sh`` overriding the urls directly ::
+``generate-local-repo.sh`` overriding the urls directly ::
 
    download_mirror.sh \\
       -L distro,std,file:///localdisk/loadbuild/<my-project>-distro/std/rpmbuild/RPMS/rpm.lst \\
@@ -438,16 +438,16 @@ Option c) supply command line arguments to ``populate_downloads.sh`` and
       -I distro,std,file:///localdisk/loadbuild/<my-project>-distro/std/image.inc \\
       -I distro,dev,file:///localdisk/loadbuild/<my-project>-distro/std/image-dev.inc
    ...
-   ln -s /import/mirrors/CentOS/stx-r1/CentOS/downloads/ $MY_REPO/stx/
-   populate_downloads.sh /import/mirrors/CentOS/stx-r1/CentOS/
+   ln -s /import/mirrors/CentOS/stx/CentOS/downloads/ $MY_REPO/stx/
+   populate_downloads.sh /import/mirrors/CentOS/stx/CentOS/
    ...
-   generate-cgcs-centos-repo.sh \\
+   generate-local-repo.sh \\
       --layer-pkg-url=distro,std,file:///localdisk/loadbuild/<my-project>-distro/std/rpmbuild/RPMS/rpm.lst \\
       --layer-pkg-url=distro,rt,file:///localdisk/loadbuild/<my-project>-distro/rt/rpmbuild/RPMS/rpm.lst \\
       --layer-pkg-url=distro,installer,file:///localdisk/loadbuild/<my-project>-distro/installer/rpmbuild/RPMS/rpm.lst \\
       --layer-inc-url=distro,std,file:///localdisk/loadbuild/<my-project>-distro/std/image.inc \\
       --layer-inc-url=distro,dev,file:///localdisk/loadbuild/<my-project>-distro/std/image-dev.inc \\
-      /import/mirrors/CentOS/stx-r1/CentOS/
+      /import/mirrors/CentOS/stx/CentOS/
 
 Now resume building, but this time we'll roll our own installer ::
 
