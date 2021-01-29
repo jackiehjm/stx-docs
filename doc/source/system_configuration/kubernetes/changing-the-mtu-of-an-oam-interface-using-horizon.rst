@@ -23,7 +23,7 @@ locked. This requires a swact during the procedure.
 
     #.  From the **Edit** menu for the standby controller, select **Lock Host**.
 
-        .. figure:: figures/rst1442611298701.png
+        .. figure:: ../figures/rst1442611298701.png
             :scale: 100%
 
 #.  Edit the |OAM| interface to change the |MTU| value.
@@ -42,7 +42,7 @@ locked. This requires a swact during the procedure.
 
     From the **Edit** menu for the active controller, select **Swact Host**.
 
-    .. figure:: figures/psa1420751608971.png
+    .. figure:: ../figures/psa1420751608971.png
         :scale: 100%
 
 #.  Lock the new standby controller.
