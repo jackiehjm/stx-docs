@@ -28,17 +28,19 @@ The following traps are defined.
 
 -   **wrsAlarmHierarchicalClear**
 
+|prod| alarms are mapped into one of the above traps based on severity, and
+customer logs are mapped into the 'Message' trap.
+
 .. note::
-    Customer Logs always result in **wrsAlarmMessage** traps. |prod| uses Wind
-    River Systems (**wrs**) Enterprise Registration and Alarm MIBs. See
-    :ref:`SNMP Overview <snmp-overview>` for details.
+   |prod| uses Wind River Systems (**wrs**) Enterprise Registration and Alarm
+   MIBs. See :ref:`SNMP Overview <snmp-overview>` for details.
 
 For Critical, Major, Minor, Warning, and Message traps, all variables in the
 active alarm table are included as varbinds \(variable bindings\), where each
 varbind is a pair of fields consisting of an object identifier and a value
 for the object.
 
-For the Clear trap, varbinds include only the following variables:
+For the Clear trap, **varbinds** include only the following variables:
 
 .. _traps-ul-uks-byn-nkb:
 
@@ -50,7 +52,8 @@ For the Clear trap, varbinds include only the following variables:
 
 -   <ReasonText>
 
-For the HierarchicalClear trap, varbinds include only the following variables:
+For the HierarchicalClear trap, **varbinds** include only the following
+variables:
 
 .. _traps-ul-isn-fyn-nkb:
 
@@ -62,5 +65,5 @@ For the HierarchicalClear trap, varbinds include only the following variables:
 
 For all alarms, the Notification Type is based on the severity of the trap or
 alarm. This is done to facilitate the interaction with most SNMP trap viewers
-which typically use the Notification Type to drive the coloring of traps, that
-is, red for critical, yellow for minor, and so on.
+which use the Notification Type to drive the coloring of traps, that is, red
+for critical, yellow for minor, and so on.
