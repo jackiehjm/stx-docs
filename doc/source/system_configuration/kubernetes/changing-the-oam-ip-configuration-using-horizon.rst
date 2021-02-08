@@ -42,14 +42,14 @@ and ensure that any existing system alarms are cleared.
     The |OAM| IP page appears, showing the currently defined |OAM| network
     configuration.
 
-    .. figure:: figures/jow1413850481192.png
+    .. figure:: ../figures/jow1413850481192.png
         :scale: 100%
 
 #.  Click **Edit OAM IP**.
 
     The Edit OAM IP dialog box appears.
 
-    .. figure:: figures/jow1413850497887.png
+    .. figure:: ../figures/jow1413850497887.png
         :scale: 100%
 
 #.  Replace the IP Subnet and/or IP addresses with different ones as required.

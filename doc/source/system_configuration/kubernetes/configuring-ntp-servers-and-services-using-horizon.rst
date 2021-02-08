@@ -53,7 +53,7 @@ page and ensure that any existing system alarms are cleared.
 
     The NTP page appears, showing the currently defined |NTP| servers.
 
-    .. figure:: figures/jow1413850406811.png
+    .. figure:: ../figures/jow1413850406811.png
         :scale: 100%
 
 #.  Click **Edit NTP**.
