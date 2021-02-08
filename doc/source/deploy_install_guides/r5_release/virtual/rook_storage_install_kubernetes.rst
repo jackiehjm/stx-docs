@@ -256,6 +256,11 @@ Install software on controller-1 and worker nodes
 
    This initiates software installation on worker-0 and worker-1.
 
+   .. Note::
+
+      A node with EdgeWorker personality is also available, please refer to
+      :doc:`/deploy/deploy-edgeworker-nodes`
+
 #. Wait for the software installation on controller-1, storage-0, storage-1,
    worker-0, and worker-1 to complete, for all virtual servers to reboot, and for all
    to show as locked/disabled/online in 'system host-list'.
