@@ -627,7 +627,7 @@ Provisioning network interfaces on controller-1
 Follow these steps:
 
 #. Use the system host-port-list command to list hardware port names, types,
-and PCI addresses that have been discovered:
+   and PCI addresses that have been discovered:
 
    ::
 

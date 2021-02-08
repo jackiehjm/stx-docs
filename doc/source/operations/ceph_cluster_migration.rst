@@ -20,7 +20,7 @@ Ceph cluster will be containerized and managed by Rook, to improve operation
 and maintenance efficiency.
 
 This guide describes a method to migrate the Ceph cluster deployed with StarlingX
-early releses to the newly containerized Ceph clusters using an upcoming StarlingX
+early releases to the newly containerized Ceph clusters using an upcoming StarlingX
 release, while maintaining user data in :abbr:`OSDs (Object Store Devices)`.
 
 ---------------------
@@ -170,12 +170,12 @@ Disable ceph osd on all storage hosts and create configmap for migration
 
 #. Login to controller host and run ``ceph-preshutdown.sh`` firstly.
 
-  ::
+   ::
 
-   sudo ceph-preshutdown.sh
+    sudo ceph-preshutdown.sh
 
 #. Login to the storage host with provisioned OSD, disable the Ceph osd service,
-and create a journal file.
+   and create a journal file.
 
 #. Disable the Ceph osd service.
 
