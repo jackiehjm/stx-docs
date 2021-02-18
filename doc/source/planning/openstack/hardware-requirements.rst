@@ -11,9 +11,9 @@ Hardware Requirements
 If the minimum hardware requirements are not met, system performance cannot be
 guaranteed.
 
-See :ref:`StarlingX Hardware Requirements <starlingx-hardware-requirements>`
-for the |prod-long| Hardware Requirements. In the table below, only the
-Interface sections are modified for |prod-os|.
+See :ref:`StarlingX Hardware Requirements <starlingx-hardware-requirements>` to
+review the |prod-long| Kubernetes hardware requirements. In the table below,
+only the Interface sections are modified for |prod-os|.
 
 .. _hardware-requirements-section-N10044-N10024-N10001:
 
@@ -101,13 +101,14 @@ Controller, Compute, and Storage Hosts
     | BIOS Mode                                                 | BIOS or UEFI                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
     |                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
     |                                                           | .. note::                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-    |                                                           |     UEFI Secure Boot and UEFI PXE boot over IPv6 are not supported. On systems with an IPv6 management network, you can use a separate IPv4 network for PXE boot. For more information, see :ref:`The PXE Boot Network <the-pxe-boot-network>`.                                                                                                                                                                                                                     |
+    |                                                           |     UEFI Secure Boot and UEFI PXE boot over IPv6 are not supported. On systems with an IPv6 management network, you can use a separate IPv4 network for PXE boot. [#]_                                                                                                                                                                                                                                                                                              |
     +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
     | Intel Hyperthreading                                      | Disabled or Enabled                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
     +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
     | Intel Virtualization \(VTD, VTX\)                         | Disabled                                                                                                                                                                                                                                                                                                                                       | Enabled                                                                                                            |
     +-----------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
 
+.. [#] For more information, see :ref:`The PXE Boot Network <the-pxe-boot-network>`.
 
 .. _hardware-requirements-section-N102D0-N10024-N10001:
 
@@ -118,9 +119,9 @@ Combined Controller-Compute Hosts
 Hardware requirements for a |prod-os| Simplex or Duplex configuration are
 listed in the following table.
 
-See :ref:`StarlingX Hardware Requirements <starlingx-hardware-requirements>`
-for the |prod-long| Hardware Requirements. In the table below, only the
-Interface sections are modified for |prod-os|.
+See :ref:`StarlingX Hardware Requirements <starlingx-hardware-requirements>` to
+review the |prod-long| Kubernetes hardware requirements. In the table below,
+only the Interface sections are modified for |prod-os|.
 
 
 .. _hardware-requirements-table-cb2-lfx-p5:
@@ -212,13 +213,14 @@ Interface sections are modified for |prod-os|.
     | BIOS Mode                         | BIOS or UEFI                                                                                                                                                                                                                                    |
     |                                   |                                                                                                                                                                                                                                                 |
     |                                   | .. note::                                                                                                                                                                                                                                       |
-    |                                   |     UEFI Secure Boot and UEFI PXE boot over IPv6 are not supported. On systems with an IPv6 management network, you can use a separate IPv4 network for PXE boot. For more information, see :ref:`The PXE Boot Network <the-pxe-boot-network>`. |
+    |                                   |     UEFI Secure Boot and UEFI PXE boot over IPv6 are not supported. On systems with an IPv6 management network, you can use a separate IPv4 network for PXE boot. [#]_                                                                          |
     +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     | Intel Hyperthreading              | Disabled or Enabled                                                                                                                                                                                                                             |
     +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     | Intel Virtualization \(VTD, VTX\) | Enabled                                                                                                                                                                                                                                         |
     +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+.. [#] For more information, see :ref:`The PXE Boot Network <the-pxe-boot-network>`. 
 
 .. _hardware-requirements-section-if-scenarios:
 

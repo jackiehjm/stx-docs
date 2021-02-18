@@ -100,73 +100,69 @@ in the following table.
 
 .. _starlingx-hardware-requirements-table-cb2-lfx-p5:
 
+.. list-table:: Table 2. Hardware Requirements — |prod| Simplex or Duplex Configuration
+   :header-rows: 1
 
-.. table:: Table 2. Hardware Requirements — |prod| Simplex or Duplex Configuration
-    :widths: auto
+   * - Minimum Requirement
+     - Controller + Worker
+       \(Combined Server\)
+   * - Minimum Qty of Servers
+     - Simplex―1
+       Duplex―2
+   * - Minimum Processor Class
+     - Dual-CPU Intel® Xeon® E5 26xx Family \(SandyBridge\) 8 cores/socket
 
-    +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Minimum Requirement               | Controller + Worker                                                                                                                                                                                                                                              |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   | \(Combined Server\)                                                                                                                                                                                                                                              |
-    +===================================+==================================================================================================================================================================================================================================================================+
-    | Minimum Qty of Servers            | Simplex―1                                                                                                                                                                                                                                                        |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   | Duplex―2                                                                                                                                                                                                                                                         |
-    +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Minimum Processor Class           | Dual-CPU Intel® Xeon® E5 26xx Family \(SandyBridge\) 8 cores/socket                                                                                                                                                                                              |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   | or                                                                                                                                                                                                                                                               |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   | Single-CPU Intel Xeon D-15xx Family, 8 cores \(low-power/low-cost option for Simplex deployments\)                                                                                                                                                               |
-    +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Minimum Memory                    | 64 GB                                                                                                                                                                                                                                                            |
-    +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Minimum Primary Disk              | 500 GB - SSD or NVMe                                                                                                                                                                                                                                             |
-    +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Additional Disks                  | -   Single-disk system: N/A                                                                                                                                                                                                                                      |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   | -   Two-disk system:                                                                                                                                                                                                                                             |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   |     -   1 x 500 GB SSD or NVMe for Persistent Volume Claim storage                                                                                                                                                                                               |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   | -   Three-disk system:                                                                                                                                                                                                                                           |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   |     -   1 x 500 GB \(min 10K RPM\) for Persistent Volume Claim storage                                                                                                                                                                                           |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   |     -   1 or more x 500 GB \(min. 10K RPM\) for Container ephemeral disk storage                                                                                                                                                                                 |
-    +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Network Ports                     | \(Typical deployment.\)                                                                                                                                                                                                                                          |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   | -   Mgmt and Cluster Host: 2 x 10GE LAG \(shared interface\)                                                                                                                                                                                                     |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   |     .. note::                                                                                                                                                                                                                                                    |
-    |                                   |         Mgmt / Cluster Host ports are required for Duplex systems only                                                                                                                                                                                           |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   | -   OAM: 2 x 1GE LAG                                                                                                                                                                                                                                             |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   | -   Optionally external network ports 2 x 10GE LAG                                                                                                                                                                                                               |
-    +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | USB Interface                     | 1                                                                                                                                                                                                                                                                |
-    +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Power Profile                     | Max Performance                                                                                                                                                                                                                                                  |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   | Min Proc Idle Power:No C States                                                                                                                                                                                                                                  |
-    +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Boot Order                        | HD, PXE, USB                                                                                                                                                                                                                                                     |
-    +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | BIOS Mode                         | BIOS or UEFI                                                                                                                                                                                                                                                     |
-    |                                   |                                                                                                                                                                                                                                                                  |
-    |                                   | .. note::                                                                                                                                                                                                                                                        |
-    |                                   |     UEFI Secure Boot and UEFI PXE boot over IPv6 are not supported. On systems with an IPv6 management network, you can use a separate IPv4 network for PXE boot. For more information, see :ref:`PXE Boot Network <network-planning-the-pxe-boot-network>`.     |
-    +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Intel Hyperthreading              | Disabled or Enabled                                                                                                                                                                                                                                              |
-    +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Intel Virtualization \(VTD, VTX\) | Enabled                                                                                                                                                                                                                                                          |
-    +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+       or 
+       
+       Single-CPU Intel Xeon D-15xx Family, 8 cores \(low-power/low-cost
+       option for Simplex deployments\)
+   * - Minimum Memory
+     - 64 GB
+   * - Minimum Primary Disk
+     - 500 GB - |SSD| or |NVMe|
+   * - Additional Disks
+     - -   Single-disk system: N/A
 
+       -   Two-disk system:
+
+           *   1 x 500 GB SSD or |NVMe| for Persistent Volume Claim storage
+
+       -   Three-disk system:
+
+           *   1 x 500 GB \(min 10K RPM\) for Persistent Volume Claim storage
+
+           *   1 or more x 500 GB \(min. 10K RPM\) for Container ephemeral
+               disk storage
+   * - Network Ports
+     - \(Typical deployment.\)
+         -   Mgmt and Cluster Host: 2 x 10GE |LAG| \(shared interface\)
+
+             .. note::
+                Mgmt / Cluster Host ports are required for Duplex systems only.
+
+         -   OAM: 2 x 1GE LAG
+
+         -   Optionally external network ports 2 x 10GE LAG
+   * - USB Interface
+     - 1
+   * - Power Profile
+     - Max Performance
+
+       Min Proc Idle Power:No C States
+   * - Boot Order
+     - HD, |PXE|, USB
+   * - BIOS Mode
+     - BIOS or |UEFI|
+
+       .. note::
+          |UEFI| Secure Boot and |UEFI| |PXE| boot over IPv6 are not supported.
+          On systems with an IPv6 management network, you can use a separate
+          IPv4 network for |PXE| boot. For more information, see :ref:`PXE Boot
+          Network <network-planning-the-pxe-boot-network>`.
+   * - Intel Hyperthreading
+     - Disabled or Enabled
+   * - Intel Virtualization \(VTD, VTX\)
+     - Enabled
 
 .. _starlingx-hardware-requirements-section-if-scenarios:
 
