@@ -14,7 +14,7 @@ redundant pair of hosts.
    :local:
    :depth: 1
 
-.. image:: ../deploy_install_guides/r5_release/figures/starlingx-deployment-options-duplex.png
+.. image:: /deploy_install_guides/r5_release/figures/starlingx-deployment-options-duplex.png
    :width: 800
 
 See :ref:`Common Components <common-components>` for a description of common
@@ -94,7 +94,7 @@ Up to fifty worker/compute nodes can be added to the  All-in-one Duplex
 deployment, allowing a capacity growth path if starting with an AIO-Duplex
 deployment.
 
-.. image:: ../deploy_install_guides/r5_release/figures/starlingx-deployment-options-duplex-extended.png
+.. image:: /deploy_install_guides/r5_release/figures/starlingx-deployment-options-duplex-extended.png
    :width: 800
 
 The extended capacity is limited up to fifty worker/compute nodes as the
