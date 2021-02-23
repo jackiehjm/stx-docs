@@ -9,7 +9,7 @@ Standard Configuration with Dedicated Storage
 Deployment of |prod| with dedicated storage nodes provides the highest capacity
 \(single region\), performance, and scalability.
 
-.. image:: ../deploy_install_guides/r5_release/figures/starlingx-deployment-options-dedicated-storage.png
+.. image:: /deploy_install_guides/r5_release/figures/starlingx-deployment-options-dedicated-storage.png
    :width: 800
 
 .. note::

@@ -10,7 +10,7 @@ Standard Configuration with Controller Storage
 back-end for Kubernetes |PVCs| deployed on the
 controller nodes instead of using dedicated storage nodes.
 
-.. image:: ../deploy_install_guides/r5_release/figures/starlingx-deployment-options-controller-storage.png
+.. image:: /deploy_install_guides/r5_release/figures/starlingx-deployment-options-controller-storage.png
    :width: 800
 
 .. note::
