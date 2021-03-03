@@ -37,9 +37,13 @@ created:
         Static VXLAN is limited to one data network, and if configured, it must
         be enabled on all openstack-compute labeled nodes.
 
-    A data network implemented across non-contiguous physical networks connected
-    by Layer 3 routers, using a VNI identifier. This allows multiple data
-    networks over physically separated Layer 2 networks.
+    A data network implemented across non-contiguous physical networks
+    connected by Layer 3 routers, using a VNI identifier. This allows
+    multiple data networks over physically separated Layer 2 networks.
+
+.. xbooklink VXLAN Data Networks are specific to |prod-os| application and are described in detail in :ref:`VXLAN Data Networks <vxlan-data-networks>` .
+     See |prod-os| Configuration and Management: :ref:`VXLAN Data Networks
+    <vxlan-data-networks>`
 
 There are no specific requirements for network services to be available on the
 data network. However, you must ensure that all network services required by
