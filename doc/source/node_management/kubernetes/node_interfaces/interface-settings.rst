@@ -122,7 +122,7 @@ These settings are available on the **Edit Interface** and
 **MTU**
     The maximum transmission unit for the interface.
 
-    For a |prod-os| OpenStack application data interface attached to a data
+    For a |prod-os| application data interface attached to a data
     network, this must be equal to or larger than the |MTU| of the data network
     to which the interface is attached.
 
@@ -157,7 +157,7 @@ These settings are available on the **Edit Interface** and
     networks.
 
     .. note::
-        For the |prod-os| OpenStack application this is used for the IPv6
+        For the |prod-os| application this is used for the IPv6
         Address of |VXLAN| tunnel endpoints for use with |VXLAN| data networks.
 
     **Disabled**

@@ -62,7 +62,7 @@ see :ref:`Interface Settings <interface-settings>`.
 #.  Complete the required information for the type of interface.
 
     .. note::
-        For a |prod-os| OpenStack application data interface attached
+        For a |prod-os| application data interface attached
         to a data network, the |MTU| must be equal to or larger than the |MTU|
         of the data network to which the interface is attached.
 

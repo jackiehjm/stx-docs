@@ -6,18 +6,32 @@
 Allocate Host Memory Using Horizon
 ==================================
 
-You can edit the platform, vSwitch, and Application page memory allocations
-for a |NUMA| node from the Horizon Web
-interface using the **Memory** tab on the Host Inventory pane.
+.. only:: starlingx
+
+    You can edit the platform and Application page memory allocations for a
+    |NUMA| node from the Horizon Web interface using the **Memory** tab on the
+    Host Inventory pane.
+
+.. only:: partner
+
+    .. include:: ../../../_includes/avs-note.rest
+
+    :start-after: introduction-text-begin
+    :end-before: introduction-text-end
 
 Due to limitations in Kubernetes, only a single huge page size can be used
 per host.
 
-A node may only allocate huge pages for a single size, either 2MiB or 1GiB.
-Since the vSwitch uses 1GiB huge page by default, the application will
-typically also use 1GiB huge pages. However, the vSwitch page size can be
-changed to 2MiB, in which case the application would also use 2MiB huge
-pages.
+.. only:: starlingx
+
+    A node may only allocate huge pages for a single size, either 2MiB or 1GiB.
+ 
+.. only:: partner
+
+    .. include:: ../../../_includes/avs-note.rest
+
+    :start-after: usage-text-begin
+    :end-before: usage-text-end
 
 You must also provision one 1GiB huge page per |NUMA| node prior to unlocking a
 worker or an |AIO| controller.
@@ -44,9 +58,19 @@ informative message is displayed.
 #.  Use the Update Memory Allocation dialog box to set the memory allocations
     for each |NUMA| node.
 
-    For each available |NUMA| node, five
-    fields are available, as illustrated in the following example screen for
-    two |NUMA| nodes.
+.. only:: starlingx
+
+    For each available |NUMA| node, five fields are available, as illustrated
+    in the following example screen for two |NUMA| nodes.  Due to limitations
+    in Kubernetes, only a single huge page size can be used per host, across
+    Application memory.
+
+.. only:: partner
+
+    .. include:: ../../../_includes/allocating-host-memory-using-horizon.rest
+
+    :start-after: limitation-text-begin
+    :end-before: limitation-text-end
 
     .. figure:: ../figures/yfv1567176747837.png
         :scale: 100%
@@ -61,22 +85,50 @@ informative message is displayed.
             :scale: 100%
 
     **\# of Application 2M Hugepages Node n**
+
+    .. only:: starlingx
+
         The number of 2 MiB huge pages to reserve for application use on the
-        |NUMA| Node. If no 2 MiB pages are
-        required, type 0.
+        |NUMA| Node. If no 2 MiB pages are required, type 0.  Due to
+        limitations in Kubernetes, only a single huge page size can be used per
+        host, across Application memory.
+    
+    .. only:: partner
+
+        .. include:: ../../../_includes/allocating-host-memory-using-horizon.rest
+    
+        :start-after: application-2m-text-begin
+        :end-before: application-2m-text-end
 
     **\# of Application 1G Hugepages Node n**
+
+    .. only:: starlingx
+
         The number of 1 GiB huge pages to reserve for application use on the
-        |NUMA| Node. If no 1 GiB pages are
-        required, type 0.
+        |NUMA| Node. If no 1 GiB pages are required, type 0.  Due to
+        limitations in Kubernetes, only a single huge page size can be used per
+        host, across Application memory.
+    
+    .. only:: partner
 
-    **\# of vSwitch 1G Hugepages Node n**
-        The number of 1 GiB huge pages to reserve for vS2witch use on the
-        |NUMA| Node. If no 1 GiB pages are
-        required, type 0.
+        .. include:: ../../../_includes/allocating-host-memory-using-horizon.rest
+    
+        :start-after: application-1g-text-begin
+        :end-before: application-1g-text-end
 
-    **vSwitch Hugepage Size Node n**
-        Select the hugepage size to use for the node.
+    .. only:: partner
+
+        .. include:: ../../../_includes/allocating-host-memory-using-horizon.rest
+    
+        :start-after: vswitch-hugepage-1g-text-begin
+        :end-before: vswitch-hugepage-1g-text-end
+
+    .. only:: partner
+
+        .. include:: ../../../_includes/allocating-host-memory-using-horizon.rest
+    
+        :start-after: vswitch-hugepage-size-node-text-begin
+        :end-before: vswitch-hugepage-size-node-text-end
 
     To see how many huge pages of a given size you can successfully request
     on a node \(assuming that pages of another size are not also requested\),
@@ -95,3 +147,4 @@ informative message is displayed.
 .. only:: partner
 
     .. include:: ../../../_includes/avs-note.rest
+

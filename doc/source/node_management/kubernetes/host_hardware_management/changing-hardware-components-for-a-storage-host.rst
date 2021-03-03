@@ -9,6 +9,8 @@ Change Hardware Components for a Storage Host
 You can add or replace storage disks or swap a storage node while the system
 is running, even if the storage resources are in active use.
 
+.. rubric:: |context|
+
 You can add disks to a storage node to increase capacity, and you can replace
 a faulty host.
 
@@ -74,7 +76,10 @@ can reproduce them later.
 #.  Power up the host.
 
     If the host has been deleted from the Host Inventory, the host software
-    is reinstalled.
+    is reinstalled. 
+
+.. From Power up the host
+.. xbookref For details, see :ref:`|inst-doc| <platform-installation-overview>`.
 
     Wait for the host to be reported as **Locked**, **Disabled**, and
     **Online**.
@@ -102,3 +107,5 @@ can reproduce them later.
 
 .. From If required, allocate the |OSD| and journal disk storage.
 .. xbooklinkFor more information, see |stor-doc|: `Provision Storage on a Storage Host <provisioning-storage-on-a-controller-or-storage-host-using-horizon>`.
+
+

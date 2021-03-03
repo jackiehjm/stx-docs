@@ -178,6 +178,11 @@ PCI-SRIOV interface support
 
    node_interfaces/provisioning-sr-iov-interfaces-using-the-cli
    node_interfaces/provisioning-sr-iov-vf-interfaces-using-the-cli
+   node_interfaces/sriov-port-sharing
+   node_interfaces/configuring-ethernet-interfaces-on-sriov-interace usingfrom-horizon
+   node_interfaces/configuring-ethernet-interfaces-on-sriov-interface-using-cli
+   node_interfaces/configuring-vf-interfaces-rate-limiting-using-cli
+   node_interfaces/configuring-vlan-type-interfaces-using-the-sriov-interface-from-the-cli
 
 *********************************
 Interface IP address provisioning
@@ -290,6 +295,16 @@ Intel N3000 FPGA support
    hardware_acceleration_devices/updating-an-intel-n3000-fpga-image
    hardware_acceleration_devices/n3000-fpga-forward-error-correction
    hardware_acceleration_devices/showing-details-for-an-fpga-device
+   hardware_acceleration_devices/common-device-management-tasks
+
+***********************************************
+vRAN Accelerator ACC100 Adapter \(Mount Bryce\)
+***********************************************
+.. toctree::
+   :maxdepth: 1
+
+   hardware_acceleration_devices/enabling-mount-bryce-hw-accelerator-for-hosted-vram-containerized-workloads
+   hardware_acceleration_devices/set-up-pods-to-use-sriov
 
 ------------------------
 Host hardware management

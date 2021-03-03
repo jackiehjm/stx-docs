@@ -24,7 +24,7 @@ Some interfaces require manual provisioning before the nodes can be unlocked.
     network before you can unlock the node.
 
     .. note::
-        For the |prod-os| OpenStack application and an openstack-compute
+        For the |prod-os| application and an openstack-compute
         labeled worker node, you must also attach at least one 'data' class
         data networks before you can unlock the node. The data networks must
         be set up beforehand. For more information,
