@@ -2,9 +2,9 @@
 .. bmi1612787317125
 .. _configuring-ethernet-interfaces-on-sriov-interface-from-horizon:
 
-======================================================================
-Configure Ethernet Interfaces on SR-IOV interface Using Horizon
-======================================================================
+===============================================================
+Configure Ethernet Interfaces on SR-IOV Interface Using Horizon
+===============================================================
 
 You can use the Horizon web interface to configure ethernet interfaces on
 |SRIOV|.
