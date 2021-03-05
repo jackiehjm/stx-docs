@@ -26,6 +26,8 @@ information.
 CLI commands for managing the lifecycle of an application, which includes
 managing overrides to the Helm charts within the application.
 
+.. _kubernetes-admin-tutorials-tarlingx-application-package-manager-d463e61:
+
 .. table:: Table 1. Application Package Manager Commands
     :widths: auto
 

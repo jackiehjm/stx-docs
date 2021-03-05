@@ -22,13 +22,13 @@ those images by sharing the registry/public user's credentials with other users.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ openstack project create registry
-        ~(keystone_admin)$ TENANTNAME="registry"
-        ~(keystone_admin)$ TENANTID=`openstack project list | grep ${TENANTNAME} | awk '{print $2}'`
-        ~(keystone_admin)$ USERNAME="public"
-        ~(keystone_admin)$ USERPASSWORD="${USERNAME}K8*"
-        ~(keystone_admin)$ openstack user create --password ${USERPASSWORD} --project ${TENANTID} ${USERNAME}
-        ~(keystone_admin)$ openstack role add --project ${TENANTNAME} --user ${USERNAME} _member
+        ~(keystone_admin)]$ openstack project create registry
+        ~(keystone_admin)]$ TENANTNAME="registry"
+        ~(keystone_admin)]$ TENANTID=`openstack project list | grep ${TENANTNAME} | awk '{print $2}'`
+        ~(keystone_admin)]$ USERNAME="public"
+        ~(keystone_admin)]$ USERPASSWORD="${USERNAME}K8*"
+        ~(keystone_admin)]$ openstack user create --password ${USERPASSWORD} --project ${TENANTID} ${USERNAME}
+        ~(keystone_admin)]$ openstack role add --project ${TENANTNAME} --user ${USERNAME} _member
 
 #.  Create a secret containing the credentials of the public repository in
     kube-system namespace.

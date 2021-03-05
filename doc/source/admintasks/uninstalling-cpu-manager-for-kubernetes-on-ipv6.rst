@@ -14,7 +14,7 @@ then run the following commands:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ kubectl delete pod/cmk-uninstall-webhook -n kube-system
-    ~(keystone_admin)$ kubectl delete ds cmk-uninstall -n kube-system
-    ~(keystone_admin)$ kubectl delete pod delete-uninstall -n kube-system
+    ~(keystone_admin)]$ kubectl delete pod/cmk-uninstall-webhook -n kube-system
+    ~(keystone_admin)]$ kubectl delete ds cmk-uninstall -n kube-system
+    ~(keystone_admin)]$ kubectl delete pod delete-uninstall -n kube-system
 

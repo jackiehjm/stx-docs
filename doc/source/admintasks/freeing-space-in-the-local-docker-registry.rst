@@ -21,7 +21,7 @@ associated space from the file system. To do so, you must also run the
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system registry-image-list
+        ~(keystone_admin)]$ system registry-image-list
         +------------------------------------------------------+
         | Image Name                                           |
         +------------------------------------------------------+
@@ -46,13 +46,13 @@ associated space from the file system. To do so, you must also run the
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system registry-image-tags <imageName>
+        ~(keystone_admin)]$ system registry-image-tags <imageName>
 
 #.  Free file system space.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system registry-image-delete <imageName>:<tagName>
+        ~(keystone_admin)]$ system registry-image-delete <imageName>:<tagName>
 
     This step only removes the registry's reference to the **image:tag**.
 
@@ -75,7 +75,7 @@ associated space from the file system. To do so, you must also run the
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system registry-garbage-collect
+        ~(keystone_admin)]$ system registry-garbage-collect
         Running docker registry garbage collect
 
     .. note::

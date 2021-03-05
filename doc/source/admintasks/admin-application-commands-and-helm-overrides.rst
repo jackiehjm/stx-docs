@@ -16,7 +16,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-list [--nowrap]
+        ~(keystone_admin)]$ system application-list [--nowrap]
 
     where:
 
@@ -27,7 +27,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-list --nowrap
+        ~(keystone_admin)]$ system application-list --nowrap
 
         +-------------+---------+---------------+---------------+----------+-----------+
         | application | version | manifest name | manifest file | status   | progress  |
@@ -43,7 +43,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-show <app_name>
+        ~(keystone_admin)]$ system application-show <app_name>
 
     where:
 
@@ -54,7 +54,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-show stx-openstack
+        ~(keystone_admin)]$ system application-show stx-openstack
 
         +---------------+----------------------------------+
         | Property      | Value                            |
@@ -75,7 +75,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-upload [-n | --app-name] <app_name> [-v | --version] <version> <tar_file>
+        ~(keystone_admin)]$ system application-upload [-n | --app-name] <app_name> [-v | --version] <version> <tar_file>
 
     where the following are optional arguments:
 
@@ -95,7 +95,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-upload stx-openstack-1.0-18.tgz
+        ~(keystone_admin)]$ system application-upload stx-openstack-1.0-18.tgz
         +---------------+----------------------------------+
         | Property      | Value                            |
         +---------------+----------------------------------+
@@ -117,7 +117,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system helm-override-list
+        ~(keystone_admin)]$ system helm-override-list
         usage: system helm-override-list [--nowrap] [-l | --long] <app_name>
 
     where the following is a positional argument:
@@ -137,7 +137,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system helm-override-list stx-openstack --long
+        ~(keystone_admin)]$ system helm-override-list stx-openstack --long
         +---------------------+--------------------------------+---------------+
         | chart name          | overrides namespaces           | chart enabled |
         +---------------------+--------------------------------+---------------+
@@ -176,7 +176,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system helm-override-show
+        ~(keystone_admin)]$ system helm-override-show
         usage: system helm-override-show <app_name> <chart_name> <namespace>
 
     where the following are positional arguments:
@@ -194,7 +194,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system helm-override-show stx-openstack glance openstack
+        ~(keystone_admin)]$ system helm-override-show stx-openstack glance openstack
 
 -   To modify service configuration parameters using user-specified overrides,
     use the following command. To update a single configuration parameter, you
@@ -203,7 +203,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system helm-override-update
+        ~(keystone_admin)]$ system helm-override-update
         usage: system helm-override-update <app_name> <chart_name> <namespace> --reuse-values --reset-values --values <file_name> --set <commandline_overrides>
 
     where the following are positional arguments:
@@ -241,7 +241,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system helm-override-update stx-openstack glance openstack --set conf.glance.DEFAULT.DEBUG=true
+        ~(keystone_admin)]$ system helm-override-update stx-openstack glance openstack --set conf.glance.DEFAULT.DEBUG=true
         +----------------+-------------------+
         | Property       | Value             |
         +----------------+-------------------+
@@ -267,7 +267,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system helm-chart-attribute-modify [--enabled <true/false>] <app_name> <chart_name> <namespace>
+        ~(keystone_admin)]$ system helm-chart-attribute-modify [--enabled <true/false>] <app_name> <chart_name> <namespace>
 
     where the following is an optional argument:
 
@@ -293,7 +293,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system helm-override-delete
+        ~(keystone_admin)]$ system helm-override-delete
         usage: system helm-override-delete <app_name> <chart_name> <namespace>
 
     where the following are positional arguments:
@@ -311,7 +311,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system helm-override-delete stx-openstack glance openstack
+        ~(keystone_admin)]$ system helm-override-delete stx-openstack glance openstack
         Deleted chart overrides glance:openstack for application stx-openstack
 
 -   Use the following command to apply or reapply an application, making it
@@ -319,7 +319,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-apply [-m | --mode] <mode> <app_name>
+        ~(keystone_admin)]$ system application-apply [-m | --mode] <mode> <app_name>
 
     where the following is an optional argument:
 
@@ -337,7 +337,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-apply stx-openstack
+        ~(keystone_admin)]$ system application-apply stx-openstack
         +---------------+----------------------------------+
         | Property      | Value                            |
         +---------------+----------------------------------+
@@ -358,7 +358,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-abort <app_name>
+        ~(keystone_admin)]$ system application-abort <app_name>
 
     where:
 
@@ -369,7 +369,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-abort stx-openstack
+        ~(keystone_admin)]$ system application-abort stx-openstack
         Application abort request has been accepted. If the previous operation has not
         completed/failed, it will be cancelled shortly.
 
@@ -381,7 +381,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-update [-n | --app-name] <app_name> [-v | --app-version] <version> <tar_file>
+        ~(keystone_admin)]$ system application-update [-n | --app-name] <app_name> [-v | --app-version] <version> <tar_file>
 
     where the following are optional arguments:
 
@@ -393,7 +393,7 @@ commands to manage containerized applications provided as part of |prod|.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ system application-list
+            ~(keystone_admin)]$ system application-list
             +--------------------------+----------+-------------------------------+---------------------------+----------+-----------+
             | application              | version  | manifest name                 | manifest file             | status   | progress  |
             +--------------------------+----------+-------------------------------+---------------------------+----------+-----------+
@@ -402,7 +402,7 @@ commands to manage containerized applications provided as part of |prod|.
             |                          |          | -manifest                     | _manifest.yaml            |          |           |
             | oidc-auth-apps           | 20.06-26 | oidc-auth-manifest            | manifest.yaml             | uploaded | completed |
             | platform-integ-apps      | 20.06-9  | platform-integration-manifest | manifest.yaml             | applied  | completed |
-            |  wr-analytics            | 20.06-2  | analytics-armada-manifest     | wr-analytics.yaml         | applied  | completed |
+            | wr-analytics             | 20.06-2  | analytics-armada-manifest     | wr-analytics.yaml         | applied  | completed |
             +--------------------------+----------+-------------------------------+---------------------------+----------+-----------+
 
         The output indicates that the currently installed version of
@@ -423,7 +423,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-remove <app_name>
+        ~(keystone_admin)]$ system application-remove <app_name>
 
     where:
 
@@ -434,7 +434,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-remove stx-openstack
+        ~(keystone_admin)]$ system application-remove stx-openstack
         +---------------+----------------------------------+
         | Property      | Value                            |
         +---------------+----------------------------------+
@@ -458,7 +458,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-delete <app_name>
+        ~(keystone_admin)]$ system application-delete <app_name>
 
     where:
 
@@ -471,5 +471,5 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-delete stx-openstack
+        ~(keystone_admin)]$ system application-delete stx-openstack
         Application stx-openstack deleted.
