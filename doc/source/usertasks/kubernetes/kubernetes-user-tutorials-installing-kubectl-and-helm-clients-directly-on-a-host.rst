@@ -108,3 +108,14 @@ You will need the following information from your |prod| administrator:
         In order to use :command:`helm`, additional configuration is required.
         For more information, see :ref:`Configuring Remote Helm Client
         <configuring-remote-helm-client>`.
+
+**Related information**
+
+.. seealso::
+    :ref:`Configuring Container-backed Remote CLIs and Clients
+    <kubernetes-user-tutorials-configuring-container-backed-remote-clis-and-clients>`
+
+    :ref:`Using Container-backed Remote CLIs and Clients
+    <using-container-based-remote-clis-and-clients>`
+
+    :ref:`Configuring Remote Helm Client <configuring-remote-helm-client>`

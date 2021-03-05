@@ -20,6 +20,7 @@
 .. |CAs| replace:: :abbr:`CAs (Certificate Authorities)`
 .. |CLI| replace:: :abbr:`CLI (Command Line Interface)`
 .. |CMK| replace:: :abbr:`CMK (CPU Manager for Kubernetes)`
+.. |CLIs| replace:: :abbr:`CLIs (Command Line Interfaces)`
 .. |CNI| replace:: :abbr:`CNI (Container Networking Interface)`
 .. |CoW| replace:: :abbr:`CoW (Copy on Write)`
 .. |CSK| replace:: :abbr:`CSK (Code Signing Key)`

@@ -9,6 +9,7 @@
     -   :ref:`Remote CLI Access <remote-cli-access>`
 
         -   :ref:`Configuring Container-backed Remote CLIs and Clients <kubernetes-user-tutorials-configuring-container-backed-remote-clis-and-clients>`
+        -   :ref:`Using Container-backed Remote CLIs and Clients <using-container-based-remote-clis-and-clients>`
         -   :ref:`Installing Kubectl and Helm Clients Directly on a Host <kubernetes-user-tutorials-installing-kubectl-and-helm-clients-directly-on-a-host>`
         -   :ref:`Configuring Remote Helm Client <configuring-remote-helm-client>`
 
