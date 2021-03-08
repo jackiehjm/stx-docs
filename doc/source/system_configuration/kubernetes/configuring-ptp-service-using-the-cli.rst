@@ -28,7 +28,7 @@ To view the existing |PTP| status, use the following command.
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system ptp-show
+    ~(keystone_admin)]$ system ptp-show
     +--------------+--------------------------------------+
     | Property     | Value                                |
     +--------------+--------------------------------------+
@@ -51,7 +51,7 @@ and |PTP| are configured per host. Lock/unlock the host when updating.
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system host-update controller-0 clock_synchronization=ptp
+    ~(keystone_admin)]$ system host-update controller-0 clock_synchronization=ptp
     +-----------------------+---------------------------------------+
     | Property              | Value                                 |
     +-----------------------+---------------------------------------+
@@ -100,7 +100,7 @@ To view the |PTP| service configuration, use the following command:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system host-show controller-0
+    ~(keystone_admin)]$ system host-show controller-0
     +-----------------------+------------------------------------------------+
     | Property              | Value                                          |
     +-----------------------+------------------------------------------------+
@@ -155,7 +155,7 @@ To view the |PTP| service configuration, use the following command:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system ptp-modify --mode=<hardware/software/legacy>
+        ~(keystone_admin)]$ system ptp-modify --mode=<hardware/software/legacy>
 
 -   **PTP Network Transport**: Switch between IEEE 802.3 network
     transport \(L2\) or |UDP| IPv4/v6 network transport for |PTP|
@@ -163,7 +163,7 @@ To view the |PTP| service configuration, use the following command:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system ptp-modify --transport=<l2/UDP>
+        ~(keystone_admin)]$ system ptp-modify --transport=<l2/UDP>
 
     .. note::
         L2 is the default option.
@@ -184,7 +184,7 @@ To view the |PTP| service configuration, use the following command:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system ptp-modify --mechanism=<e2e/p2p>
+        ~(keystone_admin)]$ system ptp-modify --mechanism=<e2e/p2p>
 
 -   **PTP Role**
 
@@ -205,13 +205,13 @@ To view the |PTP| service configuration, use the following command:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-if-modify compute-3 ens803f0 -n sriovptp --ptp-role slave
+        ~(keystone_admin)]$ system host-if-modify compute-3 ens803f0 -n sriovptp --ptp-role slave
 
 To apply changes to hosts, use the following command:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system ptp-apply
+    ~(keystone_admin)]$ system ptp-apply
 
 |PTP| changes will be applied to all unlocked hosts configured with ptp
 clock\_synchronization.
@@ -239,7 +239,7 @@ The following service parameters are available:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system service-parameter-add ptp global domainNumber=24
+        ~(keystone_admin)]$ system service-parameter-add ptp global domainNumber=24
 
     results in the following being written to the configuration file:
 
@@ -253,7 +253,7 @@ The following service parameters are available:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system service-parameter-add ptp global delay_mechanism=P2P
+        ~(keystone_admin)]$ system service-parameter-add ptp global delay_mechanism=P2P
 
     Then the **P2P** will be used instead.
 
@@ -269,7 +269,7 @@ To apply service parameter changes to hosts, use the following command:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system service-parameter-apply ptp
+    ~(keystone_admin)]$ system service-parameter-apply ptp
 
 |PTP| changes will be applied to all unlocked hosts configured with
 ptp clock\_synchronization.

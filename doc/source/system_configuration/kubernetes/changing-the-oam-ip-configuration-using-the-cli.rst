@@ -12,7 +12,7 @@ To view the existing |OAM| IP configuration, use the following command.
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system oam-show
+    ~(keystone_admin)]$ system oam-show
     +-----------------+--------------------------------------+
     | Property        | Value                                |
     +-----------------+--------------------------------------+
@@ -32,7 +32,7 @@ controller IP addresses, use the following command syntax.
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system oam-modify oam_subnet=<subnet>/<netmask> \
+    ~(keystone_admin)]$ system oam-modify oam_subnet=<subnet>/<netmask> \
     oam_gateway_ip=<gateway_ip_address> \
     oam_floating_ip=<floating_IP_address> \
     oam_c0_ip=<controller-0_IP_address> \
@@ -42,7 +42,7 @@ For example:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system oam-modify oam_subnet=10.10.10.0/24 \
+    ~(keystone_admin)]$ system oam-modify oam_subnet=10.10.10.0/24 \
     oam_gateway_ip=10.10.10.1 \
     oam_floating_ip=10.10.10.2 \
     oam_c0_ip=10.10.10.3 \
@@ -58,7 +58,7 @@ For example:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system oam-modify oam_subnet=10.10.10.0/24 oam_gateway_ip=10.10.10.1 oam_ip=10.10.10.2
+        ~(keystone_admin)]$ system oam-modify oam_subnet=10.10.10.0/24 oam_gateway_ip=10.10.10.1 oam_ip=10.10.10.2
 
 .. note::
     If you change the IP address version \(IPv4 or IPv6\), ensure that the

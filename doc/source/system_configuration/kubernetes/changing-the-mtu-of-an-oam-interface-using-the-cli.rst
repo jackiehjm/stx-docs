@@ -21,7 +21,7 @@ requires a swact.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-lock controller-1
+        ~(keystone_admin)]$ system host-lock controller-1
 
 #.  Use the :command:`system host-if-modify` command to specify the interface
     and the new MTU value on the standby controller. This example assumes the
@@ -29,34 +29,34 @@ requires a swact.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-if-modify controller-1 oam0 --imtu 1600
+        ~(keystone_admin)]$ system host-if-modify controller-1 oam0 --imtu 1600
 
 #.  Unlock the standby controller.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-unlock controller-1
+        ~(keystone_admin)]$ system host-unlock controller-1
 
 #.  Swact the controllers.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-swact controller-1
+        ~(keystone_admin)]$ system host-swact controller-1
 
 #.  Lock the new standby controller.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-lock controller-0
+        ~(keystone_admin)]$ system host-lock controller-0
 
 #.  Modify the |MTU| of the corresponding interface on the standby controller.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-if-modify controller-0 oam0 --imtu 1600
+        ~(keystone_admin)]$ system host-if-modify controller-0 oam0 --imtu 1600
 
 #.  Unlock the standby controller.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-unlock controller-0
+        ~(keystone_admin)]$ system host-unlock controller-0

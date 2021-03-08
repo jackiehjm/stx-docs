@@ -12,7 +12,7 @@ To view the existing DNS server configuration, use the following command:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system dns-show
+    ~(keystone_admin)]$ system dns-show
     +--------------+--------------------------------------+
     | Property     | Value                                |
     +--------------+--------------------------------------+
@@ -28,10 +28,10 @@ nameservers option takes a comma-delimited list of IP addresses.
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system dns-modify nameservers=<IP_address_1[,IP_address_2][,IP_address_3]>
+    ~(keystone_admin)]$ system dns-modify nameservers=<IP_address_1[,IP_address_2][,IP_address_3]>
 
 For example:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system dns-modify nameservers=8.8.8.8,8.8.4.4
+    ~(keystone_admin)]$ system dns-modify nameservers=8.8.8.8,8.8.4.4
