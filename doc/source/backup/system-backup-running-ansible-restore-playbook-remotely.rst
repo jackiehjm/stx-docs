@@ -47,7 +47,7 @@ In this method you can run Ansible Restore playbook and point to controller-0.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ ansible-playbook path-to-restore-platform-playbook-entry-file --limit host-name -i inventory-file -e optional-extra-vars
+        ~(keystone_admin)]$ ansible-playbook path-to-restore-platform-playbook-entry-file --limit host-name -i inventory-file -e optional-extra-vars
 
     where optional-extra-vars can be:
 
@@ -89,7 +89,7 @@ In this method you can run Ansible Restore playbook and point to controller-0.
 
     .. parsed-literal::
 
-        ~(keystone_admin)$ ansible-playbook /localdisk/designer/jenkins/tis-stx-dev/cgcs-root/stx/ansible-playbooks/playbookconfig/src/playbooks/restore_platform.yml --limit |prefix|\_Cluster -i $HOME/br_test/hosts -e "ansible_become_pass=St0rlingX* admin_password=St0rlingX* ansible_ssh_pass=St0rlingX* initial_backup_dir=$HOME/br_test backup_filename= |prefix|\_Cluster_system_backup_2019_08_08_15_25_36.tgz ansible_remote_tmp=/home/sysadmin/ansible-restore"
+        ~(keystone_admin)]$ ansible-playbook /localdisk/designer/jenkins/tis-stx-dev/cgcs-root/stx/ansible-playbooks/playbookconfig/src/playbooks/restore_platform.yml --limit |prefix|\_Cluster -i $HOME/br_test/hosts -e "ansible_become_pass=St0rlingX* admin_password=St0rlingX* ansible_ssh_pass=St0rlingX* initial_backup_dir=$HOME/br_test backup_filename= |prefix|\_Cluster_system_backup_2019_08_08_15_25_36.tgz ansible_remote_tmp=/home/sysadmin/ansible-restore"
 
     .. note::
         If the backup contains patches, Ansible Restore playbook will apply
@@ -105,7 +105,7 @@ In this method you can run Ansible Restore playbook and point to controller-0.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ ansible-playbook path-to-restore-user-images-playbook-entry-file --limit host-name -i inventory-file -e optional-extra-vars
+        ~(keystone_admin)]$ ansible-playbook path-to-restore-user-images-playbook-entry-file --limit host-name -i inventory-file -e optional-extra-vars
 
     where optional-extra-vars can be:
 
@@ -144,4 +144,4 @@ In this method you can run Ansible Restore playbook and point to controller-0.
 
     .. parsed-literal::
 
-        ~(keystone_admin)$ ansible-playbook /localdisk/designer/jenkins/tis-stx-dev/cgcs-root/stx/ansible-playbooks/playbookconfig/src/playbooks/restore_user_images.ym --limit |prefix|\_Cluster -i $HOME/br_test/hosts -e "ansible_become_pass=St0rlingX* ansible_ssh_pass=St0rlingX* initial_backup_dir=$HOME/br_test backup_filename= |prefix|\_Cluster_docker_local_registry_backup_2020_07_15_21_24_22.tgz ansible_remote_tmp=/sufficient/space backup_dir=/sufficient/space"
+        ~(keystone_admin)]$ ansible-playbook /localdisk/designer/jenkins/tis-stx-dev/cgcs-root/stx/ansible-playbooks/playbookconfig/src/playbooks/restore_user_images.ym --limit |prefix|\_Cluster -i $HOME/br_test/hosts -e "ansible_become_pass=St0rlingX* ansible_ssh_pass=St0rlingX* initial_backup_dir=$HOME/br_test backup_filename= |prefix|\_Cluster_docker_local_registry_backup_2020_07_15_21_24_22.tgz ansible_remote_tmp=/sufficient/space backup_dir=/sufficient/space"

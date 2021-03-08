@@ -42,16 +42,35 @@ and target it at controller-0.
             |prefix|\_Cluster:
               ansible_host: 128.224.141.74
 
+#.  Create an ansible secrets file.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ cat <<EOF > secrets.yml
+        vault_password_change_responses:
+            yes/no: 'yes'
+            sysadmin*: 'sysadmin'
+            (current) UNIX password: 'sysadmin'
+            New password: 'Li69nux*'
+            Retype new password: 'Li69nux*'
+        admin_password: Li69nux*
+        ansible_become_pass: Li69nux*
+        ansible_ssh_pass: Li69nux*
+        EOF
+
 #.  Run Ansible Backup playbook:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ ansible-playbook <path-to-backup-playbook-entry-file> --limit host-name -i <inventory-file> -e <optional-extra-vars>
+        ~(keystone_admin)]$ ansible-playbook <path-to-backup-playbook-entry-file> --limit host-name -i <inventory-file> -e "backup_user_local_registry=true"
 
     The generated backup tar file can be found in <host\_backup\_dir>, that
-    is, /home/sysadmin, by default. You can overwrite it using the ``-e``
+    is, /home/sysadmin, by default. You can overwrite it using the **-e**
     option on the command line or in an override file.
 
     .. warning::
-        If a backup of the **local registry images** file is created, the
-        file is not copied from the remote machine to the local machine.
+        If a backup of the **local registry images** file is created, the file
+        is not copied from the remote machine to the local machine. The
+        inventory\_hostname\_docker\_local\_registry\_backup\_timestamp.tgz
+        file needs to copied off the host machine to be used if a restore is
+        needed.
