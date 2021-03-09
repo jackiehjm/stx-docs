@@ -174,19 +174,56 @@ On virtual controller-0:
 
     system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org
 
-#. Configure Ceph storage backend
+**************************************************************
+Optionally, initialize a Ceph-based Persistent Storage Backend
+**************************************************************
 
-   .. important::
+.. important::
 
-      This step required only if your application requires
-      persistent storage.
+    A persistent storage backend is required if your application requires
+    Persistent Volume Claims (PVCs). The StarlingX OpenStack application
+    (stx-openstack) requires PVCs, therefore if you plan on using the
+    stx-openstack application, then you must configure a persistent storage
+    backend.
 
-      **If you want to install the StarlingX Openstack application
-      (stx-openstack) this step is mandatory.**
+    There are two options for persistent storage backend:
+    1) the host-based Ceph solution and
+    2) the Rook container-based Ceph solution.
+
+    The Rook container-based Ceph backend is installed after both
+    AIO-Controllers are configured and unlocked.
+
+For host-based Ceph,
+
+#. Initialize with add ceph backend:
 
    ::
 
-    system storage-backend-add ceph --confirmed
+      system storage-backend-add ceph --confirmed
+
+#. Add an OSD on controller-0 for host-based Ceph:
+
+   ::
+
+      system host-disk-list controller-0
+      system host-disk-list controller-0 | awk '/\/dev\/sdb/{print $2}' | xargs -i system host-stor-add controller-0 {}
+      system host-stor-list controller-0
+
+For Rook container-based Ceph:
+
+#. Initialize with add ceph-rook backend:
+
+   ::
+
+     system storage-backend-add ceph-rook --confirmed
+
+#. Assign Rook host labels to controller-0 in support of installing the
+   rook-ceph-apps manifest/helm-charts later:
+
+   ::
+
+      system host-label-assign controller-0 ceph-mon-placement=enabled
+      system host-label-assign controller-0 ceph-mgr-placement=enabled
 
 #. Configure data interfaces for controller-0.
 
@@ -228,18 +265,6 @@ On virtual controller-0:
     system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
     system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
     system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
-
-#. Add an OSD on controller-0 for Ceph:
-
-   .. important::
-
-      This step requires a configured Ceph storage backend
-
-   ::
-
-    system host-disk-list controller-0
-    system host-disk-list controller-0 | awk '/\/dev\/sdb/{print $2}' | xargs -i system host-stor-add controller-0 {}
-    system host-stor-list controller-0
 
 #. If required, and not already done as part of bootstrap, configure Docker to
    use a proxy server.
@@ -316,6 +341,71 @@ Unlock virtual controller-0 to bring it into service:
 
 Controller-0 will reboot to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host machine.
+
+--------------------------------------------------------------------------
+Optionally, finish configuration of Ceph-based Persistent Storage Backend
+--------------------------------------------------------------------------
+
+For host-based Ceph:  Nothing else is required.
+
+For Rook container-based Ceph:
+
+On **virtual** controller-0:
+
+#. Wait for application rook-ceph-apps uploaded
+
+   ::
+
+    $ source /etc/platform/openrc
+    $ system application-list
+    +---------------------+---------+-------------------------------+---------------+----------+-----------+
+    | application         | version | manifest name                 | manifest file | status   | progress  |
+    +---------------------+---------+-------------------------------+---------------+----------+-----------+
+    | oidc-auth-apps      | 1.0-0   | oidc-auth-manifest            | manifest.yaml | uploaded | completed |
+    | platform-integ-apps | 1.0-8   | platform-integration-manifest | manifest.yaml | uploaded | completed |
+    | rook-ceph-apps      | 1.0-1   | rook-ceph-manifest            | manifest.yaml | uploaded | completed |
+    +---------------------+---------+-------------------------------+---------------+----------+-----------+
+
+#. Configure rook to use /dev/sdb disk on controller-0 as a ceph osd
+
+   ::
+
+    $ system host-disk-wipe -s --confirm controller-0 /dev/sdb
+
+
+   values.yaml for rook-ceph-apps.
+   ::
+
+    cluster:
+      storage:
+        nodes:
+        - name: controller-0
+          devices:
+          - name: /dev/disk/by-path/pci-0000:00:03.0-ata-2.0
+
+   ::
+
+    system helm-override-update rook-ceph-apps rook-ceph kube-system --values values.yaml
+
+#. Apply the rook-ceph-apps application.
+
+   ::
+
+    system application-apply rook-ceph-apps
+
+#. Wait for OSDs pod ready
+
+   ::
+
+    kubectl get pods -n kube-system
+    rook--ceph-crashcollector-controller-0-764c7f9c8-bh5c7   1/1     Running     0          62m
+    rook--ceph-mgr-a-69df96f57-9l28p                         1/1     Running     0          63m
+    rook--ceph-mon-a-55fff49dcf-ljfnx                        1/1     Running     0          63m
+    rook--ceph-operator-77b64588c5-nlsf2                     1/1     Running     0          66m
+    rook--ceph-osd-0-7d5785889f-4rgmb                        1/1     Running     0          62m
+    rook--ceph-osd-prepare-controller-0-cmwt5                0/1     Completed   0          2m14s
+    rook--ceph-tools-5778d7f6c-22tms                         1/1     Running     0          64m
+    rook--discover-kmv6c                                     1/1     Running     0          65m
 
 ----------
 Next steps

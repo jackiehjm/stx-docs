@@ -1,0 +1,22 @@
+The Standard with Rook Storage deployment option is a standard installation
+with independent controller and worker nodes.
+
+A Standard with Rook Storage configuration provides the following benefits:
+
+* A pool of up to 100 worker nodes
+* A 2x node high availability (HA) controller cluster with HA services running
+  across the controller nodes in either active/active or active/standby mode
+* A Rook storage back end solution using a two-to-9x node HA Rook storage
+  cluster that supports a replication factor of two or three
+
+.. note::
+
+   If you are behind a corporate firewall or proxy, you need to set proxy
+   settings. Refer to :doc:`/../../configuration/docker_proxy_config` for
+   details.
+
+.. figure:: ../figures/starlingx-deployment-options-controller-storage.png
+   :scale: 50%
+   :alt: Standard with Rook Storage deployment configuration
+
+   *Figure 1: Standard with Rook Storage deployment configuration*

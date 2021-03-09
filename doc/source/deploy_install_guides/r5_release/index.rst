@@ -17,6 +17,7 @@ Install StarlingX Kubernetes in a virtual environment
    virtual/aio_duplex
    virtual/controller_storage
    virtual/dedicated_storage
+   virtual/rook_storage
 
 .. toctree::
    :hidden:
@@ -36,6 +37,7 @@ Install StarlingX Kubernetes on bare metal
    bare_metal/controller_storage
    bare_metal/dedicated_storage
    bare_metal/ironic
+   bare_metal/rook_storage
 
 .. toctree::
    :hidden:
