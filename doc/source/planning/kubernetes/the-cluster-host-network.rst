@@ -45,3 +45,7 @@ exposed through |BGP| within the Calico |CNI| service. Calico |BGP|
 configuration could be modified to advertise selected Application Container
 services or the ingress controller service to a |BGP| Peer, specifying the
 available next hop controller and/or worker nodes' cluster host IP Addresses.
+
+.. only:: partner
+
+    .. include:: ../../_includes/subnet-sizing-restrictions.rest

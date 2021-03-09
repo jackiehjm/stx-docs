@@ -8,7 +8,9 @@ IP Support
 
 |prod| supports IPv4 and IPv6 versions for various networks.
 
-The following table lists IPv4 and IPv6 support for different networks:
+All networks must be a single address family, either IPv4 or IPv6, with the
+exception of the |PXE| boot network which must always use IPv4. The following
+table lists IPv4 and IPv6 support for different networks:
 
 .. _network-requirements-ip-support-table-xqy-3cj-4cb:
 
@@ -29,18 +31,12 @@ The following table lists IPv4 and IPv6 support for different networks:
    * - Internal Management
      - Y
      - Y
-     - By default \(when |PXE| boot network is not present\), internal
-       management is used for |PXE| booting of new hosts. It must be untagged
-       and it must be IPv4. If, for deployment reasons, the internal management
-       network needs to be on a VLAN-tagged network, or if it needs to be IPv6,
-       you can configure the optional untagged |PXE| boot network for |PXE|
-       booting of new hosts using IPv4.
+     - -
    * - OAM
      - Y
      - Y
-     - The OAM network supports IPv4 or IPv6 addressing. For more information,
-       see :ref:`OAM Network Planning <oam-network-planning>`.
-   * - Cluster Host Network
+     - -
+   * - Cluster Host
      - Y
      - Y
      - The Cluster Host network supports IPv4 or IPv6 addressing. 

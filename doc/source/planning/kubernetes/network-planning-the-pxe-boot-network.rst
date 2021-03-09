@@ -17,5 +17,9 @@ network for deployment reasons, or if it must support IPv6, you must configure
 the optional untagged |PXE| boot network for |PXE| booting of new hosts using
 IPv4.
 
+.. only:: partner
+
+   .. include:: ../../_includes/subnet-sizing-restrictions.rest
+
 .. note::
     |prod| does not support IPv6 |PXE| booting.
