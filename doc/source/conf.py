@@ -14,6 +14,7 @@
 #
 import os
 import sys
+sys.path.insert(0,os.path.abspath('_themes'))
 # sys.path.insert(0, os.path.abspath('.'))
 
 
@@ -34,7 +35,8 @@ author = 'StarlingX'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'openstackdocstheme',
+#    'openstackdocstheme',
+     'starlingxdocs_plus'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -65,11 +67,12 @@ exclude_patterns = []
 pygments_style = 'native'
 
 # General information about the project.
-openstackdocs_repo_name = 'openstack/stx-docs'
-openstackdocs_project = 'StarlingX'
-openstackdocs_auto_name = False
-openstackdocs_bug_project = 'starlingx'
-openstackdocs_bug_tag = 'stx.docs'
+# Legacy openstackdocstheme variables
+# openstackdocs_repo_name = 'openstack/stx-docs'
+# openstackdocs_project = 'StarlingX'
+# openstackdocs_auto_name = False
+# openstackdocs_bug_project = 'starlingx'
+# openstackdocs_bug_tag = 'stx.docs'
 
 
 # Common substitution strings such as organization, product
@@ -82,7 +85,8 @@ rst_prolog = open('./shared/strings.txt', 'r').read()
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'starlingxdocs'
+html_theme_path = ['_themes']
+html_theme = 'starlingxdocs_plus'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -165,3 +169,15 @@ texinfo_documents = [
      author, 'stx-docs', 'One line description of project.',
      'Miscellaneous'),
 ]
+
+# -- Options for starlingxdocs_plus theme output -----------------------------
+# General information about the project.
+
+starlingxdocs_plus_repo_name = 'openstack/stx-docs'
+starlingxdocs_plus_project = 'StarlingX'
+starlingxdocs_plus_auto_name = False
+starlingxdocs_plus_bug_project = 'starlingx'
+starlingxdocs_plus_bug_tag = 'stx.docs'
+starlingxdocs_plus_this_version = "latest"
+# starlingxdocs_plus_other_versions = [("even later","even-later"),("sooner","sooner")]
+starlingxdocs_plus_other_versions = []
