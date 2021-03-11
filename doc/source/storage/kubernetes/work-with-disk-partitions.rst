@@ -8,8 +8,8 @@ Work with Disk Partitions
 
 You can use disk partitions to provide space for local volume groups.
 
-You can create, modify, and delete partitions from the Horizon Web
-interface or the |CLI|.
+You can create, modify, and delete partitions from the Horizon Web interface or
+the |CLI|.
 
 To use |prod-os|, select **Admin** \> **Platform** \> **Host Inventory**,
 and then click the host name to open the Host Details page. On the Host

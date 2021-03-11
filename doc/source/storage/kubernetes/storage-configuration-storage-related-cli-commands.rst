@@ -22,24 +22,24 @@ You can change the space allotted for the Ceph monitor, if required.
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system ceph-mon-modify <controller> ceph_mon_gib=<size>
+    ~(keystone_admin)]$ system ceph-mon-modify <controller> ceph_mon_gib=<size>
 
 where ``<partition\_size>`` is the size in GiB to use for the Ceph monitor.
 The value must be between 21 and 40 GiB.
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system ceph-mon-modify controller-0 ceph_mon_gib=21
+    ~(keystone_admin)]$ system ceph-mon-modify controller-0 ceph_mon_gib=21
 
-    +-------------+-------+--------------+------------+------+
-    | uuid        | ceph_ | hostname     | state      | task |
-    |             | mon_g |              |            |      |
-    |             | ib    |              |            |      |
-    +-------------+-------+--------------+------------+------+
-    | 069f106a... | 21    | compute-0    | configured | None |
-    | 4763139e... | 21    | controller-1 | configured | None |
-    | e39970e5... | 21    | controller-0 | configured | None |
-    +-------------+-------+--------------+------------+------+
+    +--------------------------------+-------+--------------+------------+------+
+    | uuid                           | ceph_ | hostname     | state      | task |
+    |                                | mon_g |              |            |      |
+    |                                | ib    |              |            |      |
+    +--------------------------------+-------+--------------+------------+------+
+    | 069f106-4f4d-8665-681f73d13dfb | 21    | compute-0    | configured | None |
+    | 4763139-4f4d-8665-681f73d13dfb | 21    | controller-1 | configured | None |
+    | e39970e-4f4d-8665-681f73d13dfb | 21    | controller-0 | configured | None |
+    +--------------------------------+-------+--------------+------------+------+
 
     NOTE: ceph_mon_gib for both controllers are changed.
 
@@ -61,30 +61,30 @@ To list the storage backend types installed on a system:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system storage-backend-list
+    ~(keystone_admin)]$ system storage-backend-list
 
-    +--------+-----------+----------+-------+--------------+---------+-----------------+
-    | uuid   |name       | backend  | state | task         | services| capabilities    |
-    +--------+-----------+----------+-------+--------------+---------+-----------------+
-    | 248a...|ceph-store | ceph     | config| resize-ceph..| None    |min_replication:1|
-    |        |           |          |       |              |         |replication: 2   |
-    | 76dd...|shared_serv| external | config| None         | glance  |                 |
-    |        |ices       |          |       |              |         |                 |
-    +--------+-----------+----------+-------+--------------+---------+-----------------+
+    +-------------------------------+------------+----------+-------+--------------+---------+-----------------+
+    | uuid                          | name       | backend  | state | task         | services| capabilities    |
+    +-------------------------------+------------+----------+-------+--------------+---------+-----------------+
+    | 248a106-4r54-3324-681f73d13dfb| ceph-store | ceph     | config| resize-ceph..| None    |min_replication:1|
+    |                               |            |          |       |              |         |replication: 2   |
+    | 76dd106-6yth-4356-681f73d13dfb| shared_serv| external | config| None         | glance  |                 |
+    |                               | ices       |          |       |              |         |                 |
+    +-------------------------------+------------+----------+-------+--------------+---------+-----------------+
 
 
 To show details for a storage backend:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system storage-backend-show <name>
+    ~(keystone_admin)]$ system storage-backend-show <name>
 
 
 For example:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system storage-backend-show ceph-store
+    ~(keystone_admin)]$ system storage-backend-show ceph-store
     +----------------------+--------------------------------------+
     | Property             | Value                                |
     +----------------------+--------------------------------------+
@@ -114,7 +114,7 @@ To add a backend:
 
 .. code-block:: none
 
-    ~(keystone_admin)$  system storage-backend-add   \
+    ~(keystone_admin)]$  system storage-backend-add   \
     [-s <services>] [-n <name>] [-t <tier_uuid>] \
     [-c <ceph_conf>] [--confirmed] [--ceph-mon-gib <ceph-mon-gib>] \
     <backend> [<parameter>=<value> [<parameter>=<value> ...]]
@@ -162,7 +162,7 @@ To modify a backend:
 
 .. code-block:: none
 
-    ~(keystone_admin)$  system storage-backend-modify [-s <services>] [-c <ceph_conf>] \
+    ~(keystone_admin)]$  system storage-backend-modify [-s <services>] [-c <ceph_conf>] \
     <backend_name_or_uuid> [<parameter>=<value> [<parameter>=<value> ...]]
 
 
@@ -170,7 +170,7 @@ To delete a failed backend configuration:
 
 .. code-block:: none
 
-    ~(keystone_admin)$  system storage-backend-delete <backend>
+    ~(keystone_admin)]$  system storage-backend-delete <backend>
 
 
 
@@ -190,26 +190,26 @@ To list storage tiers:
 
 .. code-block:: none
 
-    ~(keystone)admin)$ system storage-tier-list ceph_cluster
+    ~(keystone)admin)]$ system storage-tier-list ceph_cluster
 
-    +---------+---------+--------+--------------------------------------+
-    | uuid    | name    | status | backend_using                        |
-    +---------+---------+--------+--------------------------------------+
-    | acc8... | storage | in-use | 649830bf-b628-4170-b275-1f0b01cfc859 |
-    +---------+---------+--------+--------------------------------------+
+    +--------------------------------+---------+--------+--------------------------------------+
+    | uuid                           | name    | status | backend_using                        |
+    +--------------------------------+---------+--------+--------------------------------------+
+    | acc8706-6yth-4356-681f73d13dfb | storage | in-use | 649830bf-b628-4170-b275-1f0b01cfc859 |
+    +--------------------------------+---------+--------+--------------------------------------+
 
 To display information for a storage tier:
 
 .. code-block:: none
 
-    ~(keystone)admin)$ system storage-tier-show ceph_cluster <tier_name>
+    ~(keystone)admin)]$ system storage-tier-show ceph_cluster <tier_name>
 
 
 For example:
 
 .. code-block:: none
 
-    ~(keystone)admin)$ system storage-tier-show ceph_cluster <storage>
+    ~(keystone)admin)]$ system storage-tier-show ceph_cluster <storage>
 
     +--------------+--------------------------------------+
     | Property     | Value                                |
@@ -230,7 +230,7 @@ To add a storage tier:
 
 .. code-block:: none
 
-    ~(keystone)admin)$ system storage-tier-add ceph_cluster <tier_name>
+    ~(keystone)admin)]$ system storage-tier-add ceph_cluster <tier_name>
 
 
 To delete a tier that is not in use by a storage backend and does not have
@@ -238,7 +238,7 @@ OSDs assigned to it:
 
 .. code-block:: none
 
-    ~(keystone)admin)$ system storage-tier-delete <tier_name>
+    ~(keystone)admin)]$ system storage-tier-delete <tier_name>
 
 
 
@@ -253,26 +253,26 @@ storage space allotments on a host.
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system controllerfs-list
+    ~(keystone_admin)]$ system controllerfs-list
 
-    +-------+------------+-----+-----------------------+-------+-----------+
-    | UUID  | FS Name    | Size| Logical Volume        | Rep.. | State     |
-    |       |            | in  |                       |       |           |
-    |       |            | GiB |                       |       |           |
-    +-------+------------+-----+-----------------------+-------+-----------+
-    | d0e...| database   | 10  | pgsql-lv              | True  | available |
-    | 40d...| docker-dist| 16  | dockerdistribution-lv | True  | available |
-    | 20e...| etcd       | 5   | etcd-lv               | True  | available |
-    | 9e5...| extension  | 1   | extension-lv          | True  | available |
-    | 55b...| platform   | 10  | platform-lv           | True  | available |
-    +-------+------------+-----+-----------------------+-------+-----------+
+    +--------------------------------+------------+-----+-----------------------+-------+-----------+
+    | UUID                           | FS Name    | Size| Logical Volume        | Rep.. | State     |
+    |                                |            | in  |                       |       |           |
+    |                                |            | GiB |                       |       |           |
+    +--------------------------------+------------+-----+-----------------------+-------+-----------+
+    | d0e8706-6yth-4356-681f73d13dfb | database   | 10  | pgsql-lv              | True  | available |
+    | 40d8706-ssf4-4356-6814356145tf | docker-dist| 16  | dockerdistribution-lv | True  | available |
+    | 20e8706-87gf-4356-681f73d13dfb | etcd       | 5   | etcd-lv               | True  | available |
+    | 9e58706-sd42-4356-435673d1sd3b | extension  | 1   | extension-lv          | True  | available |
+    | 55b8706-sd13-4356-681f73d16yth | platform   | 10  | platform-lv           | True  | available |
+    +--------------------------------+------------+-----+-----------------------+-------+-----------+
 
 
 For a system with dedicated storage:
 
 .. code-block:: none
 
-    ~(keystone_admin)$  system storage-backend-show ceph-store
+    ~(keystone_admin)]$  system storage-backend-show ceph-store
 
     +----------------------+--------------------------------------+
     | Property             | Value                                |

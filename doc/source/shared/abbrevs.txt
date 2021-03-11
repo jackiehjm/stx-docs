@@ -89,6 +89,7 @@
 .. |ToR| replace:: :abbr:`ToR (Top-of-Rack)`
 .. |UDP| replace:: :abbr:`UDP (User Datagram Protocol)`
 .. |UEFI| replace:: :abbr:`UEFI (Unified Extensible Firmware Interface)`
+.. |UUID| replace:: :abbr:`UUID (Universally Unique Identifier)`
 .. |VF| replace:: :abbr:`VF (Virtual Function)`
 .. |VFs| replace:: :abbr:`VFs (Virtual Functions)`
 .. |VLAN| replace:: :abbr:`VLAN (Virtual Local Area Network)`

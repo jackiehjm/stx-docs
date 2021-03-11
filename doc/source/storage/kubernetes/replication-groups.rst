@@ -57,19 +57,19 @@ obtain information about replication groups:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system cluster-list
-    +-----------+--------------+------+----------+------------------+
-    | uuid      | cluster_uuid | type | name     | deployment_model |
-    +-----------+--------------+------+----------+------------------+
-    | 335766eb- | None         | ceph | ceph_clu | controller-nodes |
-    |           |              |      | ster     |                  |
-    |           |              |      |          |                  |
-    +-----------+--------------+------+----------+------------------+
+    ~(keystone_admin)]$ system cluster-list
+    +--------------------------------------+--------------+------+----------+------------------+
+    | uuid                                 | cluster_uuid | type | name     | deployment_model |
+    +--------------------------------------+--------------+------+----------+------------------+
+    | 335766eb-8564-4f4d-8665-681f73d13dfb | None         | ceph | ceph_clu | controller-nodes |
+    |                                      |              |      | ster     |                  |
+    |                                      |              |      |          |                  |
+    +--------------------------------------+--------------+------+----------+------------------+
 
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system cluster-show 335766eb-968e-44fc-9ca7-907f93c772a1
+    ~(keystone_admin)]$ system cluster-show 335766eb-968e-44fc-9ca7-907f93c772a1
 
     +--------------------+----------------------------------------+
     | Property           | Value                                  |

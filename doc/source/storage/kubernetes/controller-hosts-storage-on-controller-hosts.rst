@@ -119,7 +119,7 @@ following command increases the scratch filesystem size to 10 GB:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system host-fs-modify controller-1 scratch=10
+    ~(keystone_admin)]$ system host-fs-modify controller-1 scratch=10
 
 **Backup Storage**
 

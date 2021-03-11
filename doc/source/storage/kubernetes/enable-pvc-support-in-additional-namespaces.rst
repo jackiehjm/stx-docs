@@ -215,6 +215,4 @@ storage class.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ kubectl get secret ceph-pool-kube-rbd -n default -o yaml | grep -v '^\s*namespace:\s' | kubectl apply -n <namespace> -f -
-
-
+        ~(keystone_admin)$ kubectl get secret ceph-pool-kube-rbd -n default -o yaml | grep -v '^\s*namespace:\s' | kubectl apply -n <namespace> -f

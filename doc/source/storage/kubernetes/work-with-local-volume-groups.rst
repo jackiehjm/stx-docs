@@ -20,12 +20,9 @@ To manage the physical volumes that support local volume groups, see
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-lock <hostname>
+        ~(keystone_admin)]$ system host-lock <hostname>
 
-    where:
-
-    **<hostname>**
-        is the name or ID of the host.
+    <hostname> is the name or ID of the host.
 
 #.  Open the Storage page for the host.
 

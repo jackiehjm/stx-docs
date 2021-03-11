@@ -22,7 +22,7 @@ Disks, Partitions, Volumes, and Volume Groups
    work-with-local-volume-groups
    local-volume-groups-cli-commands
    increase-the-size-for-lvm-local-volumes-on-controller-filesystems
-   
+
 *************************
 Work with Disk Partitions
 *************************
@@ -60,6 +60,7 @@ Storage Backends
    
    storage-backends
    configure-the-internal-ceph-storage-backend
+   configure-ceph-file-system-for-internal-ceph-storage-backend
    configure-an-external-netapp-deployment-as-the-storage-backend
    configure-netapps-using-a-private-docker-registry
    uninstall-the-netapp-backend

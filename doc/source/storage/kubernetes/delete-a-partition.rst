@@ -26,9 +26,9 @@ where:
     is the host name or ID.
 
 **<partition>**
-    is the partition device path or UUID.
+    is the partition device path or |UUID|.
 
-For example, to delete a partition with the UUID
+For example, to delete a partition with the |UUID|
 9f93c549-e26c-4d4c-af71-fb84e3fcae63 from compute-1, do the following.
 
 .. code-block:: none

@@ -73,33 +73,55 @@ The default **rootfs** device is **/dev/sda**.
          | updated_at    | None                                           |
          +---------------+------------------------------------------------+
 
-#.  Check for free disk space on the new partition, once it is created.
+#.  Check the disk space on the new partition, once it is created.
 
     .. code-block:: none
 
         ~(keystone_admin)$ system host-disk-partition-list 1
+        ---------------------------------------------------------------------------------
+         uuid	 device_path	     device_node type_guid  type_name	 size_gib status
+        ---------------------------------------------------------------------------------
+         69b1b.. /dev/disk/by-path/.. /dev/sda6  ba5eba11.. LVM Phy.Vol..  22.0	 Ready
+        ---------------------------------------------------------------------------------
 
 #.  Assign the unused partition on **controller-0** as a physical volume to
     **cgts-vg** volume group.
+    
+    For example
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-pv-add controller-0 cgts-vg dev/sda
+        ~(keystone_admin)$ system host-pv-add controller-0 cgts-vg 69b1bb35-7326-4bcc-94d7-bef72f064f46
+        +---------------------------+---------------------------------------+
+        |    Property	            | Value                                 |
+        +---------------------------+---------------------------------------+
+        | uuid	                    | 626c450f-4472-485c-bae7-791768630e1e  |
+        | pv_state                  | adding                                |
+        | pv_type                   | partition                             |
+        | disk_or_part_uuid         | 69b1bb35-7326-4bcc-94d7-bef72f064f46  |
+        | disk_or_part_device_node  | /dev/sda6                             |
+        | disk_or_part_device_path  | /dev/disk/by-path/pci-0000:18:00.     |
+        |                           | 0-scsi-0:2:0:0-part6                  |
+        | lvm_pv_name	            | /dev/sda6                             |
+        | lvm_vg_name	            | cgts-vg                               |
+        | lvm_pv_uuid	            | None                                  |
+        | lvm_pv_size_gib           | 0.0                                   |
+        | lvm_pe_total	            | 0                                     |
+        | lvm_pe_alloced            | 0                                     |
+        | ihost_uuid	            | e579a4af-108b-4dc9-9975-0aa089d530d7  |
+        | created_at	            | 2020-12-09T17:22:19.666250+00:00      |
+        | updated_at	            | None                                  |
+        +---------------------------+---------------------------------------+
 
-#.  Assign the unused partition on **controller-1** as a physical volume to
-    **cgts-vg** volume group. You can also **swact** the hosts, and repeat the
-    procedure on **controller-1**.
+#.  To assign the unused partition on **controller-1** as a physical volume to
+    **cgts-vg** volume group, **swact** the hosts and repeat the procedure on
+    **controller-1**.
+            
+.. rubric:: |proc|
 
-    .. code-block:: none
-
-        ~(keystone_admin)$ system host-pv-add controller-1 cgts-vg /dev/sda
-
-
-.. rubric:: |postreq|
-
-After increasing the **cgts-vg** volume size, you can provision the
-filesystem storage. For more information about increasing filesystem
-allotments using the CLI, or the Horizon Web interface, see:
+After increasing the **cgts-vg** volume size, you can provision the filesystem
+storage. For more information about increasing filesystem allotments using the
+|CLI|, or the Horizon Web interface, see:
 
 .. _increase-the-size-for-lvm-local-volumes-on-controller-filesystems-ul-mxm-f1c-nmb:
 
