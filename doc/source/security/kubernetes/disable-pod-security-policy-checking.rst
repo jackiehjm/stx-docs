@@ -16,12 +16,12 @@ disable pod security policy checking.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system service-parameter-delete <uuid>
+        ~(keystone_admin)]$ system service-parameter-delete <uuid>
 
 #.  Apply the Kubernetes system parameters.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system service-parameter-apply kubernetes
+        ~(keystone_admin)]$ system service-parameter-apply kubernetes
 
 

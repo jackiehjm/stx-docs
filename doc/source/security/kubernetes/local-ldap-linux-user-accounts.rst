@@ -19,9 +19,10 @@ accounts \(in addition to sysadmin\) that can SSH to the nodes of the |prod|.
     allowed to SSH to the nodes of the |prod|. Non-admin level users should
     strictly use remote CLIs or remote web GUIs.
 
-Apart from being centrally managed, LDAP user accounts behave as any local
-user account. They can be added to the sudoers list, and can acquire
-Keystone administration credentials when executing on the active controller.
+Apart from being centrally managed, LDAP user accounts behave as any local user
+account. They can be added to the sudoers list, and can acquire Keystone
+administration credentials, Kubernetes kubectl, and helm administrative
+commands as the Kubernetes admin user, when executing on the active controller.
 
 LDAP user accounts share the following set of attributes:
 
@@ -50,6 +51,12 @@ LDAP user accounts share the following set of attributes:
     and are local to that host.
 
 
+.. _local-ldap-linux-user-accounts-section-kts-bvh-ynb:
+
+--------------------------
+Default LDAP User Accounts
+--------------------------
+
 The following LDAP user accounts are available by default on newly deployed
 hosts, regardless of their personality:
 
@@ -57,9 +64,9 @@ hosts, regardless of their personality:
     A cloud administrative account, comparable to the default **admin**
     account used in the web management interface.
 
-    This user account operates on a restricted Linux shell, with very
-    limited access to native Linux commands. However, the shell is
-    preconfigured to have administrative access to StarlingX commands.
+    This user account has access to all native Linux commands not requiring
+    root or sudo privileges, and it's shell is preconfigured to have
+    administrative access to StarlingX commands.
 
 **admin**
     A host administrative account. It has access to all native Linux
@@ -80,4 +87,6 @@ from the console ports of the hosts; no SSH access is allowed.
     **operator** account enables access to the cloud deployment only, without
     giving unabated sudo access to the entire system.
 
+.. seealso::
 
+    :ref:`Creating LDAP Linux Accounts <create-ldap-linux-accounts>`  

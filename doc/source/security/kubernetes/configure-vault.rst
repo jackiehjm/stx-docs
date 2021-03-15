@@ -133,7 +133,7 @@ The following steps use Vault's REST API and is run from controller-0.
 
         .. code-block:: none
 
-            $ curl --cacert /home/sysadmin/vault_ca.pem --header "X-Vault-Token:$ROOT_TOKEN" -H "Content-Type: application/json" -X POST -d '{"username":"pvtest","password":"Li69nux*"}' https://sva-vault.vault.svc.cluster.local:8200/v1/secret/basic-secret/helloworld
+            $ curl --cacert /home/sysadmin/vault_ca.pem --header "X-Vault-Token:$ROOT_TOKEN" -H "Content-Type: application/json" -X POST -d '{"username":"pvtest","password":"<password>"}' https://sva-vault.vault.svc.cluster.local:8200/v1/secret/basic-secret/helloworld
 
     #.  Verify the secret.
 

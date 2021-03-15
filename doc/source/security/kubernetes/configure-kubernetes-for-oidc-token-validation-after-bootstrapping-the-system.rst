@@ -30,7 +30,7 @@ you can do so at any time using service parameters.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system service-parameter-add kubernetes kube_apiserver oidc_client_id=stx-oidc-client-app
+        ~(keystone_admin)]$ system service-parameter-add kubernetes kube_apiserver oidc_client_id=stx-oidc-client-app
 
 
     -   oidc\_client\_id=<client>
@@ -67,7 +67,7 @@ you can do so at any time using service parameters.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system service-parameter-apply kubernetes
+        ~(keystone_admin)]$ system service-parameter-apply kubernetes
 
     For more information on |OIDC| Authentication for subclouds, see
     :ref:`Centralized OIDC Authentication Setup for Distributed Cloud

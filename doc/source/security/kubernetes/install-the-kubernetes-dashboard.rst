@@ -29,7 +29,7 @@ Dashboard.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ kubectl create namespace kubernetes-dashboard
+        ~(keystone_admin)]$ kubectl create namespace kubernetes-dashboard
 
 #.  Create a certificate for use by the Kubernetes Dashboard.
 
@@ -43,20 +43,20 @@ Dashboard.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ cd /home/sysadmin
-            ~(keystone_admin)$ mkdir -p /home/sysadmin/kube/dashboard/certs
+            ~(keystone_admin)]$ cd /home/sysadmin
+            ~(keystone_admin)]$ mkdir -p /home/sysadmin/kube/dashboard/certs
 
 
     #.  Create the certificate.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /home/sysadmin/kube/dashboard/certs/dashboard.key -out /home/sysadmin/kube/dashboard/certs/dashboard.crt -subj "/CN=<FQDN>"
+            ~(keystone_admin)]$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /home/sysadmin/kube/dashboard/certs/dashboard.key -out /home/sysadmin/kube/dashboard/certs/dashboard.crt -subj "/CN=<FQDN>"
 
         where:
         **<FQDN>**
 
-        The fully qualified domain name for the |prod| cluster's OAM floating IP.
+        The fully qualified domain name for the |prod| cluster's |OAM| floating IP.
 
     #.  Create a kubernetes secret for holding the certificate and private key.
 
@@ -73,7 +73,7 @@ Dashboard.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+            ~(keystone_admin)]$ wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
 
     #.  Edit the file.
 
@@ -98,18 +98,18 @@ Dashboard.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ kubectl apply -f recommended.yaml
+        ~(keystone_admin)]$ kubectl apply -f recommended.yaml
 
 #.  Patch the kubernetes dashboard service to type=NodePort and port=30000.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ kubectl patch service kubernetes-dashboard -n kubernetes-dashboard -p '{"spec":{"type":"NodePort","ports":[{"port":443, "nodePort":30000}]}}'
+        ~(keystone_admin)]$ kubectl patch service kubernetes-dashboard -n kubernetes-dashboard -p '{"spec":{"type":"NodePort","ports":[{"port":443, "nodePort":30000}]}}'
 
 #.  Test the Kubernetes Dashboard deployment.
 
     The Kubernetes Dashboard is listening at port 30000 on the machine
-    defined above for |prod| cluster's OAM floating IP.
+    defined above for |prod| cluster's |OAM| floating IP.
 
 
     #.  Access the dashboard at https://<fqdn>:30000

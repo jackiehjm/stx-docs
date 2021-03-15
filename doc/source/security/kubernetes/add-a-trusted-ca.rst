@@ -39,7 +39,7 @@ For example:
 
 .. code-block:: none
 
-    apiserver_cert_sans: <trusted-ca-bundle-pem-file>
+    ssl_ca_cert: /path/to/ssl_ca_cert_file
 
 The *ssl\_ca\_cert* value is the absolute path of the file containing the
 |CA| certificate\(s\) to trust. The certificate\(s\) must be in |PEM| format
@@ -62,14 +62,14 @@ From the command line, run the :command:`certificate-install` command.
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system certificate-install -m ssl_ca <trusted-ca-bundle-pem-file>
+    ~(keystone_admin)]$ system certificate-install -m ssl_ca <trusted-ca-bundle-pem-file>
 
 
 For example:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system certificate-install -m ssl_ca external-registry-ca-crt.pem
+    ~(keystone_admin)]$ system certificate-install -m ssl_ca external-registry-ca-crt.pem
     WARNING: For security reasons, the original certificate,
     containing the private key, will be removed,
     once the private key is processed.
@@ -100,7 +100,7 @@ running the following command:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system certificate-list
+    ~(keystone_admin)]$ system certificate-list
 
 where, all entries with certtype = ssl\_ca are trusted |CA| certificates.
 
@@ -109,7 +109,7 @@ running the following command:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system certificate-uninstall -m ssl_ca <UUID>
+    ~(keystone_admin)]$ system certificate-uninstall -m ssl_ca <UUID>
 
 where, <UUID> is the UUID of the ssl\_ca certtype to be removed.
 

@@ -27,6 +27,6 @@ Operational complexity:
 
 -   This must be done for each node before starting the installation.
 
-For more information, see :ref:`UEFI Secure Boot
+For more information, see the section :ref:`UEFI Secure Boot
 <overview-of-uefi-secure-boot>`.
 

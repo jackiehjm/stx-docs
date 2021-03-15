@@ -82,22 +82,22 @@ and uploaded by default.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ kubectl create secret tls local-dex.tls --cert=ssl/dex-cert.pem --key=ssl/dex-key.pem -n kube-system
+        ~(keystone_admin)]$ kubectl create secret tls local-dex.tls --cert=ssl/dex-cert.pem --key=ssl/dex-key.pem -n kube-system
 
-        ~(keystone_admin)$ kubectl create secret generic dex-client-secret --from-file=/home/sysadmin/ssl/dex-ca.pem -n kube-system
+        ~(keystone_admin)]$ kubectl create secret generic dex-client-secret --from-file=/home/sysadmin/ssl/dex-ca.pem -n kube-system
 
     Create the secret **wadcert** with the |CA|'s certificate that signed
     the Active Directory's certificate using the following command:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ kubectl create secret generic wadcert --from-file=ssl/AD_CA.cer -n kube-system
+        ~(keystone_admin)]$ kubectl create secret generic wadcert --from-file=ssl/AD_CA.cer -n kube-system
 
 #.  Specify user overrides for **oidc-auth-apps** application, by using the following command:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system helm-override-update oidc-auth-apps dex kube-system --values /home/sysadmin/dex-overrides.yaml
+        ~(keystone_admin)]$ system helm-override-update oidc-auth-apps dex kube-system --values /home/sysadmin/dex-overrides.yaml
 
     The dex-overrides.yaml file contains the desired dex helm chart overrides
     \(that is, the LDAP connector configuration for the Active Directory
@@ -119,9 +119,44 @@ and uploaded by default.
     Directory service login information \(that is, bindDN, and bindPW\), and
     example :command:`userSearch`, and :command:`groupSearch` clauses.
 
+    \(Optional\) There is a default secret in the dex configuration for
+    **staticClients**. You can change this using helm overrides. For example,
+    to change the secret, first run the following command to see the default
+    settings. In this example, 10.10.10.2 is the |prod-long| |OAM| floating IP
+    address.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system helm-override-show oidc-auth-apps dex kube-system
+        
+        config:
+          staticClients:
+          - id: stx-oidc-client-app
+            name: STX OIDC Client app
+            redirectURIs: ['https://10.10.10.2:30555/callback']
+            secret: St8rlingX
+
+    Change the secret from the output and copy the entire configuration section
+    shown above in to your dex overrides file shown in the example below.
+
+    .. note::
+        Do NOT forget to include the id, name, and redirectURIs parameters.
+
+    .. note::
+        There is an internal **client\_secret** that is used between the
+        oidc-client container and the dex container. It is recommended that you
+        configure a unique, more secure **client\_secret** by specifying the
+        value in the dex overrides file, as shown in the example below.
+        
     .. code-block:: none
 
         config:
+          staticClients:
+          - id: stx-oidc-client-app
+            name: STX OIDC Client app
+            redirectURIs: ['<OAM floating IP address>/callback']
+            secret: BetterSecret 
+          client_secret: BetterSecret
           expiry:
             idTokens: "10h"
           connectors:
@@ -134,7 +169,7 @@ and uploaded by default.
               insecureNoSSL: false
               insecureSkipVerify: false
               bindDN: cn=Administrator,cn=Users,dc=cumulus,dc=wrs,dc=com
-              bindPW: Li69nux*
+              bindPW: [<password>]
               usernamePrompt: Username
               userSearch:
                 baseDN: ou=Users,ou=Titanium,dc=cumulus,dc=wrs,dc=com
@@ -155,7 +190,7 @@ and uploaded by default.
             secretName: wadcert
         extraVolumeMounts:
         - name: certdir
-          mountPath: /etc/ssl/certs/adcer
+          mountPath: /etc/ssl/certs/adcert
 
     If more than one Windows Active Directory service is required for
     authenticating the different users of the |prod|, multiple '**ldap**'
@@ -170,11 +205,35 @@ and uploaded by default.
     Whenever you use multiple '**ldap**' type connectors, ensure you use
     unique '**name:**' and '**id:**' parameters for each connector.
 
+#.  An override in the secrets in the dex helm chart must be accompanied by an
+    override in the oidc-client helm chart.
+
+    The following override is sufficient for changing the secret in the
+    /home/sysadmin/oidc-client-overrides.yaml file.
+
+    .. code-block:: none
+  
+        config:
+          client_secret: BetterSecret
+
+    Apply the oidc-client overrides using the following command:
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system helm-override-update oidc-auth-apps oidc-client kube-system --values /home/sysadmin/oidc-client-overrides.yaml
+
+    .. note::
+  
+        If you need to manually override the secrets, the client\_secret in the
+        oidc-client overrides must match the staticClients secret and
+        client\_secret in the dex overrides, otherwise the oidc-auth |CLI|
+        client will not function.
+
 #.  Use the :command:`system application-apply` command to apply the
     configuration:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-apply oidc-auth-apps
+        ~(keystone_admin)]$ system application-apply oidc-auth-apps
 
 

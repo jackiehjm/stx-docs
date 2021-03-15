@@ -58,7 +58,7 @@ You will need the following information from your |prod| administrator:
             % sudo apt-get update
             % sudo apt-get install -y kubectl
 
-	.. _security-installing-kubectl-and-helm-clients-directly-on-a-host-local-configuration-context:
+	.. _security-install-kubectl-and-helm-clients-directly-on-a-host-local-configuration-context:
 
     #.  Set up the local configuration and context.
 

@@ -32,7 +32,7 @@ You can change the duration of the lockout using the following CLI command:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system service-parameter-modify horizon auth \
+    ~(keystone_admin)]$ system service-parameter-modify horizon auth \
     lockout_seconds=<duration>
 
 where <duration> is the time in seconds.
@@ -42,7 +42,7 @@ using the following CLI command:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system service-parameter-modify horizon auth \
+    ~(keystone_admin)]$ system service-parameter-modify horizon auth \
     lockout_retries=<attempts>
 
 where <attempts> is the number of allowed retries.
@@ -51,7 +51,7 @@ For the changes to take effect, you must apply them:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system service-parameter-apply horizon
+    ~(keystone_admin)]$ system service-parameter-apply horizon
 
 Allow about 30 seconds after applying the changes for the Web service to
 restart.

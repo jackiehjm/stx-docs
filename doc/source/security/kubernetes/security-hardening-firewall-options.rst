@@ -18,13 +18,13 @@ A minimal set of rules is always applied before any custom rules, as follows:
 
 .. _firewall-options-ul-gjq-k1g-mmb:
 
--   Non-OAM traffic is always accepted.
+-   Non-|OAM| traffic is always accepted.
 
 -   Egress traffic is always accepted.
 
 -   |SM| traffic is always accepted.
 
--   SSH traffic is always accepted.
+-   |SSH| traffic is always accepted.
 
 .. note::
     It is recommended to disable port 80 when HTTPS is enabled for external
@@ -35,7 +35,7 @@ Operational complexity:
 
 .. _firewall-options-ul-hjq-k1g-mmb:
 
--   |prod| provides OAM firewall rules through Kubernetes Network Policies.
+-   |prod| provides |OAM| firewall rules through Kubernetes Network Policies.
     For more information, see :ref:`Firewall Options
     <security-firewall-options>`.
 
@@ -47,9 +47,9 @@ Operational complexity:
 Default Firewall Rules
 ----------------------
 
-|prod| applies these default firewall rules on the OAM network. The default
+|prod| applies these default firewall rules on the |OAM| network. The default
 rules are recommended for most applications.
 
-For a complete listing, see :ref:`Default Firewall Rules
+For a complete listings, see :ref:`Default Firewall Rules
 <security-default-firewall-rules>`.
 

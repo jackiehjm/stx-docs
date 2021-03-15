@@ -16,7 +16,7 @@ You can view the configured firewall rules with the following command:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ kubectl describe globalnetworkpolicy
+    ~(keystone_admin)]$ kubectl describe globalnetworkpolicy
     Name:         controller-oam-if-gnp
     Namespace:
     Labels:       <none>
@@ -85,7 +85,7 @@ You can view the configured firewall rules with the following command:
 Where:
 
 
-.. _security-default-firewall-rules-d477e47:
+.. _security-default-firewall-rules-d488e47:
 
 
 .. table::

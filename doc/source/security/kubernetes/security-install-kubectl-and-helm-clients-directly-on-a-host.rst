@@ -141,6 +141,9 @@ configuration is required in order to use :command:`helm`.
     :ref:`Configure Container-backed Remote CLIs and Clients
     <security-configure-container-backed-remote-clis-and-clients>`
 
+    :ref:`Using Container-backed Remote CLIs and Clients
+    <using-container-backed-remote-clis-and-clients>`
+
     :ref:`Configure Remote Helm Client for Non-Admin Users
     <configure-remote-helm-client-for-non-admin-users>`
 

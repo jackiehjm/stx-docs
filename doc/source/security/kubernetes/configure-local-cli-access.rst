@@ -55,6 +55,18 @@ required system maintenance, administration and troubleshooting tasks.
         % echo "export KUBECONFIG=~/.kube/config" >> ~/.profile
         % exit
 
+    .. note::
+        The command
+
+        .. code-block:: none
+
+            echo "export KUBECONFIG=~/.kube/config" >> ~/.profile
+
+        shown above is specific to CentOS. Substitute the correct syntax for your operating system. The following alternative is for Ubuntu:
+
+        .. code-block:: none
+
+            echo "export KUBECONFIG=~/.kube/config" >> ~/.bashrc
 
 #.  Confirm that the <KUBECONFIG> environment variable is set correctly
     and that :command:`kubectl` commands are functioning properly.
@@ -80,7 +92,7 @@ For example:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system host-list
+    ~(keystone_admin)]$ system host-list
     +----+--------------+-------------+----------------+-------------+--------------+
     | id | hostname     | personality | administrative | operational | availability |
     +----+--------------+-------------+----------------+-------------+--------------+
@@ -104,7 +116,7 @@ For example:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ fm alarm-list
+    ~(keystone_admin)]$ fm alarm-list
 
     +-------+---------------+---------------------+----------+---------------+
     | Alarm | Reason Text   | Entity ID           | Severity | Time Stamp    |
@@ -125,10 +137,10 @@ For example:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ kubectl get nodes
+    ~(keystone_admin)]$ kubectl get nodes
     NAME           STATUS   ROLES    AGE     VERSION
     controller-0   Ready    master   5d19h   v1.13.5
-    ~(keystone_admin)$ kubectl get pods
+    ~(keystone_admin)]$ kubectl get pods
     NAME                                              READY   STATUS    RESTARTS   AGE
     dashboard-kubernetes-dashboard-7749d97f95-bzp5w   1/1     Running   0          3d18h
 

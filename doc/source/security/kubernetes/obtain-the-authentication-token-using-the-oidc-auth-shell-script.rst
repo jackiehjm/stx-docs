@@ -59,13 +59,13 @@ credential for the user in the **kubectl** config file.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ oidc-auth -c <ip> -u <username>
+            ~(keystone_admin)]$ oidc-auth -c <ip> -u <username>
 
         For example,
 
         .. code-block:: none
 
-            ~(keystone_admin)$ oidc-auth -c <OAM_ip_address> -u testuser
+            ~(keystone_admin)]$ oidc-auth -c <OAM_ip_address> -u testuser
             Password:
             Login succeeded.
             Updating kubectl config ...
@@ -75,7 +75,7 @@ credential for the user in the **kubectl** config file.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ oidc-auth -b <connector-id> -c <ip> -u <username>
+            ~(keystone_admin)]$ oidc-auth -b <connector-id> -c <ip> -u <username>
 
 
 

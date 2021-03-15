@@ -6,6 +6,10 @@
 Password Recovery
 =================
 
+.. rubric:: |context|
+
+This section describes how to change or reset a Keystone user password.
+
 .. rubric:: |proc|
 
 -   Do one of the following to change a Keystone admin user password at any
@@ -18,7 +22,7 @@ Password Recovery
 
         .. code-block:: none
 
-            ~(keystone_admin)$ openstack user password set
+            ~(keystone_admin)]$ openstack user password set
 
         .. warning::
             Both controller nodes must be locked and unlocked after changing
@@ -30,7 +34,7 @@ Password Recovery
 
     .. code-block:: none
 
-        ~(keystone_admin)$ openstack user set --password <temp_password> <user>
+        ~(keystone_admin)]$ openstack user set --password <temp_password> <user>
 
     where <user> is the username and <temp\_password> is a temporary password.
 
