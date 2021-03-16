@@ -83,14 +83,14 @@ conditions are in place:
     network when powered on. If this is not the case, you must configure each
     host manually for network boot immediately after powering it on.
 
--   If you are restoring a Distributed Cloud subcloud first, ensure it is in
+-   If you are restoring a |prod-dc| subcloud first, ensure it is in
     an **unmanaged** state on the Central Cloud \(SystemController\) by using
     the following commands:
 
     .. code-block:: none
 
         $ source /etc/platform/openrc
-        ~(keystone_admin)$ dcmanager subcloud unmanage <subcloud-name>
+        ~(keystone_admin)]$ dcmanager subcloud unmanage <subcloud-name>
 
     where <subcloud-name> is the name of the subcloud to be unmanaged.
 
@@ -117,17 +117,20 @@ conditions are in place:
 
 #.  Install network connectivity required for the subcloud.
 
-#.  Ensure the backup file is available on the controller. Run the Ansible
-    Restore playbook. For more information on restoring the back up file, see
-    :ref:`Run Restore Playbook Locally on the Controller
+#.  Ensure that the backup file are available on the controller. Run both
+    Ansible Restore playbooks, restore\_platform.yml and restore\_user\_images.yml.
+    For more information on restoring the back up file, see :ref:`Run Restore
+    Playbook Locally on the Controller
     <running-restore-playbook-locally-on-the-controller>`, and :ref:`Run
     Ansible Restore Playbook Remotely
     <system-backup-running-ansible-restore-playbook-remotely>`.
 
     .. note::
-        The backup file contains the system data and updates.
+        The backup files contains the system data and updates.
 
-#.  Update the controller's software to the previous updating level.
+#.  If the backup file contains patches, Ansible Restore playbook
+    restore\_platform.yml will apply the patches and prompt you to reboot the
+    system, you will need to re-run Ansible Restore playbook
 
     The current software version on the controller is compared against the
     version available in the backup file. If the backed-up version includes
@@ -146,13 +149,16 @@ conditions are in place:
         LIBCUNIT_CONTROLLER_ONLY   Applied    20.06      n/a
         STORAGECONFIG              Applied    20.06      n/a
 
-    Rerun the Ansible Restore Playbook.
+    Rerun the Ansible Playbook if there were patches applied and you were
+    prompted to reboot the system.
 
-#.  Unlock Controller-0.
+#.  Restore the local registry using the file restore\_user\_images.yml.
+
+    This must be done before unlocking controller-0.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-unlock controller-0
+        ~(keystone_admin)]$ system host-unlock controller-0
 
     After you unlock controller-0, storage nodes become available and Ceph
     becomes operational.
@@ -165,37 +171,22 @@ conditions are in place:
 
         $ source /etc/platform/openrc
 
-#.  For Simplex systems only, if :command:`wipe_ceph_osds` is set to false, 
-    wait for the apps to transition from 'restore-requested' to the 'applied'
-    state.
+#.  Apps transition from 'restore-requested' to 'applying' state, and
+    from 'applying' state to 'applied' state.
 
-    If the apps are in 'apply-failed' state, ensure access to the docker
-    registry, and execute the following command for all custom applications
-    that need to be restored:
+    If apps are transitioned from 'applying' to 'restore-requested' state,
+    ensure there is network access and access to the docker registry.
 
-    .. code-block:: none
+    The process is repeated once per minute until all apps are transitioned to
+    'applied'.
 
-        ~(keystone_admin)$ system application-apply <application>
-
-    For example, execute the following to restore stx-openstack.
-
-    .. code-block:: none
-
-        ~(keystone_admin)$ system application-apply stx-openstack
-
-    .. note::
-        If you have a Simplex system, this is the last step in the process.
-
-        Wait for controller-0 to be in the unlocked, enabled, and available
-        state.
-
-#. If you have a Duplex system, restore the controller-1 host.
+#. If you have a Duplex system, restore the **controller-1** host.
 
    #.  List the current state of the hosts.
 
        .. code-block:: none
 
-            ~(keystone_admin)$ system host-list
+            ~(keystone_admin)]$ system host-list
             +----+-------------+------------+---------------+-----------+------------+
             | id | hostname    | personality| administrative|operational|availability|
             +----+-------------+------------+---------------+-----------+------------+
@@ -220,7 +211,7 @@ conditions are in place:
 
        .. code-block:: none
 
-            ~(keystone_admin)$ system host-unlock controller-1
+            ~(keystone_admin)]$ system host-unlock controller-1
             +-----------------+--------------------------------------+
             | Property        | Value                                |
             +-----------------+--------------------------------------+
@@ -235,7 +226,7 @@ conditions are in place:
 
        .. code-block:: none
 
-            ~(keystone_admin)$ system host-list
+            ~(keystone_admin)]$ system host-list
             +----+-------------+------------+---------------+-----------+------------+
             | id | hostname    | personality| administrative|operational|availability|
             +----+-------------+------------+---------------+-----------+------------+
@@ -247,9 +238,9 @@ conditions are in place:
             | 6  | compute-1   | worker     | locked        |disabled   |offline     |
             +----+-------------+------------+---------------+-----------+------------+
 
-#. Restore storage configuration. If :command:`wipe_ceph_osds` is set to
-   **True**, follow the same procedure used to restore controller-1,
-   beginning with host storage-0 and proceeding in sequence.
+#. Restore storage configuration. If :command:`wipe\_ceph\_osds` is set to
+   **True**, follow the same procedure used to restore **controller-1**,
+   beginning with host **storage-0** and proceeding in sequence.
 
    .. note::
       This step should be performed ONLY if you are restoring storage hosts.
@@ -261,12 +252,12 @@ conditions are in place:
        the restore procedure without interruption.
 
        Standard with Controller Storage install or reinstall depends on the
-       :command:`wipe_ceph_osds` configuration:
+       :command:`wipe\_ceph\_osds` configuration:
 
-       #.  If :command:`wipe_ceph_osds` is set to **true**, reinstall the
+       #.  If :command:`wipe\_ceph\_osds` is set to **true**, reinstall the
            storage hosts.
 
-       #.  If :command:`wipe_ceph_osds` is set to **false** \(default
+       #.  If :command:`wipe\_ceph\_osds` is set to **false** \(default
            option\), do not reinstall the storage hosts.
 
            .. caution::
@@ -280,7 +271,7 @@ conditions are in place:
 
        .. code-block:: none
 
-            ~(keystone_admin)$ ceph -s
+            ~(keystone_admin)]$ ceph -s
             cluster:
                 id:     3361e4ef-b0b3-4f94-97c6-b384f416768d
                 health: HEALTH_OK
@@ -316,41 +307,29 @@ conditions are in place:
    Restore the compute \(worker\) hosts following the same procedure used to
    restore controller-1.
 
-#. Unlock the compute hosts. The restore is complete.
+#. Allow Calico and Coredns pods to be recovered by Kubernetes. They should
+   all be in 'N/N Running' state.
 
    The state of the hosts when the restore operation is complete is as
    follows:
 
    .. code-block:: none
 
-        ~(keystone_admin)$ system host-list
-        +----+-------------+------------+---------------+-----------+------------+
-        | id | hostname    | personality| administrative|operational|availability|
-        +----+-------------+------------+---------------+-----------+------------+
-        | 1  | controller-0| controller | unlocked      |enabled    |available   |
-        | 2  | controller-1| controller | unlocked      |enabled    |available   |
-        | 3  | storage-0   | storage    | unlocked      |enabled    |available   |
-        | 4  | storage-1   | storage    | unlocked      |enabled    |available   |
-        | 5  | compute-0   | worker     | unlocked      |enabled    |available   |
-        | 6  | compute-1   | worker     | unlocked      |enabled    |available   |
-        +----+-------------+------------+---------------+-----------+------------+
+        ~(keystone_admin)]$ kubectl get pods -n kube-system | grep -e calico -e coredns 
+        calico-kube-controllers-5cd4695574-d7zwt  1/1     Running
+        calico-node-6km72                         1/1     Running
+        calico-node-c7xnd                         1/1     Running
+        coredns-6d64d47ff4-99nhq                  1/1     Running
+        coredns-6d64d47ff4-nhh95                  1/1     Running
 
-#. For Duplex systems only, if :command:`wipe_ceph_osds` is set to false, wait
-   for the apps to transition from 'restore-requested' to the 'applied' state.
-
-   If the apps are in 'apply-failed' state, ensure access to the docker
-   registry, and execute the following command for all custom applications
-   that need to be restored:
+#. Run the :command:`system restore-complete` command.
 
    .. code-block:: none
 
-       ~(keystone_admin)$ system application-apply <application>
+       ~(keystone_admin)]$ system restore-complete
 
-   For example, execute the following to restore stx-openstack.
-
-   .. code-block:: none
-
-      ~(keystone_admin)$ system application-apply stx-openstack
+#. Alarms 750.006 alarms disappear one at a time, as the apps are auto
+applied.
 
 .. rubric:: |postreq|
 
@@ -359,14 +338,14 @@ conditions are in place:
 -   Passwords for local user accounts must be restored manually since they
     are not included as part of the backup and restore procedures.
 
--   After restoring a Distributed Cloud subcloud, you need to bring it back
+-   After restoring a |prod-dc| subcloud, you need to bring it back
     to the **managed** state on the Central Cloud \(SystemController\), by
     using the following commands:
 
     .. code-block:: none
 
         $ source /etc/platform/openrc
-        ~(keystone_admin)$ dcmanager subcloud manage <subcloud-name>
+        ~(keystone_admin)]$ dcmanager subcloud manage <subcloud-name>
 
     where <subcloud-name> is the name of the subcloud to be managed.
 

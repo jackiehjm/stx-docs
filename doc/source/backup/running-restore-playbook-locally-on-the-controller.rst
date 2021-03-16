@@ -16,7 +16,7 @@ following command to run the Ansible Restore playbook:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_platform.yml -e "initial_backup_dir=<location_of_tarball ansible_become_pass=<admin_password> admin_password=<admin_password backup_filename=<backup_filename> wipe_ceph_osds=<true/false>"
+    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_platform.yml -e "initial_backup_dir=<location_of_tarball ansible_become_pass=<admin_password> admin_password=<admin_password backup_filename=<backup_filename> wipe_ceph_osds=<true/false>"
 
 The |prod| restore supports two optional modes, keeping the Ceph cluster data
 intact or wiping the Ceph cluster.
@@ -43,7 +43,7 @@ intact or wiping the Ceph cluster.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_platform.yml -e "initial_backup_dir=/home/sysadmin ansible_become_pass=St0rlingX* admin_password=St0rlingX* backup_filename=localhost_platform_backup_2020_07_27_07_48_48.tgz wipe_ceph_osds=true"
+        ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_platform.yml -e "initial_backup_dir=/home/sysadmin ansible_become_pass=St0rlingX* admin_password=St0rlingX* backup_filename=localhost_platform_backup_2020_07_27_07_48_48.tgz wipe_ceph_osds=true"
 
     .. note::
         If the backup contains patches, Ansible Restore playbook will apply
@@ -63,4 +63,4 @@ For example:
 
 .. code-block:: none
 
-    ~(keystone_admin)$  ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_user_images.yml -e "initial_backup_dir=/home/sysadmin backup_filename=localhost_docker_local_registry_backup_2020_07_15_21_24_22.tgz ansible_become_pass=St0rlingX*"
+    ~(keystone_admin)]$  ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_user_images.yml -e "initial_backup_dir=/home/sysadmin backup_filename=localhost_docker_local_registry_backup_2020_07_15_21_24_22.tgz ansible_become_pass=St0rlingX*"

@@ -101,7 +101,7 @@ The backup contains details as listed below:
 
         -   item=/opt/extension
 
-    -   dc-vault filesystem for Distributed Cloud system-controller:
+    -   dc-vault filesystem for |prod-dc| system-controller:
 
         -   item=/opt/dc-vault
 
