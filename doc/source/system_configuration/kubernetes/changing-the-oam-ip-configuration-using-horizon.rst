@@ -22,6 +22,11 @@ interface or the CLI. You can use IPv4 or IPv6 addresses.
     be required. In addition, |VNC| console access to worker-node hosts is
     interrupted until the hosts are locked and unlocked.
 
+    Once the |OAM| IP addresses are changed, any existing server certificates
+    \(ssl, docker\_registry, OpenStack etc.\) that have the old |OAM| IP
+    addresses in their |SANs| must be updated with new certificates reflecting
+    the new addresses.
+
 .. rubric:: |prereq|
 
 Before changing the |OAM| IP configuration, review the Fault Management page

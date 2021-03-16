@@ -13,7 +13,7 @@ These policies are defined using yaml syntax. For example:
 
 .. code-block:: yaml
 
-    ~(keystone_admin)$ kubectl get globalnetworkpolicies.crd.projectcalico.org -o yaml
+    ~(keystone_admin)]$ kubectl get globalnetworkpolicies.crd.projectcalico.org -o yaml
     apiVersion: v1
     items:
     - apiVersion: crd.projectcalico.org/v1

@@ -26,7 +26,7 @@ Use the following command to list the helm repositories:
 
 .. parsed-literal::
 
-    ~(keystone_admin)$ helm repo list
+    ~(keystone_admin)]$ helm repo list
     NAME            URL
     stable          https://kubernetes-charts.storage.googleapis.com
     local           http://127.0.0.1:8879/charts

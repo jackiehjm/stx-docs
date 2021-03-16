@@ -17,7 +17,7 @@ To view the existing |NTP| server configuration, use the following command.
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system ntp-show
+    ~(keystone_admin)]$ system ntp-show
     +--------------+----------------------------------------------+
     | Property     | Value                                        |
     +--------------+----------------------------------------------+
@@ -38,14 +38,14 @@ ntpservers option takes a comma-delimited list of |NTP| server names.
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system ntp-modify \
+    ~(keystone_admin)]$ system ntp-modify \
     ntpservers=<server_1[,server_2][,server_3]>
 
 For example:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org,3.pool.ntp.org
+    ~(keystone_admin)]$ system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org,3.pool.ntp.org
 
 **NTP Service**
 
@@ -63,7 +63,7 @@ Use the following command to change the clock synchronization on the host:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system host-update controller-0 clock_synchronization=ntp
+    ~(keystone_admin)]$ system host-update controller-0 clock_synchronization=ntp
     +-----------------------+--------------------------------------------+
     | Property              | Value                                      |
     +-----------------------+--------------------------------------------+
@@ -113,7 +113,7 @@ To view the |NTP| service configuration, use the following command:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system host-show controller-0
+    ~(keystone_admin)]$ system host-show controller-0
     +-----------------------+------------------------------------------------+
     | Property              | Value                                          |
     +-----------------------+------------------------------------------------+

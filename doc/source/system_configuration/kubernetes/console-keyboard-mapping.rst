@@ -10,8 +10,18 @@ You can change the keyboard layout settings used on the text console for
 a |prod| node.
 
 You can log in to the console using the US keyboard layout and then change
-the keyboard settings, if required. Use the following CLI commands to change
+the keyboard settings, if required. Use the following |CLI| commands to change
 the keyboard layout settings on your keyboard:
+
+.. note::
+    When you log in to |prod| for the first time using the default US keyboard
+    layout, you are prompted to provide a new password. The new password you
+    enter may get mapped differently than you expect, since you are not using a
+    US keyboard. You should use as simple a password as possible in order to
+    avoid any unexpected key mappings. Then, after you have successfully logged
+    in to |prod| and updated your keyboard layout, you should update your
+    sysadmin password \(':command:`passwd sysadmin`'\) to a more secure
+    password.
 
 To display the current console keyboard settings that are configured for the
 virtual console:

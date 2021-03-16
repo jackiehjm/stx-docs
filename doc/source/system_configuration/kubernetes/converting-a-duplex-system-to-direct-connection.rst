@@ -23,7 +23,7 @@ it at any time. You must use the CLI to make the change.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system modify --system_mode=duplex-direct
+        ~(keystone_admin)]$ system modify --system_mode=duplex-direct
 
     This raises **Config-out-of-date** alarm messages on both controllers.
 

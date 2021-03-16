@@ -98,8 +98,8 @@ commissioned system:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-lock worker-0
-        ~(keystone_admin)$ system host-unlock worker-0
+        ~(keystone_admin)]$ system host-lock worker-0
+        ~(keystone_admin)]$ system host-unlock worker-0
 
 .. rubric:: |result|
 
