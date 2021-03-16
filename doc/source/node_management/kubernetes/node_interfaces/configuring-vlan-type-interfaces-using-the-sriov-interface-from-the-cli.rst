@@ -1,26 +1,40 @@
 
-.. ecd1551800000867
-.. _configuring-vlan-interfaces-using-the-cli:
+.. wsr1614111675912
+.. _configuring-vlan-type-interfaces-using-the-sriov-interface-from-the-cli:
 
-=======================================
-Configure VLAN Interfaces Using the CLI
-=======================================
+========================================================================
+Configure VLAN Type Interfaces Using the SR-IOV Interface From the CLI
+========================================================================
 
 You can use the CLI to attach |VLAN| interfaces to networks.
 
+.. rubric:: |context|
+
+.. rubric:: |prereq|
+
+You must create an |SRIOV| interface before you can provision a vlan interface.
+For more information, see :ref:`Provisioning SR-IOV VF Interfaces using the CLI
+<provisioning-sr-iov-vf-interfaces-using-the-cli>`.
+
 .. rubric:: |proc|
 
-.. _configuring-vlan-interfaces-using-the-cli-steps-rf5-5wh-lkb:
+.. _configuring-vlan-type-interfaces-using-the-sriov-interface-from-the-cli-steps-rf5-5wh-lkb:
+
+#.  Lock the host.
+
+    .. code-block:: none
+
+        ~(keystone_admin)$ host-lock controller-0
 
 #.  List the attached interfaces.
 
-    To list all interfaces, use the :command:`system host-if-list` command
-    and include the ``-a`` flag.
+    To list all interfaces, use the :command:`system host-if-list` command and
+    include the ``-a`` flag.
 
     .. code-block:: none
 
         ~(keystone_admin)$ system host-if-list -a controller-0
-         +-------------+-----------+-----------+----------+------+----------------+-------------+----------------------------+---------------------------+
+        +-------------+-----------+-----------+----------+------+----------------+-------------+----------------------------+---------------------------+
         | uuid        | name      | class     | type     | vlan | ports          | uses i/f    | used by i/f                | attributes                |
         |             |           |           |          | id   |                |             |                            |                           |
         +-------------+-----------+-----------+----------+------+----------------+-------------+----------------------------+---------------------------+
@@ -43,75 +57,81 @@ You can use the CLI to attach |VLAN| interfaces to networks.
         | fcbe3aca-...| sriovvf1  | pci-sriov | vf       | None | []             | [u'sriov0'] | []                         | MTU=1956,max_tx_rate=100  |
         +-------------+-----------+-----------+----------+------+----------------+-------------+----------------------------+---------------------------+
 
-
 #.  Create a |VLAN| interface.
 
-    Use the following command:
+    Use a command of the following form:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-if-add <hostname> -V <vlan_id> -c <ifclass> <interface name> <ethname> [<datanetwork>]
+        ~(keystone_admin)$ system host-if-add <hostname> -V <vlan_id> \
+        -c <--ifclass> <interface name> <sriov_intf_name> [<datanetwork>]
+        
 
     where the following options are available:
 
     **interface name**
-        A name or UUID for the interface \(Required\).
+        A name or |UUID| for the interface \(Required\).
 
         .. caution::
-            To avoid potential internal inconsistencies, do not use upper
-            case characters when creating interface names. Some components
-            normalize all interface names to lower case.
+            To avoid potential internal inconsistencies, do not use upper case
+            characters when creating interface names. Some components normalize
+            all interface names to lower case.
 
     **vlan\_id**
         The |VLAN| identifier for the network.
 
     **hostname**
-        The name or UUID of the host.
+        The name or |UUID| of the host.
 
     **ifclass**
         The class of the interface. The valid classes are **platform**,
         **data**, **pci-sriov**, and **pci-passthrough**.
 
-    **ethname**
-        The name or UUID of the Ethernet interface to use.
+    **sriov\_intf\_name**
+        The name of the |SRIOV| interface.
 
     **datanetworks**
         A list of data networks, delimited by quotes and separated by commas;
-        for example, "net-a, net-b". To specify a single data network,
-        omit the quotes. This parameter is required only if the <networktype>
-        is set to data,pci-sriov or pci-passthru.
+        for example, "net-a, net-b". To specify a single data network, omit the
+        quotes. This parameter is required only if the <networktype> is set to
+        data,pci-sriov or pci-passthru.
 
     **network**
         The name or ID of the network to assign the interface to
 
-    For example, to attach a |VLAN| interface named **clusterhost0** with
-    |VLAN| ID **22** to the cluster-host network using Ethernet interface
-    **enp0s8** on **storage-0**:
+    For example, to attach a |VLAN| interface named cluster0 with |VLAN| ID 164 to
+    the cluster-host network using |SRIOV| interface sriov0 on controller-0:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-if-add storage-0 -V 22 -c platform clusterhost0 vlan enp0s8
-        +------------------+----------------------------------------+
-        | Property         | Value                                  |
-        +------------------+----------------------------------------+
-        | ifname           | clusterhost0                           |
-        | ifclass          | platform                               |
-        | iftype           | vlan                                   |
-        | ports            | []                                     |
-        | providernetworks | None                                   |
-        | imac             | 08:00:27:f2:0d:68                      |
-        | imtu             | 1500                                   |
-        | aemode           | None                                   |
-        | schedpolicy      | None                                   |
-        | txhashpolicy     | None                                   |
-        | uuid             | 8ca9854e-a18e-4a3c-8afe-f050da702fdf   |
-        | ihost_uuid       | 3d207384-7d30-4bc0-affe-d68ab6a00a5b   |
-        | vlan_id          | 22                                     |
-        | uses             | [u'enp0s8']                            |
-        | used_by          | []                                     |
-        | created_at       | 2015-02-04T16:23:28.917084+00:00       |
-        | updated_at       | None                                   |
-        +------------------+----------------------------------------+
+        ~(keystone_admin)$ system host-if-add controller-0 -V 164 -c platform cluster0 vlan sriov0
+        +-----------------+--------------------------------------+
+        | Property        | Value                                |
+        +-----------------+--------------------------------------+
+        | ifname          | cluster0                             |
+        | iftype          | vlan                                 |
+        | ports           | []                                   |
+        | imac            | 3c:fd:fe:ac:60:44                    |
+        | imtu            | 1500                                 |
+        | ifclass         | platform                             |
+        | ptp_role        | none                                 |
+        | aemode          | None                                 |
+        | schedpolicy     | None                                 |
+        | txhashpolicy    | None                                 |
+        | uuid            | 6fa5015f-bcd3-4059-8fc1-9cdbbbe31d39 |
+        | ihost_uuid      | 1b67fe83-5010-4eac-bcca-6a6e6f2bd197 |
+        | vlan_id         | 164                                  |
+        | uses            | [u'sriov0']                          |
+        | used_by         | []                                   |
+        | created_at      | 2021-02-24T15:04:48.116079+00:00     |
+        | updated_at      | None                                 |
+        | sriov_numvfs    | 0                                    |
+        | sriov_vf_driver | None                                 |
+        | max_tx_rate     | None                                 |
+        | ipv4_mode       | None                                 |
+        | ipv6_mode       | None                                 |
+        | accelerated     | [True]                               |
+        +-----------------+--------------------------------------+
 
 #.  Attach the newly created |VLAN| interface to a network.
 
@@ -125,4 +145,12 @@ You can use the CLI to attach |VLAN| interfaces to networks.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system interface-network-assign storage-0 clusterhost0 cluster-host
+        ~(keystone_admin)$ system interface-network-assign controller-0 cluster0 cluster-host
+
+#.  Unlock the host.
+
+    .. code-block:: none
+
+        ~(keystone_admin)$ host-unlock controller-0
+
+

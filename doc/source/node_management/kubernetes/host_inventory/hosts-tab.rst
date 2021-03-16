@@ -241,5 +241,9 @@ A sample **Hosts** tab is illustrated below:
         Initiates any pending software update operations. Once successfully
         executed, the host returns back to the locked state.
 
+.. xbookref See |updates-doc|:
+        :ref:`Managing Software Updates <managing-software-updates>` for
+        details.
+
         This option is only available if there are software update operations
         pending for the host.

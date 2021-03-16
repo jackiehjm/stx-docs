@@ -45,7 +45,7 @@ CPU cores from the Horizon Web interface.
         :widths: auto
 
         +-------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-        | **On a worker node or AIO node**    | You can assign cores to specific functions, as illustrated above. Unassigned cores are available for allocation to hosted applications; for example containers or, in the case of the |prod-os| OpenStack application, virtual machines.  |
+        | **On a worker node or AIO node**    | You can assign cores to specific functions, as illustrated above. Unassigned cores are available for allocation to hosted applications; for example containers or, in the case of the |prod-os| application, virtual machines.            |
         +-------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
         | **On a controller or storage node** | Only the Platform function is shown, and all available cores are automatically assigned as platform cores.                                                                                                                                |
         +-------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -71,45 +71,18 @@ CPU cores from the Horizon Web interface.
         management to allow high-performance, low-latency applications to run
         with optimal efficiency.
 
-.. xbooklink  For more information on core isolation, see |admintasks-doc|: `Kubernetes CPU Manager Static Policy <isolating-cpu-cores-to-enhance-application-performance>`.
+.. From  **Isolated**
+.. xbooklink  For more information on core isolation, see |admin-doc|:
+    `Kubernetes CPU Manager Static Policy
+    <isolating-cpu-cores-to-enhance-application-performance>`.
 
         To use this feature, you must also assign the node label
         kube-cpu-mgr-policy the value **static**. For information about
         labels, see :ref:`Configure Node Labels Using Horizon <configuring-node-labels-using-horizon>`.
 
-        It is not permitted to have Isolated and vSwitch cores on the same
-        node.
+    .. only:: partner
 
-    **vSwitch**
-        .. note::
-            vSwitch is only applicable when running the |prod-os| OpenStack
-            application.
-
-        Virtual Switch cores can be configured for each processor
-        independently. This means that the single logical vSwitch running
-        on a worker node can make use of cores in multiple processors, or
-        |NUMA| nodes. Optimal data path
-        performance is achieved when all vSwitch cores, the physical ports,
-        and the containers that use them are running on the same processor
-
-        You can affine containers to |NUMA|
-        nodes with vSwitch cores. Alternatively, having vSwitch cores on all
-        processors ensures that all containers, regardless of the core they
-        run on, are efficiently serviced. The example allocates two cores
-        from processor 1 to the vSwitch threads.
-
-        It is not permitted to have Isolated and vSwitch cores on the same
-        node.
-
-        .. note::
-            When allocating vSwitch cores, consider optimizing the processing
-            of packets to and from physical ports used for data interfaces.
-
-        .. note::
-            If the vSwitch type is set to **None**, newly installed worker
-            hosts will start with 0 vSwitch CPUs. vSwitch CPUs can only be set
-            to 0 through the system :command:`host-cpu-modify` command or
-            Horizon.
+       ../../_includes/configure-cpu-core-vswitch.rest    
 
     **Shared**
         Not currently supported.

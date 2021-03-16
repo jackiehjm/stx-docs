@@ -23,17 +23,28 @@ Ethernet interfaces are created automatically.
     .. code-block:: none
 
         ~(keystone_admin)$ system host-if-list -a controller-0
-        +---...+----------+----------+...+---------------+...+-------------------+
-        | uuid | name     | class    |   | ports         |   | data networks     |
-        +---...+----------+----------+...+---------------+...+-------------------+
-        | 68...| ens787f3 | None     |   | [u'ens787f3'] |   | []                |
-        | 79...| data0    | data     |   | [u'ens787f0'] |   | [u'group0-data0'] |
-        | 78...| cluster0 | platform |   | []            |   | []                |
-        | 89...| ens513f3 | None     |   | [u'ens513f3'] |   | []                |
-        | 97...| ens803f1 | None     |   | [u'ens803f1'] |   | []                |
-        | d6...| pxeboot0 | platform |   | [u'eno2']     |   | []                |
-        | d6...| mgmt0    | platform |   | []            |   | []                |
-        +---...+----------+----------+...+---------------+...+-------------------+
+        +-------------+-----------+-----------+----------+------+----------------+-------------+----------------------------+---------------------------+
+        | uuid        | name      | class     | type     | vlan | ports          | uses i/f    | used by i/f                | attributes                |
+        |             |           |           |          | id   |                |             |                            |                           |
+        +-------------+-----------+-----------+----------+------+----------------+-------------+----------------------------+---------------------------+
+        | 0aa20d82-...| sriovvf2  | pci-sriov | vf       | None | []             | [u'sriov0'] | []                         | MTU=1500,max_tx_rate=100  |
+        | 0e5f162d-...| mgmt0     | platform  | vlan     | 163  | []             | [u'sriov0'] | []                         | MTU=1500                  |
+        | 14f2ed53-...| sriov0    | pci-sriov | ethernet | None | [u'enp24s0f0'] | []          | [u'sriovnet1', u'oam0',    | MTU=9216                  |
+        |             |           |           |          |      |                |             | u'sriovnet2', u'sriovvf2', |                           |
+        |             |           |           |          |      |                |             | u'sriovvf1', u'mgmt0',     |                           |
+        |             |           |           |          |      |                |             | u'pxeboot0']               |                           |
+        |             |           |           |          |      |                |             |                            |                           |
+        | 163592bd-...| data1     | data      | ethernet | None | [u'enp24s0f1'] | []          | []                         | MTU=1500,accelerated=True |
+        | 1831571d-...| sriovnet2 | pci-sriov | vf       | None | []             | [u'sriov0'] | []                         | MTU=1956,max_tx_rate=100  |
+        | 5741318f-...| eno2      | None      | ethernet | None | [u'eno2']      | []          | []                         | MTU=1500                  |
+        | 5bd79fbd-...| enp26s0f0 | None      | ethernet | None | [u'enp26s0f0'] | []          | []                         | MTU=1500                  |
+        | 623d5494-...| oam0      | platform  | vlan     | 103  | []             | [u'sriov0'] | []                         | MTU=1500                  |
+        | 78b4080a-...| enp26s0f1 | None      | ethernet | None | [u'enp26s0f1'] | []          | []                         | MTU=1500                  |
+        | a6f1f901-...| eno1      | None      | ethernet | None | [u'eno1']      | []          | []                         | MTU=1500                  |
+        | f37eac1b-...| pxeboot0  | platform  | ethernet | None | []             | [u'sriov0'] | []                         | MTU=1500                  |
+        | f7c62216-...| sriovnet1 | pci-sriov | vf       | None | []             | [u'sriov0'] | []                         | MTU=1500,max_tx_rate=100  |
+        | fcbe3aca-...| sriovvf1  | pci-sriov | vf       | None | []             | [u'sriov0'] | []                         | MTU=1956,max_tx_rate=100  |
+        +-------------+-----------+-----------+----------+------+----------------+-------------+----------------------------+---------------------------+
 
 #.  Attach an interface to a network.
 

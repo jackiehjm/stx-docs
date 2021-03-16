@@ -97,7 +97,7 @@ reference.
    reflect the operational state of a host. The transition triggers the
    recovery of a container to another worker node. These transitions
    apply where a container is an application container, or when running
-   the |prod-os| OpenStack application, a container.
+   the |prod-os| application.
 
 .. seealso::
     :ref:`Host Status and Alarms During System Configuration Changes

@@ -8,6 +8,17 @@ Change the Hyper-threading Status
 
 The hyper-threading status is controlled by the BIOS settings of the host.
 
+.. warning::
+    Some applications may benefit from hyperthreading. For applications that
+    require deterministic performance, it is recommended to run with
+    hyperthreading disabled. If hyperthreading is enabled, the application
+    \(either running on bare metal or in a container\) must check the CPU
+    topology for the CPUs and affine tasks appropriately to HT siblings. For
+    example, "/proc/cpuinfo" and
+    "/sys/devices/system/cpu/cpuX/topology/thread\_siblings\*" can be used to
+    identify HT siblings of the same core.
+
+
 .. rubric:: |proc|
 
 .. _changing-the-hyper-threading-status-steps-v2v-cv3-dt:

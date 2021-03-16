@@ -19,7 +19,7 @@ logical interfaces, for example, if the cluster host network is internal
 and additional ports are configured for connecting to external networks.
 
 .. note::
-    When running the |prod-os| OpenStack application, you can optimize
+    When running the |prod-os| application, you can optimize
     vSwitch processing of packets to and from physical ports for data
     interfaces by using only ports that are connected to processors with
     vSwitch cores attached to data networks.
@@ -77,7 +77,7 @@ Information about interfaces is presented in several columns, as follows:
     interface is shared.
 
 **Data Networks**
-    This option is relevant for the |prod-os| OpenStack application only,
+    This option is relevant for the |prod-os| application only,
     and specifically for the openstack-compute labeled worker nodes only, and
     for interfaces of the data interface class. It lists the data networks
     associated with the data interface.

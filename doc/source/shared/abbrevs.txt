@@ -85,6 +85,7 @@
 .. |SNAT| replace:: :abbr:`SNAT (Source Network Address Translation)`
 .. |SNMP| replace:: :abbr:`SNMP (Simple Network Management Protocol)`
 .. |SRIOV| replace:: :abbr:`SR-IOV (Single Root I/O Virtualization)`
+.. |SRIOVs| replace:: :abbr:`SR-IOV (Single Root I/O Virtualizations)`
 .. |SSD| replace:: :abbr:`SSD (Solid State Drive)`
 .. |SSDs| replace:: :abbr:`SSDs (Solid State Drives)`
 .. |SSH| replace:: :abbr:`SSH (Secure Shell)`
@@ -97,6 +98,7 @@
 .. |TPMs| replace:: :abbr:`TPMs (Trusted Platform Modules)`
 .. |UDP| replace:: :abbr:`UDP (User Datagram Protocol)`
 .. |UEFI| replace:: :abbr:`UEFI (Unified Extensible Firmware Interface)`
+.. |UUID| replace:: :abbr:`UUID (Universally Unique Identifier)`
 .. |VF| replace:: :abbr:`VF (Virtual Function)`
 .. |VFs| replace:: :abbr:`VFs (Virtual Functions)`
 .. |VLAN| replace:: :abbr:`VLAN (Virtual Local Area Network)`

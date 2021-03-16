@@ -6,16 +6,31 @@
 Allocate Host Memory Using the CLI
 ==================================
 
-You can edit the platform, vSwitch and huge page memory allocations for a
-|NUMA| node from the CLI. 
+.. only:: starlingx
+
+    You can edit the platform and huge page memory allocations for a |NUMA|
+    node from the CLI. 
+
+.. only:: partner
+
+    .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
+
+    :start-after: introduction-text-begin
+    :end-before: introduction-text-end
 
 Due to limitations in Kubernetes, only a single huge page size can be used
 per host.
 
-A node may only allocate huge pages for a single size, either 2MiB or 1GiB.
-Since the vSwitch uses 1GiB huge page by default, the application will
-typically also use 1GiB huge pages. However, the vSwitch page size can be
-changed to 2MiB, in which case the application would also use 2MiB huge pages.
+.. only:: starlingx
+
+    A node may only allocate huge pages for a single size, either 2MiB or 1GiB.
+
+.. only:: partner
+
+    .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
+
+    :start-after: usage-text-begin
+    :end-before: usage-text-end
 
 You must also provision one 1GiB huge page per |NUMA| node prior to unlocking a
 worker or an |AIO| controller.
@@ -70,6 +85,8 @@ worker or an |AIO| controller.
         given processor.
 
         For example:
+    
+    .. only:: starlingx
 
         .. code-block:: none
 
@@ -81,10 +98,6 @@ worker or an |AIO| controller.
             |         Platform     (MiB)          | 4600                                 |
             |         Available    (MiB)          | 13831                                |
             | Huge Pages Configured               | True                                 |
-            | vSwitch Huge Pages: Size (MiB)      | 2                                    |
-            |                     Total           | 0                                    |
-            |                     Available       | 0                                    |
-            |                     Required        | None                                 |
             | Application  Pages (4K): Total      | 3540736                              |
             | Application  Huge Pages (2M): Total | 0                                    |
             |                 Available           | 0                                    |
@@ -96,6 +109,13 @@ worker or an |AIO| controller.
             | created_at                          | 2019-12-05T23:26:18.441077+00:00     |
             | updated_at                          | 2020-01-14T18:49:26.388919+00:00     |
             +-------------------------------------+--------------------------------------+
+
+    .. only:: partner
+
+        .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
+
+        :start-after: memory-table-begin
+        :end-before: memory-table-end
 
 #.  Lock the affected host.
 
@@ -124,20 +144,52 @@ worker or an |AIO| controller.
         memory reserved for platform use, in MiB.
 
     **function**
-        Use with the optional ``-f`` argument. This option specifies the intended
-        function for hugepage allocation, either vswitch or application.
-        vSwitch is only applicable on an openstack-compute labeled worker
-        node, when running the |prod-os| OpenStack application.
+
+    .. only:: starlingx
+
+        Use with the optional ``-f`` argument. This option specifies the
+        intended function for hugepage allocation on application.
+    
+    .. only:: partner
+
+        .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
+
+        :start-after: function-text-begin
+        :end-before: function-text-end
 
         The default function is **application**.
 
     **2Mpages**
-        Use with the optional ``-2M`` argument. This option specifies the number
-        of 2 MiB huge pages to make available.
+
+    .. only:: starlingx
+
+        Use with the optional ``-2M`` argument. This option specifies the
+        number of 2 MiB huge pages to make available. Due to limitations in
+        Kubernetes, only a single huge page size can be used per host, across
+        Application memory.
+
+    .. only:: partner
+
+        .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
+
+        :start-after: 2m-pages-text-begin
+        :end-before: 2m-pages-text-end
 
     **1Gpages**
-        Use with the optional ``-1G`` argument. This option specifies the number
-        of 1 GiB huge pages to make available.
+
+    .. only:: starlingx
+
+        Use with the optional ``-1G`` argument. This option specifies the
+        number of 1 GiB huge pages to make available. Due to limitations in
+        Kubernetes, only a single huge page size can be used per host, across
+        Application memory.
+    
+    .. only:: partner
+
+        .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
+
+        :start-after: 1g-pages-text-begin
+        :end-before: 1g-pages-text-end
 
     For example, to allocate four 2 MiB huge pages for use by hosted
     applications on |NUMA| node 1 of worker node **worker-0**:
@@ -145,6 +197,25 @@ worker or an |AIO| controller.
     .. code-block:: none
 
         (keystone_admin)$ system host-memory-modify worker-0 1 -2M 4
+    
+    .. only:: starlingx
+
+        For openstack-compute labeled worker node or |AIO| controller, since
+        Kubernetes only supports a single huge page size per worker node.
+        'application' huge pages must also be 1G. The following example shows
+        configuring 10 1G huge pages for application usage. For example:
+    
+    .. only:: partner
+
+        .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
+
+        :start-after: recommended-size-text-begin
+        :end-before: recommended-size-text-end
+
+    .. code-block:: none
+
+        (keystone_admin)$ system host-memory-modify -f application -1G 10 worker-<n> 0
+        (keystone_admin)$ system host-memory-modify -f application -1G 10 worker-<n> 1
 
 #.  Unlock the host.
 

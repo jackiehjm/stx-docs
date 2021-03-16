@@ -39,3 +39,6 @@ The following information is presented:
 
 **Enabled**
     Whether exposure to applications is enabled for the device.
+
+.. xbookref For a list of devices supported by |prod|, refer to the :ref:`|rn-doc|
+    <release-notes-overview>`.
