@@ -527,7 +527,8 @@ On **virtual** controller-0 and controller-1:
     $ system host-disk-wipe -s --confirm controller-0 /dev/sdb
     $ system host-disk-wipe -s --confirm controller-1 /dev/sdb
 
-   values.yaml for rook-ceph-apps.
+#. Edit values.yaml for rook-ceph-apps.
+
    ::
 
     cluster:
@@ -535,10 +536,10 @@ On **virtual** controller-0 and controller-1:
         nodes:
         - name: controller-0
           devices:
-          - name: /dev/disk/by-path/pci-0000:00:03.0-ata-2.0
+          - name: sdb
         - name: controller-1
           devices:
-          - name: /dev/disk/by-path/pci-0000:00:03.0-ata-2.0
+          - name: sdb
 
    ::
 

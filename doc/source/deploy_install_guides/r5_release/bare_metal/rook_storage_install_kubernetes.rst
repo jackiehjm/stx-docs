@@ -688,10 +688,10 @@ On host storage-0 and storage-1:
         nodes:
         - name: storage-0
           devices:
-          - name: /dev/disk/by-path/pci-0000:00:03.0-ata-2.0
+          - name: sdb
         - name: storage-1
           devices:
-          - name: /dev/disk/by-path/pci-0000:00:03.0-ata-2.0
+          - name: sdb
 
 #. Update rook-ceph-apps override value.
 
