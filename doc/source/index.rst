@@ -138,6 +138,15 @@ User Tasks
 
    usertasks/index
 
+---------------
+VNF Integration
+---------------
+
+.. toctree::
+   :maxdepth: 2
+
+   vnf_integration/index
+   
 -------
 Storage
 -------
