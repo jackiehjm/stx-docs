@@ -26,6 +26,7 @@ Displaying data network information
    displaying-data-network-information-using-horizon
    displaying-data-network-information-using-the-cli
    the-data-network-topology-view
+   vxlan-data-networks
 
 *********************************************
 Adding, assigning, and removing data networks
@@ -99,3 +100,4 @@ VXLAN data network setup completion
    using-ip-address-pools-for-data-interfaces
    managing-ip-address-pools-using-the-cli
    adding-and-maintaining-routes-for-a-vxlan-network
+   vxlan-data-network-setup-completion

@@ -6,20 +6,25 @@
 Manage IP Address Pools Using the CLI
 =====================================
 
-You can create and manage address pools using the CLI:
+You can create and manage address pools using the |CLI|:
 
 .. contents::
    :local:
    :depth: 1
 
+.. rubric:: |context|
+
+For more information about address pools, see :ref:`Using IP Address Pools for
+Data Interfaces <using-ip-address-pools-for-data-interfaces>`.
+
 .. rubric:: |prereq|
 
-To make interface changes, you must lock the worker node first.
+To make interface changes, you must lock the compute node first.
 
 .. _managing-ip-address-pools-using-the-cli-section-N1003C-N1001F-N10001:
 
 ------------------------
-Creating an address pool
+Creating an Address pool
 ------------------------
 
 To create an address pool, use a command of the following form:

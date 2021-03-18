@@ -6,15 +6,14 @@
 Add Compute Nodes to an Existing Duplex System
 ==============================================
 
-You can add up to 4 compute nodes to an existing Duplex system by following
+You can add up to 6 compute nodes to an existing Duplex system by following
 the standard procedures for adding compute nodes to a system.
 
 .. rubric:: |prereq|
 
-Before adding compute nodes to an existing duplex-direct system, you must
-convert the system to use switch-based network connections.
+.. only:: partner
 
-.. xbooklink For more information, see |sysconf-doc|: `Converting a Duplex System to Switch-Based Connection <converting-a-duplex-system-to-switch-based-connection>`.
+    .. include:: ../../_includes/adding-compute-nodes-to-an-existing-duplex-system.rest
 
 Before adding compute nodes to a duplex system, you can either add and
 provision platform RAM and CPU cores on the controllers or reallocate RAM and

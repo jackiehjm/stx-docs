@@ -12,6 +12,8 @@
 .. |prod-os| replace:: StarlingX OpenStack
 .. |prod-dc| replace:: Distributed Cloud
 .. |prod-p| replace:: StarlingX Platform
+.. |os-prod-hor-long| replace:: OpenStack Horizon Web Interface
+.. |os-prod-hor| replace:: OpenStack Horizon
 
 .. Guide names; will be formatted in italics by default.
 .. |node-doc| replace:: :title:`StarlingX Node Configuration and Management`
@@ -28,7 +30,7 @@
 .. |usertasks-doc| replace:: :title:`StarlingX User Tasks`
 .. |admintasks-doc| replace:: :title:`StarlingX Administrator Tasks`
 .. |datanet-doc| replace:: :title:`StarlingX Data Networks`
-
+.. |os-intro-doc| replace:: :title:`OpenStack Introduction`
 
 .. Name of downloads location
 

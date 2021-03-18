@@ -6,7 +6,7 @@
 Assign a Dedicated VLAN ID to a Target Project Network
 ======================================================
 
-To assign a dedicated VLAN segment ID you must first enable the Neutron
+To assign a dedicated |VLAN| segment ID you must first enable the Neutron
 **segments** plugin.
 
 .. rubric:: |proc|
@@ -73,6 +73,10 @@ To assign a dedicated VLAN segment ID you must first enable the Neutron
         |                    |                                                                                                                     |
         +--------------------+---------------------------------------------------------------------------------------------------------------------+
 
+.. note::
+
+    The value for DEFAULT is folded onto two lines in the example above for
+    display purposes.
 
 #.  Apply the |prefix|-openstack application.
 
@@ -80,7 +84,7 @@ To assign a dedicated VLAN segment ID you must first enable the Neutron
 
         ~(keystone_admin)]$ system application-apply |prefix|-openstack
 
-#.  You can now assign the VLAN network type to a datanetwork.
+#.  You can now assign the |VLAN| network type to a datanetwork.
 
     #.  Identify the name of the data network to assign.
 
@@ -158,17 +162,21 @@ To assign a dedicated VLAN segment ID you must first enable the Neutron
             | faf63edf-63f0-4e9b-b930-5fa8f43b5484 | None                                       | 865b9576-1815-4734-a7e4-c2d0dd31d19c | vlan         |    2001 |
             +--------------------------------------+--------------------------------------------+--------------------------------------+--------------+---------+
 
+        .. note::
+
+            Thr name **test1-st-segement01-mx6fa5eonzrr** has been folded onto
+            two lines in the sample output above for display pruposes.
     #.  List subnets.
 
         .. code-block:: none
 
             ~(keystone_admin)]$ openstack subnet list
-            +------------...----+---------------------+---------------...-----+------------------+
-            | ID         ...    | Name                | Network       ...     | Subnet           |
-            +------------...----+---------------------+---------------...-----+------------------+
-            | 0f64c277-82...f2f | external01-subnet   | 6bbd3e4e-9419-...cab7 | 10.10.10.0/24    |
-            | bb9848b6-4b...ddc | subnet-temp         | 865b9576-1815-...d19c | 192.168.17.0/24  |
-            +------------...----+---------------------+-----------------------+------------------+
+            +--------------------------------------+---------------------+--------------------------------------+------------------+
+            | ID                                   | Name                | Network                              | Subnet           |
+            +--------------------------------------+---------------------+--------------------------------------+------------------+
+            | 0f64c277-82d7-4161-aa47-fc4cfadacf2f | external01-subnet   | 6bbd3e4e-9419-49c6-a68a-ed51fbc1cab7 | 10.10.10.0/24    |
+            | bb9848b6-63f0-4e9b-b930-5fa8f43b5ddc | subnet-temp         | 865b9576-1815-4734-a7e4-c2d0dd31d19c | 192.168.17.0/24  |
+            +--------------------------------------+---------------------+--------------------------------------+------------------+
 
         In this example, the subnet external01-subnet uses a dedicated segment ID.
 
@@ -176,14 +184,9 @@ To assign a dedicated VLAN segment ID you must first enable the Neutron
 
         .. code-block:: none
 
-            ~(keystone_admin)]$ openstack subnet show 0f64c277-82d7-4161-aa47-fc4cfadacf2f
-
-        The output from this command is a row from ascii table output, it
-        displays the following:
-
-        .. code-block:: none
-
-            |grep segment | segment_id | 502e3f4f-6187-4737-b1f5-1be7fd3fc45e |
+            ~(keystone_admin)]$ openstack subnet show
+            0f64c277-82d7-4161-aa47-fc4cfadacf2f | grep segment | segment_id |
+            502e3f4f-6187-4737-b1f5-1be7fd3fc45e |
 
     .. note::
         Dedicated segment IDs should not be in the range created using the

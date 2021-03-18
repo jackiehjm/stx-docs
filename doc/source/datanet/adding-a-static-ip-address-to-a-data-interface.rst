@@ -12,31 +12,31 @@ administration interface or the CLI.
 .. rubric:: |context|
 
 For VXLAN connectivity between VMs, you must add appropriate endpoint IP
-addresses to the worker node interfaces. You can add individual static
+addresses to the compute node interfaces. You can add individual static
 addresses, or you can assign addresses from a pool associated with the
 data interface. For more about using address pools, see :ref:`Using IP
 Address Pools for Data Interfaces <using-ip-address-pools-for-data-interfaces>`.
 
-To add a static IP address using the web administration interface, refer to the
+To add a static IP address using the |os-prod-hor|, refer to the
 following steps. To use the CLI, see :ref:`Managing Data Interface Static IP
 Addresses Using the CLI <managing-data-interface-static-ip-addresses-using-the-cli>`.
 
 .. rubric:: |prereq|
 
-To make interface changes, you must lock the worker host first.
+To make interface changes, you must lock the compute host first.
 
 .. rubric:: |proc|
 
 .. _adding-a-static-ip-address-to-a-data-interface-steps-zkx-d1h-hr:
 
-#.  Lock the worker host.
+#.  Lock the compute host.
 
 #.  Set the interface to support an IPv4 or IPv6 address, or both.
 
     #.  Select **Admin** \> **Platform** \> **Host Inventory** to open the Host
         Inventory page.
 
-    #.  Select the **Host** tab, and then double-click the worker host to open
+    #.  Select the **Host** tab, and then double-click the compute host to open
         the Host Detail page.
 
     #.  Select the **Interfaces** tab and click **Edit Interface** for the data
@@ -63,7 +63,7 @@ To make interface changes, you must lock the worker host first.
 
     The new address is added to the **Address List**.
 
-#.  Unlock the worker node and wait for it to become available.
+#.  Unlock the compute node and wait for it to become available.
 
 For more information, see :ref:`Managing Data Interface Static IP Addresses
 Using the CLI <managing-data-interface-static-ip-addresses-using-the-cli>`

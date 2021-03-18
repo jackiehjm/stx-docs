@@ -7,7 +7,7 @@ Manage Data Interface Static IP Addresses Using the CLI
 =======================================================
 
 If you prefer, you can create and manage static addresses for data interfaces
-using the CLI.
+using the |CLI|.
 
 .. rubric:: |context|
 
@@ -17,15 +17,15 @@ For more information about using static addresses for data interfaces, see
 
 .. rubric:: |prereq|
 
-To make interface changes, you must lock the worker node first.
+To make interface changes, you must lock the compute node first.
 
 .. rubric:: |proc|
 
 .. _managing-data-interface-static-ip-addresses-using-the-cli-steps-zkx-d1h-hr:
 
-1.  Lock the worker node.
+#.  Lock the compute node.
 
-2.  Set the interface to support an IPv4 or IPv6 address, or both.
+#.  Set the interface to support an IPv4 or IPv6 address, or both.
 
     .. code-block:: none
 
@@ -34,7 +34,7 @@ To make interface changes, you must lock the worker node first.
     where
 
     **node**
-        is the name or UUID of the worker node
+        is the name or |UUID| of the compute node
 
     **ifname**
         is the name of the interface
@@ -54,7 +54,7 @@ To make interface changes, you must lock the worker node first.
     where
 
     **node**
-        is the name or UUID of the worker node
+        is the name or |UUID| of the compute node
 
     **ifname**
         is the name of the interface
@@ -71,12 +71,12 @@ To make interface changes, you must lock the worker node first.
 
         ~(keystone_admin)]$ system host-addr-list <hostname/ID>
 
-    This displays the UUIDs of existing addresses, as shown in this example
+    This displays the |UUIDs| of existing addresses, as shown in this example
     below.
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system host-addr-list worker-0
+        ~(keystone_admin)]$ system host-addr-list compute-0
         +-----------------------+--------+------------------------+--------+
         | uuid                  | ifname | address                | prefix |
         +-----------------------+--------+------------------------+--------+
@@ -89,6 +89,6 @@ To make interface changes, you must lock the worker node first.
 
         ~(keystone_admin)]$ system host-addr-delete <uuid>
 
-    where **uuid** is the UUID of the address.
+    where **uuid** is the |UUID| of the address.
 
-#.  Unlock the worker node and wait for it to become available.
+#.  Unlock the compute node and wait for it to become available.

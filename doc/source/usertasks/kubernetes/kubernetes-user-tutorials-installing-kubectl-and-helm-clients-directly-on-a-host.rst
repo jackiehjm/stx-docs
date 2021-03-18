@@ -7,9 +7,8 @@ Install Kubectl and Helm Clients Directly on a Host
 ===================================================
 
 
-As an alternative to using the container-backed Remote :abbr:`CLIs (Command
-Line Interfaces)` for kubectl and helm, you can install these commands
-directly on your remote host.
+As an alternative to using the container-backed Remote |CLIs| for kubectl and
+helm, you can install these commands directly on your remote host.
 
 .. rubric:: |context|
 
@@ -30,7 +29,7 @@ You will need the following information from your |prod| administrator:
 
 .. _kubernetes-user-tutorials-installing-kubectl-and-helm-clients-directly-on-a-host-ul-nlr-1pq-nlb:
 
--   the floating OAM IP address of the |prod|
+-   the floating |OAM| IP address of the |prod|
 
 -   login credential information; in this example, it is the "TOKEN" for a
     local Kubernetes ServiceAccount.

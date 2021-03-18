@@ -93,22 +93,23 @@ For more information, see :ref:`Provision SR-IOV Interfaces using the CLI
         interface.
 
     **drivername**
-        An optional virtual function driver to use. Valid choices are 'vfio'
+        An optional virtual function driver to use. Valid choices are |VFIO|
         and 'netdevice'. The default value is netdevice, which will cause
         |SRIOV| virtual function interfaces to appear as kernel network devices'
         in the container. A value of '**vfio**' will cause the device to be
-        bound to the vfio-pci driver. Vfio based devices will not appear as
+        bound to the vfio-pci driver. |VFIO| based devices will not appear as
         kernel network interfaces, but may be used by |DPDK| based
         applications.
 
         .. note::
 
-            -   Applications backed by Mellanox AVS should use the
-                netdevice |VF| driver
-
             -   If the driver for the |VF| interface and parent |SRIOV|
                 interface differ, a separate data network should be created
                 for each interface.
+
+            .. only:: partner
+
+                .. include:: ../../../_includes/provisioning-sr-iov-vf-interfaces-using-the-cli.rest
 
     **networks**
         A list of data networks that are attached to the interface, delimited

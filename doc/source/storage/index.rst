@@ -19,4 +19,7 @@ and the requirements of the system.
 OpenStack
 ---------
 
-Coming soon.
+.. toctree::
+   :maxdepth: 2
+
+   openstack/index

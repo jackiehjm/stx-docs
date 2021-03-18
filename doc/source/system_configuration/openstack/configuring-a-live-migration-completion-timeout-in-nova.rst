@@ -9,6 +9,8 @@ Configure a Live Migration Completion Timeout in Nova
 You can configure how long to allow for a compute live migration to
 complete before the operation is aborted.
 
+.. rubric:: |context|
+
 The following example applies a timeout of 300 seconds to all hosts.
 
 The same basic workflow of *creating an overrides file*, then
@@ -29,11 +31,24 @@ to apply other Nova overrides globally.
               live_migration_completion_timeout: 300
         EOF
 
+
 #.  Update the Helm overrides using the new configuration file.
 
     .. parsed-literal::
 
         ~(keystone_admin)]$ system helm-override-update --values ./nova_override.yaml |prefix|-openstack nova openstack --reuse-values
+
+#.  Confirm that the user\_override lists the correct live migration completion timeout.
+
+    .. parsed-literal::
+
+        ~(keystone_admin)$ system helm-override-show |prefix|-openstack nova openstack
+
+    The output should include the following:
+
+    .. code-block:: none
+
+        live_migration_completion_timeout: 300
 
 #.  Apply the changes.
 

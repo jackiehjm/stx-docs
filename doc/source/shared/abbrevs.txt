@@ -19,14 +19,15 @@
 .. |CA| replace:: :abbr:`CA (Certificate Authority)`
 .. |CAs| replace:: :abbr:`CAs (Certificate Authorities)`
 .. |CLI| replace:: :abbr:`CLI (Command Line Interface)`
-.. |CMK| replace:: :abbr:`CMK (CPU Manager for Kubernetes)`
 .. |CLIs| replace:: :abbr:`CLIs (Command Line Interfaces)`
+.. |CMK| replace:: :abbr:`CMK (CPU Manager for Kubernetes)`
 .. |CNI| replace:: :abbr:`CNI (Container Networking Interface)`
 .. |CoW| replace:: :abbr:`CoW (Copy on Write)`
 .. |CSK| replace:: :abbr:`CSK (Code Signing Key)`
 .. |CSKs| replace:: :abbr:`CSKs (Code Signing Keys)`
 .. |CVE| replace:: :abbr:`CVE (Common Vulnerabilities and Exposures)`
 .. |DHCP| replace:: :abbr:`DHCP (Dynamic Host Configuration Protocol)`
+.. |DMA| replace:: :abbr:`DMA (Direct Memory Access)`
 .. |DNS| replace:: :abbr:`DNS (Domain Name System)`
 .. |DPDK| replace:: :abbr:`DPDK (Data Plane Development Kit)`
 .. |DRBD| replace:: :abbr:`DRBD (Distributed Replicated Block Device)`
@@ -67,6 +68,7 @@
 .. |OSDs| replace:: :abbr:`OSDs (Object Storage Devices)`
 .. |PAC| replace:: :abbr:`PAC (Programmable Acceleration Card)`
 .. |PCI| replace:: :abbr:`PCI (Peripheral Component Interconnect)`
+.. |PCIe| replace:: :abbr:`PCI (Peripheral Component Interconnect extended)`
 .. |PDU| replace:: :abbr:`PDU (Packet Data Unit)`
 .. |PEM| replace:: :abbr:`PEM (Privacy Enhanced Mail)`
 .. |PF| replace:: :abbr:`PF (Physical Function)`
@@ -111,7 +113,9 @@
 .. |UDP| replace:: :abbr:`UDP (User Datagram Protocol)`
 .. |UEFI| replace:: :abbr:`UEFI (Unified Extensible Firmware Interface)`
 .. |UUID| replace:: :abbr:`UUID (Universally Unique Identifier)`
+.. |UUIDs| replace:: :abbr:`UUIDs (Universally Unique Identifiers)`
 .. |VF| replace:: :abbr:`VF (Virtual Function)`
+.. |VFIO| replace:: abbr:`VFIO (Virtual Function I/O)`
 .. |VFs| replace:: :abbr:`VFs (Virtual Functions)`
 .. |VLAN| replace:: :abbr:`VLAN (Virtual Local Area Network)`
 .. |VLANs| replace:: :abbr:`VLANs (Virtual Local Area Networks)`
@@ -121,9 +125,11 @@
 .. |VNF| replace:: :abbr:`VNF (Virtual Network Function)`
 .. |VNFs| replace:: :abbr:`VNFs (Virtual Network Functions)`
 .. |VNI| replace:: :abbr:`VNI (VXLAN Network Interface)`
+.. |VNIC| replace:: :abbr `VNIC (Virtual Network Interface Card)`
 .. |VNIs| replace:: :abbr:`VNIs (VXLAN Network Interfaces)`
 .. |VPC| replace:: :abbr:`VPC (Virtual Port Channel)`
 .. |vRAN| replace:: :abbr:`vRAN (virtualized Radio Access Network)`
+.. |VTEP| replace:: abbr:`VTEP (Virtual Tunnel End Point)`
 .. |VXLAN| replace:: :abbr:`VXLAN (Virtual eXtensible Local Area Network)`
 .. |VXLANs| replace:: :abbr:`VXLANs (Virtual eXtensible Local Area Networks)`
 .. |XML| replace:: :abbr:`XML (eXtensible Markup Language)`
