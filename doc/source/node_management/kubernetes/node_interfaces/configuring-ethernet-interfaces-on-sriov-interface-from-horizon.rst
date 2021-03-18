@@ -1,6 +1,6 @@
 
 .. bmi1612787317125
-.. _configuring-ethernet-interfaces-on-sriov-interace usingfrom-horizon:
+.. _configuring-ethernet-interfaces-on-sriov-interface-from-horizon:
 
 ======================================================================
 Configure Ethernet Interfaces on SR-IOV interface Using Horizon

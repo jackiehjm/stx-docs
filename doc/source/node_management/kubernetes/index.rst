@@ -179,7 +179,7 @@ PCI-SRIOV interface support
    node_interfaces/provisioning-sr-iov-interfaces-using-the-cli
    node_interfaces/provisioning-sr-iov-vf-interfaces-using-the-cli
    node_interfaces/sriov-port-sharing
-   node_interfaces/configuring-ethernet-interfaces-on-sriov-interace usingfrom-horizon
+   node_interfaces/configuring-ethernet-interfaces-on-sriov-interface-from-horizon
    node_interfaces/configuring-ethernet-interfaces-on-sriov-interface-using-cli
    node_interfaces/configuring-vf-interfaces-rate-limiting-using-cli
    node_interfaces/configuring-vlan-type-interfaces-using-the-sriov-interface-from-the-cli

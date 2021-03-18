@@ -45,6 +45,7 @@ physical port according to following resource allocation:
 
 
 -   :ref:`Configuring Ethernet Interfaces on SR-IOV interface Using from Horizon
-    <configuring-ethernet-interfaces-on-sriov-interace usingfrom-horizon>`
+    <configuring-ethernet-interfaces-on-sriov-interface-from-horizon>`
 
--   :ref:`Configuring Ethernet Interfaces on SR-IOV interface Using the CLI <configuring-ethernet-interfaces-on-sriov-interface-using-cli>`
+-   :ref:`Configuring Ethernet Interfaces on SR-IOV interface Using the CLI
+    <configuring-ethernet-interfaces-on-sriov-interface-using-cli>`
