@@ -499,10 +499,10 @@ On virtual storage-0 and storage-1:
         nodes:
         - name: rook-storage-0
           devices:
-          - name: sdb
+          - name: /dev/disk/by-path/pci-0000:00:03.0-ata-2.0
         - name: rook-storage-1
           devices:
-          - name: sdb
+          - name: /dev/disk/by-path/pci-0000:00:03.0-ata-2.0
 
 #. Update rook-ceph-apps override value.
 
