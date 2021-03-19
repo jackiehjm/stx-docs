@@ -310,11 +310,21 @@ Security Features
    security-hardening-firewall-options
    isolate-starlingx-internal-cloud-management-network
 
-********
-Appendix
-********
+*********************************************************
+Appendix: Certificate management for admin REST endpoints
+*********************************************************
 
 .. toctree::
    :maxdepth: 1
 
    certificate_management_for_admin_rest_api_endpoints
+   
+***************************************
+Appendix: Locally creating certifciates 
+***************************************
+
+.. toctree::
+   :maxdepth: 1
+   
+   creating-certificates-locally-using-cert-manager-on-the-controller
+   creating-certificates-locally-using-openssl
