@@ -309,3 +309,12 @@ Security Features
    secure-https-external-connectivity
    security-hardening-firewall-options
    isolate-starlingx-internal-cloud-management-network
+
+********
+Appendix
+********
+
+.. toctree::
+   :maxdepth: 1
+
+   certificate_management_for_admin_rest_api_endpoints
