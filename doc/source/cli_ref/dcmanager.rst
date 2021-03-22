@@ -6,7 +6,7 @@ dcmanager
 Manager APIs. :command:`dcmanager` is applicable only in the `SystemController`
 region of the central cloud in a distributed cloud configuration.
 
-This page documents the :command:`dcmanager` command in StarlingX R3.0.
+This page documents the :command:`dcmanager` command.
 
 .. contents::
    :local:
@@ -58,11 +58,11 @@ Displays the aggregated counts of critical, major, minor, and warning alarms
 across all subclouds.
 
 ``alarm summary``
-	List alarm summaries of subclouds.
+  List alarm summaries of subclouds.
 
-***************************************
-Distributed cloud subcloud installation
-***************************************
+*******************************
+Distributed subcloud management
+*******************************
 
 This set of commands provides subcloud management, including basic add, delete,
 list, show, and update operations on a subcloud.
@@ -75,32 +75,58 @@ list, show, and update operations on a subcloud.
   optionally run a deployment playbook.
 
 ``subcloud delete``
-	Delete subcloud details from the database.
+  Delete subcloud details from the database.
+
+``subcloud-deploy show``
+    Show the uploaded deployment files.
 
 ``subcloud-deploy upload``
-    Upload the optional deployment playbook, helm chart, and overrides to be
-    used with ``subcloud add``.
+    Upload the subcloud deployment files.
+
+``subcloud-group add``
+   Add a new subcloud group.
+
+``subcloud-group delete``
+   Delete subcloud group details from the database.
+
+``subcloud-group list``
+   List subcloud groups.
+
+``subcloud-group list-subclouds``
+   List subclouds referencing a subcloud group.
+
+``subcloud-group show``
+   Show the details of a subcloud group.
+
+``subcloud-group update``
+   Update attributes of a subcloud group.
 
 ``subcloud list``
-	List subclouds.
+  List subclouds.
 
 ``subcloud manage``
-	Manage a subcloud. Enables the active synchronization of data between the
-	central cloud and the subcloud.
+  Manage a subcloud. Enables the active synchronization of data between the
+  central cloud and the subcloud.
 
 ``subcloud reconfig``
   Re-run the deployment playbook on a subcloud using an updated configuration
   file.
 
+``subcloud reinstall``
+    Reinstall a subcloud.
+
+``subcloud restore``
+    Restore a subcloud.
+
 ``subcloud show``
-	Show the details of a subcloud.
+  Show the details of a subcloud.
 
 ``subcloud unmanage``
-	Unmanage a subcloud. Disables the active synchronization of data between the
-	central cloud and the subcloud.
+  Unmanage a subcloud. Disables the active synchronization of data between the
+  central cloud and the subcloud.
 
 ``subcloud update``
-	Update attributes of a subcloud.
+  Update attributes of a subcloud.
 
 ***********************************
 Distributed cloud patching/updating
@@ -116,34 +142,80 @@ and all hosts of subclouds. :command:`patch-strategy` commands orchestrate
 software updates across an entire distributed cloud solution.
 
 ``patch-strategy abort``
-	Abort a patch strategy.
+  Abort a patch strategy.
 
 ``patch-strategy apply``
-	Apply a patch strategy.
+  Apply a patch strategy.
 
 ``patch-strategy create``
-	Create a patch strategy.
+  Create a patch strategy.
 
 ``patch-strategy delete``
-	Delete patch strategy from the database.
+  Delete patch strategy from the database.
 
 ``patch-strategy show``
-	Show the details of a patch strategy for a subcloud.
+  Show the details of a patch strategy for a subcloud.
 
 ``patch-strategy-config delete``
-	Delete per subcloud patch options.
+  Delete per subcloud patch options.
 
 ``patch-strategy-config list``
-	List patch options.
+  List patch options.
 
 ``patch-strategy-config show``
-	Show patch options, defaults or per subcloud.
+  Show patch options, defaults or per subcloud.
 
 ``patch-strategy-config update``
-	Update patch options, defaults or per subcloud.
+  Update patch options, defaults or per subcloud.
 
 ``strategy-step list``
-	List strategy steps.
+  List strategy steps.
 
 ``strategy-step show``
-	Show the details of a strategy step.
+  Show the details of a strategy step.
+
+***********************************
+Distributed cloud firmware updating
+***********************************
+
+The following set of commands create, apply, and monitor the orchestration of
+N3000 |FPGA| firmware load updating across all subclouds and all hosts of
+subclouds.
+
+``fw-update-strategy abort``
+    Abort a firmware update strategy.
+
+``fw-update-strategy apply``
+    Apply a firmware update strategy.
+
+``fw-update-strategy create``
+    Create a firmware update strategy.
+
+``fw-update-strategy delete``
+    Delete firmware update strategy from the database.
+
+``fw-update-strategy show``
+    Show the details of a firmware update strategy for a subcloud.
+
+**********************************************
+Distributed cloud Kubernetes version upgrading
+**********************************************
+
+The following set of commands create, apply, and monitor the orchestration of
+Kubernetes version upgrading across all subclouds and all hosts of subclouds.
+
+``kube-upgrade-strategy abort``
+    Abort a Kubernetes upgrade strategy.
+
+``kube-upgrade-strategy apply``
+    Apply a Kubernetes upgrade strategy.
+
+``kube-upgrade-strategy create``
+    Create a Kubernetes upgrade strategy.
+
+``kube-upgrade-strategy delete``
+    Delete Kubernetes upgrade strategy from the database.
+
+``kube-upgrade-strategy show``
+    Show the details of a Kubernetes upgrade strategy for a subcloud.
+

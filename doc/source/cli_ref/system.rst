@@ -72,6 +72,9 @@ for a variety of |prod| use cases. For example:
 ``certificate-show``
     Show certificate details.
 
+``certificate-uninstall``
+    Uninstall certificate; only applicable to trusted certificate authority(s).
+
 ********************************
 Local Docker registry management
 ********************************
@@ -127,9 +130,14 @@ These commands primarily support the ability to resize the file systems.
 Use :command:`host-fs-*` commands to manage un-synchronized file systems on
 controller and worker nodes.
 
-Use :command:`controllerfs-*` commands to manage drbd-synchronized file systems
-on controller
-nodes.
+Use :command:`controllerfs-*` commands to manage |DRBD|-synchronized file
+systems on controller nodes.
+
+``host-fs-add``
+    Add an optional host file system; e.g. image-conversion file system.
+
+``host-fs-delete``
+    Delete an optional host file system; e.g. image-conversion file system.
 
 ``host-fs-list``
     Show list of host file systems.
@@ -150,10 +158,10 @@ nodes.
     Show details of a controller file system.
 
 ``drbdsync-modify``
-    Modify DRBD sync rate parameters.
+    Modify |DRBD| sync rate parameters.
 
 ``drbdsync-show``
-    Show DRBD sync config details.
+    Show |DRBD| sync config details.
 
 ********************
 System configuration
@@ -164,7 +172,7 @@ The following set of commands enable configuration of:
 * Basic system attributes
 * OAM IP address(es), subnet, and gateway
 * Remote DNS servers for |prod| hosts
-* Time synchronization protocols, for example: NPT and/or PTP
+* Time synchronization protocols, for example: |NTP| and/or |PTP|
 
 ``modify``
     Modify system attributes.
@@ -183,6 +191,9 @@ The following set of commands enable configuration of:
 
 ``ntp-show``
     Show NTP (Network Time Protocol) attributes.
+
+``ptp-apply``
+    Apply modified PTP attributes to hosts.
 
 ``ptp-modify``
     Modify PTP attributes.
@@ -233,7 +244,7 @@ Host IPMI configuration and management
 
 The :command:`host-sensor*` commands provide the ability to:
 
-* Display the sensors collected from hosts over IPMI.
+* Display the sensors collected from hosts over |IPMI|.
 * Define thresholds.
 * Configure behavior when thresholds are crossed (for example ignore, log, or
   reset).
@@ -618,37 +629,40 @@ The following set of commands is used to configure and manage Ceph OSDs, Ceph
 tiers, and Ceph storage cluster backends.
 
 ``ceph-mon-add``
+    Add a ceph monitor to a specific host.
 
 ``ceph-mon-delete``
+    Delete a ceph monitor from a specific host.
 
 ``ceph-mon-list``
     List Ceph mons.
 
 ``ceph-mon-modify``
+    Modify parameters of a ceph monitor on a specific host.
 
 ``ceph-mon-show``
     Show ceph_mon of a specific host.
 
 ``cluster-list``
-    List clusters.
+    List ceph clusters.
 
 ``cluster-show``
-    Show cluster attributes.
+    Show ceph cluster attributes.
 
 ``host-stor-add``
-    Add a storage to a host.
+    Add a ceph storage disk (i.e. journal or |OSD|) to a host.
 
 ``host-stor-delete``
-    Delete a stor.
+    Delete a ceph storage disk (i.e. journal or |OSD|) from a host.
 
 ``host-stor-list``
-    List host storage.
+    List ceph storage disks (i.e. journal or |OSD|) of a host.
 
 ``host-stor-show``
-    Show storage attributes.
+    Show attributes of a ceph storage disk (i.e. journal or |OSD|) on a host.
 
 ``host-stor-update``
-    Modify journal attributes for OSD.
+    Modify ceph journal or |OSD| attributes.
 
 ``storage-backend-add``
     Add a storage backend.
@@ -914,3 +928,101 @@ Software upgrade commands
 
 ``health-query-upgrade``
     Run the health check for an upgrade.
+
+*************************************
+Host FPGA Configuration - Intel N3000
+*************************************
+
+The following set of commands allow you to update the Intel N3000 |FPGA| |PAC|
+user image on StarlingX hosts.
+
+For more information, see
+:doc:`N3000 Overview </node_management/kubernetes/hardware_acceleration_devices/n3000-overview>`.
+
+
+``host-device-image-update``
+    Update device image on a host.
+
+``host-device-image-update-abort``
+    Abort device image update on a host.
+
+``device-image-apply``
+    Apply the device image.
+
+``device-image-delete``
+    Delete a device image.
+
+``device-image-list``
+    List device images.
+
+``device-image-remove``
+    Remove the device image.
+
+``device-image-show``
+   Show device image details.
+
+``device-image-upload``
+    Upload a device image.
+
+``device-image-state-list``
+    List image to device mapping with status.
+
+``device-label-list``
+    List all device labels.
+
+``host-device-label-assign``
+    Assign a label to a device of a host.
+
+``host-device-label-list``
+    List device labels.
+
+``host-device-label-remove``
+    Remove a device label from a device of a host.
+
+**************************
+Kubernetes version upgrade
+**************************
+
+The following set of commands allow you to upgrade the version of Kubernetes.
+For more information, see
+:doc:`Kubernetes upgrade </configuration/k8s_upgrade>`.
+
+``kube-host-upgrade``
+    Perform Kubernetes upgrade for a host.
+
+``kube-host-upgrade-list``
+    List Kubernetes upgrade info for hosts.
+
+``health-query-kube-upgrade``
+    Run the health check for a Kubernetes upgrade.
+
+``host-label-list``
+    List Kubernetes labels assigned to a host.
+
+``kube-cluster-list``
+    List all Kubernetes clusters.
+
+``kube-cluster-show``
+    Show Kubernetes cluster details.
+
+``kube-version-list``
+    List all Kubernetes versions.
+
+``kube-version-show``
+    Show Kubernetes version details.
+
+``kube-upgrade-complete``
+    Complete a Kubernetes upgrade.
+
+``kube-upgrade-delete``
+    Delete a Kubernetes upgrade.
+
+``kube-upgrade-download-images``
+    Download Kubernetes images.
+
+``kube-upgrade-networking``
+    Upgrade Kubernetes networking.
+
+``kube-upgrade-show``
+    Show Kubernetes upgrade details and attributes.
+

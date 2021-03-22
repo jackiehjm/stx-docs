@@ -9,4 +9,5 @@ Reference for the StarlingX project command line interface (CLI).
 
    dcmanager
    fm
+   sw-manager
    system

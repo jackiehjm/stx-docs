@@ -4,7 +4,7 @@ fm
 
 :command:`fm` is the command-line interface for Fault Management.
 
-This page documents the :command:`fm` command in StarlingX R3.0.
+This page documents the :command:`fm` command.
 
 .. contents::
    :local:
@@ -56,7 +56,7 @@ The fault management (fm) alarm and event type commands enable the display of
 active alarms and historical events.
 
 ``alarm-delete``
-	Delete an active alarm.
+  Delete an active alarm.
 
 ``alarm-list``
   List all active alarms.
@@ -71,22 +71,22 @@ active alarms and historical events.
   attention in order to clear the alarm.
 
 ``alarm-summary``
-	Show a summary of active alarms.
+  Show a summary of active alarms.
 
 ``event-list``
-	List event logs. Displays alarm sets, alarm clears, and customer log type events.
+  List event logs. Displays alarm sets, alarm clears, and customer log type events.
 
 ``event-show``
-	Show a event log. Displays alarm sets, alarm clears, and customer log type events.
+  Show a event log. Displays alarm sets, alarm clears, and customer log type events.
 
 ``event-suppress``
-	Suppress specified event IDs.
+  Suppress specified event IDs.
 
 ``event-suppress-list``
-	List Suppressed event IDs
+  List Suppressed event IDs
 
 ``event-unsuppress``
-	Unsuppress specified event IDs.
+  Unsuppress specified event IDs.
 
 ``event-unsuppress-all``
-	Unsuppress all event IDs.
+  Unsuppress all event IDs.
