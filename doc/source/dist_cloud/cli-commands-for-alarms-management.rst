@@ -1,12 +1,13 @@
 
 .. hmg1558616220923
-.. _cli-commands-for-dc-alarms-management:
+.. _cli-commands-for-alarms-management:
 
-===================================================
-CLI Commands for Distributed Cloud Alarm Management
-===================================================
+==================================
+CLI Commands for Alarms Management
+==================================
 
-You can use the CLI to review alarm summaries for the |prod-dc|.
+You can use the |CLI| to review alarm summaries for the |prod-dc|.
+
 
 .. _cli-commands-for-alarms-management-ul-ncv-m4y-fdb:
 
@@ -17,13 +18,14 @@ You can use the CLI to review alarm summaries for the |prod-dc|.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ dcmanager alarm summary
+        ~(keystone_admin)]$ dcmanager alarm summary
         +------------+-----------------+--------------+--------------+----------+----------+
         | NAME       | CRITICAL_ALARMS | MAJOR_ALARMS | MINOR_ALARMS | WARNINGS | STATUS   |
         +------------+-----------------+--------------+--------------+----------+----------+
         | subcloud-5 |               0 |            2 |            0 |        0 | degraded |
         | subcloud-1 |               0 |            0 |            0 |        0 | OK       |
         +------------+-----------------+--------------+--------------+----------+----------+
+        
 
     System Controller alarms and warnings are not included.
 
@@ -39,45 +41,47 @@ You can use the CLI to review alarm summaries for the |prod-dc|.
         There are critical alarms.
 
 -   To show the count of alarms and warnings for the System Controller, use the
-    :command:`fm alarm-summary` command.
+    :command:`alarm-summary` command.
 
     For example:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ fm alarm-summary
+        ~(keystone_admin)]$ fm alarm-summary
         +-----------------+--------------+--------------+----------+
         | Critical Alarms | Major Alarms | Minor Alarms | Warnings |
         +-----------------+--------------+--------------+----------+
         | 0               | 0            | 0            | 0        |
         +-----------------+--------------+--------------+----------+
+        
 
     The following command is equivalent to the :command:`fm alarm-summary`,
     providing a count of alarms and warnings for the System Controller:
 
-    .. code-block:: none
 
-        fm --os-region-name RegionOne alarm-summary
+    -   :command:`fm --os-region-name RegionOne alarm-summary`
+
 
 -   To show the alarm and warning count for a specific subcloud only, add the
-    ``--os-region-name`` parameter and supply the region name:
+    --os-region-name parameter and supply the region name:
 
     For example:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ fm --os-region-name subcloud2 --os-auth-url http://192.168.121.2:5000/v3 alarm-summary
+        ~(keystone_admin)]$ fm --os-region-name subcloud2 --os-auth-url http://192.168.121.2:5000/v3  alarm-summary
         +-----------------+--------------+--------------+----------+
         | Critical Alarms | Major Alarms | Minor Alarms | Warnings |
         +-----------------+--------------+--------------+----------+
         | 0               | 0            | 0            | 0        |
         +-----------------+--------------+--------------+----------+
+        
 
 -   To list the alarms for a subcloud:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ fm --os-region-name subcloud2 --os-auth-url http://192.168.121.2:5000/v3 alarm-list
+        ~(keystone_admin)]$ fm --os-region-name subcloud2 --os-auth-url http://192.168.121.2:5000/v3  alarm-list
         +----------+--------------------------------------------+-------------------+----------+-------------------+
         | Alarm ID | Reason Text                                | Entity ID         | Severity | Time Stamp        |
         +----------+--------------------------------------------+-------------------+----------+-------------------+
@@ -88,3 +92,6 @@ You can use the CLI to review alarm summaries for the |prod-dc|.
         |          |                                            |                   |          | 29.121674         |
         |          |                                            |                   |          |                   |
         +----------+--------------------------------------------+-------------------+----------+-------------------+
+
+
+

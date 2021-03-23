@@ -31,6 +31,6 @@ Standard with Ironic
   This configuration extends the standard configurations to add the OpenStack
   Ironic service, which allows application workloads to run on bare metal servers.
 
-Distributed Cloud
+|prod-dc|
   An upcoming feature for StarlingX that will allow one controller to control a
   number of remote nodes.

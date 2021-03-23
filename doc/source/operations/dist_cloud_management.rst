@@ -2,7 +2,7 @@
 Distributed Cloud Management
 ============================
 
-This is a stub page for the topic: Distributed Cloud Management. You can help
+This is a stub page for the topic: |prod-dc| Management. You can help
 StarlingX by expanding the content.
 
 See the story for additional information about what is needed:
