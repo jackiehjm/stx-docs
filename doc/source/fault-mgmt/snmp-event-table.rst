@@ -43,11 +43,11 @@ Each entry in the table includes the following variables:
 An external SNMP Manager can examine the Event table contents by doing an SNMP
 Walk of the table.
 
-For example, below is the output for a simple :command:`snmpwalk` cli tool.
+For example, below is the output for a simple :command:`snmpwalk` CLI tool.
 
 .. code-block:: none
 
-    $ snmpwalk -v2c -c public udp:10.10.10.2:161 WRS-ALARM-MIB::wrsEventTable
+   $ snmpwalk -v2c -c public udp:10.10.10.2:161 WRS-ALARM-MIB::wrsEventTable
 
     WRS-ALARM-MIB::wrsEventIndex.1 = Wrong Type (should be Gauge32 or Unsigned32): INTEGER: 1
     WRS-ALARM-MIB::wrsEventIndex.2 = Wrong Type (should be Gauge32 or Unsigned32): INTEGER: 2

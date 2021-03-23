@@ -87,11 +87,10 @@ SNMP
    snmp-overview
    enabling-snmp-support
    traps
-   configuring-snmp-trap-destinations
    snmp-active-alarm-table
    snmp-event-table
-   adding-an-snmp-community-string-using-the-cli
    setting-snmp-identifying-information
+   uninstalling-snmp
 
 **********************************
 Distributed Cloud alarm management

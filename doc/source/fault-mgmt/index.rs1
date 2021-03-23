@@ -42,11 +42,7 @@
     -   :ref:`SNMP Overview <snmp-overview>`
     -   :ref:`Enabling SNMP Support <enabling-snmp-support>`
     -   :ref:`Traps <traps>`
-
-        -   :ref:`Configuring SNMP Trap Destinations <configuring-snmp-trap-destinations>`
-
     -   :ref:`SNMP Event Table <snmp-event-table>`
-    -   :ref:`Adding an SNMP Community String Using the CLI <adding-an-snmp-community-string-using-the-cli>`
     -   :ref:`Setting SNMP Identifying Information <setting-snmp-identifying-information>`
 
 -   :ref:`Troubleshooting Log Collection <troubleshooting-log-collection>`
