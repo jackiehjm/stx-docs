@@ -2,7 +2,7 @@
 dcmanager
 =========
 
-:command:`dcmanager` is the command-line interface for the Distributed Cloud
+:command:`dcmanager` is the command-line interface for the |prod-dc|
 Manager APIs. :command:`dcmanager` is applicable only in the `SystemController`
 region of the central cloud in a distributed cloud configuration.
 

@@ -183,8 +183,15 @@ Container integration
    :maxdepth: 2
 
    container_integration/kubernetes/index
-   
 
+-----------------
+Distributed Cloud
+-----------------
+   
+.. toctree::
+   :maxdepth: 2
+   
+   dist_cloud/index
 
 -------
 Updates

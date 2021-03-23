@@ -1,0 +1,20 @@
+
+.. begin-redfish-vms
+
+For subclouds with servers that support Redfish Virtual Media Service \(version
+1.2 or higher\), you can use the Central Cloud's CLI to install the ISO and 
+bootstrap subclouds from the Central Cloud. For more information, see 
+:ref:`Installing a Subcloud Using Redfish Platform Management Service
+<installing-a-subcloud-using-redfish-platform-management-service>`.
+
+For subclouds with servers that do not support Redfish Virtual Media Service,
+the ISO is installed locally at the subcloud. You can use the Central Cloud's
+CLI to bootstrap subclouds from the Central Cloud. For more
+information, see :ref:`Installing a Subcloud Without Redfish Platform
+Management Service
+<installing-a-subcloud-without-redfish-platform-management-service>`.
+
+.. end-redfish-vms
+
+.. begin-shared-nic
+.. end-shared-nic
