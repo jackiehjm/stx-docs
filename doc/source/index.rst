@@ -165,6 +165,15 @@ Backup and restore
 
    backup/index
 
+---------------------
+Container integration
+---------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   container_integration/kubernetes/index
+   
 ---------
 Reference
 ---------
