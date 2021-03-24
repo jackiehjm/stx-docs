@@ -8,6 +8,7 @@
 .. |AE| replace:: :abbr:`AE (Aggregated Ethernet)`
 .. |AIO| replace:: :abbr:`AIO (All-In-One)`
 .. |AVP| replace:: :abbr:`AVP (Accelerated Virtual Port)`
+.. |AVPs| replace:: :abbr:`AVPs (Accelerated Virtual Ports)`
 .. |AWS| replace:: :abbr:`AWS (Amazon Web Services)`
 .. |BGP| replace:: :abbr:`BGP (Border Gateway Protocol)`
 .. |BMC| replace:: :abbr:`BMC (Board Management Controller)`
@@ -18,8 +19,8 @@
 .. |CA| replace:: :abbr:`CA (Certificate Authority)`
 .. |CAs| replace:: :abbr:`CAs (Certificate Authorities)`
 .. |CLI| replace:: :abbr:`CLI (Command Line Interface)`
-.. |CNI| replace:: :abbr:`CNI (Container Networking Interface)`
 .. |CMK| replace:: :abbr:`CMK (CPU Manager for Kubernetes)`
+.. |CNI| replace:: :abbr:`CNI (Container Networking Interface)`
 .. |CoW| replace:: :abbr:`CoW (Copy on Write)`
 .. |CSK| replace:: :abbr:`CSK (Code Signing Key)`
 .. |CSKs| replace:: :abbr:`CSKs (Code Signing Keys)`
@@ -30,6 +31,7 @@
 .. |DRBD| replace:: :abbr:`DRBD (Distributed Replicated Block Device)`
 .. |DSCP| replace:: :abbr:`DSCP (Differentiated Services Code Point)`
 .. |DVR| replace:: :abbr:`DVR (Distributed Virtual Router)`
+.. |EMS| replace:: :abbr:`EMS (Element Management System)`
 .. |FEC| replace:: :abbr:`FEC (Forward Error Correction)`
 .. |FPGA| replace:: :abbr:`FPGA (Field Programmable Gate Array)`
 .. |FQDN| replace:: :abbr:`FQDN (Fully Qualified Domain Name)`
@@ -68,6 +70,7 @@
 .. |PEM| replace:: :abbr:`PEM (Privacy Enhanced Mail)`
 .. |PF| replace:: :abbr:`PF (Physical Function)`
 .. |PHB| replace:: :abbr:`PHB (Per-Hop Behavior)`
+.. |PMD| replace:: :abbr:`PMD (Pole Mode Driver)`
 .. |PQDN| replace:: :abbr:`PDQN (Partially Qualified Domain Name)`
 .. |PQDNs| replace:: :abbr:`PQDNs (Partially Qualified Domain Names)`
 .. |PSP| replace:: :abbr:`PSP (Pod Security Policy)`
@@ -92,7 +95,7 @@
 .. |SNAT| replace:: :abbr:`SNAT (Source Network Address Translation)`
 .. |SNMP| replace:: :abbr:`SNMP (Simple Network Management Protocol)`
 .. |SRIOV| replace:: :abbr:`SR-IOV (Single Root I/O Virtualization)`
-.. |SRIOVs| replace:: :abbr:`SR-IOV (Single Root I/O Virtualizations)`
+.. |SRIOVs| replace:: :abbr:`SR-IOVs (Single Root I/O Virtualizations)`
 .. |SSD| replace:: :abbr:`SSD (Solid State Drive)`
 .. |SSDs| replace:: :abbr:`SSDs (Solid State Drives)`
 .. |SSH| replace:: :abbr:`SSH (Secure Shell)`
@@ -114,6 +117,8 @@
 .. |VM| replace:: :abbr:`VM (Virtual Machine)`
 .. |VMs| replace:: :abbr:`VMs (Virtual Machines)`
 .. |VNC| replace:: :abbr:`VNC (Virtual Network Computing)`
+.. |VNF| replace:: :abbr:`VNF (Virtual Network Function)`
+.. |VNFs| replace:: :abbr:`VNFs (Virtual Network Functions)`
 .. |VNI| replace:: :abbr:`VNI (VXLAN Network Interface)`
 .. |VNIs| replace:: :abbr:`VNIs (VXLAN Network Interfaces)`
 .. |VPC| replace:: :abbr:`VPC (Virtual Port Channel)`
