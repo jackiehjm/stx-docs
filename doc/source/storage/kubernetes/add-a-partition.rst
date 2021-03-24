@@ -9,8 +9,6 @@ Add a Partition
 You can add a partition using the :command:`system host-disk-partition-add`
 command.
 
-.. rubric:: |context|
-
 The syntax for the command is:
 
 .. code-block:: none
@@ -23,10 +21,12 @@ where:
     is the host name or ID.
 
 **<disk>**
-    is the disk path or UUID.
+    is the disk path or |UUID|.
 
 **<size>**
     is the partition size in MiB.
+
+.. rubric:: |proc|
 
 For example, to set up a 512 MiB partition on compute-1, do the following:
 

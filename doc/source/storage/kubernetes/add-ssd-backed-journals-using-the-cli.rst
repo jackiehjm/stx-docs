@@ -32,13 +32,13 @@ monitors run on **controller-0**, **controller-1**, and **storage-0** only\).
     .. code-block:: none
 
         ~(keystone_admin)$ system host-disk-list storage-3
-        +-------+-------------+------------+-------------+------------------+
-        | uuid  | device_node | device_num | device_type | journal_size_gib |
-        +-------+-------------+------------+-------------+------------------+
-        | ba7...| /dev/sda    | 2048       | HDD         | 51200            |
-        | e87...| /dev/sdb    | 2064       | HDD         | 10240            |
-        | ae8...| /dev/sdc    | 2080       | SSD         | 8192             |
-        +-------+-------------+------------+-------------+------------------+
+        +--------------------------------------+-------------+------------+-------------+------------------+
+        | uuid                                 | device_node | device_num | device_type | journal_size_gib |
+        +--------------------------------------+-------------+------------+-------------+------------------+
+        | ba785ad3-8be7-3654-45fd-93892d7182da | /dev/sda    | 2048       | HDD         | 51200            |
+        | e8785ad3-98sa-1234-32ss-923433dd82da | /dev/sdb    | 2064       | HDD         | 10240            |
+        | ae885ad3-8cc7-4103-84eb-9333ff3482da | /dev/sdc    | 2080       | SSD         | 8192             |
+        +--------------------------------------+-------------+------------+-------------+------------------+
 
 #.  Create a journal function.
 
@@ -46,7 +46,7 @@ monitors run on **controller-0**, **controller-1**, and **storage-0** only\).
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-stor-add <host_name> journal <device_uuid>
+        ~(keystone_admin)]$ system host-stor-add <host_name> journal <device_uuid>
 
     where <host\_name> is the name of the storage host \(for example,
     storage-3\), and <device\_uuid> identifies an SSD.
@@ -55,8 +55,9 @@ monitors run on **controller-0**, **controller-1**, and **storage-0** only\).
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-stor-add storage-3 journal ae885ad3-8be7-4103-84eb-93892d7182da
-        |------------------+--------------------------------------+
+        ~(keystone_admin)]$ system host-stor-add storage-3 journal ae885ad3-8be7-4103-84eb-93892d7182da
+
+        +------------------+--------------------------------------+
         | Property         | Value                                |
         +------------------+--------------------------------------+
         | osdid            | None                                 |
@@ -73,12 +74,13 @@ monitors run on **controller-0**, **controller-1**, and **storage-0** only\).
         +------------------+--------------------------------------+
 
 
-#.  Update one or more OSDs to use the journal function.
+#.  Update one or more |OSDs| to use the journal function.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-stor-update <osd_uuid> \
-        --journal-location <journal_function_uuid> [--journal-size <size_in_gib>]
+        ~(keystone_admin)$ system host-stor-update <osd_uuid>
+        --journal-location <journal_function_uuid> [--journal-size
+        <size_in_gib>]
 
 
     For example:

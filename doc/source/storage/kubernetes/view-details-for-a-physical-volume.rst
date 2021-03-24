@@ -25,11 +25,11 @@ where:
 **<uuid>**
     is the uuid of the physical volume.
 
-For example, to view details for a physical volume on compute-1, do the
-following:
+    For example, to view details for a physical volume on compute-1, do the
+    following:
 
-.. code-block:: none
+    .. code-block:: none
 
-    ~(keystone_admin)$ system host-pv-show compute-1 9f93c549-e26c-4d4c-af71-fb84e3fcae63
+        ~(keystone_admin)]$ system host-pv-show compute-1 9f93c549-e26c-4d4c-af71-fb84e3fcae63
 
 

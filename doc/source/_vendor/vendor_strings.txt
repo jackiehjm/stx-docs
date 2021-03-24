@@ -11,6 +11,7 @@
 .. |prod-long| replace:: StarlingX
 .. |prod-os| replace:: StarlingX OpenStack
 .. |prod-dc| replace:: Distributed Cloud
+.. |prod-p| replace:: StarlingX Platform
 
 .. Guide names; will be formatted in italics by default.
 .. |node-doc| replace:: :title:`StarlingX Node Configuration and Management`

@@ -22,8 +22,9 @@ command includes both the **device\_node** and the **device\_path**.
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system host-disk-show controller-0 \
-       1722b081-8421-4475-a6e8-a26808cae031
+    ~(keystone_admin)]$ system host-disk-show controller-0
+    1722b081-8421-4475-a6e8-a26808cae031
+
     +-------------+--------------------------------------------+
     | Property    | Value                                      |
     +-------------+--------------------------------------------+

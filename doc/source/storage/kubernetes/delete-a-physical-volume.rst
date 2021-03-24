@@ -50,6 +50,6 @@ command.
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system host-pv-delete compute-1 9f93c549-e26c-4d4c-af71-fb84e3fcae63
+    ~(keystone_admin)]$ system host-pv-delete compute-1 9f93c549-e26c-4d4c-af71-fb84e3fcae63
 
 

@@ -6,12 +6,12 @@
 Provision Storage on a Storage Host Using the CLI
 =================================================
 
-You can use the command line to configure the object storage devices \(OSDs\)
+You can use the command line to configure the object storage devices \(|OSDs|\)
 on storage hosts.
 
 .. rubric:: |context|
 
-For more about OSDs, see |stor-doc|: :ref:`Storage on Storage Hosts
+For more about |OSDs|, see |stor-doc|: :ref:`Storage on Storage Hosts
 <storage-hosts-storage-on-storage-hosts>`.
 
 .. xbooklink
@@ -21,7 +21,7 @@ For more about OSDs, see |stor-doc|: :ref:`Storage on Storage Hosts
 
 .. rubric:: |prereq|
 
-To create or edit an OSD, you must lock the storage host. The system must
+To create or edit an |OSD|, you must lock the storage host. The system must
 have at least two other unlocked hosts with Ceph monitors. \(Ceph monitors
 run on **controller-0**, **controller-1**, and **storage-0** only\).
 
@@ -33,20 +33,20 @@ To use a custom storage tier, you must create the tier first.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-disk-list storage-3
-        +-------+-------------+------------+-------------+----------+---------------+--------------------------------------------+
-        | uuid  | device_node | device_num | device_type | size_gib | available_gib | device_path                                |
-        +-------+-------------+------------+-------------+----------+---------------+--------------------------------------------+
-        | ba7...| /dev/sda    | 2048       | HDD         | 51.2     | 0             | /dev/disk/by-path/pci-0000:00:0d.0-ata-2.0 |
-        | e87...| /dev/sdb    | 2064       | HDD         | 10.2     | 10.1          | /dev/disk/by-path/pci-0000:00:0d.0-ata-3.0 |
-        | ae8...| /dev/sdc    | 2080       | SSD         | 8.1      | 8.0           | /dev/disk/by-path/pci-0000:00:0d.0-ata-4.0 |
-        +-------+-------------+------------+--------------+---------+---------------+--------------------------------------------+
+        ~(keystone_admin)]$ system host-disk-list storage-3
+        +--------------------------------------+-------------+------------+-------------+----------+---------------+--------------------------------------------+
+        | uuid                                 | device_node | device_num | device_type | size_gib | available_gib | device_path                                |
+        +--------------------------------------+-------------+------------+-------------+----------+---------------+--------------------------------------------+
+        | ba751efe-33sd-as34-7u78-df3416875896 | /dev/sda    | 2048       |   HDD       | 51.2     | 0             | /dev/disk/by-path/pci-0000:00:0d.0-ata-2.0 |
+        | e8751efe-6101-4d1c-a9d3-7b1a16871791 | /dev/sdb    | 2064       |   HDD       | 10.2     | 10.1          | /dev/disk/by-path/pci-0000:00:0d.0-ata-3.0 |
+        | ae851efe-87hg-67gv-9ouj-sd3s16877658 | /dev/sdc    | 2080       |   SSD       | 8.1      | 8.0           | /dev/disk/by-path/pci-0000:00:0d.0-ata-4.0 |
+        +--------------------------------------+-------------+------------+-------------+----------+---------------+--------------------------------------------+
 
 #.  List the available storage tiers.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system storage-tier-list ceph_cluster
+        ~(keystone_admin)]$ system storage-tier-list ceph_cluster
         +--------------------------------------+---------+--------+----------------+
         | uuid                                 | name    | status | backend_using  |
         +--------------------------------------+---------+--------+----------------+
@@ -54,7 +54,7 @@ To use a custom storage tier, you must create the tier first.
         | e9ddc040-7d5e-4e28-86be-f8c80f5c0c42 | storage | in-use | f1151da5-bd... |
         +--------------------------------------+---------+--------+----------------+
 
-#.  Create a storage function \(an OSD\).
+#.  Create a storage function \(an |OSD|\).
 
     .. note::
         You cannot add a storage function to the root disk \(/dev/sda in this
@@ -62,17 +62,17 @@ To use a custom storage tier, you must create the tier first.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-stor-add
+        ~(keystone_admin)]$ system host-stor-add
         usage: system host-stor-add [--journal-location [<journal_location>]]
                                      [--journal-size[<size of the journal MiB>]]
                                      [--tier-uuid[<storage tier uuid>]]
                                      <hostname or id> [<function>] <idisk_uuid>
 
-    where <idisk\_uuid> identifies an OSD. For example:
+    where <idisk\_uuid> identifies an |OSD|. For example:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-stor-add storage-3 e8751efe-6101-4d1c-a9d3-7b1a16871791
+        ~(keystone_admin)]$ system host-stor-add storage-3 e8751efe-6101-4d1c-a9d3-7b1a16871791
 
         +------------------+--------------------------------------------------+
         | Property         | Value                                            |
@@ -101,35 +101,34 @@ To use a custom storage tier, you must create the tier first.
     specify a different size in GiB.
 
     If multiple journal functions exist \(corresponding to multiple
-    dedicated SSDs\), then you must include the ``--journal-location``
-    option and specify the journal function to use for the OSD. You can
+    dedicated |SSDs|\), then you must include the ``--journal-location``
+    option and specify the journal function to use for the |OSD|. You can
     obtain the UUIDs for journal functions using the :command:`system
     host-stor-list` command:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-stor-list storage-3
+        ~(keystone_admin)]$ system host-stor-list storage-3
 
-        +---------+----------+-------+--------------+---------------+--------------------------+------------------+-----------|
-        | uuid    | function | osdid | capabilities | idisk_uuid    | journal_path             | journal_size_gib | tier_name |
-        +---------+----------+-------+--------------+---------------+--------------------------+------------------+-----------|
-        | e639... | journal  | None  | {}           | ae8b1434-d... | None                     | 0                |           |
-        | fc7b... | osd      | 3     | {}           | e8751efe-6... | /dev/disk/by-path/pci... | 1.0              | storage   |
-        +---------+----------+-------+--------------+---------------+--------------------------+------------------+-----------|
+        +--------------------------------------+----------+-------+--------------+---------------+--------------------------+------------------+-----------+
+        | uuid                                 | function | osdid | capabilities | idisk_uuid    | journal_path             | journal_size_gib | tier_name |
+        +--------------------------------------+----------+-------+--------------+---------------+--------------------------+------------------+-----------|
+        | e6391e2-8564-4f4d-8665-681f73d13dfb  | journal  | None  | {}           | ae8b1434-d... | None                     | 0                |           |
+        | fc7bdc40-7d5e-4e28-86be-f8c80f5c0c42 | osd      | 3     | {}           | e8751efe-6... | /dev/disk/by-path/pci... | 1.0              | storage   |
+        +--------------------------------------+----------+-------+--------------+---------------+--------------------------+------------------+-----------+
 
     If no journal function exists when the storage function is created, the
-    Ceph journal for the OSD is collocated on the OSD.
+    Ceph journal for the |OSD| is collocated on the |OSD|.
 
-    If an SSD or NVMe drive is available on the host, you can add a
+    If an |SSD| or |NVMe| drive is available on the host, you can add a
     journal function. For more information, see :ref:`Add SSD-Backed
     Journals Using the CLI <add-ssd-backed-journals-using-the-cli>`. You
-    can update the OSD to use a journal on the SSD by referencing the
-    journal function UUID, as follows:
+    can update the |OSD| to use a journal on the |SSD| by referencing the
+    journal function |UUID|, as follows:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-stor-update <osd_uuid> \
-        --journal-location <journal_function_uuid> [--journal-size <size>]
+        ~(keystone_admin)]$ system host-stor-update <osd_uuid> --journal-location <journal_function_uuid> [--journal-size <size>]
 
 .. rubric:: |postreq|
 

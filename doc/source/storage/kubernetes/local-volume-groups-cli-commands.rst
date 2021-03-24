@@ -2,11 +2,11 @@
 .. rtm1590585833668
 .. _local-volume-groups-cli-commands:
 
-====================================
-CLI Commands for Local Volume Groups
-====================================
+================================
+Local Volume Groups CLI Commands
+================================
 
-You can use CLI commands to manage local volume groups.
+You can use |CLI| commands to manage local volume groups.
 
 
 .. _local-volume-groups-cli-commands-simpletable-kfn-qwk-nx:
@@ -42,11 +42,9 @@ You can use CLI commands to manage local volume groups.
     |                                                       |                                                       |
     +-------------------------------------------------------+-------------------------------------------------------+
 
-where:
-
 **<instance\_backing>**
-    is the storage method for the local volume group \(image or remote\).
-    The remote option is valid only for systems with dedicated storage.
+    is the storage method for the local volume group \(image or remote\). The
+    remote option is valid only for systems with dedicated storage.
 
 **<concurrent\_disk\_operations>**
     is the number of I/O intensive disk operations, such as glance image
@@ -61,3 +59,4 @@ where:
 
 **<groupname>**
     is the name or ID of the local volume group.
+

@@ -16,7 +16,7 @@ The syntax of the command is:
 
     system host-pv-list <hostname>
 
-where **<hostname>** is the name or ID of the host.
+<hostname> is the name or ID of the host.
 
 For example, to list physical volumes on compute-1, do the following:
 
