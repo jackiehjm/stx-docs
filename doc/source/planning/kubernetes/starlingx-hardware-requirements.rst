@@ -117,8 +117,23 @@ in the following table.
        
        Single-CPU Intel Xeon D-15xx Family, 8 cores \(low-power/low-cost
        option for Simplex deployments\)
+
+       Platform: 2x physical cores \(4x logical cores if hyper-threading\), \(by default, configurable\)
+       Application: Remaining cores
    * - Minimum Memory
-     - 64 GB
+     - -   64 GB
+
+       -   Platform:
+
+           * Socket 0: 7GB \(by default, configurable\)
+  
+           * Socket 1: 1GB \(by default, configurable\)
+
+       -   Application:
+
+           * Socket 0: Remaining memory
+        
+           * Socket 1: Remaining memory
    * - Minimum Primary Disk
      - 500 GB - |SSD| or |NVMe|
    * - Additional Disks

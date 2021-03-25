@@ -70,3 +70,7 @@ guidelines:
     internal management network. To prevent loss of controller synchronization,
     ensure that the switches and other devices on these networks are configured
     with appropriate settings.
+
+.. only:: partner
+
+   .. include:: ../../_includes/subnet-sizing-restrictions.rest
