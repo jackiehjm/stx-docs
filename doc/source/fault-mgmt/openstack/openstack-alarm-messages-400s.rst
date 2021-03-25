@@ -6,7 +6,7 @@
 Alarm Messages - 400s
 =====================
 
-.. include:: ../_includes/openstack-alarm-messages-xxxs.rest
+.. include:: ../../_includes/openstack-alarm-messages-xxxs.rest
 
 .. list-table::
    :widths: 6 15

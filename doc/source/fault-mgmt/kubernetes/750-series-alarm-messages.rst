@@ -10,7 +10,7 @@ The system inventory and maintenance service reports system changes with
 different degrees of severity. Use the reported alarms to monitor the overall
 health of the system.
 
-.. include:: ../_includes/x00-series-alarm-messages.rest
+.. include:: ../../_includes/x00-series-alarm-messages.rest
 
 .. _750-series-alarm-messages-table-zrd-tg5-v5:
 

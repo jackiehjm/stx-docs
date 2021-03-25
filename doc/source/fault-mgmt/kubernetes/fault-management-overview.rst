@@ -15,7 +15,7 @@ alarms and :ref:`Customer Log Messages
 for the list of customer logs reported by |prod|.
 
 You can access active and historical alarms, and customer logs using the CLI,
-GUI, REST APIs and :abbr:`SNMP (Simple Network Management Protocol)`.
+GUI, REST APIs and |SNMP|.
 
 To use the CLI, see
 :ref:`Viewing Active Alarms Using the CLI

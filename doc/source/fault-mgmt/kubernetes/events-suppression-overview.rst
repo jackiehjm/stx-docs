@@ -28,6 +28,6 @@ You can sort events by clicking the **Event ID**, **Description**, and
 **Status** column headers. You can also use these as filtering criteria
 from the **Search** field.
 
-.. figure:: figures/uty1463514747661.png
+.. figure:: ../figures/uty1463514747661.png
    :scale: 70 %
    :alt: Event Suppression

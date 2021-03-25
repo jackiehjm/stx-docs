@@ -96,4 +96,4 @@ Collect Tool Caveats and Usage
 
 .. only:: partner
 
-    .. include:: ../_includes/troubleshooting-log-collection.rest
+    .. include:: ../../_includes/troubleshooting-log-collection.rest

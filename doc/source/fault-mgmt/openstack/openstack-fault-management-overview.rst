@@ -21,4 +21,4 @@ Management Protocol)` are available on the |prod| REST APIs, :abbr:`CLIs
 
 .. :only: partner
 
-    .. include:: ../_includes/openstack-fault-management-overview.rest
+    .. include:: ../../_includes/openstack-fault-management-overview.rest

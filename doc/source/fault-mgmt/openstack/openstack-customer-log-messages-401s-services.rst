@@ -6,7 +6,7 @@
 Customer Log Messages 401s - Services
 =====================================
 
-.. include:: ../_includes/openstack-customer-log-messages-xxxs.rest
+.. include:: ../../_includes/openstack-customer-log-messages-xxxs.rest
 
 .. _customer-log-messages-401s-services-table-zgf-jvw-v5:
 

@@ -6,7 +6,7 @@
 Alarm Messages - 300s
 =====================
 
-.. include:: ../_includes/openstack-alarm-messages-xxxs.rest
+.. include:: ../../_includes/openstack-alarm-messages-xxxs.rest
 
 .. _alarm-messages-300s-table-zrd-tg5-v5:
 

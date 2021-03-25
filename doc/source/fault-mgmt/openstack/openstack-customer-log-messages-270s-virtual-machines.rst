@@ -6,7 +6,7 @@
 Customer Log Messages 270s - Virtual Machines
 =============================================
 
-.. include:: ../_includes/openstack-customer-log-messages-xxxs.rest
+.. include:: ../../_includes/openstack-customer-log-messages-xxxs.rest
 
 .. _customer-log-messages-270s-virtual-machines-table-zgf-jvw-v5:
 
