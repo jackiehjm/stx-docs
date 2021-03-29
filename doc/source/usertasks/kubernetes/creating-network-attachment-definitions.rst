@@ -39,7 +39,7 @@ this data network.
 
     .. code-block:: yaml
 
-        ~(keystone_admin)$ cat <<EOF > net1.yaml
+        ~(keystone_admin)]$ cat <<EOF > net1.yaml
         apiVersion: "k8s.cni.cncf.io/v1"
         kind: NetworkAttachmentDefinition
         metadata:
@@ -65,7 +65,7 @@ this data network.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ cat <<EOF > net2.yaml
+            ~(keystone_admin)]$ cat <<EOF > net2.yaml
             apiVersion: "k8s.cni.cncf.io/v1"
             kind: NetworkAttachmentDefinition
             metadata:
@@ -85,7 +85,7 @@ this data network.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ cat <<EOF > net3.yaml
+            ~(keystone_admin)]$ cat <<EOF > net3.yaml
             apiVersion: "k8s.cni.cncf.io/v1"
             kind: NetworkAttachmentDefinition
             metadata:

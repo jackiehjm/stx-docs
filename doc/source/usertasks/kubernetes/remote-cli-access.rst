@@ -29,3 +29,13 @@ remote workstation using one of the two methods.
     :command:`helm` clients directly on the remote host. This method only
     provides the kubernetes-related CLIs and requires OS-specific installation
     instructions.
+    
+.. seealso::
+    :ref:`Configuring Container-backed Remote CLIs and Clients
+    <kubernetes-user-tutorials-configuring-container-backed-remote-clis-and-clients>`
+
+    :ref:`Using Container-backed Remote CLIs and Clients <using-container-based-remote-clis-and-clients>`  
+
+    :ref:`Installing Kubectl and Helm Clients Directly on a Host <kubernetes-user-tutorials-installing-kubectl-and-helm-clients-directly-on-a-host>`  
+
+    :ref:`Configuring Remote Helm Client <configuring-remote-helm-client>` 

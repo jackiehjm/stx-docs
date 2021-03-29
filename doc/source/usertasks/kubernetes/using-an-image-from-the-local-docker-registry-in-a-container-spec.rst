@@ -12,6 +12,13 @@ specify an **imagePullSecret** with your keystone credentials.
 
 .. rubric:: |context|
 
+.. note::
+  If the credentials of a Keystone user is changed, you must change the
+  credentials stored in your **imagePullSecret** for the same user. Failure
+  to do so will cause docker to authenticate with Keystone using the old
+  credentials, and locking the Keystone user account due to too many
+  incorrect login attempts.
+
 This example procedure assumes that testuser/busybox:latest container image has
 been pushed to the local docker registry.
 

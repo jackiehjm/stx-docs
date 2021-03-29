@@ -88,7 +88,7 @@ commands can be run by the non-admin user, locally or remotely.
 
         ~(keystone_admin)]$ helm init --service-account=tiller --tiller-namespace=$NAMESPACE --output yaml | sed 's@apiVersion: extensions/v1beta1@apiVersion: apps/v1@' | sed 's@ replicas: 1@ replicas: 1\n \ selector: {"matchLabels": {"app": "helm", "name": "tiller"}}@' > helm-init.yaml
         ~(keystone_admin)]$ kubectl apply -f helm-init.yaml
-        ~(keystone_admin)]$ helm init –client-only
+        ~(keystone_admin)]$ helm init --client-only --home "./.helm"
 
     .. note::
         Ensure that each of the patterns between single quotes in the above

@@ -39,6 +39,7 @@ devices as you have network annotations.
               name: pod1
               annotations:
                 k8s.v1.cni.cncf.io/networks: '[
+                    { "name": "net2" },
                     { "name": "net2" }
                 ]'
             spec:
@@ -58,7 +59,7 @@ devices as you have network annotations.
 
         .. code-block:: none
 
-            ~(keystone_admin)$  kubectl create -f pod1.yaml
+            ~(keystone_admin)]$  kubectl create -f pod1.yaml
             pod/pod1 created
 
     After creating the container, an extra network device interface, **net2**,

@@ -22,6 +22,7 @@ Remote CLI access
    usertask-using-container-backed-remote-clis-and-clients
    kubernetes-user-tutorials-installing-kubectl-and-helm-clients-directly-on-a-host
    configuring-remote-helm-client
+   using-container-based-remote-clis-and-clients
 
 GUI access
 **********
