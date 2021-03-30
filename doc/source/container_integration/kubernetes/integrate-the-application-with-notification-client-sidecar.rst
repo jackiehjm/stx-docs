@@ -41,12 +41,3 @@ The following prerequisites are required before the integration:
 
 .. image:: ../figures/cak1614112389132.png
     :width: 800
-
-
-
-For instructions on creating, testing and terminating a
-**ptp-notification-demo**, see, :ref:`Create, Test, and Terminate |PTP|
-Notification Demo <create-test-and-terminate-a-ptp-notification-demo>`.
-
-
-

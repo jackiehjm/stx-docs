@@ -14,6 +14,3 @@ PTP Notification
     remove-ptp-notifications
     override-default-application-values
     integrate-the-application-with-notification-client-sidecar
-    create-test-and-terminate-a-ptp-notification-demo
-
-
