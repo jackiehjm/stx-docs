@@ -68,3 +68,7 @@ After changing the |OAM| server configuration, you must lock and unlock the
 controllers. This process requires a swact on the controllers. Then you must
 lock and unlock the worker nodes one at a time, ensuring that sufficient
 resources are available to migrate any running instances.
+
+.. note:: 
+   On AIO Simplex systems you do not need to lock and unlock the host. The
+   changes are applied automatically.
