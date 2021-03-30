@@ -75,7 +75,6 @@ Access the System
    install-the-kubernetes-dashboard
    security-rest-api-access
    connect-to-container-registries-through-a-firewall-or-proxy
-   using-container-backed-remote-clis-and-clients
 
 ***************************
 Manage Non-Admin Type Users

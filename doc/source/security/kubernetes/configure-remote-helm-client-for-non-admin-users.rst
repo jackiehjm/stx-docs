@@ -2,44 +2,141 @@
 .. oiz1581955060428
 .. _configure-remote-helm-client-for-non-admin-users:
 
-================================================
-Configure Remote Helm Client for Non-Admin Users
-================================================
+===============================
+Configure Remote Helm v2 Client
+===============================
 
-For non-admin users \(i.e. users without access to the default Tiller
-server running in kube-system namespace\), you must create a Tiller server
-for this specific user in a namespace that they have access to.
+Helm v3 is recommended for users to install and manage their
+containerized applications. However, Helm v2 may be required, for example, if
+the containerized application supports only a Helm v2 helm chart.
 
 .. rubric:: |context|
 
-By default, helm communicates with the default Tiller server in the
-kube-system namespace. This is not accessible by non-admin users.
-
-For non-admin users use of the helm client, you must create your own Tiller
-server, in a namespace that you have access to, with the required |RBAC|
+Helm v2 is only supported remotely. Also, it is only supported with kubectl and
+Helm v2 clients configured directly on the remote host workstation.  In
+addition to installing the Helm v2 clients, users must also create their own
+Tiller server, in a namespace that the user has access, with the required |RBAC|
 capabilities and optionally |TLS| protection.
 
-To create a Tiller server with |RBAC| permissions within the default
-namespace, complete the following steps on the controller: Except where
-indicated, these commands can be run by the non-admin user, locally or
-remotely.
-
-.. note::
-    If you are using container-backed helm CLIs and clients \(method 1\),
-    ensure you change directories to <$HOME>/remote\_cli\_wd
+Complete the following steps to configure Helm v2 for managing containerized
+applications with a Helm v2 helm chart.
 
 .. rubric:: |proc|
 
-
 .. _configure-remote-helm-client-for-non-admin-users-steps-isx-dsd-tkb:
 
-#.  Set the namespace.
+#.  On the controller, create an admin-user service account if this is not
+    already available.
+
+    #.  Create the **admin-user** service account in **kube-system**
+        namespace and bind the **cluster-admin** ClusterRoleBinding to this user.
+
+        .. code-block:: none
+
+            % cat <<EOF > admin-login.yaml
+            apiVersion: v1
+            kind: ServiceAccount
+            metadata:
+              name: admin-user
+              namespace: kube-system
+            ---
+            apiVersion: rbac.authorization.k8s.io/v1
+            kind: ClusterRoleBinding
+            metadata:
+              name: admin-user
+            roleRef:
+              apiGroup: rbac.authorization.k8s.io
+              kind: ClusterRole
+              name: cluster-admin
+            subjects:
+            - kind: ServiceAccount
+              name: admin-user
+              namespace: kube-system
+            EOF
+            % kubectl apply -f admin-login.yaml
+
+    #.  Retrieve the secret token.
+
+        .. code-block:: none
+
+             % kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
+
+
+#.  On the workstation, if it is not available, install the :command:`kubectl` client on an Ubuntu
+    host by taking the following actions on the remote Ubuntu system.
+
+    #.  Install the :command:`kubectl` client CLI.
+
+        .. code-block:: none
+
+            % sudo apt-get update
+            % sudo apt-get install -y apt-transport-https
+            % curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
+            sudo apt-key add
+            % echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | \
+            sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+            % sudo apt-get update
+            % sudo apt-get install -y kubectl
+
+    #.  Set up the local configuration and context.
+
+        .. note::
+            In order for your remote host to trust the certificate used by
+            the |prod-long| K8S API, you must ensure that the
+            **k8s\_root\_ca\_cert** specified at install time is a trusted
+            CA certificate by your host. Follow the instructions for adding
+            a trusted CA certificate for the operating system distribution
+            of your particular host.
+
+            If you did not specify a **k8s\_root\_ca\_cert** at install
+            time, then specify –insecure-skip-tls-verify, as shown below.
+
+        .. code-block:: none
+
+            % kubectl config set-cluster mycluster --server=https://<oam-floating-IP>:6443 \
+            --insecure-skip-tls-verify
+            % kubectl config set-credentials admin-user@mycluster --token=$TOKEN_DATA
+            % kubectl config set-context admin-user@mycluster --cluster=mycluster \
+            --user admin-user@mycluster --namespace=default
+            % kubectl config use-context admin-user@mycluster
+
+        <$TOKEN\_DATA> is the token retrieved in step 1.
+
+    #.  Test remote :command:`kubectl` access.
+
+        .. code-block:: none
+
+            % kubectl get nodes -o wide
+            NAME           STATUS   ROLES    AGE    VERSION   INTERNAL-IP       EXTERNAL-IP   OS-IMAGE ...
+            controller-0   Ready    master   15h    v1.12.3   192.168.204.3     <none>        CentOS L ...
+            controller-1   Ready    master   129m   v1.12.3   192.168.204.4     <none>        CentOS L ...
+            worker-0       Ready    <none>   99m    v1.12.3   192.168.204.201   <none>        CentOS L ...
+            worker-1       Ready    <none>   99m    v1.12.3   192.168.204.202   <none>        CentOS L ...
+            %
+
+#.  Install the Helm v2 client on remote workstation.
+
+    .. code-block:: none
+
+        % wget https://get.helm.sh/helm-v2.13.1-linux-amd64.tar.gz
+        % tar xvf helm-v2.13.1-linux-amd64.tar.gz
+        % sudo cp linux-amd64/helm /usr/local/bin
+
+    Verify that :command:`helm` is installed correctly.
+
+    .. code-block:: none
+
+        % helm version
+        Client: &version.Version{SemVer:"v2.13.1", GitCommit:"618447cbf203d147601b4b9bd7f8c37a5d39fbb4", GitTreeState:"clean"}
+        Server: &version.Version{SemVer:"v2.13.1", GitCommit:"618447cbf203d147601b4b9bd7f8c37a5d39fbb4", GitTreeState:"clean"}
+
+#.  Set the namespace for which you want Helm v2 access to.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ NAMESPACE=default
 
-#.  Set up accounts, roles and bindings.
+#.  Set up accounts, roles and bindings for Tiller (Helm v2 cluster access).
 
 
     #.  Execute the following commands.
@@ -94,7 +191,8 @@ remotely.
             --clusterrole tiller --serviceaccount ${NAMESPACE}:tiller
 
 
-#.  Initialize the Helm account.
+#.  Initialize Helm v2 access with :command:`helm init` command to start Tiller in the
+    specified NAMESPACE with the specified RBAC credentials.
 
     .. code-block:: none
 
@@ -133,7 +231,7 @@ remotely.
 
 .. rubric:: |result|
 
-You can now use the private Tiller server remotely or locally by specifying
+You can now use the private Tiller server remotely by specifying
 the ``--tiller-namespace`` default option on all helm CLI commands. For
 example:
 
@@ -141,19 +239,6 @@ example:
 
     helm version --tiller-namespace default
     helm install --name wordpress stable/wordpress --tiller-namespace default
-
-.. note::
-    If you are using container-backed helm CLI and Client \(method 1\), then
-    you change directory to <$HOME>/remote\_cli\_wd and include the following
-    option on all helm commands:
-
-    .. code-block:: none
-
-        —home "./.helm"
-
-.. note::
-    Use the remote Windows Active Directory server for authentication of
-    remote :command:`kubectl` commands.
 
 .. seealso::
 

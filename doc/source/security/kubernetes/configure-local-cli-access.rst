@@ -39,47 +39,47 @@ required system maintenance, administration and troubleshooting tasks.
     the system-managed KUBECONFIG file /etc/kubernetes/admin.conf, which can be
     changed and overwritten by the system.
 
-#.  Copy /etc/kubernetes/admin.conf to a private file under
-    /home/sysadmin such as /home/sysadmin/.kube/config, and update
-    /home/sysadmin/.profile to have the <KUBECONFIG> environment variable
-    point to the private file.
+    #.  Copy /etc/kubernetes/admin.conf to a private file under
+        /home/sysadmin such as /home/sysadmin/.kube/config, and update
+        /home/sysadmin/.profile to have the <KUBECONFIG> environment variable
+        point to the private file.
 
-    For example, the following commands set up a private KUBECONFIG file.
-
-    .. code-block:: none
-
-        # ssh sysadmin@<oamFloatingIpAddress>
-        Password:
-        % mkdir .kube
-        % cp /etc/kubernetes/admin.conf .kube/config
-        % echo "export KUBECONFIG=~/.kube/config" >> ~/.profile
-        % exit
-
-    .. note::
-        The command
+        For example, the following commands set up a private KUBECONFIG file.
 
         .. code-block:: none
 
-            echo "export KUBECONFIG=~/.kube/config" >> ~/.profile
+            # ssh sysadmin@<oamFloatingIpAddress>
+            Password:
+            % mkdir .kube
+            % cp /etc/kubernetes/admin.conf .kube/config
+            % echo "export KUBECONFIG=~/.kube/config" >> ~/.profile
+            % exit
 
-        shown above is specific to CentOS. Substitute the correct syntax for your operating system. The following alternative is for Ubuntu:
+        .. note::
+            The command
+
+            .. code-block:: none
+
+                echo "export KUBECONFIG=~/.kube/config" >> ~/.profile
+
+            shown above is specific to CentOS. Substitute the correct syntax for your operating system. The following alternative is for Ubuntu:
+
+            .. code-block:: none
+
+                echo "export KUBECONFIG=~/.kube/config" >> ~/.bashrc
+
+    #.  Confirm that the <KUBECONFIG> environment variable is set correctly
+        and that :command:`kubectl` commands are functioning properly.
 
         .. code-block:: none
 
-            echo "export KUBECONFIG=~/.kube/config" >> ~/.bashrc
+            # ssh sysadmin@<oamFloatingIpAddress>
+            Password:
+            % env | fgrep KUBE
+            KUBECONFIG=/home/sysadmin/.kube/config
+            % kubectl get pods
 
-#.  Confirm that the <KUBECONFIG> environment variable is set correctly
-    and that :command:`kubectl` commands are functioning properly.
-
-    .. code-block:: none
-
-        # ssh sysadmin@<oamFloatingIpAddress>
-        Password:
-        % env | fgrep KUBE
-        KUBECONFIG=/home/sysadmin/.kube/config
-        % kubectl get pods
-
-.. rubric:: |result|
+    .. rubric:: |result|
 
 You can now access all |prod| commands.
 
@@ -98,13 +98,6 @@ For example:
     +----+--------------+-------------+----------------+-------------+--------------+
     | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
     +----+--------------+-------------+----------------+-------------+--------------+
-
-.. note::
-    In the following examples, the prompt is shortened to:
-
-    .. code-block:: none
-
-        ~(keystone_admin)]$
 
 Use :command:`system help` for a full list of :command:`system` subcommands.
 
@@ -144,7 +137,16 @@ For example:
     NAME                                              READY   STATUS    RESTARTS   AGE
     dashboard-kubernetes-dashboard-7749d97f95-bzp5w   1/1     Running   0          3d18h
 
-.. note::
-    Use the remote Windows Active Directory server for authentication of
-    local :command:`kubectl` commands.
+**Helm commands**
 
+Helm commands are executed with the :command:`helm` command
+
+For example:
+
+.. code-block:: none
+
+    % helm repo add bitnami https://charts.bitnami.com/bitnami
+    % helm repo update
+    % helm repo list
+    % helm search repo
+    % helm install wordpress bitnami/wordpress

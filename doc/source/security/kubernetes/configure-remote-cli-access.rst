@@ -42,5 +42,5 @@ either of the above two methods.
     :ref:`Install Kubectl and Helm Clients Directly on a Host
     <security-install-kubectl-and-helm-clients-directly-on-a-host>`
 
-    :ref:`Configure Remote Helm Client for Non-Admin Users
+    :ref:`Configure Remote Helm v2 Client
     <configure-remote-helm-client-for-non-admin-users>`

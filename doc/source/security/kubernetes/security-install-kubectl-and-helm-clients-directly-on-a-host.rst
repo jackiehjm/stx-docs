@@ -61,13 +61,14 @@ configuration is required in order to use :command:`helm`.
 
         .. code-block:: none
 
-            % kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
+            ~(keystone_admin)]$ TOKEN_DATA=$(kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}') | grep "token:" | awk '{print $2}')
 
 
-#.  On the workstation, install the :command:`kubectl` client on an Ubuntu
-    host by taking the following actions on the remote Ubuntu system.
+#.  On a remote workstation, install the :command:`kubectl` client. Go to the
+    following link: `https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+    <https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/>`__.
 
-    #.  Install the :command:`kubectl` client CLI.
+    #.  Install the :command:`kubectl` client CLI (for example, an Ubuntu host).
 
         .. code-block:: none
 
@@ -93,9 +94,15 @@ configuration is required in order to use :command:`helm`.
             If you did not specify a **k8s\_root\_ca\_cert** at install
             time, then specify –insecure-skip-tls-verify, as shown below.
 
+        The following example configures the default ~/.kube/config. See the
+        following reference:
+        `https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/
+        <https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/>`__.
+        You need to obtain a floating |OAM| IP.
+
         .. code-block:: none
 
-            % kubectl config set-cluster mycluster --server=https://<oam-floating-IP>:6443 \
+            % kubectl config set-cluster mycluster --server=https://${OAM_IP}:6443 \
             --insecure-skip-tls-verify
             % kubectl config set-credentials admin-user@mycluster --token=$TOKEN_DATA
             % kubectl config set-context admin-user@mycluster --cluster=mycluster \
@@ -119,12 +126,15 @@ configuration is required in order to use :command:`helm`.
 #.  On the workstation, install the :command:`helm` client on an Ubuntu
     host by taking the following actions on the remote Ubuntu system.
 
-    #.  Install :command:`helm`.
+    #.  Install :command:`helm`. See the following reference:
+        `https://helm.sh/docs/intro/install/
+        <https://helm.sh/docs/intro/install/>`__. Helm accesses the Kubernetes
+        cluster as configured in the previous step, using the default ~/.kube/config.
 
         .. code-block:: none
 
-            % wget https://get.helm.sh/helm-v2.13.1-linux-amd64.tar.gz
-            % tar xvf helm-v2.13.1-linux-amd64.tar.gz
+            % wget https://get.helm.sh/helm-v3.2.1-linux-amd64.tar.gz
+            % tar xvf helm-v3.2.1-linux-amd64.tar.gz
             % sudo cp linux-amd64/helm /usr/local/bin
 
 
@@ -133,8 +143,17 @@ configuration is required in order to use :command:`helm`.
         .. code-block:: none
 
             % helm version
-            Client: &version.Version{SemVer:"v2.13.1", GitCommit:"618447cbf203d147601b4b9bd7f8c37a5d39fbb4", GitTreeState:"clean"}
-            Server: &version.Version{SemVer:"v2.13.1", GitCommit:"618447cbf203d147601b4b9bd7f8c37a5d39fbb4", GitTreeState:"clean"}
+            version.BuildInfo{Version:"v3.2.1", GitCommit:"fe51cd1e31e6a202cba7dead9552a6d418ded79a", GitTreeState:"clean", GoVersion:"go1.13.10"}
+
+    #.  Run the following commands:
+
+        .. code-block:: none
+
+            % helm repo add bitnami https://charts.bitnami.com/bitnami
+            % helm repo update
+            % helm repo list
+            % helm search repo
+            % helm install wordpress bitnami/wordpress
 
 .. seealso::
 
@@ -144,6 +163,6 @@ configuration is required in order to use :command:`helm`.
     :ref:`Using Container-backed Remote CLIs and Clients
     <using-container-backed-remote-clis-and-clients>`
 
-    :ref:`Configure Remote Helm Client for Non-Admin Users
+    :ref:`Configure Remote Helm v2 Client
     <configure-remote-helm-client-for-non-admin-users>`
 
