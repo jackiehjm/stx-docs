@@ -7,7 +7,7 @@ Access Overview
 ===============
 
 A general user of |prod| can access the system using remote
-**kubectl**/**helm** :abbr:`CLIs (Command Line Interfaces)` and the Kubernetes
+**kubectl**/**helm** |CLIs| and the Kubernetes
 Dashboard.
 
 Your |prod| administrator must setup a user account \(that is, either a local

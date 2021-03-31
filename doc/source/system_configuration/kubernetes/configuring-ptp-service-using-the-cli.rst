@@ -18,7 +18,7 @@ using the Horizon Web interface see
 <configuring-ptp-service-using-horizon>`.
 
 You can also specify the |PTP| service for **clock\_synchronization** using
-the web administration interface.
+the |os-prod-hor| interface.
 
 .. xbooklink For more information, see |node-doc|: `Host Inventory <hosts-tab>`.
 

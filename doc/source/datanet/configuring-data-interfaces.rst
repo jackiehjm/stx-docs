@@ -24,8 +24,7 @@ underlying network for OpenStack Neutron Tenant/Project Networks.
 .. xreflink -   :ref:`Configuring VLAN Interfaces <configuring-vlan-interfaces-using-the-cli>`
 
 For each of the above procedures, configure the node interface specifying the
-``ifclass`` as ``data`` and assign one or more data networks to the node
-interface.
+'ifclass' as 'data' and assign one or more data networks to the node interface.
 
 .. xreflink As an example for an Ethernet interface, repeat the procedure in
    |node-doc|: :ref:`Configuring Ethernet Interfaces
@@ -38,24 +37,35 @@ interface.
 #.  List the attached interfaces.
 
     To list all interfaces, use the :command:`system host-if-list` command and
-    include the -a flag.
+    include the ``-a`` flag.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ system host-if-list -a controller-0
-        +---...+----------+----------+...+---------------+...+-------------------+
-        | uuid | name     | class    |   | ports         |   | data networks     |
-        +---...+----------+----------+...+---------------+...+-------------------+
-        | 68...| ens787f3 | None     |   | [u'ens787f3'] |   | []                |
-        | 79...| data0    | data     |   | [u'ens787f0'] |   | [u'group0-data0'] |
-        | 78...| cluster0 | platform |   | []            |   | []                |
-        | 89...| ens513f3 | None     |   | [u'ens513f3'] |   | []                |
-        | 97...| ens803f1 | None     |   | [u'ens803f1'] |   | []                |
-        | d6...| pxeboot0 | platform |   | [u'eno2']     |   | []                |
-        | d6...| mgmt0    | platform |   | []            |   | []                |
-        +---...+----------+----------+...+---------------+...+-------------------+
+        +-------------+-----------+-----------+----------+------+----------------+-------------+----------------------------+---------------------------+
+        | uuid        | name      | class     | type     | vlan | ports          | uses i/f    | used by i/f                | attributes                |
+        |             |           |           |          | id   |                |             |                            |                           |
+        +-------------+-----------+-----------+----------+------+----------------+-------------+----------------------------+---------------------------+
+        | 0aa20d82-...| sriovvf2  | pci-sriov | vf       | None | []             | [u'sriov0'] | []                         | MTU=1500,max_tx_rate=100  |
+        | 0e5f162d-...| mgmt0     | platform  | vlan     | 163  | []             | [u'sriov0'] | []                         | MTU=1500                  |
+        | 14f2ed53-...| sriov0    | pci-sriov | ethernet | None | [u'enp24s0f0'] | []          | [u'sriovnet1', u'oam0',    | MTU=9216                  |
+        |             |           |           |          |      |                |             | u'sriovnet2', u'sriovvf2', |                           |
+        |             |           |           |          |      |                |             | u'sriovvf1', u'mgmt0',     |                           |
+        |             |           |           |          |      |                |             | u'pxeboot0']               |                           |
+        |             |           |           |          |      |                |             |                            |                           |
+        | 163592bd-...| data1     | data      | ethernet | None | [u'enp24s0f1'] | []          | []                         | MTU=1500,accelerated=True |
+        | 1831571d-...| sriovnet2 | pci-sriov | vf       | None | []             | [u'sriov0'] | []                         | MTU=1956,max_tx_rate=100  |
+        | 5741318f-...| eno2      | None      | ethernet | None | [u'eno2']      | []          | []                         | MTU=1500                  |
+        | 5bd79fbd-...| enp26s0f0 | None      | ethernet | None | [u'enp26s0f0'] | []          | []                         | MTU=1500                  |
+        | 623d5494-...| oam0      | platform  | vlan     | 103  | []             | [u'sriov0'] | []                         | MTU=1500                  |
+        | 78b4080a-...| enp26s0f1 | None      | ethernet | None | [u'enp26s0f1'] | []          | []                         | MTU=1500                  |
+        | a6f1f901-...| eno1      | None      | ethernet | None | [u'eno1']      | []          | []                         | MTU=1500                  |
+        | f37eac1b-...| pxeboot0  | platform  | ethernet | None | []             | [u'sriov0'] | []                         | MTU=1500                  |
+        | f7c62216-...| sriovnet1 | pci-sriov | vf       | None | []             | [u'sriov0'] | []                         | MTU=1500,max_tx_rate=100  |
+        | fcbe3aca-...| sriovvf1  | pci-sriov | vf       | None | []             | [u'sriov0'] | []                         | MTU=1956,max_tx_rate=100  |
+        +-------------+-----------+-----------+----------+------+----------------+-------------+----------------------------+---------------------------+
 
-#.  Attach an interface to a data network.
+#.  Attach an interface to a network.
 
     Use a command sequence of the following form:
 
@@ -73,7 +83,7 @@ interface.
         The MTU for the interface.
 
         .. note::
-            The MTU must be equal to or larger than the MTU of the data network
+            The |MTU| must be equal to or larger than the |MTU| of the data network
             to which the interface is attached.
 
     **ifclass**
@@ -81,13 +91,13 @@ interface.
         **data**, **pci-sriov**, and **pci-passthrough**.
 
     **data network**
-        The name or ID of the data network to assign the interface to.
+        The name or ID of the network to assign the interface to.
 
     **hostname**
-        The name or UUID of the host.
+        The name or |UUID| of the host.
 
     **ethname**
-        The name or UUID of the Ethernet interface to use.
+        The name or |UUID| of the Ethernet interface to use.
 
     **ip4\_mode**
         The mode for assigning IPv4 addresses to a data interface \(static or

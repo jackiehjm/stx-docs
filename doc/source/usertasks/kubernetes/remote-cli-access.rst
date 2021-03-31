@@ -6,8 +6,8 @@
 Remote CLI Access
 =================
 
-You can access the system :abbr:`CLIs (Command Line Interfaces)` from a
-remote workstation using one of the two methods.
+You can access the system |CLIs| from a remote workstation using one of the two
+methods.
 
 .. xreflink .. note::
     To use the remote Windows Active Directory server for authentication of
@@ -20,7 +20,7 @@ remote workstation using one of the two methods.
     Interface)` tarball from |dnload-loc| to install a set of container-backed
     remote CLIs for accessing a remote |prod-long|. This provides
     access to the kubernetes-related CLIs \(kubectl, helm\). This approach is
-    simple to install, portable across Linux, OSX and Windows, and provides
+    simple to install, portable across Linux, MacOS and Windows, and provides
     access to all |prod-long| CLIs. However, commands such as those that
     reference local files or require a shell are awkward to run in this
     environment.

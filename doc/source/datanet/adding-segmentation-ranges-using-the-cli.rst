@@ -32,6 +32,7 @@ You can use the CLI to add segmentation ranges to data networks.
             --physical-network data-net-a \
             --network-type vlan \
             --minimum 623
+            --maximum 623
 
         ~(keystone_admin)]$ openstack network segment range create segment-a-project2 \
             --private \
@@ -70,6 +71,8 @@ You can use the CLI to add segmentation ranges to data networks.
 
     **maximum**
         is the maximum value of the segmentation range.
+
+.. rubric:: |result|
 
 You can also obtain information about segmentation ranges using the following command:
 

@@ -28,6 +28,19 @@ override.
 
         ~(keystone_admin)]$ system helm-override-update --values /home/sysadmin/cinder-overrides.yaml |prefix|-openstack cinder openstack --reuse-values
 
+#.  Confirm that the user\_override lists the correct live migration completion timeout.
+
+    .. parsed-literal::
+
+        ~(keystone_admin)$ system helm-override-show |prefix|-openstack nova openstack
+        
+
+    The output should include the following:
+
+    .. code-block:: none
+
+        rpc_response_timepout: 30
+
 #.  Update |prefix|-openstack to apply the update.
 
     .. parsed-literal::

@@ -6,17 +6,13 @@
 Change the MTU of a Data Interface
 ==================================
 
-You can change the MTU value for a data interface within limits determined by
+You can change the |MTU| value for a data interface within limits determined by
 the data network to which the interface is attached.
 
 .. rubric:: |context|
 
-The data interface MTU must be equal to or greater than the MTU of the data
+The data interface |MTU| must be equal to or greater than the |MTU| of the data
 network.
-
-.. rubric:: |prereq|
-
-You must lock the host for the interface on which you want to change the MTU.
 
 .. rubric:: |proc|
 
@@ -29,7 +25,7 @@ You must lock the host for the interface on which you want to change the MTU.
 
     #.  From the **Edit** menu for the standby controller, select **Lock Host**.
 
-#.  On all the hosts, edit the interface to change the MTU value.
+#.  On all the hosts, edit the interface to change the |MTU| value.
 
     #.  Click the name of the host, and then select the **Interfaces** tab and
         click **Edit** for the interface you want to change.
@@ -41,4 +37,4 @@ You must lock the host for the interface on which you want to change the MTU.
 
     From the **Edit** menu for the host, select **Unlock Host**.
 
-    The network MTU is updated with the new value.
+    The network |MTU| is updated with the new value.

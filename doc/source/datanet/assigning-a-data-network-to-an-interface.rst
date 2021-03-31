@@ -8,12 +8,9 @@ Assign a Data Network to an Interface
 
 In order to associate the L2 Network definition of a Data Network with a
 physical network, the Data Network must be mapped to an Ethernet or Aggregated
-Ethernet interface on a worker node.
-
-.. rubric:: |context|
+Ethernet interface on a compute node.
 
 The command for performing the mapping has the format:
 
-.. code-block:: none
-
-    system interface‐datanetwork‐assign <worker> <interface\_uuid> <datanetwork\_uuid>
+:command:`system interface‐datanetwork‐assign` <compute> <interface\_uuid>
+<datanetwork\_uuid>

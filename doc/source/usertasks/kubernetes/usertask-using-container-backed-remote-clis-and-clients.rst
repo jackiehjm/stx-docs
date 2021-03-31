@@ -6,9 +6,9 @@
 Use Container-backed Remote CLIs
 ================================
 
-Remote platform :abbr:`CLIs (Command Line Interfaces)` can be used in any shell
-after sourcing the generated remote CLI/client RC file. This RC file sets up
-the required environment variables and aliases for the remote CLI commands.
+Remote platform |CLIs| can be used in any shell after sourcing the generated
+remote CLI/client RC file. This RC file sets up the required environment
+variables and aliases for the remote CLI commands.
 
 .. contents:: The following topics are discussed below:
    :local:

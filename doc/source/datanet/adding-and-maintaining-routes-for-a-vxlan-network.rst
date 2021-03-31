@@ -11,7 +11,7 @@ the CLI.
 
 .. rubric:: |prereq|
 
-The worker node must be locked.
+The compute node must be locked.
 
 .. rubric:: |proc|
 
@@ -24,7 +24,7 @@ To add routes, use the following command.
 where
 
 **node**
-    is the name or UUID of the worker node
+    is the name or UUID of the compute node
 
 **ifname**
     is the name of the interface
@@ -53,4 +53,4 @@ To list existing routes, including their UUIDs, use the following command.
 
 .. code-block:: none
 
-    ~(keystone_admin)]$ system host-route-list worker-0
+    ~(keystone_admin)]$ system host-route-list compute-0

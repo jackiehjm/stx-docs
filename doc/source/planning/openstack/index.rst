@@ -25,6 +25,7 @@ Data networks
 
    network-planning-data-networks
    physical-network-planning
+   resource-planning
 
 .. toctree::
    :maxdepth: 1

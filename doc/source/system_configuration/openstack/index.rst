@@ -21,3 +21,4 @@ Configure OpenStack Services Using Helm Chart Overrides
    using-helm-overrides-to-enable-internal-dns
    adding-configuration-rpc-response-max-timeout-in-neutron-conf
    assigning-a-dedicated-vlan-id-to-a-target-project-network
+   customize-openstack-horizon-and-login-banner-branding

@@ -2,11 +2,11 @@
 .. vkv1559818533210
 .. _the-data-network-topology-view:
 
-==============================
-The Data Network Topology View
-==============================
+==========================
+Data Network Topology View
+==========================
 
-The Data Network Topology view shows data networks and worker host data
+The Data Network Topology view shows data networks and compute host data
 interface connections for the system using a color-coded graphical display.
 Active alarm information is also shown in real time. You can select individual
 hosts or networks to highlight their connections and obtain more details.

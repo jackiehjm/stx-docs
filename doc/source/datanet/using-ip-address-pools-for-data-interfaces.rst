@@ -11,14 +11,14 @@ You can create pools of IP addresses for use with data interfaces.
 .. rubric:: |context|
 
 As an alternative to manually adding static IP addresses to data interfaces for
-use with VXLANs, you can define pools of IP addresses and associate them with
+use with |VXLANs|, you can define pools of IP addresses and associate them with
 one or more data interfaces. Each pool consists of one or more contiguous
 ranges of IPv4 or IPv6 addresses. When a data interface is associated with a
 pool, its IP address is allocated from the pool. The allocation may be either
 random or sequential, depending on the settings for the pool.
 
-You can use the web administration interface or the CLI to create and manage
-address pools. For information about using the CLI, see :ref:`Managing IP
+You can use the |os-prod-hor| or the |CLI| to create and manage
+address pools. For information about using the |CLI|, see :ref:`Managing IP
 Address Pools Using the CLI <managing-ip-address-pools-using-the-cli>`.
 
 .. rubric:: |prereq|

@@ -14,11 +14,11 @@ This section provides the list of OpenStack related Alarms and Customer Logs
 that are monitored and reported for the |prod-os| application through the
 |prod| fault management interfaces.
 
-All Fault Management related interfaces for displaying alarms and logs,
+All fault management related interfaces for displaying alarms and logs,
 suppressing/unsuppressing events, and enabling :abbr:`SNMP (Simple Network
 Management Protocol)` are available on the |prod| REST APIs, :abbr:`CLIs
 (Command Line Interfaces)` and/or GUIs.
 
-.. :only: partner
+.. only:: partner
 
     .. include:: ../../_includes/openstack-fault-management-overview.rest
