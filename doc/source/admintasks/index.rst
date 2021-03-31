@@ -62,3 +62,13 @@ CPU Manager for Kubernetes
    installing-and-running-cpu-manager-for-kubernetes
    removing-cpu-manager-for-kubernetes
    uninstalling-cpu-manager-for-kubernetes-on-ipv6
+
+--------------
+Metrics Server
+--------------
+   
+.. toctree::
+   :maxdepth: 1
+   
+   kubernetes-admin-tutorials-metrics-server
+
