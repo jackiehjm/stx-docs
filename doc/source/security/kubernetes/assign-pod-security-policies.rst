@@ -20,44 +20,33 @@ cluster-admin users
 -------------------
 
 After enabling |PSP| checking, all users with **cluster-admin** roles can
-directly create pods as they have access to the **privileged** |PSP|.
-However, when creating pods through deployments/ReplicaSets/etc., the pods
-are validated against the |PSP| policies of the corresponding controller
-serviceAccount in kube-system namespace.
-
-Therefore, for any user \(including cluster-admin\) to create
-deployment/ReplicaSet/etc. in a particular namespace:
+directly create pods since they have access to the **privileged** |PSP|. Also,
+based on the ClusterRoleBindings and RoleBindings automatically added by
+|prod|, all users with cluster-admin roles can also create privileged
+Deployment/ReplicaSets/etc. in the kube-system namespace and restricted
+Deployment/ReplicaSets/etc. in any other namespace. 
 
 
-.. _assign-pod-security-policies-ul-hsr-1vp-bmb:
-
--   the user must have |RBAC| permissions to create the
-    deployment/ReplicaSet/etc. in this namespace, and
-
--   the **system:serviceaccounts:kube-system** must be bound to a role with
-    access to |PSPs| \(for example, one of the system created
-    **privileged-psp-user** or **restricted-psp-user** roles\) in this
-    namespace
-
-
-**cluster-admin users** have |RBAC| permissions for everything. So it is only
-the role binding of a |PSP| role to **system:serviceaccounts:kube-system**
-for the target namespace, that is needed to create a deployment in a
-particular namespace. The following example describes the required
-RoleBinding for a **cluster-admin user** to create a deployment \(with
-restricted |PSP| capabilities\) in the 'default' namespace.
+In order to enable privileged Deployment/ReplicaSets/etc. to be created in
+another namespace, a role binding of a |PSP| role to
+**system:serviceaccounts:kube-system** for the target namespace, is required.
+However, this will enable *ANY* user with access to Deployments/ReplicaSets/etc
+in this namespace to create privileged Deployments/ReplicaSets. The following
+example describes the required RoleBinding to allow "creates" of privileged
+Deployments/ReplicaSets/etc in the 'default' namespace for any user with access
+to Deployments/ReplicaSets/etc. in the ‘default’ namespace.
 
 .. code-block:: none
 
     apiVersion: rbac.authorization.k8s.io/v1
     kind: RoleBinding
     metadata:
-      name: kube-system-restricted-psp-users
+      name: default-privileged-psp-users
       namespace: default
     roleRef:
        apiGroup: rbac.authorization.k8s.io
        kind: ClusterRole
-       name: restricted-psp-user
+       name: privileged-psp-user
     subjects:
     - kind: Group
       name: system:serviceaccounts:kube-system
@@ -71,19 +60,22 @@ restricted |PSP| capabilities\) in the 'default' namespace.
 non-cluster-admin users
 -----------------------
 
-They have restricted |RBAC| capabilities, and may not have access to |PSP|
-policies. They require a new RoleBinding to either the
-**privileged-psp-user** role, or the **restricted-psp-user** role to create
-pods directly. For creating pods through deployments/ReplicaSets/etc., the
-target namespace being used will also require a RoleBinding for the
-corresponding controller serviceAccounts in kube-system \(or generally
+Based on the ClusterRoleBindings and RoleBindings automatically added by
+|prod|, non-cluster-admin users have at least restricted |PSP| privileges, for
+both Pods and Deployment/ReplicaSets/etc., for any namespaces they have access
+to based on other [Cluster]RoleBindings. If a non-cluster-admin user requires
+privileged capabilities for the namespaces they have access to, they require a
+new RoleBinding to the **privileged-psp-user** role to create pods directly.
+For creating privileged pods through deployments/ReplicaSets/etc., the target
+namespace being used will also require a RoleBinding for the corresponding
+controller serviceAccounts in kube-system \(or generally
 **system:serviceaccounts:kube-system**\).
 
 .. rubric:: |proc|
 
 #.  Define the required RoleBinding for the user in the target namespace.
 
-    For example, the following RoleBinding assigns the 'restricted' |PSP|
+    For example, the following RoleBinding assigns the 'privileged' |PSP|
     role to dave-user in the billing-dept-ns namespace, from the examples
     in :ref:`Enable Pod Security Policy Checking
     <enable-pod-security-policy-checking>`.
@@ -93,7 +85,7 @@ corresponding controller serviceAccounts in kube-system \(or generally
         apiVersion: rbac.authorization.k8s.io/v1
         kind: RoleBinding
         metadata:
-          name: dave-restricted-psp-users
+          name: dave-privileged-psp-users
           namespace: billing-dept-ns
         subjects:
         - kind: ServiceAccount
@@ -102,15 +94,15 @@ corresponding controller serviceAccounts in kube-system \(or generally
         roleRef:
            apiGroup: rbac.authorization.k8s.io
            kind: ClusterRole
-           name: restricted-psp-user
+           name: privileged-psp-user
 
     This will enable dave-user to create Pods in billing-dept-ns namespace
-    subject to the restricted |PSP| policy.
+    subject to the privileged |PSP| policy.
 
 #.  Define the required RoleBinding for system:serviceaccounts:kube-system
     in the target namespace.
 
-    For example, the following RoleBinding assigns the 'restricted' |PSP| to
+    For example, the following RoleBinding assigns the 'privileged' |PSP| to
     all kube-system ServiceAccounts operating in billing-dept-ns namespace.
 
     .. code-block:: none
@@ -118,15 +110,18 @@ corresponding controller serviceAccounts in kube-system \(or generally
         apiVersion: rbac.authorization.k8s.io/v1
         kind: RoleBinding
         metadata:
-          name: kube-system-restricted-psp-users
+          name: billing-dept-ns-privileged-psp-users
           namespace: billing-dept-ns
         roleRef:
            apiGroup: rbac.authorization.k8s.io
            kind: ClusterRole
-           name: restricted-psp-user
+           name: privileged-psp-user
         subjects:
         - kind: Group
           name: system:serviceaccounts:kube-system
           apiGroup: rbac.authorization.k8s.io
+
+    This will enable dave-user to create Deployments/ReplicaSets/etc. in
+    billing-dept-ns namespace subject to the privileged |PSP| policy.
 
 

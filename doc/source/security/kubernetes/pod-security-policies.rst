@@ -24,11 +24,27 @@ access to any |PSPs|, the Pod security policy checking will fail to authorize
 the command.
 
 |prod-long| provides a system service-parameter to enable Pod security
-policy checking. In addition to enabling Pod security policy checking,
-setting this service parameter also creates two |PSPs| \(privileged and
-restricted\) such that users with cluster-admin role \(which has access to
-all resources\) has |PSPs| to authorize against. It also creates two
-corresponding roles for specifying access to these |PSPs|
-\(privileged-psp-user and restricted-psp-user\), for binding to other
-non-admin type subjects.
+policy checking. Setting this parameter also creates:
 
+-	Two |PSPs| (privileged and restricted) such that users with cluster-admin
+ 	role (which has access to all resources) has |PSPs| to authorize against.
+
+-	Two corresponding roles for specifying access to these |PSPs|
+ 	(privileged-psp-user and restricted-psp-user), for binding to other
+ 	non-admin type subjects.
+
+-	A RoleBinding for the kube-system namespace of the privileged-psp-user Role
+ 	to serviceAccounts in kubesystem, such that privileged
+ 	Deployments/ReplicaSets/etc. can be created by any user with access to
+ 	Deployments/ReplicaSets/etc. in the kube-system namespace (e.g. user with
+ 	cluster-admin role).
+
+-   A ClusterRoleBinding of the restricted-psp-user Role to any authenticated
+    user, such that at least restricted Pods can be created by any
+    authenticated user in any namespaces that user has access to based on other
+    [Cluster]RoleBindings.
+
+-	A ClusterRoleBinding of the restricted-psp-user Role to serviceAccounts in
+ 	kube-system, such that at least restricted Deployments/ReplicaSets/etc. can
+ 	be created by any authenticated user in any namespaces that user has access
+ 	to based on other [Cluster]RoleBindings.
