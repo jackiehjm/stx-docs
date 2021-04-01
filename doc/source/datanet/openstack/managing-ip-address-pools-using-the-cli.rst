@@ -23,9 +23,9 @@ To make interface changes, you must lock the compute node first.
 
 .. _managing-ip-address-pools-using-the-cli-section-N1003C-N1001F-N10001:
 
-------------------------
-Creating an Address pool
-------------------------
+----------------------
+Create an Address pool
+----------------------
 
 To create an address pool, use a command of the following form:
 
@@ -58,9 +58,9 @@ where:
 
 .. _managing-ip-address-pools-using-the-cli-section-N10109-N1001F-N10001:
 
----------------------
-Listing address pools
----------------------
+------------------
+List address pools
+------------------
 
 To list existing address pools, use a command of the following form:
 
@@ -72,9 +72,9 @@ where **<uuid>** is the universally unique identifier for the pool.
 
 .. _managing-ip-address-pools-using-the-cli-section-N10131-N1001F-N10001:
 
--------------------------
-Modifying an address pool
--------------------------
+----------------------
+Modify an address pool
+----------------------
 
 To modify an address pool, use a command of the following form:
 
@@ -84,9 +84,9 @@ To modify an address pool, use a command of the following form:
 
 .. _managing-ip-address-pools-using-the-cli-section-N1015F-N1001F-N10001:
 
-------------------------
-Deleting an address pool
-------------------------
+----------------------
+Delete an address pool
+----------------------
 
 To delete an address pool, use a command of the following form:
 

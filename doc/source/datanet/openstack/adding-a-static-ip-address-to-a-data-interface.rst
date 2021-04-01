@@ -45,18 +45,18 @@ To make interface changes, you must lock the compute host first.
     #.  In the Edit Interface dialog box, set the **IPv4 Addressing Mode** or
         the **IPv6 Addressing Mode** to **Static**.
 
-        .. image:: figures/bju1538154656153.png
+        .. image:: ../figures/bju1538154656153.png
 
 #.  Add an IPv4 or IPv6 address to the interface.
 
     #.  On the Host Detail page, click the **Name** of the interface to open
         the Interface Detail page.
 
-        .. image:: figures/jow1443041105867.png
+        .. image:: ../figures/jow1443041105867.png
 
     #.  Click **Create Address** to open the Create Address dialog box.
 
-        .. image:: figures/jow1442607685238.png
+        .. image:: ../figures/jow1442607685238.png
 
     #.  Enter the IPv4 or IPv6 address and netmask \(for example,
         192.168.1.3/24\), and then click **Create Address**.
