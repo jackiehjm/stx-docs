@@ -17,15 +17,15 @@ For more information about the StarlingX project, refer to the
 
 .. Note::
 
-   Community contributions to the documentation are welcome! If you see an empty
-   topic and want to contribute, refer to the linked story in the topic for
-   details.
+   Community contributions to the documentation are welcome! If you see an
+   empty topic and want to contribute, refer to the linked story in the topic
+   for details.
 
    See our :doc:`Contributor guide </contributor/index>` for more information.
 
------------
-Get started
------------
+------------
+Introduction
+------------
 
 To get started fast with StarlingX, try the
 :doc:`Virtual All-in-one Simplex installation
@@ -39,23 +39,23 @@ Learn more about StarlingX:
 
    introduction/index
 
+-------------------------
+Deployment configurations
+-------------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   deploy/index
+
 --------
 Planning
 --------
 
 .. toctree::
    :maxdepth: 2
-   
+
    planning/index
-
------------------
-Deployment guides
------------------
-
-.. toctree::
-   :maxdepth: 2
-
-   deploy/index
 
 -------------------
 Installation guides
@@ -66,33 +66,6 @@ Installation guides
 
    deploy_install_guides/index
 
--------------
-Configuration
--------------
-
-.. toctree::
-   :maxdepth: 2
-
-   configuration/index
-
-------------------------------------------------
-Data Network Configuration and Management Guides
-------------------------------------------------
-
-.. toctree::
-   :maxdepth: 2
-   
-   datanet/index
-
----------------
-Node Management
----------------
-
-.. toctree::
-   :maxdepth: 2
-   
-   node_management/index
-
 --------
 Security
 --------
@@ -102,8 +75,9 @@ Security
 
    security/index
 
+
 --------------------
-System Configuration
+System configuration
 --------------------
 
 .. toctree::
@@ -111,42 +85,25 @@ System Configuration
 
    system_configuration/index
 
-----------------
-Fault Management
-----------------
+
+-------------
+Data networks
+-------------
 
 .. toctree::
    :maxdepth: 2
 
-   fault-mgmt/index
-
------------
-Admin Tasks
------------
-
-.. toctree::
-   :maxdepth: 2
-
-   admintasks/index
-
-----------
-User Tasks
-----------
-
-.. toctree::
-   :maxdepth: 2
-
-   usertasks/index
+   datanet/index
 
 ---------------
-VNF Integration
+Node management
 ---------------
 
 .. toctree::
    :maxdepth: 2
 
-   vnf_integration/index
-   
+   node_management/index
+
 -------
 Storage
 -------
@@ -156,14 +113,16 @@ Storage
 
    storage/index
 
+
 ----------------
-Operation guides
+Fault management
 ----------------
 
 .. toctree::
    :maxdepth: 2
 
-   operations/index
+   fault-mgmt/index
+
 
 ------------------
 Backup and restore
@@ -174,24 +133,6 @@ Backup and restore
 
    backup/index
 
----------------------
-Container integration
----------------------
-
-
-.. toctree::
-   :maxdepth: 2
-
-   container_integration/kubernetes/index
-
------------------
-Distributed Cloud
------------------
-   
-.. toctree::
-   :maxdepth: 2
-   
-   dist_cloud/index
 
 -------
 Updates
@@ -201,6 +142,38 @@ Updates
    :maxdepth: 2
 
    updates/index
+
+
+-----------
+Admin tasks
+-----------
+
+.. toctree::
+   :maxdepth: 2
+
+   admintasks/index
+
+
+----------
+User tasks
+----------
+
+.. toctree::
+   :maxdepth: 2
+
+   usertasks/index
+
+
+-----------------
+Guest integration
+-----------------
+
+.. toctree::
+   :maxdepth: 2
+
+   vnf_integration/index
+   container_integration/kubernetes/index
+
 
 ---------
 Reference
@@ -212,6 +185,42 @@ Reference
    api-ref/index
    cli_ref/index
 
+-----------------
+Distributed Cloud
+-----------------
+
+.. toctree::
+   :maxdepth: 2
+
+   dist_cloud/index
+
+-----------------
+Deprecated guides
+-----------------
+
+The guides listed here have been replaced by new guides that provide more
+details.
+
+*************
+Configuration
+*************
+
+.. toctree::
+   :maxdepth: 2
+
+   configuration/index
+
+
+****************
+Operation guides
+****************
+
+.. toctree::
+   :maxdepth: 2
+
+   operations/index
+
+
 -------------------
 General information
 -------------------
@@ -222,6 +231,7 @@ General information
    contributor/index
    releasenotes/index
    developer_resources/index
+   Project Specifications <https://docs.starlingx.io/specs/>
 
 ----------
 Governance
@@ -237,3 +247,5 @@ governance.
 .. _`OpenStack Foundation Board of Directors`: https://wiki.openstack.org/wiki/Governance/Foundation
 .. _`StarlingX Technical Steering Committee`: https://docs.starlingx.io/governance/reference/tsc/
 .. _`StarlingX Governance`: https://docs.starlingx.io/governance/
+
+
