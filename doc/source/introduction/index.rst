@@ -1,6 +1,6 @@
-======================
-StarlingX Introduction
-======================
+============
+Introduction
+============
 
 StarlingX is a fully integrated edge cloud software stack that provides
 everything needed to deploy an edge cloud on one, two, or up to 100 servers.
