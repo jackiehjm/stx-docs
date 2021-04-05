@@ -51,3 +51,5 @@
 .. product capabilities
 
 .. |max-workers| replace:: 99
+
+.. |release-caveat| replace:: This is a pre-release feature and may not function as described in |prod| 5.
