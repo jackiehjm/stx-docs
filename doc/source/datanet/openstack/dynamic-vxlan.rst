@@ -33,12 +33,12 @@ for more complex routing requirements but requires IP multicast enabled routers.
 
 .. only:: partner
 
-    .. include:: ../_includes/dynamic-vxlan.rest
+    .. include:: ../../_includes/dynamic-vxlan.rest
 
     :start-after: vswitch-text-1-begin
     :end-before:  vswitch-text-1-end
 
-.. figure:: figures/eol1510005391750.png
+.. figure:: ../figures/eol1510005391750.png
 
 Multicast Endpoint Distribution
 
@@ -52,7 +52,7 @@ Multicast Endpoint Distribution
 
 .. only:: partner
 
-    .. include:: ../_includes/dynamic-vxlan.rest
+    .. include:: ../../_includes/dynamic-vxlan.rest
 
     :start-after: vswitch-text-1-begin
     :end-before: vswitch-text-1-end

@@ -38,7 +38,6 @@ For example:
     ~(keystone_admin)]$ system host-if-modify compute-0 enp0s8 --imtu 1496
 
 .. note::
-
     You cannot set the |MTU| on an openstack-compute-labeled compute node
     interface to a value smaller than the largest |MTU| used on its data
     networks.
