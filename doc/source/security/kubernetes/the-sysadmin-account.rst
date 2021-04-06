@@ -9,7 +9,7 @@ The sysadmin Account
 This is a local, per-host, sudo-enabled account created automatically when a
 new host is provisioned.
 
-This Linux user account is used by the system administrator as it has
+This Linux user account is used by the primary system administrator as it has
 extended privileges.
 
 On controller nodes, this account is available even before :command:`ansible

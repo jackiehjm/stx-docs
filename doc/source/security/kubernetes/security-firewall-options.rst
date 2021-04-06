@@ -6,25 +6,25 @@
 Firewall Options
 ================
 
-|prod| incorporates a default firewall for the OAM network. You can configure
+|prod| incorporates a default firewall for the |OAM| network. You can configure
 additional Kubernetes Network Policies in order to augment or override the
 default rules.
 
 The |prod| firewall uses the Kubernetes Network Policies \(using the Calico
-CNI\) to implement a firewall on the OAM network.
+|CNI|\) to implement a firewall on the |OAM| network.
 
 A minimal set of rules is always applied before any custom rules, as follows:
 
 
-.. _security-firewall-options-d628e35:
+.. _security-firewall-options-ul-xw2-qkw-g3b:
 
--   Non-OAM traffic is always accepted.
+-   Non-|OAM| traffic is always accepted.
 
 -   Egress traffic is always accepted.
 
 -   |SM| traffic is always accepted.
 
--   SSH traffic is always accepted.
+-   |SSH| traffic is always accepted.
 
 
 You can introduce custom rules by creating and installing custom Kubernetes

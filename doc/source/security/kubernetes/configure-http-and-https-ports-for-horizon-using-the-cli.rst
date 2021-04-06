@@ -24,7 +24,7 @@ list the configured **HTTP**, and **HTTPS** ports.
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system service-parameter-list --service http
+    ~(keystone_admin)]$ system service-parameter-list --service http
     +---------+----------+---------+------------+-------+------------+--------+
     | uuid    | service  | section | name       | value |personality |Resource|
     +---------+----------+---------+------------+-------+------------+--------+
@@ -39,16 +39,16 @@ list the configured **HTTP**, and **HTTPS** ports.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system service-parameter-modify http config http_port=8090
+        ~(keystone_admin)]$ system service-parameter-modify http config http_port=8090
 
-        ~(keystone_admin)$ system service-parameter-modify http config https_port=9443
+        ~(keystone_admin)]$ system service-parameter-modify http config https_port=9443
 
 
 #.  Apply the service parameter change.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system service-parameter-apply http
+        ~(keystone_admin)]$ system service-parameter-apply http
         Applying http service parameters
 
     .. note::

@@ -64,21 +64,21 @@ refresh-token using the **oidc-auth-apps** |OIDC| client web interface.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ TOKEN=<ID_token_string>
-        ~(keystone_admin)$ kubectl config set-credentials testuser --token $TOKEN
+        ~(keystone_admin)]$ TOKEN=<ID_token_string>
+        ~(keystone_admin)]$ kubectl config set-credentials testuser --token $TOKEN
 
 #.  Switch to the Kubernetes context for the user, by using the following
     command, for example:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ kubectl config use-context testuser@mywrcpcluster
+        ~(keystone_admin)]$ kubectl config use-context testuser@mywrcpcluster
 
 #.  Run the following command to test that the authentication token
     validates correctly:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ kubectl get pods --all-namespaces
+        ~(keystone_admin)]$ kubectl get pods --all-namespaces
 
 

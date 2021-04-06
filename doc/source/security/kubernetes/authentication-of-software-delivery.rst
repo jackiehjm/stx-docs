@@ -23,3 +23,6 @@ This is done for:
 Both software patches and loads are cryptographically signed as part of
 |org| builds and are authenticated before they are loaded on a system via
 |prod| REST APIs, CLIs or GUI.
+
+..  xbooklink For more information on patches, see |updates-doc|: :ref:`Software Updates
+    <software-updates-and-upgrades-software-updates>`.

@@ -12,7 +12,7 @@ The following rules apply to all System Accounts \(Local LDAP, sysadmin,
 other Linux Accounts, and Keystone accounts\):
 
 
-.. _starlingx-system-accounts-system-account-password-rules-ul-jwb-g15-zw:
+.. _starlingx-system-accounts-system-account-password-rules-ul-evs-dsn-ynb:
 
 -   The password must be at least seven characters long.
 
@@ -33,6 +33,8 @@ other Linux Accounts, and Keystone accounts\):
 
 The following additional rules apply to Local Linux accounts only \(Local
 LDAP, sysadmin, and other Linux accounts\):
+
+.. _starlingx-system-accounts-system-account-password-rules-ul-rvj-jsn-ynb:
 
 -   Dictionary words or simple number sequences \(for example, 123 or 321\)
     are not allowed

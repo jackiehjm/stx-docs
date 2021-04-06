@@ -31,17 +31,18 @@ re-installed, in order to update the new standby controller's |TPM| device.
 
 .. _secure-starlingx-rest-and-web-certificates-private-key-storage-with-tpm-ul-xj3-mqc-d1b:
 
--   Obtain a Root |CA|-signed certificate and key from a trusted Root
-    |CA|. Refer to the documentation for the external Root |CA| that you
-    are using, on how to create public certificate and private key pairs,
-    signed by a Root |CA|, for HTTPS.
+-   Obtain an intermediate or Root |CA|-signed certificate and key from a
+    trusted intermediate or Root |CA|. Refer to the documentation for the
+    external intermediate or Root |CA| that you are using, on how to create
+    public certificate and private key pairs, signed by an intermediate or
+    Root-signed |CA|, for HTTPS.
 
 .. xbooklink
 
     For lab purposes, see :ref:`Locally Creating Certificates
-    <creating-certificates-locally-using-openssl>` for details on how to
-    create a test Root |CA| certificate and key, and use it to sign test
-    certificates.
+    <creating-certificates-locally-using-openssl>` for details on how to create
+    a test intermediate or Root |CA| certificate and key, and use it to sign
+    test certificates.
 
     Put the |PEM| encoded versions of the certificate and key in a
     single file, and copy the file to the controller host.
@@ -88,8 +89,8 @@ re-installed, in order to update the new standby controller's |TPM| device.
 
     **<pathTocertificateAndKey>**
 
-    is the path to the file containing both the Root |CA|-signed
-    certificate and private key to install.
+    is the path to the file containing both the intermediate or Root
+    |CA|-signed certificate and private key to install.
 
     .. warning::
         For security purposes, the utility deletes the provided SSL private
@@ -159,7 +160,7 @@ scenario, you must reinstall the certificate:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system certificate-install -m tpm_mode
+    ~(keystone_admin)]$ system certificate-install -m tpm_mode
     <pathTocertificateAndKey>
 
 To disable the use of |TPM| to store the private key of the StarlingX REST
@@ -168,5 +169,5 @@ option:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ system certificate-install <pathTocertificateAndKey>
+    ~(keystone_admin)]$ system certificate-install <pathTocertificateAndKey>
 

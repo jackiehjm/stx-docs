@@ -21,14 +21,14 @@ do so from a remote workstation.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ kubectl config set-cluster mywrcpcluster --server=https://<oam-floating-ip>:6443
+        ~(keystone_admin)]$ kubectl config set-cluster mywrcpcluster --server=https://<oam-floating-ip>:6443
 
 
 #.  Set up a context for **testuser** in this cluster in kubectl.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ kubectl config set-context testuser@mywrcpcluster --cluster=mywrcpcluster --user=testuser
+        ~(keystone_admin)]$ kubectl config set-context testuser@mywrcpcluster --cluster=mywrcpcluster --user=testuser
 
 
 

@@ -118,10 +118,10 @@ Helm
 
 Do the following to use helm.
 
-..  xreflink   .. note::
-        For non-admin users, additional configuration is required first as
-        discussed in |sec-doc|: :ref:`Configuring Remote Helm Client for
-        Non-Admin Users <configuring-remote-helm-client-for-non-admin-users>`.
+.. note::
+    For non-admin users, additional configuration is required first as
+    discussed in |sec-doc|: :ref:`Configuring Remote Helm Client for
+    Non-Admin Users <configure-remote-helm-client-for-non-admin-users>`.
 
 .. note::
     When using helm, any command that requires access to a helm repository

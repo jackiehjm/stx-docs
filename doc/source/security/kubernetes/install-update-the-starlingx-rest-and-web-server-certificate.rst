@@ -12,16 +12,18 @@ administration server.
 
 .. rubric:: |prereq|
 
-Obtain a Root |CA|-signed certificate and key from a trusted Root |CA|.
-Refer to the documentation for the external Root |CA| that you are using,
-on how to create public certificate and private key pairs, signed by a Root
-|CA|, for HTTPS.
+Obtain an intermediate or Root |CA|-signed certificate and key from a trusted
+intermediate or Root |CA|. Refer to the documentation for the external
+Intermediate or Root |CA| that you are using, on how to create public
+certificate and private key pairs, signed by intermediate or a Root |CA|, for
+HTTPS.
 
 .. xbooklink
 
    For lab purposes, see :ref:`Locally Creating Certificates
    <creating-certificates-locally-using-openssl>` for how to create a test
-   Root |CA| certificate and key, and use it to sign test certificates.
+   intermediate or Root |CA| certificate and key, and use it to sign test
+   certificates.
 
 Put the |PEM| encoded versions of the certificate and key in a single file,
 and copy the file to the controller host.
@@ -34,13 +36,13 @@ and copy the file to the controller host.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system certificate-install <pathTocertificateAndKey>
+        ~(keystone_admin)]$ system certificate-install -m ssl <pathTocertificateAndKey>
 
     where:
 
     **<pathTocertificateAndKey>**
 
-    is the path to the file containing both the Root |CA|-signed certificate
-    and private key to install.
+    is the path to the file containing both the intermediate or Root
+    |CA|-signed certificate and private key to install.
 
 

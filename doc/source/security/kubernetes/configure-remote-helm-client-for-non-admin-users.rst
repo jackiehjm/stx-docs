@@ -26,7 +26,7 @@ remotely.
 
 .. note::
     If you are using container-backed helm CLIs and clients \(method 1\),
-    ensure you change directories to <$HOME>/remote\_wd
+    ensure you change directories to <$HOME>/remote\_cli\_wd
 
 .. rubric:: |proc|
 
@@ -37,7 +37,7 @@ remotely.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ NAMESPACE=default
+        ~(keystone_admin)]$ NAMESPACE=default
 
 #.  Set up accounts, roles and bindings.
 
@@ -50,7 +50,7 @@ remotely.
 
         .. code-block:: none
 
-            % cat <<EOF > default-tiller-sa.yaml
+            ~(keystone_admin)]$ cat <<EOF > default-tiller-sa.yaml
             apiVersion: v1
             kind: ServiceAccount
             metadata:
@@ -81,16 +81,16 @@ remotely.
               name: tiller
               namespace: default
             EOF
-            % kubectl apply -f default-tiller-sa.yaml
+            ~(keystone_admin)]$ kubectl apply -f default-tiller-sa.yaml
 
 
     #.  Execute the following commands as an admin-level user.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ kubectl create clusterrole tiller --verb get
+            ~(keystone_admin)]$ kubectl create clusterrole tiller --verb get
             --resource namespaces
-            ~(keystone_admin)$ kubectl create clusterrolebinding tiller
+            ~(keystone_admin)]$ kubectl create clusterrolebinding tiller
             --clusterrole tiller --serviceaccount ${NAMESPACE}:tiller
 
 
@@ -98,13 +98,13 @@ remotely.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ helm init --service-account=tiller
+        ~(keystone_admin)]$ helm init --service-account=tiller
         --tiller-namespace=$NAMESPACE --output yaml | sed 's@apiVersion:
         extensions/v1beta1@apiVersion: apps/v1@' | sed 's@ replicas: 1@
         replicas: 1\n \ selector: {"matchLabels": {"app": "helm", "name":
         "tiller"}}@' > helm-init.yaml
-        ~(keystone_admin)$ kubectl apply -f helm-init.yaml
-        ~(keystone_admin)$ helm init –client-only
+        ~(keystone_admin)]$ kubectl apply -f helm-init.yaml
+        ~(keystone_admin)]$ helm init --client-only --home "./.helm"
 
     .. note::
         Ensure that each of the patterns between single quotes in the above
@@ -144,7 +144,7 @@ example:
 
 .. note::
     If you are using container-backed helm CLI and Client \(method 1\), then
-    you change directory to <$HOME>/remote\_wd and include the following
+    you change directory to <$HOME>/remote\_cli\_wd and include the following
     option on all helm commands:
 
     .. code-block:: none
@@ -159,6 +159,9 @@ example:
 
     :ref:`Configure Container-backed Remote CLIs and Clients
     <security-configure-container-backed-remote-clis-and-clients>`
+
+    :ref:`Using Container-backed Remote CLIs and Clients
+    <using-container-backed-remote-clis-and-clients>`
 
     :ref:`Install Kubectl and Helm Clients Directly on a Host
     <security-install-kubectl-and-helm-clients-directly-on-a-host>`

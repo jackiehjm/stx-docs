@@ -36,13 +36,13 @@ When secure HTTPS connectivity is enabled, HTTP is disabled.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system modify --https_enabled true
+        ~(keystone_admin)]$ system modify --https_enabled true
 
 -   To disable HTTPS for StarlingX REST and Web Server endpoints:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system modify --https_enabled false
+        ~(keystone_admin)]$ system modify --https_enabled false
 
 -   Use the following command to display HTTPS settings:
 

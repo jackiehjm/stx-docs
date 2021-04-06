@@ -6,14 +6,14 @@
 Configure Container-backed Remote CLIs and Clients
 ==================================================
 
-The command line can be accessed from remote computers running Linux, OSX,
-and Windows.
+The |prod| command lines can be accessed from remote computers running Linux,
+MacOS, and Windows.
 
 .. rubric:: |context|
 
-This functionality is made available using a docker image for connecting to
-the |prod| remotely. This docker image is pulled as required by
-configuration scripts.
+This functionality is made available using a docker container with
+pre-installed CLIs and clients. The container's image is pulled as required by
+the remote CLI/client configuration scripts.
 
 .. rubric:: |prereq|
 
@@ -21,6 +21,21 @@ You must have Docker installed on the remote systems you connect from. For
 more information on installing Docker, see
 `https://docs.docker.com/install/ <https://docs.docker.com/install/>`__.
 For Windows remote clients, Docker is only supported on Windows 10.
+
+.. note::
+    You must be able to run docker commands using one of the following options:
+
+    .. _security-configure-container-backed-remote-clis-and-clients-d70e42:
+
+    - Running the scripts using sudo
+
+    - Adding the Linux user to the docker group
+
+
+    For more information, see,
+    `https://docs.docker.com/engine/install/linux-postinstall/
+    <https://docs.docker.com/engine/install/linux-postinstall/>`__
+
 
 For Windows remote clients, you must run the following commands from a
 Cygwin terminal. See `https://www.cygwin.com/ <https://www.cygwin.com/>`__
@@ -33,23 +48,31 @@ Download the latest release tarball for Cygwin from
 tarball, extract it to any location and change the Windows <PATH> variable
 to include its bin folder from the extracted winpty folder.
 
-The following procedure shows how to configure the Container-backed Remote
-CLIs and Clients for an admin user with cluster-admin clusterrole. If using
-a non-admin user such as one with role privileges only within a private
-namespace, additional configuration is required in order to use
-:command:`helm`.
+The following procedure shows how to configure the Container-backed Remote CLIs
+and Clients for an admin user with cluster-admin clusterrole. If using a
+non-admin user such as one with privileges only within a private namespace,
+additional configuration is required in order to use :command:`helm`.
 
 .. rubric:: |proc|
 
 
-.. _security-configure-container-backed-remote-clis-and-clients-d70e74:
+.. _security-configure-container-backed-remote-clis-and-clients-d70e93:
 
 #.  On the Controller, configure a Kubernetes service account for user on the remote client.
 
     You must configure a Kubernetes service account on the target system
     and generate a configuration file based on that service account.
 
-    Run the following commands logged in as **root** on the local console of the controller.
+    Run the following commands logged in as **sysadmin** on the local console
+    of the controller.
+
+
+    #.  Source the platform environment
+
+        .. code-block:: none
+
+            $ source /etc/platform/openrc
+            ~(keystone_admin)]$ 
 
 
     #.  Set environment variables.
@@ -60,14 +83,14 @@ namespace, additional configuration is required in order to use
 
         .. code-block:: none
 
-            % USER="admin-user"
-            % OUTPUT_FILE="temp-kubeconfig"
+            ~(keystone_admin)]$ USER="admin-user"
+            ~(keystone_admin)]$ OUTPUT_FILE="temp-kubeconfig"
 
     #.  Create an account definition file.
 
         .. code-block:: none
 
-            % cat <<EOF > admin-login.yaml
+            ~(keystone_admin)]$ cat <<EOF > admin-login.yaml
             apiVersion: v1
             kind: ServiceAccount
             metadata:
@@ -92,59 +115,54 @@ namespace, additional configuration is required in order to use
 
         .. code-block:: none
 
-            % kubectl apply -f admin-login.yaml
+            ~(keystone_admin)]$ kubectl apply -f admin-login.yaml
 
     #.  Store the token value.
 
         .. code-block:: none
 
-            % TOKEN_DATA=$(kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep ${USER} | awk '{print $1}') | grep "token:" | awk '{print $2}')
+            ~(keystone_admin)]$ TOKEN_DATA=$(kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep ${USER} | awk '{print $1}') | grep "token:" | awk '{print $2}')
 
-    #.  Source the platform environment.
-
-        .. code-block:: none
-
-            % source /etc/platform/openrc
-
-    #.  Store the OAM IP address.
+    #.  Store the |OAM| IP address.
 
 
-        1.  .. code-block:: none
+        #.  .. code-block:: none
 
-			% OAM_IP=$(system oam-show |grep oam_floating_ip| awk '{print $4}')
+			~(keystone_admin)]$ OAM_IP=$(system oam-show |grep oam_floating_ip| awk '{print $4}')
 
-        2.  AIO-SX uses <oam\_ip> instead of <oam\_floating\_ip>. The
+        #.  AIO-SX uses <oam\_ip> instead of <oam\_floating\_ip>. The
             following shell code ensures that <OAM\_IP> is assigned the correct
             IP address.
 
             .. code-block:: none
 
-                % if [ -z "$OAM_IP" ]; then
+                ~(keystone_admin)]$ if [ -z "$OAM_IP" ]; then
                     OAM_IP=$(system oam-show |grep oam_ip| awk '{print $4}')
                 fi
 
 
-        3.  IPv6 addresses must be enclosed in square brackets. The following shell code does this for you.
+        #.  IPv6 addresses must be enclosed in square brackets. The following
+            shell code does this for you.
 
             .. code-block:: none
 
-                % if [[ $OAM_IP =~ .*:.* ]]; then
+                ~(keystone_admin)]$ if [[ $OAM_IP =~ .*:.* ]]; then
                     OAM_IP="[${OAM_IP}]"
                 fi
 
 
 
-    #.  Generate the temp-kubeconfig file.
+    #.  Generate the admin-kubeconfig file.
 
         .. code-block:: none
 
-            % sudo kubectl config --kubeconfig ${OUTPUT_FILE} set-cluster wrcp-cluster --server=https://${OAM_IP}:6443 --insecure-skip-tls-verify
-            % sudo kubectl config --kubeconfig ${OUTPUT_FILE} set-credentials ${USER} --token=$TOKEN_DATA
-            % sudo kubectl config --kubeconfig ${OUTPUT_FILE} set-context ${USER}@wrcp-cluster --cluster=wrcp-cluster --user ${USER} --namespace=default
-            % sudo kubectl config --kubeconfig ${OUTPUT_FILE} use-context ${USER}@wrcp-cluster
+            ~(keystone_admin)]$ sudo kubectl config --kubeconfig ${OUTPUT_FILE} set-cluster wrcp-cluster --server=https://${OAM_IP}:6443 --insecure-skip-tls-verify
+            ~(keystone_admin)]$ sudo kubectl config --kubeconfig ${OUTPUT_FILE} set-credentials ${USER} --token=$TOKEN_DATA
+            ~(keystone_admin)]$ sudo kubectl config --kubeconfig ${OUTPUT_FILE} set-context ${USER}@wrcp-cluster --cluster=wrcp-cluster --user ${USER} --namespace=default
+            ~(keystone_admin)]$ sudo kubectl config --kubeconfig ${OUTPUT_FILE} use-context ${USER}@wrcp-cluster
 
-#.  On the remote client, install the remote client tarball file from the
-    StarlingX CENGEN build servers..
+#.  Copy the remote client tarball file from the |prod| build servers
+    to the remote workstation, and extract its content.
 
 
     -   The tarball is available from the |prod| area on the StarlingX CENGEN build servers.
@@ -152,186 +170,161 @@ namespace, additional configuration is required in order to use
     -   You can extract the tarball's contents anywhere on your client system.
 
 
-    While it is not strictly required to extract the tarball before other
-    steps, subsequent steps in this example copy files to the extracted
-    directories as a convenience when running configuration scripts.
+    .. parsed-literal::
 
-#.  Download the openrc file from the Horizon Web interface to the remote client.
+        $ cd $HOME
+        $ tar xvf |prefix|-remote-clients-<version>.tgz
+
+#.  Download the  user/tenant openrc file from the Horizon Web interface to the
+    remote workstation.
 
 
     #.  Log in to Horizon as the user and tenant that you want to configure remote access for.
+        
+        In this example, the 'admin' user in the 'admin' tenant.
 
     #.  Navigate to **Project** \> **API Access** \> **Download Openstack RC file**.
 
     #.  Select **Openstack RC file**.
+        
+        The file admin-openrc.sh downloads.
 
 
-#.  Copy the temp-kubeconfig file to the remote workstation.
+#.  Copy the admin-kubeconfig file to the remote workstation.
 
     You can copy the file to any location on the remote workstation. For
     convenience, this example assumes that it is copied to the location of
     the extracted tarball.
 
     .. note::
-        Ensure the temp-kubeconfig file has 666 permissions after copying
+        Ensure that the admin-kubeconfig file has 666 permissions after copying
         the file to the remote workstation, otherwise, use the following
         command to change permissions, :command:`chmod 666 temp\_kubeconfig`.
 
-#.  On the remote client, configure the client access.
+#.  On the remote workstation, configure remote CLI/client access.
 
+    This step will also generate a remote CLI/client RC file.
 
     #.  Change to the location of the extracted tarball.
+    
+        .. parsed-literal::
 
-    #.  Run the :command:`configure\_client.sh` script to generate a client access file for the platform.
+            $ cd $HOME/|prefix|-remote-clients-<version>/
 
-        .. note::
-            For remote CLI commands that require local filesystem access,
-            you can specify a working directory when running
-            :command:`configure\_client.sh` using the -w option. If no
-            directory is specified, the location from which the
-            :command:`configure\_client.sh` was run is used for local file
-            access by remote cli commands. This working directory is
-            mounted at /wd in the docker container. If remote CLI commands
-            need access to local files, copy the files to your configured
-            work directory and then provide the command with the path to
-            the mounted folder inside the container.
+    #.  Create a working directory that will be mounted by the container
+        implementing the remote |CLIs|.
+
+        See the description of the :command:`configure\_client.sh` -w option
+        :ref:`below
+        <security-configure-container-backed-remote-clis-and-clients>`
+        for more details.
 
         .. code-block:: none
 
-            $ mkdir -p $HOME/remote_wd
-            $ ./configure_client.sh -t platform -r admin_openrc.sh -k temp-kubeconfig \
-            -w HOME/remote_wd
-            $ cd $HOME/remote_wd
+            $ mkdir -p $HOME/remote_cli_wd
+           
 
-        By default, configure\_client.sh will use container images from
-        docker.io for both platform clients and openstack clients. You can
-        optionally use the -p and -a options to override the default docker
-        with one or two others from a custom registry. For example, to use
-        the container images from the WRS AWS ECR
+    #.  Run the :command:`configure\_client.sh` script.   
 
         .. code-block:: none
 
             $ ./configure_client.sh -t platform -r admin_openrc.sh -k
-            temp-kubeconfig -w HOME/remote_wd -p
-            625619392498.dkr.ecr.us-west-2.amazonaws.com/starlingx/stx-platfo
-            rmclients:stx.4.0-v1.3.0  -a
-            625619392498.dkr.ecr.us-west-2.amazonaws.com/starlingx/stx-openst
-            ackclients:master-centos-stable-latest
+            admin-kubeconfig -w HOME/remote_cli_wd -p
+            625619392498.dkr.ecr.us-west-2.amazonaws.com/docker.io/starlingx/stx-platfo
+            rmclients:stx.4.0-v1.3.0
 
-        If you are working with repositories that require authentication,
-        you must first perform a :command:`docker login` to that repository
-        before using remote clients.
+        If you specify repositories that require authentication, as shown
+        above, you must first remember to perform a :command:`docker login` to
+        that repository before using remote |CLIs| for the first time.
 
-        A remote\_client\_platform.sh file is generated for use accessing the platform CLI.
+        The options for configure\_client.sh are:
 
+    **-t**
+        The type of client configuration. The options are platform \(for
+        |prod-long| |CLI| and clients\) and openstack \(for |prod-os| application
+        |CLI| and clients\).
 
-#.  Test workstation access to the remote platform CLI.
+        The default value is platform.
 
-    Enter your platform password when prompted.
+    **-r**
+        The user/tenant RC file to use for :command:`openstack` CLI commands.
 
-    .. note::
-        The first usage of a command will be slow as it requires that the
-        docker image supporting the remote clients be pulled from the
-        remote registry.
+        The default value is admin-openrc.sh.
 
-    .. code-block:: none
+    **-k**
+        The kubernetes configuration file to use for :command:`kubectl` and :command:`helm` CLI commands.
 
-        root@myclient:/home/user/remote_wd# source remote_client_platform.sh
-        Please enter your OpenStack Password for project admin as user admin:
-        root@myclient:/home/user/remote_wd# system host-list
-        +----+--------------+-------------+----------------+-------------+--------------+
-        | id | hostname     | personality | administrative | operational | availability |
-        +----+--------------+-------------+----------------+-------------+--------------+
-        | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
-        | 2  | controller-1 | controller  | unlocked       | enabled     | available    |
-        | 3  | compute-0    | worker      | unlocked       | enabled     | available    |
-        | 4  | compute-1    | worker      | unlocked       | enabled     | available    |
-        +----+--------------+-------------+----------------+-------------+--------------+
-        root@myclient:/home/user/remote_wd# kubectl -n kube-system get pods
-        NAME                                       READY   STATUS      RESTARTS   AGE
-        calico-kube-controllers-767467f9cf-wtvmr   1/1     Running     1          3d2h
-        calico-node-j544l                          1/1     Running     1          3d
-        calico-node-ngmxt                          1/1     Running     1          3d1h
-        calico-node-qtc99                          1/1     Running     1          3d
-        calico-node-x7btl                          1/1     Running     4          3d2h
-        ceph-pools-audit-1569848400-rrpjq          0/1     Completed   0          12m
-        ceph-pools-audit-1569848700-jhv5n          0/1     Completed   0          7m26s
-        ceph-pools-audit-1569849000-cb988          0/1     Completed   0          2m25s
-        coredns-7cf476b5c8-5x724                   1/1     Running     1          3d2h
-        ...
-        root@myclient:/home/user/remote_wd#
+        The default value is temp-kubeconfig.
 
-    .. note::
-        Some commands used by remote CLI are designed to leave you in a shell prompt, for example:
+    **-o**
+        The remote CLI/client RC file generated by this script.
 
-        .. code-block:: none
+        This RC file needs to be sourced in the shell, to setup required
+        environment variables and aliases, before running any remote |CLI|
+        commands.
 
-            root@myclient:/home/user/remote_wd# openstack
+        For the platform client setup, the default is
+        remote\_client\_platform.sh. For the openstack application client
+        setup, the default is remote\_client\_app.sh.
 
-        or
+    **-w**
+        The working directory that will be mounted by the container
+        implementing the remote |CLIs|. When using the remote |CLIs|, any files
+        passed as arguments to the remote |CLI| commands need to be in this
+        directory in order for the container to access the files. The default
+        value is the directory from which the :command:`configure\_client.sh`
+        command was run.
+
+    **-p**
+        Override the container image for the platform |CLI| and clients.
+
+        By default, the platform |CLIs| and clients container image is pulled
+        from docker.io/starlingx/stx-platformclients.
+
+        For example, to use the container images from the WRS AWS ECR:
 
         .. code-block:: none
 
-            root@myclient:/home/user/remote_wd# kubectl exec -ti <pod_name> -- /bin/bash
+            $ ./configure_client.sh -t platform -r admin-openrc.sh -k
+            admin-kubeconfig -w $HOME/remote_cli_wd -p
+            625619392498.dkr.ecr.us-west-2.amazonaws.com/docker.io/starlingx/stx-platformclients:stx.4.0-v1.3.0-wrs.1
+            
+            
 
-        In some cases the mechanism for identifying commands that should
-        leave you at a shell prompt does not identify them correctly. If
-        you encounter such scenarios, you can force-enable or disable the
-        shell options using the <FORCE\_SHELL> or <FORCE\_NO\_SHELL>
-        variables before the command.
+        If you specify repositories that require authentication, you must first
+        perform a :command:`docker login` to that repository before using
+        remote |CLIs|.
 
-        For example:
+    **-a**
+        Override the OpenStack application image.
 
-        .. code-block:: none
+        By default, the OpenStack |CLIs| and clients container image is pulled
+        from docker.io/starlingx/stx-openstackclients.
 
-            root@myclient:/home/user/remote_wd# FORCE_SHELL=true kubectl exec -ti <pod_name> -- /bin/bash
-            root@myclient:/home/user/remote_wd# FORCE_NO_SHELL=true kubectl exec <pod_name> -- ls
+    The :command:`configure-client.sh` command will generate a remote\_client\_platform.sh RC file. This RC file needs to be sourced in the shell to set up required environment variables and aliases before any remote CLI commands can be run.
 
-        You cannot use both variables at the same time.
+#.  Copy the file remote\_client\_platform.sh to $HOME/remote\_cli\_wd
 
-#.  If you need to run a remote CLI command that references a local file,
-    then that file must be copied to or created in the working directory
-    specified on the ./config\_client.sh command and referenced as under /wd/
-    in the actual command.
+.. rubric:: |postreq|
 
-    For example:
+After configuring the platform's container-backed remote CLIs/clients, the
+remote platform CLIs can be used in any shell after sourcing the generated
+remote CLI/client RC file. This RC file sets up the required environment
+variables and aliases for the remote |CLI| commands.
 
-    .. code-block:: none
+.. note:: 
+    Consider adding this command to your .login or shell rc file, such
+    that your shells will automatically be initialized with the environment
+    variables and aliases for the remote |CLI| commands.
 
-        root@myclient:/home/user# cd $HOME/remote_wd
-        root@myclient:/home/user/remote_wd# kubectl -n kube-system  create -f test/test.yml
-        pod/test-pod created
-        root@myclient:/home/user/remote_wd# kubectl -n kube-system  delete -f test/test.yml
-        pod/test-pod deleted
+See :ref:`Using Container-backed Remote CLIs and Clients <using-container-backed-remote-clis-and-clients>` for details.
 
-#.  Do the following to use helm.
-
-    .. note::
-        For non-admin users, additional configuration is required first as
-        discussed in *Configure Remote Helm Client for Non-Admin Users*.
-
-    .. note::
-        When using helm, any command that requires access to a helm
-        repository \(managed locally\) will require that you be in the
-        $HOME/remote\_wd directory and use the --home ./helm option.
-
-
-    #.  Do the initial setup of the helm client.
-
-        .. code-block:: none
-
-            % helm init --client-only --home "./.helm"
-
-    #.  Run a helm command.
-
-        .. code-block:: none
-
-            $ helm list
-            $ helm install --name wordpress stable/wordpress  --home "./helm"
-
-
+**Related information**  
 
 .. seealso::
+
+    :ref:`Using Container-backed Remote CLIs and Clients
+    <using-container-backed-remote-clis-and-clients>`
 
     :ref:`Install Kubectl and Helm Clients Directly on a Host
     <security-install-kubectl-and-helm-clients-directly-on-a-host>`

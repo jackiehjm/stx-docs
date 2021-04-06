@@ -20,6 +20,18 @@ servers connecting to the |prod|'s Kubernetes API endpoint.
    <creating-certificates-locally-using-openssl>` for how to create a
    private Root |CA| certificate and key.
 
+.. caution::
+   The default duration for the generated Kubernetes Root CA certificate is 10
+   years. Replacing the Root |CA| certificate is a complex process, so the custom
+   certificate expiry should be set for a long period, if possible. Wind River
+   recommends setting the Root |CA| certificate with an expiry of at least 5-10
+   years.
+
+   The administrator can also provide values to add to the Kubernetes API
+   server certificate **Subject Alternative Name** list using the
+   apiserver\_cert\_sans override parameter.
+  
+
 Use the bootstrap override values <k8s\_root\_ca\_cert> and
 <k8s\_root\_ca\_key>, as part of the installation procedure to specify the
 certificate and key for the Kubernetes root |CA|.
@@ -74,6 +86,8 @@ associated with the |OAM| floating IP address should be added.
 
 Make the K8S Root |CA| certificate available to any remote server wanting to
 connect remotely to the |prod|'s Kubernetes API, e.g. through kubectl or helm.
+This Kubernetes Root CA certificate should be configured as a trusted |CA| on
+the remote server.
 
 See the step :ref:`2.b
 <security-install-kubectl-and-helm-clients-directly-on-a-host>` in

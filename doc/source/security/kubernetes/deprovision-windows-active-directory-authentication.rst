@@ -21,44 +21,44 @@ You can remove Windows Active Directory authentication from |prod-long|.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ system service-parameter-list
+            ~(keystone_admin)]$ system service-parameter-list
 
     #.  Delete each parameter.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ system service-parameter-delete <UUID>
+            ~(keystone_admin)]$ system service-parameter-delete <UUID>
 
     #.  Apply the changes.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ system service-parameter-apply kubernetes
+            ~(keystone_admin)]$ system service-parameter-apply kubernetes
 
 
 #.  Uninstall oidc-auth-apps.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system application-remove oidc-auth-apps
+        ~(keystone_admin)]$ system application-remove oidc-auth-apps
 
 #.  Clear the helm-override configuration.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system helm-override-update oidc-auth-apps dex kube-system --reset-values
-        ~(keystone_admin)$ system helm-override-show oidc-auth-apps dex kube-system
+        ~(keystone_admin)]$ system helm-override-update oidc-auth-apps dex kube-system --reset-values
+        ~(keystone_admin)]$ system helm-override-show oidc-auth-apps dex kube-system
 
-        ~(keystone_admin)$ system helm-override-update oidc-auth-apps oidc-client kube-system --reset-values
-        ~(keystone_admin)$ system helm-override-show oidc-auth-apps oidc-client kube-system
+        ~(keystone_admin)]$ system helm-override-update oidc-auth-apps oidc-client kube-system --reset-values
+        ~(keystone_admin)]$ system helm-override-show oidc-auth-apps oidc-client kube-system
 
 #.  Remove secrets that contain certificate data.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ kubectl delete secret local-dex.tls -n kube-system
-        ~(keystone_admin)$ kubectl delete secret dex-client-secret -n kube-system
-        ~(keystone_admin)$ kubectl delete secret wadcert -n kube-system
+        ~(keystone_admin)]$ kubectl delete secret local-dex.tls -n kube-system
+        ~(keystone_admin)]$ kubectl delete secret dex-client-secret -n kube-system
+        ~(keystone_admin)]$ kubectl delete secret wadcert -n kube-system
 
 #.  Remove any |RBAC| RoleBindings added for |OIDC| users and/or groups.
 

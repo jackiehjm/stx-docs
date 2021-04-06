@@ -32,7 +32,7 @@ repository, see |admintasks-doc|: :ref:`Setting up a Public Repository
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system registry-image-tags quay.io/jetstack/cert-manager-acmesolver
+        ~(keystone_admin)]$ system registry-image-tags quay.io/jetstack/cert-manager-acmesolver
 
 #.  Copy the cert-manager-acmesolver image, and replace <TAG> with the tag
     you want to copy from previous step.
@@ -53,7 +53,7 @@ repository, see |admintasks-doc|: :ref:`Setting up a Public Repository
 
         .. code-block:: none
 
-            ~(keystone_admin)$ cat <<EOF > cm-override-values.yaml
+            ~(keystone_admin)]$ cat <<EOF > cm-override-values.yaml
             acmesolver:
               image:
                 repository: registry.local:9001/public/cert-manager-acmesolver
@@ -64,13 +64,13 @@ repository, see |admintasks-doc|: :ref:`Setting up a Public Repository
 
         .. code-block:: none
 
-            ~(keystone_admin)$ system helm-override-update --values cm-override-values.yaml cert-manager cert-manager cert-manager
+            ~(keystone_admin)]$ system helm-override-update --values cm-override-values.yaml cert-manager cert-manager cert-manager
 
     #.  Reapply cert-manager.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ system application-apply cert-manager
+            ~(keystone_admin)]$ system application-apply cert-manager
 
 
 
