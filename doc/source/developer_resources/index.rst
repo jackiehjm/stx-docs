@@ -17,6 +17,7 @@ Developer Resources
    code-submission-guide
    debug_issues
    stx_tsn_in_kata
+   stx_sdo_rv
    mirror_repo
    move_to_new_openstack_version_in_starlingx
    navigate_source_code
