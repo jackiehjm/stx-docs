@@ -1,6 +1,6 @@
-==================================
-Enable SDO RV Service on StarlingX
-==================================
+==========================================
+Enable SDO Rendezvous Service on StarlingX
+==========================================
 
 .. contents::
    :local:
@@ -11,43 +11,44 @@ Introduction
 ------------
 
 `Secure Device Onboard (SDO) <https://secure-device-onboard.github.io/docs/>`_
-is an open source software that is in the process of becoming an industry
-standard through the FIDO (Fast IDentity Online) alliance, which automates the
-process of securely onboarding SDO capable devices. By “onboard” we mean the
-process by which device establishes its first trusted connection with the
-device management service.
+is open source software that is in the process of becoming an industry standard
+through the FIDO (Fast IDentity Online) alliance. |SDO| automates the "onboard"
+process, which occurs when a device establishes the first trusted connection
+with a device management service.
 
-The devices to be onboarded through SDO can be X-86/ARM based platform ranging
-from small compute IoT devices to higher compute Xeon devices. The only condition
-is that, the device must come with necessary credentials and SDO client software
-during the manufacturing stage.
+|SDO| can be used with x86 and ARM-based devices ranging from small compute IoT
+devices to higher compute Intel® Xeon® devices. The key requirement is that the
+device must be manufactured with the necessary credentials and |SDO| client
+software.
 
-The Secure Device Onboard process involves interactions between a number of
-different entities that participate in the process. Those include: Manufacturer,
-Device, Owner, Rendezvous service, Device platform service.
+The |SDO| process involves interactions between a number of
+different entities including: Manufacturer, Device, Owner, Rendezvous service,
+and Device platform service.
 
-This documents talks about enabling Rendezvous service on StarlingX.
+This document describes how to enable the |SDO| Rendezvous (RV) service on
+|prod|.
 
 -----------------
 Integration Steps
 -----------------
 
-Following are the steps to build and enable SDO RV service.
+#. Complete building all the build layers. See the `Layered Build Guide
+   <https://docs.starlingx.io/developer_resources/layered_build_guide.html>`_
+   for details.
 
-#. Complete building all the build layers. See `build guide <https://docs.starlingx.io/developer_resources/layered_build_guide.html>`_ for reference.
+#. Build the application exclusively. Enter the flock layer and refer to the
+   `Build flock layer steps
+   <https://docs.starlingx.io/developer_resources/layered_build_guide.html#build-flock-layer>`_
+   for details.
 
-#. You can build application exclusively. Enter the flock layer, please refer
-   `flock layer <https://docs.starlingx.io/developer_resources/layered_build_guide.html#build-flock-layer>`_
-   for same.
-
-#. Build application using below command:
+#. Build the application using the commands:
 
    ::
 
-     $ build-pkgs --clean stx-sdo-helm
-     $ build-pkgs --dep-test stx-sdo-helm
+     build-pkgs --clean stx-sdo-helm
+     build-pkgs --dep-test stx-sdo-helm
 
-   Following is the sample of a successful logs:
+   An example of successful logs is shown below:
 
    ::
 
@@ -70,11 +71,11 @@ Following are the steps to build and enable SDO RV service.
      Skipping 'containers' build
      All builds were successful
 
-#. Create the armada application using below command:
+#. Create the Armada application using the command:
 
    ::
 
-     $ build-helm-charts.sh -a stx-sdo
+     build-helm-charts.sh -a stx-sdo
 
    Sample console output is as follows:
 
@@ -85,17 +86,17 @@ Following are the steps to build and enable SDO RV service.
      Results:
      /localdisk/loadbuild/stx/flock/std/build-helm/stx/stx-sdo-1.0-2.tgz
 
-#. Exit from the container, the SDO-RV armada application will be found in the
-   location as follows:
+#. Exit from the container. The SDO-RV Armada application will be found in the
+   following location:
 
    ::
 
      $HOME/starlingx/workspace/localdisk/loadbuild/stx/flock/std/build-helm/stx/stx-sdo-<version>.tgz
 
-#. Copy the application into home folder of the controller.
+#. Copy the application into the home folder of the controller.
 
-#. Copy the certs folder of the SDO version 1.10 release to the home
-   folder using below command.
+#. Copy the certs folder of the |SDO| version 1.10 release to the home
+   folder using the command:
 
    ::
 
@@ -108,27 +109,31 @@ Following are the steps to build and enable SDO RV service.
 
      source /etc/platform/openrc
 
-#. Load the stx-openstack application’s package into StarlingX. The tarball package contains stx-openstack’s Airship Armada manifest and stx-openstack’s set of helm charts. For example:
+#. Load the stx-openstack application package into |prod|. The tarball
+   package contains the stx-openstack Airship Armada manifest and stx-openstack
+   set of Helm charts. For example:
 
    ::
 
      system application-upload stx-sdo-<version>.tgz
 
-#. Apply the stx-sdo application in order to bring SDO RV application into service. If your environment is preconfigured with a proxy server, then make sure HTTPS proxy is set before applying stx-sdo.
+#. Apply the ``stx-sdo`` application to bring the |SDO| Rendevous application
+   into service. If your environment is preconfigured with a proxy server, make
+   sure the HTTPS proxy is set before applying ``stx-sdo``.
 
    ::
 
      system application-apply stx-sdo
 
-#. Check the application status using below command:
+#. Check the application status using the command:
 
    ::
 
      system application-show stx-sdo
 
 
-After the application apply is success, you will see the RV service and redis
-DB pods running. For example:
+When the |SDO| Rendezvous application is in service, you will see the RV service
+and redis DB pods running. For example:
 
 ::
 
