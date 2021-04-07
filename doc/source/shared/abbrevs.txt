@@ -92,6 +92,7 @@
 .. |SAS| replace:: :abbr:`SAS (Serial Attached SCSI)`
 .. |SATA| replace:: :abbr:`SATA (Serial AT Attachment)`
 .. |SCTP| replace:: :abbr:`SCTP (Stream Control Transmission Protocol)`
+.. |SDO| replace:: :abbr:`SDO (Secure Device Onboard)`
 .. |SLA| replace:: :abbr:`SLA (Service Level Agreement)`
 .. |SLAs| replace:: :abbr:`SLAs (Service Level Agreements)`
 .. |SM| replace:: :abbr:`SM (Service Manager)`
