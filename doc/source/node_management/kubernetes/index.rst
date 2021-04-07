@@ -273,17 +273,6 @@ Node inventory tasks
 Hardware acceleration devices
 -----------------------------
 
-.. toctree::
-   :maxdepth: 1
-
-   hardware_acceleration_devices/uploading-a-device-image
-   hardware_acceleration_devices/listing-uploaded-device-images
-   hardware_acceleration_devices/listing-device-labels
-   hardware_acceleration_devices/removing-a-device-image
-   hardware_acceleration_devices/removing-a-device-label
-   hardware_acceleration_devices/initiating-a-device-image-update-for-a-host
-   hardware_acceleration_devices/displaying-the-status-of-device-images
-
 ************************
 Intel N3000 FPGA support
 ************************
@@ -295,7 +284,21 @@ Intel N3000 FPGA support
    hardware_acceleration_devices/updating-an-intel-n3000-fpga-image
    hardware_acceleration_devices/n3000-fpga-forward-error-correction
    hardware_acceleration_devices/showing-details-for-an-fpga-device
+   hardware_acceleration_devices/uploading-a-device-image
    hardware_acceleration_devices/common-device-management-tasks
+
+Common device management tasks
+******************************
+
+.. toctree::
+   :maxdepth: 2
+
+   hardware_acceleration_devices/listing-uploaded-device-images
+   hardware_acceleration_devices/listing-device-labels
+   hardware_acceleration_devices/removing-a-device-image
+   hardware_acceleration_devices/removing-a-device-label
+   hardware_acceleration_devices/initiating-a-device-image-update-for-a-host
+   hardware_acceleration_devices/displaying-the-status-of-device-images
 
 ***********************************************
 vRAN Accelerator ACC100 Adapter \(Mount Bryce\)
@@ -305,6 +308,17 @@ vRAN Accelerator ACC100 Adapter \(Mount Bryce\)
 
    hardware_acceleration_devices/enabling-mount-bryce-hw-accelerator-for-hosted-vram-containerized-workloads
    hardware_acceleration_devices/set-up-pods-to-use-sriov
+
+
+*******************
+NVIDIA GPU Operator
+*******************
+.. toctree::
+   :maxdepth: 1
+
+   hardware_acceleration_devices/configure-nvidia-gpu-operator-for-pci-passthrough
+   hardware_acceleration_devices/delete-the-gpu-operator
+
 
 ------------------------
 Host hardware management
