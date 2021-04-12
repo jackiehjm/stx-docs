@@ -36,23 +36,3 @@ project-team-guide/stable-branches.html#maintenance-phases>`_ definitions.
    r3_release
    r4_release
 
-------------------------------
-Project-specific release notes
-------------------------------
-
-Each sub-project in StarlingX provides project-specific release notes on the
-project page:
-
-* `Bare Metal <metal/index.html>`__
-* `Clients <clients/index.html>`__
-* `Configuration <config/index.html>`__
-* `Distributed Cloud <distcloud/index.html>`__
-* `Distributed Cloud Client <distcloud-client/index.html>`__
-* `Fault Management <fault/index.html>`__
-* `High Availability <ha/index.html>`__
-* `Horizon Plugin (GUI) <gui/index.html>`__
-* `Integration <integ/index.html>`__
-* `NFV <nfv/index.html>`__
-* `Software Updates <update/index.html>`__
-* `Tools <tools/index.html>`__
-* `Upstream <upstream/index.html>`__
