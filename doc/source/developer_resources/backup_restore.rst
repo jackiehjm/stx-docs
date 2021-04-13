@@ -70,6 +70,12 @@ one of the following methods:
 * An override file
 * In the Ansible secret file
 
+If you deploy the system with rook instead of ceph backend, you must add the ``rook_enabled=true`` variable.
+
+::
+
+  ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml -e "ansible_become_pass=<sysadmin password> admin_password=<sysadmin password> [ rook_enabled=true ]"
+
 The output of the command is a file named in this format:
 ``<inventory_hostname>_platform_backup_<timestamp>.tgz``
 
@@ -123,6 +129,7 @@ Example:
 
   ansible-playbook /localdisk/designer/repo/cgcs-root/stx/stx-ansible-playbooks/playbookconfig/src/playbooks/backup-restore/backup.yml --limit my_vbox -i $HOME/br_test/hosts -e "host_backup_dir=$HOME/br_test ansible_become_pass=Li69nux* admin_password=Li69nux* ansible_ssh_pass=Li69nux* ansible_ssh_pass=Li69nux*"
 
+#. If you deploy the system with rook instead of ceph backend, you must add the ``rook_enabled=true`` variable.
 
 ~~~~~~~~~~~~~~~~~~~~~~
 Backup content details
@@ -278,6 +285,8 @@ Steps:
 
           ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_platform.yml -e "initial_backup_dir=<location_of_tarball> ansible_become_pass=<admin_password> admin_password=<admin_password> backup_filename=<backup_filename>"
 
+    #.  If you deploy the system with rook instead of ceph backend, you must add the ``rook_enabled=true`` variable in above command.
+
         **Remote play**
 
         i.  Log in to the host where Ansible is installed and clone the playbook
@@ -335,7 +344,9 @@ Steps:
 
             ::
 
-              ansible-playbook /localdisk/designer/jenkins/tis-stx-dev/cgcs-root/stx/ansible-playbooks/playbookconfig/src/playbooks/restore_platform.yml --limit my_vbox -i $HOME/br_test/hosts -e " ansible_become_pass=Li69nux* admin_password=Li69nux* ansible_ssh_pass=Li69nux* initial_backup_dir=$HOME/br_test backup_filename=my_vbox_system_backup_2019_08_08_15_25_36.tgz ansible_remote_tmp=/home/sysadmin/ansible-restore"
+              ansible-playbook /localdisk/designer/jenkins/tis-stx-dev/cgcs-root/stx/ansible-playbooks/playbookconfig/src/playbooks/restore_platform.yml --limit my_vbox -i $HOME/br_test/hosts -e "ansible_become_pass=Li69nux* admin_password=Li69nux* ansible_ssh_pass=Li69nux* initial_backup_dir=$HOME/br_test backup_filename=my_vbox_system_backup_2019_08_08_15_25_36.tgz ansible_remote_tmp=/home/sysadmin/ansible-restore"
+
+    #.  If you deploy the system with rook instead of ceph backend, you must add the ``rook_enabled=true`` variable in above command.
 
     #.  After Ansible is executed, perform the following steps based on your
         deployment mode:
