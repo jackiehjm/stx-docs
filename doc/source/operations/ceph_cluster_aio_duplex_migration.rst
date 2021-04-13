@@ -1,10 +1,10 @@
-======================
-Ceph Cluster Migration
-======================
+========================================
+Ceph Cluster Migration for duplex system
+========================================
 
 This guide contains step by step instructions for manually migrating a StarlingX
-deployment with a standard dedicated storage Ceph Cluster to a containerized Ceph
-cluster deployed by Rook.
+deployment with an all-in-one duplex Ceph Cluster to a containerized Ceph cluster
+deployed by Rook.
 
 .. contents::
    :local:
@@ -19,9 +19,14 @@ deployed directly on the host platform. In an upcoming release of StarlingX,
 Ceph cluster will be containerized and managed by Rook, to improve operation
 and maintenance efficiency.
 
-This guide describes a method to migrate the Ceph cluster deployed with StarlingX
-early releases to the newly containerized Ceph clusters using an upcoming StarlingX
-release, while maintaining user data in :abbr:`OSDs (Object Store Devices)`.
+This guide describes a method to migrate the host-based Ceph cluster deployed with
+StarlingX early releses to the newly containerized Ceph clusters using an upcoming
+StarlingX release, while maintaining user data in :abbr:`OSDs (Object Store Devices)`.
+
+The migration procedure maintains CEPH OSDs and data on OSDs.  Although the procedure
+does result in hosted applications experiencing several minutes of service outage due
+to temporary loss of access to PVCs or virtual disks, due to the temporary loss of
+the ceph service.
 
 ---------------------
 Prepare for migration
@@ -36,25 +41,28 @@ avoids interrupting the migration procedure with service restarts.
 Disable StarlingX HA for Ceph service
 *************************************
 
-Disable monitoring and recovering for Ceph service by pmon and service manager.
-
-#. Disable pmon monitoring for Ceph mon and Ceph osd on every host.
+#. Disable service manager's monitoring of Ceph related service on both two controllers.
 
    ::
 
-    sudo rm -f /etc/pmon.d/ceph.conf
-    sudo /usr/local/sbin/pmon-restart pmon_cmd_port
-
-#. Disable service manager's monitoring of Ceph manager on controller host.
-
-   ::
-
-    sudo sm-unmanage service  mgr-restful-plugin
+    sudo sm-unmanage service mgr-restful-plugin
     Service (mgr-restful-plugin) is no longer being managed.
-    sudo sm-unmanage service  ceph-manager
+    sudo sm-unmanage service ceph-manager
     Service (ceph-manager) is no longer being managed.
-    sudo sm-deprovision  service-group-member storage-monitoring-services ceph-manager
-    sudo sm-deprovision  service-group-member storage-services mgr-restful-plugin
+    sudo sm-unmanage service ceph-mon
+    Service (ceph-mon) is no longer being managed.
+    sudo sm-unmanage service cephmon-fs
+    Service (cephmon-fs) is no longer being managed.
+    sudo sm-unmanage service drbd-cephmon
+    Service (drbd-cephmon) is no longer being managed.
+    sudo sm-unmanage service ceph-osd
+    Service (ceph-osd) is no longer being managed.
+    sudo sm-deprovision service-group-member storage-monitoring-services ceph-manager
+    sudo sm-deprovision service-group-member storage-services mgr-restful-plugin
+    sudo sm-deprovision service-group-member storage-services ceph-osd
+    sudo sm-deprovision service-group-member controller-services ceph-mon
+    sudo sm-deprovision service-group-member controller-services cephmon-fs
+    sudo sm-deprovision service-group-member controller-services drbd-cephmon
 
 **********************************
 Enable Ceph service authentication
@@ -67,18 +75,10 @@ Before migration, enable authentication for each daemon.
 
    ::
 
-    ceph config set mon.storage-0 auth_cluster_required cephx
-    ceph config set mon.storage-0 auth_supported cephx
-    ceph config set mon.storage-0 auth_service_required cephx
-    ceph config set mon.storage-0 auth_client_required cephx
-    ceph config set mon.controller-0 auth_cluster_required cephx
-    ceph config set mon.controller-0 auth_supported cephx
-    ceph config set mon.controller-0 auth_service_required cephx
-    ceph config set mon.controller-0 auth_client_required cephx
-    ceph config set mon.controller-1 auth_cluster_required cephx
-    ceph config set mon.controller-1 auth_supported cephx
-    ceph config set mon.controller-1 auth_service_required cephx
-    ceph config set mon.controller-1 auth_client_required cephx
+    ceph config set mon.controller auth_cluster_required cephx
+    ceph config set mon.controller auth_supported cephx
+    ceph config set mon.controller auth_service_required cephx
+    ceph config set mon.controller auth_client_required cephx
     ceph config set mgr.controller-0 auth_supported cephx
     ceph config set mgr.controller-0 auth_cluster_required cephx
     ceph config set mgr.controller-0 auth_client_required cephx
@@ -164,6 +164,37 @@ it with the command below.
     | updated_at    | 2020-04-22T15:46:24.018090+00:00 |
     +---------------+----------------------------------+
 
+----------------------------------------------
+Remove storage backend ceph-store and clean up
+----------------------------------------------
+
+After migration, remove the default storage backend ceph-store.
+
+::
+
+    system storage-backend-list
+    +--------------------------------------+------------+---------+------------+------+----------+------------------------------------------------------------------------+
+    | uuid                                 | name       | backend | state      | task | services | capabilities                                                           |
+    +--------------------------------------+------------+---------+------------+------+----------+------------------------------------------------------------------------+
+    | 3fd0a407-dd8b-4a5c-9dec-8754d76956f4 | ceph-store | ceph    | configured | None | None     | min_replication: 1 replication: 2                                      |
+    |                                      |            |         |            |      |          |                                                                        |
+    +--------------------------------------+------------+---------+------------+------+----------+------------------------------------------------------------------------+
+    system storage-backend-delete 3fd0a407-dd8b-4a5c-9dec-8754d76956f4 --force
+
+Update puppet system config.
+
+::
+
+    sudo sysinv-puppet create-system-config
+
+Remove script ceph.sh on both controllers.
+
+::
+
+    sudo rm -rf /etc/services.d/controller/ceph.sh
+    sudo rm -rf /etc/services.d/worker/ceph.sh
+    sudo rm -rf /etc/services.d/storage/ceph.sh
+
 ************************************************************************
 Disable ceph osd on all storage hosts and create configmap for migration
 ************************************************************************
@@ -174,8 +205,8 @@ Disable ceph osd on all storage hosts and create configmap for migration
 
     sudo ceph-preshutdown.sh
 
-#. Login to the storage host with provisioned OSD, disable the Ceph osd service,
-   and create a journal file.
+Login to the both controllers, disable the Ceph osd service, and create a
+journal file.
 
 #. Disable the Ceph osd service.
 
@@ -183,7 +214,7 @@ Disable ceph osd on all storage hosts and create configmap for migration
 
     sudo service ceph -a stop osd.1
     === osd.1 ===
-    Stopping Ceph osd.1 on storage-0...kill  213077...
+    Stopping Ceph osd.1 on controller-1...kill  213077...
     done
     2020-04-26 23:36:56.988 7f1d647bb1c0 -1 journal do_read_entry(585007104): bad header magic
     2020-04-26 23:36:56.988 7f1d647bb1c0 -1 journal do_read_entry(585007104): bad header magic
@@ -232,29 +263,23 @@ folder. In the example below, the Rook osd0 data path is ``/var/lib/ceph/osd0``.
 
     osd-dirs: '{"/var/lib/ceph/ceph-0/":0}'
 
-    system host-stor-list storage-0
+    system host-stor-list controller-0
     +--------------------------------------+----------+-------+------------+--------------------------------------+-----------------------------+------------+--------------+-----------+
     | uuid                                 | function | osdid | state      | idisk_uuid                           | journal_path                | journal_no | journal_size | tier_name |
     |                                      |          |       |            |                                      |                             | de         | _gib         |           |
     +--------------------------------------+----------+-------+------------+--------------------------------------+-----------------------------+------------+--------------+-----------+
-    | 21a90d60-2f1e-4f46-badc-afa7d9117622 | osd      | 1     | configured | a13c6ac9-9d59-4063-88dc-2847e8aded85 | /dev/disk/by-path/pci-0000: | /dev/sdc2  | 1            | storage   |
+    | 21a90d60-2f1e-4f46-badc-afa7d9117622 | osd      | 0     | configured | a13c6ac9-9d59-4063-88dc-2847e8aded85 | /dev/disk/by-path/pci-0000: | /dev/sdc2  | 1            | storage   |
     |                                      |          |       |            |                                      | 00:03.0-ata-3.0-part2       |            |              |           |
-    |                                      |          |       |            |                                      |                             |            |              |           |
-    | d259a366-3633-4c03-9268-0cd35b2b274d | osd      | 0     | configured | 54b3cb9d-4527-448a-9051-62b250c2a03f | /dev/disk/by-path/pci-0000: | /dev/sdb2  | 1            | storage   |
-    |                                      |          |       |            |                                      | 00:03.0-ata-2.0-part2       |            |              |           |
     |                                      |          |       |            |                                      |                             |            |              |           |
     +--------------------------------------+----------+-------+------------+--------------------------------------+-----------------------------+------------+--------------+-----------+
 
-    system host-stor-list storage-1
+    system host-stor-list controller-1
     +--------------------------------------+----------+-------+------------+--------------------------------------+-----------------------------+------------+--------------+-----------+
     | uuid                                 | function | osdid | state      | idisk_uuid                           | journal_path                | journal_no | journal_size | tier_name |
     |                                      |          |       |            |                                      |                             | de         | _gib         |           |
     +--------------------------------------+----------+-------+------------+--------------------------------------+-----------------------------+------------+--------------+-----------+
-    | 17f2db8e-c80e-4df7-9525-1f0cb5b54cd3 | osd      | 3     | configured | 89637c7d-f959-4c54-bfe1-626b5c630d96 | /dev/disk/by-path/pci-0000: | /dev/sdc2  | 1            | storage   |
+    | 17f2db8e-c80e-4df7-9525-1f0cb5b54cd3 | osd      | 1     | configured | 89637c7d-f959-4c54-bfe1-626b5c630d96 | /dev/disk/by-path/pci-0000: | /dev/sdc2  | 1            | storage   |
     |                                      |          |       |            |                                      | 00:03.0-ata-3.0-part2       |            |              |           |
-    |                                      |          |       |            |                                      |                             |            |              |           |
-    | 64b9d56c-c384-4bd6-a437-89d6bfda4ec5 | osd      | 2     | configured | ad52345c-254c-48c1-9034-778738c7e23b | /dev/disk/by-path/pci-0000: | /dev/sdb2  | 1            | storage   |
-    |                                      |          |       |            |                                      | 00:03.0-ata-2.0-part2       |            |              |           |
     |                                      |          |       |            |                                      |                             |            |              |           |
     +--------------------------------------+----------+-------+------------+--------------------------------------+-----------------------------+------------+--------------+-----------+
 
@@ -265,26 +290,26 @@ folder. In the example below, the Rook osd0 data path is ``/var/lib/ceph/osd0``.
     apiVersion: v1
     kind: ConfigMap
     metadata:
-      name: rook-ceph-osd-storage-0-config
+      name: rook-ceph-osd-controller-0-config
       namespace: kube-system
     data:
-      osd-dirs: '{"/var/lib/ceph/ceph-0":0,"/var/lib/ceph/ceph-1":1}'
+      osd-dirs: '{"/var/lib/ceph/ceph-0":0}'
     ---
     apiVersion: v1
     kind: ConfigMap
     metadata:
-      name: rook-ceph-osd-storage-1-config
+      name: rook-ceph-osd-controller-1-config
       namespace: kube-system
     data:
-      osd-dirs: '{"/var/lib/ceph/ceph-2":2,"/var/lib/ceph/ceph-3":3}'
+      osd-dirs: '{"/var/lib/ceph/ceph-1":1}'
 
 #. Apply yaml file for configmap.
 
    ::
 
     kubectl apply -f osd-configmap.yaml
-    configmap/rook-ceph-osd-storage-0-config created
-    configmap/rook-ceph-osd-storage-1-config created
+    configmap/rook-ceph-osd-controller-0-config created
+    configmap/rook-ceph-osd-controller-1-config created
 
 **************************
 Ceph monitor data movement
@@ -299,38 +324,20 @@ Before migration, disable one monitor service and launch another monitor
 specified with the ``--mon-data /var/lib/ceph/mon-a/data`` parameter. This will
 migrate the monitor data to ``/var/lib/ceph/mon-a/data``.
 
-#. Login to host controller-0 and disable service monitor.controller-0.
+#. Login to host controller-0 and disable service monitor.controller.
 
    ::
 
-    sudo service ceph -a stop mon.controller-0
+    sudo service ceph -a stop mon.controller
     === mon.controller-0 ===
-    Stopping Ceph mon.controller-0 on controller-0...kill  291101...done
-
-#. Login to host controller-1 and disable service monitor.controller-1.
-
-   ::
-
-    sudo service ceph -a stop mon.controller-1
-    === mon.controller-1 ===
-    Stopping Ceph mon.controller-1 on controller-1...kill  385107...
-    done
-
-#. Login to host storage-0 and disable service monitor.storage-0.
-
-   ::
-
-    sudo service ceph -a stop mon.storage-0
-    === mon.storage-0 ===
-    Stopping Ceph mon.storage-0 on storage-0...kill  31394...
-    done
+    Stopping Ceph mon.controller on controller-0...kill  291101...done
 
 #. Copy mon data to the ``/var/lib/ceph/mon-a/data`` folder.
 
    ::
 
     sudo mkdir -p /var/lib/ceph/mon-a/data/
-    sudo ceph-monstore-tool /var/lib/ceph/mon/ceph-controller-0/ store-copy /var/lib/ceph/mon-a/data/
+    sudo ceph-monstore-tool /var/lib/ceph/mon/ceph-controller/ store-copy /var/lib/ceph/mon-a/data/
 
 #. Update monmap in this copy of monitor data and update monitor info.
 
@@ -345,24 +352,12 @@ migrate the monitor data to ``/var/lib/ceph/mon-a/data``.
     fsid 6c9e9e4b-599e-4a4f-931e-2c09bec74a2a
     last_changed 2020-05-21 04:29:59.164965
     created 2020-05-21 03:50:51.893155
-    0: 192.188.204.3:6789/0 mon.controller-0
-    1: 192.188.204.4:6789/0 mon.controller-1
-    2: 192.188.204.41:6789/0 mon.storage-0
+    0: 192.188.204.3:6789/0 mon.controller
 
-    sudo monmaptool --rm controller-0 monmap
+    sudo monmaptool --rm controller monmap
     monmaptool: monmap file monmap
-    monmaptool: removing controller-0
+    monmaptool: removing controller
     monmaptool: writing epoch 2 to monmap (2 monitors)
-
-    sudo monmaptool --rm controller-1 monmap
-    monmaptool: monmap file monmap
-    monmaptool: removing controller-1
-    monmaptool: writing epoch 2 to monmap (1 monitors)
-
-    sudo monmaptool --rm storage-0 monmap
-    monmaptool: monmap file monmap
-    monmaptool: removing storage-0
-    monmaptool: writing epoch 2 to monmap (0 monitors)
 
     sudo monmaptool --add a 192.188.204.3 monmap
     monmaptool: monmap file monmap
@@ -377,20 +372,6 @@ migrate the monitor data to ``/var/lib/ceph/mon-a/data``.
     0: 192.188.204.3:6789/0 mon.a
 
     sudo ceph-mon --inject-monmap monmap  --mon-data /var/lib/ceph/mon-a/data/
-
-----------------------
-Deploy Rook helm chart
-----------------------
-
-StarlingX creates a application for Rook deployment. After finishing the
-preparation steps above, run the application to deploy Rook. To complete live
-migration and keep Ceph services ready, you should migrate Ceph services in the
-following order:
-
-#.  Exit the first Ceph monitor, ``mon.a``, and launch the Rook cluster with one
-    monitor pod. At this time, 2 monitor daemons and 1 monitor pod are running.
-#.  Migrate OSD pods one by one.
-#.  Finally, migrate 2 monitor daemons to complete the migration.
 
 **************************************
 Disable Ceph monitors and Ceph manager
@@ -416,13 +397,35 @@ Disable Ceph manager on host controller-0 and controller-1.
 
     sudo kill -9 98044
 
-Also disable Ceph manager on host controller-1.
+************************************
+Reboot controller-0 and controller-1
+************************************
+
+Reboot both two controllers, and wait for host to be available.
+After reboot, mount osd data partition on both controllers.
+
+For example, on controller-0
+
+::
+
+    sudo mount /dev/sdc1 /var/lib/ceph/ceph-0/osd0
+
+On controller-1
+
+::
+
+    sudo mount /dev/sdc1 /var/lib/ceph/ceph-1/osd1
+
+----------------------
+Deploy Rook helm chart
+----------------------
+
+StarlingX creates a application for Rook deployment. After finishing the
+preparation steps above, run the application to deploy Rook.
 
 ***************************
 Apply rook-ceph application
 ***************************
-
-Exit Ceph mon.a and Ceph manager, then deploy Rook.
 
 #. Assign a label for Ceph monitor and Ceph manager pod.
 
@@ -452,19 +455,28 @@ Exit Ceph mon.a and Ceph manager, then deploy Rook.
 #. Update override value for the ``rook-ceph-apps`` application with a created
    ``values.yaml`` file.
 
+   values.yaml
    ::
 
-    system  helm-override-update  rook-ceph-apps rook-ceph kube-system --set cluster.mon.count=1
-    +----------------+----------------+
-    | Property       | Value          |
-    +----------------+----------------+
-    | name           | rook-ceph      |
-    | namespace      | kube-system    |
-    | user_overrides | cluster:       |
-    |                |   mon:         |
-    |                |     count: "1" |
-    |                |                |
-    +----------------+----------------+
+    cluster:
+      hostNetwork: true
+      mon:
+        allowMultiplePerNode: false
+        count: 1
+
+    system  helm-override-update  rook-ceph-apps rook-ceph kube-system --reuse-values --values value.yaml
+    +----------------+---------------------------------+
+    | Property       | Value                           |
+    +----------------+---------------------------------+
+    | name           | rook-ceph                       |
+    | namespace      | kube-system                     |
+    | user_overrides | cluster:                        |
+    |                |   hostNetwork: true             |
+    |                |   mon:                          |
+    |                |     allowMultiplePerNode: false |
+    |                |     count: 1                    |
+    |                |                                 |
+    +----------------+---------------------------------+
 
 #. The application ``rook-ceph-apps`` is a sysinv-managed application.
    First upload it, then apply the application.
@@ -496,7 +508,7 @@ Exit Ceph mon.a and Ceph manager, then deploy Rook.
     rook-ceph-operator-6fc8cfb68b-dsqkt            1/1     Running            0          5m
     rook-ceph-tools-84c7fff88c-9g598               1/1     Running            0          4m12s
 
-#. Edit CephCluster to add osd directories config and increase mon count to 3.
+#. Edit CephCluster to add osd directories config.
 
    ::
 
@@ -506,15 +518,13 @@ Exit Ceph mon.a and Ceph manager, then deploy Rook.
           storeType: filestore
         directories:
         - path: /var/lib/ceph/ceph-0
-        - path: /var/lib/ceph/ceph-1
-        name: storage-0
+        name: controller-0
         resources: {}
       - config:
           storeType: filestore
         directories:
-        - path: /var/lib/ceph/ceph-2
-        - path: /var/lib/ceph/ceph-3
-        name: storage-1
+        - path: /var/lib/ceph/ceph-1
+        name: controller-1
         resources: {}
 
 #. Wait for Rook pods to launch.
@@ -526,10 +536,8 @@ Exit Ceph mon.a and Ceph manager, then deploy Rook.
     rook-ceph-operator-6fc8cfb68b-km445            1/1     Running     0          6m22s
     rook-ceph-osd-0-74f69cf96-h6qsj                1/1     Running     0          54s
     rook-ceph-osd-1-6777967c99-g48vz               1/1     Running     0          55s
-    rook-ceph-osd-2-6b868774d6-vqf7f               1/1     Running     0          55s
-    rook-ceph-osd-3-d648b6745-c5cnz                1/1     Running     0          55s
-    rook-ceph-osd-prepare-storage-0-pgb6l          0/1     Completed   0          67s
-    rook-ceph-osd-prepare-storage-1-fms4c          0/1     Completed   0          67s
+    rook-ceph-osd-prepare-controller-0-pgb6l       0/1     Completed   0          67s
+    rook-ceph-osd-prepare-controller-1-fms4c       0/1     Completed   0          67s
     rook-ceph-tools-84c7fff88c-px74q               1/1     Running     0          5m34s
     rook-discover-cmfw7                            1/1     Running     0          5m37s
     rook-discover-hpz4q                            1/1     Running     0          5m37s
@@ -539,6 +547,239 @@ Exit Ceph mon.a and Ceph manager, then deploy Rook.
     rook-discover-xm54j                            1/1     Running     0          5m37s
     storage-init-rbd-provisioner-c9j5w             0/1     Completed   0          10h
     storage-init-rook-ceph-provisioner-zjzcq       1/1     Running     0          47s
+
+#. Delete deployment rook-ceph-mon-a
+
+   ::
+
+    kubectl delete deployments.apps -n kube-system rook-ceph-mon-a
+    deployment.apps "rook-ceph-mon-a" deleted
+
+
+#. Apply service rook-ceph-mon-a, and get cluster ip, for examplex, 10.104.152.151.
+
+   ::
+
+    mon-a-svc.yaml
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: rook-ceph-mon-a
+      namespace: kube-system
+    spec:
+      ports:
+      - name: msgr1
+        port: 6789
+        protocol: TCP
+        targetPort: 6789
+      selector:
+        app: rook-ceph-mon
+        ceph_daemon_id: a
+        mon: a
+        mon_cluster: kube-system
+        rook_cluster: kube-system
+      sessionAffinity: None
+      type: ClusterIP
+
+
+    $ kubectl apply -f mon-a-svc.yaml
+    service/rook-ceph-mon-a created
+
+    $ kubectl get svc -n kube-system
+    NAME                               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                  AGE
+    csi-cephfsplugin-metrics           ClusterIP   10.107.231.162   <none>        8080/TCP,8081/TCP        4h23m
+    csi-rbdplugin-metrics              ClusterIP   10.102.41.27     <none>        8080/TCP,8081/TCP        4h23m
+    ic-nginx-ingress-controller        ClusterIP   10.111.161.197   <none>        80/TCP,443/TCP           21h
+    ic-nginx-ingress-default-backend   ClusterIP   10.104.104.150   <none>        80/TCP                   21h
+    kube-dns                           ClusterIP   10.96.0.10       <none>        53/UDP,53/TCP,9153/TCP   21h
+    rook-ceph-mgr                      ClusterIP   10.108.43.251    <none>        9283/TCP                 4h14m
+    rook-ceph-mgr-dashboard            ClusterIP   10.98.157.27     <none>        8443/TCP                 4h20m
+    rook-ceph-mon-a                    ClusterIP   10.104.152.151   <none>        6789/TCP,3300/TCP        3h56m
+
+#. Apply deployment mon-data-edit
+
+   ::
+
+    mon-data-edit.yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: mon-data-edit
+      namespace: kube-system
+      labels:
+        app: mon-data-edit
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: mon-data-edit
+      template:
+        metadata:
+          labels:
+            app: mon-data-edit
+        spec:
+          dnsPolicy: ClusterFirstWithHostNet
+          containers:
+          - name: mon-data-edit
+            image:  registry.local:9001/docker.io/rook/ceph:v1.2.7
+            command: ["/tini"]
+            args: ["-g", "--", "/usr/local/bin/toolbox.sh"]
+            imagePullPolicy: IfNotPresent
+            env:
+              - name: ROOK_ADMIN_SECRET
+                valueFrom:
+                  secretKeyRef:
+                    name: rook-ceph-mon
+                    key: admin-secret
+            volumeMounts:
+              - mountPath: /etc/ceph
+                name: ceph-config
+              - name: mon-endpoint-volume
+                mountPath: /etc/rook
+              - name: rook-data
+                mountPath: /var/lib/ceph
+          volumes:
+            - name: mon-endpoint-volume
+              configMap:
+                name: rook-ceph-mon-endpoints
+                items:
+                - key: data
+                  path: mon-endpoints
+            - name: ceph-config
+              emptyDir: {}
+            - name: rook-data
+              hostPath:
+                path: /var/lib/ceph
+          tolerations:
+            - key: "node.kubernetes.io/unreachable"
+              operator: "Exists"
+              effect: "NoExecute"
+              tolerationSeconds: 5
+          nodeName: controller-0
+
+    $ kubectl apply -f mon-data-edit.yaml
+    deployment.apps/mon-data-edit created
+
+#. In mon-data-edit pod, edit monmap
+
+   ::
+
+    $ kubectl exec -it mon-data-edit-d65546cdb-b5vkr -n kube-system -- bash
+    bash: warning: setlocale: LC_CTYPE: cannot change locale (en_US.UTF-8): No such file or directory
+    bash: warning: setlocale: LC_COLLATE: cannot change locale (en_US.UTF-8): No such file or directory
+    bash: warning: setlocale: LC_MESSAGES: cannot change locale (en_US.UTF-8): No such file or directory
+    bash: warning: setlocale: LC_NUMERIC: cannot change locale (en_US.UTF-8): No such file or directory
+    bash: warning: setlocale: LC_TIME: cannot change locale (en_US.UTF-8): No such file or directory
+    [root@mon-data-edit-d65546cdb-b5vkr /]#
+
+    [root@mon-data-edit-d65546cdb-b5vkr /]# ceph-mon --extract-monmap monmap --mon-data /var/lib/ceph/mon-a/data/
+    2020-09-17 04:59:49.308 7f5b047d2040 -1 wrote monmap to monmap
+
+    [root@mon-data-edit-d65546cdb-b5vkr /]# monmaptool --print monmap
+    monmaptool: monmap file monmap
+    epoch 2
+    fsid ceface4e-9957-480e-96f4-f91fc1cb7fc9
+    last_changed 2020-09-17 02:08:02.446136
+    created 2020-09-16 07:58:20.615682
+    min_mon_release 14 (nautilus)
+    0: [v2:192.168.204.3:3300/0,v1:192.168.204.3:6789/0] mon.a
+
+    [root@mon-data-edit-d65546cdb-b5vkr /]# monmaptool --rm a monmap
+    monmaptool: monmap file monmap
+    monmaptool: removing a
+    monmaptool: writing epoch 2 to monmap (0 monitors)
+
+    [root@mon-data-edit-d65546cdb-b5vkr /]# monmaptool --add a 10.104.152.151 monmap
+    monmaptool: monmap file monmap
+    monmaptool: writing epoch 2 to monmap (1 monitors)
+
+    [root@mon-data-edit-d65546cdb-b5vkr /]# ceph-mon --inject-monmap monmap  --mon-data /var/lib/ceph/mon-a/data/
+    [root@mon-data-edit-d65546cdb-b5vkr /]# exit
+
+#. Edit CephCluster, change host network to false
+
+   ::
+
+    $ kubectl edit CephCluster -n kube-system
+
+    network:
+      hostNetwork: false
+
+#. Delete deployment rook-ceph-mgr-a, rook-ceph-osd-0 and rook-ceph-osd-1 mon-data-edit
+
+   ::
+
+    $ kubectl delete deployments.apps -n kube-system rook-ceph-mgr-a rook-ceph-osd-0 rook-ceph-osd-1 mon-data-edit
+    deployment.apps "rook-ceph-mgr-a" deleted
+    deployment.apps "rook-ceph-osd-0" deleted
+    deployment.apps "rook-ceph-osd-1" deleted
+    deployment.apps "mon-data-edit" deleted
+
+#. Delete configmap rook-ceph-mon-endpoints and rook-ceph-csi-config
+
+   ::
+
+    $ kubectl delete configmap -n kube-system rook-ceph-mon-endpoints  rook-ceph-csi-config
+    configmap "rook-ceph-mon-endpoints" deleted
+    configmap "rook-ceph-csi-config" deleted
+
+#. Delete pod rook-ceph-operator and rook-ceph-tools
+
+   ::
+
+    $ kubectl delete po rook-ceph-operator-79fb8559-grgz8 -n kube-system
+    pod "rook-ceph-operator-79fb8559-grgz8" deleted
+    $ kubectl delete po rook-ceph-tools-5778d7f6c-cj947 -n kube-system
+    pod "rook-ceph-tools-5778d7f6c-cj947" deleted
+
+
+#. Wait for Ceph cluster launch.
+
+   ::
+
+    $ kubectl get pods -n kube-system
+    NAME                                                     READY   STATUS      RESTARTS   AGE
+    calico-kube-controllers-5cd4695574-q8dkc                 1/1     Running     0          14h
+    calico-node-jwth4                                        1/1     Running     8          21h
+    calico-node-pk4pp                                        1/1     Running     6          20h
+    coredns-78d9fd7cb9-78kw7                                 1/1     Running     0          15h
+    coredns-78d9fd7cb9-lsd2s                                 1/1     Running     0          14h
+    csi-cephfsplugin-provisioner-55995dd4f6-6ts8x            5/5     Running     0          4h33m
+    csi-cephfsplugin-provisioner-55995dd4f6-tn4cb            5/5     Running     0          4h33m
+    csi-cephfsplugin-wx5fn                                   3/3     Running     0          4h33m
+    csi-cephfsplugin-z8l22                                   3/3     Running     0          4h33m
+    csi-rbdplugin-9m7dq                                      3/3     Running     0          4h33m
+    csi-rbdplugin-hn6kx                                      3/3     Running     0          4h33m
+    csi-rbdplugin-provisioner-57974d4b9c-k47nc               6/6     Running     0          4h33m
+    csi-rbdplugin-provisioner-57974d4b9c-pvrxq               6/6     Running     0          4h33m
+    ic-nginx-ingress-controller-7k6lq                        1/1     Running     0          14h
+    ic-nginx-ingress-controller-cjdmw                        1/1     Running     0          14h
+    ic-nginx-ingress-default-backend-5ffcfd7744-76dv2        1/1     Running     0          14h
+    kube-apiserver-controller-0                              1/1     Running     10         21h
+    kube-apiserver-controller-1                              1/1     Running     5          20h
+    kube-controller-manager-controller-0                     1/1     Running     7          21h
+    kube-controller-manager-controller-1                     1/1     Running     5          20h
+    kube-multus-ds-amd64-6jcpj                               1/1     Running     0          14h
+    kube-multus-ds-amd64-g5twh                               1/1     Running     0          14h
+    kube-proxy-hrxpk                                         1/1     Running     3          21h
+    kube-proxy-m8fs9                                         1/1     Running     3          20h
+    kube-scheduler-controller-0                              1/1     Running     7          21h
+    kube-scheduler-controller-1                              1/1     Running     5          20h
+    kube-sriov-cni-ds-amd64-bdwfr                            1/1     Running     0          14h
+    kube-sriov-cni-ds-amd64-r2rsf                            1/1     Running     0          14h
+    rook-ceph-crashcollector-controller-0-57c5fdc6d6-72ftn   1/1     Running     0          173m
+    rook-ceph-crashcollector-controller-1-67877489b7-4hvvq   1/1     Running     0          173m
+    rook-ceph-mgr-a-8d656f86c-n67vg                          1/1     Running     0          179m
+    rook-ceph-mon-a-85f9db5c6-mz4br                          1/1     Running     0          3h
+    rook-ceph-operator-79fb8559-grgz8                        1/1     Running     0          3h1m
+    rook-ceph-osd-0-64b9b74788-ws89m                         1/1     Running     0          173m
+    rook-ceph-osd-1-5b789485c6-qt8xr                         1/1     Running     0          173m
+    rook-ceph-osd-prepare-controller-0-7nhbj                 0/1     Completed   0          167m
+    rook-ceph-osd-prepare-controller-1-qjmvj                 0/1     Completed   0          167m
+    rook-ceph-tools-5778d7f6c-cj947                          1/1     Running     0          169m
+    rook-discover-c8kbn                                      1/1     Running     0          4h33m
+    rook-discover-rk2rp                                      1/1     Running     0          4h33m
+    storage-init-rook-ceph-provisioner-n6zgj                 0/1     Completed   0          4h15m
 
 #. Assign ``ceph-mon-placement`` and ``ceph-mgr-placement`` labels.
 
@@ -554,16 +795,6 @@ Exit Ceph mon.a and Ceph manager, then deploy Rook.
     | label_value | enabled                              |
     +-------------+--------------------------------------+
 
-    [sysadmin@controller-0 ~(keystone_admin)]$ system host-label-assign storage-0 ceph-mon-placement=enabled
-    +-------------+--------------------------------------+
-    | Property    | Value                                |
-    +-------------+--------------------------------------+
-    | uuid        | 44b47f2a-4a00-4800-ab60-9a14c4c2ba24 |
-    | host_uuid   | 0eeb4f94-1eec-4493-83ae-f08f069e06ce |
-    | label_key   | ceph-mon-placement                   |
-    | label_value | enabled                              |
-    +-------------+--------------------------------------+
-
     [sysadmin@controller-0 ~(keystone_admin)]$ system host-label-assign controller-1 ceph-mgr-placement=enabled
     +-------------+--------------------------------------+
     | Property    | Value                                |
@@ -574,44 +805,70 @@ Exit Ceph mon.a and Ceph manager, then deploy Rook.
     | label_value | enabled                              |
     +-------------+--------------------------------------+
 
-#. Edit CephCluster and change mon number to 3.
+#. Edit CephCluster and change mon number to 3 and allowMultiplePerNode to true.
 
    ::
 
     mgr: {}
     mon:
       count: 3
+      allowMultiplePerNode: true
 
 #. Wait for two other monitor pods to launch.
 
    ::
 
-    rook-ceph-mgr-a-5b47f4f5cc-cskxc               1/1     Running     0          10m
-    rook-ceph-mon-a-7fc5cfc949-q4hrb               1/1     Running     0          10m
-    rook-ceph-mon-b-698bf594d7-82js8               1/1     Running     0          20s
-    rook-ceph-operator-6fc8cfb68b-kfpz4            1/1     Running     2          15m
-    rook-ceph-osd-0-796c4b8d86-6v9js               1/1     Running     0          2m33s
-    rook-ceph-osd-1-5d5c445c69-hsmfv               1/1     Running     0          2m33s
-    rook-ceph-osd-2-5595c46f48-txv9d               1/1     Running     0          2m20s
-    rook-ceph-osd-3-7569d8b6b7-7x7pp               1/1     Running     0          2m20s
-    rook-ceph-osd-prepare-storage-0-lb4rd          0/1     Completed   0          2m35s
-    rook-ceph-osd-prepare-storage-1-d6rht          0/1     Completed   0          2m35s
-    rook-ceph-tools-84c7fff88c-shf4m               1/1     Running     0          14m
-    rook-discover-7rqfs                            1/1     Running     0          14m
-    rook-discover-bp5rb                            1/1     Running     0          14m
-    rook-discover-bz4pj                            1/1     Running     0          14m
-    rook-discover-pd7tg                            1/1     Running     0          14m
-    rook-discover-ppw8q                            1/1     Running     0          14m
-    rook-discover-thpfh                            1/1     Running     0          14m
-    storage-init-rbd-provisioner-fbnnh             0/1     Completed   0          143m
-    storage-init-rook-ceph-provisioner-66jzn       0/1     Completed   0          2m24s
+    $ kubectl get pods -n kube-system
+    NAME                                                     READY   STATUS      RESTARTS   AGE
+    calico-kube-controllers-5cd4695574-q8dkc                 1/1     Running     0          14h
+    calico-node-jwth4                                        1/1     Running     8          21h
+    calico-node-pk4pp                                        1/1     Running     6          20h
+    coredns-78d9fd7cb9-78kw7                                 1/1     Running     0          15h
+    coredns-78d9fd7cb9-lsd2s                                 1/1     Running     0          14h
+    csi-cephfsplugin-provisioner-55995dd4f6-6ts8x            5/5     Running     0          4h33m
+    csi-cephfsplugin-provisioner-55995dd4f6-tn4cb            5/5     Running     0          4h33m
+    csi-cephfsplugin-wx5fn                                   3/3     Running     0          4h33m
+    csi-cephfsplugin-z8l22                                   3/3     Running     0          4h33m
+    csi-rbdplugin-9m7dq                                      3/3     Running     0          4h33m
+    csi-rbdplugin-hn6kx                                      3/3     Running     0          4h33m
+    csi-rbdplugin-provisioner-57974d4b9c-k47nc               6/6     Running     0          4h33m
+    csi-rbdplugin-provisioner-57974d4b9c-pvrxq               6/6     Running     0          4h33m
+    ic-nginx-ingress-controller-7k6lq                        1/1     Running     0          14h
+    ic-nginx-ingress-controller-cjdmw                        1/1     Running     0          14h
+    ic-nginx-ingress-default-backend-5ffcfd7744-76dv2        1/1     Running     0          14h
+    kube-apiserver-controller-0                              1/1     Running     10         21h
+    kube-apiserver-controller-1                              1/1     Running     5          20h
+    kube-controller-manager-controller-0                     1/1     Running     7          21h
+    kube-controller-manager-controller-1                     1/1     Running     5          20h
+    kube-multus-ds-amd64-6jcpj                               1/1     Running     0          14h
+    kube-multus-ds-amd64-g5twh                               1/1     Running     0          14h
+    kube-proxy-hrxpk                                         1/1     Running     3          21h
+    kube-proxy-m8fs9                                         1/1     Running     3          20h
+    kube-scheduler-controller-0                              1/1     Running     7          21h
+    kube-scheduler-controller-1                              1/1     Running     5          20h
+    kube-sriov-cni-ds-amd64-bdwfr                            1/1     Running     0          14h
+    kube-sriov-cni-ds-amd64-r2rsf                            1/1     Running     0          14h
+    rook-ceph-crashcollector-controller-0-57c5fdc6d6-72ftn   1/1     Running     0          173m
+    rook-ceph-crashcollector-controller-1-67877489b7-4hvvq   1/1     Running     0          173m
+    rook-ceph-mgr-a-8d656f86c-n67vg                          1/1     Running     0          179m
+    rook-ceph-mon-a-85f9db5c6-mz4br                          1/1     Running     0          3h
+    rook-ceph-mon-b-55f4bb467d-jm25b                         1/1     Running     0          169m
+    rook-ceph-mon-c-84c75b988-jjq68                          1/1     Running     0          168m
+    rook-ceph-operator-79fb8559-grgz8                        1/1     Running     0          3h1m
+    rook-ceph-osd-0-64b9b74788-ws89m                         1/1     Running     0          173m
+    rook-ceph-osd-1-5b789485c6-qt8xr                         1/1     Running     0          173m
+    rook-ceph-osd-prepare-controller-0-7nhbj                 0/1     Completed   0          167m
+    rook-ceph-osd-prepare-controller-1-qjmvj                 0/1     Completed   0          167m
+    rook-ceph-tools-5778d7f6c-cj947                          1/1     Running     0          169m
+    rook-discover-c8kbn                                      1/1     Running     0          4h33m
+    rook-discover-rk2rp                                      1/1     Running     0          4h33m
+    storage-init-rook-ceph-provisioner-n6zgj                 0/1     Completed   0          4h15m
 
 #. Check the cluster status in the pod rook-tool.
 
    ::
 
-    kubectl exec -it rook-ceph-tools-84c7fff88c-shf4m bash  -n kube-system
-    kubectl exec [POD] [COMMAND] is DEPRECATED and will be removed in a future version. Use kubectl kubectl exec [POD] -- [COMMAND] instead.
+    kubectl exec -it rook-ceph-tools-5778d7f6c-cj947 -- bash  -n kube-system
     bash: warning: setlocale: LC_CTYPE: cannot change locale (en_US.UTF-8): No such file or directory
     bash: warning: setlocale: LC_COLLATE: cannot change locale (en_US.UTF-8): No such file or directory
     bash: warning: setlocale: LC_MESSAGES: cannot change locale (en_US.UTF-8): No such file or directory
@@ -625,47 +882,13 @@ Exit Ceph mon.a and Ceph manager, then deploy Rook.
       services:
         mon: 3 daemons, quorum a,b,c
         mgr: a(active)
-        osd: 4 osds: 4 up, 4 in
+        osd: 2 osds: 2 up, 2 in
 
       data:
         pools:   1 pools, 64 pgs
         objects: 0  objects, 0 B
         usage:   4.4 GiB used, 391 GiB / 396 GiB avail
         pgs:     64 active+clean
-
-----------------------------------------------
-Remove storage backend ceph-store and clean up
-----------------------------------------------
-
-After migration, remove the default storage backend ceph-store.
-
-::
-
-    system storage-backend-list
-    +--------------------------------------+------------+---------+------------+------+----------+------------------------------------------------------------------------+
-    | uuid                                 | name       | backend | state      | task | services | capabilities                                                           |
-    +--------------------------------------+------------+---------+------------+------+----------+------------------------------------------------------------------------+
-    | 3fd0a407-dd8b-4a5c-9dec-8754d76956f4 | ceph-store | ceph    | configured | None | None     | min_replication: 1 replication: 2                                      |
-    |                                      |            |         |            |      |          |                                                                        |
-    +--------------------------------------+------------+---------+------------+------+----------+------------------------------------------------------------------------+
-    system storage-backend-delete 3fd0a407-dd8b-4a5c-9dec-8754d76956f4 --force
-
-Update puppet system config.
-
-::
-
-    sudo sysinv-puppet create-system-config
-
-Remove script ceph.sh on all hosts.
-
-::
-
-    sudo rm -rf /etc/services.d/controller/ceph.sh
-    sudo rm -rf /etc/services.d/worker/ceph.sh
-    sudo rm -rf /etc/services.d/storage/ceph.sh
-
-Reboot controller-0 and controller-1. And after the controller reboot sucessfully,
-lock and unlock storage-0 and storage-1, wait for node to be available.
 
 -----------------------------
 Migrate openstack application
@@ -700,7 +923,7 @@ Login to pod rook-ceph-tools, get generated key for client.admin and ceph.conf i
 
   [root@storage-1 /]# cat /etc/ceph/ceph.conf
   [global]
-  mon_host = 192.188.204.4:6789,192.188.204.3:6789,192.188.204.49:6789
+  mon_host = 10.109.143.37:6789,10.100.141.25:6789,10.106.83.145:6789
 
   [client.admin]
   keyring = /etc/ceph/keyring
@@ -711,6 +934,15 @@ Login to pod rook-ceph-tools, get generated key for client.admin and ceph.conf i
 
 On host controller-0 and controller-1 replace /etc/ceph/ceph.conf and /etc/ceph/keyring
 with content got from pod rook-ceph-tools.
+
+Update configmap ceph-etc, with data field, with new mon ip 
+
+::
+
+  data:
+    ceph.conf: |
+      [global]
+      mon_host = 10.109.143.37:6789,10.100.141.25:6789,10.106.83.145:6789
 
 Calculate the base64 of key and write to secret ceph-admin.
 
@@ -741,25 +973,6 @@ Create crush rule "kube-rbd" in pod rook-ceph-tools.
   [root@storage-1 /]#
   [root@storage-1 /]#
   [root@storage-1 /]# ceph osd crush rule create-replicated kube-rbd storage-tier host
-
-Update override for cinder helm chart.
-
-::
-
-  $ system helm-override-update stx-openstack cinder openstack --reuse-value --values cinder_override.yaml
-
-  $ controller-0:~$ cat cinder_override.yaml
-  conf:
-    backends:
-      ceph-store:
-        image_volume_cache_enabled: "True"
-        rbd_ceph_conf: /etc/ceph/ceph.conf
-        rbd_pool: cinder-volumes
-        rbd_user: cinder
-        volume_backend_name: ceph-store
-        volume_driver: cinder.volume.drivers.rbd.RBDDriver
-      rbd1:
-        volume_driver: ""
 
 Update every mariadb and rabbitmq pv and pvc provisioner from ceph.com/rbd
 to kube-system.rbd.csi.ceph.com in annotation.
@@ -818,6 +1031,79 @@ to kube-system.rbd.csi.ceph.com in annotation.
       pv.kubernetes.io/bound-by-controller: "yes"
       volume.beta.kubernetes.io/storage-provisioner: kube-system.rbd.csi.ceph.com
 
+Edit these PersistentVolume one by one for mariadb and rabbitmq
+
+::
+
+  $ kubectl get pv
+  NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                                       STORAGECLASS   REASON   AGE
+  pvc-36fd174d-a058-45b6-99ba-a9e362cb72f1   1Gi        RWO            Delete           Bound    openstack/rabbitmq-data-osh-openstack-rabbitmq-rabbitmq-0   general                 43h
+  pvc-933a4e66-3687-472f-be11-71befc7780e1   5Gi        RWO            Delete           Bound    openstack/mysql-data-mariadb-server-1                       general                 55m
+  pvc-b2ba8ad2-fa26-475c-9287-14b1f0525ee5   1Gi        RWO            Delete           Bound    openstack/rabbitmq-data-osh-openstack-rabbitmq-rabbitmq-1   general                 43h
+  pvc-f1ac8d8f-c718-4793-9165-8cbc01f0109c   5Gi        RWO            Delete           Bound    openstack/mysql-data-mariadb-server-0                       general                 176m
+
+  $ kubectl get pv pvc-36fd174d-a058-45b6-99ba-a9e362cb72f1 -o yaml > rabbitmq0.yaml
+
+Edit yaml to update monitor ip
+
+::
+
+  persistentVolumeReclaimPolicy: Delete
+  rbd:
+    image: kubernetes-dynamic-pvc-be1c74e7-ff0e-11ea-b88c-d24b7b64770e
+    keyring: /etc/ceph/keyring
+    monitors:
+    - 10.98.241.108:6789
+    - 10.99.168.50:6789
+    - 10.96.65.38:6789
+    pool: kube-rbd
+
+  $ kubectl replace --cascade=false --force -f rabbitmq0.yaml &
+  [1] 2500885
+  $ persistentvolume "pvc-36fd174d-a058-45b6-99ba-a9e362cb72f1" deleted
+
+Delete field "finalizers" in the persistentvolume
+
+::
+
+  $ kubectl patch  pv  pvc-b2ba8ad2-fa26-475c-9287-14b1f0525ee5  --type merge -p '{"metadata":{"finalizers": [null]}}'
+
+You also can use "kubectl edit pv <pv id>" , to delete these two lines
+
+::
+
+  finalizers:
+  - kubernetes.io/pv-protection
+
+Delete pod mariadb-server-0 mariadb-server-1 osh-openstack-rabbitmq-rabbitmq-0 osh-openstack-rabbitmq-rabbitmq-1
+
+::
+
+  $ kubectl delete po mariadb-server-0 mariadb-server-1 osh-openstack-rabbitmq-rabbitmq-0 osh-openstack-rabbitmq-rabbitmq-1 -n openstack
+  pod "mariadb-server-0" deleted
+  pod "mariadb-server-1" deleted
+  pod "osh-openstack-rabbitmq-rabbitmq-0" deleted
+  pod "osh-openstack-rabbitmq-rabbitmq-1" deleted
+
+Update override for cinder helm chart.
+
+::
+
+  $ system helm-override-update stx-openstack cinder openstack --reuse-value --values cinder_override.yaml
+
+  $ controller-0:~$ cat cinder_override.yaml
+  conf:
+    backends:
+      ceph-store:
+        image_volume_cache_enabled: "True"
+        rbd_ceph_conf: /etc/ceph/ceph.conf
+        rbd_pool: cinder-volumes
+        rbd_user: cinder
+        volume_backend_name: ceph-store
+        volume_driver: cinder.volume.drivers.rbd.RBDDriver
+      rbd1:
+        volume_driver: ""
+
 Apply application stx-openstack again
 
 ::
@@ -840,3 +1126,5 @@ Apply application stx-openstack again
   [sysadmin@controller-0 script(keystone_admin)]$
 
 Check application apply successfully and all pods work well without error.
+
+Reboot both of the controllers and wait for the host to be available.
