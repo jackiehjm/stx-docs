@@ -21,5 +21,5 @@ OpenStack
 
 .. toctree::
     :maxdepth: 2
- 
+
     openstack/index

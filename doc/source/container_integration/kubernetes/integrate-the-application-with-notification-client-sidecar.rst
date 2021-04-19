@@ -47,6 +47,6 @@ The following prerequisites are required before the integration:
 For instructions on creating, testing and terminating a
 **ptp-notification-demo**, see, :ref:`Create, Test, and Terminate |PTP|
 Notification Demo <create-test-and-terminate-a-ptp-notification-demo>`.
-  
+
 
 

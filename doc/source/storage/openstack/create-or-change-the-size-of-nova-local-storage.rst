@@ -40,8 +40,8 @@ can no longer be removed.
 
         ~(keystone_admin)$ system host-disk-list compute-0
         +--------------------------------------+--------------++--------------+
-        | uuid                                 | device_node  | available_gib |  
-        |                                      |              |               |  
+        | uuid                                 | device_node  | available_gib |
+        |                                      |              |               |
         +--------------------------------------+--------------+---------------+
         | 5dcb3a0e-c677-4363-a030-58e245008504 | /dev/sda     | 12216         |
         | c2932691-1b46-4faf-b823-2911a9ecdb9b | /dev/sdb     | 20477         |
@@ -71,7 +71,7 @@ can no longer be removed.
         | updated_at      | None                                                       |
         | parameters      | {u'instance_backing': u'lvm', u'instances_lv_size_mib': 0} |
         +-----------------+------------------------------------------------------------+
-        
+
 
 #.  Obtain the |UUID| of the disk or partition to use for **nova-local** storage.
 
@@ -140,7 +140,7 @@ can no longer be removed.
 
 #.  Obtain the |UUID| of the partition to use for **nova-local** storage as
     described in step
- 
+
 .. xbooklink :ref:`5 <creating-or-changing-the-size-of-nova-local-storage-uuid>`.
 
 #.  Add a disk or partition to the **nova-local** group, using a command of the

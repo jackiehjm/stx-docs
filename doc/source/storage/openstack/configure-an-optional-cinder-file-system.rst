@@ -127,7 +127,7 @@ For example:
 .. code-block:: none
 
     ~(keystone_admin)]$ system host-fs-modify controller-0 image-conversion=8
-    
+
 
 
 .. _configure-an-optional-cinder-file-system-section-ubp-f14-tnb:

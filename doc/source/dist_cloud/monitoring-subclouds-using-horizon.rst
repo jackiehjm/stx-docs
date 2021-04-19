@@ -14,20 +14,20 @@ subclouds from the System Controller.
 -   To list subclouds, select **Distributed Cloud Admin** \> **Cloud Overview**.
 
     .. image:: figures/uhp1521894539008.png
-    
+
 
     You can perform full-text searches or filter by column using the search-bar
     above the subcloud list.
 
     .. image:: figures/pdn1591034100660.png
-    
-    
+
+
 
 -   To perform operations on a subcloud, use the **Actions** menu.
 
     .. image:: figures/pvr1591032739503.png
-    
-    
+
+
     .. caution::
 
         If you delete a subcloud, then you must reinstall it before you can
@@ -39,7 +39,7 @@ subclouds from the System Controller.
     window.
 
     .. image:: figures/rpn1518108364837.png
-    
-    
+
+
 
 

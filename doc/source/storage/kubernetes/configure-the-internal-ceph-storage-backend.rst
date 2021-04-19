@@ -48,6 +48,11 @@ the internal Ceph storage backend.
         third Ceph monitor instance is configured by default on the first
         storage node.
 
+    .. note::
+        CephFS support requires Metadata servers \(MDS\) to be deployed. When
+        CephFS is configured, an MDS is deployed automatically along with each
+        node that has been configured to run a Ceph Monitor.
+
 #.  Configure Ceph OSDs. For more information, see :ref:`Provision
     Storage on a Controller or Storage Host Using Horizon
     <provision-storage-on-a-controller-or-storage-host-using-horizon>`.

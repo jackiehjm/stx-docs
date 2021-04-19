@@ -113,8 +113,8 @@ in the following table.
    * - Minimum Processor Class
      - Dual-CPU Intel® Xeon® E5 26xx Family \(SandyBridge\) 8 cores/socket
 
-       or 
-       
+       or
+
        Single-CPU Intel Xeon D-15xx Family, 8 cores \(low-power/low-cost
        option for Simplex deployments\)
 
@@ -126,13 +126,13 @@ in the following table.
        -   Platform:
 
            * Socket 0: 7GB \(by default, configurable\)
-  
+
            * Socket 1: 1GB \(by default, configurable\)
 
        -   Application:
 
            * Socket 0: Remaining memory
-        
+
            * Socket 1: Remaining memory
    * - Minimum Primary Disk
      - 500 GB - |SSD| or |NVMe|

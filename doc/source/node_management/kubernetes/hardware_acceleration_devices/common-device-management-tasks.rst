@@ -35,5 +35,5 @@ For a list of tasks see:
 
 -   :ref:`Initiating a Device Image Update for a Host <initiating-a-device-image-update-for-a-host>`
 
--   :ref:`Displaying the Status of Device Images <displaying-the-status-of-device-images>`  
+-   :ref:`Displaying the Status of Device Images <displaying-the-status-of-device-images>`
 

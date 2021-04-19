@@ -55,7 +55,7 @@ your Kubernetes Service Account.
         $ kubectl config set-cluster mycluster --server=https://192.168.206.1:6443 --insecure-skip-tls-verify
         $ kubectl config set-credentials joe-admin@mycluster --token=$TOKEN
         $ kubectl config set-context joe-admin@mycluster --cluster=mycluster  --user joe-admin@mycluster
-        $ kubectl config use-context joe-admin@mycluster 
+        $ kubectl config use-context joe-admin@mycluster
 
     You now have admin access to |prod| Kubernetes cluster.
 

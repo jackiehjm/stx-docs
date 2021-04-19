@@ -78,15 +78,15 @@ subcloud, the subcloud installation process has two phases:
              -i <file>: Specify input ISO file
              -o <file>: Specify output ISO file
              -a <file>: Specify ks-addon.cfg file
-        
+
              -p <p=v>:  Specify boot parameter
                         Examples:
-                        -p rootfs_device=nvme0n1 
+                        -p rootfs_device=nvme0n1
                         -p boot_device=nvme0n1
-         
+
                         -p rootfs_device=/dev/disk/by-path/pci-0000:00:0d.0-ata-1.0
                         -p boot_device=/dev/disk/by-path/pci-0000:00:0d.0-ata-1.0
-         
+
              -d <default menu option>:
                         Specify default boot menu option:
                         0 - Standard Controller, Serial Console
@@ -98,7 +98,7 @@ subcloud, the subcloud installation process has two phases:
                         NULL - Clear default selection
              -t <menu timeout>:
                         Specify boot menu timeout, in seconds
-        
+
 
     The following example ks-addon.cfg, used with the -a option, sets up an
     initial IP interface at boot time by defining a |VLAN| on an Ethernet
@@ -109,14 +109,14 @@ subcloud, the subcloud installation process has two phases:
         #### start ks-addon.cfg
         OAM_DEV=enp0s3
         OAM_VLAN=1234
-        
+
         cat << EOF > /etc/sysconfig/network-scripts/ifcfg-$OAM_DEV
         DEVICE=$OAM_DEV
         BOOTPROTO=none
         ONBOOT=yes
         LINKDELAY=20
         EOF
-        
+
         cat << EOF > /etc/sysconfig/network-scripts/ifcfg-$OAM_DEV.$OAM_VLAN
         DEVICE=$OAM_DEV.$OAM_VLAN
         BOOTPROTO=dhcp
@@ -151,21 +151,21 @@ subcloud, the subcloud installation process has two phases:
 
         system_mode: simplex
         name: "subcloud1"
-        
+
         description: "test"
         location: "loc"
-        
+
         management_subnet: 192.168.101.0/24
         management_start_address: 192.168.101.2
         management_end_address: 192.168.101.50
         management_gateway_address: 192.168.101.1
-        
+
         external_oam_subnet: 10.10.10.0/24
         external_oam_gateway_address: 10.10.10.1
         external_oam_floating_address: 10.10.10.12
-        
+
         systemcontroller_gateway_address: 192.168.204.101
-        
+
         docker_registries:
           k8s.gcr.io:
             url: registry.central:9001/k8s.gcr.io
@@ -204,7 +204,7 @@ subcloud, the subcloud installation process has two phases:
 
     .. note::
         If you have a reason not to use the Central Cloud's local registry you
-        can pull the images from another local private docker registry. 
+        can pull the images from another local private docker registry.
 
 #.  You can use the Central Cloud's local registry to pull images on subclouds.
     The Central Cloud's local registry's HTTPS certificate must have the
@@ -283,10 +283,10 @@ subcloud, the subcloud installation process has two phases:
         k8s.gcr.io: {password: secret, url: null}
         quay.io: {password: secret, url: null}
         )
-        
+
         TASK [bootstrap/bringup-essential-services : Mark the bootstrap as completed] ***
         changed: [subcloud1]
-        
+
         PLAY RECAP *********************************************************************
         subcloud1                  : ok=230  changed=137  unreachable=0    failed=0
 
@@ -304,7 +304,7 @@ subcloud, the subcloud installation process has two phases:
     .. code-block:: none
 
         REGISTRY="docker-registry"
-        SECRET_UUID='system service-parameter-list | fgrep 
+        SECRET_UUID='system service-parameter-list | fgrep
         $REGISTRY | fgrep auth-secret | awk '{print $10}''
         SECRET_REF='openstack secret list | fgrep $
         {SECRET_UUID} | awk '{print $2}''

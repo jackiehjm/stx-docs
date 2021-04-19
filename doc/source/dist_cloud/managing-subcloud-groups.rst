@@ -38,30 +38,30 @@ or firmware updates, see:
 .. _managing-subcloud-groups-ul-a3s-nqf-1nb:
 
 -   To create an upgrade orchestration strategy use the :command:`dcmanager
-    upgrade-strategy create` command. 
-    
+    upgrade-strategy create` command.
+
 .. xbooklink For more information see, :ref:`Distributed
     Upgrade Orchestration Process Using the CLI
     <distributed-upgrade-orchestration-process-using-the-cli>`.
 
 -   To create an update \(patch\) orchestration strategy use the
-    :command:`dcmanager patch-strategy create` command. 
-    
+    :command:`dcmanager patch-strategy create` command.
+
 .. xbooklink For more information see,
     :ref:`Creating an Update Strategy for Distributed Cloud Update Orchestration
     <creating-an-update-strategy-for-distributed-cloud-update-orchestration>`.
 
 -   To create a firmware update orchestration strategy use the
-    :command:`dcmanager fw-update-strategy create` command. 
-    
+    :command:`dcmanager fw-update-strategy create` command.
+
 .. xbooklink For more information
     see, :ref:`Device Image Update Orchestration
     <device-image-update-orchestration>`.
 
 .. seealso::
 
-    :ref:`Creating Subcloud Groups <creating-subcloud-groups>`  
+    :ref:`Creating Subcloud Groups <creating-subcloud-groups>`
 
-    :ref:`Orchestration Strategy Using Subcloud Groups <ochestration-strategy-using-subcloud-groups>`  
+    :ref:`Orchestration Strategy Using Subcloud Groups <ochestration-strategy-using-subcloud-groups>`
 
 

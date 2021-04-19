@@ -18,7 +18,7 @@ For example:
 An authorized administrator \('admin' and 'sysinv'\) can perform any Docker
 action. Regular users can only interact with their own repositories \(i.e.
 registry.local:9001/<keystoneUserName>/\). Any authenticated user can pull from
-the following list of public images: 
+the following list of public images:
 
 .. _kubernetes-admin-tutorials-authentication-and-authorization-d383e50:
 

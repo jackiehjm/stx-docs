@@ -118,7 +118,7 @@ Settings <link-aggregation-settings>`.
 
     For example, to attach an aggregated Ethernet interface named **bond0** to
     the platform management network, using member interfaces **enp0s8**
-    and **enp0s11** on **controller-0**: 
+    and **enp0s11** on **controller-0**:
 
     .. code-block:: none
 

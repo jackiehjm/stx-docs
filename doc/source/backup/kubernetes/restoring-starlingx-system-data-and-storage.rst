@@ -315,7 +315,7 @@ conditions are in place:
 
    .. code-block:: none
 
-        ~(keystone_admin)]$ kubectl get pods -n kube-system | grep -e calico -e coredns 
+        ~(keystone_admin)]$ kubectl get pods -n kube-system | grep -e calico -e coredns
         calico-kube-controllers-5cd4695574-d7zwt  1/1     Running
         calico-node-6km72                         1/1     Running
         calico-node-c7xnd                         1/1     Running

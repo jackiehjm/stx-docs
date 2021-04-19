@@ -25,7 +25,7 @@ You can use the |CLI| to review alarm summaries for the |prod-dc|.
         | subcloud-5 |               0 |            2 |            0 |        0 | degraded |
         | subcloud-1 |               0 |            0 |            0 |        0 | OK       |
         +------------+-----------------+--------------+--------------+----------+----------+
-        
+
 
     System Controller alarms and warnings are not included.
 
@@ -53,7 +53,7 @@ You can use the |CLI| to review alarm summaries for the |prod-dc|.
         +-----------------+--------------+--------------+----------+
         | 0               | 0            | 0            | 0        |
         +-----------------+--------------+--------------+----------+
-        
+
 
     The following command is equivalent to the :command:`fm alarm-summary`,
     providing a count of alarms and warnings for the System Controller:
@@ -75,7 +75,7 @@ You can use the |CLI| to review alarm summaries for the |prod-dc|.
         +-----------------+--------------+--------------+----------+
         | 0               | 0            | 0            | 0        |
         +-----------------+--------------+--------------+----------+
-        
+
 
 -   To list the alarms for a subcloud:
 

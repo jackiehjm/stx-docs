@@ -24,7 +24,7 @@ directly create pods since they have access to the **privileged** |PSP|. Also,
 based on the ClusterRoleBindings and RoleBindings automatically added by
 |prod|, all users with cluster-admin roles can also create privileged
 Deployment/ReplicaSets/etc. in the kube-system namespace and restricted
-Deployment/ReplicaSets/etc. in any other namespace. 
+Deployment/ReplicaSets/etc. in any other namespace.
 
 
 In order to enable privileged Deployment/ReplicaSets/etc. to be created in

@@ -38,7 +38,7 @@ to platform networks using the CLI.
         |           |          |           |          |      |               |             |                                |            |
         | e7bd04f...| cluster0 | platform  | vlan     | 158  | []            | [u'sriov0'] | []                             | MTU=1500   |
         +-----------+----------+-----------+----------+------+---------------+-------------+--------------------------------+------------+
-        
+
 
 #.  Create an Ethernet interface.
 
