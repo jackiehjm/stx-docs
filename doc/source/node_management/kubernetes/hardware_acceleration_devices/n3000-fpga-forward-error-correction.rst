@@ -55,7 +55,7 @@ For example, run the following commands:
     ~(keystone_admin)$ system host-unlock worker-0
 
 To pass the |FEC| device to a container, the following requests/limits must be
-entered into the pod specification: 
+entered into the pod specification:
 
 .. code-block:: none
 

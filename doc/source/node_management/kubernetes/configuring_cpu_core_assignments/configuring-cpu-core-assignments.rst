@@ -82,7 +82,7 @@ CPU cores from the Horizon Web interface.
 
     .. only:: partner
 
-       ../../_includes/configure-cpu-core-vswitch.rest    
+       ../../_includes/configure-cpu-core-vswitch.rest
 
     **Shared**
         Not currently supported.

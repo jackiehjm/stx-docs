@@ -50,8 +50,8 @@ already, and that |VLAN| ID 10 is a valid segmentation ID assigned to
     The Edit Interface dialog appears.
 
     .. image:: ../figures/ptj1538163621289.png
-    
-    
+
+
 
     Select **pci-passthrough**, from the **Interface Class** drop-down, and
     then select the data network to attach the interface.
@@ -78,8 +78,8 @@ already, and that |VLAN| ID 10 is a valid segmentation ID assigned to
 
 
     .. image:: ../figures/bek1516655307871.png
-    
-    
+
+
 
     Click the **Next** button to proceed to the Subnet tab.
 

@@ -220,7 +220,7 @@ only the Interface sections are modified for |prod-os|.
     | Intel Virtualization \(VTD, VTX\) | Enabled                                                                                                                                                                                                                                         |
     +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. [#] For more information, see :ref:`The PXE Boot Network <the-pxe-boot-network>`. 
+.. [#] For more information, see :ref:`The PXE Boot Network <the-pxe-boot-network>`.
 
 .. _hardware-requirements-section-if-scenarios:
 

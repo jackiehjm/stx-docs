@@ -37,9 +37,9 @@ subcloud to the sysinv service credentials of the systemController.
     .. code-block:: none
 
         #!/bin/bash -e
-         
+
         USAGE="usage: ${0##*/} <username> <password>"
-         
+
         if [ "$#" -ne 2 ]
         then
           echo Missing arguments.
@@ -47,14 +47,14 @@ subcloud to the sysinv service credentials of the systemController.
           echo
           exit
         fi
-         
+
         NEW_CREDS="username:$1 password:$2"
-         
+
         echo
-         
-        for REGISTRY in docker-registry quay-registry elastic-registry gcr-registry k8s-registry 
+
+        for REGISTRY in docker-registry quay-registry elastic-registry gcr-registry k8s-registry
         do
-         
+
           echo -n "Updating" $REGISTRY "credentials ."
           SECRET_UUID=`system service-parameter-list | fgrep $REGISTRY | fgrep auth-secret | awk '{print $10}'`
           if [ -z "$SECRET_UUID" ]
@@ -67,7 +67,7 @@ subcloud to the sysinv service credentials of the systemController.
           echo -n "."
           SECRET_VALUE=`openstack secret get ${SECRET_REF} --payload -f value`
           echo -n "."
-         
+
           openstack secret delete ${SECRET_REF} > /dev/null
           echo -n "."
           NEW_SECRET_VALUE=$NEW_CREDS
@@ -78,7 +78,7 @@ subcloud to the sysinv service credentials of the systemController.
           system service-parameter-modify docker $REGISTRY auth-secret="${NEW_SECRET_UUID}" > /dev/null
           echo -n "."
           echo " done."
-         
+
           echo -n "Validating $REGISTRY credentials updated to:  "
           SECRET_UUID=`system service-parameter-list | fgrep $REGISTRY | fgrep auth-secret | awk '{print $10}'`
           if [ -z "$SECRET_UUID" ]
@@ -88,9 +88,9 @@ subcloud to the sysinv service credentials of the systemController.
           SECRET_REF=`openstack secret list | fgrep ${SECRET_UUID} | awk '{print $2}'`
           SECRET_VALUE=`openstack secret get ${SECRET_REF} --payload -f value`
           echo $SECRET_VALUE
-         
+
           echo
-         
+
         done
 
 

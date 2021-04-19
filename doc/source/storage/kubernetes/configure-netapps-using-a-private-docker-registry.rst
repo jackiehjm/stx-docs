@@ -9,4 +9,4 @@ Configure Netapps Using a Private Docker Registry
 Use the ``docker_registries`` parameter to pull from the local registry rather
 than public ones.
 
-You must first push the files to the local registry. 
+You must first push the files to the local registry.

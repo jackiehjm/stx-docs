@@ -13,7 +13,7 @@ Use the following command to run the Ansible Backup playbook and back up the
 
 .. code-block:: none
 
-    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml -e "ansible_become_pass=<sysadmin password> admin_password=<sysadmin password>" -e "backup_user_local_registry=true" 
+    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml -e "ansible_become_pass=<sysadmin password> admin_password=<sysadmin password>" -e "backup_user_local_registry=true"
 
 The <admin\_password> and <ansible\_become\_pass\> need to be set  correctly
 using the ``-e`` option on the command line, or an override file, or in the

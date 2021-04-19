@@ -37,7 +37,7 @@ either of the above two methods.
     <security-configure-container-backed-remote-clis-and-clients>`
 
     :ref:`Using Container-backed Remote CLIs and Clients
-    <using-container-backed-remote-clis-and-clients>`  
+    <using-container-backed-remote-clis-and-clients>`
 
     :ref:`Install Kubectl and Helm Clients Directly on a Host
     <security-install-kubectl-and-helm-clients-directly-on-a-host>`

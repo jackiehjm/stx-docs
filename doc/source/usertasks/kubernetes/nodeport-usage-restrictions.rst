@@ -6,7 +6,7 @@
 NodePort Usage Restrictions
 ===========================
 
-This sections lists the usage restrictions of NodePorts for your 
+This sections lists the usage restrictions of NodePorts for your
 |prod-long| product.
 
 The following usage restrictions apply when using NodePorts:

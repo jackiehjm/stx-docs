@@ -121,7 +121,7 @@ Deprovision Windows Active Directory
 .. toctree::
    :maxdepth: 1
 
-   deprovision-windows-active-directory-authentication   
+   deprovision-windows-active-directory-authentication
 
 ****************
 Firewall Options
@@ -240,7 +240,7 @@ UEFI Secure Boot
 
    overview-of-uefi-secure-boot
    use-uefi-secure-boot
-   
+
 ***********************
 Trusted Platform Module
 ***********************
@@ -317,13 +317,13 @@ Security Features
    secure-https-external-connectivity
    security-hardening-firewall-options
    isolate-starlingx-internal-cloud-management-network
-   
+
 ***************************************
-Appendix: Locally creating certifciates 
+Appendix: Locally creating certifciates
 ***************************************
 
 .. toctree::
    :maxdepth: 1
-   
+
    creating-certificates-locally-using-cert-manager-on-the-controller
    creating-certificates-locally-using-openssl

@@ -1,27 +1,27 @@
 
 .. csl1561030322454
-.. _enable-additional-storage-classes:
+.. _enable-rbd-readwriteonly-additional-storage-classes:
 
-=================================
-Enable Additional Storage Classes
-=================================
+===================================================
+Enable RBD ReadWriteOnly Additional Storage Classes
+===================================================
 
-Additional storage classes can be added to the default rbd-provisioner
+Additional storage classes can be added to the default |RBD| provisioner
 service.
 
 .. rubric:: |context|
 
 Some reasons for adding an additional storage class include:
 
-.. _enable-additional-storage-classes-ul-nz1-r3q-43b:
+.. _enable-rbd-readwriteonly-additional-storage-classes-ul-nz1-r3q-43b:
 
 -   managing Ceph resources for particular namespaces in a separate Ceph
     pool; simply for Ceph partitioning reasons
 
 -   using an alternate Ceph Storage Tier, for example. with faster drives
 
-A modification to the configuration \(helm overrides\) of the
-**rbd-provisioner** service is required to enable an additional storage class
+A modification to the configuration \(Helm overrides\) of the
+|RBD| provisioner service is required to enable an additional storage class
 
 The following example that illustrates adding a second storage class to be
 utilized by a specific namespace.
@@ -33,19 +33,19 @@ utilized by a specific namespace.
 
 .. rubric:: |proc|
 
-#.  List installed helm chart overrides for the platform-integ-apps.
+#.  List installed Helm chart overrides for the platform-integ-apps.
 
     .. code-block:: none
 
         ~(keystone_admin)$ system helm-override-list platform-integ-apps
-        +------------------+----------------------+
-        | chart name       | overrides namespaces |
-        +------------------+----------------------+
-        | ceph-pools-audit | [u'kube-system']     |
-        | helm-toolkit     | []                   |
-        | rbd-provisioner  | [u'kube-system']     |
-        +------------------+----------------------+
-
+        +--------------------+----------------------+
+        | chart name         | overrides namespaces |
+        +--------------------+----------------------+
+        | ceph-pools-audit   | [u'kube-system']     |
+        | cephfs-provisioner | [u'kube-system']     |
+        | helm-toolkit       | []                   |
+        | rbd-provisioner    | [u'kube-system']     |
+        +--------------------+----------------------+
 
 #.  Review existing overrides for the rbd-provisioner chart. You will refer
     to this information in the following step.
@@ -85,7 +85,6 @@ utilized by a specific namespace.
 
         ~(keystone_admin)$ system helm-override-update  --values /home/sysadmin/update-namespaces.yaml \
          platform-integ-apps rbd-provisioner
-
         +----------------+-----------------------------------------+
         | Property       | Value                                   |
         +----------------+-----------------------------------------+
@@ -123,7 +122,6 @@ utilized by a specific namespace.
     .. code-block:: none
 
         ~(keystone_admin)$ system helm-override-show platform-integ-apps rbd-provisioner kube-system
-
         +--------------------+-----------------------------------------+
         | Property           | Value                                   |
         +--------------------+-----------------------------------------+
@@ -161,13 +159,11 @@ utilized by a specific namespace.
 
 #.  Apply the overrides.
 
-
     #.  Run the :command:`application-apply` command.
 
         .. code-block:: none
 
             ~(keystone_admin)$ system application-apply platform-integ-apps
-
             +---------------+----------------------------------+
             | Property      | Value                            |
             +---------------+----------------------------------+
@@ -187,7 +183,6 @@ utilized by a specific namespace.
         .. code-block:: none
 
             ~(keystone_admin)$ system application-list
-
             +-------------+---------+---------------+---------------+---------+-----------+
             | application | version | manifest name | manifest file | status  | progress  |
             +-------------+---------+---------------+---------------+---------+-----------+
@@ -196,9 +191,8 @@ utilized by a specific namespace.
             |             |         | manifest      |               |         |           |
             +-------------+---------+------ --------+---------------+---------+-----------+
 
-
-    You can now create and mount persistent volumes from the new
-    rbd-provisioner's **special** storage class from within the
-    **new-sc-app** application-specific namespace.
+    You can now create and mount persistent volumes from the new |RBD|
+    provisioner's **special** storage class from within the **new-sc-app**
+    application-specific namespace.
 
 

@@ -128,7 +128,7 @@ and uploaded by default.
     .. code-block:: none
 
         ~(keystone_admin)]$ system helm-override-show oidc-auth-apps dex kube-system
-        
+
         config:
           staticClients:
           - id: stx-oidc-client-app
@@ -147,7 +147,7 @@ and uploaded by default.
         oidc-client container and the dex container. It is recommended that you
         configure a unique, more secure **client\_secret** by specifying the
         value in the dex overrides file, as shown in the example below.
-        
+
     .. code-block:: none
 
         config:
@@ -155,7 +155,7 @@ and uploaded by default.
           - id: stx-oidc-client-app
             name: STX OIDC Client app
             redirectURIs: ['<OAM floating IP address>/callback']
-            secret: BetterSecret 
+            secret: BetterSecret
           client_secret: BetterSecret
           expiry:
             idTokens: "10h"
@@ -212,7 +212,7 @@ and uploaded by default.
     /home/sysadmin/oidc-client-overrides.yaml file.
 
     .. code-block:: none
-  
+
         config:
           client_secret: BetterSecret
 
@@ -223,7 +223,7 @@ and uploaded by default.
         ~(keystone_admin)]$ system helm-override-update oidc-auth-apps oidc-client kube-system --values /home/sysadmin/oidc-client-overrides.yaml
 
     .. note::
-  
+
         If you need to manually override the secrets, the client\_secret in the
         oidc-client overrides must match the staticClients secret and
         client\_secret in the dex overrides, otherwise the oidc-auth |CLI|

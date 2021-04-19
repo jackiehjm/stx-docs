@@ -6,7 +6,7 @@ Contents
 
 .. toctree::
    :maxdepth: 1
-   
+
    storage-configuration-and-management-overview
    storage-configuration-and-management-storage-resources
    config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster

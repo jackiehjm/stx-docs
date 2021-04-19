@@ -45,7 +45,7 @@ To edit a device, you must first lock the host.
 #.  Click **Edit Device**.
 
     .. image:: ../figures/jow1452530556357.png
-    
+
 
 #.  Update the information as required.
 

@@ -17,7 +17,7 @@ Resource Placement
     maximum throughput with |SRIOV|.
 
 .. only:: starlingx
-    
+
     A |VM| such as VNF 6 in NUMA-REF will not have the same performance as VNF
     1 and VNF 2. There are multiple ways to maximize performance for VNF 6 in
     this case:

@@ -1,13 +1,13 @@
 .. code-block:: none
 
-    system_mode: duplex  
+    system_mode: duplex
     distributed_cloud_role: systemcontroller
-    
-    
-    management_start_address: <X.Y.Z>.2 
+
+
+    management_start_address: <X.Y.Z>.2
     management_end_address: <X.Y.Z>.50
-    
-    
+
+
 
     additional_local_registry_images:
         - docker.io/starlingx/rvmc:stx.5.0-v1.0.0

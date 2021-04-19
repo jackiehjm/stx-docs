@@ -6,7 +6,7 @@
 Install Additional RBD Provisioners
 ===================================
 
-You can launch additional dedicated rdb-provisioners to support specific
+You can launch additional dedicated |RBD| provisioners to support specific
 applications using dedicated pools, storage classes, and namespaces.
 
 .. rubric:: |context|
@@ -14,11 +14,11 @@ applications using dedicated pools, storage classes, and namespaces.
 This can be useful if, for example, to allow an application to have control
 over its own persistent volume provisioner, that is, managing the Ceph
 pool, storage tier, allowed namespaces, and so on, without requiring the
-kubernetes admin to modify the default rbd-provisioner service in the
+kubernetes admin to modify the default |RBD| provisioner service in the
 kube-system namespace.
 
 This procedure uses standard Helm mechanisms to install a second
-rbd-provisioner.
+|RBD| provisioner.
 
 .. rubric:: |proc|
 
@@ -101,6 +101,6 @@ rbd-provisioner.
         general (default)       ceph.com/rbd       6h39m
         special-storage-class   ceph.com/rbd       5h58m
 
-    You can now create and mount PVCs from the new rbd-provisioner's
+    You can now create and mount PVCs from the new |RBD| provisioner's
     **2nd-storage** storage class, from within the **isolated-app**
     namespace.

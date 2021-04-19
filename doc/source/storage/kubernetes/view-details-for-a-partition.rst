@@ -6,7 +6,7 @@
 View Details for a Partition
 ============================
 
-You can view details for a partition, use the **system host-disk-partition-show** 
+You can view details for a partition, use the **system host-disk-partition-show**
 command.
 
 .. rubric:: |context|

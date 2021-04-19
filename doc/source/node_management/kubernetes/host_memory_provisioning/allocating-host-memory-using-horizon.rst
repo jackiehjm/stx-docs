@@ -25,7 +25,7 @@ per host.
 .. only:: starlingx
 
     A node may only allocate huge pages for a single size, either 2MiB or 1GiB.
- 
+
 .. only:: partner
 
     .. include:: ../../../_includes/avs-note.rest
@@ -92,11 +92,11 @@ informative message is displayed.
         |NUMA| Node. If no 2 MiB pages are required, type 0.  Due to
         limitations in Kubernetes, only a single huge page size can be used per
         host, across Application memory.
-    
+
     .. only:: partner
 
         .. include:: ../../../_includes/allocating-host-memory-using-horizon.rest
-    
+
         :start-after: application-2m-text-begin
         :end-before: application-2m-text-end
 
@@ -108,25 +108,25 @@ informative message is displayed.
         |NUMA| Node. If no 1 GiB pages are required, type 0.  Due to
         limitations in Kubernetes, only a single huge page size can be used per
         host, across Application memory.
-    
+
     .. only:: partner
 
         .. include:: ../../../_includes/allocating-host-memory-using-horizon.rest
-    
+
         :start-after: application-1g-text-begin
         :end-before: application-1g-text-end
 
     .. only:: partner
 
         .. include:: ../../../_includes/allocating-host-memory-using-horizon.rest
-    
+
         :start-after: vswitch-hugepage-1g-text-begin
         :end-before: vswitch-hugepage-1g-text-end
 
     .. only:: partner
 
         .. include:: ../../../_includes/allocating-host-memory-using-horizon.rest
-    
+
         :start-after: vswitch-hugepage-size-node-text-begin
         :end-before: vswitch-hugepage-size-node-text-end
 

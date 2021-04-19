@@ -33,7 +33,7 @@ override.
     .. parsed-literal::
 
         ~(keystone_admin)$ system helm-override-show |prefix|-openstack nova openstack
-        
+
 
     The output should include the following:
 

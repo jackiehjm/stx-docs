@@ -65,7 +65,7 @@ For more information, see :ref:`Provisioning SR-IOV VF Interfaces using the CLI
 
         ~(keystone_admin)$ system host-if-add <hostname> -V <vlan_id> \
         -c <--ifclass> <interface name> <sriov_intf_name> [<datanetwork>]
-        
+
 
     where the following options are available:
 

@@ -935,7 +935,7 @@ Login to pod rook-ceph-tools, get generated key for client.admin and ceph.conf i
 On host controller-0 and controller-1 replace /etc/ceph/ceph.conf and /etc/ceph/keyring
 with content got from pod rook-ceph-tools.
 
-Update configmap ceph-etc, with data field, with new mon ip 
+Update configmap ceph-etc, with data field, with new mon ip
 
 ::
 

@@ -60,7 +60,7 @@ for performance reasons, you must either use a non-root disk for
 **nova-local** storage, or ensure that the host is not used for VMs
 with ephemeral local storage.
 
-For example, to add a volume with the UUID 
+For example, to add a volume with the UUID
 67b368ab-626a-4168-9b2a-d1d239d4f3b0 to compute-1, use the following command.
 
 .. code-block:: none

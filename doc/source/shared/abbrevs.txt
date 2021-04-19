@@ -88,6 +88,7 @@
 .. |QoS| replace:: :abbr:`QoS (Quality of Service)`
 .. |RAID| replace:: :abbr:`RAID (Redundant Array of Inexpensive Disks)`
 .. |RBAC| replace:: :abbr:`RBAC (Role-Based Access Control)`
+.. |RBD| replace:: :abbr:`RBD (RADOS Block Device)`
 .. |RPC| replace:: :abbr:`RPC (Remote Procedure Call)`
 .. |SAN| replace:: :abbr:`SAN (Subject Alternative Name)`
 .. |SANs| replace:: :abbr:`SANs (Subject Alternative Names)`
