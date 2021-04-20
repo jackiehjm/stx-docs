@@ -11,12 +11,6 @@ Fault Management
 StarlingX Kubernetes
 --------------------
 
-An admin user can view |prod-long| fault management alarms and logs in order
-to monitor and respond to fault conditions.
-
-You can access active and historical alarms, and customer logs using the CLI,
-GUI, REST APIs and |SNMP|.
-
 .. toctree::
    :maxdepth: 2
 

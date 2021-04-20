@@ -6,7 +6,7 @@
 Centralized OIDC Authentication Setup for Distributed Cloud
 ===========================================================
 
-In a Distributed Cloud configuration, you can configure |OIDC| authentication
+In a |prod-dc| configuration, you can configure |OIDC| authentication
 in a distributed or centralized setup.
 
 

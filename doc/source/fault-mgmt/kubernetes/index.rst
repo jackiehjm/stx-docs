@@ -95,7 +95,6 @@ Distributed Cloud alarm management
 .. toctree::
    :maxdepth: 1
 
-   alarms-management-for-distributed-cloud
    cli-commands-for-dc-alarms-management
 
 ******************************
