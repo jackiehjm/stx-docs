@@ -29,12 +29,10 @@ The following |VNF|-related integration topics are included in this document:
 
     See :ref:`Bootstrap Data <bootstrap-data>`.
 
--   Use |org| |AVPs| to improve throughput when compared to emulated
-    virtual drivers. See :ref:`Accelerated Virtual Interfaces
-    <accelerated-virtual-interfaces>`.
+.. only:: partner
 
-    .. note::
-        |AVP|-|PMD| information is available in the following repository, for
-        more information, see `http://dpdk.org/ <http://dpdk.org/>`__.
+   .. include:: ../_includes/overview-of-vnf-integration.rest
+   
+
 
 
