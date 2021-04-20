@@ -38,8 +38,8 @@ See |datanet-doc|: :ref:`Add Data Networks using the CLI
 #.  Lock the host to which you will assign the label.
 
     .. note::
-       AIO-SX hosts do not need to be locked to assign an |SRIOV| interface to
-       a data network.
+       AIO-SX hosts do not need to be locked to provision an |SRIOV|
+       interface and assign it to a data network.
 
     For example:
 
@@ -164,9 +164,15 @@ See |datanet-doc|: :ref:`Add Data Networks using the CLI
 
 #.  Unlock the host.
 
+    .. note::
+       AIO-SX hosts do not need to be locked to provision an |SRIOV|
+       interface and assign it to a data network.
+
     .. code-block:: none
 
         ~(keystone_admin)$ system host-unlock compute-0
 
-    When launching an SRIOV-enabled Kubernetes deployment, pods will only be
-    scheduled on hosts with the **sriovdp** label enabled.
+.. rubric:: |postreq|
+
+When launching an |SRIOV|-enabled Kubernetes deployment, pods will only be
+scheduled on hosts with the **sriovdp** label enabled.
