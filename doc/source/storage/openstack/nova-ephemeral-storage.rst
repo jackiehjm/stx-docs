@@ -24,7 +24,7 @@ The nova-local group can be backed locally by one or more disks or partitions
 on the compute host, or remotely by resources on the internal Ceph cluster \(on
 controller or storage hosts\). If it is backed locally on the compute host,
 then it uses CoW-image storage backing. For more information about
-**nova-local** backing options, see Cloud Platform Storage Configuration:
+**nova-local** backing options, see |stor-doc|:
 :ref:`Block Storage for Virtual Machines <block-storage-for-virtual-machines>`.
 
 Compute hosts are grouped into host aggregates based on whether they offer CoW
