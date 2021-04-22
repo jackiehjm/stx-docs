@@ -1,6 +1,6 @@
 
 .. ygm1607361314876
-.. certificate-management-for-admin-rest--api-endpoints:
+.. _certificate-management-for-admin-rest-api-endpoints:
 
 ===================================================
 Certificate Management for Admin REST API Endpoints
@@ -10,7 +10,7 @@ All messaging between SystemControllers and Subclouds in the |prod-dc|
 system uses the admin REST API service endpoints, which are all configured for
 secure HTTPS.
 
-Cloud Platform supports automated HTTPS certificate renewal for |prod-dc| admin
+|prod| supports automated HTTPS certificate renewal for |prod-dc| admin
 endpoints.
 
 .. contents:: |minitoc|
@@ -24,7 +24,7 @@ Certificates on the SystemController
 ------------------------------------
 
 In a |prod-dc| system, the HTTPS certificates for admin endpoints are
-managed by Cloud Platform internally.
+managed by |prod| internally.
 
 .. note::
     All renewal operations are automatic, and no user operation is required.
@@ -36,16 +36,17 @@ manages the following certificates:
 .. certificate-management-for-admin-rest--api-endpoints-ul-zdc-pmk-xnb:
 
 -   **DC-AdminEp-Root-CA certificate**: This certificate expires in 1825 days
-    \(approximately 5 years\). Renewal of this certificate starts 30 days prior to
-    expiry.
+    \(approximately 5 years\). Renewal of this certificate starts 30 days prior
+    to expiry.
 
     The Root |CA| certificate is renewed on the SystemController. When the
-    certificate is renewed, Cloud Platform renews the intermediate |CA|
+    certificate is renewed, |prod| renews the intermediate |CA|
     certificates for all subclouds.
 
 -   **DC-AdminEp-Intermediate-CA certificate for 'each' subcloud**: This
     certificate expires in 365 days. Renewal of this certificate starts 30 days
-    prior to expiry. This certificate is used for all subclouds that are unmanaged.
+    prior to expiry. This certificate is used for all subclouds that are
+    unmanaged.
 
 -   **DC-AdminEp-endpoint**: This certificate expires in 180 days. Renewal of
     this certificate starts 30 days prior to expiry.
@@ -58,7 +59,8 @@ manages the following certificates:
 Certificates on the Subcloud
 ----------------------------
 
-For admin endpoints, the subcloud controllers manage the following certificates:
+For admin endpoints, the subcloud controllers manage the following
+certificates:
 
 
 .. certificate-management-for-admin-rest--api-endpoints-ul-x51-3qk-xnb:

@@ -30,7 +30,7 @@ cards and other |PCI| devices.
 
 -   large: Requests the largest available huge page size, 1GiB or 2MiB.
 
--   any: Requests any available size, including small pages. Cloud platform
+-   any: Requests any available size, including small pages. |prod|
     uses the largest available size, 1GiB, then 2MiB, and then 4KiB.
 
 
@@ -38,27 +38,27 @@ For a network interface card, you can provide |VM| access by configuring the
 network interface. For more information, see :ref:`Configuring PCI Passthrough
 Ethernet Interfaces <configure-pci-passthrough-ethernet-interfaces>`.
 
-For other types of device, you can provide |VM| access by assigning a |PCI| alias
-to the device, and then referencing the |PCI| alias in a flavor extra
-specification. For more information, see :ref:`Expose a Generic PCI Device
-for Use by VMs <expose-a-generic-pci-device-for-use-by-vms>` and
-:ref:`Configuring a Flavor to Use a Generic PCI Device
+For other types of device, you can provide |VM| access by assigning a |PCI|
+alias to the device, and then referencing the |PCI| alias in a flavor extra
+specification. For more information, see :ref:`Expose a Generic PCI Device for
+Use by VMs <expose-a-generic-pci-device-for-use-by-vms>` and :ref:`Configuring
+a Flavor to Use a Generic PCI Device
 <configuring-a-flavor-to-use-a-generic-pci-device>`.
 
--   :ref:`PCI Passthrough Ethernet Interface Devices <pci-passthrough-ethernet-interface-devices>`  
+-   :ref:`PCI Passthrough Ethernet Interface Devices <pci-passthrough-ethernet-interface-devices>`
 
--   :ref:`Configuring PCI Passthrough Ethernet Interfaces <configure-pci-passthrough-ethernet-interfaces>`  
+-   :ref:`Configuring PCI Passthrough Ethernet Interfaces <configure-pci-passthrough-ethernet-interfaces>`
 
--   :ref:`PCI SR-IOV Ethernet Interface Devices <pci-sr-iov-ethernet-interface-devices>`  
+-   :ref:`PCI SR-IOV Ethernet Interface Devices <pci-sr-iov-ethernet-interface-devices>`
 
--   :ref:`Generic PCI Passthrough <generic-pci-passthrough>`  
+-   :ref:`Generic PCI Passthrough <generic-pci-passthrough>`
 
--   :ref:`SR-IOV Encryption Acceleration <sr-iov-encryption-acceleration>`  
+-   :ref:`SR-IOV Encryption Acceleration <sr-iov-encryption-acceleration>`
 
--   :ref:`Expose a Generic PCI Device for Use by VMs <expose-a-generic-pci-device-for-use-by-vms>`  
+-   :ref:`Expose a Generic PCI Device for Use by VMs <expose-a-generic-pci-device-for-use-by-vms>`
 
--   :ref:`Exposing a Generic PCI Device Using the CLI <exposing-a-generic-pci-device-using-the-cli>`  
+-   :ref:`Exposing a Generic PCI Device Using the CLI <exposing-a-generic-pci-device-using-the-cli>`
 
--   :ref:`Configure a Flavor to Use a Generic PCI Device <configuring-a-flavor-to-use-a-generic-pci-device>`  
+-   :ref:`Configure a Flavor to Use a Generic PCI Device <configuring-a-flavor-to-use-a-generic-pci-device>`
 
 

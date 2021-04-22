@@ -8,7 +8,8 @@ Storage-Related CLI Commands
 
 You can use |CLI| commands when working with storage specific to OpenStack.
 
-For more information, see :ref:`Cloud Platform Storage Configuration <storage-configuration-storage-resources>`
+For more information, see |stor-doc| :ref:`Storage Resources
+<storage-configuration-storage-resources>`.
 
 .. _storage-configuring-and-management-storage-related-cli-commands-section-N10044-N1001C-N10001:
 
@@ -25,7 +26,7 @@ To list the storage backend types installed on a system:
 .. code-block:: none
 
     ~(keystone_admin)$  system storage-backend-list
-    
+
     +--------+---------------+--------+-----------+----+--------+------------+
     | uuid   | name          |backend |state      |task|services|capabilities|
     +--------+---------------+--------+-----------+----+--------+------------+
@@ -33,15 +34,15 @@ To list the storage backend types installed on a system:
     |        |               |        |           |    |        |replicati.:1|
     | 502... |shared_services|external|configured |None| glance |            |
     +--------+---------------+--------+-----------+----+--------+------------+
-     
-    
+
+
 
 To show details for a storage backend:
 
 .. code-block:: none
 
     ~(keystone_admin)$  system storage-backend-show <name>
-    
+
 
 For example:
 
@@ -57,7 +58,7 @@ For example:
     |task                | None                                |
     |services            | None                                |
     |capabilities        | min_replication: 1                  |
-    |                    | replication: 1                      | 
+    |                    | replication: 1                      |
     |object_gateway      | False                               |
     |ceph_total_space_gib| 198                                 |
     |object_pool_gib     | None                                |
@@ -88,7 +89,7 @@ slightly to fit the page.\)
     ~(keystone_admin)$  openstack image list
     +----+------+-------+--------+-----------+------+--------+------------+-----------+
     | ID | Name | Store | Disk   | Container | Size | Status | Cache Size | Raw Cache |
-    |    |      |       | Format | Format    |      |        |            |           | 
+    |    |      |       | Format | Format    |      |        |            |           |
     +----+------+-------+--------+-----------+------+--------+------------+-----------+
     | .. | img1 | rbd   | raw    | bare      | 1432 | active |            |           |
     | .. | img2 | file  | raw    | bare      | 1432 | active |            |           |
@@ -123,7 +124,7 @@ You can use this command to obtain information about a Glance image.
     | store            | rbd                                  |
     | owner            | 05be70a23c81420180c51e9740dc730a     |
     +------------------+--------------------------------------+
-    
+
 
 The Glance **store** value can be either file or rbd. The rbd value indicates a Ceph backend.
 
