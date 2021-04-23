@@ -51,17 +51,26 @@ In this method you can run Ansible Restore playbook and point to controller-0.
 
     where optional-extra-vars can be:
 
-    -   **Optional**: You can select one of the two restore modes:
+    -   **Optional**: You can select one of the following restore modes:
 
         -   To keep Ceph data intact \(false - default option\), use the
-            following syntax:
+            following parameter:
 
             :command:`wipe_ceph_osds=false`
 
-        -   Start with an empty Ceph cluster \(true\), to recreate a new
-            Ceph cluster, use the following syntax:
+        -   To start with an empty Ceph cluster \(true\), where the Ceph
+            cluster will need to be recreated, use the following parameter:
 
             :command:`wipe_ceph_osds=true`
+
+        -   To indicate that the backup data file is under /opt/platform-backup
+            directory on the local machine, use the following parameter:
+
+            :command:`on_box_data=true`
+
+            If this parameter is set to **false**, the Ansible Restore playbook
+            expects both the **initial_backup_dir** and **backup_filename**
+            to be specified.
 
     -   The backup\_filename is the platform backup tar file. It must be
         provided using the ``-e`` option on the command line, for example:

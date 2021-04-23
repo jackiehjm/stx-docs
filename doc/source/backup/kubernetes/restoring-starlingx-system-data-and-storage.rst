@@ -28,24 +28,34 @@ specific applications must be re-applied once a storage cluster is configured.
     To restore the data, use the same version of the boot image \(ISO\) that
     was used at the time of the original installation.
 
-The |prod| restore supports two modes:
+The |prod| restore supports the following optional modes:
 
 .. _restoring-starlingx-system-data-and-storage-ol-tw4-kvc-4jb:
 
-#.  To keep the Ceph cluster data intact \(false - default option\), use the
-    following syntax, when passing the extra arguments to the Ansible Restore
+-   To keep the Ceph cluster data intact \(false - default option\), use the
+    following parameter, when passing the extra arguments to the Ansible Restore
     playbook command:
 
     .. code-block:: none
 
        wipe_ceph_osds=false
 
-#.  To wipe the Ceph cluster entirely \(true\), where the Ceph cluster will
-    need to be recreated, use the following syntax:
+-   To wipe the Ceph cluster entirely \(true\), where the Ceph cluster will
+    need to be recreated, use the following parameter:
 
     .. code-block:: none
 
-       wipe_ceph_osds=true
+        wipe_ceph_osds=true
+
+-   To indicate that the backup data file is under /opt/platform-backup
+    directory on the local machine, use the following parameter:
+
+    .. code-block:: none
+
+        on_box_data=true
+
+    If this parameter is set to **false**, the Ansible Restore playbook expects
+    both the **initial_backup_dir** and **backup_filename** to be specified.
 
 Restoring a |prod| cluster from a backup file is done by re-installing the
 ISO on controller-0, running the Ansible Restore Playbook, applying updates
