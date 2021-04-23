@@ -49,6 +49,7 @@ Operation
     changing-the-admin-password-on-distributed-cloud
     updating-docker-registry-credentials-on-a-subcloud
     migrate-an-aiosx-subcloud-to-an-aiodx-subcloud
+    restoring-subclouds-from-backupdata-using-dcmanager
 
 ----------------------------------------------------------
 Kubernetes Version Upgrade Distributed Cloud Orchestration

@@ -18,22 +18,20 @@ following command to run the Ansible Restore playbook:
 
     ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_platform.yml -e "initial_backup_dir=<location_of_tarball ansible_become_pass=<admin_password> admin_password=<admin_password backup_filename=<backup_filename> wipe_ceph_osds=<true/false>"
 
-The |prod| restore supports two optional modes, keeping the Ceph cluster data
-intact or wiping the Ceph cluster.
-
-.. rubric:: |proc|
+The |prod| restore supports the following optional modes, keeping the Ceph
+cluster data intact or wiping the Ceph cluster.
 
 .. _running-restore-playbook-locally-on-the-controller-steps-usl-2c3-pmb:
 
-#.  To keep the Ceph cluster data intact \(false - default option\), use the
-    following command:
+-   To keep the Ceph cluster data intact \(false - default option\), use the
+    following parameter:
 
     .. code-block:: none
 
        wipe_ceph_osds=false
 
-#.  To wipe the Ceph cluster entirely \(true\), where the Ceph cluster will
-    need to be recreated, use the following command:
+-   To wipe the Ceph cluster entirely \(true\), where the Ceph cluster will
+    need to be recreated, use the following parameter:
 
     .. code-block:: none
 
@@ -50,12 +48,23 @@ intact or wiping the Ceph cluster.
         the patches and prompt you to reboot the system. Then you will need to
         re-run Ansible Restore playbook.
 
+-   To indicate that the backup data file is under /opt/platform-backup
+    directory on the local machine, use the following parameter:
+
+    .. code-block:: none
+
+        on_box_data=true
+
+    If this parameter is set to **false**, the Ansible Restore playbook expects
+    both the **initial_backup_dir** and **backup_filename** to be specified.
+
 .. rubric:: |postreq|
 
 After running restore\_platform.yml playbook, you can restore the local
 registry images.
 
 .. note::
+
     The backup file of the local registry images may be large. Restore the
     backed up file on the controller, where there is sufficient space.
 
