@@ -69,7 +69,7 @@ information about this type of storage, see :ref:`Storage on Compute Hosts
 
 You can add a physical volume using the system :command:`host-pv-add` command.
 
-.. xbooklink For more information, see Cloud Platform Storage Configuration: :ref:`Adding a Physical Volume <adding-a-physical-volume>`.
+.. xbooklink For more information, see |stor-doc|: :ref:`Adding a Physical Volume <adding-a-physical-volume>`.
 
 .. _storage-on-storage-hosts:
 

@@ -9,7 +9,7 @@ Storage on Storage Hosts
 |prod-os| creates default Ceph storage pools for Glance images, Cinder volumes,
 Cinder backups, and Nova ephemeral data object data.
 
-For more information, see the :ref:`Cloud Platform Storage Configuration
+For more information, see the |stor-doc|: :ref:`Storage Resources
 <storage-configuration-storage-resources>` guide for details on configuring the
 internal Ceph cluster on either controller or storage hosts.
 

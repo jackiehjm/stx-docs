@@ -106,7 +106,7 @@ Node Interfaces
 
   Only controller type nodes are required to be connected to the OAM network.
 
-Open Source Cloud Platform
+Open Source StarlingX
   A set of services that can be used to build cloud infrastructure. The source
   code of the services is available under an open source license that allows
   access and re-distribution of the codebase. The software components are

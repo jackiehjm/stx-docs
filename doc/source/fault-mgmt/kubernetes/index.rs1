@@ -46,7 +46,7 @@
     -   :ref:`Setting SNMP Identifying Information <setting-snmp-identifying-information>`
 
 -   :ref:`Troubleshooting Log Collection <troubleshooting-log-collection>`
--   Cloud Platform Alarm Messages
+-   |prod| Alarm Messages
 
     -   :ref:`Alarm Messages Overview <alarm-messages-overview>`
     -   :ref:`100 Series Alarm Messages <100-series-alarm-messages>`
@@ -58,7 +58,7 @@
     -   :ref:`800 Series Alarm Messages <800-series-alarm-messages>`
     -   :ref:`900 Series Alarm Messages <900-series-alarm-messages>`
 
--   Cloud Platform Customer Log Messages
+-   |prod| Customer Log Messages
 
     -   :ref:`200 Series Maintenance Customer Log Messages <200-series-maintenance-customer-log-messages>`
     -   :ref:`400 Series Customer Log Messages <400-series-customer-log-messages>`
