@@ -66,6 +66,7 @@
 .. |OAM| replace:: :abbr:`OAM (Operations, administration and management)`
 .. |OIDC| replace:: :abbr:`OIDC (OpenID Connect)`
 .. |ONAP| replace:: :abbr:`ONAP (Open Network Automation Program)`
+.. |OVS| replace:: :abbr:`OVS (Open Virtual Switch)`
 .. |OSD| replace:: :abbr:`OSD (Object Storage Device)`
 .. |OSDs| replace:: :abbr:`OSDs (Object Storage Devices)`
 .. |PAC| replace:: :abbr:`PAC (Programmable Acceleration Card)`
