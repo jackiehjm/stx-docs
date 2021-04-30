@@ -180,4 +180,4 @@ starlingxdocs_plus_bug_project = 'starlingx'
 starlingxdocs_plus_bug_tag = 'stx.docs'
 starlingxdocs_plus_this_version = "latest"
 # starlingxdocs_plus_other_versions = [("even later","even-later"),("sooner","sooner")]
-starlingxdocs_plus_other_versions = []
+starlingxdocs_plus_other_versions = [("Version 5.0","r/stx.5.0")]
