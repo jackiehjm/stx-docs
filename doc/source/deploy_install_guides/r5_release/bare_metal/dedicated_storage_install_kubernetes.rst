@@ -1,6 +1,14 @@
-==========================================================================
-Install StarlingX Kubernetes on Bare Metal Standard with Dedicated Storage
-==========================================================================
+
+
+.. _dedicated_storage_install_kubernetes:
+
+.. only:: partner
+
+   .. include:: /_includes/install-kubernetes-null-labels.rest
+
+=========================================================================
+Install Kubernetes Platform on Bare Metal Standard with Dedicated Storage
+=========================================================================
 
 This section describes the steps to install the StarlingX Kubernetes platform
 on a **StarlingX R5.0 bare metal Standard with Dedicated Storage** deployment
@@ -10,20 +18,22 @@ configuration.
    :local:
    :depth: 1
 
--------------------
-Create bootable USB
--------------------
+.. only:: starlingx
 
-Refer to :doc:`/deploy_install_guides/bootable_usb` for instructions on how to
-create a bootable USB with the StarlingX ISO on your system.
+   -------------------
+   Create bootable USB
+   -------------------
 
---------------------------------
-Install software on controller-0
---------------------------------
+   Refer to :ref:`Bootable USB <bootable_usb>` for instructions on how to
+   create a bootable USB with the StarlingX ISO on your system.
 
-.. include:: controller_storage_install_kubernetes.rst
-   :start-after: incl-install-software-controller-0-standard-start:
-   :end-before: incl-install-software-controller-0-standard-end:
+   --------------------------------
+   Install software on controller-0
+   --------------------------------
+
+   .. include:: inc-install-software-on-controller.rest
+      :start-after: incl-install-software-controller-0-standard-start
+      :end-before: incl-install-software-controller-0-standard-end
 
 --------------------------------
 Bootstrap system on controller-0

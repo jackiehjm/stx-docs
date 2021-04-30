@@ -231,40 +231,41 @@ OpenStack-specific host configuration
 
 #. **For OpenStack only:** Configure the system setting for the vSwitch.
 
-   StarlingX has OVS (kernel-based) vSwitch configured as default:
+   StarlingX has |OVS| (kernel-based) vSwitch configured as default:
 
    * Runs in a container; defined within the helm charts of stx-openstack
      manifest.
    * Shares the core(s) assigned to the platform.
 
-   If you require better performance, OVS-DPDK (OVS with the Data Plane
+   If you require better performance, |OVS|-|DPDK| (|OVS| with the Data Plane
    Development Kit, which is supported only on bare metal hardware) should be
    used:
 
    * Runs directly on the host (it is not containerized).
    * Requires that at least 1 core be assigned/dedicated to the vSwitch function.
 
-   To deploy the default containerized OVS:
+   To deploy the default containerized |OVS|:
 
    ::
 
      system modify --vswitch_type none
 
    Do not run any vSwitch directly on the host, instead, use the containerized
-   OVS defined in the helm charts of stx-openstack manifest.
+   |OVS| defined in the helm charts of stx-openstack manifest.
 
-   To deploy OVS-DPDK, run the following command:
+   To deploy |OVS|-|DPDK|, run the following command:
 
    ::
 
      system modify --vswitch_type ovs-dpdk
      system host-cpu-modify -f vswitch -p0 1 controller-0
 
-   Once vswitch_type is set to OVS-DPDK, any subsequent nodes created will
+   Once vswitch_type is set to |OVS|-|DPDK|, any subsequent nodes created will
    default to automatically assigning 1 vSwitch core for AIO controllers and 2
    vSwitch cores for compute-labeled worker nodes.
 
-   When using OVS-DPDK, configure vSwitch memory per NUMA node with the following
+   When using |OVS|-|DPDK|, configure vSwitch memory per NUMA node with the
+   following
    command:
 
    ::
@@ -277,10 +278,12 @@ OpenStack-specific host configuration
 
       system host-memory-modify -f vswitch -1G 1 worker-0 0
 
-   VMs created in an OVS-DPDK environment must be configured to use huge pages
-   to enable networking and must use a flavor with property: hw:mem_page_size=large
+   |VMs| created in an |OVS|-|DPDK| environment must be configured to use huge
+   pages to enable networking and must use a flavor with property:
+   hw:mem_page_size=large
 
-   Configure the huge pages for VMs in an OVS-DPDK environment with the command:
+   Configure the huge pages for VMs in an |OVS|-|DPDK| environment with the
+   command:
 
    ::
 
