@@ -244,7 +244,7 @@ OpenStack-specific host configuration
    * Runs directly on the host (it is not containerized).
    * Requires that at least 1 core be assigned/dedicated to the vSwitch function.
 
-   To deploy the default containerized |OVS|:
+   To deploy the default containerized OVS|:
 
    ::
 
@@ -333,7 +333,8 @@ Unlock controller-0 in order to bring it into service:
   system host-unlock controller-0
 
 Controller-0 will reboot in order to apply configuration changes and come into
-service. This can take 5-10 minutes, depending on the performance of the host machine.
+service. This can take 5-10 minutes, depending on the performance of the host
+machine.
 
 -------------------------------------------------
 Install software on controller-1 and worker nodes
@@ -377,26 +378,27 @@ Install software on controller-1 and worker nodes
 
      system host-update 3 personality=worker hostname=worker-0
 
-   Repeat for worker-1. Power on worker-1 and wait for the new host (hostname=None) to
-   be discovered by checking 'system host-list':
+   Repeat for worker-1. Power on worker-1 and wait for the new host
+   (hostname=None) to be discovered by checking 'system host-list':
 
    ::
 
      system host-update 4 personality=worker hostname=worker-1
 
-   For rook storage, there is no storage personality. Some hosts with worker personality
-   providers storage service. Here we still named these worker host storage-x.
-   Repeat for storage-0 and storage-1. Power on storage-0, storage-1 and wait for the
-   new host (hostname=None) to be discovered by checking 'system host-list':
+   For rook storage, there is no storage personality. Some hosts with worker
+   personality providers storage service. Here we still named these worker host
+   storage-x. Repeat for storage-0 and storage-1. Power on storage-0, storage-1
+   and wait for the new host (hostname=None) to be discovered by checking
+   'system host-list':
 
    ::
 
      system host-update 5 personality=worker hostname=storage-0
      system host-update 6 personality=worker hostname=storage-1
 
-#. Wait for the software installation on controller-1, worker-0, and worker-1 to
-   complete, for all servers to reboot, and for all to show as locked/disabled/online in
-   'system host-list'.
+#. Wait for the software installation on controller-1, worker-0, and worker-1
+   to complete, for all servers to reboot, and for all to show as
+   locked/disabled/online in 'system host-list'.
 
    ::
 
@@ -419,8 +421,8 @@ Configure controller-1
 
 .. incl-config-controller-1-start:
 
-Configure the OAM and MGMT interfaces of controller-0 and specify the attached
-networks. Use the OAM and MGMT port names, for example eth0, that are applicable
+Configure the |OAM| and MGMT interfaces of controller-0 and specify the attached
+networks. Use the |OAM| and MGMT port names, for example eth0, that are applicable
 to your deployment environment.
 
 (Note that the MGMT interface is partially set up automatically by the network
@@ -522,8 +524,8 @@ Configure worker nodes
          system host-label-assign ${NODE} sriovdp=enabled
       done
 
-   * If planning on running DPDK in containers on this host, configure the number
-     of 1G Huge pages required on both NUMA nodes:
+   * If planning on running |DPDK| in containers on this host, configure the number
+     of 1G Huge pages required on both |NUMA| nodes:
 
      ::
 
@@ -616,8 +618,9 @@ Unlock worker nodes in order to bring them into service:
      system host-unlock $NODE
   done
 
-The worker nodes will reboot in order to apply configuration changes and come into
-service. This can take 5-10 minutes, depending on the performance of the host machine.
+The worker nodes will reboot in order to apply configuration changes and come
+into service. This can take 5-10 minutes, depending on the performance of the
+host machine.
 
 -----------------------
 Configure storage nodes
@@ -625,7 +628,8 @@ Configure storage nodes
 
 #. Assign the cluster-host network to the MGMT interface for the storage nodes.
 
-   Note that the MGMT interfaces are partially set up by the network install procedure.
+   Note that the MGMT interfaces are partially set up by the network install
+   procedure.
 
    ::
 
@@ -653,7 +657,8 @@ Unlock storage nodes in order to bring them into service:
   done
 
 The storage nodes will reboot in order to apply configuration changes and come
-into service. This can take 5-10 minutes, depending on the performance of the host machine.
+into service. This can take 5-10 minutes, depending on the performance of the
+host machine.
 
 -------------------------------------------------
 Install Rook application manifest and helm-charts

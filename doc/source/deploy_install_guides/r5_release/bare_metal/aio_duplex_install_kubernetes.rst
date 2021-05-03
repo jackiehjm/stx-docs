@@ -171,21 +171,32 @@ Configure controller-0
 
      source /etc/platform/openrc
 
-#. Configure the |OAM| and MGMT interfaces of controller-0 and specify the
-   attached networks. Use the |OAM| and MGMT port names, for example eth0, that
-   are applicable to your deployment environment.
+#. Configure the |OAM| interface of controller-0 and specify the
+   attached network as "oam".
+
+   Use the |OAM| port name that is applicable to your deployment environment,
+   for example eth0:
 
    ::
 
      OAM_IF=<OAM-PORT>
+     system host-if-modify controller-0 $OAM_IF -c platform
+     system interface-network-assign controller-0 $OAM_IF oam
+
+#. Configure the MGMT interface of controller-0 and specify the attached
+   networks of both "mgmt" and "cluster-host".
+
+   Use the MGMT port name that is applicable to your deployment environment,
+   for example eth1:
+
+   ::
+
      MGMT_IF=<MGMT-PORT>
      system host-if-modify controller-0 lo -c none
      IFNET_UUIDS=$(system interface-network-list controller-0 | awk '{if ($6=="lo") print $4;}')
      for UUID in $IFNET_UUIDS; do
          system interface-network-remove ${UUID}
      done
-     system host-if-modify controller-0 $OAM_IF -c platform
-     system interface-network-assign controller-0 $OAM_IF oam
      system host-if-modify controller-0 $MGMT_IF -c platform
      system interface-network-assign controller-0 $MGMT_IF mgmt
      system interface-network-assign controller-0 $MGMT_IF cluster-host
@@ -196,26 +207,83 @@ Configure controller-0
 
      system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org
 
-**************************************************************
-Optionally, initialize a Ceph-based Persistent Storage Backend
-**************************************************************
+#. Configure data interfaces for controller-0. Use the DATA port names, for example
+   eth0, applicable to your deployment environment.
 
-.. important::
+   This step is optional for Kubernetes: Do this step if using |SRIOV| network
+   attachments in hosted application containers.
 
-    A persistent storage backend is required if your application requires
-    Persistent Volume Claims (PVCs). The StarlingX OpenStack application
-    (stx-openstack) requires |PVCs|, therefore if you plan on using the
-    stx-openstack application, then you must configure a persistent storage
-    backend.
+   .. important::
 
-    .. only:: starlingx
+      This step is **required** for OpenStack.
 
-       There are two options for persistent storage backend:
-       1) the host-based Ceph solution and
-       2) the Rook container-based Ceph solution.
 
-       The Rook container-based Ceph backend is installed after both
-       AIO-Controllers are configured and unlocked.
+   * Configure the data interfaces
+
+     ::
+
+       DATA0IF=<DATA-0-PORT>
+       DATA1IF=<DATA-1-PORT>
+       export NODE=controller-0
+       PHYSNET0='physnet0'
+       PHYSNET1='physnet1'
+       SPL=/tmp/tmp-system-port-list
+       SPIL=/tmp/tmp-system-host-if-list
+       system host-port-list ${NODE} --nowrap > ${SPL}
+       system host-if-list -a ${NODE} --nowrap > ${SPIL}
+       DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
+       DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
+       DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
+       DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
+       DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
+       DATA1PORTNAME=$(cat  $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
+       DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
+       DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
+
+       system datanetwork-add ${PHYSNET0} vlan
+       system datanetwork-add ${PHYSNET1} vlan
+
+       system host-if-modify -m 1500 -n data0 -c data ${NODE} ${DATA0IFUUID}
+       system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
+       system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
+       system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
+
+   * To enable using |SRIOV| network attachments for the above interfaces in
+     Kubernetes hosted application containers:
+
+     * Configure the Kubernetes |SRIOV| device plugin.
+
+       ::
+
+         system host-label-assign controller-0 sriovdp=enabled
+
+     * If planning on running |DPDK| in kuberentes hosted appliction containers
+       on this host, configure the number of 1G Huge pages required on both
+       |NUMA| nodes.
+
+       ::
+
+         # assign 10x 1G huge page on processor/numa-node 0 on controller-0 to applications
+         system host-memory-modify -f application controller-0 0 -1G 10
+
+         # assign 10x 1G huge page on processor/numa-node 1 on controller-0 to applications
+         system host-memory-modify -f application controller-0 1 -1G 10
+
+
+***************************************************************
+If required, initialize a Ceph-based Persistent Storage Backend
+***************************************************************
+
+A persistent storage backend is required if your application requires |PVCs|.
+
+.. only:: starlingx
+
+    .. important::
+
+       The StarlingX OpenStack application **requires** |PVCs|.
+
+    There are two options for persistent storage backend: the host-based Ceph
+    solution and the Rook container-based Ceph solution.
 
 For host-based Ceph:
 
@@ -251,74 +319,17 @@ For host-based Ceph:
          system host-label-assign controller-0 ceph-mon-placement=enabled
          system host-label-assign controller-0 ceph-mgr-placement=enabled
 
-   #. Configure data interfaces for controller-0. Use the DATA port names, for example
-      eth0, applicable to your deployment environment.
 
-      .. important::
+***********************************
+If required, configure Docker Proxy
+***********************************
 
-         This step is **required** for OpenStack.
+StarlingX uses publicly available container runtime registries. If you are
+behind a corporate firewall or proxy, you need to set docker proxy settings.
 
-         This step is optional for Kubernetes: Do this step if using |SRIOV| network
-         attachments in hosted application containers.
+Refer to :ref:`Docker Proxy Configuration <docker_proxy_config>` for
+details about configuring Docker proxy settings.
 
-   For Kubernetes |SRIOV| network attachments:
-
-   * Configure the |SRIOV| device plugin.
-
-     ::
-
-         system host-label-assign controller-0 sriovdp=enabled
-
-   * If planning on running |DPDK| in containers on this host, configure the number
-     of 1G Huge pages required on both |NUMA| nodes.
-
-     ::
-
-         system host-memory-modify controller-0 0 -1G 100
-         system host-memory-modify controller-0 1 -1G 100
-
-
-   For both Kubernetes and OpenStack:
-
-   ::
-
-      DATA0IF=<DATA-0-PORT>
-      DATA1IF=<DATA-1-PORT>
-      export NODE=controller-0
-      PHYSNET0='physnet0'
-      PHYSNET1='physnet1'
-      SPL=/tmp/tmp-system-port-list
-      SPIL=/tmp/tmp-system-host-if-list
-      system host-port-list ${NODE} --nowrap > ${SPL}
-      system host-if-list -a ${NODE} --nowrap > ${SPIL}
-      DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
-      DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
-      DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
-      DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
-      DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
-      DATA1PORTNAME=$(cat  $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
-      DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
-      DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
-
-      system datanetwork-add ${PHYSNET0} vlan
-      system datanetwork-add ${PHYSNET1} vlan
-
-      system host-if-modify -m 1500 -n data0 -c data ${NODE} ${DATA0IFUUID}
-      system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
-      system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
-      system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
-
-   #. If required, and not already done as part of bootstrap, configure Docker to
-      use a proxy server.
-
-      #. List Docker proxy parameters:
-
-         ::
-
-          system service-parameter-list platform docker
-
-      #. Refer to :ref:`Docker Proxy Configuration <docker_proxy_config>` for
-         details about Docker proxy settings.
 
 .. only:: starlingx
 
@@ -326,7 +337,116 @@ For host-based Ceph:
    OpenStack-specific host configuration
    *************************************
 
-   .. include:: inc-openstack-specific-host-config.rest
+   .. important::
+
+      **This step is required only if the StarlingX OpenStack application
+      (stx-openstack) will be installed.**
+
+   #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
+      support of installing the stx-openstack manifest and helm-charts later.
+
+      ::
+
+        system host-label-assign controller-0 openstack-control-plane=enabled
+        system host-label-assign controller-0 openstack-compute-node=enabled
+        system host-label-assign controller-0 openvswitch=enabled
+        system host-label-assign controller-0 sriov=enabled
+
+   #. **For OpenStack only:** Configure the system setting for the vSwitch.
+
+      StarlingX has |OVS| (kernel-based) vSwitch configured as default:
+
+      * Runs in a container; defined within the helm charts of stx-openstack
+        manifest.
+      * Shares the core(s) assigned to the platform.
+
+      If you require better performance, |OVS|-|DPDK| (|OVS| with the Data
+      Plane Development Kit, which is supported only on bare metal hardware)
+      should be used:
+
+      * Runs directly on the host (it is not containerized).
+      * Requires that at least 1 core be assigned/dedicated to the vSwitch function.
+
+      **To deploy the default containerized OVS:**
+
+      ::
+
+           system modify --vswitch_type none
+
+      This does not run any vSwitch directly on the host, instead, it uses the
+      containerized |OVS| defined in the helm charts of stx-openstack
+      manifest.
+
+      **To deploy OVS-DPDK, run the following command:**
+
+      ::
+
+        system modify --vswitch_type ovs-dpdk
+
+      Default recommendation for an |AIO|-controller is to use a single core
+      for |OVS|-|DPDK| vswitch.
+
+      ::
+
+        # assign 1 core on processor/numa-node 0 on controller-0 to vswitch
+        system host-cpu-modify -f vswitch -p0 1 controller-0
+
+      Once vswitch_type is set to |OVS|-|DPDK|, any subsequent nodes created
+      will default to automatically assigning 1 vSwitch core for |AIO|
+      controllers and 2 vSwitch cores for compute-labeled worker nodes.
+
+
+      When using |OVS|-|DPDK|, configure 1x 1G huge page for vSwitch memory on
+      each |NUMA| node where vswitch is running on this host, with the
+      following command:
+
+      ::
+
+         # assign 1x 1G huge page on processor/numa-node 0 on controller-0 to vswitch
+         system host-memory-modify -f vswitch -1G 1 controller-0 0
+
+
+      .. important::
+
+         |VMs| created in an |OVS|-|DPDK| environment must be configured to use
+         huge pages to enable networking and must use a flavor with property:
+         hw:mem_page_size=large
+
+         Configure the huge pages for |VMs| in an |OVS|-|DPDK| environment on this host with
+         the commands:
+
+         ::
+
+            # assign 10x 1G huge page on processor/numa-node 0 on controller-0 to applications
+            system host-memory-modify -f application -1G 10 controller-0 0
+
+            # assign 10x 1G huge page on processor/numa-node 1 on controller-0 to applications
+            system host-memory-modify -f application -1G 10 controller-0 1
+
+      .. note::
+
+         After controller-0 is unlocked, changing vswitch_type requires
+         locking and unlocking controller-0 to apply the change.
+
+   #. **For OpenStack only:** Set up disk partition for nova-local volume
+      group, which is needed for stx-openstack nova ephemeral disks.
+
+      ::
+
+        export NODE=controller-0
+
+        echo ">>> Getting root disk info"
+        ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
+        ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
+        echo "Root disk: $ROOT_DISK, UUID: $ROOT_DISK_UUID"
+
+        echo ">>>> Configuring nova-local"
+        NOVA_SIZE=34
+        NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${NOVA_SIZE})
+        NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
+        system host-lvg-add ${NODE} nova-local
+        system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
+        sleep 2
 
 
 -------------------
@@ -366,8 +486,9 @@ Install software on controller-1 node
 
       system host-update 2 personality=controller
 
-#. Wait for the software installation on controller-1 to complete, for controller-1 to
-   reboot, and for controller-1 to show as locked/disabled/online in 'system host-list'.
+#. Wait for the software installation on controller-1 to complete, for
+   controller-1 to reboot, and for controller-1 to show as
+   locked/disabled/online in 'system host-list'.
 
    This can take 5-10 minutes, depending on the performance of the host machine.
 
@@ -385,82 +506,96 @@ Install software on controller-1 node
 Configure controller-1
 ----------------------
 
-#. Configure the |OAM| and MGMT interfaces of controller-1 and specify the
-   attached networks. Use the |OAM| and MGMT port names, for example eth0, that are
-   applicable to your deployment environment:
+#. Configure the |OAM| interface of controller-1 and specify the
+   attached network of "oam".
 
-   (Note that the MGMT interface is partially set up automatically by the network
-   install procedure.)
+   Use the |OAM| port name that is applicable to your deployment environment,
+   for example eth0:
 
    ::
 
       OAM_IF=<OAM-PORT>
-      MGMT_IF=<MGMT-PORT>
       system host-if-modify controller-1 $OAM_IF -c platform
       system interface-network-assign controller-1 $OAM_IF oam
+
+#. The MGMT interface is partially set up by the network install procedure;
+   configuring the port used for network install as the MGMT port and
+   specifying the attached network of "mgmt".
+
+   Complete the MGMT interface configuration of controller-1 by specifying the
+   attached network of "cluster-host".
+
+   ::
+
       system interface-network-assign controller-1 mgmt0 cluster-host
 
-#. Configure data interfaces for controller-1. Use the DATA port names, for example
-   eth0, applicable to your deployment environment.
+#. Configure data interfaces for controller-1. Use the DATA port names, for
+   example eth0, applicable to your deployment environment.
+
+   This step is optional for Kubernetes. Do this step if using |SRIOV|
+   network attachments in hosted application containers.
 
    .. important::
 
       This step is **required** for OpenStack.
 
-      This step is optional for Kubernetes: Do this step if using |SRIOV|
-      network attachments in hosted application containers.
 
-   For Kubernetes |SRIOV| network attachments:
-
-   * Configure the |SRIOV| device plugin:
+   * Configure the data interfaces
 
      ::
 
-        system host-label-assign controller-1 sriovdp=enabled
+       DATA0IF=<DATA-0-PORT>
+       DATA1IF=<DATA-1-PORT>
+       export NODE=controller-1
+       PHYSNET0='physnet0'
+       PHYSNET1='physnet1'
+       SPL=/tmp/tmp-system-port-list
+       SPIL=/tmp/tmp-system-host-if-list
+       system host-port-list ${NODE} --nowrap > ${SPL}
+       system host-if-list -a ${NODE} --nowrap > ${SPIL}
+       DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
+       DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
+       DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
+       DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
+       DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
+       DATA1PORTNAME=$(cat  $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
+       DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
+       DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
 
-   * If planning on running DPDK in containers on this host, configure the number
-     of 1G Huge pages required on both NUMA nodes:
+       system datanetwork-add ${PHYSNET0} vlan
+       system datanetwork-add ${PHYSNET1} vlan
 
-     ::
+       system host-if-modify -m 1500 -n data0 -c data ${NODE} ${DATA0IFUUID}
+       system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
+       system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
+       system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
 
-        system host-memory-modify controller-1 0 -1G 100
-        system host-memory-modify controller-1 1 -1G 100
+   * To enable using |SRIOV| network attachments for the above interfaes in
+     Kubernetes hosted application containers:
 
-   .. only:: starlingx
+     * Configure the Kubernetes |SRIOV| device plugin:
 
-      For both Kubernetes and OpenStack:
+       ::
 
-   ::
+         system host-label-assign controller-1 sriovdp=enabled
 
-      DATA0IF=<DATA-0-PORT>
-      DATA1IF=<DATA-1-PORT>
-      export NODE=controller-1
-      PHYSNET0='physnet0'
-      PHYSNET1='physnet1'
-      SPL=/tmp/tmp-system-port-list
-      SPIL=/tmp/tmp-system-host-if-list
-      system host-port-list ${NODE} --nowrap > ${SPL}
-      system host-if-list -a ${NODE} --nowrap > ${SPIL}
-      DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
-      DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
-      DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
-      DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
-      DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
-      DATA1PORTNAME=$(cat  $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
-      DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
-      DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
+     * If planning on running |DPDK| in Kubernetes hosted application containers
+       on this host, configure the number of 1G Huge pages required on both
+       |NUMA| nodes:
 
-      system datanetwork-add ${PHYSNET0} vlan
-      system datanetwork-add ${PHYSNET1} vlan
+       ::
 
-      system host-if-modify -m 1500 -n data0 -c data ${NODE} ${DATA0IFUUID}
-      system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
-      system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
-      system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
+         # assign 10x 1G huge page on processor/numa-node 0 on controller-0 to applications
+         system host-memory-modify -f application controller-1 0 -1G 10
 
-*************************************************************************************
-Optionally, configure host-specific details for Ceph-based Persistent Storage Backend
-*************************************************************************************
+         # assign 10x 1G huge page on processor/numa-node 1 on controller-0 to applications
+         system host-memory-modify -f application controller-1 1 -1G 10
+
+
+
+***************************************************************************************
+If configuring a Ceph-based Persistent Storage Backend, configure host-specific details
+***************************************************************************************
 
 For host-based Ceph:
 
@@ -503,6 +638,48 @@ For host-based Ceph:
          system host-label-assign controller-1 openvswitch=enabled
          system host-label-assign controller-1 sriov=enabled
 
+   #. **For OpenStack only:** Configure the host settings for the vSwitch.
+
+      **If using OVS-DPDK vswitch, run the following commands:**
+
+      Default recommendation for an AIO-controller is to use a single core
+      for |OVS|-|DPDK| vswitch.  This should have been automatically configured,
+      if not run the following command.
+
+      ::
+
+        # assign 1 core on processor/numa-node 0 on controller-1 to vswitch
+        system host-cpu-modify -f vswitch -p0 1 controller-1
+
+
+      When using |OVS|-|DPDK|, configure 1x 1G huge page for vSwitch memory on
+      each |NUMA| node where vswitch is running on this host, with the
+      following command:
+
+      ::
+
+         # assign 1x 1G huge page on processor/numa-node 0 on controller-1 to vswitch
+         system host-memory-modify -f vswitch -1G 1 controller-1 0
+
+
+      .. important::
+
+         |VMs| created in an |OVS|-|DPDK| environment must be configured to use
+         huge pages to enable networking and must use a flavor with property:
+         hw:mem_page_size=large
+
+         Configure the huge pages for |VMs| in an |OVS|-|DPDK| environment for
+         this host with the command:
+
+         ::
+
+            # assign 10x 1G huge page on processor/numa-node 0 on controller-1 to applications
+            system host-memory-modify -f application -1G 10 controller-1 0
+
+            # assign 10x 1G huge page on processor/numa-node 1 on controller-1 to applications
+            system host-memory-modify -f application -1G 10 controller-1 1
+
+
    #. **For OpenStack only:** Set up disk partition for nova-local volume group,
       which is needed for stx-openstack nova ephemeral disks.
 
@@ -539,15 +716,13 @@ machine.
 
 .. only:: starlingx
 
-   --------------------------------------------------------------------------
-   Optionally, finish configuration of Ceph-based Persistent Storage Backend
-   --------------------------------------------------------------------------
-
-   For host-based Ceph:  Nothing else is required.
+   -----------------------------------------------------------------------------------------------
+   If using Rook container-based Ceph, finish configuring the ceph-rook Persistent Storage Backend
+   -----------------------------------------------------------------------------------------------
 
    For Rook container-based Ceph:
 
-   On **virtual** controller-0 and controller-1:
+   On active controller:
 
    #. Wait for the ``rook-ceph-apps`` application to be uploaded
 

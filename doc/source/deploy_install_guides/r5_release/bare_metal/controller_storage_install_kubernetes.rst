@@ -176,26 +176,34 @@ Configure controller-0
 
      source /etc/platform/openrc
 
-#. Configure the OAM and MGMT interfaces of controller-0 and specify the
-   attached networks. Use the OAM and MGMT port names, for example eth0, that are
-   applicable to your deployment environment.
+#. Configure the |OAM| interface of controller-0 and specify the
+   attached network as "oam".
+
+   Use the |OAM| port name that is applicable to your deployment environment, for example eth0:
 
    ::
 
      OAM_IF=<OAM-PORT>
+     system host-if-modify controller-0 $OAM_IF -c platform
+     system interface-network-assign controller-0 $OAM_IF oam
+
+#. Configure the MGMT interface of controller-0 and specify the attached networks of both "mgmt" and "cluster-host".
+
+   Use the MGMT port name that is applicable to your deployment environment, for example eth1:
+
+   ::
+
      MGMT_IF=<MGMT-PORT>
      system host-if-modify controller-0 lo -c none
      IFNET_UUIDS=$(system interface-network-list controller-0 | awk '{if ($6=="lo") print $4;}')
      for UUID in $IFNET_UUIDS; do
          system interface-network-remove ${UUID}
      done
-     system host-if-modify controller-0 $OAM_IF -c platform
-     system interface-network-assign controller-0 $OAM_IF oam
      system host-if-modify controller-0 $MGMT_IF -c platform
      system interface-network-assign controller-0 $MGMT_IF mgmt
      system interface-network-assign controller-0 $MGMT_IF cluster-host
 
-#. Configure NTP servers for network time synchronization:
+#. Configure |NTP| servers for network time synchronization:
 
    ::
 
@@ -203,32 +211,30 @@ Configure controller-0
 
 #. Configure Ceph storage backend:
 
-   .. important::
+   This step is required only if your application requires persistent storage.
 
-      This step required only if your application requires
-      persistent storage.
+   .. only:: starlingx
 
-      **If you want to install the StarlingX Openstack application
-      (stx-openstack), this step is mandatory.**
+      .. important::
+
+         **If you want to install the StarlingX Openstack application
+         (stx-openstack), this step is mandatory.**
 
    ::
 
-    system storage-backend-add ceph --confirmed
+     system storage-backend-add ceph --confirmed
 
 #. If required, and not already done as part of bootstrap, configure Docker to
    use a proxy server.
 
-   #. List Docker proxy parameters:
+   StarlingX uses publicly available container runtime registries. If you are behind a
+   corporate firewall or proxy, you need to set docker proxy settings.
 
-      ::
+   Refer to :ref:`Docker Proxy Configuration <docker_proxy_config>` for
+   details about configuring Docker proxy settings.
 
-       system service-parameter-list platform docker
-
-   #. Refer to :ref:`Docker Proxy Configuration <docker_proxy_config>` for
-      details about Docker proxy settings.
 
 .. only:: starlingx
-
 
    *************************************
    OpenStack-specific host configuration
@@ -248,71 +254,43 @@ Configure controller-0
 
    #. **For OpenStack only:** Configure the system setting for the vSwitch.
 
-      StarlingX has OVS (kernel-based) vSwitch configured as default:
+      StarlingX has |OVS| (kernel-based) vSwitch configured as default:
 
       * Runs in a container; defined within the helm charts of stx-openstack
         manifest.
       * Shares the core(s) assigned to the platform.
 
-      If you require better performance, OVS-DPDK (OVS with the Data Plane
-      Development Kit, which is supported only on bare metal hardware) should be
-      used:
+      If you require better performance, |OVS|-|DPDK| (OVS with the Data Plane
+      Development Kit, which is supported only on bare metal hardware) should
+      be used:
 
       * Runs directly on the host (it is not containerized).
       * Requires that at least 1 core be assigned/dedicated to the vSwitch function.
 
-      To deploy the default containerized OVS:
+      **To deploy the default containerized OVS:**
 
       ::
 
         system modify --vswitch_type none
 
-      Do not run any vSwitch directly on the host, instead, use the containerized
-      OVS defined in the helm charts of stx-openstack manifest.
+      This does not run any vSwitch directly on the host, instead, it uses the
+      containerized |OVS| defined in the helm charts of stx-openstack manifest.
 
-      To deploy OVS-|DPDK|, run the following command:
+      **To deploy OVS-DPDK, run the following command:**
 
       ::
 
         system modify --vswitch_type ovs-dpdk
-        system host-cpu-modify -f vswitch -p0 1 controller-0
 
-      Once vswitch_type is set to OVS-|DPDK|, any subsequent nodes created
-      will default to automatically assigning 1 vSwitch core for AIO
-      controllers and 2 vSwitch cores for compute-labeled worker nodes.
-
-      When using OVS-|DPDK|, configure vSwitch memory per node with the
-      following command:
-
-      ::
-
-         system host-memory-modify -f <function> -1G <1G hugepages number> <hostname or id> <processor>
-
-      For example:
-
-      ::
-
-         system host-memory-modify -f vswitch -1G 1 worker-0 0
-
-      |VMs| created in an OVS-|DPDK| environment must be configured to use huge pages
-      to enable networking and must use a flavor with property: hw:mem_page_size=large
-
-      Configure the huge pages for VMs in an OVS-|DPDK| environment with the command:
-
-      ::
-
-         system host-memory-modify -1G <1G hugepages number> <hostname or id> <processor>
-
-      For example:
-
-      ::
-
-         system host-memory-modify worker-0 0 -1G 10
+      Once vswitch_type is set to OVS-|DPDK|, any subsequent AIO-controller or
+      worker nodes created will default to automatically assigning 1 vSwitch
+      core for |AIO| controllers and 2 vSwitch cores for compute-labeled worker
+      nodes.
 
       .. note::
 
          After controller-0 is unlocked, changing vswitch_type requires
-         locking and unlocking all compute-labeled worker nodes (and/or AIO
+         locking and unlocking all compute-labeled worker nodes (and/or |AIO|
          controllers) to apply the change.
 
       .. incl-config-controller-0-storage-end:
@@ -341,8 +319,8 @@ Install software on controller-1 and worker nodes
 #. As controller-1 boots, a message appears on its console instructing you to
    configure the personality of the node.
 
-#. On the console of controller-0, list hosts to see newly discovered controller-1
-   host (hostname=None):
+#. On the console of controller-0, list hosts to see newly discovered
+   controller-1 host (hostname=None):
 
    ::
 
@@ -373,16 +351,16 @@ Install software on controller-1 and worker nodes
 
      system host-update 3 personality=worker hostname=worker-0
 
-   Repeat for worker-1. Power on worker-1 and wait for the new host (hostname=None) to
-   be discovered by checking 'system host-list':
+   Repeat for worker-1. Power on worker-1 and wait for the new host
+   (hostname=None) to be discovered by checking 'system host-list':
 
    ::
 
      system host-update 4 personality=worker hostname=worker-1
 
-#. Wait for the software installation on controller-1, worker-0, and worker-1 to
-   complete, for all servers to reboot, and for all to show as locked/disabled/online in
-   'system host-list'.
+#. Wait for the software installation on controller-1, worker-0, and worker-1
+   to complete, for all servers to reboot, and for all to show as
+   locked/disabled/online in 'system host-list'.
 
    ::
 
@@ -403,20 +381,27 @@ Configure controller-1
 
 .. incl-config-controller-1-start:
 
-Configure the OAM and MGMT interfaces of controller-1 and specify the attached
-networks. Use the OAM and MGMT port names, for example eth0, that are applicable
-to your deployment environment.
+#. Configure the |OAM| interface of controller-1 and specify the
+   attached network of "oam".
 
-(Note that the MGMT interface is partially set up automatically by the network
-install procedure.)
+   Use the |OAM| port name that is applicable to your deployment environment, for example eth0:
 
-::
+   ::
 
-  OAM_IF=<OAM-PORT>
-  MGMT_IF=<MGMT-PORT>
-  system host-if-modify controller-1 $OAM_IF -c platform
-  system interface-network-assign controller-1 $OAM_IF oam
-  system interface-network-assign controller-1 $MGMT_IF cluster-host
+      OAM_IF=<OAM-PORT>
+      system host-if-modify controller-1 $OAM_IF -c platform
+      system interface-network-assign controller-1 $OAM_IF oam
+
+#. The MGMT interface is partially set up by the network install procedure; configuring
+   the port used for network install as the MGMT port and specifying the attached network of "mgmt".
+
+   Complete the MGMT interface configuration of controller-1 by specifying the attached
+   network of "cluster-host".
+
+   ::
+
+      system interface-network-assign controller-1 mgmt0 cluster-host
+
 
 .. only:: starlingx
 
@@ -498,34 +483,16 @@ Configure worker nodes
 #. Configure data interfaces for worker nodes. Use the DATA port names, for
    example eth0, that are applicable to your deployment environment.
 
-   .. important::
+   This step is optional for Kubernetes: Do this step if using |SRIOV| network
+   attachments in hosted application containers.
 
-        This step is **required** for OpenStack.
+   .. only:: starlingx
 
-        This step is optional for Kubernetes: Do this step if using |SRIOV| network
-        attachments in hosted application containers.
+      .. important::
 
-   For Kubernetes |SRIOV| network attachments:
+           This step is **required** for OpenStack.
 
-   * Configure |SRIOV| device plug in:
-
-     ::
-
-      for NODE in worker-0 worker-1; do
-         system host-label-assign ${NODE} sriovdp=enabled
-      done
-
-   * If planning on running DPDK in containers on this host, configure the number
-     of 1G Huge pages required on both |NUMA| nodes:
-
-     ::
-
-        for NODE in worker-0 worker-1; do
-           system host-memory-modify ${NODE} 0 -1G 100
-           system host-memory-modify ${NODE} 1 -1G 100
-        done
-
-   For both Kubernetes and OpenStack:
+   * Configure the data interfaces
 
    ::
 
@@ -561,6 +528,32 @@ Configure worker nodes
         set +ex
       done
 
+   * To enable using |SRIOV| network attachments for the above interfaces in Kubernetes hosted application containers:
+
+     * Configure |SRIOV| device plug in:
+
+       ::
+
+        for NODE in worker-0 worker-1; do
+           system host-label-assign ${NODE} sriovdp=enabled
+        done
+
+     * If planning on running DPDK in containers on this host, configure the number
+       of 1G Huge pages required on both |NUMA| nodes:
+
+       ::
+
+          for NODE in worker-0 worker-1; do
+
+            # assign 10x 1G huge page on processor/numa-node 0 on worker-node to applications
+            system host-memory-modify -f application $NODE 0 -1G 10
+
+            # assign 10x 1G huge page on processor/numa-node 1 on worker-node to applications
+            system host-memory-modify -f application $NODE 1 -1G 10
+
+          done
+
+
 .. only:: starlingx
 
    *************************************
@@ -582,6 +575,64 @@ Configure worker nodes
             system host-label-assign $NODE  openvswitch=enabled
             system host-label-assign $NODE  sriov=enabled
          done
+
+   #. **For OpenStack only:** Configure the host settings for the vSwitch.
+
+      **If using OVS-DPDK vswitch, run the following commands:**
+
+      Default recommendation for worker node is to use a single core on each numa-node
+      for |OVS|-|DPDK| vswitch.  This should have been automatically configured,
+      if not run the following command.
+
+      ::
+
+        for NODE in worker-0 worker-1; do
+
+           # assign 1 core on processor/numa-node 0 on worker-node to vswitch
+           system host-cpu-modify -f vswitch -p0 1 $NODE
+
+           # assign 1 core on processor/numa-node 1 on worker-node to vswitch
+           system host-cpu-modify -f vswitch -p1 1 $NODE
+
+        done
+
+
+      When using |OVS|-|DPDK|, configure 1x 1G huge page for vSwitch memory on each |NUMA| node
+      where vswitch is running on this host, with the following command:
+
+      ::
+
+         for NODE in worker-0 worker-1; do
+
+           # assign 1x 1G huge page on processor/numa-node 0 on worker-node to vswitch
+           system host-memory-modify -f vswitch -1G 1 $NODE 0
+
+           # assign 1x 1G huge page on processor/numa-node 0 on worker-node to vswitch
+           system host-memory-modify -f vswitch -1G 1 $NODE 1
+
+         done
+
+
+      .. important::
+
+         |VMs| created in an |OVS|-|DPDK| environment must be configured to use
+         huge pages to enable networking and must use a flavor with property:
+         hw:mem_page_size=large
+
+         Configure the huge pages for |VMs| in an |OVS|-|DPDK| environment for this host with
+         the command:
+
+         ::
+
+            for NODE in worker-0 worker-1; do
+
+              # assign 10x 1G huge page on processor/numa-node 0 on worker-node to applications
+              system host-memory-modify -f application -1G 10 $NODE 0
+
+              # assign 10x 1G huge page on processor/numa-node 1 on worker-node to applications
+              system host-memory-modify -f application -1G 10 $NODE 1
+
+            done
 
    #. **For OpenStack only:** Set up disk partition for nova-local volume group,
       which is needed for stx-openstack nova ephemeral disks.

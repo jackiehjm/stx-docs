@@ -191,7 +191,7 @@ Configure storage nodes
        system interface-network-assign $NODE mgmt0 cluster-host
     done
 
-#. Add OSDs to storage-0. The following example adds OSDs to the `sdb` disk:
+#. Add |OSDs| to storage-0. The following example adds |OSDs| to the `sdb` disk:
 
    ::
 
@@ -206,7 +206,7 @@ Configure storage nodes
 
     system host-stor-list $HOST
 
-#. Add OSDs to storage-1. The following example adds OSDs to the `sdb` disk:
+#. Add |OSDs| to storage-1. The following example adds |OSDs| to the `sdb` disk:
 
    ::
 
@@ -255,34 +255,16 @@ Configure worker nodes
 #. Configure data interfaces for worker nodes. Use the DATA port names, for
    example eth0, that are applicable to your deployment environment.
 
-   .. important::
+   This step is optional for Kubernetes: Do this step if using |SRIOV| network
+   attachments in hosted application containers.
 
-      This step is **required** for OpenStack.
+   .. only:: starlingx
 
-      This step is optional for Kubernetes: Do this step if using SRIOV network
-      attachments in hosted application containers.
+      .. important::
 
-   For Kubernetes SRIOV network attachments:
+         This step is **required** for OpenStack.
 
-   * Configure SRIOV device plug in:
-
-     ::
-
-        for NODE in worker-0 worker-1; do
-           system host-label-assign ${NODE} sriovdp=enabled
-        done
-
-   * If planning on running DPDK in containers on this host, configure the number
-     of 1G Huge pages required on both NUMA nodes:
-
-     ::
-
-        for NODE in worker-0 worker-1; do
-           system host-memory-modify ${NODE} 0 -1G 100
-           system host-memory-modify ${NODE} 1 -1G 100
-        done
-
-   For both Kubernetes and OpenStack:
+   * Configure the data interfaces
 
    ::
 
@@ -318,41 +300,123 @@ Configure worker nodes
           set +ex
         done
 
-*************************************
-OpenStack-specific host configuration
-*************************************
+   * To enable using SRIOV network attachments for the above interfaces in Kubernetes hosted application containers:
 
-.. important::
+     * Configure SRIOV device plug in:
 
-   **This step is required only if the StarlingX OpenStack application
-   (stx-openstack) will be installed.**
+       ::
 
-#. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
-   support of installing the stx-openstack manifest and helm-charts later.
+          for NODE in worker-0 worker-1; do
+             system host-label-assign ${NODE} sriovdp=enabled
+          done
 
-   ::
+     * If planning on running |DPDK| in containers on this host, configure the
+       number of 1G Huge pages required on both NUMA nodes:
 
-    for NODE in worker-0 worker-1; do
-      system host-label-assign $NODE  openstack-compute-node=enabled
-      system host-label-assign $NODE  openvswitch=enabled
-      system host-label-assign $NODE  sriov=enabled
-    done
+       ::
 
-#. **For OpenStack only:** Set up disk partition for nova-local volume group,
-   which is needed for stx-openstack nova ephemeral disks.
+          for NODE in worker-0 worker-1; do
+             system host-memory-modify ${NODE} 0 -1G 100
+             system host-memory-modify ${NODE} 1 -1G 100
+          done
 
-   ::
 
-    for NODE in worker-0 worker-1; do
-      echo "Configuring Nova local for: $NODE"
-      ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
-      ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
-      PARTITION_SIZE=10
-      NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
-      NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
-      system host-lvg-add ${NODE} nova-local
-      system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
-    done
+.. only:: starlingx
+
+   *************************************
+   OpenStack-specific host configuration
+   *************************************
+
+   .. important::
+
+      **This step is required only if the StarlingX OpenStack application
+      (stx-openstack) will be installed.**
+
+   #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
+      support of installing the stx-openstack manifest and helm-charts later.
+
+      ::
+
+       for NODE in worker-0 worker-1; do
+         system host-label-assign $NODE  openstack-compute-node=enabled
+         system host-label-assign $NODE  openvswitch=enabled
+         system host-label-assign $NODE  sriov=enabled
+       done
+
+   #. **For OpenStack only:** Configure the host settings for the vSwitch.
+
+      **If using OVS-DPDK vswitch, run the following commands:**
+
+      Default recommendation for worker node is to use a single core on each
+      numa-node for |OVS|-|DPDK| vswitch. This should have been automatically
+      configured, if not run the following command.
+
+      ::
+
+        for NODE in worker-0 worker-1; do
+
+           # assign 1 core on processor/numa-node 0 on worker-node to vswitch
+           system host-cpu-modify -f vswitch -p0 1 $NODE
+
+           # assign 1 core on processor/numa-node 1 on worker-node to vswitch
+           system host-cpu-modify -f vswitch -p1 1 $NODE
+
+        done
+
+
+      When using |OVS|-|DPDK|, configure 1x 1G huge page for vSwitch memory on
+      each |NUMA| node where vswitch is running on this host, with the
+      following command:
+
+      ::
+
+         for NODE in worker-0 worker-1; do
+
+           # assign 1x 1G huge page on processor/numa-node 0 on worker-node to vswitch
+           system host-memory-modify -f vswitch -1G 1 $NODE 0
+
+           # assign 1x 1G huge page on processor/numa-node 0 on worker-node to vswitch
+           system host-memory-modify -f vswitch -1G 1 $NODE 1
+
+         done
+
+
+      .. important::
+
+         |VMs| created in an |OVS|-|DPDK| environment must be configured to use
+         huge pages to enable networking and must use a flavor with property:
+         hw:mem_page_size=large
+
+         Configure the huge pages for |VMs| in an |OVS|-|DPDK| environment for
+         this host with the command:
+
+         ::
+
+            for NODE in worker-0 worker-1; do
+
+              # assign 10x 1G huge page on processor/numa-node 0 on worker-node to applications
+              system host-memory-modify -f application -1G 10 $NODE 0
+
+              # assign 10x 1G huge page on processor/numa-node 1 on worker-node to applications
+              system host-memory-modify -f application -1G 10 $NODE 1
+
+            done
+
+   #. **For OpenStack only:** Set up disk partition for nova-local volume group,
+      which is needed for stx-openstack nova ephemeral disks.
+
+      ::
+
+       for NODE in worker-0 worker-1; do
+         echo "Configuring Nova local for: $NODE"
+         ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
+         ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
+         PARTITION_SIZE=10
+         NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
+         NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
+         system host-lvg-add ${NODE} nova-local
+         system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
+       done
 
 -------------------
 Unlock worker nodes
