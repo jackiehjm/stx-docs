@@ -15,7 +15,7 @@ health of the system.
 .. _900-series-alarm-messages-table-zrd-tg5-v5:
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 900.001**
@@ -32,13 +32,13 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 900.002**
      - Obsolete patch in system.
    * - Entity Instance
-     - host=<hostname>
+     - host=controller
    * - Degrade Affecting Severity:
      - None
    * - Severity:
@@ -49,7 +49,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 900.003**
@@ -66,7 +66,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 900.004**
@@ -83,7 +83,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 900.005**
@@ -100,61 +100,61 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 900.101**
-     - Software update auto-apply in progress.
+     - Software patch auto-apply inprogress.
    * - Entity Instance
-     - sw-update
+     - orchestration=sw-patch
    * - Degrade Affecting Severity:
      - None
    * - Severity:
      - M\*
    * - Proposed Repair Action
-     - Wait for software update auto-apply to complete; if problem persists
+     - Wait for software patch auto-apply to complete; if problem persists
        contact next level of support.
 
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 900.102**
-     - Software update auto-apply aborting.
+     - Software patch auto-apply aborting.
    * - Entity Instance
-     - host=<hostname>
+     - orchestration=sw-patch
    * - Degrade Affecting Severity:
      - None
    * - Severity:
      - M\*
    * - Proposed Repair Action
-     - Wait for software update auto-apply abort to complete; if problem
+     - Wait for software patch auto-apply abort to complete; if problem
        persists contact next level of support.
 
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 900.103**
-     - Software update auto-apply failed.
+     - Software patch auto-apply failed.
    * - Entity Instance
-     - host=<hostname>
+     - orchestration=sw-patch
    * - Degrade Affecting Severity:
      - None
    * - Severity:
      - M\*
    * - Proposed Repair Action
-     - Attempt to apply software updates manually; if problem persists contact
+     - Attempt to apply software patches manually; if problem persists contact
        next level of support.
 
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 900.201**
@@ -172,11 +172,11 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 900.202**
-     - Software upgrade auto-apply aborting
+     - Software upgrade auto-apply aborting.
    * - Entity Instance
      - orchestration=sw-upgrade
    * - Degrade Affecting Severity:
@@ -190,7 +190,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 900.203**
@@ -208,7 +208,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 900.301**
@@ -226,7 +226,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 900.302**
@@ -244,7 +244,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 900.303**

@@ -15,7 +15,7 @@ health of the system.
 .. _400-series-alarm-messages-table-zrd-tg5-v5:
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 400.003**
@@ -48,10 +48,10 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
-   * - **Alarm ID: 400.003**
+   * - **Alarm ID: 400.005**
      - Communication failure detected with peer over port <linux-ifname>.
 
        or

@@ -15,7 +15,7 @@ health of the system.
 .. _800-series-alarm-messages-table-zrd-tg5-v5:
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 800.001**
@@ -34,7 +34,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 800.003**
@@ -52,7 +52,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 800.010**
@@ -71,7 +71,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 800.011**
@@ -90,7 +90,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 800.102**
@@ -110,14 +110,14 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 800.103**
      - Storage Alarm Condition:
 
        \[ Metadata usage for LVM thin pool <VG name>/<Pool name> exceeded
-       threshold and automatic extension failed
+       threshold and automatic extension failed.
 
        Metadata usage for LVM thin pool <VG name>/<Pool name> exceeded
        threshold \]; threshold x%, actual y%.
@@ -135,7 +135,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 800.104**

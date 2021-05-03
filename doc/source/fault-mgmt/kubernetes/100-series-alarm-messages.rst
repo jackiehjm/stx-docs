@@ -15,7 +15,7 @@ health of the system.
 .. _100-series-alarm-messages-table-zrd-tg5-v5:
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 100.101**
@@ -35,7 +35,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 100.103**
@@ -57,29 +57,39 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 100.104**
-     - File System threshold exceeded; threshold x%, actual y%
+     - host=<hostname>.filesystem=<mount-dir>
+       File System threshold exceeded; threshold x%, actual y%.
 
        CRITICAL @ 90%
 
        MAJOR @ 80%
+
+       OR
+
+       host=<hostname>.volumegroup=<volumegroup-name>
+       Monitor and if condition persists, consider adding additional
+       physical volumes to the volume group.
    * - Entity Instance
      - host=<hostname>.filesystem=<mount-dir>
+
+       OR
+
+       host=<hostname>.volumegroup=<volumegroup-name>
    * - Degrade Affecting Severity:
      - Critical
    * - Severity:
      - C\*/M
    * - Proposed Repair Action
-     - Monitor and if condition persists, consider adding additional physical
-       volumes to the volume group.
+     - Reduce usage or resize filesystem.
 
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 100.105**
@@ -101,7 +111,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 100.106**
@@ -119,7 +129,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 100.107**
@@ -141,7 +151,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 100.108**
@@ -159,7 +169,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 100.109**
@@ -181,7 +191,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 100.110**
@@ -199,7 +209,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 100.111**
@@ -221,7 +231,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 100.112**
@@ -239,7 +249,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 100.113**
@@ -261,7 +271,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 100.114**
@@ -285,7 +295,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 100.118**
@@ -303,7 +313,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 100.119**
