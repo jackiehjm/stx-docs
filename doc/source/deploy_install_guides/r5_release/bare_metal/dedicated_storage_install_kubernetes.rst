@@ -6,12 +6,12 @@
 
    .. include:: /_includes/install-kubernetes-null-labels.rest
 
-=========================================================================
-Install Kubernetes Platform on Bare Metal Standard with Dedicated Storage
-=========================================================================
+==============================================================
+Install Kubernetes Platform on Standard with Dedicated Storage
+==============================================================
 
 This section describes the steps to install the StarlingX Kubernetes platform
-on a **StarlingX R5.0 bare metal Standard with Dedicated Storage** deployment
+on a **StarlingX R5.0 Standard with Dedicated Storage** deployment
 configuration.
 
 .. contents::
