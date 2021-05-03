@@ -2,7 +2,7 @@
 .. _aio_duplex_install_kubernetes:
 
 ================================================
-Install Kubernetes Platform on Bare Metal AIO-DX
+Install Kubernetes Platform on All-in-one Duplex
 ================================================
 
 .. only:: partner
@@ -12,7 +12,7 @@ Install Kubernetes Platform on Bare Metal AIO-DX
 .. only:: starlingx
 
    This section describes the steps to install the StarlingX Kubernetes
-   platform on a **StarlingX R5.0 bare metal All-in-one Duplex** deployment
+   platform on a **StarlingX R5.0 All-in-one Duplex** deployment
    configuration.
 
    .. contents::
