@@ -225,8 +225,7 @@ Configure controller-0
 #. Configure the |OAM| interface of controller-0 and specify the
    attached network as "oam".
 
-   Use the |OAM| port name that is applicable to your deployment environment,
-   for example eth0:
+   Use the |OAM| port name that is applicable to your deployment environment, for example eth0:
 
    ::
 

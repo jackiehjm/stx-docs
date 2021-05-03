@@ -66,7 +66,7 @@ Deletes subcloud group details from the database.
          [--update_apply_type UPDATE_APPLY_TYPE]
          [--max_parallel_subclouds MAX_PARALLEL_SUBCLOUDS]
 
-    For example,
+    For example:
 
     .. code-block:: none
 

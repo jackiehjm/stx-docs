@@ -505,7 +505,7 @@ A persistent storage backend is required if your application requires |PVCs|.
 
 For host-based Ceph:
 
-#. Initialize with add ceph backend:
+#. Initialize with add Ceph backend:
 
    ::
 
