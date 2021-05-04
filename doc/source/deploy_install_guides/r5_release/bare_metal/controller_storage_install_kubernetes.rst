@@ -1,46 +1,34 @@
-===========================================================================
-Install StarlingX Kubernetes on Bare Metal Standard with Controller Storage
-===========================================================================
 
-This section describes the steps to install the StarlingX Kubernetes platform
-on a **StarlingX R5.0 bare metal Standard with Controller Storage** deployment
-configuration.
+.. _controller_storage_install_kubernetes:
+
+==========================================================================
+Install Kubernetes Platform on Bare Metal Standard with Controller Storage
+==========================================================================
 
 .. contents::
    :local:
    :depth: 1
 
--------------------
-Create bootable USB
--------------------
+.. only:: starlingx
 
-Refer to :doc:`/deploy_install_guides/bootable_usb` for instructions on how to
-create a bootable USB with the StarlingX ISO on your system.
+   This section describes the steps to install the StarlingX Kubernetes
+   platform on a **StarlingX R5.0 bare metal Standard with Controller Storage**
+   deployment configuration.
 
---------------------------------
-Install software on controller-0
---------------------------------
+   -------------------
+   Create bootable USB
+   -------------------
 
-.. incl-install-software-controller-0-standard-start:
+   Refer to :ref:`Bootable USB <bootable_usb>` for instructions on how to
+   create a bootable USB with the StarlingX ISO on your system.
 
-#. Insert the bootable USB into a bootable USB port on the host you are
-   configuring as controller-0.
+   --------------------------------
+   Install software on controller-0
+   --------------------------------
 
-#. Power on the host.
-
-#. Attach to a console, ensure the host boots from the USB, and wait for the
-   StarlingX Installer Menus.
-
-#. Make the following menu selections in the installer:
-
-   #. First menu: Select 'Standard Controller Configuration'
-   #. Second menu: Select 'Graphical Console' or 'Textual Console' depending on
-      your terminal access to the console port
-
-#. Wait for non-interactive install of software to complete and server to reboot.
-   This can take 5-10 minutes, depending on the performance of the server.
-
-.. incl-install-software-controller-0-standard-end:
+   .. include:: inc-install-software-on-controller.rest
+      :start-after: incl-install-software-controller-0-standard-start
+      :end-before: incl-install-software-controller-0-standard-end
 
 --------------------------------
 Bootstrap system on controller-0
@@ -50,7 +38,8 @@ Bootstrap system on controller-0
 
 #. Login using the username / password of "sysadmin" / "sysadmin".
 
-   When logging in for the first time, you will be forced to change the password.
+   When logging in for the first time, you will be forced to change the
+   password.
 
    ::
 
@@ -64,9 +53,9 @@ Bootstrap system on controller-0
 #. Verify and/or configure IP connectivity.
 
    External connectivity is required to run the Ansible bootstrap playbook. The
-   StarlingX boot image will DHCP out all interfaces so the server may have
-   obtained an IP address and have external IP connectivity if a DHCP server is
-   present in your environment. Verify this using the :command:`ip addr` and
+   StarlingX boot image will |DHCP| out all interfaces so the server may have
+   obtained an IP address and have external IP connectivity if a |DHCP| server
+   is present in your environment. Verify this using the :command:`ip addr` and
    :command:`ping 8.8.8.8` commands.
 
    Otherwise, manually configure an IP address and default IP route. Use the
@@ -82,23 +71,26 @@ Bootstrap system on controller-0
 
 #. Specify user configuration overrides for the Ansible bootstrap playbook.
 
-   Ansible is used to bootstrap StarlingX on controller-0. Key files for Ansible
-   configuration are:
+   .. only:: starlingx
 
-   ``/etc/ansible/hosts``
-      The default Ansible inventory file. Contains a single host: localhost.
+      Ansible is used to bootstrap StarlingX on controller-0. Key files for
+      Ansible configuration are:
 
-   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap.yml``
-      The Ansible bootstrap playbook.
+      ``/etc/ansible/hosts``
+         The default Ansible inventory file. Contains a single host: localhost.
 
-   ``/usr/share/ansible/stx-ansible/playbooks/host_vars/bootstrap/default.yml``
-      The default configuration values for the bootstrap playbook.
+      ``/usr/share/ansible/stx-ansible/playbooks/bootstrap.yml``
+         The Ansible bootstrap playbook.
 
-   ``sysadmin home directory ($HOME)``
-      The default location where Ansible looks for and imports user
-      configuration override files for hosts. For example: ``$HOME/<hostname>.yml``.
+      ``/usr/share/ansible/stx-ansible/playbooks/host_vars/bootstrap/default.yml``
+         The default configuration values for the bootstrap playbook.
 
-   .. include:: ../ansible_install_time_only.txt
+      ``sysadmin home directory ($HOME)``
+         The default location where Ansible looks for and imports user
+         configuration override files for hosts. For example:
+         ``$HOME/<hostname>.yml``.
+
+      .. include:: ../ansible_install_time_only.txt
 
    Specify the user configuration override file for the Ansible bootstrap
    playbook using one of the following methods:
@@ -106,7 +98,8 @@ Bootstrap system on controller-0
    #. Use a copy of the default.yml file listed above to provide your overrides.
 
       The default.yml file lists all available parameters for bootstrap
-      configuration with a brief description for each parameter in the file comments.
+      configuration with a brief description for each parameter in the file
+      comments.
 
       To use this method, copy the default.yml file listed above to
       ``$HOME/localhost.yml`` and edit the configurable values as desired.
@@ -146,11 +139,18 @@ Bootstrap system on controller-0
 
         EOF
 
-   Refer to :doc:`/deploy_install_guides/r5_release/ansible_bootstrap_configs`
-   for information on additional Ansible bootstrap configurations for advanced
-   Ansible bootstrap scenarios, such as Docker proxies when deploying behind a
-   firewall, etc. Refer to :doc:`/../../configuration/docker_proxy_config` for
-   details about Docker proxy settings.
+   .. only:: partner
+
+      .. include:: ../../../_includes/install-playbook-values-aws.rest
+
+   .. only:: starlingx
+
+      Refer to :ref:`Ansible Bootstrap Configurations
+      <ansible_bootstrap_configs>` for information on additional Ansible
+      bootstrap configurations for advanced Ansible bootstrap scenarios, such
+      as Docker proxies when deploying behind a firewall, etc. Refer to
+      :ref:`Docker Proxy configuration <docker_proxy_config>` for details about
+      Docker proxy settings.
 
 #. Run the Ansible bootstrap playbook:
 
@@ -201,7 +201,7 @@ Configure controller-0
 
      system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org
 
-#. Configure Ceph storage backend
+#. Configure Ceph storage backend:
 
    .. important::
 
@@ -209,7 +209,7 @@ Configure controller-0
       persistent storage.
 
       **If you want to install the StarlingX Openstack application
-      (stx-openstack) this step is mandatory.**
+      (stx-openstack), this step is mandatory.**
 
    ::
 
@@ -224,95 +224,98 @@ Configure controller-0
 
        system service-parameter-list platform docker
 
-   #. Refer to :doc:`/../../configuration/docker_proxy_config` for
+   #. Refer to :ref:`Docker Proxy Configuration <docker_proxy_config>` for
       details about Docker proxy settings.
 
-*************************************
-OpenStack-specific host configuration
-*************************************
+.. only:: starlingx
 
-.. important::
 
-   **This step is required only if the StarlingX OpenStack application
-   (stx-openstack) will be installed.**
+   *************************************
+   OpenStack-specific host configuration
+   *************************************
 
-#. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
-   support of installing the stx-openstack manifest and helm-charts later.
+   .. important::
 
-   ::
+      **This step is required only if the StarlingX OpenStack application
+      (stx-openstack) will be installed.**
 
-     system host-label-assign controller-0 openstack-control-plane=enabled
+   #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
+      support of installing the stx-openstack manifest and helm-charts later.
 
-#. **For OpenStack only:** Configure the system setting for the vSwitch.
+      ::
 
-   StarlingX has OVS (kernel-based) vSwitch configured as default:
+        system host-label-assign controller-0 openstack-control-plane=enabled
 
-   * Runs in a container; defined within the helm charts of stx-openstack
-     manifest.
-   * Shares the core(s) assigned to the platform.
+   #. **For OpenStack only:** Configure the system setting for the vSwitch.
 
-   If you require better performance, OVS-DPDK (OVS with the Data Plane
-   Development Kit, which is supported only on bare metal hardware) should be
-   used:
+      StarlingX has OVS (kernel-based) vSwitch configured as default:
 
-   * Runs directly on the host (it is not containerized).
-   * Requires that at least 1 core be assigned/dedicated to the vSwitch function.
+      * Runs in a container; defined within the helm charts of stx-openstack
+        manifest.
+      * Shares the core(s) assigned to the platform.
 
-   To deploy the default containerized OVS:
+      If you require better performance, OVS-DPDK (OVS with the Data Plane
+      Development Kit, which is supported only on bare metal hardware) should be
+      used:
 
-   ::
+      * Runs directly on the host (it is not containerized).
+      * Requires that at least 1 core be assigned/dedicated to the vSwitch function.
 
-     system modify --vswitch_type none
+      To deploy the default containerized OVS:
 
-   Do not run any vSwitch directly on the host, instead, use the containerized
-   OVS defined in the helm charts of stx-openstack manifest.
+      ::
 
-   To deploy OVS-DPDK, run the following command:
+        system modify --vswitch_type none
 
-   ::
+      Do not run any vSwitch directly on the host, instead, use the containerized
+      OVS defined in the helm charts of stx-openstack manifest.
 
-     system modify --vswitch_type ovs-dpdk
-     system host-cpu-modify -f vswitch -p0 1 controller-0
+      To deploy OVS-|DPDK|, run the following command:
 
-   Once vswitch_type is set to OVS-DPDK, any subsequent nodes created will
-   default to automatically assigning 1 vSwitch core for AIO controllers and 2
-   vSwitch cores for compute-labeled worker nodes.
+      ::
 
-   When using OVS-DPDK, configure vSwitch memory per NUMA node with the following
-   command:
+        system modify --vswitch_type ovs-dpdk
+        system host-cpu-modify -f vswitch -p0 1 controller-0
 
-   ::
+      Once vswitch_type is set to OVS-|DPDK|, any subsequent nodes created
+      will default to automatically assigning 1 vSwitch core for AIO
+      controllers and 2 vSwitch cores for compute-labeled worker nodes.
 
-      system host-memory-modify -f <function> -1G <1G hugepages number> <hostname or id> <processor>
+      When using OVS-|DPDK|, configure vSwitch memory per node with the
+      following command:
 
-   For example:
+      ::
 
-   ::
+         system host-memory-modify -f <function> -1G <1G hugepages number> <hostname or id> <processor>
 
-      system host-memory-modify -f vswitch -1G 1 worker-0 0
+      For example:
 
-   VMs created in an OVS-DPDK environment must be configured to use huge pages
-   to enable networking and must use a flavor with property: hw:mem_page_size=large
+      ::
 
-   Configure the huge pages for VMs in an OVS-DPDK environment with the command:
+         system host-memory-modify -f vswitch -1G 1 worker-0 0
 
-   ::
+      |VMs| created in an OVS-|DPDK| environment must be configured to use huge pages
+      to enable networking and must use a flavor with property: hw:mem_page_size=large
 
-      system host-memory-modify -1G <1G hugepages number> <hostname or id> <processor>
+      Configure the huge pages for VMs in an OVS-|DPDK| environment with the command:
 
-   For example:
+      ::
 
-   ::
+         system host-memory-modify -1G <1G hugepages number> <hostname or id> <processor>
 
-      system host-memory-modify worker-0 0 -1G 10
+      For example:
 
-   .. note::
+      ::
 
-      After controller-0 is unlocked, changing vswitch_type requires
-      locking and unlocking all compute-labeled worker nodes (and/or AIO
-      controllers) to apply the change.
+         system host-memory-modify worker-0 0 -1G 10
 
-.. incl-config-controller-0-storage-end:
+      .. note::
+
+         After controller-0 is unlocked, changing vswitch_type requires
+         locking and unlocking all compute-labeled worker nodes (and/or AIO
+         controllers) to apply the change.
+
+      .. incl-config-controller-0-storage-end:
 
 -------------------
 Unlock controller-0
@@ -325,7 +328,8 @@ Unlock controller-0 in order to bring it into service:
   system host-unlock controller-0
 
 Controller-0 will reboot in order to apply configuration changes and come into
-service. This can take 5-10 minutes, depending on the performance of the host machine.
+service. This can take 5-10 minutes, depending on the performance of the host
+machine.
 
 -------------------------------------------------
 Install software on controller-1 and worker nodes
@@ -414,21 +418,23 @@ install procedure.)
   system interface-network-assign controller-1 $OAM_IF oam
   system interface-network-assign controller-1 $MGMT_IF cluster-host
 
-*************************************
-OpenStack-specific host configuration
-*************************************
+.. only:: starlingx
 
-.. important::
+   *************************************
+   OpenStack-specific host configuration
+   *************************************
 
-   **This step is required only if the StarlingX OpenStack application
-   (stx-openstack) will be installed.**
+   .. important::
 
-**For OpenStack only:** Assign OpenStack host labels to controller-1 in support
-of installing the stx-openstack manifest and helm-charts later.
+      **This step is required only if the StarlingX OpenStack application
+      (stx-openstack) will be installed.**
 
-::
+   **For OpenStack only:** Assign OpenStack host labels to controller-1 in support
+   of installing the stx-openstack manifest and helm-charts later.
 
-  system host-label-assign controller-1 openstack-control-plane=enabled
+   ::
+
+      system host-label-assign controller-1 openstack-control-plane=enabled
 
 .. incl-config-controller-1-end:
 
@@ -496,12 +502,12 @@ Configure worker nodes
 
         This step is **required** for OpenStack.
 
-        This step is optional for Kubernetes: Do this step if using SRIOV network
+        This step is optional for Kubernetes: Do this step if using |SRIOV| network
         attachments in hosted application containers.
 
-   For Kubernetes SRIOV network attachments:
+   For Kubernetes |SRIOV| network attachments:
 
-   * Configure SRIOV device plug in:
+   * Configure |SRIOV| device plug in:
 
      ::
 
@@ -510,7 +516,7 @@ Configure worker nodes
       done
 
    * If planning on running DPDK in containers on this host, configure the number
-     of 1G Huge pages required on both NUMA nodes:
+     of 1G Huge pages required on both |NUMA| nodes:
 
      ::
 
@@ -555,41 +561,43 @@ Configure worker nodes
         set +ex
       done
 
-*************************************
-OpenStack-specific host configuration
-*************************************
+.. only:: starlingx
 
-.. important::
+   *************************************
+   OpenStack-specific host configuration
+   *************************************
 
-   **This step is required only if the StarlingX OpenStack application
-   (stx-openstack) will be installed.**
+   .. important::
 
-#. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
-   support of installing the stx-openstack manifest and helm-charts later.
+      **This step is required only if the StarlingX OpenStack application
+      (stx-openstack) will be installed.**
 
-   ::
+   #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
+      support of installing the stx-openstack manifest and helm-charts later.
 
-     for NODE in worker-0 worker-1; do
-       system host-label-assign $NODE  openstack-compute-node=enabled
-       system host-label-assign $NODE  openvswitch=enabled
-       system host-label-assign $NODE  sriov=enabled
-     done
+      ::
 
-#. **For OpenStack only:** Set up disk partition for nova-local volume group,
-   which is needed for stx-openstack nova ephemeral disks.
+         for NODE in worker-0 worker-1; do
+            system host-label-assign $NODE  openstack-compute-node=enabled
+            system host-label-assign $NODE  openvswitch=enabled
+            system host-label-assign $NODE  sriov=enabled
+         done
 
-   ::
+   #. **For OpenStack only:** Set up disk partition for nova-local volume group,
+      which is needed for stx-openstack nova ephemeral disks.
 
-     for NODE in worker-0 worker-1; do
-       echo "Configuring Nova local for: $NODE"
-       ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
-       ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
-       PARTITION_SIZE=10
-       NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
-       NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
-       system host-lvg-add ${NODE} nova-local
-       system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
-     done
+      ::
+
+         for NODE in worker-0 worker-1; do
+            echo "Configuring Nova local for: $NODE"
+            ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
+            ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
+            PARTITION_SIZE=10
+            NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
+            NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
+            system host-lvg-add ${NODE} nova-local
+            system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
+         done
 
 --------------------
 Unlock worker nodes
@@ -610,7 +618,7 @@ service. This can take 5-10 minutes, depending on the performance of the host ma
 Add Ceph OSDs to controllers
 ----------------------------
 
-#. Add OSDs to controller-0. The following example adds OSDs to the `sdb` disk:
+#. Add |OSDs| to controller-0. The following example adds |OSDs| to the `sdb` disk:
 
    .. important::
 
@@ -629,7 +637,7 @@ Add Ceph OSDs to controllers
 
      system host-stor-list $HOST
 
-#. Add OSDs to controller-1. The following example adds OSDs to the `sdb` disk:
+#. Add |OSDs| to controller-1. The following example adds |OSDs| to the `sdb` disk:
 
    .. important::
 
@@ -646,10 +654,14 @@ Add Ceph OSDs to controllers
          while true; do system host-stor-list ${HOST} | grep ${OSD} | grep configuring; if [ $? -ne 0 ]; then break; fi; sleep 1; done
      done
 
+   ::
+
      system host-stor-list $HOST
 
-----------
-Next steps
-----------
+.. only:: starlingx
 
-.. include:: ../kubernetes_install_next.txt
+   ----------
+   Next steps
+   ----------
+
+   .. include:: ../kubernetes_install_next.txt

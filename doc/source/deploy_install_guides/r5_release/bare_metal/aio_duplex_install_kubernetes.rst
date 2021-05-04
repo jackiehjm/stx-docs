@@ -1,28 +1,38 @@
-=================================================
-Install StarlingX Kubernetes on Bare Metal AIO-DX
-=================================================
 
-This section describes the steps to install the StarlingX Kubernetes platform
-on a **StarlingX R5.0 bare metal All-in-one Duplex** deployment configuration.
+.. _aio_duplex_install_kubernetes:
 
-.. contents::
-   :local:
-   :depth: 1
+================================================
+Install Kubernetes Platform on Bare Metal AIO-DX
+================================================
 
----------------------
-Create a bootable USB
----------------------
+.. only:: partner
 
-Refer to :doc:`/deploy_install_guides/bootable_usb` for instructions on how to
-create a bootable USB with the StarlingX ISO on your system.
+   .. include:: /_includes/install-kubernetes-null-labels.rest
 
---------------------------------
-Install software on controller-0
---------------------------------
+.. only:: starlingx
 
-.. include:: aio_simplex_install_kubernetes.rst
-   :start-after: incl-install-software-controller-0-aio-simplex-start:
-   :end-before: incl-install-software-controller-0-aio-simplex-end:
+   This section describes the steps to install the StarlingX Kubernetes
+   platform on a **StarlingX R5.0 bare metal All-in-one Duplex** deployment
+   configuration.
+
+   .. contents::
+      :local:
+      :depth: 1
+
+   ---------------------
+   Create a bootable USB
+   ---------------------
+
+   Refer to :ref:`Bootable USB <bootable_usb>` for instructions on how
+   to create a bootable USB with the StarlingX ISO on your system.
+
+   --------------------------------
+   Install software on controller-0
+   --------------------------------
+
+   .. include:: inc-install-software-on-controller.rest
+      :start-after: incl-install-software-controller-0-aio-start
+      :end-before: incl-install-software-controller-0-aio-end
 
 --------------------------------
 Bootstrap system on controller-0
@@ -43,9 +53,9 @@ Bootstrap system on controller-0
 #. Verify and/or configure IP connectivity.
 
    External connectivity is required to run the Ansible bootstrap playbook. The
-   StarlingX boot image will DHCP out all interfaces so the server may have
-   obtained an IP address and have external IP connectivity if a DHCP server is
-   present in your environment. Verify this using the :command:`ip addr` and
+   StarlingX boot image will |DHCP| out all interfaces so the server may have
+   obtained an IP address and have external IP connectivity if a |DHCP| server
+   is present in your environment. Verify this using the :command:`ip addr` and
    :command:`ping 8.8.8.8` commands.
 
    Otherwise, manually configure an IP address and default IP route. Use the
@@ -61,23 +71,26 @@ Bootstrap system on controller-0
 
 #. Specify user configuration overrides for the Ansible bootstrap playbook.
 
-   Ansible is used to bootstrap StarlingX on controller-0. Key files for Ansible
-   configuration are:
+   .. only:: starlingx
 
-   ``/etc/ansible/hosts``
-      The default Ansible inventory file. Contains a single host: localhost.
+      Ansible is used to bootstrap StarlingX on controller-0. Key files for
+      Ansible configuration are:
 
-   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap.yml``
-      The Ansible bootstrap playbook.
+      ``/etc/ansible/hosts``
+         The default Ansible inventory file. Contains a single host: localhost.
 
-   ``/usr/share/ansible/stx-ansible/playbooks/host_vars/bootstrap/default.yml``
-      The default configuration values for the bootstrap playbook.
+      ``/usr/share/ansible/stx-ansible/playbooks/bootstrap.yml``
+         The Ansible bootstrap playbook.
 
-   ``sysadmin home directory ($HOME)``
-      The default location where Ansible looks for and imports user
-      configuration override files for hosts. For example: ``$HOME/<hostname>.yml``.
+      ``/usr/share/ansible/stx-ansible/playbooks/host_vars/bootstrap/default.yml``
+         The default configuration values for the bootstrap playbook.
 
-   .. include:: ../ansible_install_time_only.txt
+      ``sysadmin home directory ($HOME)``
+         The default location where Ansible looks for and imports user
+         configuration override files for hosts. For example:
+         ``$HOME/<hostname>.yml``.
+
+      .. include:: ../ansible_install_time_only.txt
 
    Specify the user configuration override file for the Ansible bootstrap
    playbook using one of the following methods:
@@ -85,7 +98,8 @@ Bootstrap system on controller-0
    #. Use a copy of the default.yml file listed above to provide your overrides.
 
       The default.yml file lists all available parameters for bootstrap
-      configuration with a brief description for each parameter in the file comments.
+      configuration with a brief description for each parameter in the file
+      comments.
 
       To use this method, copy the default.yml file listed above to
       ``$HOME/localhost.yml`` and edit the configurable values as desired.
@@ -125,11 +139,18 @@ Bootstrap system on controller-0
 
         EOF
 
-   Refer to :doc:`/deploy_install_guides/r5_release/ansible_bootstrap_configs`
-   for information on additional Ansible bootstrap configurations for advanced
-   Ansible bootstrap scenarios, such as Docker proxies when deploying behind a
-   firewall, etc. Refer to :doc:`/../../configuration/docker_proxy_config` for
-   details about Docker proxy settings.
+   .. only:: partner
+
+      .. include:: ../../../_includes/install-playbook-values-aws.rest
+
+   .. only:: starlingx
+
+      Refer to :ref:`Ansible Bootstrap Configurations
+      <ansible_bootstrap_configs>` for information on additional Ansible
+      bootstrap configurations for advanced Ansible bootstrap scenarios, such
+      as Docker proxies when deploying behind a firewall, etc. Refer to
+      :ref:`Docker Proxy Configurations <docker_proxy_config>` for details
+      about Docker proxy settings.
 
 #. Run the Ansible bootstrap playbook:
 
@@ -137,8 +158,8 @@ Bootstrap system on controller-0
 
       ansible-playbook /usr/share/ansible/stx-ansible/playbooks/bootstrap.yml
 
-   Wait for Ansible bootstrap playbook to complete.
-   This can take 5-10 minutes, depending on the performance of the host machine.
+   Wait for Ansible bootstrap playbook to complete. This can take 5-10 minutes,
+   depending on the performance of the host machine.
 
 ----------------------
 Configure controller-0
@@ -150,9 +171,9 @@ Configure controller-0
 
      source /etc/platform/openrc
 
-#. Configure the OAM and MGMT interfaces of controller-0 and specify the
-   attached networks. Use the OAM and MGMT port names, for example eth0, that are
-   applicable to your deployment environment.
+#. Configure the |OAM| and MGMT interfaces of controller-0 and specify the
+   attached networks. Use the |OAM| and MGMT port names, for example eth0, that
+   are applicable to your deployment environment.
 
    ::
 
@@ -169,7 +190,7 @@ Configure controller-0
      system interface-network-assign controller-0 $MGMT_IF mgmt
      system interface-network-assign controller-0 $MGMT_IF cluster-host
 
-#. Configure NTP servers for network time synchronization:
+#. Configure |NTP| servers for network time synchronization:
 
    ::
 
@@ -183,18 +204,20 @@ Optionally, initialize a Ceph-based Persistent Storage Backend
 
     A persistent storage backend is required if your application requires
     Persistent Volume Claims (PVCs). The StarlingX OpenStack application
-    (stx-openstack) requires PVCs, therefore if you plan on using the
+    (stx-openstack) requires |PVCs|, therefore if you plan on using the
     stx-openstack application, then you must configure a persistent storage
     backend.
 
-    There are two options for persistent storage backend:
-    1) the host-based Ceph solution and
-    2) the Rook container-based Ceph solution.
+    .. only:: starlingx
 
-    The Rook container-based Ceph backend is installed after both AIO-Controllers
-    are configured and unlocked.
+       There are two options for persistent storage backend:
+       1) the host-based Ceph solution and
+       2) the Rook container-based Ceph solution.
 
-For host-based Ceph,
+       The Rook container-based Ceph backend is installed after both
+       AIO-Controllers are configured and unlocked.
+
+For host-based Ceph:
 
 #. Initialize with add ceph backend:
 
@@ -202,7 +225,7 @@ For host-based Ceph,
 
       system storage-backend-add ceph --confirmed
 
-#. Add an OSD on controller-0 for host-based Ceph:
+#. Add an |OSD| on controller-0 for host-based Ceph:
 
    ::
 
@@ -210,47 +233,50 @@ For host-based Ceph,
       system host-disk-list controller-0 | awk '/\/dev\/sdb/{print $2}' | xargs -i system host-stor-add controller-0 {}
       system host-stor-list controller-0
 
-For Rook container-based Ceph:
+.. only:: starlingx
 
-#. Initialize with add ceph-rook backend:
+   For Rook container-based Ceph:
 
-   ::
+   #. Initialize with add ceph-rook backend:
 
-      system storage-backend-add ceph-rook --confirmed
+      ::
 
-#. Assign Rook host labels to controller-0 in support of installing the
-   rook-ceph-apps manifest/helm-charts later:
+         system storage-backend-add ceph-rook --confirmed
 
-   ::
+   #. Assign Rook host labels to controller-0 in support of installing the
+      rook-ceph-apps manifest/helm-charts later:
 
-      system host-label-assign controller-0 ceph-mon-placement=enabled
-      system host-label-assign controller-0 ceph-mgr-placement=enabled
+      ::
 
-#. Configure data interfaces for controller-0. Use the DATA port names, for example
-   eth0, applicable to your deployment environment.
+         system host-label-assign controller-0 ceph-mon-placement=enabled
+         system host-label-assign controller-0 ceph-mgr-placement=enabled
 
-   .. important::
+   #. Configure data interfaces for controller-0. Use the DATA port names, for example
+      eth0, applicable to your deployment environment.
 
-      This step is **required** for OpenStack.
+      .. important::
 
-      This step is optional for Kubernetes: Do this step if using SRIOV network
-      attachments in hosted application containers.
+         This step is **required** for OpenStack.
 
-   For Kubernetes SRIOV network attachments:
+         This step is optional for Kubernetes: Do this step if using |SRIOV| network
+         attachments in hosted application containers.
 
-   * Configure the SRIOV device plugin
+   For Kubernetes |SRIOV| network attachments:
 
-     ::
-
-       system host-label-assign controller-0 sriovdp=enabled
-
-   * If planning on running DPDK in containers on this host, configure the number
-     of 1G Huge pages required on both NUMA nodes.
+   * Configure the |SRIOV| device plugin.
 
      ::
 
-       system host-memory-modify controller-0 0 -1G 100
-       system host-memory-modify controller-0 1 -1G 100
+         system host-label-assign controller-0 sriovdp=enabled
+
+   * If planning on running |DPDK| in containers on this host, configure the number
+     of 1G Huge pages required on both |NUMA| nodes.
+
+     ::
+
+         system host-memory-modify controller-0 0 -1G 100
+         system host-memory-modify controller-0 1 -1G 100
+
 
    For both Kubernetes and OpenStack:
 
@@ -282,25 +308,26 @@ For Rook container-based Ceph:
       system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
       system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
 
-#. If required, and not already done as part of bootstrap, configure Docker to
-   use a proxy server.
+   #. If required, and not already done as part of bootstrap, configure Docker to
+      use a proxy server.
 
-   #. List Docker proxy parameters:
+      #. List Docker proxy parameters:
 
-      ::
+         ::
 
-       system service-parameter-list platform docker
+          system service-parameter-list platform docker
 
-   #. Refer to :doc:`/../../configuration/docker_proxy_config` for
-      details about Docker proxy settings.
+      #. Refer to :ref:`Docker Proxy Configuration <docker_proxy_config>` for
+         details about Docker proxy settings.
 
-*************************************
-OpenStack-specific host configuration
-*************************************
+.. only:: starlingx
 
-.. include:: aio_simplex_install_kubernetes.rst
-   :start-after: incl-config-controller-0-openstack-specific-aio-simplex-start:
-   :end-before: incl-config-controller-0-openstack-specific-aio-simplex-end:
+   *************************************
+   OpenStack-specific host configuration
+   *************************************
+
+   .. include:: inc-openstack-specific-host-config.rest
+
 
 -------------------
 Unlock controller-0
@@ -358,8 +385,8 @@ Install software on controller-1 node
 Configure controller-1
 ----------------------
 
-#. Configure the OAM and MGMT interfaces of controller-1 and specify the
-   attached networks. Use the OAM and MGMT port names, for example eth0, that are
+#. Configure the |OAM| and MGMT interfaces of controller-1 and specify the
+   attached networks. Use the |OAM| and MGMT port names, for example eth0, that are
    applicable to your deployment environment:
 
    (Note that the MGMT interface is partially set up automatically by the network
@@ -380,12 +407,12 @@ Configure controller-1
 
       This step is **required** for OpenStack.
 
-      This step is optional for Kubernetes: Do this step if using SRIOV network
-      attachments in hosted application containers.
+      This step is optional for Kubernetes: Do this step if using |SRIOV|
+      network attachments in hosted application containers.
 
-   For Kubernetes SRIOV network attachments:
+   For Kubernetes |SRIOV| network attachments:
 
-   * Configure the SRIOV device plugin:
+   * Configure the |SRIOV| device plugin:
 
      ::
 
@@ -399,8 +426,9 @@ Configure controller-1
         system host-memory-modify controller-1 0 -1G 100
         system host-memory-modify controller-1 1 -1G 100
 
+   .. only:: starlingx
 
-   For both Kubernetes and OpenStack:
+      For both Kubernetes and OpenStack:
 
    ::
 
@@ -436,7 +464,7 @@ Optionally, configure host-specific details for Ceph-based Persistent Storage Ba
 
 For host-based Ceph:
 
-#. Add an OSD on controller-1 for host-based Ceph:
+#. Add an |OSD| on controller-1 for host-based Ceph:
 
    ::
 
@@ -444,54 +472,56 @@ For host-based Ceph:
       system host-disk-list controller-1 | awk '/\/dev\/sdb/{print $2}' | xargs -i system host-stor-add controller-1 {}
       system host-stor-list controller-1
 
-For Rook container-based Ceph:
+.. only:: starlingx
 
-#. Assign Rook host labels to controller-1 in support of installing the
-   rook-ceph-apps manifest/helm-charts later:
+   For Rook container-based Ceph:
 
-   ::
+   #. Assign Rook host labels to controller-1 in support of installing the
+      rook-ceph-apps manifest/helm-charts later:
 
-      system host-label-assign controller-1 ceph-mon-placement=enabled
-      system host-label-assign controller-1 ceph-mgr-placement=enabled
+      ::
 
-*************************************
-OpenStack-specific host configuration
-*************************************
+         system host-label-assign controller-1 ceph-mon-placement=enabled
+         system host-label-assign controller-1 ceph-mgr-placement=enabled
 
-.. important::
+   *************************************
+   OpenStack-specific host configuration
+   *************************************
 
-   **This step is required only if the StarlingX OpenStack application
-   (stx-openstack) will be installed.**
+   .. important::
 
-#. **For OpenStack only:** Assign OpenStack host labels to controller-1 in
-   support of installing the stx-openstack manifest and helm-charts later.
+      **This step is required only if the StarlingX OpenStack application
+      (stx-openstack) will be installed.**
 
-   ::
+   #. **For OpenStack only:** Assign OpenStack host labels to controller-1 in
+      support of installing the stx-openstack manifest and helm-charts later.
 
-      system host-label-assign controller-1 openstack-control-plane=enabled
-      system host-label-assign controller-1 openstack-compute-node=enabled
-      system host-label-assign controller-1 openvswitch=enabled
-      system host-label-assign controller-1 sriov=enabled
+      ::
 
-#. **For OpenStack only:** Set up disk partition for nova-local volume group,
-   which is needed for stx-openstack nova ephemeral disks.
+         system host-label-assign controller-1 openstack-control-plane=enabled
+         system host-label-assign controller-1 openstack-compute-node=enabled
+         system host-label-assign controller-1 openvswitch=enabled
+         system host-label-assign controller-1 sriov=enabled
 
-   ::
+   #. **For OpenStack only:** Set up disk partition for nova-local volume group,
+      which is needed for stx-openstack nova ephemeral disks.
 
-      export NODE=controller-1
+      ::
 
-      echo ">>> Getting root disk info"
-      ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
-      ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
-      echo "Root disk: $ROOT_DISK, UUID: $ROOT_DISK_UUID"
+         export NODE=controller-1
 
-      echo ">>>> Configuring nova-local"
-      NOVA_SIZE=34
-      NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${NOVA_SIZE})
-      NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
-      system host-lvg-add ${NODE} nova-local
-      system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
-      sleep 2
+         echo ">>> Getting root disk info"
+         ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
+         ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
+         echo "Root disk: $ROOT_DISK, UUID: $ROOT_DISK_UUID"
+
+         echo ">>>> Configuring nova-local"
+         NOVA_SIZE=34
+         NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${NOVA_SIZE})
+         NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
+         system host-lvg-add ${NODE} nova-local
+         system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
+         sleep 2
 
 -------------------
 Unlock controller-1
@@ -507,83 +537,86 @@ Controller-1 will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host
 machine.
 
---------------------------------------------------------------------------
-Optionally, finish configuration of Ceph-based Persistent Storage Backend
---------------------------------------------------------------------------
+.. only:: starlingx
 
-For host-based Ceph:  Nothing else is required.
+   --------------------------------------------------------------------------
+   Optionally, finish configuration of Ceph-based Persistent Storage Backend
+   --------------------------------------------------------------------------
 
-For Rook container-based Ceph:
+   For host-based Ceph:  Nothing else is required.
 
-On **virtual** controller-0 and controller-1:
+   For Rook container-based Ceph:
 
-#. Wait for the ``rook-ceph-apps`` application to be uploaded
+   On **virtual** controller-0 and controller-1:
 
-   ::
+   #. Wait for the ``rook-ceph-apps`` application to be uploaded
 
-    $ source /etc/platform/openrc
-    $ system application-list
-    +---------------------+---------+-------------------------------+---------------+----------+-----------+
-    | application         | version | manifest name                 | manifest file | status   | progress  |
-    +---------------------+---------+-------------------------------+---------------+----------+-----------+
-    | oidc-auth-apps      | 1.0-0   | oidc-auth-manifest            | manifest.yaml | uploaded | completed |
-    | platform-integ-apps | 1.0-8   | platform-integration-manifest | manifest.yaml | uploaded | completed |
-    | rook-ceph-apps      | 1.0-1   | rook-ceph-manifest            | manifest.yaml | uploaded | completed |
-    +---------------------+---------+-------------------------------+---------------+----------+-----------+
+      ::
 
-#. Configure Rook to use /dev/sdb on controller-0 and controller-1 as a ceph osd
+        $ source /etc/platform/openrc
+        $ system application-list
+        +---------------------+---------+-------------------------------+---------------+----------+-----------+
+        | application         | version | manifest name                 | manifest file | status   | progress  |
+        +---------------------+---------+-------------------------------+---------------+----------+-----------+
+        | oidc-auth-apps      | 1.0-0   | oidc-auth-manifest            | manifest.yaml | uploaded | completed |
+        | platform-integ-apps | 1.0-8   | platform-integration-manifest | manifest.yaml | uploaded | completed |
+        | rook-ceph-apps      | 1.0-1   | rook-ceph-manifest            | manifest.yaml | uploaded | completed |
+        +---------------------+---------+-------------------------------+---------------+----------+-----------+
 
-   ::
+   #. Configure Rook to use /dev/sdb on controller-0 and controller-1 as a ceph
+      |OSD|.
 
-    $ system host-disk-wipe -s --confirm controller-0 /dev/sdb
-    $ system host-disk-wipe -s --confirm controller-1 /dev/sdb
+      ::
 
-   values.yaml for rook-ceph-apps.
-   ::
+       $ system host-disk-wipe -s --confirm controller-0 /dev/sdb
+       $ system host-disk-wipe -s --confirm controller-1 /dev/sdb
 
-    cluster:
-      storage:
-        nodes:
-        - name: controller-0
-          devices:
-          - name: /dev/disk/by-path/pci-0000:00:03.0-ata-2.0
-        - name: controller-1
-          devices:
-          - name: /dev/disk/by-path/pci-0000:00:03.0-ata-2.0
+      values.yaml for rook-ceph-apps.
+      ::
 
-   ::
+       cluster:
+         storage:
+           nodes:
+           - name: controller-0
+             devices:
+             - name: /dev/disk/by-path/pci-0000:00:03.0-ata-2.0
+           - name: controller-1
+             devices:
+             - name: /dev/disk/by-path/pci-0000:00:03.0-ata-2.0
 
-    system helm-override-update rook-ceph-apps rook-ceph kube-system --values values.yaml
+      ::
 
-#. Apply the rook-ceph-apps application.
+       system helm-override-update rook-ceph-apps rook-ceph kube-system --values values.yaml
 
-   ::
+   #. Apply the rook-ceph-apps application.
 
-    system application-apply rook-ceph-apps
+      ::
 
-#. Wait for OSDs pod to be ready.
+       system application-apply rook-ceph-apps
 
-   ::
+   #. Wait for |OSDs| pod to be ready.
 
-    kubectl get pods -n kube-system
-    rook-ceph-crashcollector-controller-0-f984688ff-jsr8t    1/1     Running     0          4m9s
-    rook-ceph-crashcollector-controller-1-7f9b6f55b6-699bb   1/1     Running     0          2m5s
-    rook-ceph-mgr-a-7f9d588c5b-49cbg                         1/1     Running     0          3m5s
-    rook-ceph-mon-a-75bcbd8664-pvq99                         1/1     Running     0          4m27s
-    rook-ceph-mon-b-86c67658b4-f4snf                         1/1     Running     0          4m10s
-    rook-ceph-mon-c-7f48b58dfb-4nx2n                         1/1     Running     0          3m30s
-    rook-ceph-operator-77b64588c5-bhfg7                      1/1     Running     0          7m6s
-    rook-ceph-osd-0-6949657cf7-dkfp2                         1/1     Running     0          2m6s
-    rook-ceph-osd-1-5d4b58cf69-kdg82                         1/1     Running     0          2m4s
-    rook-ceph-osd-prepare-controller-0-wcvsn                 0/1     Completed   0          2m27s
-    rook-ceph-osd-prepare-controller-1-98h76                 0/1     Completed   0          2m26s
-    rook-ceph-tools-5778d7f6c-2h8s8                          1/1     Running     0          5m55s
-    rook-discover-xc22t                                      1/1     Running     0          6m2s
-    rook-discover-xndld                                      1/1     Running     0          6m2s
-    storage-init-rook-ceph-provisioner-t868q                 0/1     Completed   0          108s
+      ::
 
-----------
-Next steps
-----------
+        kubectl get pods -n kube-system
+        rook-ceph-crashcollector-controller-0-f984688ff-jsr8t    1/1     Running     0          4m9s
+        rook-ceph-crashcollector-controller-1-7f9b6f55b6-699bb   1/1     Running     0          2m5s
+        rook-ceph-mgr-a-7f9d588c5b-49cbg                         1/1     Running     0          3m5s
+        rook-ceph-mon-a-75bcbd8664-pvq99                         1/1     Running     0          4m27s
+        rook-ceph-mon-b-86c67658b4-f4snf                         1/1     Running     0          4m10s
+        rook-ceph-mon-c-7f48b58dfb-4nx2n                         1/1     Running     0          3m30s
+        rook-ceph-operator-77b64588c5-bhfg7                      1/1     Running     0          7m6s
+        rook-ceph-osd-0-6949657cf7-dkfp2                         1/1     Running     0          2m6s
+        rook-ceph-osd-1-5d4b58cf69-kdg82                         1/1     Running     0          2m4s
+        rook-ceph-osd-prepare-controller-0-wcvsn                 0/1     Completed   0          2m27s
+        rook-ceph-osd-prepare-controller-1-98h76                 0/1     Completed   0          2m26s
+        rook-ceph-tools-5778d7f6c-2h8s8                          1/1     Running     0          5m55s
+        rook-discover-xc22t                                      1/1     Running     0          6m2s
+        rook-discover-xndld                                      1/1     Running     0          6m2s
+        storage-init-rook-ceph-provisioner-t868q                 0/1     Completed   0          108s
 
-.. include:: ../kubernetes_install_next.txt
+   ----------
+   Next steps
+   ----------
+
+   .. include:: ../kubernetes_install_next.txt
