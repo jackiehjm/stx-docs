@@ -59,4 +59,4 @@ Appendix
     :caption: Contents:
 
     distributed-cloud-ports-reference
-    certificate-management-for-admin-rest--api-endpoints
+    certificate-management-for-admin-rest-api-endpoints

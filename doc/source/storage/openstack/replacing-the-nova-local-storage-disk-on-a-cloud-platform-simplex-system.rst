@@ -2,9 +2,9 @@
 .. syu1590591059068
 .. _replacing-the-nova-local-storage-disk-on-a-cloud-platform-simplex-system:
 
-========================================================================
-Replace Nova-local Storage Disk on a Cloud Platform Simplex System
-========================================================================
+===================================================
+Replace Nova-local Storage Disk on a Simplex System
+===================================================
 
 On a |prod-long| Simplex system, a special procedure is
 recommended for replacing or upgrading the nova-local storage device, to allow

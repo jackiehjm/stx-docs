@@ -33,9 +33,9 @@ Local storage is allocated from the Local Volume Group on the host, and does
 not persist when the instance is terminated. Remote storage is allocated from a
 Ceph storage pool configured on the storage host resources, and persists until
 the pool resources are reallocated for other purposes. The choice of storage
-type affects migration behavior; for more information, see Cloud Platform
-Storage Configuration: :ref:`VM Storage Settings for Migration, Resize, or
-Evacuation <vm-storage-settings-for-migration-resize-or-evacuation>`.
+type affects migration behavior; for more information, see |stor-doc|: :ref:`VM
+Storage Settings for Migration, Resize, or Evacuation
+<vm-storage-settings-for-migration-resize-or-evacuation>`.
 
 If the instance is configured to boot from volume, the root disk is implemented
 using persistent Cinder-based storage allocated from the controller \(for a
@@ -43,9 +43,8 @@ system using LVM\) or from storage hosts \(for a system using Ceph\) by
 default. On a system that offers both LVM and Ceph storage backends for Cinder
 storage, you can specify to use the LVM backend when you launch an instance.
 
-To specify the type of storage offered by a compute host, see Cloud Platform
-Storage Configuration: :ref:`Work with Local Volume Groups
-<work-with-local-volume-groups>`.
+To specify the type of storage offered by a compute host, see |stor-doc|:
+:ref:`Work with Local Volume Groups <work-with-local-volume-groups>`.
 
 .. rubric:: |context|
 
