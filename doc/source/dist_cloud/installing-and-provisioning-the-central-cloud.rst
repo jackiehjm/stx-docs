@@ -13,7 +13,7 @@ system.
 
 The Central Cloud supports either
 
--  an |AIO|-Duplex deployment configuration
+-  an |AIO-DX| deployment configuration
 
 -  a Standard with Dedicated Storage Nodes deployment Standard with Controller
    Storage and one or more workers deployment configuration, or

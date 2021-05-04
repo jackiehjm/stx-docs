@@ -104,8 +104,8 @@ Deletes subcloud group details from the database.
         +--+------+----+----+-------+-------+------+-----------+-----------+-------------+-----------+------------+------------+------+----------+----------+
         |id|name  |desc|loc.|sof.ver|mgmnt  |avail |deploy_stat|mgmt_subnet|mgmt_start_ip|mgmt_end_ip|mgmt_gtwy_ip|sysctrl_gtwy|grp_id|created_at|updated_at|
         +--+------+----+----+-------+-------+------+-----------+-----------+-------------+-----------+------------+------------+------+----------+----------+
-        |3 |subcl1|None|None|20.06  |managed|online|complete   |fd01:12::0.|fd01:12::2   |fd01:12::11|fd01:12::1  |fd01:11::1  | 2    |2021-01-09|2021-01-12|
-        |4 |subcl2|None|None|20.06  |managed|online|complete   |fd01:13::0.|fd01:13::2   |fd01:13::11|fd01:13::1  |fd01:11::1  | 2    |2021-01-09|2021-01-12|
+        |3 |subcl1|None|None|nn.nn  |managed|online|complete   |fd01:12::0.|fd01:12::2   |fd01:12::11|fd01:12::1  |fd01:11::1  | 2    |2021-01-09|2021-01-12|
+        |4 |subcl2|None|None|nn.nn  |managed|online|complete   |fd01:13::0.|fd01:13::2   |fd01:13::11|fd01:13::1  |fd01:11::1  | 2    |2021-01-09|2021-01-12|
         +--+------+----+----+-------+-------+------+-----------+-----------+-------------+-----------+------------+------------+------+----------+----------+
 
 -   To show the details of a subcloud group, use the following command:
