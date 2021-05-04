@@ -109,7 +109,7 @@ subcloud, the subcloud installation has these phases:
 
     .. code-block:: none
 
-        # Specify the WRCP software version, for example '20.06' for the WRCP 20.06 release of software.
+        # Specify the |pp| software version, for example 'nn.nn' for the |pp| nn.nn release of software.
         software_version: <software_version>
         bootstrap_interface: <bootstrap_interface_name> # e.g. eno1
         bootstrap_address: <bootstrap_interface_ip_address> # e.g.128.224.151.183

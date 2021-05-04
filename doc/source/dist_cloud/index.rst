@@ -60,6 +60,30 @@ Kubernetes Version Upgrade Distributed Cloud Orchestration
     the-kubernetes-distributed-cloud-update-orchestration-process
     configuring-kubernetes-update-orchestration-on-distributed-cloud
 
+------------------
+Upgrade management
+------------------
+
+.. toctree::
+    :maxdepth: 1
+
+    upgrade-management-overview
+    upgrading-the-systemcontroller-using-the-cli
+
+*******************************************************************
+Upgrade Orchestration for Distributed Cloud SubClouds using the CLI
+*******************************************************************
+
+.. toctree::
+    :maxdepth: 1
+
+    distributed-upgrade-orchestration-process-using-the-cli
+    aborting-the-distributed-upgrade-orchestration
+    configuration-for-specific-subclouds
+    robust-error-handling-during-an-orchestrated-upgrade
+    failure-prior-to-the-installation-of-n+1-load-on-a-subcloud
+    failure-during-the-installation-or-data-migration-of-n+1-load-on-a-subcloud
+
 --------
 Appendix
 --------
