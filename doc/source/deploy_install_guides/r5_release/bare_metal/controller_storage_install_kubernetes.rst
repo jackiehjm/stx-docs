@@ -1,9 +1,9 @@
 
 .. _controller_storage_install_kubernetes:
 
-==========================================================================
-Install Kubernetes Platform on Bare Metal Standard with Controller Storage
-==========================================================================
+===============================================================
+Install Kubernetes Platform on Standard with Controller Storage
+===============================================================
 
 .. contents::
    :local:
@@ -12,7 +12,7 @@ Install Kubernetes Platform on Bare Metal Standard with Controller Storage
 .. only:: starlingx
 
    This section describes the steps to install the StarlingX Kubernetes
-   platform on a **StarlingX R5.0 bare metal Standard with Controller Storage**
+   platform on a **StarlingX R5.0 Standard with Controller Storage**
    deployment configuration.
 
    -------------------

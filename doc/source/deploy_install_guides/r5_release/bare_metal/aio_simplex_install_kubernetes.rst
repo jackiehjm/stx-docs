@@ -1,9 +1,9 @@
 
 .. _aio_simplex_install_kubernetes:
 
-================================================
-Install Kubernetes Platform on Bare Metal AIO-SX
-================================================
+=================================================
+Install Kubernetes Platform on All-in-one Simplex
+=================================================
 
 .. only:: partner
 
@@ -12,7 +12,7 @@ Install Kubernetes Platform on Bare Metal AIO-SX
 .. only:: starlingx
 
    This section describes the steps to install the StarlingX Kubernetes
-   platform on a **StarlingX R5.0 bare metal All-in-one Simplex** deployment
+   platform on a **StarlingX R5.0 All-in-one Simplex** deployment
    configuration.
 
    .. contents::
