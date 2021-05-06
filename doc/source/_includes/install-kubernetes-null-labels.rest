@@ -1,6 +1,3 @@
 .. Satisfy sphinx idiosyncrasies where link targets are conditionalized.
 .. Used from deploy_install_guides/r5_release/bare_metal/*_install_kubernetes.rst
 
-.. _ansible_bootstrap_configs:
-.. _docker_proxy_config:
-.. _bootable_usb:
