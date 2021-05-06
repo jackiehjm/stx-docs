@@ -71,24 +71,24 @@ Bootstrap system on controller-0
 
 #. Specify user configuration overrides for the Ansible bootstrap playbook.
 
-   .. only:: starlingx
+   Ansible is used to bootstrap StarlingX on controller-0. Key files for
+   Ansible configuration are:
 
-      Ansible is used to bootstrap StarlingX on controller-0. Key files for
-      Ansible configuration are:
+   ``/etc/ansible/hosts``
+      The default Ansible inventory file. Contains a single host: localhost.
 
-      ``/etc/ansible/hosts``
-         The default Ansible inventory file. Contains a single host: localhost.
-
-      ``/usr/share/ansible/stx-ansible/playbooks/bootstrap.yml``
+   ``/usr/share/ansible/stx-ansible/playbooks/bootstrap.yml``
          The Ansible bootstrap playbook.
 
-      ``/usr/share/ansible/stx-ansible/playbooks/host_vars/bootstrap/default.yml``
-         The default configuration values for the bootstrap playbook.
+   ``/usr/share/ansible/stx-ansible/playbooks/host_vars/bootstrap/default.yml``
+      The default configuration values for the bootstrap playbook.
 
-      ``sysadmin home directory ($HOME)``
-         The default location where Ansible looks for and imports user
-         configuration override files for hosts. For example:
-         ``$HOME/<hostname>.yml``.
+   ``sysadmin home directory ($HOME)``
+      The default location where Ansible looks for and imports user
+      configuration override files for hosts. For example:
+      ``$HOME/<hostname>.yml``.
+
+   .. only:: starlingx
 
       .. include:: ../ansible_install_time_only.txt
 
@@ -143,14 +143,12 @@ Bootstrap system on controller-0
 
       .. include:: ../../../_includes/install-playbook-values-aws.rest
 
-   .. only:: starlingx
 
-      Refer to :ref:`Ansible Bootstrap Configurations
-      <ansible_bootstrap_configs>` for information on additional Ansible
-      bootstrap configurations for advanced Ansible bootstrap scenarios, such
-      as Docker proxies when deploying behind a firewall, etc. Refer to
-      :ref:`Docker Proxy configuration <docker_proxy_config>` for details about
-      Docker proxy settings.
+   Refer to :ref:`Ansible Bootstrap Configurations <ansible_bootstrap_configs>`
+   for information on additional Ansible bootstrap configurations for advanced
+   Ansible bootstrap scenarios, such as Docker proxies when deploying behind a
+   firewall, etc. Refer to :ref:`Docker Proxy configuration
+   <docker_proxy_config>` for details about Docker proxy settings.
 
 #. Run the Ansible bootstrap playbook:
 
@@ -440,6 +438,8 @@ service. This can take 5-10 minutes, depending on the performance of the host
 machine.
 
 .. incl-unlock-controller-1-end:
+
+.. include:: /_includes/bootstrapping-and-deploying-starlingx.rest
 
 ----------------------
 Configure worker nodes

@@ -176,6 +176,8 @@ Unlock controller-1
    :start-after: incl-unlock-controller-1-start:
    :end-before: incl-unlock-controller-1-end:
 
+.. include:: /_includes/bootstrapping-and-deploying-starlingx.rest
+
 -----------------------
 Configure storage nodes
 -----------------------

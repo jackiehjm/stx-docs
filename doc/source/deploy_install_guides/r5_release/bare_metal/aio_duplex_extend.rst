@@ -3,7 +3,7 @@ Extend Capacity with Worker Nodes
 =================================
 
 This section describes the steps to extend capacity with worker nodes on a
-**StarlingX R5.0 bare metal All-in-one Duplex** deployment configuration.
+|prod| All-in-one Duplex deployment configuration.
 
 .. contents::
    :local:
@@ -19,8 +19,8 @@ Install software on worker nodes
 #. As the worker nodes boot, a message appears on their console instructing
    you to configure the personality of the node.
 
-#. On the console of controller-0, list hosts to see newly discovered worker node
-   hosts (hostname=None):
+#. On the console of controller-0, list hosts to see newly discovered worker
+   node hosts (hostname=None):
 
    ::
 
