@@ -17,7 +17,7 @@ This procedure takes a snapshot of the etcd database at the time of backup,
 stores it in the system data backup, and then uses it to initialize the
 Kubernetes cluster during a restore. Kubernetes configuration will be
 restored and pods that are started from repositories accessible from the
-internet or from external repositories will start immediately. StarlingX
+internet or from external repositories will start immediately. |prod|
 specific applications must be re-applied once a storage cluster is configured.
 
 .. warning::
@@ -92,7 +92,7 @@ conditions are in place:
         $ source /etc/platform/openrc
         ~(keystone_admin)]$ dcmanager subcloud unmanage <subcloud-name>
 
-    where <subcloud-name> is the name of the subcloud to be unmanaged.
+    where ``<subcloud-name>`` is the name of the subcloud to be unmanaged.
 
 .. rubric:: |proc|
 
@@ -126,11 +126,11 @@ conditions are in place:
     <system-backup-running-ansible-restore-playbook-remotely>`.
 
     .. note::
-        The backup files contains the system data and updates.
+        The backup files contain the system data and updates.
 
 #.  If the backup file contains patches, Ansible Restore playbook
     restore\_platform.yml will apply the patches and prompt you to reboot the
-    system, you will need to re-run Ansible Restore playbook
+    system, you will need to re-run Ansible Restore playbook.
 
     The current software version on the controller is compared against the
     version available in the backup file. If the backed-up version includes
@@ -156,12 +156,25 @@ conditions are in place:
 
     This must be done before unlocking controller-0.
 
+#.  Unlock Controller-0.
+
     .. code-block:: none
 
         ~(keystone_admin)]$ system host-unlock controller-0
 
     After you unlock controller-0, storage nodes become available and Ceph
     becomes operational.
+
+#.  If the system is a Distributed Cloud system controller, restore the **dc-vault**
+    using the restore\_dc\_vault.yml playbook. Perform this step after unlocking
+    controller-0:
+
+    .. code-block:: none
+
+        $ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_dc_vault.yml -e "initial_backup_dir=/home/sysadmin backup_filename=localhost_dc_vault_backup_2020_07_15_21_24_22.tgz ansible_become_pass=St0rlingX*"
+
+    .. note::
+       The dc-vault backup archive is created by the backup.yml playbook.
 
 #.  Authenticate the system as Keystone user **admin**.
 
@@ -315,7 +328,7 @@ conditions are in place:
 
    .. code-block:: none
 
-        ~(keystone_admin)]$ kubectl get pods -n kube-system | grep -e calico -e coredns 
+        ~(keystone_admin)]$ kubectl get pods -n kube-system | grep -e calico -e coredns
         calico-kube-controllers-5cd4695574-d7zwt  1/1     Running
         calico-node-6km72                         1/1     Running
         calico-node-c7xnd                         1/1     Running
@@ -328,8 +341,7 @@ conditions are in place:
 
        ~(keystone_admin)]$ system restore-complete
 
-#. Alarms 750.006 alarms disappear one at a time, as the apps are auto
-applied.
+#. Alarms 750.006 alarms disappear one at a time, as the apps are auto applied.
 
 .. rubric:: |postreq|
 
@@ -347,7 +359,7 @@ applied.
         $ source /etc/platform/openrc
         ~(keystone_admin)]$ dcmanager subcloud manage <subcloud-name>
 
-    where <subcloud-name> is the name of the subcloud to be managed.
+    where ``<subcloud-name>`` is the name of the subcloud to be managed.
 
 
 .. comments in steps seem to throw numbering off.
