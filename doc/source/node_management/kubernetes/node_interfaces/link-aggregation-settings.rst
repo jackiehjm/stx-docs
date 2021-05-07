@@ -22,37 +22,6 @@ kernel Ethernet Bonding Driver documentation available online
 
 .. _link-aggregation-settings-section-N10050-N10029-N10001:
 
------------------------------------------
-LAG Configurations for AIO Duplex Systems
------------------------------------------
-
-For a duplex-direct system set-up, use a |LAG| mode with active-backup for the
-management interface when attaching cables between the active and standby
-controller nodes. When both interfaces are enabled, the system automatically
-selects the primary interface within the |LAG| with the lowest |MAC| address on
-the active controller to connect to the primary interface within the |LAG| with
-the lowest |MAC| address on the standby controller.
-
-The controllers act independently of each other when selecting the primary
-interface. Therefore, it is critical that the inter-node cabling is completed
-to ensure that both nodes select a primary interface that is attached to the
-primary interface of the opposite node. The inter-node management cabling
-attachments must be from the lowest |MAC| address to the lowest |MAC| address
-for the first cable, and the next lowest |MAC| address to the next lowest |MAC|
-address for the second cable. Failure to follow these cabling requirements
-will result in a loss of communication between the two nodes.
-
-In addition to the special cabling requirements, the node BIOS settings may
-need to be configured to ensure that the node attempts to network boot from
-the lowest |MAC| address interface within the |LAG|. This may be required only on
-systems that enable all hardware interfaces during network booting rather than
-only enabling the interface that is currently selected for booting.
-
-Configure the cables associated with the management |LAG| so that the primary
-interface within the |LAG| with the lowest |MAC| address on the active
-controller connects to the primary interface within the |LAG| with the lowest
-|MAC| address on standby controller.
-
 .. _link-aggregation-settings-table-kb5-rwb-ln:
 
 .. list-table:: Table 1. Supported Link Aggregation Operational Modes
@@ -127,3 +96,57 @@ controller connects to the primary interface within the |LAG| with the lowest
       - Hashes on source and destination IP addresses, and on source and
         destination ports.
       - |OAM|, internal management, and cluster-host 
+  
+
+.. list-table:: Table 3. primary_reselect Options
+    :widths: auto
+    :header-rows: 1
+
+    * - Options
+      - Description
+      - Supported Interface Types 
+    * - Always
+
+        \(default value\)
+      - The primary slave becomes an active slave whenever it comes back up.
+      - |OAM|, internal management, and cluster-host  
+    * - Better
+      - The primary slave becomes active slave whenever it comes back up, if the
+        speed and the duplex of the primary slave is better than the speed duplex of the current active slave.
+      - |OAM|, internal management, and cluster-host 
+    * - Failure
+      - The primary slave becomes the active slave only if the current active
+        slave fails and the primary slave is up. 
+      - |OAM|, internal management, and cluster-host 
+
+-----------------------------------------
+LAG Configurations for AIO Duplex Systems
+-----------------------------------------
+      
+For a duplex-direct system set-up, use a |LAG| mode with active-backup for the
+management interface when attaching cables between the active and standby
+controller nodes. When both interfaces are enabled, the system automatically
+selects the primary interface within the |LAG| with the lowest |MAC| address on
+the active controller to connect to the primary interface within the |LAG| with
+the lowest |MAC| address on the standby controller.
+      
+The controllers act independently of each other when selecting the primary
+interface. Therefore, it is critical that the inter-node cabling is completed
+to ensure that both nodes select a primary interface that is attached to the
+primary interface of the opposite node. The inter-node management cabling
+attachments must be from the lowest |MAC| address to the lowest |MAC| address
+for the first cable, and the next lowest |MAC| address to the next lowest |MAC|
+address for the second cable. Failure to follow these cabling requirements
+will result in a loss of communication between the two nodes.
+      
+In addition to the special cabling requirements, the node BIOS settings may
+need to be configured to ensure that the node attempts to network boot from
+the lowest |MAC| address interface within the |LAG|. This may be required only on
+systems that enable all hardware interfaces during network booting rather than
+only enabling the interface that is currently selected for booting.
+      
+Configure the cables associated with the management |LAG| so that the primary
+interface within the |LAG| with the lowest |MAC| address on the active
+controller connects to the primary interface within the |LAG| with the lowest
+|MAC| address on standby controller.
+      

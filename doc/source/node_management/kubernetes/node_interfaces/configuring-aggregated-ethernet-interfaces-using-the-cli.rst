@@ -59,7 +59,7 @@ Settings <link-aggregation-settings>`.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-if-add <hostname> -m <mtu>  -a <aemode> -x <txhashpolicy> <ifname> ae <ethname1> <ethname2>
+        ~(keystone_admin)$ system host-if-add <hostname> -m <mtu>  -a <aemode> -x <txhashpolicy> --primary-reselect <reselect_option> <ifname> ae <ethname1> <ethname2>
 
     where the following options are available:
 
@@ -79,10 +79,16 @@ Settings <link-aggregation-settings>`.
             |MTU| of the provider network to which the interface is attached.
 
     **aemode**
-        The link aggregation mode.
+        The link aggregation mode. For information on valid values, see :ref:`Link Aggregation Settings <link-aggregation-settings>`.
 
     **policy**
-        The balanced tx distribution hash policy.
+        The balanced tx distribution hash policy. For information on valid values, see :ref:`Link Aggregation Settings <link-aggregation-settings>`.
+
+    **reselect_option**
+        The parameter that specifies the reselection policy for the primary
+        slave of an aggregated ethernet active standby interface. For
+        information on valid values, see :ref:`Link Aggregation Settings
+        <link-aggregation-settings>`.
 
     **hostname**
         The name or UUID of the host.
@@ -109,6 +115,16 @@ Settings <link-aggregation-settings>`.
         ~(keystone_admin)$ system host-if-add controller-0 -a balanced -x layer2 ae0 ae enp0s9 enp0s10
         ~(keystone_admin)$ system interface-datanetwork-assign controller-0 ae0 providernet-net-a
         ~(keystone_admin)$ system interface-datanetwork-assign controller-0 ae0 providernet-net-b
+
+    For example, to attach an aggregated Ethernet interface named **bond0** to
+    the platform management network, using member interfaces **enp0s8**
+    and **enp0s11** on **controller-0**: 
+
+    .. code-block:: none
+
+        ~(keystone_admin)$ system host-if-add controller-0 -c platform -a active_standby --primary-reselect failure bond0 ae enp0s8 enp0s11
+        ~(keystone_admin)$ system interface-network-assign controller-0 bond0 mgmt
+
 
 .. only:: partner
 
