@@ -48,6 +48,7 @@ Operation
     managing-ldap-linux-user-accounts-on-the-system-controller
     changing-the-admin-password-on-distributed-cloud
     updating-docker-registry-credentials-on-a-subcloud
+    migrate-an-aiosx-subcloud-to-an-aiodx-subcloud
 
 
 --------
