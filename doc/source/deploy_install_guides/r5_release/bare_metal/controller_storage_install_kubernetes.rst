@@ -107,9 +107,9 @@ Bootstrap system on controller-0
    #. Create a minimal user configuration override file.
 
       To use this method, create your override file at ``$HOME/localhost.yml``
-      and provide the minimum required parameters for the deployment configuration
-      as shown in the example below. Use the OAM IP SUBNET and IP ADDRESSing
-      applicable to your deployment environment.
+      and provide the minimum required parameters for the deployment
+      configuration as shown in the example below. Use the OAM IP SUBNET and IP
+      ADDRESSing applicable to your deployment environment.
 
       ::
 
@@ -131,24 +131,72 @@ Bootstrap system on controller-0
         admin_password: <admin-password>
         ansible_become_pass: <sysadmin-password>
 
-        # Add these lines to configure Docker to use a proxy server
-        # docker_http_proxy: http://my.proxy.com:1080
-        # docker_https_proxy: https://my.proxy.com:1443
-        # docker_no_proxy:
-        #   - 1.2.3.4
-
         EOF
 
-   .. only:: partner
+      .. only:: starlingx
 
-      .. include:: ../../../_includes/install-playbook-values-aws.rest
+         In either of the above options, the bootstrap playbook’s default values
+         will pull all container images required for the |prod-p| from Docker hub.
 
+         If you have setup a private Docker registry to use for bootstrapping
+         then you will need to add the following lines in $HOME/localhost.yml:
 
-   Refer to :ref:`Ansible Bootstrap Configurations <ansible_bootstrap_configs>`
-   for information on additional Ansible bootstrap configurations for advanced
-   Ansible bootstrap scenarios, such as Docker proxies when deploying behind a
-   firewall, etc. Refer to :ref:`Docker Proxy configuration
-   <docker_proxy_config>` for details about Docker proxy settings.
+      .. only:: partner
+
+         .. include:: /_includes/install-kubernetes-bootstrap-playbook.rest
+            :start-after: docker-reg-begin
+            :end-before: docker-reg-end
+
+      .. code-block::
+
+         docker_registries:
+         quay.io:
+            url: myprivateregistry.abc.com:9001/quay.io
+         docker.elastic.co:
+            url: myprivateregistry.abc.com:9001/docker.elastic.co
+         gcr.io:
+            url: myprivateregistry.abc.com:9001/gcr.io
+         k8s.gcr.io:
+            url: myprivateregistry.abc.com:9001/k8s.gcr.io
+         docker.io:
+            url: myprivateregistry.abc.com:9001/docker.io
+         defaults:
+            type: docker
+            username: <your_myprivateregistry.abc.com_username>
+            password: <your_myprivateregistry.abc.com_password>
+
+         # Add the CA Certificate that signed myprivateregistry.abc.com’s
+         # certificate as a Trusted CA
+         ssl_ca_cert: /home/sysadmin/myprivateregistry.abc.com-ca-cert.pem
+
+      See :ref:`Use a Private Docker Registry <use-private-docker-registry>`
+      for more information.
+
+      .. only:: starlingx
+
+         If a firewall is blocking access to Docker hub or your private
+         registry from your StarlingX deployment, you will need to add the
+         following lines in $HOME/localhost.yml  (see :ref:`Docker Proxy
+         Configuration <docker_proxy_config>` for more details about Docker
+         proxy settings):
+
+      .. only:: partner
+
+         .. include:: /_includes/install-kubernetes-bootstrap-playbook.rest
+            :start-after: firewall-begin
+            :end-before: firewall-end
+
+      .. code-block::
+
+         # Add these lines to configure Docker to use a proxy server
+         docker_http_proxy: http://my.proxy.com:1080
+         docker_https_proxy: https://my.proxy.com:1443
+         docker_no_proxy:
+            - 1.2.3.4
+
+      Refer to :ref:`Ansible Bootstrap Configurations <ansible_bootstrap_configs>`
+      for information on additional Ansible bootstrap configurations for advanced
+      Ansible bootstrap scenarios.
 
 #. Run the Ansible bootstrap playbook:
 
@@ -177,7 +225,8 @@ Configure controller-0
 #. Configure the |OAM| interface of controller-0 and specify the
    attached network as "oam".
 
-   Use the |OAM| port name that is applicable to your deployment environment, for example eth0:
+   Use the |OAM| port name that is applicable to your deployment environment,
+   for example eth0:
 
    ::
 
@@ -185,9 +234,11 @@ Configure controller-0
      system host-if-modify controller-0 $OAM_IF -c platform
      system interface-network-assign controller-0 $OAM_IF oam
 
-#. Configure the MGMT interface of controller-0 and specify the attached networks of both "mgmt" and "cluster-host".
+#. Configure the MGMT interface of controller-0 and specify the attached
+   networks of both "mgmt" and "cluster-host".
 
-   Use the MGMT port name that is applicable to your deployment environment, for example eth1:
+   Use the MGMT port name that is applicable to your deployment environment,
+   for example eth1:
 
    ::
 
@@ -222,17 +273,7 @@ Configure controller-0
 
      system storage-backend-add ceph --confirmed
 
-#. If required, and not already done as part of bootstrap, configure Docker to
-   use a proxy server.
-
-   StarlingX uses publicly available container runtime registries. If you are behind a
-   corporate firewall or proxy, you need to set docker proxy settings.
-
-   Refer to :ref:`Docker Proxy Configuration <docker_proxy_config>` for
-   details about configuring Docker proxy settings.
-
-
-.. only:: starlingx
+.. only:: openstack
 
    *************************************
    OpenStack-specific host configuration
@@ -382,7 +423,8 @@ Configure controller-1
 #. Configure the |OAM| interface of controller-1 and specify the
    attached network of "oam".
 
-   Use the |OAM| port name that is applicable to your deployment environment, for example eth0:
+   Use the |OAM| port name that is applicable to your deployment environment,
+   for example eth0:
 
    ::
 
@@ -390,18 +432,19 @@ Configure controller-1
       system host-if-modify controller-1 $OAM_IF -c platform
       system interface-network-assign controller-1 $OAM_IF oam
 
-#. The MGMT interface is partially set up by the network install procedure; configuring
-   the port used for network install as the MGMT port and specifying the attached network of "mgmt".
+#. The MGMT interface is partially set up by the network install procedure;
+   configuring the port used for network install as the MGMT port and
+   specifying the attached network of "mgmt".
 
-   Complete the MGMT interface configuration of controller-1 by specifying the attached
-   network of "cluster-host".
+   Complete the MGMT interface configuration of controller-1 by specifying the
+   attached network of "cluster-host".
 
    ::
 
       system interface-network-assign controller-1 mgmt0 cluster-host
 
 
-.. only:: starlingx
+.. only:: openstack
 
    *************************************
    OpenStack-specific host configuration
@@ -412,8 +455,8 @@ Configure controller-1
       **This step is required only if the StarlingX OpenStack application
       (stx-openstack) will be installed.**
 
-   **For OpenStack only:** Assign OpenStack host labels to controller-1 in support
-   of installing the stx-openstack manifest and helm-charts later.
+   **For OpenStack only:** Assign OpenStack host labels to controller-1 in
+   support of installing the stx-openstack manifest and helm-charts later.
 
    ::
 
@@ -494,41 +537,39 @@ Configure worker nodes
 
    * Configure the data interfaces
 
-   ::
+     ::
 
-      DATA0IF=<DATA-0-PORT>
-      DATA1IF=<DATA-1-PORT>
-      PHYSNET0='physnet0'
-      PHYSNET1='physnet1'
-      SPL=/tmp/tmp-system-port-list
-      SPIL=/tmp/tmp-system-host-if-list
+       # Execute the following lines with
+       export NODE=worker-0
+       # and then repeat with
+       export NODE=worker-1
 
-      # configure the datanetworks in sysinv, prior to referencing it
-      # in the ``system host-if-modify`` command'.
-      system datanetwork-add ${PHYSNET0} vlan
-      system datanetwork-add ${PHYSNET1} vlan
+       # List inventoried host’s ports and identify ports to be used as ‘data’ interfaces,
+       # based on displayed linux port name, pci address and device type.
+       system host-port-list ${NODE}
 
-      for NODE in worker-0 worker-1; do
-        echo "Configuring interface for: $NODE"
-        set -ex
-        system host-port-list ${NODE} --nowrap > ${SPL}
-        system host-if-list -a ${NODE} --nowrap > ${SPIL}
-        DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
-        DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
-        DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
-        DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
-        DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
-        DATA1PORTNAME=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
-        DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
-        DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
-        system host-if-modify -m 1500 -n data0 -c data ${NODE} ${DATA0IFUUID}
-        system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
-        system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
-        system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
-        set +ex
-      done
+       # List host’s auto-configured ‘ethernet’ interfaces,
+       # find the interfaces corresponding to the ports identified in previous step, and
+       # take note of their UUID
+       system host-if-list -a ${NODE}
 
-   * To enable using |SRIOV| network attachments for the above interfaces in Kubernetes hosted application containers:
+       # Modify configuration for these interfaces
+       # Configuring them as ‘data’ class interfaces, MTU of 1500 and named data#
+       system host-if-modify -m 1500 -n data0 -c data ${NODE} <data0-if-uuid>
+       system host-if-modify -m 1500 -n data1 -c data ${NODE} <data1-if-uuid>
+
+       # Create Data Networks
+       PHYSNET0='physnet0'
+       PHYSNET1='physnet1'
+       system datanetwork-add ${PHYSNET0} vlan
+       system datanetwork-add ${PHYSNET1} vlan
+
+       # Assign Data Networks to Data Interfaces
+       system interface-datanetwork-assign ${NODE} <data0-if-uuid> ${PHYSNET0}
+       system interface-datanetwork-assign ${NODE} <data1-if-uuid> ${PHYSNET1}
+
+   * To enable using |SRIOV| network attachments for the above interfaces in
+     Kubernetes hosted application containers:
 
      * Configure |SRIOV| device plug in:
 
@@ -554,7 +595,7 @@ Configure worker nodes
           done
 
 
-.. only:: starlingx
+.. only:: openstack
 
    *************************************
    OpenStack-specific host configuration

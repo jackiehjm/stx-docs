@@ -131,24 +131,74 @@ Bootstrap system on controller-0
         admin_password: <admin-password>
         ansible_become_pass: <sysadmin-password>
 
-        # Add these lines to configure Docker to use a proxy server
-        # docker_http_proxy: http://my.proxy.com:1080
-        # docker_https_proxy: https://my.proxy.com:1443
-        # docker_no_proxy:
-        #   - 1.2.3.4
-
         EOF
 
-   .. only:: partner
 
-      .. include:: ../../../_includes/install-playbook-values-aws.rest
+      .. only:: starlingx
+
+         In either of the above options, the bootstrap playbook’s default values
+         will pull all container images required for the |prod-p| from Docker hub.
+
+         If you have setup a private Docker registry to use for bootstrapping
+         then you will need to add the following lines in $HOME/localhost.yml:
+
+      .. only:: partner
+
+         .. include:: /_includes/install-kubernetes-bootstrap-playbook.rest
+            :start-after: docker-reg-begin
+            :end-before: docker-reg-end
+
+      .. code-block::
+
+         docker_registries:
+         quay.io:
+            url: myprivateregistry.abc.com:9001/quay.io
+         docker.elastic.co:
+            url: myprivateregistry.abc.com:9001/docker.elastic.co
+         gcr.io:
+            url: myprivateregistry.abc.com:9001/gcr.io
+         k8s.gcr.io:
+            url: myprivateregistry.abc.com:9001/k8s.gcr.io
+         docker.io:
+            url: myprivateregistry.abc.com:9001/docker.io
+         defaults:
+            type: docker
+            username: <your_myprivateregistry.abc.com_username>
+            password: <your_myprivateregistry.abc.com_password>
+
+         # Add the CA Certificate that signed myprivateregistry.abc.com’s
+         # certificate as a Trusted CA
+         ssl_ca_cert: /home/sysadmin/myprivateregistry.abc.com-ca-cert.pem
+
+      See :ref:`Use a Private Docker Registry <use-private-docker-registry>`
+      for more information.
+
+      .. only:: starlingx
+
+         If a firewall is blocking access to Docker hub or your private
+         registry from your StarlingX deployment, you will need to add the
+         following lines in $HOME/localhost.yml  (see :ref:`Docker Proxy
+         Configuration <docker_proxy_config>` for more details about Docker
+         proxy settings):
+
+      .. only:: partner
+
+         .. include:: /_includes/install-kubernetes-bootstrap-playbook.rest
+            :start-after: firewall-begin
+            :end-before: firewall-end
+
+      .. code-block::
+
+         # Add these lines to configure Docker to use a proxy server
+         docker_http_proxy: http://my.proxy.com:1080
+         docker_https_proxy: https://my.proxy.com:1443
+         docker_no_proxy:
+            - 1.2.3.4
 
 
-   Refer to :ref:`Ansible Bootstrap Configurations <ansible_bootstrap_configs>`
-   for information on additional Ansible bootstrap configurations for advanced
-   Ansible bootstrap scenarios, such as Docker proxies when deploying behind a
-   firewall, etc. Refer to :ref:`Docker Proxy Configurations
-   <docker_proxy_config>` for details about Docker proxy settings.
+      Refer to :ref:`Ansible Bootstrap Configurations <ansible_bootstrap_configs>`
+      for information on additional Ansible bootstrap configurations for advanced
+      Ansible bootstrap scenarios.
 
 #. Run the Ansible bootstrap playbook:
 
@@ -211,40 +261,42 @@ Configure controller-0
    This step is optional for Kubernetes: Do this step if using |SRIOV| network
    attachments in hosted application containers.
 
-   .. important::
+   .. only:: starlingx
 
-      This step is **required** for OpenStack.
+      .. important::
+
+         This step is **required** for OpenStack.
 
 
    * Configure the data interfaces
 
      ::
 
-       DATA0IF=<DATA-0-PORT>
-       DATA1IF=<DATA-1-PORT>
-       export NODE=controller-0
-       PHYSNET0='physnet0'
-       PHYSNET1='physnet1'
-       SPL=/tmp/tmp-system-port-list
-       SPIL=/tmp/tmp-system-host-if-list
-       system host-port-list ${NODE} --nowrap > ${SPL}
-       system host-if-list -a ${NODE} --nowrap > ${SPIL}
-       DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
-       DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
-       DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
-       DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
-       DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
-       DATA1PORTNAME=$(cat  $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
-       DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
-       DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
+        export NODE=controller-0
 
-       system datanetwork-add ${PHYSNET0} vlan
-       system datanetwork-add ${PHYSNET1} vlan
+        # List inventoried host’s ports and identify ports to be used as ‘data’ interfaces,
+        # based on displayed linux port name, pci address and device type.
+        system host-port-list ${NODE}
 
-       system host-if-modify -m 1500 -n data0 -c data ${NODE} ${DATA0IFUUID}
-       system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
-       system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
-       system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
+        # List host’s auto-configured ‘ethernet’ interfaces,
+        # find the interfaces corresponding to the ports identified in previous step, and
+        # take note of their UUID
+        system host-if-list -a ${NODE}
+
+        # Modify configuration for these interfaces
+        # Configuring them as ‘data’ class interfaces, MTU of 1500 and named data#
+        system host-if-modify -m 1500 -n data0 -c data ${NODE} <data0-if-uuid>
+        system host-if-modify -m 1500 -n data1 -c data ${NODE} <data1-if-uuid>
+
+        # Create Data Networks
+        PHYSNET0='physnet0'
+        PHYSNET1='physnet1'
+        system datanetwork-add ${PHYSNET0} vlan
+        system datanetwork-add ${PHYSNET1} vlan
+
+        # Assign Data Networks to Data Interfaces
+        system interface-datanetwork-assign ${NODE} <data0-if-uuid> ${PHYSNET0}
+        system interface-datanetwork-assign ${NODE} <data1-if-uuid> ${PHYSNET1}
 
    * To enable using |SRIOV| network attachments for the above interfaces in
      Kubernetes hosted application containers:
@@ -293,11 +345,21 @@ For host-based Ceph:
 
 #. Add an |OSD| on controller-0 for host-based Ceph:
 
-   ::
+   .. code-block:: bash
 
+      # List host’s disks and identify disks you want to use for CEPH OSDs, taking note of their UUID
+      # By default, /dev/sda is being used as system disk and can not be used for OSD.
       system host-disk-list controller-0
-      system host-disk-list controller-0 | awk '/\/dev\/sdb/{print $2}' | xargs -i system host-stor-add controller-0 {}
+
+      # Add disk as an OSD storage
+      system host-stor-add controller-0 osd <disk-uuid>
+
+      # List OSD storage devices
       system host-stor-list controller-0
+
+
+   # Add disk as an OSD storage
+   system host-stor-add controller-0 osd <disk-uuid>
 
 .. only:: starlingx
 
@@ -317,19 +379,7 @@ For host-based Ceph:
          system host-label-assign controller-0 ceph-mon-placement=enabled
          system host-label-assign controller-0 ceph-mgr-placement=enabled
 
-
-***********************************
-If required, configure Docker Proxy
-***********************************
-
-StarlingX uses publicly available container runtime registries. If you are
-behind a corporate firewall or proxy, you need to set docker proxy settings.
-
-Refer to :ref:`Docker Proxy Configuration <docker_proxy_config>` for
-details about configuring Docker proxy settings.
-
-
-.. only:: starlingx
+.. only:: openstack
 
    *************************************
    OpenStack-specific host configuration
@@ -386,6 +436,7 @@ details about configuring Docker proxy settings.
 
       ::
 
+
         # assign 1 core on processor/numa-node 0 on controller-0 to vswitch
         system host-cpu-modify -f vswitch -p0 1 controller-0
 
@@ -414,6 +465,7 @@ details about configuring Docker proxy settings.
          the commands:
 
          ::
+
 
             # assign 10x 1G huge page on processor/numa-node 0 on controller-0 to applications
             system host-memory-modify -f application -1G 10 controller-0 0
@@ -533,40 +585,41 @@ Configure controller-1
    This step is optional for Kubernetes. Do this step if using |SRIOV|
    network attachments in hosted application containers.
 
-   .. important::
+   .. only:: starlingx
 
-      This step is **required** for OpenStack.
+      .. important::
+
+         This step is **required** for OpenStack.
 
 
    * Configure the data interfaces
 
      ::
 
-       DATA0IF=<DATA-0-PORT>
-       DATA1IF=<DATA-1-PORT>
        export NODE=controller-1
+
+       # List inventoried host’s ports and identify ports to be used as ‘data’ interfaces,
+       # based on displayed linux port name, pci address and device type.
+       system host-port-list ${NODE}
+
+       # List host’s auto-configured ‘ethernet’ interfaces,
+       # find the interfaces corresponding to the ports identified in previous step, and
+       # take note of their UUID
+       system host-if-list -a ${NODE}
+
+       # Modify configuration for these interfaces
+       # Configuring them as ‘data’ class interfaces, MTU of 1500 and named data#
+       system host-if-modify -m 1500 -n data0 -c data ${NODE} <data0-if-uuid>
+       system host-if-modify -m 1500 -n data1 -c data ${NODE} <data1-if-uuid>
+
+       # Previouly created Data Networks
        PHYSNET0='physnet0'
        PHYSNET1='physnet1'
-       SPL=/tmp/tmp-system-port-list
-       SPIL=/tmp/tmp-system-host-if-list
-       system host-port-list ${NODE} --nowrap > ${SPL}
-       system host-if-list -a ${NODE} --nowrap > ${SPIL}
-       DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
-       DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
-       DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
-       DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
-       DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
-       DATA1PORTNAME=$(cat  $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
-       DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
-       DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
 
-       system datanetwork-add ${PHYSNET0} vlan
-       system datanetwork-add ${PHYSNET1} vlan
+       # Assign Data Networks to Data Interfaces
+       system interface-datanetwork-assign ${NODE} <data0-if-uuid> ${PHYSNET0}
+       system interface-datanetwork-assign ${NODE} <data1-if-uuid> ${PHYSNET1}
 
-       system host-if-modify -m 1500 -n data0 -c data ${NODE} ${DATA0IFUUID}
-       system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
-       system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
-       system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
 
    * To enable using |SRIOV| network attachments for the above interfaes in
      Kubernetes hosted application containers:
@@ -601,9 +654,19 @@ For host-based Ceph:
 
    ::
 
-      system host-disk-list controller-1
-      system host-disk-list controller-1 | awk '/\/dev\/sdb/{print $2}' | xargs -i system host-stor-add controller-1 {}
-      system host-stor-list controller-1
+      # List host’s disks and identify disks you want to use for CEPH OSDs, taking note of their UUID
+      # By default, /dev/sda is being used as system disk and can not be used for OSD.
+      system host-disk-list controller-0
+
+      # Add disk as an OSD storage
+      system host-stor-add controller-0 osd <disk-uuid>
+
+      # List OSD storage devices
+      system host-stor-list controller-0
+
+      # Add disk as an OSD storage
+      system host-stor-add controller-0 osd <disk-uuid>
+
 
 .. only:: starlingx
 
@@ -616,6 +679,7 @@ For host-based Ceph:
 
          system host-label-assign controller-1 ceph-mon-placement=enabled
          system host-label-assign controller-1 ceph-mgr-placement=enabled
+
 
    *************************************
    OpenStack-specific host configuration
@@ -788,10 +852,13 @@ machine.
         rook-discover-xndld                                      1/1     Running     0          6m2s
         storage-init-rook-ceph-provisioner-t868q                 0/1     Completed   0          108s
 
+
+.. include:: /_includes/bootstrapping-and-deploying-starlingx.rest
+
+.. only:: starlingx
+
    ----------
    Next steps
    ----------
 
    .. include:: ../kubernetes_install_next.txt
-
-.. include:: /_includes/bootstrapping-and-deploying-starlingx.rest

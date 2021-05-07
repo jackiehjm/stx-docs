@@ -92,39 +92,37 @@ Configure worker nodes
 
    * Configure the data interfaces
 
-     ::
+     .. code-block:: bash
 
-        DATA0IF=<DATA-0-PORT>
-        DATA1IF=<DATA-1-PORT>
-        PHYSNET0='physnet0'
-        PHYSNET1='physnet1'
-        SPL=/tmp/tmp-system-port-list
-        SPIL=/tmp/tmp-system-host-if-list
+         # Execute the following lines with
+         export NODE=worker-0
+         # and then repeat with
+         export NODE=worker-1
 
-        # configure the datanetworks in sysinv, prior to referencing it
-        # in the ``system host-if-modify`` command'.
-        system datanetwork-add ${PHYSNET0} vlan
-        system datanetwork-add ${PHYSNET1} vlan
+         # List inventoried host’s ports and identify ports to be used as ‘data’ interfaces,
+         # based on displayed linux port name, pci address and device type.
+         system host-port-list ${NODE}
 
-        for NODE in worker-0 worker-1; do
-          echo "Configuring interface for: $NODE"
-          set -ex
-          system host-port-list ${NODE} --nowrap > ${SPL}
-          system host-if-list -a ${NODE} --nowrap > ${SPIL}
-          DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
-          DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
-          DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
-          DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
-          DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
-          DATA1PORTNAME=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
-          DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
-          DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
-          system host-if-modify -m 1500 -n data0 -c data ${NODE} ${DATA0IFUUID}
-          system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
-          system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
-          system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
-          set +ex
-        done
+         # List host’s auto-configured ‘ethernet’ interfaces,
+         # find the interfaces corresponding to the ports identified in previous step, and
+         # take note of their UUID
+         system host-if-list -a ${NODE}
+
+         # Modify configuration for these interfaces
+         # Configuring them as ‘data’ class interfaces, MTU of 1500 and named data#
+         system host-if-modify -m 1500 -n data0 -c data ${NODE} <data0-if-uuid>
+         system host-if-modify -m 1500 -n data1 -c data ${NODE} <data1-if-uuid>
+
+         # Previously configured Data Networks
+         PHYSNET0='physnet0'
+         PHYSNET1='physnet1'
+         system datanetwork-add ${PHYSNET0} vlan
+         system datanetwork-add ${PHYSNET1} vlan
+
+         # Assign Data Networks to Data Interfaces
+         system interface-datanetwork-assign ${NODE} <data0-if-uuid> ${PHYSNET0}
+         system interface-datanetwork-assign ${NODE} <data1-if-uuid> ${PHYSNET1}
+
 
    * To enable using |SRIOV| network attachments for the above interfaces in
      Kubernetes hosted application containers:

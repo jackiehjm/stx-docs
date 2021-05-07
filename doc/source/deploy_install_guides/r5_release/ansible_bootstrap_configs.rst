@@ -370,7 +370,7 @@ k8s_root_ca_key
    CA certificate has an expiry of at least 5-10 years.
 
 The administrator can also provide values to add to the Kubernetes API server
-certificate Subject Alternative Name list using the 'apiserver_cert_sans`
+certificate Subject Alternative Name list using the `apiserver_cert_sans`
 override parameter.
 
 apiserver_cert_sans

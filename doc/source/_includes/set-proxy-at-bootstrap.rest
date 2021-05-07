@@ -1,0 +1,6 @@
+----------------------
+Set proxy at bootstrap
+----------------------
+
+To set the Docker proxy at bootstrap time, refer to
+:doc:`Ansible Bootstrap Configurations <../deploy_install_guides/r3_release/ansible_bootstrap_configs>`.

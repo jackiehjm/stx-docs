@@ -1,0 +1,8 @@
+.. playbook-defaults-begin
+.. playbook-defaults-end
+
+.. docker-reg-begin
+.. docker-reg-end
+
+.. firewall-begin
+.. firewall-end
