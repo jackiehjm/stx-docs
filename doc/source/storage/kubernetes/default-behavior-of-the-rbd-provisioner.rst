@@ -9,9 +9,8 @@ Default Behavior of the RBD Provisioner
 The default Ceph Cluster configuration set up during |prod| installation
 contains a single storage tier, storage, containing all the |OSDs|.
 
-The default rbd-provisioner service runs within the kube-system namespace
-and has a single storage class, 'general', which is configured to:
-
+The default |RBD| provisioner service runs within the kube-system namespace and
+has a single storage class, 'general', which is configured to:
 
 .. _default-behavior-of-the-rbd-provisioner-ul-zg2-r2q-43b:
 
@@ -19,7 +18,8 @@ and has a single storage class, 'general', which is configured to:
 
 -   use a **kube-rbd** ceph pool, and
 
--   only support PVC requests from the following namespaces: kube-system, default and kube-public.
+-   only support PVC requests from the following namespaces: kube-system,
+    default and kube-public.
 
 
 The full details of the rbd-provisioner configuration can be viewed with
@@ -35,9 +35,7 @@ This command provides the chart names and the overrides namespaces.
 
     ~(keystone_admin)$ system helm-override-show platform-integ-apps rbd-provisioner kube-system
 
-See :ref:`Create Persistent Volume Claims
-<storage-configuration-create-persistent-volume-claims>` and
-:ref:`Mount Persistent Volumes in Containers
-<storage-configuration-mount-persistent-volumes-in-containers>` for
-details on how to create and mount a PVC from this storage class.
-
+See :ref:`Creating ReadWriteOnce Persistent Volume Claims <storage-configuration-create-readwriteonce-persistent-volume-claims>` and
+:ref:`Mounting ReadWriteOnce Persistent Volumes in Containers <storage-configuration-mount-readwriteonce-persistent-volumes-in-containers>`
+for an example of how to create and mount a ReadWriteOnce |PVC| from the
+'general' storage class.

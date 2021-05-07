@@ -28,14 +28,14 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
         |  3 | subcloud3 | managed      | online             | out-of-sync |
         |  4 | subcloud4 | managed      | offline            | unknown     |
         +----+-----------+--------------+--------------------+-------------+
-        
+
 
 -   To show information for a subcloud, use the :command:`subcloud show` command.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ dcmanager subcloud show <subcloud-name>
-        
+
 
     For example:
 
@@ -64,7 +64,7 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
         | patching_sync_status        | in-sync                    |
         | platform_sync_status        | in-sync                    |
         +-----------------------------+----------------------------+
-        
+
 
 -   To show information about the oam-floating-ip field for a specific
     subcloud, use the :command:`subcloud
@@ -98,7 +98,7 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
         | platform_sync_status        | in-sync                    |
         | oam_floating_ip             | 10.10.10.12                |
         +-----------------------------+----------------------------+
-        
+
 
 -   To edit the settings for a subcloud, use the :command:`subcloud update`
     command.
@@ -109,7 +109,7 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
         [–- description] <description> \
         [– location] <location> \
         <subcloud-name>
-        
+
 
 -   To toggle a subcloud between **Unmanaged** and **Managed**, pass these
     parameters to the :command:`subcloud` command.
@@ -119,12 +119,12 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
     .. code-block:: none
 
         ~(keystone_admin)]$ dcmanager subcloud unmanage <subcloud-name>
-        
+
 
     .. code-block:: none
 
         ~(keystone_admin)]$ dcmanager subcloud manage <subcloud-name>
-        
+
 
 -   To reconfigure a subcloud, if deployment fails, use the :command:`subcloud reconfig` command.
 
@@ -135,11 +135,11 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
 
         ~(keystone_admin)]$ dcmanager subcloud reconfig <subcloud-id/name> --deploy-config \
         <<filepath>> --sysadmin-password <<password>>
-        
+
 
     where``--deploy-config`` must reference the deployment configuration file.
-    For more information, see either, 
-    
+    For more information, see either,
+
 .. xbooklink |inst-doc|: :ref:`The
     Deployment Manager <the-deployment-manager>` or |inst-doc|:
     :ref:`Deployment Manager Examples <deployment-manager-examples>` for more
@@ -154,14 +154,14 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
     .. code-block:: none
 
         ~(keystone_admin)]$ dcmanager subcloud manage <subcloud-id/name>
-        
+
 
 -   To delete a subcloud, use the :command:`subcloud delete` command.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ dcmanager subcloud delete <subcloud-name>
-        
+
 
     .. caution::
 

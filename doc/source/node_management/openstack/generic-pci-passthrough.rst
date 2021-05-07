@@ -20,7 +20,7 @@ automatically inventoried on a host:
 .. code-block:: none
 
     ~(keystone_admin)$ system host-device-list controller-0 --all
-    
+
 
 You can use the following command from the |CLI| to list the devices for a
 host, for example:
@@ -30,7 +30,7 @@ host, for example:
     ~(keystone_admin)$ system host-device-list --all controller-0
     +-------------+----------+------+-------+-------+------+--------+--------+-------------+-------+
     | name        | address  | class| vendor| device| class| vendor | device | numa_node   |enabled|
-    |             |          | id   | id    | id    |      | name   | name   |             |       |  
+    |             |          | id   | id    | id    |      | name   | name   |             |       |
     +------------+----------+-------+-------+-------+------+--------+--------+-------------+-------+
     | pci_0000_05.| 0000:05:.| 030. | 10de  | 13f2  | VGA. | NVIDIA.| GM204GL| 0           | True  |
     | pci_0000_06.| 0000:06:.| 030. | 10de  | 13f2  | VGA. | NVIDIA.| GM204GL| 0           | True  |

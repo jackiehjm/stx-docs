@@ -9,7 +9,7 @@ Allocate Host Memory Using the CLI
 .. only:: starlingx
 
     You can edit the platform and huge page memory allocations for a |NUMA|
-    node from the CLI. 
+    node from the CLI.
 
 .. only:: partner
 
@@ -85,7 +85,7 @@ worker or an |AIO| controller.
         given processor.
 
         For example:
-    
+
     .. only:: starlingx
 
         .. code-block:: none
@@ -149,7 +149,7 @@ worker or an |AIO| controller.
 
         Use with the optional ``-f`` argument. This option specifies the
         intended function for hugepage allocation on application.
-    
+
     .. only:: partner
 
         .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
@@ -183,7 +183,7 @@ worker or an |AIO| controller.
         number of 1 GiB huge pages to make available. Due to limitations in
         Kubernetes, only a single huge page size can be used per host, across
         Application memory.
-    
+
     .. only:: partner
 
         .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
@@ -197,14 +197,14 @@ worker or an |AIO| controller.
     .. code-block:: none
 
         (keystone_admin)$ system host-memory-modify worker-0 1 -2M 4
-    
+
     .. only:: starlingx
 
         For openstack-compute labeled worker node or |AIO| controller, since
         Kubernetes only supports a single huge page size per worker node.
         'application' huge pages must also be 1G. The following example shows
         configuring 10 1G huge pages for application usage. For example:
-    
+
     .. only:: partner
 
         .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest

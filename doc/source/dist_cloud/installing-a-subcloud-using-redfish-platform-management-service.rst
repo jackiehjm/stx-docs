@@ -20,7 +20,7 @@ subcloud, the subcloud installation has these phases:
 
 -   Executing the :command:`dcmanager subcloud add` command in the Central Cloud:
 
-    -   Uses Redfish Virtual Media Service to remote install the ISO on 
+    -   Uses Redfish Virtual Media Service to remote install the ISO on
         controller-0 in the subcloud
 
     -   Uses Ansible to bootstrap |prod-long| on controller-0 in
@@ -114,23 +114,23 @@ subcloud, the subcloud installation has these phases:
         bootstrap_interface: <bootstrap_interface_name> # e.g. eno1
         bootstrap_address: <bootstrap_interface_ip_address> # e.g.128.224.151.183
         bootstrap_address_prefix: <bootstrap_netmask> # e.g. 23
-        
-        # Board Management Controller 
+
+        # Board Management Controller
         bmc_address: <BMCs_IPv4_or_IPv6_address> # e.g. 128.224.64.180
         bmc_username: <bmc_username> # e.g. root
-        
-        # If the subcloud's bootstrap IP interface and the system controller are not on the 
+
+        # If the subcloud's bootstrap IP interface and the system controller are not on the
         # same network then the customer must configure a default route or static route
-        # so that the Central Cloud can login bootstrap the newly installed subcloud. 
-        
+        # so that the Central Cloud can login bootstrap the newly installed subcloud.
+
         # If nexthop_gateway is specified and the network_address is not specified then a
         # default route will be configured. Otherwise, if a network_address is specified then
         # a static route will be configured.
-        
+
         nexthop_gateway: <default_route_address> for  # e.g. 128.224.150.1 (required)
         network_address: <static_route_address>   # e.g. 128.224.144.0
         network_mask: <static_route_mask>         # e.g. 255.255.254.0
-        
+
         # Installation type codes
         #0 - Standard Controller, Serial Console
         #1 - Standard Controller, Graphical Console
@@ -139,22 +139,22 @@ subcloud, the subcloud installation has these phases:
         #4 - AIO Low-latency, Serial Console
         #5 - AIO Low-latency, Graphical Console
         install_type: 3
-        
+
         # Optional parameters defaults can be modified by uncommenting the option with a modified value.
-         
+
         # This option can be set to extend the installing stage timeout value
-        # wait_for_timeout: 3600 
-        
+        # wait_for_timeout: 3600
+
         # Set this options for https
         no_check_certificate: True
-        
+
         # If the bootstrap interface is a vlan interface then configure the vlan ID.
-        # bootstrap_vlan: <vlan_id> 
-        
+        # bootstrap_vlan: <vlan_id>
+
         # Override default filesystem device.
         # rootfs_device: "/dev/disk/by-path/pci-0000:00:1f.2-ata-1.0"
         # boot_device: "/dev/disk/by-path/pci-0000:00:1f.2-ata-1.0"
-        
+
 
 #.  At the SystemController, create a
     /home/sysadmin/subcloud1-bootstrap-values.yaml overrides file for the
@@ -166,21 +166,21 @@ subcloud, the subcloud installation has these phases:
 
         system_mode: simplex
         name: "subcloud1"
-        
+
         description: "test"
         location: "loc"
-        
+
         management_subnet: 192.168.101.0/24
         management_start_address: 192.168.101.2
         management_end_address: 192.168.101.50
         management_gateway_address: 192.168.101.1
-        
+
         external_oam_subnet: 10.10.10.0/24
         external_oam_gateway_address: 10.10.10.1
         external_oam_floating_address: 10.10.10.12
-        
+
         systemcontroller_gateway_address: 192.168.204.101
-        
+
         docker_registries:
           k8s.gcr.io:
             url: registry.central:9001/k8s.gcr.io
@@ -212,7 +212,7 @@ subcloud, the subcloud installation has these phases:
 
     .. code-block:: none
 
-        "DNS.1: registry.local DNS.2: registry.central IP.1: floating_management IP.2: floating_OAM" 
+        "DNS.1: registry.local DNS.2: registry.central IP.1: floating_management IP.2: floating_OAM"
 
     If required, run the following command on the Central Cloud prior to
     bootstrapping the subcloud to install the new certificate for the Central
@@ -220,7 +220,7 @@ subcloud, the subcloud installation has these phases:
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system certificate-install -m docker_registry path_to_cert 
+        ~(keystone_admin)]$ system certificate-install -m docker_registry path_to_cert
 
     If you prefer to install container images from the default WRS AWS ECR
     external registries, make the following substitutions for the
@@ -338,15 +338,15 @@ subcloud, the subcloud installation has these phases:
         controller-0:/home/sysadmin# tail /var/log/dcmanager/subcloud1_install_2019-09-23-19-19-42.log
         TASK [wait_for] ****************************************************************
         ok: [subcloud1]
-        
+
         controller-0:/home/sysadmin# tail /var/log/dcmanager/subcloud1_bootstrap_2019-09-23-19-03-44.log
         k8s.gcr.io: {password: secret, url: null}
         quay.io: {password: secret, url: null}
         )
-        
+
         TASK [bootstrap/bringup-essential-services : Mark the bootstrap as completed] ***
         changed: [subcloud1]
-        
+
         PLAY RECAP *********************************************************************
         subcloud1                  : ok=230  changed=137  unreachable=0    failed=0
 
@@ -364,7 +364,7 @@ subcloud, the subcloud installation has these phases:
     .. code-block:: none
 
         REGISTRY="docker-registry"
-        SECRET_UUID='system service-parameter-list | fgrep 
+        SECRET_UUID='system service-parameter-list | fgrep
         $REGISTRY | fgrep auth-secret | awk '{print $10}''
         SECRET_REF='openstack secret list | fgrep $
         {SECRET_UUID} | awk '{print $2}''

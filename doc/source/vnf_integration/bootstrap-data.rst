@@ -20,7 +20,7 @@ the metadata server and config drive.
 -   User data is made available to the |VNF| through either the metadata
     service or the configuration drive.
 
--   The cloud-init package reads information from either the metadata 
+-   The cloud-init package reads information from either the metadata
     server or the configuration drive.
 
 

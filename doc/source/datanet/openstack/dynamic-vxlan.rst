@@ -56,7 +56,7 @@ Multicast Endpoint Distribution
 
     :start-after: vswitch-text-1-begin
     :end-before: vswitch-text-1-end
-    
+
 
 .. _dynamic-vxlan-section-N10054-N1001F-N10001:
 

@@ -9,7 +9,7 @@ Create, Test, and Terminate a PTP Notification Demo
 This section provides instructions on accessing, creating, testing and
 terminating a **ptp-notification-demo**.
 
-.. rubric:: |context| 
+.. rubric:: |context|
 
 
 Use the following procedure to copy the tarball from |dnload-loc|, create, test,
@@ -97,8 +97,8 @@ and terminate a ptp-notification-demo.
 
     .. code-block:: none
 
-        $ kubectl create namespace ptpdemo 
-        $ helm install -n notification-demo ~/charts/ptp-notification-demo -f ~/charts/ptp-notification-demo/ptp-notification-override.yaml 
+        $ kubectl create namespace ptpdemo
+        $ helm install -n notification-demo ~/charts/ptp-notification-demo -f ~/charts/ptp-notification-demo/ptp-notification-override.yaml
         $ kubectl get pods -n ptpdemo
 
     .. code-block:: none

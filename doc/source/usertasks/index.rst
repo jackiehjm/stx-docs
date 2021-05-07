@@ -11,7 +11,7 @@ end-user tasks.
 
 .. toctree::
    :maxdepth: 2
-   
+
    kubernetes/index
 
 ---------

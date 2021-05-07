@@ -27,7 +27,7 @@ subcloud hosts and networks, just as you would for any |prod| system
     -   From the Horizon header, select a subcloud from the **Admin** menu.
 
         .. image:: figures/rpn1518108364837.png
-        
+
 
     -   From the Cloud Overview page, select **Alarm & Event Details** \> **Host Details** for the subcloud.
 

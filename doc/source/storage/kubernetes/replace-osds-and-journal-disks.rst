@@ -15,6 +15,6 @@ the same peer group. Do not substitute a smaller disk than the original.
 
 The replacement disk is automatically formatted and updated with data when the
 storage host is unlocked. For more information, see |node-doc|: :ref:`Change
-Hardware Components for a Storage Host 
+Hardware Components for a Storage Host
 <changing-hardware-components-for-a-storage-host>`.
 

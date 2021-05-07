@@ -16,7 +16,7 @@ PCI Device Access for VMs
 
 .. toctree::
    :maxdepth: 1
-   
+
    sr-iov-encryption-acceleration
    configuring-pci-passthrough-ethernet-interfaces
    pci-passthrough-ethernet-interface-devices

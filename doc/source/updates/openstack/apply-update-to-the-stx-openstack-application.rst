@@ -42,7 +42,7 @@ where the following are optional arguments:
         |                          | stable-  |                               |                           |          |           |
         |                          | versioned|                               |                           |          |           |
         +--------------------------+----------+-------------------------------+---------------------------+----------+-----------+
-       
+
         The output indicates that the currently installed version of
         |prefix|-openstack is 20.10-0.
 
@@ -78,7 +78,7 @@ and the following is a positional argument which must come last:
     .. code-block:: none
 
         $ source /etc/platform/openrc
-        ~(keystone_admin)$ 
+        ~(keystone_admin)$
 
 #.  Update the application.
 
@@ -110,6 +110,6 @@ and the following is a positional argument which must come last:
         | status        | applied                          |
         | updated_at    | 2020-05-02T17:44:40.152201+00:00 |
         +---------------+----------------------------------+
-        
+
 
 

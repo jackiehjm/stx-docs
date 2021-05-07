@@ -116,12 +116,7 @@ For more information about Trident, see
     -   :ref:`Configure the Internal Ceph Storage Backend
         <configure-the-internal-ceph-storage-backend>`
 
-    -   :ref:`Configuring Ceph File System for Internal Ceph Storage Backend
-        <configure-ceph-file-system-for-internal-ceph-storage-backend>`
-  
-    -   :ref:`Configure an External Netapp Deployment as the Storage Backend 
+    -   :ref:`Configure an External Netapp Deployment as the Storage Backend
         <configure-an-external-netapp-deployment-as-the-storage-backend>`
 
-    -   :ref:`Uninstall the Netapp Backend <uninstall-the-netapp-backend>`  
-
-
+    -   :ref:`Uninstall the Netapp Backend <uninstall-the-netapp-backend>`

@@ -51,7 +51,7 @@ For example:
     | 8b9971df-6d83.. | vanilla          |    1 |    1 |  0  |   1   | True      |
     | e94c8123-2602.. | xlarge.8c.4G.8G  | 4096 |    8 |  0  |   8   | True      |
     +-----------------+------------------+------+------+-----+-------+-----------+
-    
+
     ~(keystone_admin)$ openstack image list
     +----------------+----------------------------------------+--------+
     | ID             | Name                                   | Status |
@@ -60,5 +60,5 @@ For example:
     | 15aaf0de-b369..| opensquidbox.amd64.1.06a.iso           | active |
     | eeda4642-db83..| xenial-server-cloudimg-amd64-disk1.img | active |
     +----------------+----------------------------------------+--------+
-    
+
 

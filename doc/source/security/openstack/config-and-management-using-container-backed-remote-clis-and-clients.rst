@@ -46,8 +46,8 @@ variables and aliases for the remote |CLI| commands.
 
     .. code-block:: none
 
-        root@myclient:/home/user/remote_cli_wd# source remote_client_openstack.sh 
-        Please enter your OpenStack Password for project admin as user admin: 
+        root@myclient:/home/user/remote_cli_wd# source remote_client_openstack.sh
+        Please enter your OpenStack Password for project admin as user admin:
         root@myclient:/home/user/remote_cli_wd# openstack endpoint list
         +----------------------------------+-----------+--------------+-----------------+---------+-----------+------------------------------------------------------------+
         | ID                               | Region    | Service Name | Service Type    | Enabled | Interface | URL                                                        |
@@ -77,7 +77,7 @@ variables and aliases for the remote |CLI| commands.
         +--------------------------------------+-----------+-----------+------+-------------+
         | f2421d88-69e8-4e2f-b8aa-abd7fb4de1c5 | my-volume | available |    8 |             |
         +--------------------------------------+-----------+-----------+------+-------------+
-        root@myclient:/home/user/remote_cli_wd# 
+        root@myclient:/home/user/remote_cli_wd#
 
     .. note::
         Some commands used by remote |CLI| are designed to leave you in a shell
@@ -108,6 +108,6 @@ variables and aliases for the remote |CLI| commands.
         root@myclient:/home/user/remote_cli_wd# openstack image create --public
         --disk-format qcow2 --container-format bare --file ubuntu.qcow2
         ubuntu_image
-        
+
 
 

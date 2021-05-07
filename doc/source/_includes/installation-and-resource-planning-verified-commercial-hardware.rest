@@ -1,1 +1,1 @@
-.. [#f1] See :ref:`Data Network Planning <data-network-planning>` for more information.
+.. [#]_ See :ref:`Data Network Planning <data-network-planning>` for more information.

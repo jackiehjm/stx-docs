@@ -92,4 +92,4 @@ Nodes must be locked before labels can be assigned or removed.
 
     .. include:: ../../_includes/using-labels-to-identify-openstack-nodes.rest
 
-    :start-after: table-1-of-contents-end 
+    :start-after: table-1-of-contents-end

@@ -58,7 +58,7 @@ a Generic PCI Device for Use by VMs
     .. code-block:: none
 
         ~(keystone_admin)$ openstack flavor set flavor_name --property "pci_passthrough:alias"="pci_alias[:number_of_devices]"
-        
+
     where
 
     **<flavor\_name>**
@@ -97,7 +97,7 @@ a Generic PCI Device for Use by VMs
             defined class code for 'Display Controller' \(0x03\).
 
             .. note::
-    
+
                 On a system with multiple cards that use the same default |PCI|
                 alias, you must assign and use a unique |PCI| alias for each one.
 
@@ -115,20 +115,20 @@ a Generic PCI Device for Use by VMs
     .. code-block:: none
 
         ~(keystone_admin)$ openstack flavor set flavor_name --property "pci_passthrough:alias"="gpu:1"
-        
+
 
     To make a GPU device from a specific vendor available to a guest:
 
     .. code-block:: none
 
         ~(keystone_admin)$ openstack flavor set flavor_name --property "pci_passthrough:alias"="nvidia-tesla-p40:1"
-        
+
 
     To make multiple |PCI| devices available, use the following command:
 
     .. code-block:: none
 
         ~(keystone_admin)$ openstack flavor set flavor_name --property "pci_passthrough:alias"="gpu:1, qat-c62x-vf:2"
-        
+
 
 

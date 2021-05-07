@@ -1,47 +1,46 @@
 
-.. pjw1564749970685
-.. _storage-configuration-mount-persistent-volumes-in-containers:
+.. nos1582114374670
+.. _kubernetes-user-tutorials-mount-readwriteonce-persistent-volumes-in-containers:
 
-======================================
-Mount Persistent Volumes in Containers
-======================================
+====================================================
+Mount ReadWriteOnce Persistent Volumes in Containers
+====================================================
 
-You can launch, attach, and terminate a busybox container to mount |PVCs| in
-your cluster.
+You can attach ReadWriteOnce |PVCs| to a container when launching a container,
+and changes to those PVCs will persist even if that container gets terminated
+and restarted.
+
+.. note::
+    A ReadWriteOnce PVC can only be mounted by a single container.
 
 .. rubric:: |context|
 
 This example shows how a volume is claimed and mounted by a simple running
-container. It is the responsibility of an individual micro-service within
-an application to make a volume claim, mount it, and use it. For example,
-the stx-openstack application will make volume claims for **mariadb** and
-**rabbitmq** via their helm charts to orchestrate this.
+container, and the contents of the volume claim persists across restarts of the
+container. It is the responsibility of an individual micro-service within an
+application to make a volume claim, mount it, and use it.
 
 .. rubric:: |prereq|
 
-You must have created the persistent volume claims. This procedure uses
-PVCs with names and configurations created in |stor-doc|: :ref:`Create
-Persistent Volume Claims
-<storage-configuration-create-persistent-volume-claims>`.
+You should refer to the Volume Claim examples. For more information, see
+:ref:`Create ReadWriteOnce Persistent Volume Claims <storage-configuration-create-readwriteonce-persistent-volume-claims>`.
 
 .. rubric:: |proc|
 
+.. _kubernetes-user-tutorials-mounting-persistent-volumes-in-containers-d18e44:
 
-.. _storage-configuration-mount-persistent-volumes-in-containers-d583e55:
-
-#.  Create the busybox container with the persistent volumes created from
-    the PVCs mounted.
-
+#.  Create the busybox container with the persistent volumes created from the
+    |PVCs| mounted.
 
     #.  Create a yaml file definition for the busybox container.
 
         .. code-block:: none
 
-            % cat <<EOF > busybox.yaml
+            % cat <<EOF > rwo-busybox.yaml
             apiVersion: apps/v1
             kind: Deployment
             metadata:
-              name: busybox
+              name: rwo-busybox
               namespace: default
             spec:
               progressDeadlineSeconds: 600
@@ -71,40 +70,38 @@ Persistent Volume Claims
                   volumes:
                   - name: pvc1
                     persistentVolumeClaim:
-                      claimName: test-claim1
+                      claimName: rwo-test-claim1
                   - name: pvc2
                     persistentVolumeClaim:
-                      claimName: test-claim2
+                      claimName: rwo-test-claim2
             EOF
-
 
     #.  Apply the busybox configuration.
 
         .. code-block:: none
 
-            % kubectl apply -f busybox.yaml
+            % kubectl apply -f rwo-busybox.yaml
+            deployment.apps/rwo-busybox created
 
 
 #.  Attach to the busybox and create files on the persistent volumes.
-
 
     #.  List the available pods.
 
         .. code-block:: none
 
             % kubectl get pods
-            NAME                       READY   STATUS    RESTARTS   AGE
-            busybox-5c4f877455-gkg2s   1/1     Running   0          19s
-
+            NAME                           READY   STATUS    RESTARTS   AGE
+            rwo-busybox-5c4f877455-gkg2s   1/1     Running   0          19s
 
     #.  Connect to the pod shell for CLI access.
 
         .. code-block:: none
 
-            % kubectl attach busybox-5c4f877455-gkg2s -c busybox -i -t
+            % kubectl attach rwo-busybox-5c4f877455-gkg2s -c busybox -i -t
 
     #.  From the container's console, list the disks to verify that the
-        persistent volumes are attached.
+        Persistent Volumes are attached.
 
         .. code-block:: none
 
@@ -129,7 +126,6 @@ Persistent Volume Claims
         # touch i-was-here
         # ls /mnt1
         i-was-here lost+found
-        #
         # cd /mnt2
         # touch i-was-here-too
         # ls /mnt2
@@ -140,31 +136,31 @@ Persistent Volume Claims
     .. code-block:: none
 
         # exit
-        Session ended, resume using 'kubectl attach busybox-5c4f877455-gkg2s -c busybox -i -t' command when the pod is running
+        Session ended, resume using :command:`kubectl attach busybox-5c4f877455-gkg2s -c busybox -i -t`
+        when the pod is running
 
 #.  Terminate the busybox container.
 
     .. code-block:: none
 
-        % kubectl delete -f busybox.yaml
+        % kubectl delete -f rwo-busybox.yaml
 
-#.  Recreate the busybox container, again attached to persistent volumes.
-
+#.  Re-create the busybox container, again attached to persistent volumes.
 
     #.  Apply the busybox configuration.
 
         .. code-block:: none
 
-            % kubectl apply -f busybox.yaml
+            % kubectl apply -f rwo-busybox.yaml
+            deployment.apps/rwo-busybox created
 
     #.  List the available pods.
 
         .. code-block:: none
 
             % kubectl get pods
-            NAME                       READY   STATUS    RESTARTS   AGE
-            busybox-5c4f877455-jgcc4   1/1     Running   0          19s
-
+            NAME                         READY   STATUS    RESTARTS   AGE
+            rwo-busybox-5c4f877455-jgcc4 1/1     Running   0          19s
 
     #.  Connect to the pod shell for CLI access.
 
@@ -172,8 +168,7 @@ Persistent Volume Claims
 
             % kubectl attach busybox-5c4f877455-jgcc4 -c busybox -i -t
 
-    #.  From the container's console, list the disks to verify that the PVCs
-        are attached.
+    #.  From the container's console list the disks to verify that the PVCs are attached.
 
         .. code-block:: none
 
@@ -187,9 +182,7 @@ Persistent Volume Claims
             /dev/sda4             20027216   4952208  14034624  26%
             ...
 
-
-#.  Verify that the files created during the earlier container session
-    still exist.
+#.  Verify that the files created during the earlier container session still exist.
 
     .. code-block:: none
 
