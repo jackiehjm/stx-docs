@@ -1,3 +1,6 @@
+
+.. _docker_proxy_config:
+
 ==========================
 Docker Proxy Configuration
 ==========================

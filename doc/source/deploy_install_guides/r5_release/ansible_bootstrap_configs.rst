@@ -1,3 +1,6 @@
+
+.. _ansible_bootstrap_configs:
+
 ================================
 Ansible Bootstrap Configurations
 ================================
