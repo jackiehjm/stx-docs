@@ -235,5 +235,3 @@ and uploaded by default.
     .. code-block:: none
 
         ~(keystone_admin)]$ system application-apply oidc-auth-apps
-
-
