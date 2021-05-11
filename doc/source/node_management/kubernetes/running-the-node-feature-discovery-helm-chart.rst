@@ -37,40 +37,40 @@ automatically once the system has been installed.
     .. table::
         :widths: auto
 
-        +-----------------------+-------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+
-        | Value                 | Description                                                                                                 | Default                                                                                |
-        +=======================+=============================================================================================================+========================================================================================+
-        | namespace             | The namespace to use for chart resources.                                                                   | default                                                                                |
-        |                       |                                                                                                             |                                                                                        |
-        |                       |                                                                                                             | Specifying namespace in a helm overrides file without a value will result in an error. |
-        +-----------------------+-------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+
-        | app\_label            | The label for the daemonset to find its pods.                                                               | node-feature-discovery                                                                 |
-        +-----------------------+-------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+
-        | image                 | The docker image to use for the pods.                                                                       | quay.io/kubernetes\_incubator/node-feature-discovery:v0.3.0                            |
-        +-----------------------+-------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+
-        | scan\_interval        | The interval \(in seconds\) to scan the node features.                                                      | 60                                                                                     |
-        +-----------------------+-------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+
-        | node\_selector\_key   | A key/value pair to match against node labels and select which nodes should run the node feature discovery. | All nodes.                                                                             |
-        |                       |                                                                                                             |                                                                                        |
-        | node\_selector\_value |                                                                                                             |                                                                                        |
-        +-----------------------+-------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+
+        +--------------------+--------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+        | Override Name      | Description                                                                                                        | Default                                                                                                              |
+        +====================+====================================================================================================================+======================================================================================================================+
+        | image:             | The docker image to use for the pods.                                                                              | k8s.gcr.io/nfd/node-feature-discovery                                                                                |
+        | repository:        |                                                                                                                    |                                                                                                                      |
+        +--------------------+--------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+        | worker:            | The Kubernetes nodeSelector to use for the worker pods.                                                            | All nodes.                                                                                                           |
+        | nodeSelector:      | This is a key/value pair to matchagainst node labels and selectwhich nodes should run the node feature discovery.  | Changing the {} to {foo: bar} will result in the worker pods only running on Kubernetes nodes labelled with foo:bar. |
+        | {}                 |                                                                                                                    |                                                                                                                      |
+        +--------------------+--------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+        | fullnameOverride:  | The base name to use for the Kubernetes resources (pods, daemonsets, etc.).                                        | A blank entry here will result in the base name being "node-feature-discovery".                                      |
+        +--------------------+--------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
 
-    For example, to set the scan interval to 30 seconds:
+    For example, to set the base name to "nfd" and to run the worker pod only
+    on nodes with the "foo: bar" label:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ cat <<EOF > /home/sysadmin/my-discovery-overrides.yaml
-        scan_interval:30
+        ~(keystone_admin)$ cat <<EOF > /home/sysadmin/my-discovery-overrides.yaml
+        fullnameOverride: nfd
+        worker:
+        nodeSelector:
+        foo: bar
         EOF
 
-#.  Run the node feature discovery helm chart.
+#.  Run the node feature discover helm chart. It is recommended to run it in
+    the "kube-system" namespace so the pods run on the platform CPUs.
 
-    -   To accept the default value, run :command:`helm` without specifying
-        an overrides file:
+    -   To accept the default values, run :command:`helm` without specifying an
+        overrides file:
 
         .. code-block:: none
 
-            ~(keystone_admin)$ helm upgrade -i node-feature-discovery helm upgrade -i node-feature-discovery stx-platform/node-feature-discovery
+            ~(keystone_admin)$ helm -n kube-system upgrade -i node-feature-discovery stx-platform/node-feature-discovery
 
     -   If you have defined default overrides in a yaml file, specify the
         file when running :command:`helm`.
@@ -79,8 +79,8 @@ automatically once the system has been installed.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ helm upgrade -i node-feature-discovery helm upgrade -i node-feature-discovery stx-platform/node-feature-discovery --values=/home/sysadmin/my-discovery-overrides.yaml
+            ~(keystone_admin)$ helm -n kube-system upgrade -i node-feature-discovery stx-platform/node-feature-discovery --values=/home/sysadmin/my-discovery-overrides.yaml
 
-    One pod is created per node, which runs either once per minute or at the
-    interval you specified \(30 seconds in this example\) to update the node
-    features.
+    One worker pod is created per node, which runs once per minute to update
+    the node features.  One master pod gathers up all the data and reports it
+    to Kubernetes.
