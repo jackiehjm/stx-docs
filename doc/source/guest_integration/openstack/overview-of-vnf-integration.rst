@@ -31,8 +31,8 @@ The following |VNF|-related integration topics are included in this document:
 
 .. only:: partner
 
-   .. include:: ../_includes/overview-of-vnf-integration.rest
-   
+   .. include:: /_includes/overview-of-vnf-integration.rest
+
 
 
 
