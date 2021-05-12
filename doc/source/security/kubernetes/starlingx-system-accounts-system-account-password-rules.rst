@@ -30,30 +30,31 @@ other Linux Accounts, and Keystone accounts\):
     -   at least one special character
 
 
-
 The following additional rules apply to Local Linux accounts only \(Local
 LDAP, sysadmin, and other Linux accounts\):
 
 .. _starlingx-system-accounts-system-account-password-rules-ul-rvj-jsn-ynb:
 
--   Dictionary words or simple number sequences \(for example, 123 or 321\)
-    are not allowed
+-   A changed password must differ from the previous password by at least three
+    characters.
 
--   A changed password must differ from the previous password by at least
-    three characters
+    .. note::
 
--   A changed password must not be a simple reversal of the previous
-    password. For example, if nEtw!rk5 is the current password, 5kr!wtEn is not
-    allowed as the new password.
+        This rule does not apply when the root user changes the password for
+        other users, including sudo to root, to change other account's password.
 
 -   A changed password using only character case differences is not allowed.
     For example, if nEtw!rk5 is the current password, Netw!RK5 is not allowed as
     the new password.
 
--   A changed password cannot use the older password that immediately
-    preceded the current password. For example, if the password was previously
-    changed from oP3n!sRC to the current password nEtw!rk5, then the new
-    password cannot be oP3n!sRC.
+    .. note::
+
+        This rule does not apply when the root user changes the password for
+        other users, including sudo to root, to change other account's password.
 
 -   After five consecutive incorrect password attempts, the user is locked
     out for 5 minutes.
+
+    .. note::
+
+        This rule does not apply to the root user.
