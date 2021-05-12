@@ -72,21 +72,5 @@ same pod and communicates with the application via a REST API.
 
 The figure below describes the subscription framework for |PTP| notifications.
 
-.. image:: ../figures/gvf1614702096862.png
-
-
-
-For more information on |PTP| notifications, see:
-
-
-.. _ptp-notifications-overview-ul-xqg-2wg-t4b:
-
--   :ref:`Install PTP Notifications <install-ptp-notifications>`
-
--   :ref:`Remove PTP Notifications <remove-ptp-notifications>`
-
--   :ref:`Override Default Application Values <override-default-application-values>`
-
--   :ref:`Integrate the Application with Notification Client Sidecar <integrate-the-application-with-notification-client-sidecar>`
-
+.. image:: figures/gvf1614702096862.png
 
