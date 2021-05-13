@@ -3,7 +3,7 @@
 .. _installing-and-provisioning-the-central-cloud:
 
 ==========================================
-Install and Provisioning the Central Cloud
+Install and Provision the Central Cloud
 ==========================================
 
 Installing the Central Cloud is similar to installing a standalone |prod|
@@ -20,6 +20,7 @@ The Central Cloud supports either
 
 -  a Standard with Dedicated Storage Nodes deployment configuration.
 
+A Standard System Controller with controller storage is not supported.
 
 .. rubric:: |proc|
 
