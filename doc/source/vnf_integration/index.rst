@@ -21,15 +21,6 @@ Bootstrap Data
    bootstrap-data
    configuration-using-metadata
 
-------------------------------
-Accelerated Virtual Interfaces
-------------------------------
-
-.. toctree::
-   :maxdepth: 2
-
-   accelerated-virtual-interfaces
-
 ************************************
 About Accelerated Virtual Interfaces
 ************************************
@@ -38,7 +29,6 @@ About Accelerated Virtual Interfaces
    :maxdepth: 2
 
    standard-virtio-backed-with-vhost-support
-   wrs-avp-pmd-accelerated-dpdk-network-drivers
    use-a-vif-model-when-creating-ports
 
 
