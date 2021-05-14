@@ -15,7 +15,7 @@ overall health of the system.
 .. _300-series-alarm-messages-table-zrd-tg5-v5:
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 300.001**
@@ -33,7 +33,7 @@ overall health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 300.002**
