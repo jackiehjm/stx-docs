@@ -1,10 +1,12 @@
 import openstackdocstheme as osdt
+import datetime
 
 def _html_page_context(app, pagename, templatename, context, doctree):
     context['this_version']=app.config.starlingxdocs_plus_this_version
     context['other_versions']=app.config.starlingxdocs_plus_other_versions
     context['bug_project'] = app.config.starlingxdocs_plus_bug_project
     context['bug_tag'] = app.config.starlingxdocs_plus_bug_tag
+    context['last_updated'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 def setup(app):
     app.add_html_theme(
