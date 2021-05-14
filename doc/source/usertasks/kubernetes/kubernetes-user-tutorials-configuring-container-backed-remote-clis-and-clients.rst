@@ -120,8 +120,8 @@ and clients for a non-admin user.
 
             .. code-block:: none
 
-                $ ./configure_client.sh -t platform -r my_openrc.sh -k user-kubeconfig -w $HOME/remote_cli_wd 
-        
+                $ ./configure_client.sh -t platform -r my_openrc.sh -k user-kubeconfig -w $HOME/remote_cli_wd
+
         .. only:: partner
 
             .. include:: ../../_includes/kubernetes-user-tutorials-configuring-container-backed-remote-clis-and-clients.rest
@@ -216,7 +216,7 @@ See :ref:`Using Container-backed Remote CLIs and Clients <using-container-based-
 **Related information**
 
 .. seealso::
-    :ref:`Using Container-backed Remote CLIs and Clients 
+    :ref:`Using Container-backed Remote CLIs and Clients
     <using-container-based-remote-clis-and-clients>`
 
     :ref:`Installing Kubectl and Helm Clients Directly on a Host

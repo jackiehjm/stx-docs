@@ -99,7 +99,7 @@ storage by setting a flavor extra specification.
 .. caution::
     Unlike Cinder-based storage, Ephemeral storage does not persist if the
     instance is terminated or the compute node fails.
-    
+
     .. _block-storage-for-virtual-machines-d29e17:
 
     In addition, for local Ephemeral storage, migration and resizing support

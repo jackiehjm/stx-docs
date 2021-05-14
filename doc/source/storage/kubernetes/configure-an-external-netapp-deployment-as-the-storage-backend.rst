@@ -12,7 +12,7 @@ system installation using a |prod|-provided ansible playbook.
 .. rubric:: |prereq|
 
 |prod-long| must be installed and fully deployed before performing this
-procedure. 
+procedure.
 
 .. xbooklink See the :ref:`Installation Overview <installation-overview>`
    for more information.
@@ -250,8 +250,8 @@ appropriate storage-class name you set up in step :ref:`2
 <configure-an-external-netapp-deployment-as-the-storage-backend>`
 \(**netapp-nas-backend** in this example\) to the persistent volume
 claim's yaml configuration file. For more information about this file, see
-|usertasks-doc|: :ref:`Create Persistent Volume Claims
-<kubernetes-user-tutorials-creating-persistent-volume-claims>`.
+|usertasks-doc|: :ref:`Create ReadWriteOnce Persistent Volume Claims
+<kubernetes-user-tutorials-create-readwriteonce-persistent-volume-claims>`.
 
 .. seealso::
 

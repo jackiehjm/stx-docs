@@ -7,18 +7,18 @@ Install and Provisioning the Central Cloud
 ==========================================
 
 Installing the Central Cloud is similar to installing a standalone |prod|
-system. 
+system.
 
 .. rubric:: |context|
 
-The Central Cloud supports either 
+The Central Cloud supports either
 
 -  an |AIO|-Duplex deployment configuration
 
 -  a Standard with Dedicated Storage Nodes deployment Standard with Controller
    Storage and one or more workers deployment configuration, or
 
--  a Standard with Dedicated Storage Nodes deployment configuration. 
+-  a Standard with Dedicated Storage Nodes deployment configuration.
 
 
 .. rubric:: |proc|
@@ -42,7 +42,7 @@ You will also need to make the following modification:
    management_start_address and management_end_address, as shown below)  to
    exclude the IP addresses reserved for gateway routers that provide routing
    to the subclouds' management subnets.
-   
+
 -  Also, include the container images shown in bold below in
    additional\_local\_registry\_images, required for support of subcloud
    installs with the Redfish Platform Management Service, and subcloud installs

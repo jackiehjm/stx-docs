@@ -59,44 +59,44 @@ service‐parameter-add` command to configure and set the OpenStack domain name:
 
         # define A record for general domain for |prod| system
         <my-|prefix|-domain> IN A 10.10.10.10
-         
+
         # define alias for general domain for horizon dashboard REST API URL
         horizon.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com.
-         
+
         # define alias for general domain for keystone identity service REST
         API URLs keystone.<my-|prefix|-domain> IN CNAME
         <my-|prefix|-domain>.<my-company>.com. keystone-api.<my-|prefix|-domain> IN
         CNAME <my-|prefix|-domain>.<my-company>.com.
-         
-        # define alias for general domain for neutron networking REST API URL      
+
+        # define alias for general domain for neutron networking REST API URL
         neutron.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com.
-         
+
         # define alias for general domain for nova compute provisioning REST
         API URLs nova.<my-|prefix|-domain> IN CNAME
         <my-|prefix|-domain>.<my-company>.com. placement.<my-|prefix|-domain> IN CNAME
         <my-|prefix|-domain>.<my-company>.com. rest-api.<my-|prefix|-domain> IN CNAME
         <my-|prefix|-domain>.<my-company>.com.
-        
+
         # define no vnc procy alias for VM console access through Horizon REST
         API URL novncproxy.<my-|prefix|-domain> IN CNAME
         <my-|prefix|-domain>.<my-company>.com.
-        
+
         # define alias for general domain for barbican secure storage REST API URL
         barbican.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com.
-         
+
         # define alias for general domain for glance VM management REST API URL
         glance.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com.
-         
+
         # define alias for general domain for cinder block storage REST API URL
         cinder.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com.
         cinder2.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com.
         cinder3.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com.
-         
+
         # define alias for general domain for heat orchestration REST API URLs
         heat.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com.
         cloudformation.<my-|prefix|-domain> IN CNAME
         my-|prefix|-domain.<my-company>.com.
-         
+
         # define alias for general domain for starlingx REST API URLs
         # ( for fault, patching, service management, system and VIM )
         fm.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com.
@@ -104,7 +104,7 @@ service‐parameter-add` command to configure and set the OpenStack domain name:
         smapi.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com.
         sysinv.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com.
         vim.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com.
-         
+
 .. rubric:: |proc|
 
 #.  Source the environment.
@@ -112,7 +112,7 @@ service‐parameter-add` command to configure and set the OpenStack domain name:
     .. code-block:: none
 
         $ source /etc/platform/openrc
-        ~(keystone_admin)$ 
+        ~(keystone_admin)$
 
 #.  To set a unique domain name, use the :command:`system
     service‐parameter-add` command.

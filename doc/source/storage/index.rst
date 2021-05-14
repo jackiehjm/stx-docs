@@ -14,7 +14,7 @@ and the requirements of the system.
    :maxdepth: 2
 
    kubernetes/index
-   
+
 ---------
 OpenStack
 ---------

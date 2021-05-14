@@ -22,8 +22,8 @@ table lists IPv4 and IPv6 support for different networks:
      - IPv6 Support
      - Comment
    * - |PXE| boot
-     - Y 
-     - N 
+     - Y
+     - N
      - If present, the |PXE| boot network is used for |PXE| booting of new
        hosts \(instead of using the internal management network\), and must be
        untagged. It is limited to IPv4, because the |prod| installer does not
@@ -39,4 +39,4 @@ table lists IPv4 and IPv6 support for different networks:
    * - Cluster Host
      - Y
      - Y
-     - The Cluster Host network supports IPv4 or IPv6 addressing. 
+     - The Cluster Host network supports IPv4 or IPv6 addressing.

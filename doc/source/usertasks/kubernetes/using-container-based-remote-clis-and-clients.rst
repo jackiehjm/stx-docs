@@ -43,8 +43,8 @@ before proceeding.
 
     .. code-block:: none
 
-        Please enter your OpenStack Password for project tenant1 as user user1: 
-        
+        Please enter your OpenStack Password for project tenant1 as user user1:
+
         root@myclient:/home/user/remote_cli_wd# kubectl -n kube-system get pods
         NAME                                       READY   STATUS      RESTARTS   AGE
         calico-kube-controllers-767467f9cf-wtvmr   1/1     Running     1          3d2h
@@ -57,7 +57,7 @@ before proceeding.
         ceph-pools-audit-1569849000-cb988          0/1     Completed   0          2m25s
         coredns-7cf476b5c8-5x724                   1/1     Running     1          3d2h
         ...
-        root@myclient:/home/user/remote_cli_wd# 
+        root@myclient:/home/user/remote_cli_wd#
 
     .. note::
         Some |CLI| commands are designed to leave you in a shell prompt, for
@@ -95,7 +95,7 @@ before proceeding.
 
     .. code-block:: none
 
-        root@myclient:/home/user# cp /<someDir>/test.yml $HOME/remote_cli_wd/test.yml 
+        root@myclient:/home/user# cp /<someDir>/test.yml $HOME/remote_cli_wd/test.yml
         root@myclient:/home/user# cd $HOME/remote_cli_wd
         root@myclient:/home/user/remote_cli_wd# kubectl -n kube-system  create -f test.yml
         pod/test-pod created
@@ -136,7 +136,7 @@ before proceeding.
 
 
 
-**Related information**  
+**Related information**
 
 .. seealso::
    :ref:`Configuring Container-backed Remote CLIs and Clients <kubernetes-user-tutorials-configuring-container-backed-remote-clis-and-clients>`

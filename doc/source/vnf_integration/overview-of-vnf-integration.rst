@@ -6,8 +6,8 @@
 Overview of VNF Integration
 ===========================
 
-The |VNF| Integration document contains information specific to |VNF| or 
-|VM| application writers that assists them with integrating their 
+The |VNF| Integration document contains information specific to |VNF| or
+|VM| application writers that assists them with integrating their
 application on |prod-os|.
 
 The following |VNF|-related integration topics are included in this document:

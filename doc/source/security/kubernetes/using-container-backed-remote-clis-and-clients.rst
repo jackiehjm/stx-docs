@@ -44,7 +44,7 @@ variables and aliases for the remote |CLI| commands.
 
     .. code-block:: none
 
-        Please enter your OpenStack Password for project admin as user admin: 
+        Please enter your OpenStack Password for project admin as user admin:
         root@myclient:/home/user/remote_cli_wd# system host-list
         +----+--------------+-------------+----------------+-------------+--------------+
         | id | hostname     | personality | administrative | operational | availability |
@@ -66,7 +66,7 @@ variables and aliases for the remote |CLI| commands.
         ceph-pools-audit-1569849000-cb988          0/1     Completed   0          2m25s
         coredns-7cf476b5c8-5x724                   1/1     Running     1          3d2h
         ...
-        root@myclient:/home/user/remote_cli_wd# 
+        root@myclient:/home/user/remote_cli_wd#
 
     .. note::
         Some |CLI| commands are designed to leave you in a shell prompt, for example:
@@ -143,7 +143,7 @@ variables and aliases for the remote |CLI| commands.
 
 
 
-**Related information**  
+**Related information**
 
 .. seealso::
 

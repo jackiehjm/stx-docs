@@ -40,7 +40,7 @@ Ensure that all subclouds are managed and online.
         .. code-block:: none
 
             $ source /etc/platform/openrc
-            ~(keystone_admin)]$ 
+            ~(keystone_admin)]$
 
 
 #.  After five minutes, lock and then unlock each controller in the System

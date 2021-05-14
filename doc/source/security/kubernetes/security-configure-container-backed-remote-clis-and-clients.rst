@@ -72,7 +72,7 @@ additional configuration is required in order to use :command:`helm`.
         .. code-block:: none
 
             $ source /etc/platform/openrc
-            ~(keystone_admin)]$ 
+            ~(keystone_admin)]$
 
 
     #.  Set environment variables.
@@ -180,13 +180,13 @@ additional configuration is required in order to use :command:`helm`.
 
 
     #.  Log in to Horizon as the user and tenant that you want to configure remote access for.
-        
+
         In this example, the 'admin' user in the 'admin' tenant.
 
     #.  Navigate to **Project** \> **API Access** \> **Download Openstack RC file**.
 
     #.  Select **Openstack RC file**.
-        
+
         The file admin-openrc.sh downloads.
 
 
@@ -206,7 +206,7 @@ additional configuration is required in order to use :command:`helm`.
     This step will also generate a remote CLI/client RC file.
 
     #.  Change to the location of the extracted tarball.
-    
+
         .. parsed-literal::
 
             $ cd $HOME/|prefix|-remote-clients-<version>/
@@ -222,9 +222,9 @@ additional configuration is required in order to use :command:`helm`.
         .. code-block:: none
 
             $ mkdir -p $HOME/remote_cli_wd
-           
 
-    #.  Run the :command:`configure\_client.sh` script.   
+
+    #.  Run the :command:`configure\_client.sh` script.
 
         .. code-block:: none
 
@@ -288,8 +288,8 @@ additional configuration is required in order to use :command:`helm`.
             $ ./configure_client.sh -t platform -r admin-openrc.sh -k
             admin-kubeconfig -w $HOME/remote_cli_wd -p
             625619392498.dkr.ecr.us-west-2.amazonaws.com/docker.io/starlingx/stx-platformclients:stx.4.0-v1.3.0-wrs.1
-            
-            
+
+
 
         If you specify repositories that require authentication, you must first
         perform a :command:`docker login` to that repository before using
@@ -312,14 +312,14 @@ remote platform CLIs can be used in any shell after sourcing the generated
 remote CLI/client RC file. This RC file sets up the required environment
 variables and aliases for the remote |CLI| commands.
 
-.. note:: 
+.. note::
     Consider adding this command to your .login or shell rc file, such
     that your shells will automatically be initialized with the environment
     variables and aliases for the remote |CLI| commands.
 
 See :ref:`Using Container-backed Remote CLIs and Clients <using-container-backed-remote-clis-and-clients>` for details.
 
-**Related information**  
+**Related information**
 
 .. seealso::
 

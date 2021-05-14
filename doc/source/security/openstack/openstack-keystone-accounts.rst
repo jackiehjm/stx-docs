@@ -17,6 +17,6 @@ or the CLI. Projects and users can also be managed using the OpenStack REST
 API.
 
 .. seealso::
-    :ref:`System Account Password Rules <security-system-account-password-rules>`  
+    :ref:`System Account Password Rules <security-system-account-password-rules>`
 
 

@@ -30,7 +30,7 @@ servers connecting to the |prod|'s Kubernetes API endpoint.
    The administrator can also provide values to add to the Kubernetes API
    server certificate **Subject Alternative Name** list using the
    apiserver\_cert\_sans override parameter.
-  
+
 
 Use the bootstrap override values <k8s\_root\_ca\_cert> and
 <k8s\_root\_ca\_key>, as part of the installation procedure to specify the

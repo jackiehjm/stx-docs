@@ -19,26 +19,26 @@ subcloud groups. The |CLI| commands for managing subcloud groups are:
 
 .. _creating-subcloud-groups-ul-fvw-cj4-3jb:
 
-:command:`dcmanager subcloud-group add`: 
+:command:`dcmanager subcloud-group add`:
 Adds a new subcloud group.
 
-:command:`dcmanager subcloud-group delete`: 
+:command:`dcmanager subcloud-group delete`:
 Deletes subcloud group details from the database.
 
 .. note::
 
     The 'Default' subcloud group cannot be deleted
 
-    :command:`dcmanager subcloud-group list`: 
+    :command:`dcmanager subcloud-group list`:
     Lists subcloud groups.
 
-    :command:`dcmanager subcloud-group list-subclouds`: 
+    :command:`dcmanager subcloud-group list-subclouds`:
     List subclouds referencing a subcloud group.
 
-    :command:`dcmanager subcloud-group show`: 
+    :command:`dcmanager subcloud-group show`:
     Shows the details of a subcloud group.
 
-    :command:`dcmanager subcloud-group update`: 
+    :command:`dcmanager subcloud-group update`:
     Updates attributes of a subcloud group.
 
 .. note::
@@ -100,7 +100,7 @@ Deletes subcloud group details from the database.
     .. code-block:: none
 
         ~(keystone_admin)]$ dcmanager subcloud-group list-subclouds Group1
-        
+
         +--+------+----+----+-------+-------+------+-----------+-----------+-------------+-----------+------------+------------+------+----------+----------+
         |id|name  |desc|loc.|sof.ver|mgmnt  |avail |deploy_stat|mgmt_subnet|mgmt_start_ip|mgmt_end_ip|mgmt_gtwy_ip|sysctrl_gtwy|grp_id|created_at|updated_at|
         +--+------+----+----+-------+-------+------+-----------+-----------+-------------+-----------+------------+------------+------+----------+----------+

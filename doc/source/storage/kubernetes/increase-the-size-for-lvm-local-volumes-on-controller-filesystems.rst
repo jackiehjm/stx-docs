@@ -86,7 +86,7 @@ The default **rootfs** device is **/dev/sda**.
 
 #.  Assign the unused partition on **controller-0** as a physical volume to
     **cgts-vg** volume group.
-    
+
     For example
 
     .. code-block:: none
@@ -116,7 +116,7 @@ The default **rootfs** device is **/dev/sda**.
 #.  To assign the unused partition on **controller-1** as a physical volume to
     **cgts-vg** volume group, **swact** the hosts and repeat the procedure on
     **controller-1**.
-            
+
 .. rubric:: |proc|
 
 After increasing the **cgts-vg** volume size, you can provision the filesystem

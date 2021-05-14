@@ -76,7 +76,7 @@ can reproduce them later.
 #.  Power up the host.
 
     If the host has been deleted from the Host Inventory, the host software
-    is reinstalled. 
+    is reinstalled.
 
 .. From Power up the host
 .. xbookref For details, see :ref:`|inst-doc| <platform-installation-overview>`.

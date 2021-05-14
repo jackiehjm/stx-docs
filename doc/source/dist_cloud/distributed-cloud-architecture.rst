@@ -97,8 +97,8 @@ if using the CLI.
     All messaging between SystemControllers and Subclouds uses the **admin**
     REST API service endpoints which, in this distributed cloud environment,
     are all configured for secure HTTPS. Certificates for these HTTPS
-    connections are managed internally by |prod|. 
-    
+    connections are managed internally by |prod|.
+
 .. xbooklink For more information, see, :ref:`Certificate Management for Admin
     REST API Endpoints  <certificate-management-for-admin-rest-endpoints>`.
 

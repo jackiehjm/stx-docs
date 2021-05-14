@@ -26,7 +26,7 @@ are included in the outer IP header.
 .. only:: partner
 
     .. include:: ../../_includes/vxlan-data-networks.rest
-    
+
 .. _vxlan-data-networks-ul-rzs-kqf-zbb:
 
 -   Dynamic |VXLAN|, see :ref:`Dynamic VXLAN <dynamic-vxlan>`
@@ -41,8 +41,8 @@ are included in the outer IP header.
 Before you can create project networks on a |VXLAN| provider network, you must
 define at least one network segment range.
 
--   :ref:`Dynamic VXLAN <dynamic-vxlan>`  
+-   :ref:`Dynamic VXLAN <dynamic-vxlan>`
 
--   :ref:`Static VXLAN <static-vxlan>`  
+-   :ref:`Static VXLAN <static-vxlan>`
 
--   :ref:`Differences Between Dynamic and Static VXLAN Modes <differences-between-dynamic-and-static-vxlan-modes>`  
+-   :ref:`Differences Between Dynamic and Static VXLAN Modes <differences-between-dynamic-and-static-vxlan-modes>`
