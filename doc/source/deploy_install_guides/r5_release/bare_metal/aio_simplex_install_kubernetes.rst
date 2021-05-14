@@ -348,25 +348,25 @@ The newly installed controller needs to be configured.
          system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
          sleep 2
 
-   #. **For OpenStack only:** Configure data interfaces for controller-0. 
+   #. **For OpenStack only:** Configure data interfaces for controller-0.
       Data class interfaces are vswitch interfaces used by vswitch to provide
-      VM virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the 
+      VM virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the
       underlying assigned Data Network.
-   
+
       .. important::
-   
+
          A compute-labeled worker host **MUST** have at least one Data class interface.
-   
+
       * Configure the data interfaces for controller-0.
-   
+
         ::
-   
+
            export NODE=controller-0
-   
+
            # List inventoried host’s ports and identify ports to be used as ‘data’ interfaces,
            # based on displayed linux port name, pci address and device type.
            system host-port-list ${NODE}
-   
+
            # List host’s auto-configured ‘ethernet’ interfaces,
            # find the interfaces corresponding to the ports identified in previous step, and
            # take note of their UUID
@@ -392,14 +392,14 @@ The newly installed controller needs to be configured.
 Optionally Configure PCI-SRIOV Interfaces
 *****************************************
 
-#. **Optionally**, configure pci-sriov interfaces for controller-0. 
+#. **Optionally**, configure pci-sriov interfaces for controller-0.
 
    This step is **optional** for Kubernetes. Do this step if using |SRIOV|
    network attachments in hosted application containers.
 
    .. only:: openstack
 
-      This step is **optional** for OpenStack.  Do this step if using |SRIOV| 
+      This step is **optional** for OpenStack.  Do this step if using |SRIOV|
       vNICs in hosted application VMs.  Note that pci-sriov interfaces can
       have the same Data Networks assigned to them as vswitch data interfaces.
 
