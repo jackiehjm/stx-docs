@@ -52,6 +52,8 @@ The following procedure shows how to configure the Container-backed Remote CLIs
 and Clients for an admin user with cluster-admin clusterrole. If using a
 non-admin user such as one with privileges only within a private namespace,
 additional configuration is required in order to use :command:`helm`.
+The following procedure shows how to configure the Container-backed Remote
+CLIs and Clients for an admin user with cluster-admin clusterrole.
 
 .. rubric:: |proc|
 
@@ -150,7 +152,12 @@ additional configuration is required in order to use :command:`helm`.
                     OAM_IP="[${OAM_IP}]"
                 fi
 
+    #.  Change the permission to be readable.
 
+        .. code-block:: none
+
+            ~(keystone_admin)]$ sudo chown sysadmin:sys_protected ${OUTPUT_FILE}
+                sudo chmod 644 ${OUTPUT_FILE}
 
     #.  Generate the admin-kubeconfig file.
 
@@ -196,11 +203,6 @@ additional configuration is required in order to use :command:`helm`.
     convenience, this example assumes that it is copied to the location of
     the extracted tarball.
 
-    .. note::
-        Ensure that the admin-kubeconfig file has 666 permissions after copying
-        the file to the remote workstation, otherwise, use the following
-        command to change permissions, :command:`chmod 666 temp\_kubeconfig`.
-
 #.  On the remote workstation, configure remote CLI/client access.
 
     This step will also generate a remote CLI/client RC file.
@@ -234,8 +236,9 @@ additional configuration is required in order to use :command:`helm`.
             rmclients:stx.4.0-v1.3.0
 
         If you specify repositories that require authentication, as shown
-        above, you must first remember to perform a :command:`docker login` to
-        that repository before using remote |CLIs| for the first time.
+        above, you must first perform a :command:`docker login` to that
+        repository before using remote |CLIs|. WRS |AWS| ECR credentials or a
+        |CA| certificate is required.
 
         The options for configure\_client.sh are:
 
@@ -329,6 +332,6 @@ See :ref:`Using Container-backed Remote CLIs and Clients <using-container-backed
     :ref:`Install Kubectl and Helm Clients Directly on a Host
     <security-install-kubectl-and-helm-clients-directly-on-a-host>`
 
-    :ref:`Configure Remote Helm Client for Non-Admin Users
+    :ref:`Configure Remote Helm v2 Client
     <configure-remote-helm-client-for-non-admin-users>`
 
