@@ -151,20 +151,20 @@ Bootstrap system on controller-0
       .. code-block::
 
          docker_registries:
-         quay.io:
-            url: myprivateregistry.abc.com:9001/quay.io
-         docker.elastic.co:
-            url: myprivateregistry.abc.com:9001/docker.elastic.co
-         gcr.io:
-            url: myprivateregistry.abc.com:9001/gcr.io
-         k8s.gcr.io:
-            url: myprivateregistry.abc.com:9001/k8s.gcr.io
-         docker.io:
-            url: myprivateregistry.abc.com:9001/docker.io
-         defaults:
-            type: docker
-            username: <your_myprivateregistry.abc.com_username>
-            password: <your_myprivateregistry.abc.com_password>
+           quay.io:
+              url: myprivateregistry.abc.com:9001/quay.io
+           docker.elastic.co:
+              url: myprivateregistry.abc.com:9001/docker.elastic.co
+           gcr.io:
+              url: myprivateregistry.abc.com:9001/gcr.io
+           k8s.gcr.io:
+              url: myprivateregistry.abc.com:9001/k8s.gcr.io
+           docker.io:
+              url: myprivateregistry.abc.com:9001/docker.io
+           defaults:
+              type: docker
+              username: <your_myprivateregistry.abc.com_username>
+              password: <your_myprivateregistry.abc.com_password>
 
          # Add the CA Certificate that signed myprivateregistry.abc.com’s
          # certificate as a Trusted CA
@@ -255,130 +255,6 @@ Configure controller-0
 
      system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org
 
-#. Configure data interfaces for controller-0. Use the DATA port names, for example
-   eth0, applicable to your deployment environment.
-
-   This step is optional for Kubernetes: Do this step if using |SRIOV| network
-   attachments in hosted application containers.
-
-   .. only:: starlingx
-
-      .. important::
-
-         This step is **required** for OpenStack.
-
-
-   * Configure the data interfaces
-
-     ::
-
-        export NODE=controller-0
-
-        # List inventoried host’s ports and identify ports to be used as ‘data’ interfaces,
-        # based on displayed linux port name, pci address and device type.
-        system host-port-list ${NODE}
-
-        # List host’s auto-configured ‘ethernet’ interfaces,
-        # find the interfaces corresponding to the ports identified in previous step, and
-        # take note of their UUID
-        system host-if-list -a ${NODE}
-
-        # Modify configuration for these interfaces
-        # Configuring them as ‘data’ class interfaces, MTU of 1500 and named data#
-        system host-if-modify -m 1500 -n data0 -c data ${NODE} <data0-if-uuid>
-        system host-if-modify -m 1500 -n data1 -c data ${NODE} <data1-if-uuid>
-
-        # Create Data Networks
-        PHYSNET0='physnet0'
-        PHYSNET1='physnet1'
-        system datanetwork-add ${PHYSNET0} vlan
-        system datanetwork-add ${PHYSNET1} vlan
-
-        # Assign Data Networks to Data Interfaces
-        system interface-datanetwork-assign ${NODE} <data0-if-uuid> ${PHYSNET0}
-        system interface-datanetwork-assign ${NODE} <data1-if-uuid> ${PHYSNET1}
-
-   * To enable using |SRIOV| network attachments for the above interfaces in
-     Kubernetes hosted application containers:
-
-     * Configure the Kubernetes |SRIOV| device plugin.
-
-       ::
-
-         system host-label-assign controller-0 sriovdp=enabled
-
-     * If planning on running |DPDK| in kuberentes hosted appliction containers
-       on this host, configure the number of 1G Huge pages required on both
-       |NUMA| nodes.
-
-       ::
-
-         # assign 10x 1G huge page on processor/numa-node 0 on controller-0 to applications
-         system host-memory-modify -f application controller-0 0 -1G 10
-
-         # assign 10x 1G huge page on processor/numa-node 1 on controller-0 to applications
-         system host-memory-modify -f application controller-0 1 -1G 10
-
-
-***************************************************************
-If required, initialize a Ceph-based Persistent Storage Backend
-***************************************************************
-
-A persistent storage backend is required if your application requires |PVCs|.
-
-.. only:: starlingx
-
-    .. important::
-
-       The StarlingX OpenStack application **requires** |PVCs|.
-
-    There are two options for persistent storage backend: the host-based Ceph
-    solution and the Rook container-based Ceph solution.
-
-For host-based Ceph:
-
-#. Initialize with add ceph backend:
-
-   ::
-
-      system storage-backend-add ceph --confirmed
-
-#. Add an |OSD| on controller-0 for host-based Ceph:
-
-   .. code-block:: bash
-
-      # List host’s disks and identify disks you want to use for CEPH OSDs, taking note of their UUID
-      # By default, /dev/sda is being used as system disk and can not be used for OSD.
-      system host-disk-list controller-0
-
-      # Add disk as an OSD storage
-      system host-stor-add controller-0 osd <disk-uuid>
-
-      # List OSD storage devices
-      system host-stor-list controller-0
-
-
-   # Add disk as an OSD storage
-   system host-stor-add controller-0 osd <disk-uuid>
-
-.. only:: starlingx
-
-   For Rook container-based Ceph:
-
-   #. Initialize with add ceph-rook backend:
-
-      ::
-
-         system storage-backend-add ceph-rook --confirmed
-
-   #. Assign Rook host labels to controller-0 in support of installing the
-      rook-ceph-apps manifest/helm-charts later:
-
-      ::
-
-         system host-label-assign controller-0 ceph-mon-placement=enabled
-         system host-label-assign controller-0 ceph-mgr-placement=enabled
-
 .. only:: openstack
 
    *************************************
@@ -387,7 +263,7 @@ For host-based Ceph:
 
    .. important::
 
-      **This step is required only if the StarlingX OpenStack application
+      **These steps are required only if the StarlingX OpenStack application
       (stx-openstack) will be installed.**
 
    #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
@@ -498,6 +374,174 @@ For host-based Ceph:
         system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
         sleep 2
 
+   #. **For OpenStack only:** Configure data interfaces for controller-0. 
+      Data class interfaces are vswitch interfaces used by vswitch to provide
+      VM virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the 
+      underlying assigned Data Network.
+   
+      .. important::
+   
+         A compute-labeled All-in-one controller host **MUST** have at least one Data class interface.
+   
+      * Configure the data interfaces for controller-0.
+   
+        ::
+   
+           export NODE=controller-0
+   
+           # List inventoried host’s ports and identify ports to be used as ‘data’ interfaces,
+           # based on displayed linux port name, pci address and device type.
+           system host-port-list ${NODE}
+   
+           # List host’s auto-configured ‘ethernet’ interfaces,
+           # find the interfaces corresponding to the ports identified in previous step, and
+           # take note of their UUID
+           system host-if-list -a ${NODE}
+
+           # Modify configuration for these interfaces
+           # Configuring them as ‘data’ class interfaces, MTU of 1500 and named data#
+           system host-if-modify -m 1500 -n data0 -c data ${NODE} <data0-if-uuid>
+           system host-if-modify -m 1500 -n data1 -c data ${NODE} <data1-if-uuid>
+
+           # Create Data Networks that vswitch 'data' interfaces will be connected to
+           DATANET0='datanet0'
+           DATANET1='datanet1'
+           system datanetwork-add ${DATANET0} vlan
+           system datanetwork-add ${DATANET1} vlan
+
+           # Assign Data Networks to Data Interfaces
+           system interface-datanetwork-assign ${NODE} <data0-if-uuid> ${DATANET0}
+           system interface-datanetwork-assign ${NODE} <data1-if-uuid> ${DATANET1}
+
+*****************************************
+Optionally Configure PCI-SRIOV Interfaces
+*****************************************
+
+#. **Optionally**, configure pci-sriov interfaces for controller-0. 
+
+   This step is **optional** for Kubernetes. Do this step if using |SRIOV|
+   network attachments in hosted application containers.
+
+   .. only:: openstack
+
+      This step is **optional** for OpenStack.  Do this step if using |SRIOV| 
+      vNICs in hosted application VMs.  Note that pci-sriov interfaces can
+      have the same Data Networks assigned to them as vswitch data interfaces.
+
+
+   * Configure the pci-sriov interfaces for controller-0.
+
+     ::
+
+        export NODE=controller-0
+
+        # List inventoried host’s ports and identify ports to be used as ‘pci-sriov’ interfaces,
+        # based on displayed linux port name, pci address and device type.
+        system host-port-list ${NODE}
+
+        # List host’s auto-configured ‘ethernet’ interfaces,
+        # find the interfaces corresponding to the ports identified in previous step, and
+        # take note of their UUID
+        system host-if-list -a ${NODE}
+
+        # Modify configuration for these interfaces
+        # Configuring them as ‘pci-sriov’ class interfaces, MTU of 1500 and named sriov#
+        system host-if-modify -m 1500 -n sriov0 -c pci-sriov ${NODE} <sriov0-if-uuid>
+        system host-if-modify -m 1500 -n sriov1 -c pci-sriov ${NODE} <sriov1-if-uuid>
+
+        # Create Data Networks that the 'pci-sriov' interfaces will be connected to
+        DATANET0='datanet0'
+        DATANET1='datanet1'
+        system datanetwork-add ${DATANET0} vlan
+        system datanetwork-add ${DATANET1} vlan
+
+        # Assign Data Networks to PCI-SRIOV Interfaces
+        system interface-datanetwork-assign ${NODE} <sriov0-if-uuid> ${DATANET0}
+        system interface-datanetwork-assign ${NODE} <sriov1-if-uuid> ${DATANET1}
+
+
+   * To enable using |SRIOV| network attachments for the above interfaces in
+     Kubernetes hosted application containers:
+
+     * Configure the Kubernetes |SRIOV| device plugin.
+
+       ::
+
+          system host-label-assign controller-0 sriovdp=enabled
+
+     * If planning on running |DPDK| in Kubernetes hosted application
+       containers on this host, configure the number of 1G Huge pages required
+       on both |NUMA| nodes.
+
+       ::
+
+          # assign 10x 1G huge page on processor/numa-node 0 on controller-0 to applications
+          system host-memory-modify -f application controller-0 0 -1G 10
+
+          # assign 10x 1G huge page on processor/numa-node 1 on controller-0 to applications
+          system host-memory-modify -f application controller-0 1 -1G 10
+
+***************************************************************
+If required, initialize a Ceph-based Persistent Storage Backend
+***************************************************************
+
+A persistent storage backend is required if your application requires |PVCs|.
+
+.. only:: openstack
+
+    .. important::
+
+       The StarlingX OpenStack application **requires** |PVCs|.
+
+.. only:: starlingx
+
+    There are two options for persistent storage backend: the host-based Ceph
+    solution and the Rook container-based Ceph solution.
+
+For host-based Ceph:
+
+#. Initialize with add ceph backend:
+
+   ::
+
+      system storage-backend-add ceph --confirmed
+
+#. Add an |OSD| on controller-0 for host-based Ceph:
+
+   .. code-block:: bash
+
+      # List host’s disks and identify disks you want to use for CEPH OSDs, taking note of their UUID
+      # By default, /dev/sda is being used as system disk and can not be used for OSD.
+      system host-disk-list controller-0
+
+      # Add disk as an OSD storage
+      system host-stor-add controller-0 osd <disk-uuid>
+
+      # List OSD storage devices
+      system host-stor-list controller-0
+
+
+   # Add disk as an OSD storage
+   system host-stor-add controller-0 osd <disk-uuid>
+
+.. only:: starlingx
+
+   For Rook container-based Ceph:
+
+   #. Initialize with add ceph-rook backend:
+
+      ::
+
+         system storage-backend-add ceph-rook --confirmed
+
+   #. Assign Rook host labels to controller-0 in support of installing the
+      rook-ceph-apps manifest/helm-charts later:
+
+      ::
+
+         system host-label-assign controller-0 ceph-mon-placement=enabled
+         system host-label-assign controller-0 ceph-mgr-placement=enabled
+
 
 -------------------
 Unlock controller-0
@@ -579,107 +623,7 @@ Configure controller-1
 
       system interface-network-assign controller-1 mgmt0 cluster-host
 
-#. Configure data interfaces for controller-1. Use the DATA port names, for
-   example eth0, applicable to your deployment environment.
-
-   This step is optional for Kubernetes. Do this step if using |SRIOV|
-   network attachments in hosted application containers.
-
-   .. only:: starlingx
-
-      .. important::
-
-         This step is **required** for OpenStack.
-
-
-   * Configure the data interfaces
-
-     ::
-
-       export NODE=controller-1
-
-       # List inventoried host’s ports and identify ports to be used as ‘data’ interfaces,
-       # based on displayed linux port name, pci address and device type.
-       system host-port-list ${NODE}
-
-       # List host’s auto-configured ‘ethernet’ interfaces,
-       # find the interfaces corresponding to the ports identified in previous step, and
-       # take note of their UUID
-       system host-if-list -a ${NODE}
-
-       # Modify configuration for these interfaces
-       # Configuring them as ‘data’ class interfaces, MTU of 1500 and named data#
-       system host-if-modify -m 1500 -n data0 -c data ${NODE} <data0-if-uuid>
-       system host-if-modify -m 1500 -n data1 -c data ${NODE} <data1-if-uuid>
-
-       # Previouly created Data Networks
-       PHYSNET0='physnet0'
-       PHYSNET1='physnet1'
-
-       # Assign Data Networks to Data Interfaces
-       system interface-datanetwork-assign ${NODE} <data0-if-uuid> ${PHYSNET0}
-       system interface-datanetwork-assign ${NODE} <data1-if-uuid> ${PHYSNET1}
-
-
-   * To enable using |SRIOV| network attachments for the above interfaes in
-     Kubernetes hosted application containers:
-
-     * Configure the Kubernetes |SRIOV| device plugin:
-
-       ::
-
-         system host-label-assign controller-1 sriovdp=enabled
-
-     * If planning on running |DPDK| in Kubernetes hosted application containers
-       on this host, configure the number of 1G Huge pages required on both
-       |NUMA| nodes:
-
-       ::
-
-         # assign 10x 1G huge page on processor/numa-node 0 on controller-0 to applications
-         system host-memory-modify -f application controller-1 0 -1G 10
-
-         # assign 10x 1G huge page on processor/numa-node 1 on controller-0 to applications
-         system host-memory-modify -f application controller-1 1 -1G 10
-
-
-
-***************************************************************************************
-If configuring a Ceph-based Persistent Storage Backend, configure host-specific details
-***************************************************************************************
-
-For host-based Ceph:
-
-#. Add an |OSD| on controller-1 for host-based Ceph:
-
-   ::
-
-      # List host’s disks and identify disks you want to use for CEPH OSDs, taking note of their UUID
-      # By default, /dev/sda is being used as system disk and can not be used for OSD.
-      system host-disk-list controller-0
-
-      # Add disk as an OSD storage
-      system host-stor-add controller-0 osd <disk-uuid>
-
-      # List OSD storage devices
-      system host-stor-list controller-0
-
-      # Add disk as an OSD storage
-      system host-stor-add controller-0 osd <disk-uuid>
-
-
-.. only:: starlingx
-
-   For Rook container-based Ceph:
-
-   #. Assign Rook host labels to controller-1 in support of installing the
-      rook-ceph-apps manifest/helm-charts later:
-
-      ::
-
-         system host-label-assign controller-1 ceph-mon-placement=enabled
-         system host-label-assign controller-1 ceph-mgr-placement=enabled
-
+.. only:: openstack
 
    *************************************
    OpenStack-specific host configuration
@@ -687,7 +631,7 @@ For host-based Ceph:
 
    .. important::
 
-      **This step is required only if the StarlingX OpenStack application
+      **These steps are required only if the StarlingX OpenStack application
       (stx-openstack) will be installed.**
 
    #. **For OpenStack only:** Assign OpenStack host labels to controller-1 in
@@ -761,6 +705,151 @@ For host-based Ceph:
          system host-lvg-add ${NODE} nova-local
          system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
          sleep 2
+
+   #. **For OpenStack only:** Configure data interfaces for controller-1. 
+      Data class interfaces are vswitch interfaces used by vswitch to provide
+      VM virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the 
+      underlying assigned Data Network.
+   
+      .. important::
+   
+         A compute-labeled All-in-one controller host **MUST** have at least one Data class interface.
+   
+      * Configure the data interfaces for controller-1.
+   
+        ::
+   
+           export NODE=controller-1
+   
+           # List inventoried host’s ports and identify ports to be used as ‘data’ interfaces,
+           # based on displayed linux port name, pci address and device type.
+           system host-port-list ${NODE}
+   
+           # List host’s auto-configured ‘ethernet’ interfaces,
+           # find the interfaces corresponding to the ports identified in previous step, and
+           # take note of their UUID
+           system host-if-list -a ${NODE}
+
+           # Modify configuration for these interfaces
+           # Configuring them as ‘data’ class interfaces, MTU of 1500 and named data#
+           system host-if-modify -m 1500 -n data0 -c data ${NODE} <data0-if-uuid>
+           system host-if-modify -m 1500 -n data1 -c data ${NODE} <data1-if-uuid>
+
+           # Create Data Networks that vswitch 'data' interfaces will be connected to
+           DATANET0='datanet0'
+           DATANET1='datanet1'
+           system datanetwork-add ${DATANET0} vlan
+           system datanetwork-add ${DATANET1} vlan
+
+           # Assign Data Networks to Data Interfaces
+           system interface-datanetwork-assign ${NODE} <data0-if-uuid> ${DATANET0}
+           system interface-datanetwork-assign ${NODE} <data1-if-uuid> ${DATANET1}
+
+*****************************************
+Optionally Configure PCI-SRIOV Interfaces
+*****************************************
+
+#. **Optionally**, configure pci-sriov interfaces for controller-1. 
+
+   This step is **optional** for Kubernetes. Do this step if using |SRIOV|
+   network attachments in hosted application containers.
+
+   .. only:: openstack
+
+      This step is **optional** for OpenStack.  Do this step if using |SRIOV| 
+      vNICs in hosted application VMs.  Note that pci-sriov interfaces can
+      have the same Data Networks assigned to them as vswitch data interfaces.
+
+
+   * Configure the pci-sriov interfaces for controller-1.
+
+     ::
+
+        export NODE=controller-1
+
+        # List inventoried host’s ports and identify ports to be used as ‘pci-sriov’ interfaces,
+        # based on displayed linux port name, pci address and device type.
+        system host-port-list ${NODE}
+
+        # List host’s auto-configured ‘ethernet’ interfaces,
+        # find the interfaces corresponding to the ports identified in previous step, and
+        # take note of their UUID
+        system host-if-list -a ${NODE}
+
+        # Modify configuration for these interfaces
+        # Configuring them as ‘pci-sriov’ class interfaces, MTU of 1500 and named sriov#
+        system host-if-modify -m 1500 -n sriov0 -c pci-sriov ${NODE} <sriov0-if-uuid>
+        system host-if-modify -m 1500 -n sriov1 -c pci-sriov ${NODE} <sriov1-if-uuid>
+
+        # Create Data Networks that the 'pci-sriov' interfaces will be connected to
+        DATANET0='datanet0'
+        DATANET1='datanet1'
+        system datanetwork-add ${DATANET0} vlan
+        system datanetwork-add ${DATANET1} vlan
+
+        # Assign Data Networks to PCI-SRIOV Interfaces
+        system interface-datanetwork-assign ${NODE} <sriov0-if-uuid> ${DATANET0}
+        system interface-datanetwork-assign ${NODE} <sriov1-if-uuid> ${DATANET1}
+
+
+   * To enable using |SRIOV| network attachments for the above interfaces in
+     Kubernetes hosted application containers:
+
+     * Configure the Kubernetes |SRIOV| device plugin.
+
+       ::
+
+          system host-label-assign controller-1 sriovdp=enabled
+
+     * If planning on running |DPDK| in Kubernetes hosted application
+       containers on this host, configure the number of 1G Huge pages required
+       on both |NUMA| nodes.
+
+       ::
+
+          # assign 10x 1G huge page on processor/numa-node 0 on controller-1 to applications
+          system host-memory-modify -f application controller-1 0 -1G 10
+
+          # assign 10x 1G huge page on processor/numa-node 1 on controller-1 to applications
+          system host-memory-modify -f application controller-1 1 -1G 10
+
+
+***************************************************************************************
+If configuring a Ceph-based Persistent Storage Backend, configure host-specific details
+***************************************************************************************
+
+For host-based Ceph:
+
+#. Add an |OSD| on controller-1 for host-based Ceph:
+
+   ::
+
+      # List host’s disks and identify disks you want to use for CEPH OSDs, taking note of their UUID
+      # By default, /dev/sda is being used as system disk and can not be used for OSD.
+      system host-disk-list controller-1
+
+      # Add disk as an OSD storage
+      system host-stor-add controller-1 osd <disk-uuid>
+
+      # List OSD storage devices
+      system host-stor-list controller-1
+
+      # Add disk as an OSD storage
+      system host-stor-add controller-1 osd <disk-uuid>
+
+
+.. only:: starlingx
+
+   For Rook container-based Ceph:
+
+   #. Assign Rook host labels to controller-1 in support of installing the
+      rook-ceph-apps manifest/helm-charts later:
+
+      ::
+
+         system host-label-assign controller-1 ceph-mon-placement=enabled
+         system host-label-assign controller-1 ceph-mgr-placement=enabled
+
 
 -------------------
 Unlock controller-1
