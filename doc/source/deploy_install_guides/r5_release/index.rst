@@ -39,6 +39,61 @@ Install StarlingX Kubernetes on bare metal
    bare_metal/ironic
    bare_metal/rook_storage
 
+**********
+Appendixes
+**********
+
+
+.. _use-private-docker-registry:
+
+Use a private Docker registry
+*****************************
+
+.. toctree::
+   :maxdepth: 1
+
+   bare_metal/bootstrapping-from-a-private-docker-registry
+
+
+Install controller-0 from a PXE boot server
+*******************************************
+
+.. toctree::
+   :maxdepth: 1
+
+   bare_metal/configuring-a-pxe-boot-server
+   bare_metal/accessing-pxe-boot-server-files-for-a-custom-configuration
+
+
+Add and reinstall a host
+************************
+
+.. toctree::
+   :maxdepth: 1
+
+   bare_metal/adding-hosts-using-the-host-add-command
+
+
+Add hosts in bulk
+,,,,,,,,,,,,,,,,,
+
+.. toctree::
+   :maxdepth: 1
+
+   bare_metal/adding-hosts-in-bulk
+   bare_metal/bulk-host-xml-file-format
+
+
+Reinstall a system or a host
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+.. toctree::
+   :maxdepth: 1
+
+   bare_metal/reinstalling-a-system-or-a-host
+   bare_metal/reinstalling-a-system-using-an-exported-host-configuration-file
+   bare_metal/exporting-host-configurations
+
 .. toctree::
    :hidden:
 

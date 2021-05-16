@@ -10,9 +10,8 @@
 Install Kubernetes Platform on Standard with Dedicated Storage
 ==============================================================
 
-This section describes the steps to install the StarlingX Kubernetes platform
-on a **StarlingX R5.0 Standard with Dedicated Storage** deployment
-configuration.
+This section describes the steps to install the |prod| Kubernetes platform on a
+**Standard with Dedicated Storage** deployment configuration.
 
 .. contents::
    :local:
@@ -68,7 +67,8 @@ Unlock controller-0 in order to bring it into service:
   system host-unlock controller-0
 
 Controller-0 will reboot in order to apply configuration changes and come into
-service. This can take 5-10 minutes, depending on the performance of the host machine.
+service. This can take 5-10 minutes, depending on the performance of the host
+machine.
 
 -----------------------------------------------------------------
 Install software on controller-1, storage nodes, and worker nodes
@@ -176,6 +176,8 @@ Unlock controller-1
    :start-after: incl-unlock-controller-1-start:
    :end-before: incl-unlock-controller-1-end:
 
+.. include:: /_includes/bootstrapping-and-deploying-starlingx.rest
+
 -----------------------
 Configure storage nodes
 -----------------------
@@ -191,35 +193,37 @@ Configure storage nodes
        system interface-network-assign $NODE mgmt0 cluster-host
     done
 
-#. Add OSDs to storage-0. The following example adds OSDs to the `sdb` disk:
+#. Add |OSDs| to storage-0.
 
    ::
 
-    HOST=storage-0
-    DISKS=$(system host-disk-list ${HOST})
-    TIERS=$(system storage-tier-list ceph_cluster)
-    OSDs="/dev/sdb"
-    for OSD in $OSDs; do
-       system host-stor-add ${HOST} $(echo "$DISKS" | grep "$OSD" | awk '{print $2}') --tier-uuid $(echo "$TIERS" | grep storage | awk '{print $2}')
-       while true; do system host-stor-list ${HOST} | grep ${OSD} | grep configuring; if [ $? -ne 0 ]; then break; fi; sleep 1; done
-    done
+     HOST=storage-0
 
-    system host-stor-list $HOST
+     # List host’s disks and identify disks you want to use for CEPH OSDs, taking note of their UUID
+     # By default, /dev/sda is being used as system disk and can not be used for OSD.
+     system host-disk-list ${HOST}
 
-#. Add OSDs to storage-1. The following example adds OSDs to the `sdb` disk:
+     # Add disk as an OSD storage
+     system host-stor-add ${HOST} osd <disk-uuid>
+
+     # List OSD storage devices and wait for configuration of newly added OSD to complete.
+     system host-stor-list ${HOST}
+
+#. Add |OSDs| to storage-1.
 
    ::
 
-    HOST=storage-1
-    DISKS=$(system host-disk-list ${HOST})
-    TIERS=$(system storage-tier-list ceph_cluster)
-    OSDs="/dev/sdb"
-    for OSD in $OSDs; do
-        system host-stor-add ${HOST} $(echo "$DISKS" | grep "$OSD" | awk '{print $2}') --tier-uuid $(echo "$TIERS" | grep storage | awk '{print $2}')
-        while true; do system host-stor-list ${HOST} | grep ${OSD} | grep configuring; if [ $? -ne 0 ]; then break; fi; sleep 1; done
-    done
+     HOST=storage-1
 
-    system host-stor-list $HOST
+     # List host’s disks and identify disks you want to use for CEPH OSDs, taking note of their UUID
+     # By default, /dev/sda is being used as system disk and can not be used for OSD.
+     system host-disk-list ${HOST}
+
+     # Add disk as an OSD storage
+     system host-stor-add ${HOST} osd <disk-uuid>
+
+     # List OSD storage devices and wait for configuration of newly added OSD to complete.
+     system host-stor-list ${HOST}
 
 --------------------
 Unlock storage nodes
@@ -241,10 +245,12 @@ host machine.
 Configure worker nodes
 ----------------------
 
-#. Assign the cluster-host network to the MGMT interface for the worker nodes:
+#. The MGMT interfaces are partially set up by the network install procedure;
+   configuring the port used for network install as the MGMT port and
+   specifying the attached network of "mgmt".
 
-   (Note that the MGMT interfaces are partially set up automatically by the
-   network install procedure.)
+   Complete the MGMT interface configuration of the worker nodes by specifying
+   the attached network of "cluster-host".
 
    ::
 
@@ -252,107 +258,222 @@ Configure worker nodes
        system interface-network-assign $NODE mgmt0 cluster-host
     done
 
-#. Configure data interfaces for worker nodes. Use the DATA port names, for
-   example eth0, that are applicable to your deployment environment.
+.. only:: openstack
+
+   *************************************
+   OpenStack-specific host configuration
+   *************************************
 
    .. important::
 
-      This step is **required** for OpenStack.
+      **These steps are required only if the StarlingX OpenStack application
+      (stx-openstack) will be installed.**
 
-      This step is optional for Kubernetes: Do this step if using SRIOV network
-      attachments in hosted application containers.
+   #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
+      support of installing the stx-openstack manifest and helm-charts later.
 
-   For Kubernetes SRIOV network attachments:
+      ::
 
-   * Configure SRIOV device plug in:
+         for NODE in worker-0 worker-1; do
+           system host-label-assign $NODE  openstack-compute-node=enabled
+           system host-label-assign $NODE  openvswitch=enabled
+           system host-label-assign $NODE  sriov=enabled
+         done
+
+   #. **For OpenStack only:** Configure the host settings for the vSwitch.
+
+      **If using OVS-DPDK vswitch, run the following commands:**
+
+      Default recommendation for worker node is to use a single core on each
+      numa-node for |OVS|-|DPDK| vswitch.  This should have been automatically
+      configured, if not run the following command.
+
+      ::
+
+        for NODE in worker-0 worker-1; do
+
+           # assign 1 core on processor/numa-node 0 on worker-node to vswitch
+           system host-cpu-modify -f vswitch -p0 1 $NODE
+
+           # assign 1 core on processor/numa-node 1 on worker-node to vswitch
+           system host-cpu-modify -f vswitch -p1 1 $NODE
+
+        done
+
+
+      When using |OVS|-|DPDK|, configure 1x 1G huge page for vSwitch memory on
+      each |NUMA| node where vswitch is running on this host, with the
+      following command:
+
+      ::
+
+         for NODE in worker-0 worker-1; do
+
+           # assign 1x 1G huge page on processor/numa-node 0 on worker-node to vswitch
+           system host-memory-modify -f vswitch -1G 1 $NODE 0
+
+           # assign 1x 1G huge page on processor/numa-node 0 on worker-node to vswitch
+           system host-memory-modify -f vswitch -1G 1 $NODE 1
+
+         done
+
+
+      .. important::
+
+         |VMs| created in an |OVS|-|DPDK| environment must be configured to use
+         huge pages to enable networking and must use a flavor with property:
+         hw:mem_page_size=large
+
+         Configure the huge pages for |VMs| in an |OVS|-|DPDK| environment for
+         this host with the command:
+
+         ::
+
+            for NODE in worker-0 worker-1; do
+
+              # assign 10x 1G huge page on processor/numa-node 0 on worker-node to applications
+              system host-memory-modify -f application -1G 10 $NODE 0
+
+              # assign 10x 1G huge page on processor/numa-node 1 on worker-node to applications
+              system host-memory-modify -f application -1G 10 $NODE 1
+
+            done
+
+   #. **For OpenStack only:** Setup disk partition for nova-local volume group,
+      needed for stx-openstack nova ephemeral disks.
+
+      ::
+
+         for NODE in worker-0 worker-1; do
+           echo "Configuring Nova local for: $NODE"
+           ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
+           ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
+           PARTITION_SIZE=10
+           NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
+           NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
+           system host-lvg-add ${NODE} nova-local
+           system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
+         done
+
+   #. **For OpenStack only:** Configure data interfaces for worker nodes.
+      Data class interfaces are vswitch interfaces used by vswitch to provide
+      VM virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the
+      underlying assigned Data Network.
+
+      .. important::
+
+         A compute-labeled worker host **MUST** have at least one Data class interface.
+
+      * Configure the data interfaces for worker nodes.
+
+        ::
+
+           # Execute the following lines with
+           export NODE=worker-0
+           # and then repeat with
+           export NODE=worker-1
+
+              # List inventoried host’s ports and identify ports to be used as ‘data’ interfaces,
+              # based on displayed linux port name, pci address and device type.
+              system host-port-list ${NODE}
+
+              # List host’s auto-configured ‘ethernet’ interfaces,
+              # find the interfaces corresponding to the ports identified in previous step, and
+              # take note of their UUID
+              system host-if-list -a ${NODE}
+
+              # Modify configuration for these interfaces
+              # Configuring them as ‘data’ class interfaces, MTU of 1500 and named data#
+              system host-if-modify -m 1500 -n data0 -c data ${NODE} <data0-if-uuid>
+              system host-if-modify -m 1500 -n data1 -c data ${NODE} <data1-if-uuid>
+
+              # Create Data Networks that vswitch 'data' interfaces will be connected to
+              DATANET0='datanet0'
+              DATANET1='datanet1'
+              system datanetwork-add ${DATANET0} vlan
+              system datanetwork-add ${DATANET1} vlan
+
+              # Assign Data Networks to Data Interfaces
+              system interface-datanetwork-assign ${NODE} <data0-if-uuid> ${DATANET0}
+              system interface-datanetwork-assign ${NODE} <data1-if-uuid> ${DATANET1}
+
+*****************************************
+Optionally Configure PCI-SRIOV Interfaces
+*****************************************
+
+#. **Optionally**, configure pci-sriov interfaces for worker nodes.
+
+   This step is **optional** for Kubernetes. Do this step if using |SRIOV|
+   network attachments in hosted application containers.
+
+   .. only:: openstack
+
+      This step is **optional** for OpenStack.  Do this step if using |SRIOV|
+      vNICs in hosted application VMs.  Note that pci-sriov interfaces can
+      have the same Data Networks assigned to them as vswitch data interfaces.
+
+
+   * Configure the pci-sriov interfaces for worker nodes.
 
      ::
 
-        for NODE in worker-0 worker-1; do
-           system host-label-assign ${NODE} sriovdp=enabled
-        done
+        # Execute the following lines with
+        export NODE=worker-0
+        # and then repeat with
+        export NODE=worker-1
 
-   * If planning on running DPDK in containers on this host, configure the number
-     of 1G Huge pages required on both NUMA nodes:
+           # List inventoried host’s ports and identify ports to be used as ‘pci-sriov’ interfaces,
+           # based on displayed linux port name, pci address and device type.
+           system host-port-list ${NODE}
 
-     ::
+           # List host’s auto-configured ‘ethernet’ interfaces,
+           # find the interfaces corresponding to the ports identified in previous step, and
+           # take note of their UUID
+           system host-if-list -a ${NODE}
 
-        for NODE in worker-0 worker-1; do
-           system host-memory-modify ${NODE} 0 -1G 100
-           system host-memory-modify ${NODE} 1 -1G 100
-        done
+           # Modify configuration for these interfaces
+           # Configuring them as ‘pci-sriov’ class interfaces, MTU of 1500 and named sriov#
+           system host-if-modify -m 1500 -n sriov0 -c pci-sriov ${NODE} <sriov0-if-uuid>
+           system host-if-modify -m 1500 -n sriov1 -c pci-sriov ${NODE} <sriov1-if-uuid>
 
-   For both Kubernetes and OpenStack:
+           # Create Data Networks that the 'pci-sriov' interfaces will be connected to
+           DATANET0='datanet0'
+           DATANET1='datanet1'
+           system datanetwork-add ${DATANET0} vlan
+           system datanetwork-add ${DATANET1} vlan
 
-   ::
+           # Assign Data Networks to PCI-SRIOV Interfaces
+           system interface-datanetwork-assign ${NODE} <sriov0-if-uuid> ${DATANET0}
+           system interface-datanetwork-assign ${NODE} <sriov1-if-uuid> ${DATANET1}
 
-        DATA0IF=<DATA-0-PORT>
-        DATA1IF=<DATA-1-PORT>
-        PHYSNET0='physnet0'
-        PHYSNET1='physnet1'
-        SPL=/tmp/tmp-system-port-list
-        SPIL=/tmp/tmp-system-host-if-list
 
-        # configure the datanetworks in sysinv, prior to referencing it
-        # in the ``system host-if-modify`` command'.
-        system datanetwork-add ${PHYSNET0} vlan
-        system datanetwork-add ${PHYSNET1} vlan
+   * To enable using |SRIOV| network attachments for the above interfaces in
+     Kubernetes hosted application containers:
 
-        for NODE in worker-0 worker-1; do
-          echo "Configuring interface for: $NODE"
-          set -ex
-          system host-port-list ${NODE} --nowrap > ${SPL}
-          system host-if-list -a ${NODE} --nowrap > ${SPIL}
-          DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
-          DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
-          DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
-          DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
-          DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
-          DATA1PORTNAME=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
-          DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
-          DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
-          system host-if-modify -m 1500 -n data0 -c data ${NODE} ${DATA0IFUUID}
-          system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
-          system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
-          system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
-          set +ex
-        done
+     * Configure the Kubernetes |SRIOV| device plugin.
 
-*************************************
-OpenStack-specific host configuration
-*************************************
+       ::
 
-.. important::
+          for NODE in worker-0 worker-1; do
+             system host-label-assign $NODE sriovdp=enabled
+          done
 
-   **This step is required only if the StarlingX OpenStack application
-   (stx-openstack) will be installed.**
+     * If planning on running |DPDK| in Kubernetes hosted application
+       containers on this host, configure the number of 1G Huge pages required
+       on both |NUMA| nodes.
 
-#. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
-   support of installing the stx-openstack manifest and helm-charts later.
+       ::
 
-   ::
+          for NODE in worker-0 worker-1; do
 
-    for NODE in worker-0 worker-1; do
-      system host-label-assign $NODE  openstack-compute-node=enabled
-      system host-label-assign $NODE  openvswitch=enabled
-      system host-label-assign $NODE  sriov=enabled
-    done
+             # assign 10x 1G huge page on processor/numa-node 0 on worker-node to applications
+             system host-memory-modify -f application $NODE 0 -1G 10
 
-#. **For OpenStack only:** Set up disk partition for nova-local volume group,
-   which is needed for stx-openstack nova ephemeral disks.
+             # assign 10x 1G huge page on processor/numa-node 1 on worker-node to applications
+             system host-memory-modify -f application $NODE 1 -1G 10
 
-   ::
+          done
 
-    for NODE in worker-0 worker-1; do
-      echo "Configuring Nova local for: $NODE"
-      ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
-      ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
-      PARTITION_SIZE=10
-      NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
-      NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
-      system host-lvg-add ${NODE} nova-local
-      system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
-    done
 
 -------------------
 Unlock worker nodes
