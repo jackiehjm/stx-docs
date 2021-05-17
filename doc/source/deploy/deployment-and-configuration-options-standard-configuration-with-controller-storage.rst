@@ -13,10 +13,6 @@ controller nodes instead of using dedicated storage nodes.
 .. image:: /deploy_install_guides/r5_release/figures/starlingx-deployment-options-controller-storage.png
    :width: 800
 
-.. note::
-    Physical L2 switches are not shown in the deployment diagram in subsequent
-    chapters. Only the L2 networks they support are shown.
-
 See :ref:`Common Components <common-components>` for a description of common
 components of this deployment configuration.
 
@@ -25,10 +21,13 @@ cluster managing up to 200 worker nodes. The limit on the size of the worker
 node pool is due to the performance and latency characteristics of the small
 integrated Ceph cluster on the controller+storage nodes.
 
-This configuration uses dedicated physical disks configured on each
-controller+storage node as Ceph |OSDs|. The
-primary disk is used by the platform for system purposes and subsequent disks
+This configuration optionally uses dedicated physical disks configured on each
+controller+storage node as Ceph |OSDs|. The typical solution requires one
+primary disk used by the platform for system purposes and subsequent disks
 are used for Ceph |OSDs|.
+
+Optionally, instead of using an internal Ceph cluster across controllers, you
+can configure an external Netapp Trident storage backend.
 
 On worker nodes, the primary disk is used for system requirements and for
 container local ephemeral storage.

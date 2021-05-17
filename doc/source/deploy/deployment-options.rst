@@ -25,21 +25,10 @@ A variety of |prod-long| deployment configuration options are supported.
     A two node HA controller node cluster with a 2-9 node Ceph storage
     cluster, managing up to 200 worker nodes.
 
-    .. note::
-        A storage backend is not configured by default. You can use either
-        internal Ceph or an external Netapp Trident backend.
-
 .. xreflink        For more
         information, see the :ref:`Storage
         <storage-configuration-storage-resources>` guide.
 
 All |prod| systems can use worker platforms \(worker hosts, or the worker
 function on a simplex or duplex system\) configured for either standard or
-low-latency performance.
-
-.. seealso::
-
-	:ref:`Worker Function Performance Profiles
-	<worker-function-performance-profiles>`
-
-The Ceph storage backend is configured by default.
+low-latency worker function performance profiles.

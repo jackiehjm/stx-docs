@@ -14,8 +14,9 @@ non-redundant host.
    :width: 800
 
 .. note::
-    Physical L2 switches are not shown in the deployment diagram in subsequent
-    chapters. Only the L2 networks they support are shown.
+    Physical L2 switches are not shown in this deployment diagram and in
+    subsequent deployment diagrams. Only the L2 networks they support are
+    shown.
 
 See :ref:`Common Components <common-components>` for a description of common
 components of this deployment configuration.
@@ -29,11 +30,14 @@ Typically, this solution is used where only a small amount of cloud processing
 / storage power is required, and protection against overall server hardware
 faults is either not required or done at a higher level.
 
-Ceph is deployed in this configuration using one or more disks for |OSDs|, and
+Optionally, Ceph is deployed in this configuration using one or more disks for |OSDs|, and
 provides the backend for Kubernetes' |PVCs|.
 
-The solution requires two or more disks, one for system requirements and
+Typically, the solution requires two or more disks, one for system requirements and
 container ephemeral storage, and one or more for Ceph |OSDs|.
+
+Optionally, instead of using an internal Ceph cluster on the server, you can
+configure an external Netapp Trident storage backend.
 
 .. xreflink .. note::
     A storage backend is not configured by default. You can use either
