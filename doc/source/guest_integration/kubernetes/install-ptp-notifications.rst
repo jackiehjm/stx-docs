@@ -34,14 +34,10 @@ asynchronous |PTP| status notifications and pull for the |PTP| state on demand.
 -   :ref:`Configuring PTP Service Using the CLI <configuring-ptp-service-using-the-cli>`
 
 
-
-.. rubric:: |context|
+.. rubric:: |proc|
 
 
 Use the following steps to install the **ptp-notification** application.
-
-
-.. rubric:: |proc|
 
 
 #.  Label the controller\(s\).
