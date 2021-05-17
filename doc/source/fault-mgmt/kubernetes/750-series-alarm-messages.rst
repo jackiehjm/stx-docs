@@ -15,7 +15,7 @@ health of the system.
 .. _750-series-alarm-messages-table-zrd-tg5-v5:
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 750.001**
@@ -32,7 +32,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 750.002**
@@ -50,7 +50,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 750.003**
@@ -68,7 +68,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 750.004**
@@ -85,7 +85,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 750.005**
@@ -102,7 +102,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 750.006**

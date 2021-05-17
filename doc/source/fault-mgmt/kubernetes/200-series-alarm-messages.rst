@@ -15,7 +15,7 @@ health of the system.
 .. _200-series-alarm-messages-table-zrd-tg5-v5:
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 200.001**
@@ -32,7 +32,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 200.004**
@@ -53,7 +53,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 200.005**
@@ -80,7 +80,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 200.006**
@@ -123,7 +123,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 200.007**
@@ -154,7 +154,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 200.009**
@@ -181,7 +181,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 200.010**
@@ -198,7 +198,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 200.011**
@@ -218,7 +218,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 200.012**
@@ -238,7 +238,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 200.013**
@@ -258,7 +258,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 200.014**
@@ -279,7 +279,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 200.015**
@@ -299,7 +299,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 210.001**
@@ -316,7 +316,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 250.001**
@@ -333,7 +333,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 250.003**
@@ -350,7 +350,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 270.001**
@@ -368,7 +368,7 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
    * - **Alarm ID: 280.001**
@@ -386,10 +386,10 @@ health of the system.
 -----
 
 .. list-table::
-   :widths: 6 15
+   :widths: 6 25
    :header-rows: 0
 
-   * - **Alarm ID: 280.001**
+   * - **Alarm ID: 280.002**
      - <subcloud><resource> sync status is out-of-sync.
    * - Entity Instance
      - \[subcloud=<subcloud>.resource=<compute> \| <network> \| <platform>
