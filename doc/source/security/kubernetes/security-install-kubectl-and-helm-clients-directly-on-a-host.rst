@@ -19,7 +19,7 @@ Complete the following steps to install :command:`kubectl` and
 :command:`helm` on a remote system.
 
 The following procedure shows how to configure the kubectl and helm clients
-directly on remote host, for an admin user with cluster-admin clusterrole.
+directly on remote host, for an admin user with **cluster-admin** cluster role.
 If using a non-admin user such as one with only role privileges within a
 private namespace, the procedure is the same, however, additional
 configuration is required in order to use :command:`helm`.
@@ -39,20 +39,20 @@ configuration is required in order to use :command:`helm`.
             apiVersion: v1
             kind: ServiceAccount
             metadata:
-              name: admin-user
+              name: kubernetes-admin
               namespace: kube-system
             ---
             apiVersion: rbac.authorization.k8s.io/v1
             kind: ClusterRoleBinding
             metadata:
-              name: admin-user
+              name: kubernetes-admin
             roleRef:
               apiGroup: rbac.authorization.k8s.io
               kind: ClusterRole
               name: cluster-admin
             subjects:
             - kind: ServiceAccount
-              name: admin-user
+              name: kubernetes-admin
               namespace: kube-system
             EOF
             % kubectl apply -f admin-login.yaml
@@ -61,7 +61,7 @@ configuration is required in order to use :command:`helm`.
 
         .. code-block:: none
 
-            ~(keystone_admin)]$ TOKEN_DATA=$(kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}') | grep "token:" | awk '{print $2}')
+            ~(keystone_admin)]$ TOKEN_DATA=$(kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep kubernetes-admin | awk '{print $1}') | grep "token:" | awk '{print $2}')
 
 
 #.  On a remote workstation, install the :command:`kubectl` client. Go to the
@@ -86,13 +86,13 @@ configuration is required in order to use :command:`helm`.
         .. note::
             In order for your remote host to trust the certificate used by
             the |prod-long| K8S API, you must ensure that the
-            **k8s\_root\_ca\_cert** specified at install time is a trusted
+            ``k8s\_root\_ca\_cert`` specified at install time is a trusted
             CA certificate by your host. Follow the instructions for adding
             a trusted CA certificate for the operating system distribution
             of your particular host.
 
-            If you did not specify a **k8s\_root\_ca\_cert** at install
-            time, then specify –insecure-skip-tls-verify, as shown below.
+            If you did not specify a ``k8s\_root\_ca\_cert`` at install
+            time, then specify ``--insecure-skip-tls-verify``, as shown below.
 
         The following example configures the default ~/.kube/config. See the
         following reference:
@@ -104,12 +104,12 @@ configuration is required in order to use :command:`helm`.
 
             % kubectl config set-cluster mycluster --server=https://${OAM_IP}:6443 \
             --insecure-skip-tls-verify
-            % kubectl config set-credentials admin-user@mycluster --token=$TOKEN_DATA
-            % kubectl config set-context admin-user@mycluster --cluster=mycluster \
-            --user admin-user@mycluster --namespace=default
-            % kubectl config use-context admin-user@mycluster
+            % kubectl config set-credentials kubernetes-admin@mycluster --token=$TOKEN_DATA
+            % kubectl config set-context kubernetes-admin@mycluster --cluster=mycluster \
+            --user kubernetes-admin@mycluster --namespace=default
+            % kubectl config use-context kubernetes-admin@mycluster
 
-        <$TOKEN\_DATA> is the token retrieved in step 1.
+        ``$TOKEN\_DATA`` is the token retrieved in step 1.
 
     #.  Test remote :command:`kubectl` access.
 
