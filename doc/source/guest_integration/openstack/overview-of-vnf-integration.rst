@@ -27,7 +27,7 @@ The following |VNF|-related integration topics are included in this document:
 
 
 
-    See :ref:`Bootstrap Data <bootstrap-data>`.
+.. xbooklink    See :ref:`Bootstrap Data <bootstrap-data>`.
 
 .. only:: partner
 
