@@ -37,5 +37,3 @@ Use the following procedure to remove |PTP| notifications.
 
         ~(keystone_admin)]$ system host-label-remove controller-0 ptp-notification
         ~(keystone_admin)]$ system host-label-remove controller-0 ptp-registration
-
-
