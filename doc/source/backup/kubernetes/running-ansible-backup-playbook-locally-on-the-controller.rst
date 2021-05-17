@@ -29,6 +29,8 @@ The output files will be named:
 
 -   inventory\_hostname\_docker\_local\_registry\_backup\_timestamp.tgz
 
+-   inventory\_hostname\_dc\_vault\_backup\_timestamp.tgz
+
 The variables prefix can be overridden using the ``-e`` option on the command
 line or by using an override file.
 
@@ -40,6 +42,8 @@ line or by using an override file.
 
 -   docker\_local\_registry\_backup\_filename\_prefix
 
+-   dc\_vault\_backup\_filename\_prefix
+
 The generated backup tar files will be displayed in the following format,
 for example:
 
@@ -50,6 +54,8 @@ for example:
 -   localhost\_platform\_backup\_2020\_07\_15\_21\_24\_22.tgz
 
 -   localhost\_openstack\_backup\_2020\_07\_15\_21\_24\_22.tgz
+
+-   localhost\_dc\_vault\_backup\_2020\_07\_15\_21\_24\_22.tgz
 
 These files are located by default in the /opt/backups directory on
 controller-0, and contains the complete system backup.
