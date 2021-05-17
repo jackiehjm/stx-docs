@@ -49,6 +49,16 @@ Operation
     changing-the-admin-password-on-distributed-cloud
     updating-docker-registry-credentials-on-a-subcloud
 
+----------------------------------------------------------
+Kubernetes Version Upgrade Distributed Cloud Orchestration
+----------------------------------------------------------
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Contents:
+
+    the-kubernetes-distributed-cloud-update-orchestration-process
+    configuring-kubernetes-update-orchestration-on-distributed-cloud
 
 --------
 Appendix
