@@ -117,7 +117,7 @@ A number of components are common to most |prod| deployment configurations.
         The use of Container Networking Calico |BGP| to advertise containers'
         network endpoints is not available in this scenario.
 
-**Additional External Network\(s\) \(Worker & AIO Nodes Only\)**
+**Additional External Network\(s\) or Data Networks \(Worker & AIO Nodes Only\)**
     Networks on which ingress controllers and/or hosted application containers
     expose their Kubernetes service, for example, through a NodePort service.
     Node interfaces to these networks are configured as platform class
