@@ -6,8 +6,8 @@
 Helm Package Manager
 ====================
 
-|prod-long| supports Helm with Tiller, the Kubernetes package manager that can
-be used to manage the lifecycle of applications within the Kubernetes cluster.
+|prod-long| supports Helm v3 package manager for Kubernetes that can
+be used to securely manage the lifecycle of applications within the Kubernetes cluster.
 
 .. rubric:: |context|
 
@@ -17,26 +17,12 @@ your Kubernetes applications using Helm charts. Helm charts are defined with a
 default set of values that describe the behavior of the service installed
 within the Kubernetes cluster.
 
-Upon system installation, the official curated helm chart repository is added
-to the local helm repo list, in addition, a number of local repositories
-\(containing optional |prod-long| packages\) are created and added to the helm
-repo list. For more information, see `https://github.com/helm/charts
-<https://github.com/helm/charts>`__.
-
-Use the following command to list the helm repositories:
-
-.. code-block:: none
-
-    ~(keystone_admin)]$ helm repo list
-    NAME            URL
-    stable          https://kubernetes-charts.storage.googleapis.com
-    local           http://127.0.0.1:8879/charts
-    starlingx       http://127.0.0.1:8080/helm_charts/starlingx
-    stx-platform    http://127.0.0.1:8080/helm_charts/stx-platform
+|prod| recommends a non-admin end-user to install a Helm v3 client on a remote
+workstation to enable management of their Kubernetes applications.
 
 For more information on Helm, see the documentation at `https://helm.sh/docs/
 <https://helm.sh/docs/>`__.
 
-**Tiller** is a component of Helm. Tiller interacts directly with the
-Kubernetes API server to install, upgrade, query, and remove Kubernetes
-resources.
+For more information on how to configure and use Helm both locally and remotely, see :ref:`Configure Local CLI Access <configure-local-cli-access>`,
+and :ref:`Configure Remote CLI Access <configure-remote-cli-access>`.
+

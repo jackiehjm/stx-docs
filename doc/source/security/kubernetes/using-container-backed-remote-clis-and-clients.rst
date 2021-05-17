@@ -16,8 +16,9 @@ variables and aliases for the remote |CLI| commands.
 
 -   Consider adding the following command to your .login or shell rc file, such
     that your shells will automatically be initialized with the environment
-    variables and aliases for the remote |CLI| commands. Otherwise, execute it
-    before proceeding:
+    variables and aliases for the remote |CLI| commands.
+
+    Otherwise, execute it before proceeding:
 
     .. code-block:: none
 
@@ -44,7 +45,6 @@ variables and aliases for the remote |CLI| commands.
 
     .. code-block:: none
 
-        Please enter your OpenStack Password for project admin as user admin:
         root@myclient:/home/user/remote_cli_wd# system host-list
         +----+--------------+-------------+----------------+-------------+--------------+
         | id | hostname     | personality | administrative | operational | availability |
@@ -83,8 +83,8 @@ variables and aliases for the remote |CLI| commands.
 
         In most cases, the remote |CLI| will detect and handle these commands
         correctly. If you encounter cases that are not handled correctly, you
-        can force-enable or disable the shell options using the <FORCE\_SHELL>
-        or <FORCE\_NO\_SHELL> variables before the command.
+        can force-enable or disable the shell options using the <FORCE\_SHELL=true>
+        or <FORCE\_NO\_SHELL=true> variables before the command.
 
         For example:
 
@@ -110,37 +110,26 @@ variables and aliases for the remote |CLI| commands.
         root@myclient:/home/user/remote_cli_wd# kubectl -n kube-system  delete -f test.yml
         pod/test-pod deleted
 
--   Do the following to use helm.
+-   For Helm commands:
+
+    .. code-block:: none
+
+        % cd $HOME/remote_cli_wd
 
     .. note::
-        For non-admin users, additional configuration is required first as
-        discussed in :ref:`Configuring Remote Helm Client for Non-Admin Users
-        <configure-remote-helm-client-for-non-admin-users>`.
-
-    .. note::
-        When using helm, any command that requires access to a helm repository
-        \(managed locally\) will require that you be in the
+        When using helm, any command that requires access to a helm
+        repository \(managed locally\) will require that you be in the
         $HOME/remote\_cli\_wd directory and use the --home ./.helm option.
+        For the host local installation, it requires the users $HOME and
+        ends up in $HOME/.config and $HOME/.cache/helm.
 
+    .. code-block:: none
 
-    #.  Do the initial setup of the helm client.
-
-        .. note::
-            This command assumes you are using Helm v2.
-
-        .. code-block:: none
-
-            % cd $HOME/remote_cli_wd
-            % helm init --client-only --home "./.helm"
-
-    #.  Run a helm command.
-
-        .. code-block:: none
-
-            % cd $HOME/remote_cli_wd
-            % helm list
-            % helm install --name wordpress stable/wordpress  --home "./.helm"
-
+        % helm --home ./.helm repo add bitnami https://charts.bitnami.com/bitnami
+        % helm --home ./.helm repo update
+        % helm --home ./.helm repo list
+        % helm --home ./.helm search repo
+        % helm --home ./.helm install wordpress bitnami/wordpress
 
 
 **Related information**
@@ -153,6 +142,6 @@ variables and aliases for the remote |CLI| commands.
     :ref:`Installing Kubectl and Helm Clients Directly on a Host
     <security-install-kubectl-and-helm-clients-directly-on-a-host>`
 
-    :ref:`Configuring Remote Helm Client for Non-Admin Users
+    :ref:`Configure Remote Helm v2 Client
     <configure-remote-helm-client-for-non-admin-users>`
 
