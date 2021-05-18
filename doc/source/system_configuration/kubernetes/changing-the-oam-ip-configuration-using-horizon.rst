@@ -63,7 +63,7 @@ and ensure that any existing system alarms are cleared.
         If you change the IP address version \(IPv4 or IPv6\), ensure that the
         same version is used for the DNS servers
         \(see :ref:`Specify DNS Servers Using Horizon <specifying-dns-servers-using-horizon>`\)
-        and NTP servers \(see :ref:`Configure NTP Servers and Services Using Horizon <configuring-ntp-servers-and-services-using-horizon>`\).
+        and NTP servers \(see :ref:`Configure NTP Servers Using Horizon <configuring-ntp-servers-and-services-using-horizon>`\).
 
 #.  Click **Save**.
 

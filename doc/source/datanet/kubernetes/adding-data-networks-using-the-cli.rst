@@ -6,17 +6,10 @@
 Add Data Networks Using the CLI
 ===============================
 
-If you prefer, you can add data networks using the CLI. You can set up flat,
-VLAN and VXLAN data networks over physical networks using the **controller-0**
-command-line interface. The data networks provide connectivity for project
-networks.
-
-.. rubric:: |prereq|
-
-
-.. _adding-data-networks-using-the-cli-prereq-controller-0-ready:
-
-Controller-0 must be installed and configured.
+You can add data networks using the CLI. You can set up flat, VLAN and VXLAN
+data networks over physical networks using the command-line interface. The data
+networks model the L2 networks that are attached to node data, pci-sriov and
+pci-passthrough interface.
 
 .. rubric:: |proc|
 
@@ -81,8 +74,6 @@ Controller-0 must be installed and configured.
         | description  | None                                 |
         +--------------+--------------------------------------+
 
-    You must configure at least one data network in order to assign data
-    interfaces to worker nodes and unlock the hosts.
 
 .. rubric:: |postreq|
 
