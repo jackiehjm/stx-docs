@@ -2,13 +2,13 @@
 .. cmk1582149379500
 .. _applying-a-custom-branding-tarball-to-running-systems:
 
-==================================================
-Apply a Custom Branding Tarball to Running Systems
-==================================================
+==========================================================
+Apply a Custom Horizon Branding Tarball to Running Systems
+==========================================================
 
-You can apply the custom branding tarball to running systems.
+You can apply the custom Horizon branding tarball to running systems.
 
-Complete the following steps to apply the custom branding tarball:
+Complete the following steps to apply the custom Horizon branding tarball:
 
 .. rubric:: |proc|
 
@@ -16,7 +16,7 @@ Complete the following steps to apply the custom branding tarball:
 
 #.  Delete any previous branding tarball from /opt/branding.
 
-#.  Copy the new branding tarball to the /opt/branding directory on the
+#.  Copy the new Horizon branding tarball to the /opt/branding directory on the
     active controller.
 
 #.  Restart the Horizon Web interface.

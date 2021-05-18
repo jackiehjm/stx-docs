@@ -41,6 +41,11 @@ are included in the outer IP header.
 Before you can create project networks on a |VXLAN| provider network, you must
 define at least one network segment range.
 
+.. note::
+
+    Static VXLAN is limited to one data network, and if configured, it must
+    be enabled on all openstack-compute labeled nodes.
+
 -   :ref:`Dynamic VXLAN <dynamic-vxlan>`
 
 -   :ref:`Static VXLAN <static-vxlan>`

@@ -11,7 +11,7 @@ associations.
 
 .. rubric:: |context|
 
-Complete the following steps to delete a data interface.
+Complete the following steps to delete a data network.
 
 .. rubric:: |prereq|
 
@@ -21,7 +21,7 @@ The following procedure requires that the host be locked.
 
 #.  Remove the data network from the interface.
 
-    #.  Identify the interface to be removed.
+    #.  Identify the interface to be removed from the data network.
 
         For example:
 
@@ -36,7 +36,7 @@ The following procedure requires that the host be locked.
             | controller-1 | c4ac3c62-283e-491f-a08b-2e4a5ece205c | pthru0 | group0-data0     |
             +--------------+--------------------------------------+--------+------------------+
 
-    #.  Remove the network.
+    #.  Remove the interface from the network.
 
         For example:
 

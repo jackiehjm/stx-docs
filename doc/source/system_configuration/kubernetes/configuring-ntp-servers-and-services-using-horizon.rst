@@ -3,7 +3,7 @@
 .. _configuring-ntp-servers-and-services-using-horizon:
 
 ================================================
-Configure NTP Servers and Services Using Horizon
+Configure NTP Servers Using Horizon
 ================================================
 
 You can add or update a list of external NTP servers for |prod| to use for

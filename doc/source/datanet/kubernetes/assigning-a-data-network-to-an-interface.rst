@@ -7,10 +7,10 @@ Assign a Data Network to an Interface
 =====================================
 
 In order to associate the L2 Network definition of a Data Network with a
-physical network, the Data Network must be mapped to an Ethernet or Aggregated
-Ethernet interface on a compute node.
+physical network, the Data Network must be mapped to an interface on a host.
 
 The command for performing the mapping has the format:
 
-:command:`system interface‐datanetwork‐assign` <compute> <interface\_uuid>
-<datanetwork\_uuid>
+.. code-block:: none
+
+    ~(keystone_admin)]$ system interface‐datanetwork‐assign <host\_name> <interface\_uuid> <datanetwork\_uuid>

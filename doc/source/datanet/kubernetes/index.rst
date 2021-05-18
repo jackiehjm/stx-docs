@@ -3,13 +3,14 @@
 .. _datanet_kubernetes_index:
 
 ========
-Contents
+Overview
 ========
 
 .. toctree::
    :maxdepth: 1
 
    data-network-management-data-networks
+   vxlan-data-networks
 
 --------------------------------
 Display data network information
@@ -21,7 +22,6 @@ Display data network information
    displaying-data-network-information-using-horizon
    displaying-data-network-information-using-the-cli
    the-data-network-topology-view
-   vxlan-data-networks
 
 -------------------------------------
 Add, assign, and remove data networks
