@@ -50,6 +50,47 @@ Operation
     updating-docker-registry-credentials-on-a-subcloud
     migrate-an-aiosx-subcloud-to-an-aiodx-subcloud
 
+-------------------------
+Update (Patch) management
+-------------------------
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   update-management-for-distributed-cloud
+   reviewing-update-status-for-distributed-cloud-using-horizon
+   reviewing-update-status-for-distributed-cloud-using-the-cli
+   uploading-and-applying-updates-to-systemcontroller-using-horizon
+   uploading-and-applying-updates-to-systemcontroller-using-the-cli
+
+***************************************************************
+Update orchestration of Central Cloud's RegionOne and subclouds
+***************************************************************
+
+.. toctree::
+   :maxdepth: 1
+
+   update-orchestration-of-central-clouds-regionone-and-subclouds
+   creating-an-update-strategy-for-distributed-cloud-update-orchestration
+   customizing-the-update-configuration-for-distributed-cloud-update-orchestration
+   applying-the-update-strategy-for-distributed-cloud
+
+.. toctree::
+   :maxdepth: 1
+
+   update-orchestration-of-central-clouds-regionone-and-subclouds-using-the-cli
+
+-----------------------------------
+FPGA device image update management
+-----------------------------------
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   device-image-update-orchestration
+
 ----------------------------------------------------------
 Kubernetes Version Upgrade Distributed Cloud Orchestration
 ----------------------------------------------------------
@@ -67,6 +108,7 @@ Upgrade management
 
 .. toctree::
     :maxdepth: 1
+    :caption: Contents:
 
     upgrade-management-overview
     upgrading-the-systemcontroller-using-the-cli
