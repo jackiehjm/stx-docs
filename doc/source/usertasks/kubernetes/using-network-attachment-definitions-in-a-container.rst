@@ -19,6 +19,10 @@ created in :ref:`Creating Network Attachment Definitions
 As shown in these examples, it is important that you request the same number of
 devices as you have network annotations.
 
+.. only:: partner
+
+    .. include:: ../../_includes/using-network-attachment-definitions-in-a-container.rest
+
 .. xreflink For information about PCI-SRIOV Interface Support, see the :ref:`|datanet-doc|
    <data-network-management-data-networks>` guide.
 
