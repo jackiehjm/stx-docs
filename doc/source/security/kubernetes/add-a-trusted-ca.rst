@@ -2,9 +2,9 @@
 .. qfk1564403051860
 .. _add-a-trusted-ca:
 
-================
-Add a Trusted CA
-================
+==============================
+Manage Trusted CA Certificates
+==============================
 
 Generally a trusted |CA| certificate needs to be added if |prod| clients on
 the hosts will be connecting to server\(s\) secured with SSL and whose

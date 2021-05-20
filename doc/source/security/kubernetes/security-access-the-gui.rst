@@ -44,3 +44,12 @@ from a browser.
           <install-the-kubernetes-dashboard>` for information on how to install
           the Kubernetes Dashboard and create a Kubernetes service account for
           the admin user to use the dashboard.
+
+For more information, refer to the following:
+
+.. toctree::
+   :maxdepth: 1
+
+   configure-http-and-https-ports-for-horizon-using-the-cli
+   configure-horizon-user-lockout-on-failed-logins
+   install-the-kubernetes-dashboard

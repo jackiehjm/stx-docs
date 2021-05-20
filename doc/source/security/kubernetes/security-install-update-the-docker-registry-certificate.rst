@@ -2,11 +2,11 @@
 .. vri1561486014514
 .. _security-install-update-the-docker-registry-certificate:
 
-==============================================
-Install/Update the Docker Registry Certificate
-==============================================
+=================================
+Local Docker Registry Certificate
+=================================
 
-The local docker registry provides secure HTTPS access using the registry API.
+The local Docker registry provides secure HTTPS access using the registry API.
 
 .. rubric:: |context|
 
@@ -33,8 +33,10 @@ intermediate or Root |CA|. Refer to the documentation for the external Root
 |CA| that you are using, on how to create public certificate and private key
 pairs, signed by an intermediate or Root |CA|, for HTTPS.
 
-For lab purposes, see Appendix A for how to create a test intermediate or Root
-|CA| certificate and key, and use it to sign test certificates.
+For lab purposes, see :ref:`Create Certificates Locally using openssl
+<create-certificates-locally-using-openssl>` for how to create a test
+intermediate or Root |CA| certificate and key, and use it to sign test
+certificates.
 
 Put the |PEM| encoded versions of the certificate and key in a single file,
 and copy the file to the controller host.
@@ -47,9 +49,9 @@ above certificate.
 
 .. _security-install-update-the-docker-registry-certificate-d527e71:
 
-#.  In order to enable internal use of the docker registry certificate,
+#.  In order to enable internal use of the Docker registry certificate,
     update the trusted |CA| list for this system with the Root |CA| associated
-    with the docker registry certificate.
+    with the Docker registry certificate.
 
     .. code-block:: none
 
@@ -58,15 +60,15 @@ above certificate.
 
     where:
 
-    **<pathTocertificate>**
+    ``<pathTocertificate>``
         is the path to the intermediate or Root |CA| certificate associated
-        with the docker registry's intermediate or Root |CA|-signed
+        with the Docker registry's intermediate or Root |CA|-signed
         certificate.
 
-#.  Update the docker registry certificate using the
+#.  Update the Docker registry certificate using the
     :command:`certificate-install` command.
 
-    Set the mode \(-m or --mode\) parameter to docker\_registry.
+    Set the ``mode (-m or --mode)`` parameter to ``docker_registry``.
 
     .. code-block:: none
 
@@ -75,8 +77,8 @@ above certificate.
 
     where:
 
-    **<pathTocertificateAndKey>**
-        is the path to the file containing both the docker registry's
+    ``<pathTocertificateAndKey>``
+        is the path to the file containing both the Docker registry's
         intermediate or Root CA-signed certificate and private key to install.
 
 
