@@ -34,10 +34,12 @@ for the external Root CA that you are using, on how to create public
 certificate and private key pairs, signed by an intermediate or Root CA, for
 HTTPS.
 
-.. xreflink For lab purposes, see |sec-doc|: :ref:`Locally Creating
-   Certificates <creating-certificates-locally-using-openssl>` to create a
-   Intermediate or test Root CA certificate and key, and use it to sign test
-   certificates.
+.. xreflink
+
+For lab purposes, see |sec-doc|: :ref:`Create Certificates Locally
+using openssl <create-certificates-locally-using-openssl>` to create an
+Intermediate or test Root CA certificate and key, and use it to sign test
+certificates.
 
 Put the Privacy Enhanced Mail \(PEM\) encoded versions of the certificate and
 key in a single file, and copy the file to the controller host.

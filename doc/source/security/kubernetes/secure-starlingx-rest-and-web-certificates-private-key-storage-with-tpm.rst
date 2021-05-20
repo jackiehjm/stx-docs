@@ -37,10 +37,8 @@ re-installed, in order to update the new standby controller's |TPM| device.
     public certificate and private key pairs, signed by an intermediate or
     Root-signed |CA|, for HTTPS.
 
-.. xbooklink
-
-    For lab purposes, see :ref:`Locally Creating Certificates
-    <creating-certificates-locally-using-openssl>` for details on how to create
+    For lab purposes, see :ref:`Create Certificates Locally using openssl
+    <create-certificates-locally-using-openssl>` for details on how to create
     a test intermediate or Root |CA| certificate and key, and use it to sign
     test certificates.
 

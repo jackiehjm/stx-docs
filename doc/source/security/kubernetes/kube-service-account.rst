@@ -9,6 +9,7 @@ Kubernetes Service Accounts
 |prod| uses Kubernetes service accounts and |RBAC| policies for authentication
 and authorization of users of the Kubernetes API, |CLI|, and Dashboard.
 
-See :ref:`Kubernetes Service Accounts <kubernetes-service-accounts>` for more
-details.
+.. toctree::
+    :maxdepth: 1
 
+    create-an-admin-type-service-account
