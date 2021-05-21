@@ -16,13 +16,6 @@ Overview
 Disks, Partitions, Volumes, and Volume Groups
 ---------------------------------------------
 
-.. toctree::
-   :maxdepth: 1
-
-   work-with-local-volume-groups
-   local-volume-groups-cli-commands
-   increase-the-size-for-lvm-local-volumes-on-controller-filesystems
-
 *************************
 Work with Disk Partitions
 *************************
@@ -37,6 +30,17 @@ Work with Disk Partitions
    add-a-partition
    increase-the-size-of-a-partition
    delete-a-partition
+
+*****************************
+Work with Local Volume Groups
+*****************************
+
+.. toctree::
+   :maxdepth: 1
+
+   work-with-local-volume-groups
+   local-volume-groups-cli-commands
+   increase-the-size-for-lvm-local-volumes-on-controller-filesystems
 
 **************************
 Work with Physical Volumes
@@ -61,7 +65,6 @@ Storage Backends
    storage-backends
    configure-the-internal-ceph-storage-backend
    configure-an-external-netapp-deployment-as-the-storage-backend
-   configure-netapps-using-a-private-docker-registry
    uninstall-the-netapp-backend
 
 ----------------
@@ -146,15 +149,6 @@ Ceph File System Provisioner
    create-readwritemany-persistent-volume-claims
    mount-readwritemany-persistent-volumes-in-containers
    enable-readwritemany-pvc-support-in-additional-namespaces
-
-----------------
-Storage Profiles
-----------------
-
-.. toctree::
-   :maxdepth: 1
-
-   storage-profiles
 
 ----------------------------
 Storage-Related CLI Commands

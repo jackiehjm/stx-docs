@@ -15,7 +15,6 @@ Introduction
     shared-configurations
     regionone-and-systemcontroller-modes
     alarms-management-for-distributed-cloud
-    cli-commands-for-alarms-management
 
 ------------
 Installation
@@ -40,11 +39,12 @@ Operation
 
     monitoring-subclouds-using-horizon
     managing-subclouds-using-the-cli
+    switching-to-a-subcloud-from-the-system-controller
+    synchronization-monitoring-and-control
+    cli-commands-for-dc-alarms-management
     managing-subcloud-groups
     creating-subcloud-groups
     ochestration-strategy-using-subcloud-groups
-    switching-to-a-subcloud-from-the-system-controller
-    synchronization-monitoring-and-control
     managing-ldap-linux-user-accounts-on-the-system-controller
     changing-the-admin-password-on-distributed-cloud
     updating-docker-registry-credentials-on-a-subcloud

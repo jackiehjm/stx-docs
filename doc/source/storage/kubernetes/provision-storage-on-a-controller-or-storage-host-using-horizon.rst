@@ -118,9 +118,3 @@ must add the storage tier first. For more about storage tiers, see
 
     When the unlock is complete, the host is shown as as **Unlocked**,
     **Enabled**, and **Available**.
-
-.. rubric:: |postreq|
-
-You can reuse the same settings with other nodes by creating and applying
-a storage profile. See :ref:`Storage Profiles <storage-profiles>`.
-
