@@ -101,7 +101,7 @@ The Helm Chart Values that you can override are described at on the following we
 
 -   Nginx-ingress-controller
 
-    `https://github.com/helm/charts/tree/master/stable/nginx-ingress <https://github.com/helm/charts/tree/master/stable/nginx-ingress>`__
+    `https://github.com/kubernetes/ingress-nginx/tree/controller-v0.41.2 <https://github.com/kubernetes/ingress-nginx/tree/controller-v0.41.2>`__
 
 -   cert-manager
 
