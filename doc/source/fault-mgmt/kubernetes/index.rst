@@ -88,15 +88,6 @@ SNMP
    setting-snmp-identifying-information
    uninstalling-snmp
 
-**********************************
-Distributed Cloud alarm management
-**********************************
-
-.. toctree::
-   :maxdepth: 1
-
-   cli-commands-for-dc-alarms-management
-
 ******************************
 Troubleshooting log collection
 ******************************
