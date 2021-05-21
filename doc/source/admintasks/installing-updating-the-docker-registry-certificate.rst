@@ -2,9 +2,9 @@
 .. idr1582032622279
 .. _installing-updating-the-docker-registry-certificate:
 
-==============================================
-Install/Update the Docker Registry Certificate
-==============================================
+====================================================
+Install/Update the Local Docker Registry Certificate
+====================================================
 
 The local Docker registry provides secure HTTPS access using the registry API.
 

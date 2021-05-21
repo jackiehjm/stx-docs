@@ -46,6 +46,20 @@ Orchestrated Software Update
    configuring-update-orchestration
    update-orchestration-cli
 
+----------------------------------------
+N3000 FPGA Firmware Update Orchestration
+----------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   overview-of-firmware-update-orchestration
+   the-firmware-update-orchestration-process
+   firmware-update-operations-requiring-manual-migration
+   configure-firmware-update-orchestration
+   firmware-update-orchestration-using-the-cli
+   handle-firmware-update-orchestration-failures
+
 ---------------------------------
 Manual Kubernetes Version Upgrade
 ---------------------------------
@@ -55,7 +69,6 @@ Manual Kubernetes Version Upgrade
    :caption: Contents:
 
    manual-kubernetes-components-upgrade
-
 
 ----------------------------------------------
 Kubernetes Version Upgrade Cloud Orchestration

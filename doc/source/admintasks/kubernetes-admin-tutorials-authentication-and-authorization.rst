@@ -2,9 +2,9 @@
 .. khe1563458421728
 .. _kubernetes-admin-tutorials-authentication-and-authorization:
 
-================================
-Authentication and Authorization
-================================
+=======================================================
+ Local Docker Registry Authentication and Authorization
+=======================================================
 
 Authentication is enabled for the local Docker registry. When logging in,
 users are authenticated using their platform keystone credentials.
