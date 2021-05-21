@@ -91,13 +91,13 @@ this data network.
             metadata:
               name: net3
               annotations:
-                k8s.v1.cni.cncf.io/resourceName: intel.com/pci_sriov_net_datanet_ b
+                k8s.v1.cni.cncf.io/resourceName: intel.com/pci_sriov_net_datanet_b
             spec:
               config: '{
                   "cniVersion": "0.3.0",
                   "type": "sriov",
                  "ipam": {
-                     "type": "host-local"
+                     "type": "calico-ipam"
                      "subnet": "10.56.219.0/24",
                      "routes": [{
                         "dst": "0.0.0.0/0"
