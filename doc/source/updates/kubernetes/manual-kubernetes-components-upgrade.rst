@@ -2,9 +2,9 @@
 .. bfd1591638638205
 .. _manual-kubernetes-components-upgrade:
 
-===========================
-Kubernetes Version Upgrade
-===========================
+=================================
+Manual Kubernetes Version Upgrade
+=================================
 
 You can upgrade the Kubernetes version on a running system from one
 supported version to another.
