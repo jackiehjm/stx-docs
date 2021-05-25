@@ -132,6 +132,15 @@ Ceph File System Provisioner
    kubernetes-user-tutorials-create-readwritemany-persistent-volume-claims
    kubernetes-user-tutorials-mount-readwritemany-persistent-volumes-in-containers
 
+--------------------------------
+Optimize application performance
+--------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   using-kubernetes-cpu-manager-static-policy
+
 ----------------------------------------
 Adding an SRIOV interface to a container
 ----------------------------------------
@@ -142,16 +151,6 @@ Adding an SRIOV interface to a container
    creating-network-attachment-definitions
    using-network-attachment-definitions-in-a-container
 
---------------------------
-CPU Manager for Kubernetes
---------------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   using-kubernetes-cpu-manager-static-policy
-   using-intels-cpu-manager-for-kubernetes-cmk
-   uninstalling-cmk
 
 **************
 Metrics Server
