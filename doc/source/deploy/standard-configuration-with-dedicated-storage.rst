@@ -12,10 +12,6 @@ Deployment of |prod| with dedicated storage nodes provides the highest capacity
 .. image:: /deploy_install_guides/r5_release/figures/starlingx-deployment-options-dedicated-storage.png
    :width: 800
 
-.. note::
-    Physical L2 switches are not shown in the deployment diagram in subsequent
-    chapters. Only the L2 networks they realize are shown.
-
 See :ref:`Common Components <common-components>` for a description of common
 components of this deployment configuration.
 
@@ -42,9 +38,8 @@ affected by the |OSD| size and speed, optional |SSD| or |NVMe| Ceph journals,
 CPU cores and speeds, memory, disk controllers, and networking. |OSDs| can be
 grouped into storage tiers according to their performance characteristics.
 
-.. note::
-    A storage backend is not configured by default. You can use either
-    internal Ceph or an external Netapp Trident backend.
+Alternatively, instead of configuring Storage Nodes, you can configure an
+external Netapp Trident storage backend.
 
 .. xreflink    For more information,
     see the :ref:`|stor-doc| <storage-configuration-storage-resources>` guide.

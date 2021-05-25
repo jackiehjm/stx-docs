@@ -27,13 +27,16 @@ cloud processing / storage power is required.
 HA services run on the controller function across the two physical servers in
 either Active/Active or Active/Standby mode.
 
-The storage function is provided by a small-scale two node Ceph cluster using
-one or more disks/|OSDs| from each server, and
-provides the backend for Kubernetes' |PVCs|.
+The optional storage function is provided by a small-scale two node Ceph
+cluster using one or more disks/|OSDs| from each server, and provides the
+backend for Kubernetes' |PVCs|.
 
-The solution requires two or more disks per server; one for system
+The typical solution requires two or more disks per server; one for system
 requirements and container ephemeral storage, and one or more for Ceph
 |OSDs|.
+
+Optionally, instead of using an internal Ceph cluster across servers, you can
+configure an external Netapp Trident storage backend.
 
 Hosted application containers are scheduled on both worker functions.
 
