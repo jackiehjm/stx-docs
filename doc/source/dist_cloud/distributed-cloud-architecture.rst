@@ -47,6 +47,7 @@ if using the CLI.
     The subclouds are |prod| instances used to host containerized applications.
     Any type of |prod| deployment configuration, i.e. simplex, duplex or
     standard with or without storage nodes, can be used for a subcloud.
+    Starting in Release 5.0, up to 200 simplex subclouds are supported.
 
     Alarms raised at the subclouds are sent to the System Controller for
     central reporting.
@@ -99,6 +100,6 @@ if using the CLI.
     are all configured for secure HTTPS. Certificates for these HTTPS
     connections are managed internally by |prod|.
 
-.. xbooklink For more information, see, :ref:`Certificate Management for Admin
+.. xbooklink For more information, see :ref:`Certificate Management for Admin
     REST API Endpoints  <certificate-management-for-admin-rest-endpoints>`.
 
