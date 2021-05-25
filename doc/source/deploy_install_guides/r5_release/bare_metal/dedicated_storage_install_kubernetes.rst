@@ -357,17 +357,17 @@ Configure worker nodes
 
    #. **For OpenStack only:** Configure data interfaces for worker nodes.
       Data class interfaces are vswitch interfaces used by vswitch to provide
-      VM virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the 
+      VM virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the
       underlying assigned Data Network.
-   
+
       .. important::
-   
+
          A compute-labeled worker host **MUST** have at least one Data class interface.
-   
+
       * Configure the data interfaces for worker nodes.
-   
+
         ::
-   
+
            # Execute the following lines with
            export NODE=worker-0
            # and then repeat with
@@ -408,7 +408,7 @@ Optionally Configure PCI-SRIOV Interfaces
 
    .. only:: openstack
 
-      This step is **optional** for OpenStack.  Do this step if using |SRIOV| 
+      This step is **optional** for OpenStack.  Do this step if using |SRIOV|
       vNICs in hosted application VMs.  Note that pci-sriov interfaces can
       have the same Data Networks assigned to them as vswitch data interfaces.
 
@@ -496,3 +496,8 @@ Next steps
 ----------
 
 .. include:: ../kubernetes_install_next.txt
+
+
+.. only:: partner
+
+   .. include:: /_includes/72hr-to-license.rest

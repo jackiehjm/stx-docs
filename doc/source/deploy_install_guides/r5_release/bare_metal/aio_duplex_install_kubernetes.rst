@@ -951,3 +951,8 @@ machine.
    ----------
 
    .. include:: ../kubernetes_install_next.txt
+
+
+.. only:: partner
+
+   .. include:: /_includes/72hr-to-license.rest
