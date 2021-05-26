@@ -44,6 +44,11 @@ Install software on worker nodes
    This initiates the install of software on worker nodes.
    This can take 5-10 minutes, depending on the performance of the host machine.
 
+   .. Note::
+
+      A node with EdgeWorker personality is also available, please refer to
+      :doc:`/deploy/deploy-edgeworker-nodes`
+
 #. Wait for the install of software on the worker nodes to complete, for the
    worker nodes to reboot, and for both to show as locked/disabled/online in
    'system host-list'.
