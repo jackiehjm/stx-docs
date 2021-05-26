@@ -2,9 +2,9 @@
 .. rzp1584539804482
 .. _configure-an-external-netapp-deployment-as-the-storage-backend:
 
-================================================================
+==============================================================
 Configure an External Netapp Deployment as the Storage Backend
-================================================================
+==============================================================
 
 Configure an external Netapp Trident deployment as the storage backend, after
 system installation using a |prod|-provided ansible playbook.
@@ -21,11 +21,11 @@ procedure.
 
 #.  Configure the storage network.
 
-.. only:: starlingx
+    .. only:: starlingx
 
     Follow the next steps to configure storage network
 
-.. only:: partner
+    .. only:: partner
 
     .. include:: ../../_includes/configure-external-netapp.rest
 
@@ -82,11 +82,11 @@ procedure.
 
             (keystone_admin)$ system host-unlock <hostname>
 
-.. _configuring-an-external-netapp-deployment-as-the-storage-backend-mod-localhost:
+    .. _configuring-an-external-netapp-deployment-as-the-storage-backend-mod-localhost:
 
 #.  Configure Netapps configurable parameters and run the provided
-install\_netapp\_backend.yml ansible playbook to enable connectivity to
-Netapp as a storage backend for |prod|.
+    install\_netapp\_backend.yml ansible playbook to enable connectivity to
+    Netapp as a storage backend for |prod|.
 
 #.  Provide Netapp backend configurable parameters in an overrides yaml
     file.
@@ -98,56 +98,56 @@ Netapp as a storage backend for |prod|.
 
     The following parameters are mandatory:
 
-    **ansible\_become\_pass**
+    ``ansible\_become\_pass``
         Provide the admin password.
 
-    **netapp\_backends**
-        **name**
+    ``netapp\_backends``
+        ``name``
         A name for the storage class.
 
-    **provisioner**
-        This value must be **netapp.io/trident**.
+    ``provisioner``
+        This value must be ``netapp.io/trident``.
 
-    **backendType**
+    ``backendType``
         This value can be anything but must be the same as
         StorageDriverName below.
 
-    **version**
+    ``version``
         This value must be 1.
 
-    **storageDriverName**
+    ``storageDriverName``
         This value can be anything but must be the same as
         backendType below.
 
-    **managementLIF**
+    ``managementLIF``
         The management IP address for the backend logical interface.
 
-    **dataLIF**
+    ``dataLIF``
         The data IP address for the backend logical interface.
 
-    **svm**
+    ``svm``
         The storage virtual machine type to use.
 
-    **username**
+    ``username``
         The username for authentication against the netapp backend.
 
-    **password**
+    ``password``
         The password for authentication against the netapp backend.
 
     The following parameters are optional:
 
-    **trident\_setup\_dir**
+    ``trident\_setup\_dir``
         Set a staging directory for generated configuration files. The
         default is /tmp/trident.
 
-    **trident\_namespace**
+    ``trident\_namespace``
         Set this option to use an alternate Kubernetes namespace.
 
-    **trident\_rest\_api\_port**
+    ``trident\_rest\_api\_port``
         Use an alternate port for the Trident REST API. The default is
         8000.
 
-    **trident\_install\_extra\_params**
+    ``trident\_install\_extra\_params``
         Add extra space-separated parameters when installing trident.
 
     For complete listings of available parameters, see
@@ -190,8 +190,8 @@ Netapp as a storage backend for |prod|.
             username: "admin"
             password: "secret"
 
-    This file is sectioned into **netapp\_k8s\_storageclass**,
-    **netapp\_k8s\_snapshotstorageclasses**, and **netapp\_backends**
+    This file is sectioned into ``netapp\_k8s\_storageclass``,
+    ``netapp\_k8s\_snapshotstorageclasses``, and ``netapp\_backends``.
     You can add multiple backends and/or storage classes.
 
     .. note::
@@ -207,13 +207,13 @@ Netapp as a storage backend for |prod|.
     <https://netapp-trident.readthedocs.io/en/stable-v20.04/kubernetes/operations/tasks/backends/ontap.html>`__.
 
     .. note::
-        By default, Netapp is configured to have **777** as
-        unixPermissions.|prod| recommends changing these settings to
-        make it more secure, for example, **"unixPermissions": "755"**.
+        By default, Netapp is configured to have ``777`` as
+        unixPermissions. |prod| recommends changing these settings to
+        make it more secure, for example, ``"unixPermissions": "755"``.
         Ensure that the right permissions are used, and there is no
         conflict with container security.
 
-        Do NOT use **777** as **unixPermissions** to configure an external
+        Do NOT use ``777`` as ``unixPermissions`` to configure an external
         Netapp deployment as the Storage backend. For more information,
         contact Netapp, at `https://www.netapp.com/
         <https://www.netapp.com/>`__.
@@ -248,12 +248,18 @@ Netapp as a storage backend for |prod|.
 To configure a persistent volume claim for the Netapp backend, add the
 appropriate storage-class name you set up in step :ref:`2
 <configure-an-external-netapp-deployment-as-the-storage-backend>`
-\(**netapp-nas-backend** in this example\) to the persistent volume
+\(``netapp-nas-backend`` in this example\) to the persistent volume
 claim's yaml configuration file. For more information about this file, see
 |usertasks-doc|: :ref:`Create ReadWriteOnce Persistent Volume Claims
 <kubernetes-user-tutorials-create-readwriteonce-persistent-volume-claims>`.
 
-.. seealso::
+.. _configure-netapps-using-a-private-docker-registry:
 
-    -   :ref:`Configure Netapps Using a Private Docker Registry
-        <configure-netapps-using-a-private-docker-registry>`
+-------------------------------------------------
+Configure Netapps Using a Private Docker Registry
+-------------------------------------------------
+
+Use the ``docker_registries`` parameter to pull from the local registry rather
+than public ones.
+
+You must first push the files to the local registry.
