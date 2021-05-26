@@ -17,7 +17,7 @@ Distributed Setup
 -----------------
 
 For a distributed setup, configure the **kube-apiserver**, and
-**oidc-auth-apps** independently for each cloud, SystemController, and all
+**oidc-auth-apps** independently for each cloud, System Controller, and all
 subclouds. For more information, see:
 
 
@@ -53,21 +53,21 @@ Centralized Setup
 -----------------
 
 For a centralized setup, the **oidc-auth-apps** is configured '**only**' on
-the SystemController. The **kube-apiserver** must be configured on all
-clouds, SystemController, and all subclouds, to point to the centralized
-**oidc-auth-apps** running on the SystemController. In the centralized
+the System Controller. The **kube-apiserver** must be configured on all
+clouds, System Controller, and all subclouds, to point to the centralized
+**oidc-auth-apps** running on the System Controller. In the centralized
 setup, a user logs in, authenticates, and gets an |OIDC| token from the
-Central SystemController's |OIDC| identity provider, and uses the |OIDC| token
-with '**any**' of the subclouds as well as the SystemController cloud.
+Central System Controller's |OIDC| identity provider, and uses the |OIDC| token
+with '**any**' of the subclouds as well as the System Controller cloud.
 
 For a centralized |OIDC| authentication setup, use the following procedure:
 
 .. rubric:: |proc|
 
-#.  Configure the **kube-apiserver** parameters on the SystemController and
+#.  Configure the **kube-apiserver** parameters on the System Controller and
     each subcloud during bootstrapping, or by using the **system
     service-parameter-add kubernetes kube\_apiserver** command after
-    bootstrapping the system, using the SystemController's floating OAM IP
+    bootstrapping the system, using the System Controller's floating OAM IP
     address as the oidc\_issuer\_url for all clouds.
     address as the oidc\_issuer\_url for all clouds.
 
@@ -89,7 +89,7 @@ For a centralized |OIDC| authentication setup, use the following procedure:
         <configure-kubernetes-for-oidc-token-validation-after-bootstrapping-the-system>`
 
 
-#.  On the SystemController only configure the **oidc-auth-apps**. For more information, see:
+#.  On the System Controller only configure the **oidc-auth-apps**. For more information, see:
 
     :ref:`Configure OIDC Auth Applications <configure-oidc-auth-applications>`
 

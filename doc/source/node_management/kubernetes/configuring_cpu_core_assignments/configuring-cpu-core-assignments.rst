@@ -6,7 +6,7 @@
 Configure CPU Core Assignments
 ==============================
 
-You can improve the performance of specific functions by assigning them to
+You can improve the performance and capacity of specific functions by assigning them more
 CPU cores from the Horizon Web interface.
 
 .. rubric:: |proc|

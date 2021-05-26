@@ -2,9 +2,9 @@
 .. qmi1579723342974
 .. _swacting-a-master-controller-using-the-cli:
 
-=======================================
-Swact a Master/Controller Using the CLI
-=======================================
+===============================
+Swact Controllers Using the CLI
+===============================
 
 Swacting initiates a switch of the active/standby roles between two
 controllers.

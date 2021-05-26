@@ -7,9 +7,8 @@ Distributed Upgrade Orchestration Process Using the CLI
 =======================================================
 
 Distributed upgrade orchestration can be initiated after the upgrade and
-stability of the SystemController cloud. Upgrade orchestration automatically
-iterates through each of the subclouds, installing the new software load on
-each one.
+stability of the System Controller cloud. Distributed upgrade orchestration can
+be initiated after the system controller has been successfully upgraded.
 
 .. rubric:: |context|
 
@@ -26,8 +25,8 @@ using parameters to specify:
 -   whether to upgrade hosts serially or in parallel
 
 
-Based on these parameters, and the state of the subclouds, distributed upgrade
-orchestration creates a number of stages for the overall upgrade strategy. All
+Based on these parameters, and the state of the subclouds, the upgrade
+orchestrator creates a number of stages for the overall upgrade strategy. All
 the subclouds that are included in the same stage will be upgraded in parallel.
 
 .. rubric:: |prereq|
@@ -45,7 +44,7 @@ following conditions:
 
 -   Redfish |BMC| is required for orchestrated subcloud upgrades. The install
     values, and :command:`bmc\_password` for each |AIO-SX| subcloud controller
-    must be provided using the following |CLI| command on the SystemController:
+    must be provided using the following |CLI| command on the System Controller:
 
     .. code-block:: none
 
@@ -56,14 +55,14 @@ following conditions:
     :ref:`Installing a Subcloud Using Redfish Platform Management Service
     <installing-a-subcloud-using-redfish-platform-management-service>`.
 
--   All subclouds are clear of alarms \(with the exception of the alarm upgrade
+-   All subclouds are clear of management-affecting alarms \(with the exception of the alarm upgrade
     in progress\).
 
 -   All hosts of all subclouds must be unlocked, enabled, and available.
 
--   No distributed update orchestration strategy exists, to verify use the
-    command :command:`dcmanager upgrade-stratagy-show`. An upgrade cannot be
-    orchestrated while update orchestration is in progress.
+-   No distributed upgrade orchestration strategy exists, to verify use the
+    command :command:`dcmanager upgrade-strategy-show`. An upgrade cannot be
+    orchestrated while upgrade orchestration is in progress.
 
 -   Verify the size and format of the platform-backup filesystem on each
     subcloud. From the shell on each subcloud, use the following command to view
@@ -90,7 +89,7 @@ following conditions:
 
 #.  Review the upgrade status for the subclouds.
 
-    After the SystemController upgrade is completed, wait for 10 minutes for
+    After the System Controller upgrade is completed, wait for 10 minutes for
     the **load\_sync\_status** of all subclouds to be updated.
 
     To identify which subclouds are upgrade-current \(in-sync\), use the
@@ -313,22 +312,10 @@ following conditions:
 
 .. _distributed-upgrade-orchestration-process-using-the-cli-ul-lx1-zcv-3mb:
 
--   Check and update docker registry credentials for **ALL** subclouds. For
-    each subcloud:
-
-    .. code-block:: none
-
-        REGISTRY="docker-registry"
-        SECRET_UUID='system service-parameter-list | fgrep
-        $REGISTRY | fgrep auth-secret | awk '{print $10}''
-        SECRET_REF='openstack secret list | fgrep ${SECRET_UUID}|
-        awk '{print $2}''
-        openstack secret get ${SECRET_REF} --payload -f value
-
-    The secret payload should be, "username: sysinv password:<password>". If
-    the secret payload is, "username: admin password:<password>", see,
-    :ref:`Updating Docker Registry Credentials on a Subcloud
-    <updating-docker-registry-credentials-on-a-subcloud>` for more information.
+The secret payload should be, "username: sysinv password:<password>". If
+the secret payload is, "username: admin password:<password>", see,
+:ref:`Update Docker Registry Credentials on a Subcloud
+<updating-docker-registry-credentials-on-a-subcloud>` for more information.
 
 .. only:: partner
 

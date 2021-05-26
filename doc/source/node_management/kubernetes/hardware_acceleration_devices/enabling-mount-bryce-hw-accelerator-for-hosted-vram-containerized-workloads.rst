@@ -129,5 +129,6 @@ enables the Mount Bryce device.
 
 .. rubric:: |result|
 
-To set up pods using |SRIOV|, see, :ref:`Setting Up Pods to Use SRIOV <set-up-pods-to-use-sriov>`.
+To set up pods using |SRIOV|, see :ref:`Setting Up Pods to Use SRIOV to Access
+Mount Bryce HW Accelerator <set-up-pods-to-use-sriov>`.
 

@@ -26,8 +26,8 @@ Errors can occur due to any one of the following:
 -   The /home/sysadmin directory on the subcloud is too large
 
 
-If you encounter any of the above errors, use the following procedure to fix
-it:
+If you encounter any of the above errors, follow this procedure to retry the
+orchestrated upgrade after addressing the cause of failure:
 
 .. rubric:: |proc|
 

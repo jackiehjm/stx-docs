@@ -7,10 +7,10 @@ Managing LDAP Linux User Accounts on the System Controller
 ==========================================================
 
 In a |prod-dc| system, |LDAP| Linux user accounts are managed centrally
-on the SystemController.
+on the System Controller.
 
-You can only add/modify/delete |LDAP| users on the SystemController. Any user
-account modifications done on the SystemController will be available across all
+You can only add/modify/delete |LDAP| users on the System Controller. Any user
+account modifications done on the System Controller will be available across all
 subclouds.
 
 For more information, see |sec-doc|: :ref:`Local LDAP Linux User Accounts

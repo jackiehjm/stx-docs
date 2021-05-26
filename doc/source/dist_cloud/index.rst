@@ -49,6 +49,18 @@ Operation
     changing-the-admin-password-on-distributed-cloud
     updating-docker-registry-credentials-on-a-subcloud
 
+----------------------
+Manage Subcloud Groups
+----------------------
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Contents:
+
+    managing-subcloud-groups
+    creating-subcloud-groups
+    ochestration-strategy-using-subcloud-groups
+
 -------------------------
 Update (Patch) management
 -------------------------

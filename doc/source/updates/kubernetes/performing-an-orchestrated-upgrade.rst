@@ -24,7 +24,7 @@ You can perform a partially-Orchestrated Upgrade of a |prod| system using the CL
     During an orchestrated upgrade, the following alarms are ignored even when
     strict restrictions are selected:
 
-    -   750.006, Automatic application re-apply is pending
+    -   750.006, Generic alarm for any platform-managed applications as they are auto-applied
 
     -   900.005, Upgrade in progress
 
@@ -60,7 +60,7 @@ upgrade the remaining nodes of the |prod| system.
         **serial** \(default\)
            Storage hosts will be upgraded one at a time.
 
-        **parallel** 
+        **parallel**
            Storage hosts will be upgraded in parallel, ensuring that only one
            storage node in each replication group is upgraded at a time.
 
@@ -69,7 +69,7 @@ upgrade the remaining nodes of the |prod| system.
 
     -   worker-apply-type:
 
-        **serial** \(default\): 
+        **serial** \(default\):
            Worker hosts will be upgraded one at a time.
 
         **parallel**

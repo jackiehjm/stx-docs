@@ -2,18 +2,18 @@
 .. vco1593176327490
 .. _upgrading-the-systemcontroller-using-the-cli:
 
-==========================================
-Upgrade the SystemController Using the CLI
-==========================================
+===========================================
+Upgrade the System Controller Using the CLI
+===========================================
 
-You can upload and apply upgrades to the SystemController in order to upgrade
-the central repository, from the CLI. The SystemController can be upgraded
+You can upload and apply upgrades to the System Controller in order to upgrade
+the central repository, from the CLI. The System Controller can be upgraded
 using either a manual software upgrade procedure or by using the
 non-distributed systems :command:`sw-manager` orchestration procedure.
 
 .. rubric:: |context|
 
-Follow the steps below to manually upgrade the SystemController:
+Follow the steps below to manually upgrade the System Controller:
 
 .. rubric:: |proc|
 
@@ -30,7 +30,7 @@ Follow the steps below to manually upgrade the SystemController:
 
         .. include:: ../_includes/upgrading-the-systemcontroller-using-the-cli.rest
 
-#.  Import the software release load, and copy the iso file to controller-0 \(active controller\).
+#.  Transfer iso and signature files to controller-0 \(active controller\) and import the load.
 
     .. code-block:: none
 
@@ -87,12 +87,9 @@ Follow the steps below to manually upgrade the SystemController:
     .. note::
 
         Use the command :command:`system upgrade-start --force` to force the
-        upgrades process to start and to ignore management affecting alarms.
+        upgrade process to start and ignore non-management-affecting alarms.
         This should ONLY be done if these alarms do not cause an issue for the
         upgrades process.
-
-    If there are alarms present during the upgrade, subcloud load sync\_status
-    will display "out-of-sync".
 
 #.  Start the upgrade from controller-0.
 
@@ -113,8 +110,8 @@ Follow the steps below to manually upgrade the SystemController:
         +--------------+--------------------------------------+
 
     This will make a copy of the system data to be used in the upgrade.
-    Configuration changes are not allowed after this point until the swact to
-    controller-1 is completed.
+    Configuration changes must not be made after this point, until the
+    upgrade is completed.
 
     The following upgrade state applies once this command is executed. Run the
     :command:`system upgrade-show` command to verify the status of the upgrade.
@@ -127,11 +124,6 @@ Follow the steps below to manually upgrade the SystemController:
 
         -   Release 20.04 system data \(for example, postgres databases\) has
             been exported to be used in the upgrade.
-
-        -   Configuration changes must not be made after this point, until the
-            upgrade is completed.
-
-
 
     As part of the upgrade, the upgrade process checks the health of the system
     and validates that the system is ready for an upgrade.
@@ -146,8 +138,9 @@ Follow the steps below to manually upgrade the SystemController:
         This should ONLY be done if these alarms do not cause an issue for the
         upgrades process.
 
-        If there are alarms present during the upgrade, subcloud load
-        sync\_status will display "out-of-sync".
+        The `fm alarm-list` will provide the specific alarms leading to the system
+        health-query-upgrade alarms notes which may be blocking an orchestrated
+        upgrade.
 
     On systems with Ceph storage, it also checks that the Ceph cluster is
     healthy.
@@ -313,7 +306,7 @@ Follow the steps below to manually upgrade the SystemController:
 
 #.  If using Ceph storage backend, upgrade the storage nodes one at a time.
 
-    The storage node must be locked and all OSDs must be down in order to do
+    The storage node must be locked and all |OSDs| must be down in order to do
     the upgrade.
 
 
@@ -323,10 +316,10 @@ Follow the steps below to manually upgrade the SystemController:
 
             ~(keystone_admin)]$ system host-lock storage-0
 
-    #.  Verify that the OSDs are down after the storage node is locked.
+    #.  Verify that the |OSDs| are down after the storage node is locked.
 
         In the Horizon interface, navigate to **Admin** \> **Platform** \>
-        **Storage Overview** to view the status of the OSDs.
+        **Storage Overview** to view the status of the |OSDs|.
 
     #.  Upgrade storage-0.
 
@@ -362,7 +355,7 @@ Follow the steps below to manually upgrade the SystemController:
             **800.003**. The alarm is cleared after all storage nodes are
             upgraded.
 
-#.  If worker nodes are present, upgrade worker hosts, serially or parallelly,
+#.  If worker nodes are present, upgrade worker hosts, serially or in parallel,
     if any.
 
 
@@ -475,11 +468,3 @@ Follow the steps below to manually upgrade the SystemController:
 
     Run the :command:`system upgrade-show` command, and the status will display
     "no upgrade in progress". The subclouds will be out-of-sync.
-
-.. rubric:: |postreq|
-
-.. warning::
-    Do NOT delete the N load from the SystemController once the upgrade is
-    complete. If the load is deleted from the SystemController, you must
-    manually delete the N load from each subcloud.
-

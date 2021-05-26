@@ -937,7 +937,7 @@ The following set of commands allow you to update the Intel N3000 |FPGA| |PAC|
 user image on StarlingX hosts.
 
 For more information, see
-:doc:`N3000 Overview </node_management/kubernetes/hardware_acceleration_devices/n3000-overview>`.
+:doc:`N3000 FPGA Overview </node_management/kubernetes/hardware_acceleration_devices/n3000-overview>`.
 
 
 ``host-device-image-update``

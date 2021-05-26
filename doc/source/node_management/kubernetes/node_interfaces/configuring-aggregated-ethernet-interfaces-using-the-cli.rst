@@ -115,17 +115,3 @@ Settings <link-aggregation-settings>`.
         ~(keystone_admin)$ system host-if-add controller-0 -a balanced -x layer2 ae0 ae enp0s9 enp0s10
         ~(keystone_admin)$ system interface-datanetwork-assign controller-0 ae0 providernet-net-a
         ~(keystone_admin)$ system interface-datanetwork-assign controller-0 ae0 providernet-net-b
-
-    For example, to attach an aggregated Ethernet interface named **bond0** to
-    the platform management network, using member interfaces **enp0s8**
-    and **enp0s11** on **controller-0**:
-
-    .. code-block:: none
-
-        ~(keystone_admin)$ system host-if-add controller-0 -c platform -a active_standby --primary-reselect failure bond0 ae enp0s8 enp0s11
-        ~(keystone_admin)$ system interface-network-assign controller-0 bond0 mgmt
-
-
-.. only:: partner
-
-    ../../../_includes/configuring-aggregated-ethernet-interfaces-using-the-cli.rest
