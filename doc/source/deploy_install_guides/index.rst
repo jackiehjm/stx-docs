@@ -6,41 +6,28 @@ Installation and deployment guides for StarlingX are release-specific.
 Each guide provides instruction on a specific StarlingX configuration
 (e.g. All-in-one Simplex).
 
-.. _latest_release:
-
-------------------------
-Supported release (R4.0)
-------------------------
-
-StarlingX R4.0 is the most recent supported release of StarlingX.
-
-.. toctree::
-   :maxdepth: 1
-
-   r4_release/index
-
 -------------------------
 Upcoming release (latest)
 -------------------------
 
-StarlingX R5.0 is under development.
+StarlingX R6.0 is under development.
 
 .. toctree::
    :maxdepth: 1
 
-   r5_release/index
+   r6_release/index
 
 
------------------
-Archived releases
------------------
+-------------------------------
+Supported and archived releases
+-------------------------------
 
-.. toctree::
-   :maxdepth: 1
+StarlingX R5.0 is the most recent supported release of StarlingX.
 
-   r3_release/index
-   r2_release/index
-   r1_release/index
+To view the R5.0 documentation, use the **Version** selector in the upper right
+or go directly to `Installation guides for R5.0 and older releases
+<https://docs.starlingx.io/r/stx.5.0/deploy_install_guides/index.html>`_.
+
 
 
 .. Add common files to toctree
@@ -52,16 +39,18 @@ Archived releases
    bootable_usb
    nvme_config
 
+.. Docs note: Starting with R5 (May 2021), team agreed that the latest/working
+   branch will include the current install guides only. The archived releases
+   will only be available in a release-specific branch. The instructions below
+   are modified to reflect this change.
 
 .. Making a new release
-.. 1. Archive the previous 'supported' release.
-      Move the toctree link from the Supported release section into the Archived
-      releases toctree.
-.. 2. Make the previous 'upcoming' release the new 'supported'.
-      Move the toctree link from the Upcoming release section into the Supported
-      release. Update intro text for the Supported release section to use the
+.. 1. Make the previous 'upcoming' release the new 'supported' release.
+      Copy the folder to the release-specific branch.
+      Copy the toctree link into the Supported section of install landing page.
+      Update intro text for the Supported release section to use the
       latest version.
-.. 3. Add new 'upcoming' release, aka 'Latest' on the version button.
+.. 2. Add new 'upcoming' release, aka 'Latest' on the version button.
       If new upcoming release docs aren't ready, remove toctree from Upcoming
       section and just leave intro text. Update text for the upcoming
       release version. Once the new upcoming docs are ready, add them in the
@@ -70,9 +59,9 @@ Archived releases
 .. Adding new release docs
 .. 1. Make sure the most recent release versioned docs are complete for that
       release.
-.. 2. Make a copy of the most recent release folder e.g. 'r4_release.' Rename
-      the folder for the new release e.g. 'r5_release'.
+.. 2. Make a copy of the most recent release folder e.g. 'r6_release.' Rename
+      the folder for the new release e.g. 'r7_release'.
 .. 3. Search and replace all references to previous release number with the new
-      release number. For example replace all 'R4.0' with 'R5.0.' Also search
+      release number. For example replace all 'R6.0' with 'R7.0.' Also search
       and replace any links that may have a specific release number in the path.
 .. 4. Link new version on this page (the index page).
