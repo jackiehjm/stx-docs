@@ -23,8 +23,6 @@ Errors can occur due to one of the following:
 
 -   A network error that results in the subcloud's being temporarily unreachable
 
--   An invalid docker registry certificate
-
 
 **Failure Caused by Install Values**
 
@@ -35,8 +33,8 @@ command to fix it.
 
     ~(keystone_admin)]$ dcmanager subcloud update <<subcloud-name>> --install-values <<subcloud-install-values-yaml>>
 
-This type of failure is recoverable and you can rerun the upgrade strategy for
-the failed subcloud\(s\) using the following procedure:
+This type of failure is recoverable and you can retry the orchestrated
+upgrade for each of the failed subclouds using the following procedure:
 
 .. rubric:: |proc|
 
@@ -73,50 +71,6 @@ the failed subcloud\(s\) using the following procedure:
         ~(keystone_admin)]$ dcmanager strategy-step list
 
 .. _failure-during-the-installation-or-data-migration-of-n+1-load-on-a-subcloud-section-f5f-j1y-qmb:
-
------------------------------------------------------
-Failure Caused by Invalid Docker Registry Certificate
------------------------------------------------------
-
-If the docker registry certificate on the subcloud is invalid/expired prior to
-an upgrade, the upgrade will fail during data migration.
-
-.. warning::
-
-    This type of failure cannot be recovered. You will need to re-deploy the
-    subcloud, redo all configuration changes, and regenerate the data.
-
-.. note::
-
-    Ensure that the docker registry certificate on all subclouds must be
-    upgraded prior to performing an orchestrated upgrade.
-
-To re-deploy the subcloud, use the following procedure:
-
-.. rubric:: |proc|
-
-.. _failure-during-the-installation-or-data-migration-of-n+1-load-on-a-subcloud-ol-dpp-bzr-qmb:
-
-#.  Unmanage the failed subcloud.
-
-    .. code-block:: none
-
-        ~(keystone_admin)]$ dcmanager subcloud unmanage <<subcloud-name>>
-
-#.  Delete the subcloud.
-
-    .. code-block:: none
-
-        ~(keystone_admin)]$ dcmanager subcloud delete <<subcloud-name>>
-
-#.  Re-deploy the failed subcloud.
-
-    .. code-block:: none
-
-        ~(keystone_admin)]$ dcmanager subcloud add <<parameters>>
-
-
-.. _failure-during-the-installation-or-data-migration-of-n+1-load-on-a-subcloud-section-lj4-1rr-qmb:
 
 -----------------------------------------
 Failure Post Data Migration on a Subcloud

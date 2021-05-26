@@ -10,14 +10,14 @@ A |prod-dc| system consists of a Central Cloud and one or more subclouds
 connected to the Central Cloud over L3 networks.
 
 The Central Cloud has two regions: RegionOne, used to manage the nodes in the
-Central Cloud, and SystemController, used to manage the subclouds in the
-|prod-dc| system. You can select RegionOne or SystemController regions from the
+Central Cloud, and System Controller, used to manage the subclouds in the
+|prod-dc| system. You can select RegionOne or System Controller regions from the
 Horizon Web interface or by setting the <OS\_REGION\_NAME> environment variable
 if using the CLI.
 
 **Central Cloud**
     The Central Cloud provides a RegionOne region for managing the physical
-    platform of the Central Cloud and the SystemController region for managing
+    platform of the Central Cloud and the System Controller region for managing
     and orchestrating over the subclouds.
 
     The Central Cloud does not support worker hosts. All worker functions are
@@ -29,7 +29,7 @@ if using the CLI.
 
 **System Controller**
     The System Controller access mode, or region, for managing subclouds is
-    SystemController.
+    System Controller.
 
     You can use the System Controller to add subclouds, synchronize select
     configuration data across all subclouds and monitor subcloud operations and
@@ -95,7 +95,7 @@ if using the CLI.
     L3 connections. The routers must be configured independently according to
     OEM instructions.
 
-    All messaging between SystemControllers and Subclouds uses the **admin**
+    All messaging between System Controllers and Subclouds uses the **admin**
     REST API service endpoints which, in this distributed cloud environment,
     are all configured for secure HTTPS. Certificates for these HTTPS
     connections are managed internally by |prod|.

@@ -6,8 +6,8 @@
 LLDP Tab
 ========
 
-The **LLDP** tab on the Host Detail page presents details about the Link
-Layer Discovery Protocol configuration on a node.
+The **LLDP** tab on the Host Detail page presents learned details about
+neighbors' ports though the Link Layer Discovery Protocol.
 
 The **LLDP** tab provides the following information about each LLDP-enabled
 neighbor device:

@@ -2,9 +2,9 @@
 .. pis1592390220404
 .. _n3000-overview:
 
-==============
-N3000 Overview
-==============
+===================
+N3000 FPGA Overview
+===================
 
 The N3000 |FPGA| |PAC| has two Intel XL710 |NICs|, memory and an Intel |FPGA|.
 
@@ -29,4 +29,4 @@ perform accelerated 5G |LDPC| encoding and decoding operations.
 
 .. seealso::
    :ref:`N3000 FPGA Forward Error Correction
-   <n3000-fpga-forward-error-correction>`.
+   <n3000-fpga-forward-error-correction>`

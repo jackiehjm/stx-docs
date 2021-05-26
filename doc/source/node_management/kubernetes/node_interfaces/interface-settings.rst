@@ -147,7 +147,7 @@ These settings are available on the **Edit Interface** and
         Use an address from a pool of IPv4 addresses that has been defined
         and associated with the data interface.
 
-**IPv4 Addressing Mode**
+**IPv4 Addressing Pool**
     \(Shown only when the **IPv4 Addressing Mode** is set to **pool**\). The
     pool from which to assign an IPv4 address.
 

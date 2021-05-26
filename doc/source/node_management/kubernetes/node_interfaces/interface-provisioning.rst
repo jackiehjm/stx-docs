@@ -77,7 +77,7 @@ They can only be modified to use different physical ports when required.
    see |planning-doc|: `Ethernet Interfaces <about-ethernet-interfaces>`.
 
 .. note::
-    On the second worker and storage nodes, the Ethernet interface for the
+    On all nodes, except for the initial controller, the Ethernet interface for the
     internal management network is attached automatically to support
     installation using |PXE| booting. On the initial controller node, the
     interface for the internal management network is attached according to the

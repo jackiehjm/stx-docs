@@ -6,8 +6,7 @@
 Display Worker Host Information
 ===============================
 
-You can view worker host resources from the Horizon Web interface. You can
-also view data interface assignments graphically from Horizon.
+You can view worker host resources from the Horizon Web interface.
 
 .. rubric:: |proc|
 

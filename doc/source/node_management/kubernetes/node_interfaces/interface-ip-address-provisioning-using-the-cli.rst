@@ -9,9 +9,9 @@ Interface IP Address Provisioning Using the CLI
 On a network that uses static addressing, you must assign an IP address to
 the interface using the :command:`system host-addr-add` command.
 
-The procedure for attaching an interface depends on the interface type.
+The procedure for adding an IP address depends on the interface type.
 
-|prod| supports three types of interfaces:
+|prod| supports the following types of interfaces:
 
 **Ethernet interfaces**
     These are created automatically for each port on the host. You must
@@ -21,10 +21,31 @@ The procedure for attaching an interface depends on the interface type.
     For link protection, you can create an aggregated Ethernet interface with
     two or more ports, and configure it with the interface class.
 
+    .. code-block:: none
+
+        ~(keystone_admin)$ system host-if-add <hostname> -m mtu -a aemode -x txhashpolicy ifname ae <ethname1> <ethname2>
+
 **VLAN interfaces**
     To support multiple interfaces on the same physical Ethernet or
     aggregated Ethernet interface, you can create |VLAN| interfaces and
     configure them with the interface class.
+
+    .. code-block:: none
+
+        ~(keystone_admin)$ systemhost-if-add <hostname> -V --vlan_id -c --ifclass <interfacename> <ethname>
+
+**Virtual Function interfaces**
+    You can create an SROIV VF interface on top of an existing SROIV VF
+    interface in order to configure a subset of virtual functions with
+    different drivers. For example, if the ethernet SR-IOV interface is
+    configured with the kernel VF driver, you can create a VF interface to
+    configure a subset of virtual functions with the vfio driver that can be
+    used with userspace libraries such as DPDK.
+
+    .. code-block:: none
+
+        ~(keystone_admin)$ system host-if-add -c pci-sriov <hostname> <interfacename> vf <parentinterfacename> -N numvfs --vf-driver=drivername
+
 
 Logical interfaces of network types **oam** and **mgmt** cannot be deleted.
 They can only be modified to use different physical ports when required.
@@ -55,16 +76,16 @@ They can only be modified to use different physical ports when required.
 
     where the following options are available:
 
-    **node**
+    ``node``
         The name or UUID of the worker node.
 
-    **ifname**
+    ``ifname``
         The name of the interface.
 
-    **ip\_address**
+    ``ip\_address``
         An IPv4 or IPv6 address.
 
-    **prefix**
+    ``prefix``
         The netmask length for the address.
 
 #.  Unlock the node and wait for it to become available.
