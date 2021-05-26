@@ -6,10 +6,16 @@
 Create Subcloud Groups
 ======================
 
-When a subcloud is created it is automatically added to the 'Default' subcloud
-group, unless the group is specified. Subclouds can be associated with a
-particular group when they are created, and that association can be changed to
-a different subcloud group, if required.
+All subclouds belong to a subcloud group. When a subcloud is created, it will
+be added to the 'Default' group, unless a different subcloud group has been
+specified.
+
+A subcloud can be moved to a different subcloud group using the
+'dcmanager subcloud update' command for the group attribute. A subcloud group
+cannot be deleted if it contains any subclouds. Removing a subcloud from a
+subcloud group is done by moving the subcloud back to the 'Default' subcloud
+group.
+
 
 .. rubric:: |context|
 
@@ -146,4 +152,32 @@ Deletes subcloud group details from the database.
                                          [--bmc-password BMC_PASSWORD]
                                          subcloud
 
+-   A subcloud must always belong to a subcloud group. In order to remove a
+    subcloud from a given group, update its group to be the 'Default' subcloud
+    group.
 
+    For example,
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ dcmanager subcloud update --group Default Subcloud1
+        +------------------------------+-----------------------------------+
+        | Field                        | Value                             |
+        +------------------------------+-----------------------------------+
+        | id                           | 665                               |
+        | name                         | Subcloud1                         |
+        | description                  | Subcloud1                         |
+        | location                     | somewhere                         |
+        | software_version             | 20.06                             |
+        | management                   | managed                           |
+        | availability                 | online                            |
+        | deploy_status                | complete                          |
+        | management_subnet            | 2607:f160:10:905f:2001::/80       |
+        | management_start_ip          | 2607:f160:10:905f:2001:290:0:3000 |
+        | management_end_ip            | 2607:f160:10:905f:2001:290:0:3020 |
+        | management_gateaway_ip       | 2607:f160:10:905f:2001:290::      |
+        | systemcontroller_gateaway_ip | 2607:f160:10:923e:ce:23:0:0       |
+        | group_id                     | 1                                 |
+        | created_at                   | 2020-11-08T02:04:34.678248        |
+        | updated_at                   | 2020-12-03T17:48:59.644206        |
+        +------------------------------+-----------------------------------+
