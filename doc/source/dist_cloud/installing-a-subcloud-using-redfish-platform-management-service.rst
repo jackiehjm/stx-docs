@@ -28,6 +28,7 @@ subcloud, the subcloud installation has these phases:
 
 
 .. note::
+
     After a successful remote installation of a subcloud in a Distributed Cloud
     system, a subsequent remote reinstallation fails because of an existing ssh
     key entry in the /root/.ssh/known\_hosts on the System Controller. In this
@@ -50,6 +51,7 @@ subcloud, the subcloud installation has these phases:
     command\).
 
     .. note::
+
         This is required only once and does not have to be done for every
         subcloud install.
 
@@ -72,10 +74,8 @@ subcloud, the subcloud installation has these phases:
 #.  At the subcloud location, physically install the servers and network
     connectivity required for the subcloud.
 
-..    See |inst-doc|: :ref:`Preparing Servers <preparing-servers>` for more
-    information.
-
     .. note::
+
         Do not power off the servers. The host portion of the server can be
         powered off, but the |BMC| portion of the server must be powered and
         accessible from the System Controller.
@@ -83,16 +83,22 @@ subcloud, the subcloud installation has these phases:
         There is no need to wipe the disks.
 
     .. note::
+
         The servers require connectivity to a gateway router that provides IP
         routing between the subcloud management subnet and the System Controller
         management subnet, and between the subcloud |OAM| subnet and the
         System Controller subnet.
+
+    .. include:: ../_includes/installing-a-subcloud-using-redfish-platform-management-service.rest
+       :start-after: begin-ref-1
+       :end-before: end-ref-1
 
 #.  Create the install-values.yaml file and use the content to pass the file
     into the :command:`dcmanager subcloud add` command, using the
     :command:`--install-values` command option.
 
     .. note::
+
         If your controller is on a ZTSystems Triton server that requires a
         longer timeout value, you can now use the rd.net.timeout.ipv6dad dracut
         parameter to specify an increased timeout value for dracut to wait for
