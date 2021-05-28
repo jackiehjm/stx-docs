@@ -26,6 +26,18 @@ the internal Ceph storage backend.
 
         ~(keystone_admin)$ system storage-backend-add ceph --confirmed
 
+    .. note::
+        The default network used to deploy Ceph services on is the management
+        network and this should be sufficient for most systems. The
+        cluster-host network should only be considered for systems that are
+        using a 1Gb management |NIC|.
+
+        For cluster-host network, use the following command:
+
+        .. code-block:: none
+
+            ~(keystone_admin)]$ system storage-backend-add --network cluster-host ceph --confirmed
+
 #.  Wait for Ceph storage to be configured. Run the following command to
     check if Ceph storage is configured:
 
@@ -34,7 +46,7 @@ the internal Ceph storage backend.
         ~(keystone_admin)$ system storage-backend-list
 
 #.  On a Standard configuration with Controller Storage, that is, where
-    Ceph OSDs are to be configured on the controller nodes, configure the
+    Ceph |OSDs| are to be configured on the controller nodes, configure the
     third Ceph monitor instance on a worker node, using the following
     command:
 
@@ -44,7 +56,7 @@ the internal Ceph storage backend.
 
     .. note::
         For Standard configuration with dedicated Storage, that is, where
-        Ceph OSDs are to be configured on dedicated Storage nodes, the
+        Ceph |OSDs| are to be configured on dedicated Storage nodes, the
         third Ceph monitor instance is configured by default on the first
         storage node.
 
@@ -53,7 +65,7 @@ the internal Ceph storage backend.
         CephFS is configured, an MDS is deployed automatically along with each
         node that has been configured to run a Ceph Monitor.
 
-#.  Configure Ceph OSDs. For more information, see :ref:`Provision
+#.  Configure Ceph |OSDs|. For more information, see :ref:`Provision
     Storage on a Controller or Storage Host Using Horizon
     <provision-storage-on-a-controller-or-storage-host-using-horizon>`.
 
