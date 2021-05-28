@@ -30,6 +30,7 @@ subcloud, the subcloud installation process has two phases:
 
 
 .. note::
+
     After a successful remote installation of a subcloud in a Distributed Cloud
     system, a subsequent remote reinstallation fails because of an existing ssh
     key entry in the /root/.ssh/known\_hosts on the System Controller. In this
@@ -51,13 +52,16 @@ subcloud, the subcloud installation process has two phases:
 #.  At the subcloud location, physically install the servers and network
     connectivity required for the subcloud.
 
-..    See |inst-doc|: :ref:`Preparing Servers <preparing-servers>`.
-
     .. note::
+
         The servers require connectivity to a gateway router that provides IP
         routing between the subcloud management subnet and the System
         Controller management subnet, and between the subcloud OAM subnet and
         the System Controller subnet.
+
+    .. include:: ../_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
+       :start-after: begin-ref-1
+       :end-before: end-ref-1
 
 #.  Update the ISO image to modify installation boot parameters \(if
     required\), automatically select boot menu options and add a kickstart file
@@ -132,13 +136,15 @@ subcloud, the subcloud installation process has two phases:
 #.  At the subcloud location, install the |prod| software from a USB
     device or a |PXE| Boot Server on the server designated as controller-0.
 
-    See |inst-doc| instructions for preparing servers.
+    .. include:: ../_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
+       :start-after: begin-ref-1
+       :end-before: end-ref-1
 
 #.  At the subcloud location, verify that the |OAM| interface on the subcloud
     controller has been properly configured by the kickstart file added to the
     ISO.
 
-    Log in to the subcloud's controller-0 and ping the Central Cloud's floating
+#.  Log in to the subcloud's controller-0 and ping the Central Cloud's floating
     |OAM| IP Address.
 
 #.  At the System Controller, create a
@@ -203,6 +209,7 @@ subcloud, the subcloud installation process has two phases:
            password: <your_wrs-aws.io_password>
 
     .. note::
+
         If you have a reason not to use the Central Cloud's local registry you
         can pull the images from another local private docker registry.
 
