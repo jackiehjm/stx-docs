@@ -2,16 +2,16 @@
 .. ktx1552673128591
 .. _configuring-ntp-servers-and-services-using-the-cli:
 
-================================================
-Configure NTP Servers and Services Using the CLI
-================================================
+===================================
+Configure NTP Servers Using the CLI
+===================================
 
 You can use the CLI to add or update a list of |NTP| servers and services.
 
 **NTP Servers**
 
 You can specify up to three |NTP| servers using the CLI or the Horizon Web
-interface. For more information, see :ref:`Configure NTP Servers and Services Using Horizon <configuring-ntp-servers-and-services-using-horizon>`.
+interface. For more information, see :ref:`Configure NTP Servers Using Horizon <configuring-ntp-servers-and-services-using-horizon>`.
 
 To view the existing |NTP| server configuration, use the following command.
 

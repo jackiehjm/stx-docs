@@ -34,9 +34,6 @@ created:
     .. note::
         This data interface is ONLY applicable to the |prod-os| application.
 
-        Static VXLAN is limited to one data network, and if configured, it must
-        be enabled on all openstack-compute labeled nodes.
-
     A data network implemented across non-contiguous physical networks
     connected by Layer 3 routers, using a VNI identifier. This allows
     multiple data networks over physically separated Layer 2 networks.
