@@ -15,6 +15,7 @@ StarlingX Kubernetes
    :maxdepth: 1
 
    about-the-admin-tutorials
+   installing-and-running-cpu-manager-for-kubernetes
 
 ----------------------
 Application management

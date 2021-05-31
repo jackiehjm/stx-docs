@@ -116,3 +116,20 @@ Kubernetes Configuration
    :maxdepth: 2
 
    limit-number-of-processes-per-pod
+   about-changing-external-registries-for-starlingx-installation
+
+*************************************
+Apply Registries' Auth-Secret Changes
+*************************************
+
+.. toctree::
+   :maxdepth: 1
+
+   change-the-registry-url
+   validate-existing-registry-and-new-url
+   create-the-registry-secrets
+   update-the-registry-secrets
+   verify-the-registry-secret-changes-and-secret-key-in-system-database
+   add-the-ca-certificate-for-new-registry
+   check-new-registry-and-reapply-application
+
