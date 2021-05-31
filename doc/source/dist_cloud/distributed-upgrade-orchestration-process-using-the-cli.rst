@@ -6,9 +6,8 @@
 Distributed Upgrade Orchestration Process Using the CLI
 =======================================================
 
-Distributed upgrade orchestration can be initiated after the upgrade and
-stability of the System Controller cloud. Distributed upgrade orchestration can
-be initiated after the system controller has been successfully upgraded.
+Distributed upgrade orchestration can be initiated after the System Controller
+has been successfully upgraded.
 
 .. rubric:: |context|
 
@@ -26,7 +25,7 @@ using parameters to specify:
 
 
 Based on these parameters, and the state of the subclouds, the upgrade
-orchestrator creates a number of stages for the overall upgrade strategy. All
+orchestration creates a number of stages for the overall upgrade strategy. All
 the subclouds that are included in the same stage will be upgraded in parallel.
 
 .. rubric:: |prereq|
