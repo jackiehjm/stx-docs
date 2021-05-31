@@ -2,9 +2,9 @@
 .. mmu1591729910787
 .. _showing-details-for-an-fpga-device:
 
-===============================
-Show Details for an FPGA Device
-===============================
+=========================
+Show Details for a Device
+=========================
 
 Additional details are available when running the :command:`host-device-show`
 command in the context of an |FPGA| device.

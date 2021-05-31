@@ -2,9 +2,9 @@
 .. fab1579714529266
 .. _swacting-a-master-controller-using-horizon:
 
-=======================================
-Swact a Master/Controller Using Horizon
-=======================================
+===============================
+Swact Controllers Using Horizon
+===============================
 
 Swacting initiates a switch of the active/standby roles between two
 controllers.

@@ -2,9 +2,9 @@
 .. ziu1597089603252
 .. _robust-error-handling-during-an-orchestrated-upgrade:
 
-====================================================
-Robust Error Handling During An Orchestrated Upgrade
-====================================================
+=============================================
+Error Handling During An Orchestrated Upgrade
+=============================================
 
 This section describes the errors you may encounter during an orchestrated
 upgrade and the steps you can use to troubleshoot the errors.
@@ -28,9 +28,15 @@ If a failure occurs, use the following general steps:
     During the Installation or Data Migration of N+1 Load on a Subcloud
     <failure-during-the-installation-or-data-migration-of-n+1-load-on-a-subcloud>`.
 
-#.  Rerun the orchestrated upgrade. For more information, see :ref:`Distributed
+#.  Retry the orchestrated upgrade. For more information, see :ref:`Distributed
     Upgrade Orchestration Process Using the CLI
     <distributed-upgrade-orchestration-process-using-the-cli>`.
+
+.. note::
+    Orchestrated upgrade can be retried for a group of failed subclouds that
+    are still **online** using the :command:`upgrade-strategy create --group
+    <group-id>` command.
+    Failed subclouds that are **offline** must be retried one at a time.
 
 .. seealso::
 

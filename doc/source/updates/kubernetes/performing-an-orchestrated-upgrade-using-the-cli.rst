@@ -22,12 +22,12 @@ The upgrade strategy options are shown in the following output:
 
     ~(keystone_admin)]$ sw-manager upgrade-strategy --help
     usage: sw-manager upgrade-strategy [-h]  ...
-    
+
     optional arguments:
       -h, --help  show this help message and exit
-    
+
     Software Upgrade Commands:
-      
+
         create    Create a strategy
         delete    Delete a strategy
         apply     Apply a strategy
@@ -56,7 +56,7 @@ upgrade orchestration to orchestrate the remaining nodes of the |prod|.
 
     -   900.201, Software upgrade auto apply in progress
 
-.. _performing-an-orchestrated-upgrade-using-the-cli-ul-qhy-q1p-v1b:    
+.. _performing-an-orchestrated-upgrade-using-the-cli-ul-qhy-q1p-v1b:
 
 .. rubric:: |prereq|
 
@@ -64,6 +64,10 @@ See :ref:`Upgrading All-in-One Duplex / Standard
 <upgrading-all-in-one-duplex-or-standard>` to manually upgrade the initial
 controller node before doing the upgrade orchestration described below to
 upgrade the remaining nodes of the |prod|.
+
+- The subclouds must use the Redfish platform management service if it is an All-in-one Simplex subcloud.
+
+- Duplex \(AIODX/Standard\) upgrades are supported, and they do not require remote install via Redfish.
 
 .. rubric:: |proc|
 

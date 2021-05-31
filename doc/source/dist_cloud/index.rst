@@ -51,6 +51,18 @@ Operation
     migrate-an-aiosx-subcloud-to-an-aiodx-subcloud
     restoring-subclouds-from-backupdata-using-dcmanager
 
+----------------------
+Manage Subcloud Groups
+----------------------
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Contents:
+
+    managing-subcloud-groups
+    creating-subcloud-groups
+    ochestration-strategy-using-subcloud-groups
+
 -------------------------
 Update (Patch) management
 -------------------------

@@ -2,9 +2,9 @@
 .. ggs1611608368857
 .. _set-up-pods-to-use-sriov:
 
-============================
-Set Up Pods to Use SRIOV
-============================
+=============================================================
+Set Up Pods to Use SRIOV to Access Mount Bryce HW Accelerator
+=============================================================
 
 You can configure pods with |SRIOV| access to a Mount Bryce device by adding the
 appropriate 'resources' request in the pod specification.

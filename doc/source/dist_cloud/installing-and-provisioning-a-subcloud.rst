@@ -16,7 +16,7 @@ Platform Management Service.
 .. note::
 
     Each subcloud must be on a separate management subnet \(different from the
-    SystemController and from any other subclouds\).
+    System Controller and from any other subclouds\).
 
 
 .. _installing-and-provisioning-a-subcloud-section-orn-jkf-t4b:

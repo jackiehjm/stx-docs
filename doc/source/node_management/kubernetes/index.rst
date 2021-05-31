@@ -89,8 +89,8 @@ Configuring CPU core assignments
 .. toctree::
    :maxdepth: 1
 
-   configuring_cpu_core_assignments/changing-the-hyper-threading-status
    configuring_cpu_core_assignments/configuring-cpu-core-assignments
+   configuring_cpu_core_assignments/changing-the-hyper-threading-status
 
 ------------------------
 Host memory provisioning
