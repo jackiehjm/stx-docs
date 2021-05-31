@@ -152,3 +152,12 @@ CPU Manager for Kubernetes
    using-kubernetes-cpu-manager-static-policy
    using-intels-cpu-manager-for-kubernetes-cmk
    uninstalling-cmk
+
+--------------
+Metrics Server
+--------------
+
+.. toctree::
+   :maxdepth: 1
+
+   kubernetes-user-tutorials-metrics-server
