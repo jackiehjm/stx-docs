@@ -27,7 +27,8 @@ Deployment
 
 A system install is required to deploy StarlingX release 4.0. There is no
 upgrade path from previous StarlingX releases. For detailed instructions, see
-the :doc:`R4.0 Installation Guides </deploy_install_guides/r4_release/index>`.
+the `Installation guides for R5.0 and older releases
+<https://docs.starlingx.io/r/stx.5.0/deploy_install_guides/index.html>`_.
 
 -----------------------------
 New features and enhancements
