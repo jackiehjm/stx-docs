@@ -62,15 +62,15 @@ commands to manage containerized applications provided as part of |prod|.
         | active        | False                            |
         | app_version   | 1.0-18                           |
         | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | |prefix|-openstack.yaml |s|              |
+        | manifest_file | |prefix|-openstack.yaml |s|      |
         | manifest_name | armada-manifest                  |
-        | name          | |prefix|-openstack  |s|                  |
+        | name          | |prefix|-openstack  |s|          |
         | progress      | completed                        |
         | status        | uploaded                         |
         | updated_at    | 2019-09-06T15:34:46.995929+00:00 |
         +---------------+----------------------------------+
 
--   Use the following command to upload application helm chart\(s\) and
+-   Use the following command to upload application Helm chart\(s\) and
     manifest.
 
     .. code-block:: none
@@ -102,16 +102,16 @@ commands to manage containerized applications provided as part of |prod|.
         | active        | False                            |
         | app_version   | 1.0-18                           |
         | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | |prefix|-openstack.yaml               |
+        | manifest_file | |prefix|-openstack.yaml          |
         | manifest_name | armada-manifest                  |
-        | name          | |prefix|-openstack                    |
+        | name          | |prefix|-openstack               |
         | progress      | None                             |
         | status        | uploading                        |
         | updated_at    | None                             |
         +---------------+----------------------------------+
         Please use 'system application-list' or 'system application-show |prefix|-openstack' to view the current progress.
 
--   To list the helm chart overrides for the |prod|, use the following
+-   To list the Helm chart overrides for the |prod|, use the following
     command:
 
     .. code-block:: none
@@ -219,18 +219,18 @@ commands to manage containerized applications provided as part of |prod|.
     and the following are optional arguments:
 
     ``--reuse-values``
-        Reuse existing helm chart user override values. If reset-values is
+        Reuse existing Helm chart user override values. If reset-values is
         used, reuse-values is ignored.
 
     ``--reset-values``
-        Replace any existing helm chart overrides with the ones specified.
+        Replace any existing Helm chart overrides with the ones specified.
 
     ``--values``
-        Specify a **yaml** file containing helm chart override values. You can
+        Specify a **yaml** file containing Helm chart override values. You can
         specify this value multiple times.
 
     ``--set``
-        Set helm chart override values using the command line. Multiple
+        Set Helm chart override values using the command line. Multiple
         override values can be specified with multiple :command:`set`
         arguments. These are processed after files passed through the
         values argument.
@@ -256,10 +256,10 @@ commands to manage containerized applications provided as part of |prod|.
     **Property** column.
 
     .. note::
-        To apply the updated helm chart ovverrides to the running application,
+        To apply the updated Helm chart ovverrides to the running application,
         use the :command:`system application-apply` command.
 
--   To enable or disable the installation of a particular helm chart within an
+-   To enable or disable the installation of a particular Helm chart within an
     application manifest, use the :command:`helm-chart-attribute-modify`
     command. This command does not modify a chart or modify chart overrides,
     which are managed through the :command:`helm-override-update` command.
@@ -343,9 +343,9 @@ commands to manage containerized applications provided as part of |prod|.
         | active        | False                            |
         | app_version   | 1.0-18                           |
         | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | |prefix|-openstack.yaml |s|              |
+        | manifest_file | |prefix|-openstack.yaml |s|      |
         | manifest_name | armada-manifest                  |
-        | name          | |prefix|-openstack |s|                   |
+        | name          | |prefix|-openstack |s|           |
         | progress      | None                             |
         | status        | applying                         |
         | updated_at    | 2019-09-06T15:34:46.995929+00:00 |
@@ -436,9 +436,9 @@ commands to manage containerized applications provided as part of |prod|.
         | active        | False                            |
         | app_version   | 1.0-18                           |
         | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | |prefix|-openstack.yaml |s|              |
+        | manifest_file | |prefix|-openstack.yaml |s|      |
         | manifest_name | armada-manifest                  |
-        | name          | |prefix|-openstack  |s|                  |
+        | name          | |prefix|-openstack  |s|          |
         | progress      | None                             |
         | status        | removing                         |
         | updated_at    | 2019-09-06T17:39:19.813754+00:00 |
