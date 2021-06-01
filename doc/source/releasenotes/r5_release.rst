@@ -27,7 +27,7 @@ Deployment
 
 A system install is required to deploy StarlingX release 5.0. There is no
 upgrade path from previous StarlingX releases. For detailed instructions, see
-the `R5.0 Installation Guides <https://docs.starlingx.io/r/stx.5.0/deploy_install_guides/r5_release/index.html>`_.
+the :doc:`R5.0 Installation Guides </deploy_install_guides/r5_release/index>`.
 
 -----------------------------
 New features and enhancements
@@ -41,7 +41,7 @@ associated user guides (if applicable).
   A new storage backend rook-ceph to provide storage service to StarlingX.
 
   Guide: :doc:`Install StarlingX Kubernetes on Bare Metal Standard with Rook
-  Storage </deploy_install_guides/r6_release/bare_metal/rook_storage_install_kubernetes>`
+  Storage </deploy_install_guides/r5_release/bare_metal/rook_storage_install_kubernetes>`
 
 * FPGA image update orchestration for distributed cloud
 
@@ -99,7 +99,6 @@ associated user guides (if applicable).
   They usually do not meet worker nodes' minimum requirements but now they can
   be managed by StarlingX.
 
-.. TODO: This guide is not merged as of 25May21.
   Guide: :doc:`Deploy Edgeworker Nodes </deploy/deploy-edgeworker-nodes>`
 
 * SNMP v3 support

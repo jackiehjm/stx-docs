@@ -18,15 +18,25 @@ StarlingX R6.0 is under development.
    r6_release/index
 
 
--------------------------------
-Supported and archived releases
--------------------------------
+-----------------
+Supported release
+-----------------
 
 StarlingX R5.0 is the most recent supported release of StarlingX.
 
-To view the R5.0 documentation, use the **Version** selector in the upper right
-or go directly to `Installation guides for R5.0 and older releases
-<https://docs.starlingx.io/r/stx.5.0/deploy_install_guides/index.html>`_.
+.. toctree::
+   :maxdepth: 1
+
+   r5_release/index
+
+
+-----------------
+Archived releases
+-----------------
+
+To view the archived installation guides, see `Installation guides for R5.0 and
+older releases <https://docs.starlingx.io/r/stx.5.0/deploy_install_guides/index.html>`_.
+
 
 
 
@@ -40,13 +50,13 @@ or go directly to `Installation guides for R5.0 and older releases
    nvme_config
 
 .. Docs note: Starting with R5 (May 2021), team agreed that the latest/working
-   branch will include the current install guides only. The archived releases
-   will only be available in a release-specific branch. The instructions below
-   are modified to reflect this change.
+   branch will include the current & supported install guides only. The archived
+   releases will only be available in a release-specific branch. The
+   instructions below are modified to reflect this change.
 
 .. Making a new release
-.. 1. Make the previous 'upcoming' release the new 'supported' release.
-      Copy the folder to the release-specific branch.
+.. 1. Copy the previous 'upcoming' release to the 'supported' release section.
+      Copy the old 'supported' folder to the release-specific branch.
       Copy the toctree link into the Supported section of install landing page.
       Update intro text for the Supported release section to use the
       latest version.

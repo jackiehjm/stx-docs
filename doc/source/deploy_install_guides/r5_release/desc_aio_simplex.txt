@@ -1,0 +1,24 @@
+The All-in-one Simplex (AIO-SX) deployment option provides all three cloud
+functions (controller, worker, and storage) on a single server with the
+following benefits:
+
+* Requires only a small amount of cloud processing and storage power
+* Application consolidation using multiple containers or virtual machines on a
+  single pair of physical servers
+* A storage backend solution using a single-node CEPH deployment
+
+.. note::
+
+   If you are behind a corporate firewall or proxy, you need to set proxy
+   settings. Refer to :doc:`/../../configuration/docker_proxy_config` for
+   details.
+
+.. figure:: ../figures/starlingx-deployment-options-simplex.png
+   :scale: 50%
+   :alt: All-in-one Simplex deployment configuration
+
+   *Figure 1: All-in-one Simplex deployment configuration*
+
+An AIO-SX deployment gives no protection against overall server hardware fault.
+Hardware component protection can be enabled with, for example, a hardware RAID
+or 2x Port LAG in the deployment.
