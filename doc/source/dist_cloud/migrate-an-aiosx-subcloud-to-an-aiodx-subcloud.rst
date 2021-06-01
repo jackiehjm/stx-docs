@@ -114,8 +114,25 @@ using the ansible playbook.
 
 #.  Software install and configure the second controller for the subcloud.
 
-    For instructions on installing and configuring controller-1 in an
-    |AIO-DX| setup to continue with the migration, see |inst-doc|.
+    From the System Controller, reconfigure the subcloud, using dcmanager.
+    Specify the sysadmin password and the deployment configuration file, using
+    the :command:`dcmanager subcloud reconfig` command.
+
+    .. code-block:: none
+
+        ~(keystone_admin)$ dcmanager subcloud reconfig --sysadmin-password <sysadmin_password> --deploy-config deployment-config-subcloud1-duplex.yaml <subcloud1>
+
+    where *<sysadmin_password>* is assumed to be the login password and
+    *<subcloud1>* is the name of the subcloud
+
+    .. note::
+
+        ``--deploy-config`` must reference a deployment configuration file for
+        a |AIO-DX| subcloud.
+
+        For example, **deployment-config-subcloud1-duplex.yaml** should only
+        include changes for controller-1 as changing fields for other nodes/
+        resources may cause them to go out of sync.
 
 .. only:: partner
 
@@ -143,7 +160,7 @@ commands on the |AIO-SX| subcloud.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system modify -m duplex
+        ~(keystone_admin)$ system modify --system_mode=duplex
 
 #.  Add the |OAM| unit IP addresses of controller-0 and controller-1.
 
@@ -152,9 +169,15 @@ commands on the |AIO-SX| subcloud.
     respectively. The existing |OAM| IP address of the |AIO-SX| system will be
     used as the OAM floating IP address of the new |AIO-DX| system.
 
+    .. note::
+
+        Only specifying oam_c0_ip and oam_c1_ip is necessary to configure the
+        OAM unit IPs to transition to Duplex. However, oam_c0_ip and oam_c1_ip
+        cannot equal the current or specified value for oam_floating_ip.
+
     .. code-block:: none
 
-        ~(keystone_admin)$ system oam-modify oam_c0_ip=10.10.10.13 oam_c1_ip=10.10.10.14
+        ~(keystone_admin)$ system oam-modify oam_subnet=10.10.10.0/24 oam_gateway_ip=10.10.10.1 oam_floating_ip=10.10.10.12 oam_c0_ip=10.10.10.13 oam_c1_ip=10.10.10.14
 
 #.  Unlock the controller.
 
