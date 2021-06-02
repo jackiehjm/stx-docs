@@ -1,3 +1,5 @@
+.. _deploy-edgeworker-nodes:
+
 =======================
 Deploy Edgeworker Nodes
 =======================
@@ -10,68 +12,70 @@ Deploy Edgeworker Nodes
 Introduction
 ------------
 
-Edgeworker is a new personality of node introduced in stx.5.0 [1]_. Ubuntu
-is supported for a node with edgeworker personality as its operating system [2]_.
-Edgeworkers are typically small systems running dedicated workloads that can now
-be managed by |prod|.
+Edgeworker is a new node personality introduced in |prod| R5.0 [[1]_].
+Edgeworkers are typically small systems running dedicated workloads that can
+now be managed by |prod|. To use the edgeworker personality, nodes must have
+the Ubuntu operating system installed [[2]_].
 
-The edgeworker personality is targeted for nodes with below criteria:
+The edgeworker personality is targeted for nodes that meet one or more of the
+following criteria:
 
-- A node is running a customized OS, or
-- A node is running a Type1 hypervisor, or
-- A node does not meet |prod| worker’s minimum requirements.
+- A node that is running a customized OS, or
+- A node that is running a Type1 hypervisor, or
+- A node that does not meet |prod| worker’s minimum requirements.
 
 These nodes can be added to a running |prod| cluster in minutes. During the
 provisioning stage, Kubernetes components will be provisioned on the edgeworker
 nodes.
 
-The |prod| controller manages edgeworker nodes as normal worker nodes including
-the following functionalities:
+The |prod| controller manages edgeworker nodes using the same mechanisms as
+typical worker nodes, including the following:
 
 - Container orchestration by Kubernetes
 - Distributed storage cluster management by Rook-ceph
 
 .. rubric:: Notes
 
-.. [1] Edgeworker is an experimental feature in |prefix|.5.0.
-.. [2] The OS of an edgeworker node is not installed by |prod| controller,instead, a node with installed OS is required prior to the node provisioning step. Only Ubuntu is supported in stx.5.0.
+.. [1] Edgeworker is an experimental feature in |prod| R5.0.
+.. [2] The operating system (OS) of an edgeworker node is not installed by the |prod| controller, instead, a node with installed OS is required prior to the node provisioning step. Only Ubuntu is supported in |prod| R5.0.
 
 ---------------------
 Hardware Requirements
 ---------------------
 
-The minimum requirements for edgeworker host (bare metal or virtual machine)
+The minimum requirements for an edgeworker host (bare metal or virtual machine)
 are:
 
-+-------------------------+-------------------------------+
-| Minimum Requirement     | Edgeworker Node               |
-+=========================+===============================+
-| Minimum processor class | Intel® Core™ Processor Family |
-+-------------------------+-------------------------------+
-| Minimum memory          | 16GB                          |
-+-------------------------+-------------------------------+
-| Primary disk            | 256GB SSD or NVMe             |
-+-------------------------+-------------------------------+
-| Minimum network ports   | - Mgmt/Cluster: 1 x 1000Base  |
-|                         | - Data: 0 or more x 10GE      |
-+-------------------------+-------------------------------+
++-------------------------+--------------------------------+
+| Minimum Requirement     | Edgeworker Node                |
++=========================+================================+
+| Minimum processor class | Intel® Core™ Processor Family  |
++-------------------------+--------------------------------+
+| Minimum memory          | 16GB                           |
++-------------------------+--------------------------------+
+| Primary disk            | 256GB SSD or NVMe              |
++-------------------------+--------------------------------+
+| Minimum network ports   | - Mgmt/Cluster: 1 x 1000BASE   |
+|                         | - Data: 0 or more x 10GE       |
++-------------------------+--------------------------------+
 
 ------------------------
 Prepare Edgeworker Nodes
 ------------------------
 
-Prior to provisioning edgeworker nodes, the setup must be prepared in the
-following condition:
+Before you provision edgeworker nodes, you must prepare the following setup:
 
-- |prod| AIO-Duplex or Standard setup deployed.
-- Edgeworker node cabled for power and powered on.
-- Edgeworker node cabled for networking and connected to mgmt switch.
-- Set primary disk as 1st boot device in BIOS setting of the edgeworker node.
-- Ubuntu 18.04(or above) has been installed in edgeworker node.
-- Openssh-server and python package installed.
+- Deploy |prod| |AIO| Duplex or Standard setup.
+- Connect the Edgeworker node to power and power it on.
+- Connect the Edgeworker node to the network and connect it to a management
+  network switch.
+- Set the primary disk as the first boot device in the BIOS setting of the
+  edgeworker node.
+- Install Ubuntu 18.04 (or above) on the edgeworker node.
+- Install Openssh-server and Python.
 
-The network connection of edgeworker nodes to the existing |prod| cluster is
-shown in below figure.
+The figure below shows how edgeworker nodes are connected to an existing |prod|
+cluster.
 
 .. image:: figures/edgeworker-deployment.png
    :width: 800
@@ -80,8 +84,8 @@ shown in below figure.
 Provision Edgeworker Nodes
 --------------------------
 
-By connecting a node’s network interface to the management network switch, a
-node will be detected and will appear in the list of hosts managed by system
+When a node’s network interface is connected to the management network switch,
+the node is detected and will appear in the list of hosts managed by system
 inventory (with personality set to None).
 
 .. code-block:: bash
@@ -95,7 +99,7 @@ inventory (with personality set to None).
     | 3  | None         | None        | locked         | disabled    | offline      |
     +----+--------------+-------------+----------------+-------------+--------------+
 
-#.  Update the node’s hostname and personality by `system host-update`.
+#.  Update the node’s hostname and personality using ``system host-update``:
 
     .. code-block:: bash
 
@@ -144,14 +148,14 @@ inventory (with personality set to None).
         | vim_progress_status   | None                                 |
         +-----------------------+--------------------------------------+
 
-    Alternatively, if the node is not shown in host list automatically, you can
-    also add the host with `system host-add`.
+    Alternatively, if the node is not shown in the host list automatically, you
+    can also add the host using ``system host-add``:
 
     .. code-block:: bash
 
         [sysadmin@controller-0 ~(keystone_admin)]$ system host-add -n edgeworker-0 -p edgeworker -m <mgmt_mac>
 
-#.  Check pre-requisites of the edgeworker node:
+#.  Check the prerequisites of the edgeworker node:
 
     .. note::
 
@@ -181,13 +185,15 @@ inventory (with personality set to None).
           echo "Pre-requisites check passed."
         fi
 
-    If the following error occurrs, refresh the |DHCP| client for the mgmt interface on the edgeworker nodes to get the right ip address assigned.
+    If the following error occurs, refresh the |DHCP| client for the
+    management interface on the edgeworker nodes to assign the right IP address.
 
     .. code-block:: none
 
         ssh: connect to host XX.XX.XX.XX port 22: No route to host
 
-#.  Create an edgeworker inventory file with the variables from the last step.
+#.  Create an edgeworker inventory file with the variables from the previous
+    step.
 
     .. code-block:: none
 
@@ -214,16 +220,15 @@ inventory (with personality set to None).
             ansible_become_pass: ${SYSADMINPASSWD}
         EOF
 
-#.  Provision the edgeworker node using ansible playbook. You can provision
-    edgeworker node one at a time or multiple nodes at once. Run the playbook
-    with the underlying inventory
+#.  Provision the edgeworker node using Ansible playbook. You can provision
+    edgeworker nodes one at a time or multiple nodes at once. Run the playbook
+    with the inventory file you created.
 
     .. code-block:: bash
 
         ansible-playbook -i ./edgeworker_inventory.yml /usr/share/ansible/stx-ansible/playbooks/provision_edgeworker.yml
 
-    After the provisioning, the edgeworker node will be Ready in Kubernetes
-    cluster.
+    Provisioning output is similar to the following:
 
     .. code-block:: bash
 
@@ -248,6 +253,9 @@ inventory (with personality set to None).
         edgeworker-0               : ok=54   changed=10   unreachable=0    failed=0
         localhost                  : ok=31   changed=19   unreachable=0    failed=0
 
+    After provisioning, the edgeworker node will show ``Ready`` status in the
+    Kubernetes cluster.
+
     .. code-block:: bash
 
         [sysadmin@controller-0 ~(keystone_admin)]$ kubectl get node
@@ -258,4 +266,5 @@ inventory (with personality set to None).
 
 .. note::
 
-    The edgeworker nodes will remain locked/disabled/offline in the host inventory list in stx5.0.
+    In |prod| R5.0, the edgeworker nodes will be shown as
+    locked/disabled/offline when you use the ``system host-list`` command.
