@@ -11,6 +11,7 @@ software.
 
 .. rubric:: |prereq|
 
+
 .. _upgrading-all-in-one-simplex-ul-ezb-b11-cx:
 
 -   Perform a full backup to allow recovery.
@@ -22,12 +23,12 @@ software.
 
 -   The system must be 'patch current'. All upgrades available for the current
     release running on the system must be applied. To find and download
-    applicable upgrades, visit the |dnload-loc| site.
+    applicable upgrades, visit |dnload-loc| site.
 
 -   Transfer the new release software load to controller-0 \(or onto a USB
     stick\); controller-0 must be active.
 
--   Transfer the new release software license file to controller-0, \(or onto a
+-   Transfer the new release software license file to controller-0 \(or onto a
     USB stick\).
 
 -   Transfer the new release software signature to controller-0 \(or onto a USB
@@ -40,6 +41,11 @@ software.
 
 .. note::
     The upgrade procedure includes steps to resolve system health issues.
+
+End user container images in `registry.local` will be backed up during the
+upgrade process. This only includes images other than |prod| system and
+application images. These images are limited to 5 GBytes in total size. If
+the system contains more than 5 GBytes of these images, the upgrade start will fail.
 
 .. rubric:: |proc|
 
@@ -83,8 +89,8 @@ software.
             +--------------------+-----------+
             | id                 | 2         |
             | state              | importing |
-            | software_version   | 20.06     |
-            | compatible_version | 20.04     |
+            | software_version   | 21.05     |
+            | compatible_version | 20.06     |
             | required_patches   |           |
             +--------------------+-----------+
 
@@ -100,9 +106,12 @@ software.
             +----+----------+------------------+
             | id | state    | software_version |
             +----+----------+------------------+
-            | 1  | active   | 20.04            |
-            | 2  | imported | 20.06            |
+            | 1  | active   | 20.06            |
+            | 2  | imported | 21.05            |
             +----+----------+------------------+
+
+    .. note::
+        This will take a few minutes.
 
 #.  Apply any required software updates.
 
@@ -162,8 +171,8 @@ software.
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | starting                             |
-        | from_release | 20.04                                |
-        | to_release   | 20.06                                |
+        | from_release | 20.06                                |
+        | to_release   | 21.05                                |
         +--------------+--------------------------------------+
 
     This will back up the system data and images to /opt/platform-backup.
@@ -211,9 +220,12 @@ software.
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | started                              |
-        | from_release | 20.04                                |
-        | to_release   | 20.06                                |
+        | from_release | 20.06                                |
+        | to_release   | 21.05                                |
         +--------------+--------------------------------------+
+
+    Ensure the upgrade state is **started**. It will take several minutes to
+    transition to the started state.
 
 #.  \(Optional\) Copy the upgrade data from the system to an alternate safe
     location \(such as a USB drive or remote server\).
@@ -233,7 +245,7 @@ software.
 
         ~(keystone_admin)]$ system host-lock controller-0
 
-#.  Start Upgrade controller-0.
+#.  Upgrade controller-0.
 
     This is the point of no return. All data except /opt/platform-backup/ will
     be erased from the system. This will wipe the **rootfs** and reboot the
@@ -248,6 +260,13 @@ software.
         Are you absolutely sure you want to continue?  [yes/N]: yes
 
 #.  Install the new release of |prod-long| Simplex software via network or USB.
+
+#.  Verify and configure IP connectivity. External connectivity is required to
+    run the Ansible upgrade playbook. The |prod-long| boot image will DHCP out all
+    interfaces so the server may have obtained an IP address and have external IP
+    connectivity if a DHCP server is present in your environment. Verify this using
+    the :command:`ip addr` command. Otherwise, manually configure an IP address and default IP
+    route.
 
 #.  Restore the upgrade data.
 
@@ -274,6 +293,9 @@ software.
     .. note::
         This playbook does not support replay.
 
+    .. note::
+        This can take more than one hour to complete.
+
     Once the data restoration is complete the upgrade state will be set to
     **upgrading-hosts**.
 
@@ -287,8 +309,8 @@ software.
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | upgrading-hosts                      |
-        | from_release | 20.04                                |
-        | to_release   | 20.06                                |
+        | from_release | 20.06                                |
+        | to_release   | 21.05                                |
         +--------------+--------------------------------------+
 
 #.  Unlock controller-0.
@@ -315,8 +337,8 @@ software.
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | activating                           |
-        | from_release | 20.04                                |
-        | to_release   | 20.06                                |
+        | from_release | 20.06                                |
+        | to_release   | 21.05                                |
         +--------------+--------------------------------------+
 
     The following states apply when this command is executed.
@@ -328,24 +350,31 @@ software.
         State entered when we have started activating the upgrade by applying
         new configurations to the controller and compute hosts.
 
+    **activating-hosts**
+        State entered when applying host-specific configurations. This state is
+        entered only if needed.
+
     **activation-complete**
         State entered when new configurations have been applied to all
         controller and compute hosts.
 
-    #.  Check the status of the upgrade again to see it has reached
-        **activation-complete**
+    Check the status of the upgrade again to see it has reached
+    **activation-complete**
 
-        .. code-block:: none
+    .. code-block:: none
 
-            ~(keystone_admin)]$ system upgrade-show
-            +--------------+--------------------------------------+
-            | Property     | Value                                |
-            +--------------+--------------------------------------+
-            | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
-            | state        | activation-complete                  |
-            | from_release | 20.04                                |
-            | to_release   | 20.06                                |
-            +--------------+--------------------------------------+
+        ~(keystone_admin)]$ system upgrade-show
+        +--------------+--------------------------------------+
+        | Property     | Value                                |
+        +--------------+--------------------------------------+
+        | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
+        | state        | activation-complete                  |
+        | from_release | 20.06                                |
+        | to_release   | 21.05                                |
+        +--------------+--------------------------------------+
+
+    .. note::
+        This can take more than half an hour to complete.
 
 #.  Complete the upgrade.
 
@@ -357,8 +386,8 @@ software.
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | completing                           |
-        | from_release | 20.04                                |
-        | to_release   | 20.06                                |
+        | from_release | 20.06                                |
+        | to_release   | 21.05                                |
         +--------------+--------------------------------------+
 
 #.  Delete the imported load.
@@ -369,8 +398,8 @@ software.
         +----+----------+------------------+
         | id | state    | software_version |
         +----+----------+------------------+
-        | 1  | imported | 20.04            |
-        | 2  | active   | 20.06            |
+        | 1  | imported | 20.06            |
+        | 2  | active   | 21.05            |
         +----+----------+------------------+
 
         ~(keystone_admin)]$ system load-delete 1
