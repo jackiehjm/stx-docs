@@ -60,6 +60,8 @@ status before creating a update strategy.
     The Create Strategy dialog appears.
 
     .. image:: figures/zcj1567178380908.png
+       :height: 365px
+       :width: 475px
 
 #.  Create a update strategy by specifying settings for the parameters in the
     Create Strategy dialog box.
