@@ -22,41 +22,62 @@ The following procedure shows an example of launching a container image with
 
         $ source /etc/platform/openrc ~(keystone_admin)$
 
-#.  Create a pod.yml file.
+#.  Create a pod.yml file that requests 16 Mount Bryce VFs
+    \(i.e. intel.com/intel_acc100_fec: '16'\)
 
     .. code-block:: none
 
         ~(keystone_admin)$ cat >> pod0.yml << EOF
-          apiVersion: v1
-          kind: Pod
-          metadata:
-            name: pod0
-          spec:
-          restartPolicy: Never
-          containers:
-          - name: pod0
-            image: "windse/pktgen-testpmd-bbdev:d1911r4p1912" volumeMounts: -
-            mountPath: /mnt/huge-1048576kB
-              name: hugepage
-            - mountPath: /sys/devices
-              name: uio
-            command: ["/bin/bash", "-ec", "sleep infinity"] securityContext:
-              privileged: false capabilities:
-                add:
-                  ["IPC_LOCK", "SYS_ADMIN"]
-            resources:
-              requests:
-                hugepages-1Gi: 4Gi memory: 4Gi intel.com/intel_acc100_fec: '16'
-                windriver.com/isolcpus: '24'
-              limits:
-                hugepages-1Gi: 4Gi memory: 4Gi intel.com/intel_acc100_fec: '16'
-                windriver.com/isolcpus: '24'
-          volumes: - name: hugepage
-            emptyDir:
-              medium: HugePages
-          - name: uio
-            hostPath:
-              path: /sys/devices
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: pod0
+          annotations:
+          labels:
+            app: pod0
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              app: pod0
+          template:
+            metadata:
+              name: pod0
+              labels:
+                app: pod0
+            spec:
+              restartPolicy: Always
+              containers:
+              - name: pod0
+                image: "windse/pktgen-testpmd-bbdev:d1911r4p1912"
+                volumeMounts:
+                - mountPath: /mnt/huge-1048576kB
+                  name: hugepage
+                - mountPath: /sys/devices
+                  name: uio
+                command: ["/bin/bash", "-ec", "sleep infinity"]
+                securityContext:
+                  privileged: false
+                  capabilities:
+                    add:
+                      ["IPC_LOCK", "SYS_ADMIN"]
+                resources:
+                  requests:
+                    memory: 4Gi
+                    intel.com/intel_acc100_fec: '16'
+                    windriver.com/isolcpus: 24
+                  limits:
+                    hugepages-1Gi: 2Gi
+                    memory: 4Gi
+                    intel.com/intel_acc100_fec: '16'
+                    windriver.com/isolcpus: 24
+              volumes:
+              - name: hugepage
+                emptyDir:
+                  medium: HugePages
+              - name: uio
+                hostPath:
+                  path: /sys/devices
         EOF
 
 #.  Start the pod.
