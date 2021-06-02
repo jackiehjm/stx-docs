@@ -9,6 +9,14 @@ Roll Back a Software Upgrade After the Second Controller Upgrade
 After the second controller is upgraded, you can still roll back a software
 upgrade, however, the rollback will impact the hosting of applications.
 
+The upgrade abort procedure can only be applied before the
+:command:`upgrade-complete` command is issued. Once this command is issued
+the upgrade can not be aborted. If the return to the previous release is required,
+then restore the system using the backup data taken prior to the upgrade.
+
+In some scenarios additional actions will be required to complete the upgrade
+abort. It may be necessary to restore the system from a backup.
+
 .. rubric:: |proc|
 
 #.  Run the :command:`upgrade-abort` command to abort the upgrade.
@@ -74,6 +82,10 @@ upgrade, however, the rollback will impact the hosting of applications.
 
         $ system host-unlock controller-0
 
+    .. note::
+        Wait for controller-0 to become unlocked-enabled. Wait for the
+        |DRBD| sync 400.001 Services-related alarm to be raised and then cleared.
+
 #.  Swact to controller-0.
 
     .. code-block:: none
@@ -88,6 +100,10 @@ upgrade, however, the rollback will impact the hosting of applications.
 
     .. code-block:: none
 
+        $ system host-lock controller-1
+
+    .. code-block:: none
+
         $ system host-downgrade controller-1
 
     The host is re-installed with the previous release load.
@@ -97,10 +113,10 @@ upgrade, however, the rollback will impact the hosting of applications.
     .. code-block:: none
 
         $ system host-unlock controller-1
-        
+
 
 #.  Power up and unlock the storage hosts one at a time \(if using a Ceph
-    storage backend\). The hosts are re-installed with the release N load.
+    storage backend\). The hosts are re-installed with the previous release load.
 
     .. note::
         Skip this step if doing this procedure on a |prod| Duplex system.

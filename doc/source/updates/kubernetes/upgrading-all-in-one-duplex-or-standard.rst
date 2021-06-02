@@ -46,7 +46,7 @@ of |prod| software.
 #.  Ensure that controller-0 is the active controller.
 
 #.  Install the license file for the release you are upgrading to, for example,
-    20.06.
+    21.05.
 
     .. code-block:: none
 
@@ -78,13 +78,16 @@ of |prod| software.
             +--------------------+-----------+
             | id                 | 2         |
             | state              | importing |
-            | software_version   | 20.06     |
-            | compatible_version | 20.04     |
+            | software_version   | 21.05     |
+            | compatible_version | 20.06     |
             | required_patches   |           |
             +--------------------+-----------+
 
         The :command:`load-import` must be done on **controller-0** and accepts
         relative paths.
+
+        .. note::
+            This can take a few minutes to complete.
 
     #.  Check to ensure the load was successfully imported.
 
@@ -95,8 +98,8 @@ of |prod| software.
             +----+----------+------------------+
             | id | state    | software_version |
             +----+----------+------------------+
-            | 1  | active   | 20.04            |
-            | 2  | imported | 20.06            |
+            | 1  | active   | 20.06            |
+            | 2  | imported | 21.05            |
             +----+----------+------------------+
 
 
@@ -162,8 +165,8 @@ of |prod| software.
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | starting                             |
-        | from_release | 20.04                                |
-        | to_release   | 20.06                                |
+        | from_release | 20.06                                |
+        | to_release   | 21.05                                |
         +--------------+--------------------------------------+
 
     This will make a copy of the system data to be used in the upgrade.
@@ -176,7 +179,7 @@ of |prod| software.
 
         -   State entered after :command:`system upgrade-start` completes.
 
-        -   Release 20.04 system data \(for example, postgres databases\) has
+        -   Release 20.06 system data \(for example, postgres databases\) has
             been exported to be used in the upgrade.
 
         -   Configuration changes must not be made after this point, until the
@@ -218,7 +221,7 @@ of |prod| software.
         **locked-disabled-online** state.
 
         The following data migration states apply when this command is
-        executed.
+        executed:
 
         -   data-migration:
 
@@ -227,12 +230,12 @@ of |prod| software.
 
             -   System data is being migrated from release N to release N+1.
 
-        -   data-migration-complete:
+        -   data-migration-complete or upgrading-controllers:
 
             -   State entered when controller-1 upgrade is complete.
 
-            -   System data has been successfully migrated from release 20.04
-                to release 20.06.
+            -   System data has been successfully migrated from release 20.06
+                to release 21.05.
 
         -   data-migration-failed:
 
@@ -251,8 +254,8 @@ of |prod| software.
             +--------------+--------------------------------------+
             | uuid         | e7c8f6bc-518c-46d4-ab81-7a59f8f8e64b |
             | state        | data-migration-complete              |
-            | from_release | 20.04                                |
-            | to_release   | 20.06                                |
+            | from_release | 20.06                                |
+            | to_release   | 21.05                                |
             +--------------+--------------------------------------+
 
         If the :command:`upgrade-show` status indicates
@@ -273,7 +276,7 @@ of |prod| software.
         -   upgrading-controllers:
 
             -   State entered when controller-1 has been unlocked and is
-                running release 20.06 software.
+                running release 21.05 software.
 
         If it transitions to **unlocked-disabled-failed**, check the issue
         before proceeding to the next step. The alarms may indicate a
@@ -317,7 +320,7 @@ of |prod| software.
 
         -   upgrading-hosts:
 
-            -   State entered when both controllers are running release 20.06
+            -   State entered when both controllers are running release 21.05
                 software.
 
 #.  Check the system health to ensure that there are no unexpected alarms.
@@ -425,8 +428,8 @@ of |prod| software.
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | activating                           |
-        | from_release | 20.04                                |
-        | to_release   | 20.06                                |
+        | from_release | 20.06                                |
+        | to_release   | 21.05                                |
         +--------------+--------------------------------------+
 
     During the running of the :command:`upgrade-activate` command, new
@@ -444,6 +447,10 @@ of |prod| software.
         State entered when we have started activating the upgrade by applying
         new configurations to the controller and compute hosts.
 
+    **activating-hosts**
+        State entered when applying host-specific configurations. This state is
+        entered only if needed.
+
     **activation-complete**
         State entered when new configurations have been applied to all
         controller and compute hosts.
@@ -459,9 +466,12 @@ of |prod| software.
             +--------------+--------------------------------------+
             | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
             | state        | activation-complete                  |
-            | from_release | 20.04                                |
-            | to_release   | 20.06                                |
+            | from_release | 20.06                                |
+            | to_release   | 21.05                                |
             +--------------+--------------------------------------+
+
+    .. note::
+        This can take more than half an hour to complete.
 
 #.  Complete the upgrade.
 
@@ -473,8 +483,8 @@ of |prod| software.
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | completing                           |
-        | from_release | 20.04                                |
-        | to_release   | 20.06                                |
+        | from_release | 20.06                                |
+        | to_release   | 21.05                                |
         +--------------+--------------------------------------+
 
 #.  Delete the imported load.
@@ -485,8 +495,8 @@ of |prod| software.
         +----+----------+------------------+
         | id | state    | software_version |
         +----+----------+------------------+
-        | 1  | imported | 20.04            |
-        | 2  | active   | 20.06            |
+        | 1  | imported | 20.06            |
+        | 2  | active   | 21.05            |
         +----+----------+------------------+
 
         ~(keystone_admin)]$ system load-delete 1

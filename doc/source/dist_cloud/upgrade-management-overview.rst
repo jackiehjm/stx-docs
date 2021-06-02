@@ -37,6 +37,12 @@ follows:
 
 .. rubric:: |prereq|
 
+For |AIO-SX| subclouds, end user container images in `registry.local` will be
+backed up during the upgrade process. This only includes images other than
+|prod| system and application images. These images are limited to 5 GBytes in
+total size. If the system contains more than 5 GBytes of these images, the
+upgrade start will fail.
+
 The following prerequisites apply to a |prod-dc| upgrade management service.
 
 .. _upgrade-management-overview-ul-smx-y2m-cmb:
@@ -66,7 +72,7 @@ The following prerequisites apply to a |prod-dc| upgrade management service.
 
     -   Ensure **controller-0** is the active controller.
 
--   The subclouds must all be |AIO-DX|, and using the Redfish
+-   The subclouds must all be |AIO-SX|, and must use the Redfish
     platform management service.
 
 -   **Remove Non GA Applications**:
