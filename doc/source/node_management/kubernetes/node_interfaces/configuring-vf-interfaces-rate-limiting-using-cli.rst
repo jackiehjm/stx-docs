@@ -6,7 +6,7 @@
 Configure VF Interfaces Rate Limiting Using the CLI
 =====================================================
 
-You can apply rate-limiting on VFs used for Data networks.
+You can apply rate-limiting on |VFs| used for Data networks.
 
 .. rubric:: |context|
 
@@ -23,17 +23,17 @@ Be aware of the following guidance when using this feature:
 
 -   Rate limiting is disabled by default.
 
--   If all VF's are in contention then each will get an equal share of the
+-   If all |VFs| are in contention then each will get an equal share of the
     bandwidth.
 
--   The total sum of the maximum transmission rates of all rate limited VFs
+-   The total sum of the maximum transmission rates of all rate limited |VFs|
     cannot exceed 90% of the port link speed.
 
 -   The unit is Mbps, and value of 0 means turn off the rate limiting.
 
--   VFs with different limited rate are supposed to be attached separate data
-    networks and managed by Kubernetes SR-IOV device plugin as different
-    ResourcePools. You can then use the VFs by specifying the corresponding
+-   |VFs| with different limited rate are supposed to be attached separate data
+    networks and managed by Kubernetes |SRIOV| device plugin as different
+    ResourcePools. You can then use the |VFs| by specifying the corresponding
     <resourceName>.
 
 
@@ -41,7 +41,7 @@ This task must be performed from the CLI.
 
 .. rubric:: |prereq|
 
-You must create an SR-IOV interface before you can provision VF interface. For
+You must create an |SRIOV| interface before you can provision VF interface. For
 more information, see :ref:`Provisioning SR-IOV Interfaces using the CLI
 <provisioning-sr-iov-interfaces-using-the-cli>`.
 
@@ -58,6 +58,10 @@ Data networks should be created for VF sub-interfaces attachment.
 .. rubric:: |proc|
 
 #.  Lock the host.
+
+    .. note::
+       AIO-SX hosts do not need to be locked to provision an |SRIOV|
+       interface and assign it to a data network.
 
     .. code-block:: none
 
@@ -102,6 +106,10 @@ Data networks should be created for VF sub-interfaces attachment.
         ~(keystone_admin)$ system interface-datanetwork-assign controller-0 sriov01 $PHYSNET2
 
 #.  Unlock the host.
+
+    .. note::
+       AIO-SX hosts do not need to be locked to provision an |SRIOV|
+       interface and assign it to a data network.
 
     .. code-block:: none
 
