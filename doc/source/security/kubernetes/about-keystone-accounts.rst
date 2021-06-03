@@ -2,9 +2,9 @@
 .. ibp1552572465781
 .. _about-keystone-accounts:
 
-=======================
-About Keystone Accounts
-=======================
+=================
+Keystone Accounts
+=================
 
 |prod| uses tenant accounts and user accounts to identify and manage access to
 StarlingX resources, and images in the Local Docker Registry.

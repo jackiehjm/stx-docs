@@ -14,18 +14,9 @@ These include:
 
 .. _https-access-overview-ul-eyn-5ln-gjb:
 
--   |prod| REST API applications and the |prod| web administration server
-
--   Kubernetes API
-
--   Local Docker registry
-
 .. contents::
    :local:
    :depth: 1
-
-You can also add a trusted Certificate Authority \(CA\) for the |prod| system.
-
 
 .. _https-access-overview-section-N10048-N10024-N10001:
 

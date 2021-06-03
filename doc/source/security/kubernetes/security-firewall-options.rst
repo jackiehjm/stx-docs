@@ -2,9 +2,9 @@
 .. zlk1582057887959
 .. _security-firewall-options:
 
-================
-Firewall Options
-================
+=======================
+Modify Firewall Options
+=======================
 
 |prod| incorporates a default firewall for the |OAM| network. You can configure
 additional Kubernetes Network Policies in order to augment or override the

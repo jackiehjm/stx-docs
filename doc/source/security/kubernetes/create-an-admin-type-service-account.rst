@@ -15,6 +15,10 @@ namespaces.
 A cluster-admin ClusterRole is defined by default for such a user. To create
 an admin service account with cluster-admin role, use the following procedure:
 
+.. note::
+  It is recommended that you create and manage service accounts within the
+  kube-system namespace.
+
 .. rubric:: |proc|
 
 #.  Create the user definition.
@@ -61,3 +65,8 @@ an admin service account with cluster-admin role, use the following procedure:
     access using tools such as :command:`kubectl` and :command:`helm` for a
     service account such as this.
 
+.. note::
+    |prod| can also use user accounts defined in an external Windows Active
+    Directory to authenticate Kubernetes API, :command:`kubectl` CLI or the
+    Kubernetes Dashboard. For more information, see :ref:`Configure OIDC
+    Auth Applications <configure-oidc-auth-applications>`.

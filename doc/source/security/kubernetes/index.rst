@@ -7,57 +7,13 @@ System Accounts
 ***************
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    types-of-system-accounts
    overview-of-system-accounts
    kube-service-account
    keystone-accounts
    remote-windows-active-directory-accounts
-
-Linux User Accounts
-*******************
-
-.. toctree::
-   :maxdepth: 1
-
-   the-sysadmin-account
-   local-ldap-linux-user-accounts
-   create-ldap-linux-accounts
-   remote-access-for-linux-accounts
-   password-recovery-for-linux-user-accounts
-   establish-keystone-credentials-from-a-linux-account
-   estabilish-credentials-for-linux-user-accounts
-   starlingx-openstack-kubernetes-from-stsadmin-account-login
-   kubernetes-cli-from-local-ldap-linux-account-login
-
-Kubernetes Service Accounts
-***************************
-
-.. toctree::
-   :maxdepth: 1
-
-   kubernetes-service-accounts
-   create-an-admin-type-service-account
-
-Keystone Accounts
-*****************
-
-.. toctree::
-   :maxdepth: 1
-
-   about-keystone-accounts
-   keystone-account-authentication
-   manage-keystone-accounts
-   configure-the-keystone-token-expiration-time
-   password-recovery
-
-Password Rules
-**************
-
-.. toctree::
-   :maxdepth: 1
-
    starlingx-system-accounts-system-account-password-rules
 
 *****************
@@ -70,9 +26,6 @@ Access the System
    configure-local-cli-access
    remote-access-index
    security-access-the-gui
-   configure-http-and-https-ports-for-horizon-using-the-cli
-   configure-horizon-user-lockout-on-failed-logins
-   install-the-kubernetes-dashboard
    security-rest-api-access
    connect-to-container-registries-through-a-firewall-or-proxy
 
@@ -129,21 +82,18 @@ Firewall Options
 .. toctree::
    :maxdepth: 1
 
-   security-firewall-options
    security-default-firewall-rules
+   security-firewall-options
 
 *************************
 Secure HTTPS Connectivity
 *************************
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    https-access-overview
    starlingx-rest-api-applications-and-the-web-administration-server
-   enable-https-access-for-starlingx-rest-and-web-server-endpoints
-   install-update-the-starlingx-rest-and-web-server-certificate
-   secure-starlingx-rest-and-web-certificates-private-key-storage-with-tpm
    kubernetes-root-ca-certificate
    security-install-update-the-docker-registry-certificate
    add-a-trusted-ca
@@ -157,17 +107,7 @@ Cert Manager
 
    security-cert-manager
    the-cert-manager-bootstrap-process
-
-Post Installation Setup
-***********************
-
-.. toctree::
-   :maxdepth: 1
-
-   firewall-port-overrides
-   enable-public-use-of-the-cert-manager-acmesolver-image
-   enable-use-of-cert-manager-acmesolver-image-in-a-particular-namespace
-   enable-the-use-of-cert-manager-apis-by-an-arbitrary-user
+   cert-manager-post-installation-setup
 
 ******************************
 Portieris Admission Controller
@@ -178,8 +118,8 @@ Portieris Admission Controller
 
    portieris-overview
    install-portieris
-   remove-portieris
    portieris-clusterimagepolicy-and-imagepolicy-configuration
+   remove-portieris
 
 ********************************
 Vault Secret and Data Management
@@ -190,16 +130,9 @@ Vault Secret and Data Management
 
    security-vault-overview
    install-vault
-   remove-vault
-
-Configure Vault
-***************
-
-.. toctree::
-   :maxdepth: 1
-
    configure-vault
    configure-vault-using-the-cli
+   remove-vault
 
 **************************************
 Encrypt Kubernetes Secret Data at Rest
@@ -227,8 +160,6 @@ Operator Command Logging
    :maxdepth: 1
 
    operator-command-logging
-   operator-login-authentication-logging
-   operator-command-logging
 
 ****************
 UEFI Secure Boot
@@ -239,15 +170,6 @@ UEFI Secure Boot
 
    overview-of-uefi-secure-boot
    use-uefi-secure-boot
-
-***********************
-Trusted Platform Module
-***********************
-
-.. toctree::
-   :maxdepth: 1
-
-   tpm-configuration-considerations
 
 ***********************************
 Authentication of Software Delivery
@@ -266,16 +188,6 @@ Security Feature Configuration for Spectre and Meltdown
    :maxdepth: 1
 
    security-feature-configuration-for-spectre-and-meltdown
-
-***************************
-Locally Create Certificates
-***************************
-
-.. toctree::
-   :maxdepth: 1
-
-   create-certificates-locally-using-openssl
-   create-certificates-locally-using-cert-manager-on-the-controller
 
 *****************************
 Security Hardening Guidelines
@@ -318,11 +230,11 @@ Security Features
    isolate-starlingx-internal-cloud-management-network
 
 ***************************************
-Appendix: Locally creating certifciates
+Appendix: Locally creating certificates
 ***************************************
 
 .. toctree::
    :maxdepth: 1
 
-   creating-certificates-locally-using-cert-manager-on-the-controller
-   creating-certificates-locally-using-openssl
+   create-certificates-locally-using-openssl
+   create-certificates-locally-using-cert-manager-on-the-controller
