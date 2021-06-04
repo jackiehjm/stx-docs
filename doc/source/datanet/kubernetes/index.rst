@@ -10,7 +10,6 @@ Overview
    :maxdepth: 1
 
    data-network-management-data-networks
-   vxlan-data-networks
 
 --------------------------------
 Display data network information

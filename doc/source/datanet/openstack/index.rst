@@ -19,6 +19,7 @@ VXLAN data networks
 .. toctree::
    :maxdepth: 1
 
+   vxlan-data-networks
    dynamic-vxlan
    static-vxlan
    differences-between-dynamic-and-static-vxlan-modes
