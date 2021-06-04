@@ -87,8 +87,8 @@ configuration is required in order to use :command:`helm`.
             In order for your remote host to trust the certificate used by
             the |prod-long| K8S API, you must ensure that the
             ``k8s\_root\_ca\_cert`` specified at install time is a trusted
-            CA certificate by your host. Follow the instructions for adding
-            a trusted CA certificate for the operating system distribution
+            |CA| certificate by your host. Follow the instructions for adding
+            a trusted |CA| certificate for the operating system distribution
             of your particular host.
 
             If you did not specify a ``k8s\_root\_ca\_cert`` at install
@@ -109,7 +109,7 @@ configuration is required in order to use :command:`helm`.
             --user kubernetes-admin@mycluster --namespace=default
             % kubectl config use-context kubernetes-admin@mycluster
 
-        ``$TOKEN\_DATA`` is the token retrieved in step 1.
+        ``$TOKEN_DATA`` is the token retrieved in step 1.
 
     #.  Test remote :command:`kubectl` access.
 
