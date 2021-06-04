@@ -24,6 +24,7 @@
 .. |CLIs| replace:: :abbr:`CLIs (Command Line Interfaces)`
 .. |CMK| replace:: :abbr:`CMK (CPU Manager for Kubernetes)`
 .. |CNI| replace:: :abbr:`CNI (Container Networking Interface)`
+.. |CNIs| replace:: :abbr:`CNIs (Container Networking Interfaces)`
 .. |CoW| replace:: :abbr:`CoW (Copy on Write)`
 .. |CSK| replace:: :abbr:`CSK (Code Signing Key)`
 .. |CSKs| replace:: :abbr:`CSKs (Code Signing Keys)`

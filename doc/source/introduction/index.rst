@@ -28,8 +28,10 @@ Learn more about StarlingX:
 .. toctree::
    :maxdepth: 1
 
-   terms
+   functional_overview
+   deploy_config_overview
    deploy_options
+   terms
    consuming
    StarlingX Project Overview (PDF) <https://www.starlingx.io/collateral/StarlingX_Onboarding_Deck_for_Web.pdf>
 
