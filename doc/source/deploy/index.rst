@@ -17,4 +17,10 @@ Deployment Configurations
    deployment-and-configuration-options-standard-configuration-with-controller-storage
    standard-configuration-with-dedicated-storage
    worker-function-performance-profiles
-   deploy-edgeworker-nodes
+
+.. only:: starlingx
+
+   .. toctree::
+      :maxdepth: 1
+
+      deploy-edgeworker-nodes
