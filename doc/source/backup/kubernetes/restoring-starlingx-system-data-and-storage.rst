@@ -345,6 +345,28 @@ conditions are in place:
         coredns-6d64d47ff4-99nhq                  1/1     Running
         coredns-6d64d47ff4-nhh95                  1/1     Running
 
+#. If **wipe_ceph_osds** is set to true and all the system hosts are in an
+   unlocked/enabled/available state, do the following:
+
+   #.  Remove and reapply **platform-integ-apps**. This step will re-create
+       the default ceph pools (they were deleted):
+
+       .. code-block:: none
+
+            $ system application-remove platform-integ-apps
+            $ system application-apply platform-integ-apps
+
+   #.  Delete completely and reapply all the applications that have
+       persistent volumes (WRO or custom apps). For example for WRO, run the
+       following commands
+
+       .. parsed-literal::
+
+            $ system application-remove |prefix|-openstack
+            $ system application-delete |prefix|-openstack
+            $ system application-upload |prefix|-openstack-20.12-0.tgz
+            $ system application-apply |prefix|-openstack
+
 #. Run the :command:`system restore-complete` command.
 
    .. code-block:: none
