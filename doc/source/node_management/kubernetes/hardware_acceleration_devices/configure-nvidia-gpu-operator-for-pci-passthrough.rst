@@ -92,16 +92,14 @@ Use the following steps to configure the GPU Operator container:
     .. code-block:: none
 
         ~(keystone_admin)]$ kubectl get pods –A
-        NAMESPACE               NAME      READY  STATUS    RESTART  AGE
-        default                 g-node..  1/1    Running   1       7h54m
-        default                 g-node..  1/1    Running   1       7h54m
-        default                 gpu-ope.  1/1    Running   1       7h54m
-        gpu-operator-resources  gpu-..    1/1    Running   4       28m
-        gpu-operator-resources  nvidia..  1/1    Running   0       28m
-        gpu-operator-resources  nvidia..  1/1    Running   0       28m
-        gpu-operator-resources  nvidia..  1/1    Running   0       28m
-        gpu-operator-resources  nvidia..  0/1    Completed 0       7h53m
-        gpu-operator-resources  nvidia..  1/1    Running   0       28m
+        NAMESPACE                     NAME                                                          READY   STATUS      RESTART    AGE
+        default                       gpu-operator-596c49cb9b-2tdlw                                 1/1     Running     1          24h
+        default                       gpu-operator-node-feature-discovery-master-7f87b4d6bb-wsbn4   1/1     Running     2          24h
+        default                       gpu-operator-node-feature-discovery-worker-hqzvw              1/1     Running     4          24h
+        gpu-operator-resources        nvidia-container-toolkit-daemonset-8f7nl                      1/1     Running     0          14h
+        gpu-operator-resources        nvidia-device-plugin-daemonset-g9lmk                          1/1     Running     0          14h
+        gpu-operator-resources        nvidia-device-plugin-validation                               0/1     Pending     0          24h
+        gpu-operator-resources        nvidia-driver-daemonset-9mnwr                                 1/1     Running     0          14h
 
     The plugin validation pod is marked completed.
 
@@ -126,8 +124,9 @@ Use the following steps to configure the GPU Operator container:
           runtimeClassName: nvidia
           containers:
            - name: nvidia-usage-example-pod
-              image: nvidia/samples:cuda10.2-vectorAdd
-              imagePullPolicy: IfNotPresent    command: [ "/bin/bash", "-c", "--" ]
+             image: nvidia/samples:cuda10.2-vectorAdd
+             imagePullPolicy: IfNotPresent
+             command: [ "/bin/bash", "-c", "--" ]
              args: [ "while true; do sleep 300000; done;" ]
              resources:
                requests:
