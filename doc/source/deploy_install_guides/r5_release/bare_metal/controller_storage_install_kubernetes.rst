@@ -396,6 +396,13 @@ Install software on controller-1 and worker nodes
 
      system host-update 4 personality=worker hostname=worker-1
 
+   .. only:: starlingx
+
+     .. Note::
+
+        A node with Edgeworker personality is also available. See
+        :ref:`deploy-edgeworker-nodes` for details.
+
 #. Wait for the software installation on controller-1, worker-0, and worker-1
    to complete, for all servers to reboot, and for all to show as
    locked/disabled/online in 'system host-list'.
