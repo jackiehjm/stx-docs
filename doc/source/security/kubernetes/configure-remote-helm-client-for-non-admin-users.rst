@@ -8,7 +8,7 @@ Configure Remote Helm v2 Client
 
 Helm v3 is recommended for users to install and manage their
 containerized applications. However, Helm v2 may be required, for example, if
-the containerized application supports only a Helm v2 helm chart.
+the containerized application supports only a Helm v2 chart.
 
 .. rubric:: |context|
 
@@ -19,7 +19,7 @@ Tiller server, in a namespace that the user has access, with the required |RBAC|
 capabilities and optionally |TLS| protection.
 
 Complete the following steps to configure Helm v2 for managing containerized
-applications with a Helm v2 helm chart.
+applications with a Helm v2 chart.
 
 .. rubric:: |proc|
 
@@ -89,7 +89,7 @@ applications with a Helm v2 helm chart.
             of your particular host.
 
             If you did not specify a **k8s\_root\_ca\_cert** at install
-            time, then specify –insecure-skip-tls-verify, as shown below.
+            time, then specify ``--insecure-skip-tls-verify``, as shown below.
 
         .. code-block:: none
 
@@ -100,7 +100,7 @@ applications with a Helm v2 helm chart.
             --user admin-user@mycluster --namespace=default
             % kubectl config use-context admin-user@mycluster
 
-        <$TOKEN\_DATA> is the token retrieved in step 1.
+        ``$TOKEN_DATA``  is the token retrieved in step 1.
 
     #.  Test remote :command:`kubectl` access.
 
@@ -128,15 +128,16 @@ applications with a Helm v2 helm chart.
 
         % helm version
         Client: &version.Version{SemVer:"v2.13.1", GitCommit:"618447cbf203d147601b4b9bd7f8c37a5d39fbb4", GitTreeState:"clean"}
+
         Server: &version.Version{SemVer:"v2.13.1", GitCommit:"618447cbf203d147601b4b9bd7f8c37a5d39fbb4", GitTreeState:"clean"}
 
-#.  Set the namespace for which you want Helm v2 access to.
+#.  On the workstation, set the namespace for which you want Helm v2 access to.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ NAMESPACE=default
 
-#.  Set up accounts, roles and bindings for Tiller (Helm v2 cluster access).
+#.  On the workstation, set up accounts, roles and bindings for Tiller (Helm v2 cluster access).
 
 
     #.  Execute the following commands.
@@ -185,24 +186,19 @@ applications with a Helm v2 helm chart.
 
         .. code-block:: none
 
-            ~(keystone_admin)]$ kubectl create clusterrole tiller --verb get
-            --resource namespaces
-            ~(keystone_admin)]$ kubectl create clusterrolebinding tiller
-            --clusterrole tiller --serviceaccount ${NAMESPACE}:tiller
+            ~(keystone_admin)]$ kubectl create clusterrole tiller --verb get --resource namespaces
+            ~(keystone_admin)]$ kubectl create clusterrolebinding tiller --clusterrole tiller --serviceaccount ${NAMESPACE}:tiller
 
 
-#.  Initialize Helm v2 access with :command:`helm init` command to start Tiller in the
-    specified NAMESPACE with the specified RBAC credentials.
+#.  On the workstation, initialize Helm v2 access with :command:`helm init`
+    command to start Tiller in the specified NAMESPACE with the specified RBAC
+    credentials.
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ helm init --service-account=tiller
-        --tiller-namespace=$NAMESPACE --output yaml | sed 's@apiVersion:
-        extensions/v1beta1@apiVersion: apps/v1@' | sed 's@ replicas: 1@
-        replicas: 1\n \ selector: {"matchLabels": {"app": "helm", "name":
-        "tiller"}}@' > helm-init.yaml
+        ~(keystone_admin)]$ helm init --service-account=tiller --tiller-namespace=$NAMESPACE --output yaml | sed 's@apiVersion: extensions/v1beta1@apiVersion: apps/v1@' | sed 's@ replicas: 1@ replicas: 1\n \ selector: {"matchLabels": {"app": "helm", "name": "tiller"}}@' > helm-init.yaml
         ~(keystone_admin)]$ kubectl apply -f helm-init.yaml
-        ~(keystone_admin)]$ helm init --client-only --home "./.helm"
+        ~(keystone_admin)]$ helm init --client-only --stable-repo-url https://charts.helm.sh/stable
 
     .. note::
         Ensure that each of the patterns between single quotes in the above
@@ -215,17 +211,17 @@ applications with a Helm v2 helm chart.
         ``--tiller-tls``
             Enable TLS on Tiller.
 
-        ``--tiller-tls-cert <certificate\_file>``
+        ``--tiller-tls-cert <certificate_file>``
             The public key/certificate for Tiller \(signed by ``--tls-ca-cert``\).
 
-        ``--tiller-tls-key <key\_file>``
+        ``--tiller-tls-key <key_file>``
             The private key for Tiller.
 
         ``--tiller-tls-verify``
             Enable authentication of client certificates \(i.e. validate
             they are signed by ``--tls-ca-cert``\).
 
-        ``--tls-ca-cert <certificate\_file>``
+        ``--tls-ca-cert <certificate_file>``
             The public certificate of the |CA| used for signing Tiller
             server and helm client certificates.
 
