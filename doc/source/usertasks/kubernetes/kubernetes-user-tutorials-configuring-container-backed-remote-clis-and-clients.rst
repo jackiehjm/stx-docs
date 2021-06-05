@@ -84,6 +84,11 @@ and clients for a non-admin user.
 
         The file my-openrc.sh downloads.
 
+    .. note::
+
+        For a Distributed Cloud system, navigate to **Project** \> **Central Cloud Regions** \> **RegionOne** \>
+        and download the **Openstack RC file**.
+
 #.  Copy the user-kubeconfig file \(received from your administrator containing
     your user account and credentials\) to the remote workstation.
 
