@@ -21,7 +21,7 @@ Errors can occur due to one of the following:
 
 -   One or more invalid install values
 
--   A network error that results in the subcloud's being temporarily unreachable
+-   A network error that results in the subcloud being temporarily unreachable
 
 
 **Failure Caused by Install Values**
