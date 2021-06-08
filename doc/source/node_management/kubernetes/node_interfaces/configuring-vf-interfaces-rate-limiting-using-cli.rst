@@ -29,11 +29,11 @@ Be aware of the following guidance when using this feature:
 -   The total sum of the maximum transmission rates of all rate limited VFs
     cannot exceed 90% of the port link speed.
 
--   The unit is Mbps, and value of 0 means turn off the rate limiting.
+-   The units are Mbps, and value of 0 means turn off the rate limiting.
 
--   VFs with different limited rate are supposed to be attached separate data
-    networks and managed by Kubernetes SR-IOV device plugin as different
-    ResourcePools. You can then use the VFs by specifying the corresponding
+-   |VFs| with different limited rate are supposed to be attached to separate
+    data networks and managed by Kubernetes |SRIOV| device plugin as different
+    ResourcePools. You can then use the |VFs| by specifying the corresponding
     <resourceName>.
 
 
@@ -65,12 +65,13 @@ Data networks should be created for VF sub-interfaces attachment.
 
 #.  Create a sub-interface with rate limiting configuration.
 
-    The parameters are all same as shown in the procedure for |node-doc|:
+    The parameters are all the same as shown in the procedure for |node-doc|:
     :ref:`Provisioning SR-IOV VF Interfaces using the CLI
     <provisioning-sr-iov-vf-interfaces-using-the-cli>`, plus one newly added
-    rate limiting related parameter: --max-tx-rate
+    rate limiting related parameter: ``--max-tx-rate``.
 
     .. note::
+        The units for ``max-tx-rate`` are Mbps.
         The configured sriov\_numvfs with
         max\_tx\_rate\(max\_tx\_rate\*sriov\_numvfs\) should not exceed 90% of
         the link bandwidth.
@@ -84,11 +85,17 @@ Data networks should be created for VF sub-interfaces attachment.
 
 #.  The rate limit configuration can be modified by specifying other values.
 
+    .. note::
+        The units for ``max-tx-rate`` are Mbps.
+
     .. code-block:: none
 
         ~(keystone_admin)$ system host-if-modify controller-0 sriov00 --max-tx-rate=200
 
 #.  The rate limit configuration can be modified by specifying a value of zero.
+
+    .. note::
+        Setting ``max-tx-rate`` to 0 disables any rate limiting.
 
     .. code-block:: none
 
