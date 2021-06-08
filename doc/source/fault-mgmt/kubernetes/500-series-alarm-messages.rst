@@ -43,7 +43,7 @@ health of the system.
    * - Degrade Affecting Severity:
      - None
    * - Severity:
-     - M
+     - C
    * - Proposed Repair Action
      - Reinstall system to disable developer certificate and remove untrusted
        patches.
