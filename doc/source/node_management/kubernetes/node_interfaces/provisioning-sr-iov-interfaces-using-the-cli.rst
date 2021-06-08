@@ -38,7 +38,7 @@ See |datanet-doc|: :ref:`Add Data Networks using the CLI
 #.  Lock the host to which you will assign the label.
 
     .. note::
-       AIO-SX hosts do not need to be locked to provision an |SRIOV|
+       |AIO-SX| hosts do not need to be locked to provision an |SRIOV|
        interface and assign it to a data network.
 
     For example:
@@ -171,6 +171,7 @@ See |datanet-doc|: :ref:`Add Data Networks using the CLI
     .. code-block:: none
 
         ~(keystone_admin)$ system host-unlock compute-0
+
 
 .. rubric:: |postreq|
 
