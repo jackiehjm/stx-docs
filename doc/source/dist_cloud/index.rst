@@ -28,6 +28,7 @@ Installation
     installing-and-provisioning-a-subcloud
     installing-a-subcloud-using-redfish-platform-management-service
     installing-a-subcloud-without-redfish-platform-management-service
+    reinstalling-a-subcloud-with-redfish-platform-management-service
 
 ---------
 Operation
@@ -50,6 +51,7 @@ Operation
     updating-docker-registry-credentials-on-a-subcloud
     migrate-an-aiosx-subcloud-to-an-aiodx-subcloud
     restoring-subclouds-from-backupdata-using-dcmanager
+    rehoming-a-subcloud
 
 ----------------------
 Manage Subcloud Groups
