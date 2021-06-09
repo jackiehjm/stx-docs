@@ -1,0 +1,15 @@
+.. limitation-text-begin
+.. limitation-text-end
+
+.. application-2m-text-begin
+.. application-2m-text-end
+
+.. application-1g-text-begin
+.. application-1g-text-end
+
+.. vswitch-hugepage-1g-text-begin
+.. vswitch-hugepage-1g-text-end
+
+.. vswitch-hugepage-size-node-text-begin
+.. vswitch-hugepage-size-node-text-end
+

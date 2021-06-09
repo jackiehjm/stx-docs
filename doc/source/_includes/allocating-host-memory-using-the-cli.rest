@@ -1,0 +1,20 @@
+.. introduction-text-begin
+.. introduction-text-end
+
+.. function-text-begin
+.. function-text-end
+
+.. memory-table-begin
+.. memory-table-end
+
+.. usage-text-begin
+.. usage-text-end
+
+.. 2m-pages-text-begin
+.. 2m-pages-text-end
+
+.. 1g-pages-text-begin
+.. 1g-pages-text-end
+
+.. recommended-size-text-begin
+.. recommended-size-text-end
