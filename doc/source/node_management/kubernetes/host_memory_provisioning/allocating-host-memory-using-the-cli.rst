@@ -13,10 +13,9 @@ Allocate Host Memory Using the CLI
 
 .. only:: partner
 
-    .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
-
-    :start-after: introduction-text-begin
-    :end-before: introduction-text-end
+    .. include:: /_includes/allocating-host-memory-using-the-cli.rest
+       :start-after: introduction-text-begin
+       :end-before: introduction-text-end
 
 Due to limitations in Kubernetes, only a single huge page size can be used
 per host.
@@ -27,10 +26,9 @@ per host.
 
 .. only:: partner
 
-    .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
-
-    :start-after: usage-text-begin
-    :end-before: usage-text-end
+    .. include:: /_includes/allocating-host-memory-using-the-cli.rest
+       :start-after: usage-text-begin
+       :end-before: usage-text-end
 
 You must also provision one 1GiB huge page per |NUMA| node prior to unlocking a
 worker or an |AIO| controller.
@@ -112,10 +110,9 @@ worker or an |AIO| controller.
 
     .. only:: partner
 
-        .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
-
-        :start-after: memory-table-begin
-        :end-before: memory-table-end
+        .. include:: /_includes/allocating-host-memory-using-the-cli.rest
+           :start-after: memory-table-begin
+           :end-before: memory-table-end
 
 #.  Lock the affected host.
 
@@ -152,10 +149,9 @@ worker or an |AIO| controller.
 
     .. only:: partner
 
-        .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
-
-        :start-after: function-text-begin
-        :end-before: function-text-end
+        .. include:: /_includes/allocating-host-memory-using-the-cli.rest
+           :start-after: function-text-begin
+           :end-before: function-text-end
 
         The default function is **application**.
 
@@ -170,10 +166,9 @@ worker or an |AIO| controller.
 
     .. only:: partner
 
-        .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
-
-        :start-after: 2m-pages-text-begin
-        :end-before: 2m-pages-text-end
+        .. include:: /_includes/allocating-host-memory-using-the-cli.rest
+           :start-after: 2m-pages-text-begin
+           :end-before: 2m-pages-text-end
 
     **1Gpages**
 
@@ -186,10 +181,9 @@ worker or an |AIO| controller.
 
     .. only:: partner
 
-        .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
-
-        :start-after: 1g-pages-text-begin
-        :end-before: 1g-pages-text-end
+        .. include:: /_includes/allocating-host-memory-using-the-cli.rest
+           :start-after: 1g-pages-text-begin
+           :end-before: 1g-pages-text-end
 
     For example, to allocate four 2 MiB huge pages for use by hosted
     applications on |NUMA| node 1 of worker node **worker-0**:
@@ -207,10 +201,9 @@ worker or an |AIO| controller.
 
     .. only:: partner
 
-        .. include:: ../../../_includes/allocating-host-memory-using-the-cli.rest
-
-        :start-after: recommended-size-text-begin
-        :end-before: recommended-size-text-end
+        .. include:: /_includes/allocating-host-memory-using-the-cli.rest
+           :start-after: recommended-size-text-begin
+           :end-before: recommended-size-text-end
 
     .. code-block:: none
 
