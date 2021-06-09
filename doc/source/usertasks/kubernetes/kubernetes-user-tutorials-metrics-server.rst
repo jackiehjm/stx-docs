@@ -38,6 +38,12 @@ deployment based on the load. Please refer to the official example
 <https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/>`__
 to create a PHP application which scales horizontally.
 
+.. rubric:: |prereq|
+
+You must have uploaded and applied the metrics system application described in
+:ref:`Install Metrics Server <kubernetes-admin-tutorials-metrics-server>`
+before proceeding.
+
 .. rubric:: |proc|
 
 After application deployment has completed, you can create a horizontal pod
