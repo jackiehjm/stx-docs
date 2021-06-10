@@ -240,17 +240,23 @@ Configure controller-0
    Use the MGMT port name that is applicable to your deployment environment,
    for example eth1:
 
-   ::
+   .. code-block:: none
 
-     MGMT_IF=<MGMT-PORT>
-     system host-if-modify controller-0 lo -c none
-     IFNET_UUIDS=$(system interface-network-list controller-0 | awk '{if ($6=="lo") print $4;}')
-     for UUID in $IFNET_UUIDS; do
-         system interface-network-remove ${UUID}
-     done
-     system host-if-modify controller-0 $MGMT_IF -c platform
-     system interface-network-assign controller-0 $MGMT_IF mgmt
-     system interface-network-assign controller-0 $MGMT_IF cluster-host
+      MGMT_IF=<MGMT-PORT>
+
+      # De-provision loopback interface and
+      # remove mgmt and cluster-host networks from loopback interface
+      system host-if-modify controller-0 lo -c none
+      IFNET_UUIDS=$(system interface-network-list controller-0 | awk '{if ($6=="lo") print $4;}')
+      for UUID in $IFNET_UUIDS; do
+          system interface-network-remove ${UUID}
+      done
+
+      # Configure management interface and assign mgmt and cluster-host networks to it
+      system host-if-modify controller-0 $MGMT_IF -c platform
+      system interface-network-assign controller-0 $MGMT_IF mgmt
+      system interface-network-assign controller-0 $MGMT_IF cluster-host
+
 
 #. Configure |NTP| servers for network time synchronization:
 

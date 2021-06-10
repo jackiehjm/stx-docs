@@ -498,8 +498,10 @@ The worker nodes will reboot in order to apply configuration changes and come
 into service. This can take 5-10 minutes, depending on the performance of the
 host machine.
 
-----------
-Next steps
-----------
+.. only:: starlingx
 
-.. include:: ../kubernetes_install_next.txt
+   ----------
+   Next steps
+   ----------
+
+   .. include:: ../kubernetes_install_next.txt
