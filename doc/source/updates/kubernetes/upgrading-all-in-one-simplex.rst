@@ -17,7 +17,7 @@ software.
 -   Perform a full backup to allow recovery.
 
     .. note::
-       Back up files in the /home/sysadmin and /rootdirectories prior to doing
+       Back up files in the /home/sysadmin and /root directories prior to doing
        an upgrade. Home directories are not preserved during backup or restore
        operations, blade replacement, or upgrades.
 
@@ -52,7 +52,7 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
         ~(keystone_admin)]$
 
 #.  Install the license file for the release you are upgrading to, for example,
-    20.06.
+    21.05.
 
     .. code-block:: none
 
@@ -84,8 +84,8 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
             +--------------------+-----------+
             | id                 | 2         |
             | state              | importing |
-            | software_version   | 21.05     |
-            | compatible_version | 20.06     |
+            | software_version   | nn.nn     |
+            | compatible_version | nn.nn     |
             | required_patches   |           |
             +--------------------+-----------+
 
@@ -101,8 +101,8 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
             +----+----------+------------------+
             | id | state    | software_version |
             +----+----------+------------------+
-            | 1  | active   | 20.06            |
-            | 2  | imported | 21.05            |
+            | 1  | active   | nn.nn            |
+            | 2  | imported | nn.nn            |
             +----+----------+------------------+
 
     .. note::
@@ -166,8 +166,8 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | starting                             |
-        | from_release | 20.06                                |
-        | to_release   | 21.05                                |
+        | from_release | nn.nn                                |
+        | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
     This will back up the system data and images to /opt/platform-backup.
@@ -187,7 +187,7 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
 
         -   State entered after :command:`system upgrade-start` completes.
 
-        -   Release 20.04 system data \(for example, postgres databases\) has
+        -   Release nn.nn system data \(for example, postgres databases\) has
             been exported to be used in the upgrade.
 
         -   Configuration changes must not be made after this point, until the
@@ -215,8 +215,8 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | started                              |
-        | from_release | 20.06                                |
-        | to_release   | 21.05                                |
+        | from_release | nn.nn                                |
+        | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
     Ensure the upgrade state is **started**. It will take several minutes to
@@ -304,8 +304,8 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | upgrading-hosts                      |
-        | from_release | 20.06                                |
-        | to_release   | 21.05                                |
+        | from_release | nn.nn                                |
+        | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
 #.  Unlock controller-0.
@@ -332,8 +332,8 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | activating                           |
-        | from_release | 20.06                                |
-        | to_release   | 21.05                                |
+        | from_release | nn.nn                                |
+        | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
     The following states apply when this command is executed.
@@ -358,6 +358,10 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
 
     .. code-block:: none
 
+    .. note::
+        This can take more than half an hour to complete.
+
+
         ~(keystone_admin)]$ system upgrade-show
         +--------------+--------------------------------------+
         | Property     | Value                                |
@@ -368,8 +372,6 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
         | to_release   | 21.05                                |
         +--------------+--------------------------------------+
 
-    .. note::
-        This can take more than half an hour to complete.
 
 #.  Complete the upgrade.
 
@@ -381,8 +383,8 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | completing                           |
-        | from_release | 20.06                                |
-        | to_release   | 21.05                                |
+        | from_release | nn.nn                                |
+        | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
 #.  Delete the imported load.
@@ -393,9 +395,15 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
         +----+----------+------------------+
         | id | state    | software_version |
         +----+----------+------------------+
-        | 1  | imported | 20.06            |
-        | 2  | active   | 21.05            |
+        | 1  | imported | nn.nn            |
+        | 2  | active   | nn.nn            |
         +----+----------+------------------+
 
         ~(keystone_admin)]$ system load-delete 1
         Deleted load: load 1
+
+.. only:: partner
+
+   .. include:: /_includes/upgrading-all-in-one-simplex.rest
+   :start-after: upgradeAIO-begin
+   :end-before: upgradeAIO-end
