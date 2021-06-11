@@ -5,7 +5,7 @@
 Configure Local CLI Access
 ==========================
 
-You can access the system via a local CLI from the active controller/master
+You can access the system via a local CLI from the active controller
 node's local console or by SSH-ing to the OAM floating IP Address.
 
 .. rubric:: |context|

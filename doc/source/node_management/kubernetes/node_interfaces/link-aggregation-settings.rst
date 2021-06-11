@@ -34,20 +34,20 @@ kernel Ethernet Bonding Driver documentation available online
     * - Active-backup
 
         \(default value\)
-      - Provides fault tolerance. Only one slave interface at a time is
-        available. The backup slave interface becomes active only when the
-        active slave interface fails.
+      - Provides fault tolerance. Only one standby interface at a time is
+        available. The backup standby interface becomes active only when the
+        active standby interface fails.
 
         For platform interfaces \(such as, |OAM|, cluster-host, and management
         interfaces\), the system will select the interface with the lowest
-        |MAC| address as the primary interface when all slave interfaces are
+        |MAC| address as the primary interface when all standby interfaces are
         enabled.
       - Management, |OAM|, cluster-host, and data interface
     * - Balanced XOR
       - Provides aggregated bandwidth and fault tolerance. The same
-        slave interface is used for each destination |MAC| address.
+        standby interface is used for each destination |MAC| address.
 
-        This mode uses the default transmit policy, where the target slave
+        This mode uses the default transmit policy, where the target standby
         interface is determined by calculating the source |MAC| address XOR'd
         with the destination |MAC| address, modulo 2.
 
@@ -108,15 +108,16 @@ kernel Ethernet Bonding Driver documentation available online
     * - Always
 
         \(default value\)
-      - The primary slave becomes an active slave whenever it comes back up.
+      - The primary standby becomes an active standby whenever it comes back up.
       - |OAM|, internal management, and cluster-host
     * - Better
-      - The primary slave becomes active slave whenever it comes back up, if the
-        speed and the duplex of the primary slave is better than the speed duplex of the current active slave.
+      - The primary standby becomes active standby whenever it comes back up,
+        if the speed and the duplex of the primary standby is better than the
+        speed duplex of the current active standby.
       - |OAM|, internal management, and cluster-host
     * - Failure
-      - The primary slave becomes the active slave only if the current active
-        slave fails and the primary slave is up.
+      - The primary standby becomes the active standby only if the current active
+        standby fails and the primary standby is up.
       - |OAM|, internal management, and cluster-host
 
 -----------------------------------------

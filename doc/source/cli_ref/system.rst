@@ -734,7 +734,7 @@ Controller services management
 ******************************
 
 The following set of commands enables display of services running on the |prod|
-controllers/masters. Optional services can be enabled or disabled using these
+controllers. Optional services can be enabled or disabled using these
 commands.
 
 ``servicenode-list``

@@ -33,7 +33,7 @@ The following prerequisites are required before the integration:
 
 .. _integrate-the-application-with-notification-client-sidecar-ul-iyd-mxf-t4b:
 
--   The cloud is configured with a node that supports the Subordinate mode \(Slave mode\).
+-   The cloud is configured with a node that supports the Subordinate mode \(Secondary mode\).
 
 -   The cloud is labeled with **ptp-registration=true**, and **ptp-notification=true**.
 

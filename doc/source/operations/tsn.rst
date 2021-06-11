@@ -267,8 +267,8 @@ In the demo
 
 * ``ptp4l`` daemons run on both the edge gateway and edge device to sync
   the PTP clock based on IEEE 802.1AS Generalized Precision Time Protocol (gPTP),
-  with the edge gateway serving as grandmaster clock and the edge device serving
-  as slave clock.
+  with the edge gateway serving as primary clock and the edge device serving
+  as secondary clock.
 
 * ``phc2sys`` daemons run on both devices to synchronize the system clock with
   the PTP clock.
@@ -353,7 +353,7 @@ interfering best-effort traffic enters the system.
 Time Aware Shaper (TAS) demo
 ----------------------------
 
-This demo focuses on the use of IEEE 802.1Qbv or Time Aware Shaper (TAS) and
+This demo focuses on the use of |IEEE| 802.1Qbv or Time Aware Shaper (TAS) and
 the LaunchTime feature of Intel® Ethernet Controller I210 to ensure much more
 bounded and low latency for period control applications. It includes 3 scenarios:
 
@@ -364,9 +364,9 @@ bounded and low latency for period control applications. It includes 3 scenarios
 In the demo
 
 * ``ptp4l`` daemons run on both the edge gateway and edge device to sync the
-  PTP clock based on IEEE 802.1AS Generalized Precision Time Protocol (gPTP),
-  with the edge gateway serving as grandmaster clock and the edge device serving
-  as slave clock.
+  PTP clock based on |IEEE| 802.1AS Generalized Precision Time Protocol (gPTP),
+  with the edge gateway serving as primary clock and the edge device serving
+  as secondary clock.
 
 * ``phc2sys`` daemons run on both devices to synchronize the system clock with
   the PTP clock.
