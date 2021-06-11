@@ -124,3 +124,9 @@ the system configuration is updated.
 
 If alarms are not cleared after a few minutes, lock and unlock the worker
 nodes to apply any other incomplete configuration changes.
+
+For more information about the default firewall rules, see
+:ref:`Default Firewall Rules <security-default-firewall-rules>`.
+
+For more information about modifying the firewall options, see
+:ref:`Modify Firewall Options <security-firewall-options>`.

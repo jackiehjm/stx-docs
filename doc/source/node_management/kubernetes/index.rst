@@ -299,6 +299,7 @@ Common device management tasks
    hardware_acceleration_devices/removing-a-device-label
    hardware_acceleration_devices/initiating-a-device-image-update-for-a-host
    hardware_acceleration_devices/displaying-the-status-of-device-images
+   cli-commands-for-managing-pci-devices
 
 ***********************************************
 vRAN Accelerator ACC100 Adapter \(Mount Bryce\)
@@ -366,12 +367,3 @@ Provision BMC using the CLI
    provisioning_bmc/provisioning-bmc-when-adding-a-host
    provisioning_bmc/provisioning-bmc-after-adding-a-host
    provisioning_bmc/deprovisioning-board-management-control-from-the-cli
-
--------------------------------------
-CLI commands for managing PCI devices
--------------------------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   cli-commands-for-managing-pci-devices
