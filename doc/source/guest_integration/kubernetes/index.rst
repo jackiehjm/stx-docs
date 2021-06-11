@@ -13,5 +13,5 @@ PTP Notification
     install-ptp-notifications
     remove-ptp-notifications
     override-default-application-values
-    integrate-the-application-with-notification-client-sidecar
+    integrate-application-with-notification-client-sidecar
 

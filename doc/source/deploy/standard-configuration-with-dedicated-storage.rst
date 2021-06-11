@@ -20,10 +20,10 @@ storage, and worker functionalities are deployed on separate physical hosts
 allowing controller nodes, storage nodes, and worker nodes to scale
 independently from each other.
 
-The controller nodes provide the master function for the system. Two controller
-nodes are required to provide redundancy. The controller nodes' server and
-peripheral resources such as CPU cores/speed, memory, storage, and network
-interfaces can be scaled to meet requirements.
+The controller nodes provide the control-plane function for the
+system. Two controller nodes are required to provide redundancy. The controller
+nodes' server and peripheral resources such as CPU cores/speed, memory,
+storage, and network interfaces can be scaled to meet requirements.
 
 Storage nodes provide a large scale Ceph cluster for the storage backend for
 Kubernetes |PVCs|. They are deployed in replication groups of either two or

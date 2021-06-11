@@ -139,7 +139,7 @@ Where:
 
 .. note::
     UDP ports 2222 and 2223 are used by the service manager for state
-    synchronization and heart beating between the controllers/masters. All
-    messages are authenticated with a SHA512 HMAC. Only packets originating
-    from the peer controller are permitted; all other packets are dropped.
+    synchronization and heart beating between the controllers. All messages are
+    authenticated with a SHA512 HMAC. Only packets originating from the peer
+    controller are permitted; all other packets are dropped.
 

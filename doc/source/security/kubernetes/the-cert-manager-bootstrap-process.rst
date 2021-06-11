@@ -72,7 +72,6 @@ At a high-level, the default configuration for the two mandatory applications is
 
 -   nginx-ingress-controller
 
-
     -   Runs as a DaemonSet only on masters/controllers.
 
     -   Uses host networking, which means it can use any port numbers.
@@ -85,7 +84,7 @@ At a high-level, the default configuration for the two mandatory applications is
 -   cert-manager
 
 
-    -   Runs as a Deployment only on masters/controllers.
+    -   Runs as a Deployment only on controllers.
 
     -   Runs with a podAntiAffinity rule to prevent multiple pods of
         deployment from running on the same node.

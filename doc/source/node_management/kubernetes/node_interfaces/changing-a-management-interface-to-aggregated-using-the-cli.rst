@@ -14,7 +14,7 @@ To configure a management |LAG| interface you
 first need to remove the internal management network type from the existing
 management Ethernet interface and then add a new |AE| interface, specifying the
 mgmt network type, ae interface type, 802.3 |AE| mode, transmit hash policy
-and the slave interfaces.
+and the standby interfaces.
 
 .. rubric:: |prereq|
 

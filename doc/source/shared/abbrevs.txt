@@ -44,6 +44,7 @@
 .. |FQDNs| replace:: :abbr:`FQDNs (Fully Qualified Domain Names)`
 .. |GNP| replace:: :abbr:`GNP (Global Network Policy)`
 .. |ICMP| replace:: :abbr:`ICMP (Internet Control Message Protocol)`
+.. |IEEE| replace:: :abbr:`IEEE (Institute of Electrical and Electronics Engineers)`
 .. |IGMP| replace:: :abbr:`IGMP (Internet Group Management Protocol)`
 .. |IoT| replace:: :abbr:`IoT (Internet of Things)`
 .. |IPMI| replace:: :abbr:`IPMI (Intelligent Platform Management Interface)`
