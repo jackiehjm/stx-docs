@@ -54,7 +54,6 @@ OAM IP Configuration
 
    changing-the-oam-ip-configuration-using-horizon
    changing-the-oam-ip-configuration-using-the-cli
-   modifying-oam-firewall-rules
    changing-the-mtu-of-an-oam-interface-using-horizon
    changing-the-mtu-of-an-oam-interface-using-the-cli
 
