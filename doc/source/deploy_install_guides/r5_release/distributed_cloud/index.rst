@@ -29,7 +29,8 @@ are localized for maximum responsiveness. The architecture features:
 
 - Centralized orchestration of edge cloud control planes.
 - Full synchronized control planes at edge clouds (that is, Kubernetes cluster
-  master and nodes), with greater benefits for local services, such as:
+  control-plane and worker nodes), with greater benefits for local
+  services, such as:
 
   - Reduced network latency.
   - Operational availability, even if northbound connectivity

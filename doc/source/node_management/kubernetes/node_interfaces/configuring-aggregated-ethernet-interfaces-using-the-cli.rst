@@ -86,7 +86,7 @@ Settings <link-aggregation-settings>`.
 
     **reselect_option**
         The parameter that specifies the reselection policy for the primary
-        slave of an aggregated ethernet active standby interface. For
+        standby of an aggregated ethernet active standby interface. For
         information on valid values, see :ref:`Link Aggregation Settings
         <link-aggregation-settings>`.
 

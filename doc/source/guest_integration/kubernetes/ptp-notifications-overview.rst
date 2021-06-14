@@ -29,7 +29,7 @@ same pod and communicates with the application via a REST API.
     <https://docs.starlingx.io/api-ref/ptp-notification-armada-app/index.html>`__.
 
 -   Supports the **ptp4l** module and |PTP| port that is configured in
-    Subordinate mode \(Slave mode\).
+    Subordinate mode \(Secondary mode\).
 
 -   The |PTP| status notifications are derived based on the following conditions:
 
@@ -41,19 +41,19 @@ same pod and communicates with the application via a REST API.
 .. table::
     :widths: auto
 
-    +---------------------+---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Clock Status        | Status                                            | Description                                                                                                                                        |
-    +=====================+===================================================+====================================================================================================================================================+
-    | Freerun             | Clock is out of sync state                        | -   If portState is not "SLAVE" or ClockClass value is NOT "6, 7 or 135" or timeTraceable flag is FALSE.                                           |
-    |                     |                                                   |                                                                                                                                                    |
-    |                     |                                                   | -   If holdover time exceeds its provided value.                                                                                                   |
-    |                     |                                                   |                                                                                                                                                    |
-    |                     |                                                   | -   If PMC, ptp4l.conf, ptp4l or phc2sys are not accessible.                                                                                       |
-    +---------------------+---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Locked              | Clock is in sync state                            | If portState is "SLAVE" and ClockClass value is "6, 7 or 135" and timeTraceable flag is TRUE and PMC, ptp4l.conf, ptp4l or phc2sys are accessible. |
-    +---------------------+---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Holdover            | Clock is in holdover state                        | If the state is transitioned from "Locked" to "Freerun" AND phc2sys is accessible, and holdover time does not expire.                              |
-    +---------------------+---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+    +---------------------+---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Clock Status        | Status                                            | Description                                                                                                                                            |
+    +=====================+===================================================+========================================================================================================================================================+
+    | Freerun             | Clock is out of sync state                        | -   If portState is not "SECONDARY" or ClockClass value is NOT "6, 7 or 135" or timeTraceable flag is FALSE.                                           |
+    |                     |                                                   |                                                                                                                                                        |
+    |                     |                                                   | -   If holdover time exceeds its provided value.                                                                                                       |
+    |                     |                                                   |                                                                                                                                                        |
+    |                     |                                                   | -   If PMC, ptp4l.conf, ptp4l or phc2sys are not accessible.                                                                                           |
+    +---------------------+---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Locked              | Clock is in sync state                            | If portState is "SECONDARY" and ClockClass value is "6, 7 or 135" and timeTraceable flag is TRUE and PMC, ptp4l.conf, ptp4l or phc2sys are accessible. |
+    +---------------------+---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Holdover            | Clock is in holdover state                        | If the state is transitioned from "Locked" to "Freerun" AND phc2sys is accessible, and holdover time does not expire.                                  |
+    +---------------------+---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Integrated Containerized Applications**
 

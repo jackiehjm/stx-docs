@@ -188,14 +188,14 @@ To view the |PTP| service configuration, use the following command:
 
 -   **PTP Role**
 
-    |PTP| master/slave interfaces are not defined by default. They must be
+    |PTP| primary/secondary interfaces are not defined by default. They must be
     specified by the administrator for each host.
 
-    The **ptp\_role** option can be added to interfaces, and can be defined
-    for master, slave, and none. This option allows administrators to
-    configure interfaces that can be used for |PTP| services. The master and
-    slave roles are limited to platform, |SRIOV|, and VF interfaces. Any number
-    of master and slave interfaces can be specified per host.
+    The **ptp\_role** option can be added to interfaces, and can be defined for
+    primary, secondary, and none. This option allows administrators to
+    configure interfaces that can be used for |PTP| services. The primary and
+    secondary roles are limited to platform, |SRIOV|, and VF interfaces. Any
+    number of primary and secondary interfaces can be specified per host.
 
     If a host has **clock\_synchronization=ptp**, there must be at least one
     host interface with a |PTP| role specified. This is enforced during host

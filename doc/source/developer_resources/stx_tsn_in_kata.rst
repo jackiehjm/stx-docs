@@ -272,7 +272,7 @@ were used to do time synchronization on the TSN network.
 
 #. Launch ``ptp4l`` on both the TSN switch and ``Node 2 (Ubuntu)`` to
    synchronize their PTP clocks. The TSN switch's PTP clock was set as the
-   master clock by default.
+   primary clock by default.
 
    ::
 

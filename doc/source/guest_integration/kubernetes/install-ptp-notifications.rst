@@ -22,8 +22,8 @@ asynchronous |PTP| status notifications and pull for the |PTP| state on demand.
 
 .. _install-ptp-notifications-ul-ydy-ggf-t4b:
 
--   The |PTP| port must be configured as Subordinate mode \(Slave mode\). For
-    more information, see,
+-   The |PTP| port must be configured as Subordinate mode \(Secondary mode\).
+    For more information, see,
 
 .. xbooklink :ref:`|prod-long| System Configuration
     <system-configuration-management-overview>`:
@@ -58,7 +58,7 @@ Use the following steps to install the **ptp-notification** application.
             ~(keystone_admin)]$ system host-label-assign controller-1 ptp-registration=true
 
     #.  Assign the |PTP| notification label to the node that is configured with
-        a Slave |PTP| port. For example:
+        a Secondary |PTP| port. For example:
 
         .. code-block:: none
 
