@@ -72,3 +72,9 @@ resources are available to migrate any running instances.
 .. note::
    On AIO Simplex systems you do not need to lock and unlock the host. The
    changes are applied automatically.
+
+For more information about the default firewall rules, see
+:ref:`Default Firewall Rules <security-default-firewall-rules>`.
+
+For more information about modifying the firewall options, see
+:ref:`Modify Firewall Options <security-firewall-options>`.
