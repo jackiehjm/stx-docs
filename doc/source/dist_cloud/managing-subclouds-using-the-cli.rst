@@ -49,7 +49,7 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
         | name                        | subcloud2                  |
         | description                 | subcloud2 description      |
         | location                    | subcloud 2 location        |
-        | software_version            | 20.06                      |
+        | software_version            | nn.nn                      |
         | management                  | managed                    |
         | availability                | online                     |
         | deploy_status               | complete                   |
@@ -82,7 +82,7 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
         | name                        | subcloud2                  |
         | description                 | subcloud2 description      |
         | location                    | subcloud 2 location        |
-        | software_version            | 20.06                      |
+        | software_version            | nn.nn                      |
         | management                  | managed                    |
         | availability                | online                     |
         | deploy_status               | complete                   |

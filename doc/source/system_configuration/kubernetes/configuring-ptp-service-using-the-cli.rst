@@ -86,7 +86,7 @@ and |PTP| are configured per host. Lock/unlock the host when updating.
     | rootfs_device         | /dev/disk/by-path/pci-0000:04:00.0    |
     |                       |   -sas-0x5001e6754aa38000-lun-0       |
     | serialid              | None                                  |
-    | software_load         | 20.06                                 |
+    | software_load         | nn.nn                                 |
     | task                  |                                       |
     | tboot                 | false                                 |
     | ttys_dcd              | None                                  |
@@ -136,7 +136,7 @@ To view the |PTP| service configuration, use the following command:
     | rootfs_device         | /dev/disk/by-path/pci-0000:04:00.0-sas         |
     |                       | -0x5001e6754aa38000-lun-0                      |
     | serialid              | None                                           |
-    | software_load         | 20.06                                          |
+    | software_load         | nn.nn                                          |
     | task                  |                                                |
     | tboot                 | false                                          |
     | ttys_dcd              | None                                           |

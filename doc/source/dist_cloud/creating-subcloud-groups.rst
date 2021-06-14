@@ -168,7 +168,7 @@ Deletes subcloud group details from the database.
         | name                         | Subcloud1                         |
         | description                  | Subcloud1                         |
         | location                     | somewhere                         |
-        | software_version             | 20.06                             |
+        | software_version             | nn.nn                             |
         | management                   | managed                           |
         | availability                 | online                            |
         | deploy_status                | complete                          |
