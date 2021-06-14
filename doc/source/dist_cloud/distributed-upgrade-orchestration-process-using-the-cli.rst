@@ -43,7 +43,11 @@ following conditions:
 
 -   Redfish |BMC| is required for orchestrated subcloud upgrades. The install
     values, and :command:`bmc\_password` for each |AIO-SX| subcloud controller
-    must be provided using the following |CLI| command on the System Controller:
+    must be provided using the following |CLI| command on the System Controller.
+
+    .. note::
+        This is only needed if the subcloud has not already been provisioned
+        with the Redfish BMC password.
 
     .. code-block:: none
 
@@ -115,31 +119,33 @@ following conditions:
     .. code-block:: none
 
         ~(keystone_admin)]$ dcmanager subcloud show subcloud1
-        +-----------------------------+----------------------------+
-        | Field                       | Value                      |
-        +-----------------------------+----------------------------+
-        | id                          | 1                          |
-        | name                        | subcloud1                  |
-        | description                 | None                       |
-        | location                    | None                       |
-        | software_version            | nn.nn                      |
-        | management                  | managed                    |
-        | availability                | online                     |
-        | deploy_status               | complete                   |
-        | management_subnet           | fd01:82::0/64              |
-        | management_start_ip         | fd01:82::2                 |
-        | management_end_ip           | fd01:82::11                |
-        | management_gateway_ip       | fd01:82::1                 |
-        | systemcontroller_gateway_ip | fd01:81::1                 |
-        | group_id                    | 1                          |
-        | created_at                  | 2020-07-15 19:23:50.966984 |
-        | updated_at                  | 2020-07-17 12:36:28.815655 |
-        | dc-cert_sync_status         | in-sync                    |
-        | identity_sync_status        | in-sync                    |
-        | load_sync_status            | in-sync                    |
-        | patching_sync_status        | in-sync                    |
-        | platform_sync_status        | in-sync                    |
-        +-----------------------------+----------------------------+
+        +-----------------------------+------------------------------+
+        | Field                       | Value                        |
+        +-----------------------------+------------------------------+
+        | id                          | 1                            |
+        | name                        | subcloud1                    |
+        | description                 | None                         |
+        | location                    | None                         |
+        | software_version            | nn.nn                        |
+        | management                  | managed                      |
+        | availability                | online                       |
+        | deploy_status               | complete                     |
+        | management_subnet           | fd01:82::0/64                |
+        | management_start_ip         | fd01:82::2                   |
+        | management_end_ip           | fd01:82::11                  |
+        | management_gateway_ip       | fd01:82::1                   |
+        | systemcontroller_gateway_ip | fd01:81::1                   |
+        | group_id                    | 1                            |
+        | created_at                  | 2021-06-07 21:05:16.224664   |
+        | updated_at                  | 2021-06-09 20:01:37.525012   |
+        | dc-cert_sync_status         | in-sync                      |
+        | firmware_sync_status        | in-sync                      |
+        | identity_sync_status        | in-sync                      |
+        | kubernetes_sync_status      | in-sync                      |
+        | load_sync_status            | out-of-sync                  |
+        | patching_sync_status        | in-sync                      |
+        | platform_sync_status        | in-sync                      |
+        +-----------------------------+------------------------------+
 
 #.  To create an upgrade strategy, use the :command:`dcmanager upgrade-strategy create`
     command.
@@ -223,9 +229,9 @@ following conditions:
         +------------------------+----------------------------+
 
     .. note::
-        A value of **None** for :command:`subcloud apply type`, and
-        :command:`max parallel subclouds` indicates that subcloud group values
-        are being used.
+        The values for `subcloud apply type` and `max parallel subclouds` will
+        be taken from the subcloud group if specified through the ``--group``
+        parameter.
 
 #.  Review the upgrade strategy for the subclouds.
 
@@ -277,10 +283,10 @@ following conditions:
         +------------------+-------+-------------+-----------------------------+----------------------------+----------------------------+
         | cloud            | stage | state       | details                     | started_at                 | finished_at                |
         +------------------+-------+-------------+-----------------------------+----------------------------+----------------------------+
-        | subcloud-1       |     2 | applying... | apply phase is 66% complete | 2020-03-13 14:12:12.262001 | 2020-03-13 14:15:52.450908 |
-        | subcloud-4       |     2 | applying... | apply phase is 83% complete | 2020-03-13 14:16:02.457588 | None                       |
-        | subcloud-5       |     2 | finishing   |                             | 2020-03-13 14:16:02.463213 | None                       |
-        | subcloud-6       |     2 | applying... | apply phase is 66% complete | 2020-03-13 14:16:02.473669 | None                       |
+        | subcloud-1       |     2 | applying... | apply phase is 66% complete | 2021-06-11 14:12:12.262001 | 2021-06-11 14:15:52.450908 |
+        | subcloud-4       |     2 | applying... | apply phase is 83% complete | 2021-06-11 14:16:02.457588 | None                       |
+        | subcloud-5       |     2 | finishing   |                             | 2021-06-11 14:16:02.463213 | None                       |
+        | subcloud-6       |     2 | applying... | apply phase is 66% complete | 2021-06-11 14:16:02.473669 | None                       |
         +------------------+-------+-------------+-----------------------------+----------------------------+----------------------------+
 
 #.  To show the step currently being performed on a subcloud, use the
@@ -290,8 +296,9 @@ following conditions:
 
         ~(keystone_admin)]$ dcmanager strategy-step show <subcloud>
 
-#.  When the distributed upgrade orchestration complete, delete the upgrade
-    strategy, using the :command:`dcmanager upgrade-strategy delete` command.
+#.  When all the subclouds within the distributed upgrade orchestration indicate
+    they have entered the complete state, delete the upgrade strategy, using
+    the :command:`dcmanager upgrade-strategy delete` command.
 
     .. code-block:: none
 
@@ -319,3 +326,11 @@ the secret payload is, "username: admin password:<password>", see,
 .. only:: partner
 
    .. include:: ../_includes/distributed-upgrade-orchestration-process-using-the-cli.rest
+      :start-after: syscontroller-begin
+      :end-before: syscontroller-end
+
+.. only:: partner
+
+   .. include:: ../_includes/distributed-upgrade-orchestration-process-using-the-cli.rest
+      :start-after: dcupgrade-begin
+      :end-before: dcupgrade-end

@@ -61,9 +61,9 @@ upgrade orchestration to orchestrate the remaining nodes of the |prod|.
 .. rubric:: |prereq|
 
 See :ref:`Upgrading All-in-One Duplex / Standard
-<upgrading-all-in-one-duplex-or-standard>` to manually upgrade the initial
-controller node before doing the upgrade orchestration described below to
-upgrade the remaining nodes of the |prod|.
+<upgrading-all-in-one-duplex-or-standard>`, and perform Steps 1-8, to manually
+upgrade the initial controller node before doing the upgrade orchestration
+described below to upgrade the remaining nodes of the |prod|.
 
 - The subclouds must use the Redfish platform management service if it is an All-in-one Simplex subcloud.
 
@@ -73,18 +73,27 @@ upgrade the remaining nodes of the |prod|.
 
 .. _performing-an-orchestrated-upgrade-using-the-cli-steps-e45-kh5-sy:
 
-#.  Create a update strategy using the :command:`sw-manager` upgrade-strategy
+#.  Create a update strategy using the :command:`sw-manager upgrade-strategy create`
     command.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ sw-manager upgrade-strategy create
 
+        strategy-uuid:                          5435e049-7002-4403-acfb-7886f6da14af
+        controller-apply-type:                  serial
+        storage-apply-type:                     serial
+        worker-apply-type:                      serial
+        default-instance-action:                migrate
+        alarm-restrictions:                     strict
+        current-phase:                          build
+        current-phase-completion:               0%
+        state:                                  building
+        inprogress:                             true
+
     Create an upgrade strategy, specifying the following parameters:
 
-
     -   storage-apply-type:
-
 
         -   serial \(default\): storage hosts will be upgraded one at a time
 
@@ -167,15 +176,46 @@ upgrade the remaining nodes of the |prod|.
             updated, but any additional pods on each worker host will be
             relocated before it is upgraded.
 
-#.  Apply the upgrade-strategy. You can optionally apply a single stage at a time.
+#.  Run :command:`sw-manager upgrade-strategy show` command, to display the
+    current-phase-completion displaying the field goes from 0% to 100% in
+    various increments. Once at 100%, it returns:
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ sw-manager upgrade-strategy show
+
+        strategy-uuid:                          5435e049-7002-4403-acfb-7886f6da14af
+        controller-apply-type:                  serial
+        storage-apply-type:                     serial
+        worker-apply-type:                      serial
+        default-instance-action:                migrate
+        alarm-restrictions:                     strict
+        current-phase:                          build
+        current-phase-completion:               100%
+        state:                                  ready-to-apply
+        build-result:                           success
+        build-reason:
+
+#.  Apply the upgrade-strategy. You can optionally apply a single stage at a
+    time.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ sw-manager upgrade-strategy apply
 
+        strategy-uuid:                          5435e049-7002-4403-acfb-7886f6da14af
+        controller-apply-type:                  serial
+        storage-apply-type:                     serial
+        worker-apply-type:                      serial
+        default-instance-action:                migrate
+        alarm-restrictions:                     strict
+        current-phase:                          apply
+        current-phase-completion:               0%
+        state:                                  applying
+        inprogress:                             true
+
     While an upgrade-strategy is being applied, it can be aborted. This results
     in:
-
 
     -   The current step will be allowed to complete.
 
@@ -187,3 +227,106 @@ upgrade the remaining nodes of the |prod|.
     upgrade-strategy application fails, you must address the issue that caused
     the failure, then delete/re-create the strategy before attempting to apply
     it again.
+
+#.  Run :command:`sw-manager upgrade-strategy show` command, to display the
+    current-phase-completion displaying the field goes from 0% to 100% in
+    various increments. Once at 100%, it returns:
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ sw-manager upgrade-strategy show
+
+        strategy-uuid:                          b91d8332-9ece-4578-b4dd-e9cf87b73f18
+        controller-apply-type:                  serial
+        storage-apply-type:                     serial
+        worker-apply-type:                      serial
+        default-instance-action:                migrate
+        alarm-restrictions:                     strict
+        current-phase:                          apply
+        current-phase-completion:               100%
+        state:                                  applied
+        apply-result:                           success
+        apply-reason:
+
+#.  Activate the upgrade.
+
+    During the running of the :command:`upgrade-activate` command, new
+    configurations are applied to the controller. 250.001 \(**hostname
+    Configuration is out-of-date**\) alarms are raised and are cleared as the
+    configuration is applied. The upgrade state goes from **activating** to
+    **activation-complete** once this is done.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system upgrade-activate
+        +--------------+--------------------------------------+
+        | Property     | Value                                |
+        +--------------+--------------------------------------+
+        | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
+        | state        | activating                           |
+        | from_release | nn.nn                                |
+        | to_release   | nn.nn                                |
+        +--------------+--------------------------------------+
+
+    The following states apply when this command is executed.
+
+    **activation-requested**
+        State entered when :command:`system upgrade-activate` is executed.
+
+    **activating**
+        State entered when we have started activating the upgrade by applying
+        new configurations to the controller and compute hosts.
+
+    **activation-complete**
+        State entered when new configurations have been applied to all
+        controller and compute hosts.
+
+#.  Check the status of the upgrade again to see it has reached
+    **activation-complete**
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system upgrade-show
+        +--------------+--------------------------------------+
+        | Property     | Value                                |
+        +--------------+--------------------------------------+
+        | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
+        | state        | activation-complete                  |
+        | from_release | nn.nn                                |
+        | to_release   | nn.nn                                |
+        +--------------+--------------------------------------+
+
+#.  Complete the upgrade.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system upgrade-complete
+        +--------------+--------------------------------------+
+        | Property     | Value                                |
+        +--------------+--------------------------------------+
+        | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
+        | state        | completing                           |
+        | from_release | nn.nn                                |
+        | to_release   | nn.nn                                |
+        +--------------+--------------------------------------+
+
+#.  Delete the imported load.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system load-list
+        +----+----------+------------------+
+        | id | state    | software_version |
+        +----+----------+------------------+
+        | 1  | imported | nn.nn            |
+        | 2  | active   | nn.nn            |
+        +----+----------+------------------+
+
+        ~(keystone_admin)]$ system load-delete 1
+        Deleted load: load 1
+
+.. only:: partner
+
+    .. include:: /_includes/performing-an-orchestrated-upgrade-using-the-cli.rest
+    :start-after: Orchupgradecli-begin
+    :end-before: Orchupgradecli-end

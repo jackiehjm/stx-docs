@@ -35,9 +35,9 @@ You can perform a partially-Orchestrated Upgrade of a |prod| system using the CL
 .. rubric:: |prereq|
 
 See :ref:`Upgrading All-in-One Duplex / Standard
-<upgrading-all-in-one-duplex-or-standard>`, to manually upgrade the initial
-controller node before doing the upgrade orchestration described below to
-upgrade the remaining nodes of the |prod| system.
+<upgrading-all-in-one-duplex-or-standard>`, and perform Steps 1-8, to manually
+upgrade the initial controller node before doing the upgrade orchestration
+described below to upgrade the remaining nodes of the |prod| system.
 
 .. rubric:: |proc|
 
@@ -167,3 +167,11 @@ upgrade the remaining nodes of the |prod| system.
     upgrade-strategy application fails, you must address the issue that caused
     the failure, then delete/re-create the strategy before attempting to apply
     it again.
+
+For more information, see: :ref:`Perform an Orchestrated Upgrade Using the CLI <performing-an-orchestrated-upgrade-using-the-cli>`
+
+.. only:: partner
+
+    .. include:: /_includes/performing-an-orchestrated-upgrade.rest
+    :start-after: Orchupgrade-begin
+    :end-before: Orchupgrade-end
