@@ -138,7 +138,7 @@ inventory (with personality set to None).
         | reserved              | False                                |
         | rootfs_device         | /dev/sda                             |
         | serialid              | None                                 |
-        | software_load         | 20.12                                |
+        | software_load         | nn.nn                                |
         | task                  | None                                 |
         | tboot                 | false                                |
         | ttys_dcd              | None                                 |

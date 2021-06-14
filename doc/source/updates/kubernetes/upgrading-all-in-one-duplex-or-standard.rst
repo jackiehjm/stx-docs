@@ -94,14 +94,12 @@ of |prod| software.
         .. code-block:: none
 
             ~(keystone_admin)]$ system load-list
-
             +----+----------+------------------+
             | id | state    | software_version |
             +----+----------+------------------+
             | 1  | active   | 20.06            |
             | 2  | imported | 21.05            |
             +----+----------+------------------+
-
 
 #.  Apply any required software updates.
 

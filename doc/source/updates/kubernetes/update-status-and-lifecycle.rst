@@ -66,11 +66,11 @@ updated but not yet rebooted.
 
      Hostname      IP Address    Patch Current  Reboot Required  Release  State
     ============  ==============  =============  ===============  =======  =====
-    compute-0     192.168.204.95       Yes             No          20.06   idle
-    compute-1     192.168.204.63       Yes             No          20.06   idle
-    compute-2     192.168.204.99       Yes             No          20.06   idle
-    compute-3     192.168.204.49       Yes             No          20.06   idle
-    controller-0  192.168.204.3        Yes             No          20.06   idle
-    controller-1  192.168.204.4        Yes             No          20.06   idle
-    storage-0     192.168.204.37       Yes             No          20.06   idle
-    storage-1     192.168.204.90       Yes             No          20.06   idle
+    compute-0     192.168.204.95       Yes             No          nn.nn   idle
+    compute-1     192.168.204.63       Yes             No          nn.nn   idle
+    compute-2     192.168.204.99       Yes             No          nn.nn   idle
+    compute-3     192.168.204.49       Yes             No          nn.nn   idle
+    controller-0  192.168.204.3        Yes             No          nn.nn   idle
+    controller-1  192.168.204.4        Yes             No          nn.nn   idle
+    storage-0     192.168.204.37       Yes             No          nn.nn   idle
+    storage-1     192.168.204.90       Yes             No          nn.nn   idle

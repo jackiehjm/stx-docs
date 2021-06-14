@@ -102,7 +102,6 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
         .. code-block:: none
 
             ~(keystone_admin)]$ system load-list
-
             +----+----------+------------------+
             | id | state    | software_version |
             +----+----------+------------------+

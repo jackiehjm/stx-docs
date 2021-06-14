@@ -62,7 +62,7 @@ When secure HTTPS connectivity is enabled, HTTP is disabled.
         | sdn_enabled          | False                                |
         | security_feature     | spectre_meltdown_v1                  |
         | service_project_name | services                             |
-        | software_version     | 20.06                                |
+        | software_version     | nn.nn                                |
         | system_mode          | duplex                               |
         | system_type          | Standard                             |
         | timezone             | Canada/Eastern                       |

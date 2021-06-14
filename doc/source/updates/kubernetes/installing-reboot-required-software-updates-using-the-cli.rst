@@ -85,9 +85,9 @@ You can install reboot-required software updates using the CLI.
 
           Hostname      IP Address    Patch Current  Reboot Required  Release  State
         ============  ==============  =============  ===============  =======  =====
-        worker-0      192.168.204.12       Yes              No          20.04   idle
-        controller-0  192.168.204.3        Yes              Yes         20.04   idle
-        controller-1  192.168.204.4        Yes              Yes         20.04   idle
+        worker-0      192.168.204.12       Yes              No          nn.nn   idle
+        controller-0  192.168.204.3        Yes              Yes         nn.nn   idle
+        controller-1  192.168.204.4        Yes              Yes         nn.nn   idle
 
 
     For each host in the cluster, the following status fields are displayed:
@@ -190,14 +190,14 @@ You can install reboot-required software updates using the CLI.
 
            Hostname      IP Address    Patch Current  Reboot Required  Release  State
         ============  ==============  =============  ===============  =======  =====
-        compute-0     192.168.204.95       Yes             No          20.04   idle
-        compute-1     192.168.204.63       Yes             No          20.04   idle
-        compute-2     192.168.204.99       Yes             No          20.04   idle
-        compute-3     192.168.204.49       Yes             No          20.04   idle
-        controller-0  192.168.204.3        Yes             No          20.04   idle
-        controller-1  192.168.204.4        Yes             No          20.04   idle
-        storage-0     192.168.204.37       Yes             No          20.04   idle
-        storage-1     192.168.204.90       Yes             No          20.04   idle
+        compute-0     192.168.204.95       Yes             No          nn.nn   idle
+        compute-1     192.168.204.63       Yes             No          nn.nn   idle
+        compute-2     192.168.204.99       Yes             No          nn.nn   idle
+        compute-3     192.168.204.49       Yes             No          nn.nn   idle
+        controller-0  192.168.204.3        Yes             No          nn.nn   idle
+        controller-1  192.168.204.4        Yes             No          nn.nn   idle
+        storage-0     192.168.204.37       Yes             No          nn.nn   idle
+        storage-1     192.168.204.90       Yes             No          nn.nn   idle
 
 #.  Install all pending updates on **controller-1**.
 
@@ -215,14 +215,14 @@ You can install reboot-required software updates using the CLI.
 
            Hostname      IP Address    Patch Current  Reboot Required  Release  State
         ============  ==============  =============  ===============  =======  =====
-        compute-0     192.168.204.95       Yes             No          20.04   idle
-        compute-1     192.168.204.63       Yes             No          20.04   idle
-        compute-2     192.168.204.99       Yes             No          20.04   idle
-        compute-3     192.168.204.49       Yes             No          20.04   idle
-        controller-0  192.168.204.3        Yes             No          20.04   idle
-        controller-1  192.168.204.4        Yes             No          20.04   idle
-        storage-0     192.168.204.37       Yes             No          20.04   idle
-        storage-1     192.168.204.90       Yes             No          20.04   idle
+        compute-0     192.168.204.95       Yes             No          nn.nn   idle
+        compute-1     192.168.204.63       Yes             No          nn.nn   idle
+        compute-2     192.168.204.99       Yes             No          nn.nn   idle
+        compute-3     192.168.204.49       Yes             No          nn.nn   idle
+        controller-0  192.168.204.3        Yes             No          nn.nn   idle
+        controller-1  192.168.204.4        Yes             No          nn.nn   idle
+        storage-0     192.168.204.37       Yes             No          nn.nn   idle
+        storage-1     192.168.204.90       Yes             No          nn.nn   idle
 
 #.  Install any pending updates for the worker or storage hosts.
 

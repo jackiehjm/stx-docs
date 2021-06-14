@@ -29,11 +29,11 @@ Distributed Cloud Using Horizon
         ~(keystone_admin)]$ sw-patch --os-region-name SystemController query
         Patch ID              RR  Release   Patch State
         ===================   ==  =======   ===========
-        wrcp_nn.nn_PATCH_0001  N   20.06     Applied
-        wrcp_nn.nn_PATCH_0002  N   20.06     Applied
-        wrcp_nn.nn_PATCH_0003  N   20.06     Partial
-        wrcp_nn.nn_PATCH_0004  N   20.06     Available
-        wrcp_nn.nn_PATCH_0005  N   20.06     Available
+        wrcp_nn.nn_PATCH_0001  N   nn.nn     Applied
+        wrcp_nn.nn_PATCH_0002  N   nn.nn     Applied
+        wrcp_nn.nn_PATCH_0003  N   nn.nn     Partial
+        wrcp_nn.nn_PATCH_0004  N   nn.nn     Available
+        wrcp_nn.nn_PATCH_0005  N   nn.nn     Available
 
     The **Patch State** column indicates whether the Patch is available,
     partially-applied or applied. **Applied** indicates that the update has
@@ -71,7 +71,7 @@ Distributed Cloud Using Horizon
         | name                        | subcloud1                  |
         | description                 | None                       |
         | location                    | None                       |
-        | software_version            | 20.06                      |
+        | software_version            | nn.nn                      |
         | management                  | managed                    |
         | availability                | online                     |
         | deploy_status               | complete                   |
