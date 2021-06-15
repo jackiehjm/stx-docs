@@ -14,10 +14,9 @@ About Host Memory Provisioning
 
 .. only:: partner
 
-    .. include:: ../../../_includes/about-host-memory-provisioning.rest
-
-    :start-after: introduction-text-begin
-    :end-before: introduction-text-end
+    .. include:: /_includes/about-host-memory-provisioning.rest
+       :start-after: introduction-text-begin
+       :end-before: introduction-text-end
 
 Due to limitations in Kubernetes, only a single huge page size can be used
 per host.
@@ -43,10 +42,9 @@ configurations.
 
 .. only:: partner
 
-    .. include:: ../../../_includes/about-host-memory-provisioning.rest
-
-    :start-after: memory-text-begin
-    :end-before: memory-text-end
+    .. include:: /_includes/about-host-memory-provisioning.rest
+       :start-after: memory-text-begin
+       :end-before: memory-text-end
 
 You can use the :command:`system host-memory-list` and
 :command:`system host-memory-show` commands to see how much memory is
@@ -58,6 +56,5 @@ OpenStack\), you can specify which page size is required.
 
 .. only:: partner
 
-   .. include:: ../../../_includes/about-host-memory-provisioning.rest
-
-   :start-after: memory-text-end
+   .. include:: /_includes/about-host-memory-provisioning.rest
+      :start-after: memory-text-end
