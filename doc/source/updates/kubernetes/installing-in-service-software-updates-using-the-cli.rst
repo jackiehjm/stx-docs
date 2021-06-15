@@ -26,7 +26,7 @@ unlocked as part of applying the update.
         $ sudo sw-patch query
               Patch ID        RR  Release  Patch State
         ====================  ==  =======  ===========
-        INSVC_HORIZON_SYSINV  N    20.04    Available
+        INSVC_HORIZON_SYSINV  N    nn.nn    Available
 
 #.  Check the status of the hosts.
 
@@ -35,9 +35,9 @@ unlocked as part of applying the update.
         $ sudo sw-patch query-hosts
           Hostname      IP Address    Patch Current  Reboot Required  Release  State
         ============  ==============  =============  ===============  =======  =====
-        worker-0      192.168.204.24       Yes             No          20.01   idle
-        controller-0  192.168.204.3        Yes             No          20.01   idle
-        controller-1  192.168.204.4        Yes             No          20.01   idle
+        worker-0      192.168.204.24       Yes             No          nn.nn   idle
+        controller-0  192.168.204.3        Yes             No          nn.nn   idle
+        controller-1  192.168.204.4        Yes             No          nn.nn   idle
 
 #.  Ensure the original update files have been deleted from the root drive.
 
@@ -67,7 +67,7 @@ unlocked as part of applying the update.
         $ sudo sw-patch query
         Patch ID              RR  Release   Patch State
         ====================  ==  =======  =============
-        INSVC_HORIZON_SYSINV  N    20.04   Partial-Apply
+        INSVC_HORIZON_SYSINV  N    nn.nn   Partial-Apply
 
     As it is an in-service update, the hosts report that they are not 'patch
     current', but they do not require a reboot.
@@ -77,10 +77,10 @@ unlocked as part of applying the update.
         $ sudo sw-patch query-hosts
         Hostname      IP Address      Patch Current  Reboot Required  Release  State
         ============  ==============  =============  ===============  =======  =====
-        worker-0      192.168.204.24       No              No          20.04   idle
-        controller-0  192.168.204.3        No              No          20.04   idle
-        controller-1  192.168.204.4        No              No          20.04   idle
-        
+        worker-0      192.168.204.24       No              No          nn.nn   idle
+        controller-0  192.168.204.3        No              No          nn.nn   idle
+        controller-1  192.168.204.4        No              No          nn.nn   idle
+
 
 #.  Install the update on controller-0.
 
@@ -97,9 +97,9 @@ unlocked as part of applying the update.
         $ sudo sw-patch query-hosts
         Hostname      IP Address    Patch Current  Reboot Required    Release  State
         ============  ==============  =============  ===============  =======  =====
-        worker-0      192.168.204.24       No              No          20.01   idle
-        controller-0  192.168.204.3        Yes             No          20.01   idle
-        controller-1  192.168.204.4        No              No          20.01   idle
+        worker-0      192.168.204.24       No              No          nn.nn   idle
+        controller-0  192.168.204.3        Yes             No          nn.nn   idle
+        controller-1  192.168.204.4        No              No          nn.nn   idle
 
     The controller-1 host reports it is now 'patch current' and does not
     require a reboot, without having been locked or rebooted
@@ -119,13 +119,13 @@ unlocked as part of applying the update.
     .. code-block:: none
 
         $ sudo sw-patch query-hosts
-        Hostname      IP Address    Patch Current  Reboot Required  Release  State
+        Hostname      IP Address      Patch Current  Reboot Required  Release  State
         ============  ==============  =============  ===============  =======  =====
-        worker-0      192.168.204.24       Yes             No          20.04   idle
-        controller-0  192.168.204.3        Yes             No          20.04   idle
-        controller-1  192.168.204.4        Yes             No          20.04   idle
-        
+        worker-0      192.168.204.24       Yes             No          nn.nn   idle
+        controller-0  192.168.204.3        Yes             No          nn.nn   idle
+        controller-1  192.168.204.4        Yes             No          nn.nn   idle
+
         $ sudo sw-patch query
         Patch ID              RR  Release  Patch State
         ====================  ==  =======  ===========
-        INSVC_HORIZON_SYSINV  N    20.04     Applied
+        INSVC_HORIZON_SYSINV  N    nn.nn     Applied

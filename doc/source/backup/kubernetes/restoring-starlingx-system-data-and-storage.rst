@@ -153,11 +153,11 @@ conditions are in place:
     .. code-block:: none
 
         $ sudo sw-patch query
-                Patch ID          RR         Release  Patch State
-        ========================  ==========          ===========
-        COMPUTECONFIG             Available   20.06      n/a
-        LIBCUNIT_CONTROLLER_ONLY   Applied    20.06      n/a
-        STORAGECONFIG              Applied    20.06      n/a
+                Patch ID          RR          Release  Patch State
+        ========================  ==========  =======  ===========
+        COMPUTECONFIG             Available    nn.nn      n/a
+        LIBCUNIT_CONTROLLER_ONLY   Applied     nn.nn      n/a
+        STORAGECONFIG              Applied     nn.nn      n/a
 
     Rerun the Ansible Playbook if there were patches applied and you were
     prompted to reboot the system.

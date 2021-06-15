@@ -96,7 +96,7 @@ Use the following command to change the clock synchronization on the host:
     | reserved              | False                                      |
     | rootfs_device         | /dev/disk/by-path/pci-0000:00:1f.2-ata-1.0 |
     | serialid              | None                                       |
-    | software_load         | 20.06                                      |
+    | software_load         | nn.nn                                      |
     | subfunction_avail     | available                                  |
     | subfunction_oper      | enabled                                    |
     | subfunctions          | controller,worker                          |
@@ -149,7 +149,7 @@ To view the |NTP| service configuration, use the following command:
     | rootfs_device         | /dev/disk/by-path/pci-0000:04:00.0-sas         |
     |                       | -0x5001e6754aa38000-lun-0                      |
     | serialid              | None                                           |
-    | software_load         | 20.06                                          |
+    | software_load         | nn.nn                                          |
     | task                  |                                                |
     | tboot                 | false                                          |
     | ttys_dcd              | None                                           |

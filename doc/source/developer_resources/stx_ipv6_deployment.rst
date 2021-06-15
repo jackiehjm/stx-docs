@@ -469,7 +469,7 @@ reference.
         | sdn_enabled          | False                                |
         | security_feature     | spectre_meltdown_v1                  |
         | service_project_name | services                             |
-        | software_version     | 20.01                                |
+        | software_version     | nn.nn                                |
         | system_mode          | duplex                               |
         | system_type          | All-in-one                           |
         | timezone             | UTC                                  |
