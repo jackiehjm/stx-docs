@@ -404,5 +404,5 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
 .. only:: partner
 
    .. include:: /_includes/upgrading-all-in-one-simplex.rest
-   :start-after: upgradeAIO-begin
-   :end-before: upgradeAIO-end
+       :start-after: upgradeAIO-begin
+       :end-before: upgradeAIO-end

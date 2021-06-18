@@ -328,5 +328,5 @@ described below to upgrade the remaining nodes of the |prod|.
 .. only:: partner
 
     .. include:: /_includes/performing-an-orchestrated-upgrade-using-the-cli.rest
-    :start-after: Orchupgradecli-begin
-    :end-before: Orchupgradecli-end
+        :start-after: Orchupgradecli-begin
+        :end-before: Orchupgradecli-end

@@ -6,7 +6,9 @@
 Perform an Orchestrated Upgrade
 ===============================
 
-You can perform a partially-Orchestrated Upgrade of a |prod| system using the CLI and Horizon Web interface. Upgrade and stability of the initial controller node must be done manually before using upgrade orchestration to orchestrate the remaining nodes of the |prod|.
+You can perform a partially-Orchestrated Upgrade of a |prod| system using the CLI and Horizon
+Web interface. Upgrade and stability of the initial controller node must be done manually
+before using upgrade orchestration to orchestrate the remaining nodes of the |prod|.
 
 .. rubric:: |context|
 
@@ -173,5 +175,5 @@ For more information, see: :ref:`Perform an Orchestrated Upgrade Using the CLI <
 .. only:: partner
 
     .. include:: /_includes/performing-an-orchestrated-upgrade.rest
-    :start-after: Orchupgrade-begin
-    :end-before: Orchupgrade-end
+       :start-after: Orchupgrade-begin
+       :end-before: Orchupgrade-end

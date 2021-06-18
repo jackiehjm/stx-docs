@@ -503,5 +503,5 @@ of |prod| software.
 .. only:: partner
 
     .. include:: /_includes/upgrading-all-in-one-duplex-or-standard.rest
-    :start-after: upgradeDX-begin
-    :end-before: upgradeDX-end
+        :start-after: upgradeDX-begin
+        :end-before: upgradeDX-end
