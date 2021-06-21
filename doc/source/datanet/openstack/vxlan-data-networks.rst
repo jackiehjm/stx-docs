@@ -25,7 +25,7 @@ are included in the outer IP header.
 
 .. only:: partner
 
-    .. include:: ../../_includes/vxlan-data-networks.rest
+    .. include:: /_includes/vxlan-data-networks.rest
 
 .. _vxlan-data-networks-ul-rzs-kqf-zbb:
 

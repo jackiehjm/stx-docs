@@ -28,26 +28,23 @@ Resource Placement
 
 .. only:: partner
 
-    .. include:: ../../_includes/resource-planning.rest
-
-    :start-after: avs-text-1-begin
-    :end-before:  avs-text-2-end
+    .. include:: /_includes/resource-planning.rest
+        :start-after: avs-text-1-begin
+        :end-before:  avs-text-2-end
 
 .. only:: partner
 
-    .. include:: ../../_includes/resource-planning.rest
-
-    :start-after: avs-text-2-begin
-    :end-before:  avs-text-2-end
+    .. include:: /_includes/resource-planning.rest
+        :start-after: avs-text-2-begin
+        :end-before:  avs-text-2-end
 
 
 .. _resource-planning-ul-tcb-ssz-55:
 
 .. only:: partner
 
-    .. include:: ../../_includes/resource-planning.rest
-
-    :start-after: avs-text-1-end
+    .. include:: /_includes/resource-planning.rest
+        :start-after: avs-text-1-end
 
 
 If accessing |PCIe| devices directly from a |VM| using |PCI|-Passthrough or

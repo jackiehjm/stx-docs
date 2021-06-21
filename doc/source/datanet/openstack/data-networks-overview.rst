@@ -49,4 +49,4 @@ OpenStack Neutron commands, see :ref:`Adding Segmentation Ranges Using the CLI
 
 .. only:: partner
 
-   .. include:: ../../_includes/data-networks-overview.rest
+   .. include:: /_includes/data-networks-overview.rest
