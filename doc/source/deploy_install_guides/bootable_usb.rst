@@ -1,3 +1,6 @@
+
+.. _bootable_usb:
+
 ===================
 Create Bootable USB
 ===================
