@@ -956,3 +956,5 @@ machine.
    ----------
 
    .. include:: ../kubernetes_install_next.txt
+
+.. include:: /_includes/bootstrapping-and-deploying-starlingx.rest
