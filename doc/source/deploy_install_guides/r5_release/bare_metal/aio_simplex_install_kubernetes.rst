@@ -195,7 +195,7 @@ Bootstrap system on controller-0
             - 1.2.3.4
 
 
-      Refer to :ref:`Ansible Bootstrap Configurations <ansible_bootstrap_configs>`
+      Refer to :ref:`Ansible Bootstrap Configurations <ansible_bootstrap_configs_r5>`
       for information on additional Ansible bootstrap configurations for advanced
       Ansible bootstrap scenarios.
 
