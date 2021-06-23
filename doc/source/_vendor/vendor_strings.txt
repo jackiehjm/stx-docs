@@ -33,6 +33,7 @@
 .. |admintasks-doc| replace:: :title:`StarlingX Administrator Tasks`
 .. |datanet-doc| replace:: :title:`StarlingX Data Networks`
 .. |os-intro-doc| replace:: :title:`OpenStack Introduction`
+.. |updates-doc| replace:: :title:`StarlingX Updates and Upgrades`
 
 .. Name of downloads location
 
@@ -55,3 +56,10 @@
 .. |max-workers| replace:: 99
 
 .. |release-caveat| replace:: This is a pre-release feature and may not function as described in |prod| 5.
+ 
+.. Product name used in patch file name
+.. |pn| replace:: STLX
+
+.. Product version used in patch file names
+
+.. |pvr| replace:: 00004
