@@ -62,3 +62,11 @@ Metrics Server
 
    kubernetes-admin-tutorials-metrics-server
 
+-------------------
+StarlingX OpenStack
+-------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   openstack/index
