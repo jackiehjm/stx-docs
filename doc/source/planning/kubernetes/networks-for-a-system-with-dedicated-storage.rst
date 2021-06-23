@@ -16,22 +16,17 @@ network configuration typically meets the requirements of such a system:
 
 .. _networks-for-a-starlingx-with-dedicated-storage-ul-j2d-thb-1w:
 
--   An internal management network.
-
--   A 10GE cluster host network for disk IO traffic to storage nodes and for
-    private container-to-container networking within a cluster, by default
-    consolidated on the management interface.
-
-    The cluster host network can be configured on an interface separate from
-    the internal management interface for external connectivity of container
-    workloads.
+-   A 10GE internal management network for internal system infrastructure
+    management and disk I/O traffic to and from storage nodes.
 
 -   An |OAM| network.
 
--   A cluster host network not used for external connectivity of container
-    workloads. Either the |OAM| port or other configured ports on the
-    controller and worker nodes would be used for container workloads'
-    connectivity to external networks.
+-   A cluster host network for private container-to-container networking within the cluster and
+    optionally for external connectivity of container workloads.
+
+    If a cluster host network is not used for external connectivity of container workloads, then
+    either the |OAM| port or other configured ports on both the controller and
+    worker nodes are used for container workloads connectivity to external networks.
 
 -   An optional |PXE| boot network:
 
