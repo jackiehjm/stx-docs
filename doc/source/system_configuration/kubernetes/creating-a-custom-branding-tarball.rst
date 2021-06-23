@@ -2,9 +2,9 @@
 .. ngt1557520137257
 .. _creating-a-custom-branding-tarball:
 
-================================
-Create a Custom Branding Tarball
-================================
+========================================
+Create a Custom Horizon Branding Tarball
+========================================
 
 This section contains instructions and examples for creating and applying a
 tarball containing a custom Horizon Web interface theme, and associated
@@ -122,9 +122,9 @@ installation.
 
 For more information on applying the tarball to newly installed systems prior
 to running the bootstrap playbook,
-see :ref:`Apply a Custom Branding Tarball to Newly Installed Systems
+see :ref:`Apply a Custom Horizon Branding Tarball to Newly Installed Systems
 <applying-a-custom-branding-tarball-to-newly-installed-systems>`.
 
 For more information on applying the tarball to running systems,
-see :ref:`Apply a Custom Branding Tarball to Running Systems
+see :ref:`Apply a Custom Horizon Branding Tarball to Running Systems
 <applying-a-custom-branding-tarball-to-running-systems>`.

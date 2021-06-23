@@ -2,14 +2,14 @@
 .. hur1582149306886
 .. _applying-a-custom-branding-tarball-to-newly-installed-systems:
 
-==========================================================
-Apply a Custom Branding Tarball to Newly Installed Systems
-==========================================================
+==================================================================
+Apply a Custom Horizon Branding Tarball to Newly Installed Systems
+==================================================================
 
-You can apply a custom branding tarball to newly installed systems
+You can apply a custom Horizon branding tarball to newly installed systems
 prior to running the bootstrap playbook.
 
-Complete the following steps to apply the custom branding tarball:
+Complete the following steps to apply the custom Horizon branding tarball:
 
 .. rubric:: |proc|
 
