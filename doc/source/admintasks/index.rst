@@ -51,17 +51,6 @@ Optimize application performance
    isolating-cpu-cores-to-enhance-application-performance
    kubernetes-topology-manager-policies
 
---------------------------
-CPU Manager for Kubernetes
---------------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   about-cpu-manager-for-kubernetes
-   installing-and-running-cpu-manager-for-kubernetes
-   removing-cpu-manager-for-kubernetes
-   uninstalling-cpu-manager-for-kubernetes-on-ipv6
 
 --------------
 Metrics Server
