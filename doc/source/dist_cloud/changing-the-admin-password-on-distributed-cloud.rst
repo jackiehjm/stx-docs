@@ -22,7 +22,7 @@ Ensure that all subclouds are managed and online.
         System Controller.
 
 
-        -   In the SystemController context, select **Identity** \> **Users**.
+        -   In the System Controller context, select **Identity** \> **Users**.
             Select **Change Password** from the **Edit** menu for the Admin user.
 
         -   From the |CLI|:

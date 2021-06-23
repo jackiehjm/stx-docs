@@ -186,7 +186,7 @@ A sample **Hosts** tab is illustrated below:
     **Swact Host**
         This operation is available on controller nodes only. It initiates a
         switch of the active/standby roles between two controllers. For more
-        information, see :ref:`Swact a Master/Controller Using Horizon
+        information, see :ref:`Swact Controllers Using Horizon
         <swacting-a-master-controller-using-horizon>`.
 
     **Unlock Host**

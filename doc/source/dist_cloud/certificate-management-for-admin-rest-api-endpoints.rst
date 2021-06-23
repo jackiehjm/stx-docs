@@ -6,7 +6,7 @@
 Certificate Management for Admin REST API Endpoints
 ===================================================
 
-All messaging between SystemControllers and Subclouds in the |prod-dc|
+All messaging between System Controllers and Subclouds in the |prod-dc|
 system uses the admin REST API service endpoints, which are all configured for
 secure HTTPS.
 
@@ -19,9 +19,9 @@ endpoints.
 
 .. certificate-management-for-admin-rest--api-endpoints-section-lkn-ypk-xnb:
 
-------------------------------------
-Certificates on the SystemController
-------------------------------------
+-------------------------------------
+Certificates on the System Controller
+-------------------------------------
 
 In a |prod-dc| system, the HTTPS certificates for admin endpoints are
 managed by |prod| internally.
@@ -29,7 +29,7 @@ managed by |prod| internally.
 .. note::
     All renewal operations are automatic, and no user operation is required.
 
-For admin endpoints, the SystemControllers in a |prod-dc| system
+For admin endpoints, the System Controllers in a |prod-dc| system
 manages the following certificates:
 
 
@@ -39,7 +39,7 @@ manages the following certificates:
     \(approximately 5 years\). Renewal of this certificate starts 30 days prior
     to expiry.
 
-    The Root |CA| certificate is renewed on the SystemController. When the
+    The Root |CA| certificate is renewed on the System Controller. When the
     certificate is renewed, |prod| renews the intermediate |CA|
     certificates for all subclouds.
 
@@ -66,7 +66,7 @@ certificates:
 .. certificate-management-for-admin-rest--api-endpoints-ul-x51-3qk-xnb:
 
 -   **DC-AdminEp-Intermediate-CA certificate**: The intermediate CA certificate
-    for a subcloud is renewed on the SystemController. It is sent to the
+    for a subcloud is renewed on the System Controller. It is sent to the
     subcloud using a Rest API. Therefore, a subcloud needs to be online to
     receive the renewed certificate.
 
@@ -84,9 +84,9 @@ certificates:
     generated. The new |TLS| certificate is used to provide |TLS| termination.
 
 
-The SystemController audits subcloud AdminEp certificates daily. It also audits
+The System Controller audits subcloud AdminEp certificates daily. It also audits
 subcloud admin endpoints when a subcloud becomes online or managed. If the
-subcloud admin endpoint is "out-of-sync", the SystemController initiates
+subcloud admin endpoint is "out-of-sync", the System Controller initiates
 intermediate |CA| certificate renewal, to force subcloud renewal of the admin
 endpoint certificate.
 

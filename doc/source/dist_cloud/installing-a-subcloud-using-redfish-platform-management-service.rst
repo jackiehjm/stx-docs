@@ -30,20 +30,20 @@ subcloud, the subcloud installation has these phases:
 .. note::
     After a successful remote installation of a subcloud in a Distributed Cloud
     system, a subsequent remote reinstallation fails because of an existing ssh
-    key entry in the /root/.ssh/known\_hosts on the SystemController. In this
+    key entry in the /root/.ssh/known\_hosts on the System Controller. In this
     case, delete the host key entry, if present, from /root/.ssh/known\_hosts
-    on the SystemController before doing reinstallations.
+    on the System Controller before doing reinstallations.
 
 .. rubric:: |prereq|
 
 .. _installing-a-subcloud-using-redfish-platform-management-service-ul-g5j-3f3-qjb:
 
--   The docker **rvmc** image needs to be added to the SystemController
+-   The docker **rvmc** image needs to be added to the System Controller
     bootstrap override file, docker.io/starlingx/rvmc:stx.5.0-v1.0.0.
 
 -   A new system CLI option ``--active`` is added to the
     :command:`load-import` command to allow the import into the
-    SystemController /opt/dc-vault/loads. The purpose of this is to allow
+    System Controller /opt/dc-vault/loads. The purpose of this is to allow
     Redfish install of subclouds referencing a single full copy of the
     **bootimage.iso** at /opt/dc-vault/loads. \(Previously, the full
     **bootimage.iso** was duplicated for each :command:`subcloud add`
@@ -78,15 +78,15 @@ subcloud, the subcloud installation has these phases:
     .. note::
         Do not power off the servers. The host portion of the server can be
         powered off, but the |BMC| portion of the server must be powered and
-        accessible from the SystemController.
+        accessible from the System Controller.
 
         There is no need to wipe the disks.
 
     .. note::
         The servers require connectivity to a gateway router that provides IP
-        routing between the subcloud management subnet and the SystemController
+        routing between the subcloud management subnet and the System Controller
         management subnet, and between the subcloud |OAM| subnet and the
-        SystemController subnet.
+        System Controller subnet.
 
 #.  Create the install-values.yaml file and use the content to pass the file
     into the :command:`dcmanager subcloud add` command, using the
@@ -156,7 +156,7 @@ subcloud, the subcloud installation has these phases:
         # boot_device: "/dev/disk/by-path/pci-0000:00:1f.2-ata-1.0"
 
 
-#.  At the SystemController, create a
+#.  At the System Controller, create a
     /home/sysadmin/subcloud1-bootstrap-values.yaml overrides file for the
     subcloud.
 
@@ -275,7 +275,7 @@ subcloud, the subcloud installation has these phases:
     The :command:`dcmanager subcloud add` command can take up to ten minutes to
     complete.
 
-#.  At the Central Cloud / SystemController, monitor the progress of the
+#.  At the Central Cloud / System Controller, monitor the progress of the
     subcloud install, bootstrapping, and deployment by using the deploy status
     field of the :command:`dcmanager subcloud list` command.
 

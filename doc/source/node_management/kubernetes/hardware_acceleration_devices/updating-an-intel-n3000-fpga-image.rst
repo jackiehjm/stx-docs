@@ -2,9 +2,9 @@
 .. yui1591714746999
 .. _updating-an-intel-n3000-fpga-image:
 
-================================
-Update an Intel N3000 FPGA Image
-================================
+==========================
+Update an N3000 FPGA Image
+==========================
 
 The N3000 |FPGA| as shipped from the factory is expected to have production
 |BMC| and factory images. The following procedure describes how to update the

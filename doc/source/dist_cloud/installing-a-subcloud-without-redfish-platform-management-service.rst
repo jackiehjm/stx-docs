@@ -32,7 +32,7 @@ subcloud, the subcloud installation process has two phases:
 .. note::
     After a successful remote installation of a subcloud in a Distributed Cloud
     system, a subsequent remote reinstallation fails because of an existing ssh
-    key entry in the /root/.ssh/known\_hosts on the SystemController. In this
+    key entry in the /root/.ssh/known\_hosts on the System Controller. In this
     case, delete the host key entry, if present, from /root/.ssh/known\_hosts
     on the System Controller before doing reinstallations.
 

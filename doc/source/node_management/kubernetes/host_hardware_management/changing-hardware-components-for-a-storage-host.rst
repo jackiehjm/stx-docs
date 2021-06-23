@@ -78,9 +78,6 @@ can reproduce them later.
     If the host has been deleted from the Host Inventory, the host software
     is reinstalled.
 
-.. From Power up the host
-.. xbookref For details, see :ref:`|inst-doc| <platform-installation-overview>`.
-
     Wait for the host to be reported as **Locked**, **Disabled**, and
     **Online**.
 
@@ -108,4 +105,6 @@ can reproduce them later.
 .. From If required, allocate the |OSD| and journal disk storage.
 .. xbooklinkFor more information, see |stor-doc|: `Provision Storage on a Storage Host <provisioning-storage-on-a-controller-or-storage-host-using-horizon>`.
 
+.. From Power up the host
+.. xbookref For details, see :ref:`|inst-doc| <platform-installation-overview>`.
 

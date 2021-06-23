@@ -65,13 +65,13 @@ networks, as shown in Figure 1.
     In the Horizon GUI, SystemController is the name of the access mode, or
     region, used to manage the subclouds.
 
-    You can use the SystemController to add subclouds, synchronize select
+    You can use the System Controller to add subclouds, synchronize select
     configuration data across all subclouds and monitor subcloud operations
     and alarms. System software updates for the subclouds are also centrally
-    managed and applied from the SystemController.
+    managed and applied from the System Controller.
 
     DNS, NTP, and other select configuration settings are centrally managed
-    at the SystemController and pushed to the subclouds in parallel to
+    at the System Controller and pushed to the subclouds in parallel to
     maintain synchronization across the distributed cloud.
 
 - **Subclouds**
@@ -81,7 +81,7 @@ networks, as shown in Figure 1.
   (including simplex, duplex, or standard with or without storage nodes), can
   be used for a subcloud. The two edge clouds shown in Figure 1 are subclouds.
 
-  Alarms raised at the subclouds are sent to the SystemController for
+  Alarms raised at the subclouds are sent to the System Controller for
   central reporting.
 
 .. figure:: ../figures/starlingx-deployment-options-distributed-cloud.png
@@ -95,21 +95,21 @@ networks, as shown in Figure 1.
 Network requirements
 --------------------
 
-Subclouds are connected to the SystemController through both the OAM and the
+Subclouds are connected to the System Controller through both the OAM and the
 Management interfaces. Because each subcloud is on a separate L3 subnet, the
 OAM, Management and PXE boot L2 networks are local to the subclouds. They are
 not connected via L2 to the central cloud, they are only connected via L3
-routing. The settings required to connect a subcloud to the SystemController
+routing. The settings required to connect a subcloud to the System Controller
 are specified when a subcloud is defined. A gateway router is required to
 complete the L3 connections, which will provide IP routing between the
-subcloud Management and OAM IP subnet and the SystemController Management and
-OAM IP subnet, respectively. The SystemController bootstraps the subclouds via
+subcloud Management and OAM IP subnet and the System Controller Management and
+OAM IP subnet, respectively. The System Controller bootstraps the subclouds via
 the OAM network, and manages them via the management network. For more
 information, see the `Install a Subcloud`_ section later in this guide.
 
 .. note::
 
-    All messaging between SystemControllers and Subclouds uses the ``admin``
+    All messaging between System Controllers and Subclouds uses the ``admin``
     REST API service endpoints which, in this distributed cloud environment,
     are all configured for secure HTTPS. Certificates for these HTTPS
     connections are managed internally by StarlingX.
@@ -159,12 +159,12 @@ At the subcloud location:
 2. Physically install the top of rack switch and configure it for the
    required networks.
 3. Physically install the gateway routers which will provide IP routing
-   between the subcloud OAM and Management subnets and the SystemController
+   between the subcloud OAM and Management subnets and the System Controller
    OAM and management subnets.
 4. On the server designated for controller-0, install the StarlingX
    Kubernetes software from USB or a PXE Boot server.
 
-5. Establish an L3 connection to the SystemController by enabling the OAM
+5. Establish an L3 connection to the System Controller by enabling the OAM
    interface (with OAM IP/subnet) on the subcloud controller using the
    ``config_management`` script. This step is for subcloud ansible bootstrap
    preparation.
