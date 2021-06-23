@@ -23,4 +23,4 @@ port.html>`__.
 
 .. only:: partner
 
-   .. include:: ../_includes/use-a-vif-model-when-creating-ports.rest
+   .. include:: /_includes/use-a-vif-model-when-creating-ports.rest

@@ -171,8 +171,7 @@ Guest integration
 .. toctree::
    :maxdepth: 2
 
-   vnf_integration/index
-   container_integration/kubernetes/index
+   guest_integration/index
 
 
 ---------
