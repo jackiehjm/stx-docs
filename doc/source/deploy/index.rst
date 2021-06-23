@@ -14,8 +14,8 @@ Deployment Configurations
    common-components
    deployment-config-optionsall-in-one-simplex-configuration
    deployment-config-options-all-in-one-duplex-configuration
-   standard-configuration-with-dedicated-storage
    deployment-and-configuration-options-standard-configuration-with-controller-storage
+   standard-configuration-with-dedicated-storage
    worker-function-performance-profiles
 
 .. only:: starlingx
