@@ -28,6 +28,19 @@ HTTPS.
 Put the |PEM| encoded versions of the certificate and key in a single file,
 and copy the file to the controller host.
 
+.. note::
+    If you plan to use the container-based remote CLIs, due to a limitation
+    in the Python2 SSL certificate validation, the certificate used for the
+    'ssl' certificate must either have:
+
+    #.  CN=IPADDRESS and SANs=IPADDRESS
+
+        or
+
+    #.  CN=FQDN and SANs=FQDN
+
+    where IPADDRESS and FQDN are for the OAM Floating IP Address.
+
 .. rubric:: |proc|
 
 -   Install/update the copied certificate.
