@@ -72,12 +72,12 @@ Horizon <installing-reboot-required-software-updates-using-horizon>`.
 
           Hostname      IP Address     Patch Current  Reboot Required  Release  State
         ============  ===============  =============  ===============  =======  =====
-        compute-0     192.168.204.179       Yes             No          20.04   idle
-        compute-1     192.168.204.173       Yes             No          20.04   idle
-        controller-0  192.168.204.3         No              No          20.04   idle
-        controller-1  192.168.204.4         No              No          20.04   idle
-        storage-0     192.168.204.213       Yes             No          20.04   idle
-        storage-1     192.168.204.181       Yes             No          20.04   idle
+        compute-0     192.168.204.179       Yes             No          nn.nn   idle
+        compute-1     192.168.204.173       Yes             No          nn.nn   idle
+        controller-0  192.168.204.3         No              No          nn.nn   idle
+        controller-1  192.168.204.4         No              No          nn.nn   idle
+        storage-0     192.168.204.213       Yes             No          nn.nn   idle
+        storage-1     192.168.204.181       Yes             No          nn.nn   idle
 
 
     In this example, the controllers have updates ready to be removed, and
