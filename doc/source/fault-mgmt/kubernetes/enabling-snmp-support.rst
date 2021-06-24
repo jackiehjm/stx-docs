@@ -230,7 +230,7 @@ In order to enable and configure |SNMP|, complete the following steps.
 
     .. code-block:: none
 
-       ~(keystone_admin)$ system helm-override-update --values snmp_port.yaml nginx-ingress-controller nginx-ingress kube-system
+       ~(keystone_admin)$ system helm-override-update --values snmp_port.yaml nginx-ingress-controller ingress-nginx kube-system
        +----------------+------------------------------------------+
        | Property       | Value                                    |
        +----------------+------------------------------------------+
@@ -261,6 +261,40 @@ In order to enable and configure |SNMP|, complete the following steps.
       | status        | applying                               |
       | updated_at    | 2020-11-10T17:27:21.509548+00:00       |
       +---------------+----------------------------------------+
+
+#.  Redirect the SNMP UDP traffic to port 161 by creating the next policies.yml
+    file and apply it as below.
+
+    Change the ipVersion parameter value from 4 to 6 if you are using IPV6.
+
+    .. code-block:: none
+
+      ~(keystone_admin)$
+      cat <<EOF > policies.yml
+      apiVersion: crd.projectcalico.org/v1
+      kind: GlobalNetworkPolicy
+      metadata:
+        name: snmp
+      spec:
+        applyOnForward: false
+        ingress:
+        - action: Allow
+          destination:
+            ports:
+            - 161
+          ipVersion: 4
+          protocol: UDP
+        order: 200
+        selector: has(iftype) && iftype == 'oam'
+        types:
+        - Ingress
+      EOF
+
+    Then, run the following command:
+
+    .. code-block:: none
+
+      ~(keystone_admin)$ kubectl apply -f policies.yml
 
 .. _change-configuration-of-SNMP:
 
