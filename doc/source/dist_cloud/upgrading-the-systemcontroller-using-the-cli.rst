@@ -42,6 +42,9 @@ Follow the steps below to manually upgrade the System Controller:
 
         ~(keystone_admin)]$ system --os-region-name SystemController load-import <bootimage>.iso <bootimage>.sig
 
+    .. note::
+        This can take several minutes.
+
 #.  Apply any required software updates. After the update is installed ensure
     controller-0 is active.
 
@@ -56,7 +59,7 @@ Follow the steps below to manually upgrade the System Controller:
     To find and download applicable updates, visit the `Wind River Support
     Network <https://docs.windriver.com>`__.
 
-.. xbooklink For more information, see |updates-doc|: :ref:`Managing Software Updates <managing-software-updates>`.
+    For more information, see |updates-doc|: :ref:`Managing Software Updates <managing-software-updates>`.
 
 #.  Confirm that the system is healthy.
 
@@ -171,13 +174,12 @@ Follow the steps below to manually upgrade the System Controller:
 
         -   data-migration:
 
-
             -   State entered when :command:`system host-upgrade controller-1`
                 is executed.
 
             -   System data is being migrated from release N to release N+1.
 
-        -   data-migration-complete:
+        -   data-migration-complete or upgrading-controllers:
 
             -   State entered when controller-1 upgrade is complete.
 
@@ -262,10 +264,9 @@ Follow the steps below to manually upgrade the System Controller:
         Continue the remaining steps below to manually upgrade or use upgrade
         orchestration to upgrade the remaining nodes.
 
-#.  Upgrade **controller-0**. For more information, see
+#.  Upgrade **controller-0**.
 
-.. xbooklink :ref:`|updates-doc| <software-updates-and-upgrades-software-updates>`.
-
+    .. xbooklink For more information, see :ref:`|updates-doc| <software-updates-and-upgrades-software-updates>` guide.
 
     #.  Lock **controller-0**.
 
@@ -419,19 +420,20 @@ Follow the steps below to manually upgrade the System Controller:
 
     The following states apply when this command is executed.
 
-    -   activation-requested:
+    **activation-requested**
+        State entered when :command:`system upgrade-activate` is executed.
 
-        -   State entered when :command:`system upgrade-activate` is executed.
+    **activating**
+        State entered when we have started activating the upgrade by
+        applying new configurations to the controller and compute hosts.
 
-    -   activating:
+    **activating-hosts**
+        State entered when applying host-specific configurations. This state is
+        entered only if needed.
 
-        -   State entered when we have started activating the upgrade by
-            applying new configurations to the controller and compute hosts.
-
-    -   activation-complete:
-
-        -   State entered when new configurations have been applied to all
-            controller and compute hosts.
+    **activation-complete**
+        State entered when new configurations have been applied to all
+        controller and compute hosts.
 
     #.  Check the status of the upgrade again to see it has reached
         **activation-complete**, for example.
@@ -448,6 +450,8 @@ Follow the steps below to manually upgrade the System Controller:
             | to_release   | nn.nn                                |
             +--------------+--------------------------------------+
 
+            .. note::
+                This can take more than half an hour to complete.
 
     .. note::
         Alarms are generated as the subcloud load sync\_status is "out-of-sync".

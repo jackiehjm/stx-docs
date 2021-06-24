@@ -7,6 +7,13 @@ Abort Simplex System Upgrades
 =============================
 
 You can abort a Simplex System upgrade before or after upgrading controller-0.
+The upgrade abort procedure can only be applied before the
+:command:`upgrade-complete` command is issued. Once this command is issued the
+upgrade can not be aborted. If the return to the previous release is required,
+then restore the system using the backup data taken prior to the upgrade.
+
+Before starting, verify the upgrade data under `/opt/platform-backup`. This data
+must be present to perform the abort process.
 
 .. _aborting-simplex-system-upgrades-section-N10025-N1001B-N10001:
 
@@ -50,42 +57,39 @@ upgrade. This involves performing a system restore with the previous release.
 
 .. _aborting-simplex-system-upgrades-ol-jmw-kcp-xdb:
 
-#.  Abort the upgrade with the :command:`upgrade-abort` command.
-
-    .. code-block:: none
-
-        $ system upgrade-abort
-
-    The upgrade state is set to aborting. Once this is executed, there is no
-    canceling; the upgrade must be completely aborted.
-
-#.  Lock and downgrade controller-0
-
-    .. code-block:: none
-
-        $ system host-lock controller-0
-        $ system host-downgrade controller-0
-
-    The data is stored in /opt/platform-backup. Ensure the data is present,and
-    preserved through the downgrade.
-
 #.  Install the previous release of |prod-long| Simplex software via network or
     USB.
 
+#.  Verify and configure IP connectivity. External connectivity is required to
+    run the Ansible restore playbook. The |prod-long| boot image will DHCP out all
+    interfaces so the server may have obtained an IP address and have external IP
+    connectivity if a DHCP server is present in your environment. Verify this using
+    the :command:`ip addr` command. Otherwise, manually configure an IP address and default IP
+    route.
+
 #.  Restore the system data. The restore is preserved in /opt/platform-backup.
 
-    For more information, see, :ref:`Upgrading All-in-One Simplex
-    <upgrading-all-in-one-simplex>`.
+    The system will be restored to the state when the :command:`upgrade-start`
+    command was issued. Follow the process in :ref:`Run Restore Playbook Locally on the
+    Controller <running-restore-playbook-locally-on-the-controller>`.
+
+    Specify the upgrade data filename as `backup_filename` and the `initial_backup_dir`
+    as `/opt/platform-backup`.
+
+    The user images will also need to be restored as described in the Postrequisites section.
+
+#.  Unlock controller-0
+
+    .. code-block:: none
+
+        $ system host-unlock controller-0
+
 
 #.  Abort the upgrade with the :command:`upgrade-abort` command.
 
     .. code-block:: none
 
         $ system upgrade-abort
-
-    The system will be restored to the state when the :command:`upgrade-start`
-    command was issued. The :command:`upgrade-abort` command must be issued at
-    this time.
 
     The upgrade state is set to aborting. Once this is executed, there is no
     canceling; the upgrade must be completely aborted.
