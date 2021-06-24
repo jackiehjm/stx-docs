@@ -233,7 +233,7 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
             $ ./configure_client.sh -t platform -r admin_openrc.sh -k
             admin-kubeconfig -w HOME/remote_cli_wd -p
             625619392498.dkr.ecr.us-west-2.amazonaws.com/docker.io/starlingx/stx-platfo
-            rmclients:stx.4.0-v1.3.0
+            rmclients:stx.5.0-v1.4.3
 
         If you specify repositories that require authentication, as shown
         above, you must first perform a :command:`docker login` to that
@@ -290,7 +290,7 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
 
             $ ./configure_client.sh -t platform -r admin-openrc.sh -k
             admin-kubeconfig -w $HOME/remote_cli_wd -p
-            625619392498.dkr.ecr.us-west-2.amazonaws.com/docker.io/starlingx/stx-platformclients:stx.4.0-v1.3.0-wrs.1
+            625619392498.dkr.ecr.us-west-2.amazonaws.com/docker.io/starlingx/stx-platformclients:stx.5.0-v1.4.3
 
 
 

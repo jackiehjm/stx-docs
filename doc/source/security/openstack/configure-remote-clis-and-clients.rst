@@ -92,7 +92,7 @@ The following procedure shows how to configure the Container-backed Remote
 
             $ ./configure_client.sh -t openstack -r admin_openrc.sh -w
             $HOME/remote_cli_wd -p
-            625619392498.dkr.ecr.us-west-2.amazonaws.com/docker.io/starlingx/stx-platformclients:stx.4.0-v1.3.0-|prefix|.1
+            625619392498.dkr.ecr.us-west-2.amazonaws.com/docker.io/starlingx/stx-platformclients:stx.5.0-v1.4.3
 
 
         If you specify repositories that require authentication, as shown
@@ -144,7 +144,7 @@ The following procedure shows how to configure the Container-backed Remote
 
                 $ ./configure_client.sh -t platform -r admin-openrc.sh -k
                 admin-kubeconfig -w $HOME/remote_cli_wd -p
-                625619392498.dkr.ecr.us-west-2.amazonaws.com/docker.io/starlingx/stx-platformclients:stx.4.0-v1.3.0-|prefix|.1
+                625619392498.dkr.ecr.us-west-2.amazonaws.com/docker.io/starlingx/stx-platformclients:stx.5.0-v1.4.3
 
             If you specify repositories that require authentication, you must
             first perform a :command:`docker login` to that repository before
