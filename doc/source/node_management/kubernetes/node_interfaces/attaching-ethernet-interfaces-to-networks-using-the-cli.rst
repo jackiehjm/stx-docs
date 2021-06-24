@@ -17,12 +17,12 @@ Ethernet interfaces are created automatically.
 
 #.  List the attached interfaces.
 
-    To list all interfaces, use the :command:`system host-if-list` command
-    and include the ``-a`` flag.
+    For example, to list all the interfaces on the system, use the
+    :command:`system host-if-list` and include the ``-a`` flag:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-if-list -a controller-0
+        ~(keystone_admin)$ system host-if-list -a controller-1
         +-------------+-----------+-----------+----------+------+----------------+-------------+----------------------------+---------------------------+
         | uuid        | name      | class     | type     | vlan | ports          | uses i/f    | used by i/f                | attributes                |
         |             |           |           |          | id   |                |             |                            |                           |
@@ -46,7 +46,7 @@ Ethernet interfaces are created automatically.
         | fcbe3aca-...| sriovvf1  | pci-sriov | vf       | None | []             | [u'sriov0'] | []                         | MTU=1956,max_tx_rate=100  |
         +-------------+-----------+-----------+----------+------+----------------+-------------+----------------------------+---------------------------+
 
-#.  Attach an interface to a network.
+#.  Modify the interface and attach it to a network.
 
     Use a command sequence of the following form:
 
@@ -93,30 +93,50 @@ Ethernet interfaces are created automatically.
     For example, to attach an interface named **enp0s3** to
     the |OAM| network, using Ethernet interface **enp0s3** on **controller-1**:
 
-    .. code-block:: none
+    #.  Lock the host:
 
-        ~(keystone_admin)$ system host-if-modify -n enp0s3 -c platform controller-1 enp0s3
-        +-------------------+---------------------------------------+
-        | Property          | Value                                 |
-        +-------------------+---------------------------------------+
-        | ifname            | enp0s3                                |
-        | ifclass           | platform                              |
-        | iftype            | ethernet                              |
-        | ports             | [u'enp0s3']                           |
-        | providernetworks  | None                                  |
-        | imac              | 08:00:27:58:0c:e5                     |
-        | imtu              | 1500                                  |
-        | aemode            | None                                  |
-        | schedpolicy       | None                                  |
-        | txhashpolicy      | None                                  |
-        | uuid              | 14300770-13bf-48fd-b9af-756ec7d8adc1  |
-        | ihost_uuid        | e1c47086-3230-4b92-91d0-208c55130a52  |
-        | vlan_id           | None                                  |
-        | uses              | []                                    |
-        | used_by           | []                                    |
-        | created_at        | 2015-12-10T14:24:25.967362+00:00      |
-        | updated_at        | 2015-12-10T17:01:08.761323+00:00      |
-        | sriov_numvfs      | 0                                     |
-        | accelerated       | [u'True']                             |
-        +-------------------+---------------------------------------+
-        ~(keystone_admin)$ interface-network-assign controller-1 enp0s3 oam
+        .. code-block:: none
+
+            ~(keystone_admin)]$ system host-lock controller-1
+
+    #.  To modify the interface enp0s3 class type from ``none`` to ``platform``,
+        execute the following:
+
+        .. code-block:: none
+
+            ~(keystone_admin)$ system host-if-modify -n enp0s3 -c platform controller-1 enp0s3
+            +-------------------+---------------------------------------+
+            | Property          | Value                                 |
+            +-------------------+---------------------------------------+
+            | ifname            | enp0s3                                |
+            | ifclass           | platform                              |
+            | iftype            | ethernet                              |
+            | ports             | [u'enp0s3']                           |
+            | providernetworks  | None                                  |
+            | imac              | 08:00:27:58:0c:e5                     |
+            | imtu              | 1500                                  |
+            | aemode            | None                                  |
+            | schedpolicy       | None                                  |
+            | txhashpolicy      | None                                  |
+            | uuid              | 14300770-13bf-48fd-b9af-756ec7d8adc1  |
+            | ihost_uuid        | e1c47086-3230-4b92-91d0-208c55130a52  |
+            | vlan_id           | None                                  |
+            | uses              | []                                    |
+            | used_by           | []                                    |
+            | created_at        | 2015-12-10T14:24:25.967362+00:00      |
+            | updated_at        | 2015-12-10T17:01:08.761323+00:00      |
+            | sriov_numvfs      | 0                                     |
+            | accelerated       | [u'True']                             |
+            +-------------------+---------------------------------------+
+
+    #.  To assign enp0s3 interface to |OAM| network, execute the following:
+
+        .. code-block:: none
+
+            ~(keystone_admin)$ system interface-network-assign controller-1 enp0s3 oam
+
+    #.  Unlock the host:
+
+        .. code-block:: none
+
+            ~(keystone_admin)$ system host-unlock controller-1
