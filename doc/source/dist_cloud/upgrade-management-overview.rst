@@ -79,11 +79,10 @@ The following prerequisites apply to a |prod-dc| upgrade management service.
 
     -   Use the :command:`system application-remove` and :command:`system
         application-delete` commands to remove the application on the
-        subclouds.
+        subclouds:
 
-    -   Remove any non-GA applications and
-        |prefix|-openstack, from the |prod-dc| system, if they exist.
-
+    -   Remove any non-GA and |prefix|-openstack applications, from the
+        |prod-dc| system, if they exist.
 
 .. only:: partner
 
