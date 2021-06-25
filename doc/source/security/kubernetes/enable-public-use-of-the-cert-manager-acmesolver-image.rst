@@ -23,7 +23,7 @@ However, this repository within registry.local is secured such that only
 The registry.local:9001:/quay.io/jetstack/cert-manager-acmesolver:<tag>
 image needs to be copied by **admin** into a public repository,
 registry.local:9001:/public. If you have not yet set up a public
-repository, see |admintasks-doc|: :ref:`Setting up a Public Repository
+repository, see |admintasks-doc|: :ref:`Set up a Public Repository in Local Docker Registry
 <setting-up-a-public-repository>`.
 
 .. rubric:: |proc|

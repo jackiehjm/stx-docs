@@ -2,9 +2,9 @@
 .. qay1588350945997
 .. _setting-up-a-public-repository:
 
-==========================
-Set up a Public Repository
-==========================
+===================================================
+Set up a Public Repository in Local Docker Registry
+===================================================
 
 There will likely be scenarios where you need to make images publicly available
 to all users.

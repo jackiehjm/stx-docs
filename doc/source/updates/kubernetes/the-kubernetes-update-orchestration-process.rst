@@ -152,7 +152,7 @@ Do the following to manage the instance re-location manually:
 -   Manually perform Kubernetes version upgrade at least one openstack-compute worker host. This
     assumes that at least one openstack-compute worker host does not have any
     instances, or has instances that can be migrated. For more information on
-    manually updating a host, see :ref:`Kubernetes Version Upgrade
+    manually updating a host, see :ref:`Manual Kubernetes Version Upgrade
     <manual-kubernetes-components-upgrade>`.
 
 -   If the migration is prevented by limitations in the VNF or virtual
