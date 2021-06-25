@@ -1,6 +1,6 @@
 
 .. zad1611611564761
-.. enabling-mount-bryce-hw-accelerator-for-hosted-vram-containerized-workloads:
+.. _enabling-mount-bryce-hw-accelerator-for-hosted-vram-containerized-workloads:
 
 ===========================================================================
 Enable Mount Bryce HW Accelerator for Hosted vRAN Containerized Workloads
@@ -21,7 +21,7 @@ enables the Mount Bryce device.
 .. rubric:: |prereq|
 
 
-.. enabling-mount-bryce-hw-accelerator-for-hosted-vram-containerized-workloads-ul-i3g-gh2-l4b:
+.. _enabling-mount-bryce-hw-accelerator-for-hosted-vram-containerized-workloads-ul-i3g-gh2-l4b:
 
 -   The system has been provisioned and unlocked.
 
@@ -40,7 +40,8 @@ enables the Mount Bryce device.
 
         ~(keystone_admin)$ system host-lock controller-0
 
-#.  Assign labels to controller-0.
+#.  Assign labels to controller-0 to enable |SRIOV| device plugin, static
+    Kubernetes CPU manager and restricted Kubernetes topology manager policy.
 
     .. code-block:: none
 
@@ -48,19 +49,27 @@ enables the Mount Bryce device.
         ~(keystone_admin)$ system host-label-assign controller-0 kube-cpu-mgr-policy=static
         ~(keystone_admin)$ system host-label-assign controller-0 kube-topology-mgr-policy=restricted
 
-#.  Modify the CPU.
+#.  Modify the CPU core assignments for controller-0 to have 12
+    application-isolated physical cores \(24 virtual cores if hyper-threading
+    is supported and enabled on the processor\) on processor 0. Your specific
+    application(s) may need more or less cores.
+
 
     .. code-block:: none
 
         ~(keystone_admin)$ system host-cpu-modify -f application-isolated -p0 12 controller-0
 
-#.  Modify the memory.
+#.  Modify the memory configuration for controller-0 numa-node 0 to have 12 1G
+    Huge Pages. Your specific application(s) may need more or less, or
+    different sized Huge Pages.
+
 
     .. code-block:: none
 
         ~(keystone_admin)$ system host-memory-modify controller-0 0 -1G 12
 
-#.  List and enable the device.
+#.  List all devices on controller-0 and identify the name of the Mount Bryce
+    Hardware Accelerator (i.e. device id = 0d5c).
 
     .. code-block:: none
 
@@ -114,11 +123,12 @@ enables the Mount Bryce device.
         | Device 0d5c                                              | 1         | True    |
         +----------------------------------------------------------+-----------+---------+
 
-#.  Modify device 0000:85:00.0 as listed in the table above.
+#.  Modify the Mount Bryce device to enable it, specify the base driver and
+    vf driver, and configure it for 16 VFs.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-device-modify controller-0 pci_0000_85_00_0 -e true  --driver igb_uio --vf-driver igb_uio -N 16
+        ~(keystone_admin)$ system host-device-modify controller-0 pci_0000_85_00_0 -e true --driver igb_uio --vf-driver vfio -N 16
 
 #.  Unlock the host.
 
