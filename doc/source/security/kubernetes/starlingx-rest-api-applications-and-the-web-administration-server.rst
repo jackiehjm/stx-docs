@@ -2,9 +2,9 @@
 .. xlb1552573425956
 .. _starlingx-rest-api-applications-and-the-web-administration-server:
 
-=================================================================
-StarlingX REST API Applications and the Web Administration Server
-=================================================================
+=============================================================================
+StarlingX REST API Applications and the Web Administration Server Certificate
+=============================================================================
 
 |prod| provides support for secure HTTPS external connections used for
 StarlingX REST API application endpoints \(Keystone, Barbican and
@@ -29,3 +29,12 @@ recommended.
 
 You can update the certificate used for HTTPS access at any time.
 
+For more details, refer to:
+
+.. toctree::
+    :maxdepth: 1
+
+    enable-https-access-for-starlingx-rest-and-web-server-endpoints
+    install-update-the-starlingx-rest-and-web-server-certificate
+    secure-starlingx-rest-and-web-certificates-private-key-storage-with-tpm
+    tpm-configuration-considerations

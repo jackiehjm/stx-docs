@@ -2,9 +2,9 @@
 .. xgp1596216287484
 .. _configure-vault:
 
-===============
-Configure Vault
-===============
+========================================
+Configure Vault Using the Vault REST API
+========================================
 
 After Vault has been installed, you can configure Vault for use by hosted
 Kubernetes applications on |prod|. This section describes the minimum

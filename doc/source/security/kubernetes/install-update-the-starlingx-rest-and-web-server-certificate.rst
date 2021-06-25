@@ -2,9 +2,9 @@
 .. law1570030645265
 .. _install-update-the-starlingx-rest-and-web-server-certificate:
 
-=================================================================
+============================================================
 Install/Update the StarlingX Rest and Web Server Certificate
-=================================================================
+============================================================
 
 Use the following procedure to install or update the certificate for the REST
 API application endpoints \(Keystone, Barbican and StarlingX\) and the web
@@ -18,12 +18,10 @@ Intermediate or Root |CA| that you are using, on how to create public
 certificate and private key pairs, signed by intermediate or a Root |CA|, for
 HTTPS.
 
-.. xbooklink
-
-   For lab purposes, see :ref:`Locally Creating Certificates
-   <creating-certificates-locally-using-openssl>` for how to create a test
-   intermediate or Root |CA| certificate and key, and use it to sign test
-   certificates.
+For lab purposes, see :ref:`Create Certificates Locally using openssl
+<create-certificates-locally-using-openssl>` for how to create a test
+intermediate or Root |CA| certificate and key, and use it to sign test
+certificates.
 
 Put the |PEM| encoded versions of the certificate and key in a single file,
 and copy the file to the controller host.

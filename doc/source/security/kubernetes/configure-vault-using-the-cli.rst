@@ -2,9 +2,9 @@
 .. cms1597171128588
 .. _configure-vault-using-the-cli:
 
-=============================
-Configure Vault Using the CLI
-=============================
+===================================
+Configure Vault Using the Vault CLI
+===================================
 
 After Vault has been installed, you can configure Vault for use with |prod|
 using the |CLI|. This section describes the minimum configuration

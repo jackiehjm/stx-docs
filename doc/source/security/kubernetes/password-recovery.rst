@@ -2,9 +2,9 @@
 .. not1578924824783
 .. _password-recovery:
 
-=================
-Password Recovery
-=================
+==========================
+Keystone Password Recovery
+==========================
 
 .. rubric:: |context|
 
