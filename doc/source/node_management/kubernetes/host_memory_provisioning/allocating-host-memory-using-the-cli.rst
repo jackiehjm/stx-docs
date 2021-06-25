@@ -231,4 +231,4 @@ worker or an |AIO| controller.
 
 .. only:: partner
 
-    .. include:: ../../../_includes/avs-note.rest
+    .. include:: /_includes/avs-note.rest
