@@ -19,3 +19,4 @@ Access the System
    install-rest-api-and-horizon-certificate
    openstack-keystone-accounts
    security-system-account-password-rules
+   openstack-login-protection
