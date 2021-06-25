@@ -41,6 +41,10 @@ For more information, see :ref:`Provision SR-IOV Interfaces using the CLI
 
         ~(keystone_admin)$ system host-lock compute-0
 
+    .. note::
+       |AIO-SX| hosts do not need to be locked to provision an |SRIOV| interface and
+       assign it to a data network.
+
 #.  Identify the parent |SRIOV| interface to be configured.
 
     For example:
@@ -154,3 +158,7 @@ For more information, see :ref:`Provision SR-IOV Interfaces using the CLI
     .. code-block:: none
 
         ~(keystone_admin)$ system host-unlock compute-0
+
+    .. note::
+       |AIO-SX| hosts do not need to be locked to provision an |SRIOV| interface and
+       assign it to a data network.
