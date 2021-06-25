@@ -196,6 +196,11 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
 
         The file admin-openrc.sh downloads.
 
+    .. note::
+
+        For a Distributed Cloud system, navigate to **Project** \> **Central Cloud Regions** \> **RegionOne** \>
+        and download the **Openstack RC file**.
+
 #.  If HTTPS has been enabled for the |prod| RESTAPI Endpoints on your
     |prod| system, add the following line to the bottom of admin-openrc.sh:
 
