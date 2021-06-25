@@ -34,11 +34,6 @@ software.
 -   Transfer the new release software signature to controller-0 \(or onto a USB
     stick\).
 
--   Unlock all hosts.
-
-    -   All nodes must be unlocked. The upgrade cannot be started when there
-        are locked nodes \(the health check prevents it\).
-
 .. note::
     The upgrade procedure includes steps to resolve system health issues.
 
