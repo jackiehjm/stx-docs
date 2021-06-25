@@ -25,12 +25,6 @@ Orchestration for a single or group of hosts in each subcloud includes:
 
 .. _fez1617811988954-ol-a1b-v5s-tlb:
 
-#. Create the subcloud patch strategy.
-
-#. Apply the subcloud patch strategy.
-
-#. Delete the subcloud patch strategy.
-
-#. Create the subcloud kube upgrade strategy.
+#. Create the subcloud kube upgrade strategy based on the new version installed as part of the platform.
 
 #. Apply the subcloud kube upgrade strategy.
