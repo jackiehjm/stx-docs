@@ -55,5 +55,3 @@ and copy the file to the controller host.
 
     is the path to the file containing both the intermediate or Root
     |CA|-signed certificate and private key to install.
-
-
