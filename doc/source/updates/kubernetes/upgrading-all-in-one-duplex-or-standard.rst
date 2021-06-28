@@ -78,8 +78,8 @@ of |prod| software.
             +--------------------+-----------+
             | id                 | 2         |
             | state              | importing |
-            | software_version   | 21.05     |
-            | compatible_version | 20.06     |
+            | software_version   | nn.nn     |
+            | compatible_version | nn.nn     |
             | required_patches   |           |
             +--------------------+-----------+
 
@@ -97,8 +97,8 @@ of |prod| software.
             +----+----------+------------------+
             | id | state    | software_version |
             +----+----------+------------------+
-            | 1  | active   | 20.06            |
-            | 2  | imported | 21.05            |
+            | 1  | active   | nn.nn            |
+            | 2  | imported | nn.nn            |
             +----+----------+------------------+
 
 #.  Apply any required software updates.
@@ -163,8 +163,8 @@ of |prod| software.
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | starting                             |
-        | from_release | 20.06                                |
-        | to_release   | 21.05                                |
+        | from_release | nn.nn                                |
+        | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
     This will make a copy of the system data to be used in the upgrade.
@@ -177,7 +177,7 @@ of |prod| software.
 
         -   State entered after :command:`system upgrade-start` completes.
 
-        -   Release 20.06 system data \(for example, postgres databases\) has
+        -   Release nn.nn system data \(for example, postgres databases\) has
             been exported to be used in the upgrade.
 
         -   Configuration changes must not be made after this point, until the
@@ -232,8 +232,8 @@ of |prod| software.
 
             -   State entered when controller-1 upgrade is complete.
 
-            -   System data has been successfully migrated from release 20.06
-                to release 21.05.
+            -   System data has been successfully migrated from release nn.nn
+                to release nn.nn.
 
         -   data-migration-failed:
 
@@ -252,8 +252,8 @@ of |prod| software.
             +--------------+--------------------------------------+
             | uuid         | e7c8f6bc-518c-46d4-ab81-7a59f8f8e64b |
             | state        | data-migration-complete              |
-            | from_release | 20.06                                |
-            | to_release   | 21.05                                |
+            | from_release | nn.nn                                |
+            | to_release   | nn.nn                                |
             +--------------+--------------------------------------+
 
         If the :command:`upgrade-show` status indicates
@@ -274,7 +274,7 @@ of |prod| software.
         -   upgrading-controllers:
 
             -   State entered when controller-1 has been unlocked and is
-                running release 21.05 software.
+                running release nn.nn software.
 
         If it transitions to **unlocked-disabled-failed**, check the issue
         before proceeding to the next step. The alarms may indicate a
@@ -318,7 +318,7 @@ of |prod| software.
 
         -   upgrading-hosts:
 
-            -   State entered when both controllers are running release 21.05
+            -   State entered when both controllers are running release nn.nn
                 software.
 
 #.  Check the system health to ensure that there are no unexpected alarms.
@@ -426,8 +426,8 @@ of |prod| software.
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | activating                           |
-        | from_release | 20.06                                |
-        | to_release   | 21.05                                |
+        | from_release | nn.nn                                |
+        | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
     During the running of the :command:`upgrade-activate` command, new
@@ -464,8 +464,8 @@ of |prod| software.
             +--------------+--------------------------------------+
             | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
             | state        | activation-complete                  |
-            | from_release | 20.06                                |
-            | to_release   | 21.05                                |
+            | from_release | nn.nn                                |
+            | to_release   | nn.nn                                |
             +--------------+--------------------------------------+
 
     .. note::
@@ -481,8 +481,8 @@ of |prod| software.
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | completing                           |
-        | from_release | 20.06                                |
-        | to_release   | 21.05                                |
+        | from_release | nn.nn                                |
+        | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
 #.  Delete the imported load.
@@ -493,11 +493,15 @@ of |prod| software.
         +----+----------+------------------+
         | id | state    | software_version |
         +----+----------+------------------+
-        | 1  | imported | 20.06            |
-        | 2  | active   | 21.05            |
+        | 1  | imported | nn.nn            |
+        | 2  | active   | nn.nn            |
         +----+----------+------------------+
 
         ~(keystone_admin)]$ system load-delete 1
         Deleted load: load 1
 
+.. only:: partner
 
+    .. include:: /_includes/upgrading-all-in-one-duplex-or-standard.rest
+        :start-after: upgradeDX-begin
+        :end-before: upgradeDX-end

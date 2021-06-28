@@ -23,35 +23,35 @@ accessMode.
 
 .. _iqu1616951298602-steps-bdr-qnm-tkb:
 
-#.  Create the **rwx-test-claim** Persistent Volume Claim.
+Create the **rwx-test-claim** Persistent Volume Claim.
 
-    #.  Create a yaml file defining the claim and its attributes.
+#.  Create a yaml file defining the claim and its attributes.
 
-        For example:
+    For example:
 
-        .. code-block:: none
+    .. code-block:: none
 
-            ~(keystone_admin)]$
-            cat <<EOF > rwx-claim.yaml
-            kind: PersistentVolumeClaim
-            apiVersion: v1
-            metadata:
-              name: rwx-test-claim
-            spec:
-              accessModes:
-              - ReadWriteMany
-              resources:
-                requests:
-                  storage: 1Gi
-              storageClassName: cephfs
-            EOF
+        ~(keystone_admin)]$
+        cat <<EOF > rwx-claim.yaml
+        kind: PersistentVolumeClaim
+        apiVersion: v1
+        metadata:
+          name: rwx-test-claim
+        spec:
+          accessModes:
+          - ReadWriteMany
+          resources:
+            requests:
+              storage: 1Gi
+          storageClassName: cephfs
+        EOF
 
-    2.  Apply the settings created above.
+#.  Apply the settings created above.
 
-        .. code-block:: none
+    .. code-block:: none
 
-            ~(keystone_admin)]$ kubectl apply -f rwx-claim.yaml
-            persistentvolumeclaim/rwx-test-claim created
+       ~(keystone_admin)]$ kubectl apply -f rwx-claim.yaml
+       persistentvolumeclaim/rwx-test-claim created
 
 
 This results in 1GB |PVC| being created. You can view the |PVC| using the
@@ -63,8 +63,6 @@ following command.
 
     NAME              STATUS   VOLUME       CAPACITY   ACCESS MODES   STORAGECLASS
     rwx-test-claim    Bound    pvc-df9f..   1Gi        RWX            cephfs
-
-.. code-block:: none
 
     ~(keystone_admin)]$ kubectl get persistentvolume
     NAME       CAPACITY ACCESS.. RECLAIM.. STATUS CLAIM                   STORAGECLASS

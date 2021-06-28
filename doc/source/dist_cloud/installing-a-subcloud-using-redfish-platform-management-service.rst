@@ -2,9 +2,9 @@
 .. vbb1579292724479
 .. _installing-a-subcloud-using-redfish-platform-management-service:
 
-===============================================================
-Installing a Subcloud Using Redfish Platform Management Service
-===============================================================
+============================================================
+Install a Subcloud Using Redfish Platform Management Service
+============================================================
 
 For subclouds with servers that support Redfish Virtual Media Service \(version
 1.2 or higher\), you can use the Central Cloud's CLI to install the ISO and
@@ -76,18 +76,18 @@ subcloud, the subcloud installation has these phases:
 
     .. note::
 
-        Do not power off the servers. The host portion of the server can be
-        powered off, but the |BMC| portion of the server must be powered and
-        accessible from the System Controller.
+       Do not power off the servers. The host portion of the server can be
+       powered off, but the |BMC| portion of the server must be powered and
+       accessible from the System Controller.
 
-        There is no need to wipe the disks.
+       There is no need to wipe the disks.
 
     .. note::
 
-        The servers require connectivity to a gateway router that provides IP
-        routing between the subcloud management subnet and the System Controller
-        management subnet, and between the subcloud |OAM| subnet and the
-        System Controller subnet.
+       The servers require connectivity to a gateway router that provides IP
+       routing between the subcloud management subnet and the System Controller
+       management subnet, and between the subcloud |OAM| subnet and the
+       System Controller subnet.
 
     .. include:: ../_includes/installing-a-subcloud-using-redfish-platform-management-service.rest
        :start-after: begin-ref-1

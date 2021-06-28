@@ -29,6 +29,8 @@ Follow the steps below to manually upgrade the System Controller:
     .. only:: partner
 
         .. include:: ../_includes/upgrading-the-systemcontroller-using-the-cli.rest
+           :start-after: license-begin
+           :end-before: license-end
 
 #.  Transfer iso and signature files to controller-0 \(active controller\) and import the load.
 
@@ -122,10 +124,9 @@ Follow the steps below to manually upgrade the System Controller:
 
     -   started:
 
-
         -   State entered after :command:`system upgrade-start` completes.
 
-        -   Release 20.04 system data \(for example, postgres databases\) has
+        -   Release nn.nn system data \(for example, postgres databases\) has
             been exported to be used in the upgrade.
 
     As part of the upgrade, the upgrade process checks the health of the system
@@ -266,7 +267,8 @@ Follow the steps below to manually upgrade the System Controller:
 
 #.  Upgrade **controller-0**.
 
-    .. xbooklink For more information, see :ref:`|updates-doc| <software-updates-and-upgrades-software-updates>` guide.
+    For more information, see :ref:`Updates and Upgrades
+    <software-updates-and-upgrades-software-updates>`.
 
     #.  Lock **controller-0**.
 
@@ -472,3 +474,9 @@ Follow the steps below to manually upgrade the System Controller:
 
     Run the :command:`system upgrade-show` command, and the status will display
     "no upgrade in progress". The subclouds will be out-of-sync.
+
+.. only:: partner
+
+    .. include:: /_includes/upgrading-the-systemcontroller-using-the-cli.rest
+       :start-after: upgradeDM-begin
+       :end-before: upgradeDM-end
