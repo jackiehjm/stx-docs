@@ -1,5 +1,5 @@
 
-.. _aio_simplex_install_kubernetes:
+.. _aio_simplex_install_kubernetes_r5:
 
 =================================================
 Install Kubernetes Platform on All-in-one Simplex
@@ -168,7 +168,7 @@ Bootstrap system on controller-0
          # certificate as a Trusted CA
          ssl_ca_cert: /home/sysadmin/myprivateregistry.abc.com-ca-cert.pem
 
-      See :ref:`Use a Private Docker Registry <use-private-docker-registry>`
+      See :ref:`Use a Private Docker Registry <use-private-docker-registry-r5>`
       for more information.
 
 
@@ -600,8 +600,15 @@ machine.
        rook--ceph-tools-5778d7f6c-22tms                         1/1     Running     0          64m
        rook--discover-kmv6c                                     1/1     Running     0          65m
 
+.. only:: starlingx
+
    ----------
    Next steps
    ----------
 
    .. include:: ../kubernetes_install_next.txt
+
+
+.. only:: partner
+
+   .. include:: /_includes/72hr-to-license.rest

@@ -1,6 +1,6 @@
 
 
-.. _dedicated_storage_install_kubernetes:
+.. _dedicated_storage_install_kubernetes_r5:
 
 .. only:: partner
 
@@ -601,3 +601,8 @@ host machine.
    ----------
 
    .. include:: ../kubernetes_install_next.txt
+
+
+.. only:: partner
+
+   .. include:: /_includes/72hr-to-license.rest
