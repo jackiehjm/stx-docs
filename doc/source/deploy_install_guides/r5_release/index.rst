@@ -44,7 +44,7 @@ Appendixes
 **********
 
 
-.. _use-private-docker-registry:
+.. _use-private-docker-registry-r5:
 
 Use a private Docker registry
 *****************************
