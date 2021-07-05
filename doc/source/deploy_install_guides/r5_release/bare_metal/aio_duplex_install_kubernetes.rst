@@ -1,5 +1,5 @@
 
-.. _aio_duplex_install_kubernetes:
+.. _aio_duplex_install_kubernetes_r5:
 
 ================================================
 Install Kubernetes Platform on All-in-one Duplex
@@ -170,8 +170,8 @@ Bootstrap system on controller-0
          # certificate as a Trusted CA
          ssl_ca_cert: /home/sysadmin/myprivateregistry.abc.com-ca-cert.pem
 
-         See :ref:`Use a Private Docker Registry <use-private-docker-registry>`
-         for more information.
+      See :ref:`Use a Private Docker Registry <use-private-docker-registry-r5>`
+      for more information.
 
       .. only:: starlingx
 
@@ -956,3 +956,8 @@ machine.
    ----------
 
    .. include:: ../kubernetes_install_next.txt
+
+
+.. only:: partner
+
+   .. include:: /_includes/72hr-to-license.rest

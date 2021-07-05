@@ -600,6 +600,8 @@ machine.
        rook--ceph-tools-5778d7f6c-22tms                         1/1     Running     0          64m
        rook--discover-kmv6c                                     1/1     Running     0          65m
 
+.. only:: starlingx
+
    ----------
    Next steps
    ----------
