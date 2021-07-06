@@ -1,0 +1,19 @@
+.. tar-xvf-begin
+.. tar-xvf-end
+
+.. r1_begin
+
+#.  Download the openstack-armada repo from |prod| in opendev
+    (`https://opendev.org/starlingx/openstack-armada-app/src/branch/master
+    <https://opendev.org/starlingx/openstack-armada-app/src/branch/master>`__)
+    to a remote workstation.
+
+#.  Copy the contents of the 'enhanced-policies' folder from remote workstation
+    to controller.
+
+    .. code-block:: none
+
+        $ cd /home/sysadmin
+        $ scp -r <remote-workstation-with-download-of-openstack-armada-app-REPO>/enhanced-policies   openstack-enhanced-policies-0.1.0
+
+.. r1_end
