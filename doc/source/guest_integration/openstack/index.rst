@@ -2,14 +2,16 @@
 OpenStack VNF Integration
 =========================
 
----------------------------
-Overview of VNF Integration
----------------------------
+.. only:: starlingx
 
-.. toctree::
-   :maxdepth: 1
+   ---------------------------
+   Overview of VNF Integration
+   ---------------------------
 
-   overview-of-vnf-integration
+   .. toctree::
+      :maxdepth: 1
+
+      overview-of-vnf-integration
 
 --------------
 Bootstrap Data
@@ -21,9 +23,9 @@ Bootstrap Data
    bootstrap-data
    configuration-using-metadata
 
-**************************
+--------------------------
 Virtual Network Interfaces
-**************************
+--------------------------
 
 .. toctree::
    :maxdepth: 1
@@ -31,9 +33,9 @@ Virtual Network Interfaces
    standard-virtio-backed-with-vhost-support
    use-a-vif-model-when-creating-ports
    
-********************
+--------------------
 Use Host's PTP Clock
-********************
+--------------------
 
 .. toctree::
    :maxdepth: 1
