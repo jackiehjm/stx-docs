@@ -2,9 +2,9 @@
 .. tfb1485354135500
 .. _security-system-account-password-rules:
 
-=============================
-System Account Password Rules
-=============================
+===============================
+Keystone Account Password Rules
+===============================
 
 |prod-os| enforces a set of strength requirements for new or changed passwords.
 
