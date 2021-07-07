@@ -64,3 +64,9 @@
 .. |pvr| replace:: 00004
 
 .. |release-caveat| replace:: This is a pre-release feature and may not function as described in |prod| 5 documentation.
+
+..
+.. Misc
+..
+
+.. |installer-image-name| replace:: bootimage
