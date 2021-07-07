@@ -7,7 +7,6 @@ NC='\033[0m' # No Color
 
 cd doc/build/html
 
-# 1. Check for rST formatting issues that don't cause build warnings/errors
 echo "Checking for \"grey bar\" formatting errors in output ..."
 GREY_FILES=( $(grep -rl --include="*.html" "blockquote" .) )
 if [ ${#GREY_FILES[@]} != 0 ]; then
@@ -29,6 +28,15 @@ if [ ${#INCLUDE_FILES[@]} != 0 ]; then
         echo -e "${RED}$FILE${NC}"
     done
     echo "Correct the issue(s) in the corresponding rST file(s)."
+    error=1
+fi
+
+echo "Checking for unexpanded substitution errors in output ..."
+INCLUDE_FILES=( $(grep -rl --include="*.html" ' |\S*| ' .) )
+if [ ${#INCLUDE_FILES[@]} != 0 ]; then
+    echo -e "Found ${#INCLUDE_FILES[@]} HTML file(s) that may have unexpanded substitution(s):\n${RED}"
+    grep -r --include="*.html" ' |\S*| ' . | awk -F: '{if(f!=$1)print ""; f=$1; print $0;}'
+    echo -e "${NC}\nCorrect the issue(s) in the corresponding rST file(s).\nHINT: Substitions are not allowed in code blocks, :ref:s,\n:doc:s, or within rST markup such as **, \`\`, and so on."
     error=1
 fi
 
