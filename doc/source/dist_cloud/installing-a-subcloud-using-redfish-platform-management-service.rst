@@ -60,9 +60,9 @@ subcloud, the subcloud installation has these phases:
 
         For example,
 
-        .. code-block:: none
+        .. parsed-literal::
 
-            ~(keystone_admin)]$ system --os-region-name SystemController load-import --active wind-river-cloud-platform-host-installer-<version>.iso wind-river-cloud-platform-host-installer-<version>.sig
+            ~(keystone_admin)]$ system --os-region-name SystemController load-import --active |installer-image-name|.iso |installer-image-name|.sig
 
     In order to be able to deploy subclouds from either controller, all local
     files that are referenced in the **bootstrap.yml** file must exist on both
@@ -95,7 +95,7 @@ subcloud, the subcloud installation has these phases:
 
 #.  Create the install-values.yaml file and use the content to pass the file
     into the :command:`dcmanager subcloud add` command, using the
-    :command:`--install-values` command option.
+    ``--install-values`` command option.
 
     .. note::
 

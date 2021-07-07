@@ -55,11 +55,18 @@
 
 .. |max-workers| replace:: 99
 
-.. |release-caveat| replace:: This is a pre-release feature and may not function as described in |prod| 5.
- 
-.. Product name used in patch file name
+.. Product name used in patch file names
+
 .. |pn| replace:: STLX
 
 .. Product version used in patch file names
 
 .. |pvr| replace:: 00004
+
+.. |release-caveat| replace:: This is a pre-release feature and may not function as described in |prod| 5 documentation.
+
+..
+.. Misc
+..
+
+.. |installer-image-name| replace:: bootimage
