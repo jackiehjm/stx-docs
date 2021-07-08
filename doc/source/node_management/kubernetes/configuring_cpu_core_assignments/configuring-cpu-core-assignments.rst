@@ -9,14 +9,6 @@ Configure CPU Core Assignments
 You can improve the performance and capacity of specific functions by assigning
 them more CPU cores from the Horizon Web interface.
 
-.. note::
-    For better Horizon Web interface response time when installing an
-    |AIO-SX| or |AIO-DX|, it is recommended to configure at least 4 platform
-    cores, in order to reach a performance approximately of 6 platform
-    cores. As CPUs are shared, ensure that you have enough cores available
-    for the application, defined by the total number of cores minus the cores
-    reserved for the platform, vSwitch, isolated, and shared cores.
-
 .. rubric:: |proc|
 
 #.  Lock the host to make changes.
@@ -72,6 +64,12 @@ them more CPU cores from the Horizon Web interface.
         use such that other |NUMA| nodes that service IRQ requests are left
         available for the containers \(hosted applications\) that require
         high-performance IRQ servicing.
+
+        .. note::
+            On an |AIO-SX| or |AIO-DX| deployment, if you plan on running the
+            |prefix|-openstack application, then for adequate Horizon Web
+            Interface and CLI performance, at least 4 platform cores are
+            required; 6 platform cores are recommended.
 
     **Isolated**
         You can isolate a core from the host process scheduler by specifying
