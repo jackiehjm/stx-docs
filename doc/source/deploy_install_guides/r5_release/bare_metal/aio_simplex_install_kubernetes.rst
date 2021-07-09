@@ -109,8 +109,8 @@ Bootstrap system on controller-0
 
       To use this method, create your override file at ``$HOME/localhost.yml``
       and provide the minimum required parameters for the deployment
-      configuration as shown in the example below. Use the OAM IP SUBNET and IP
-      ADDRESSing applicable to your deployment environment.
+      configuration as shown in the example below. Use the |OAM| IP SUBNET and
+      IP ADDRESSing applicable to your deployment environment.
 
       ::
 
@@ -134,8 +134,9 @@ Bootstrap system on controller-0
 
       .. only:: starlingx
 
-         In either of the above options, the bootstrap playbook’s default values
-         will pull all container images required for the |prod-p| from Docker hub.
+         In either of the above options, the bootstrap playbook’s default
+         values will pull all container images required for the |prod-p| from
+         Docker hub.
 
          If you have setup a private Docker registry to use for bootstrapping
          then you will need to add the following lines in $HOME/localhost.yml:
@@ -220,9 +221,9 @@ The newly installed controller needs to be configured.
 
      source /etc/platform/openrc
 
-#. Configure the |OAM| interface of controller-0 and specify the attached network
-   as "oam". Use the |OAM| port name that is applicable to your deployment
-   environment, for example eth0:
+#. Configure the |OAM| interface of controller-0 and specify the attached
+   network as "oam". Use the |OAM| port name that is applicable to your
+   deployment environment, for example eth0:
 
    ::
 
@@ -290,7 +291,7 @@ The newly installed controller needs to be configured.
 
         system modify --vswitch_type ovs-dpdk
 
-      Default recommendation for an AIO-controller is to use a single core
+      Default recommendation for an |AIO|-controller is to use a single core
       for |OVS|-|DPDK| vswitch.
 
       ::
@@ -298,10 +299,11 @@ The newly installed controller needs to be configured.
         # assign 1 core on processor/numa-node 0 on controller-0 to vswitch
         system host-cpu-modify -f vswitch -p0 1 controller-0
 
-      When using |OVS|-|DPDK|, configure 1x 1G huge page for vSwitch memory on each |NUMA| node
-      where vswitch is running on this host, with the following command:
+      When using |OVS|-|DPDK|, configure 1x 1G huge page for vSwitch memory on
+      each |NUMA| node where vswitch is running on this host, with the
+      following command:
 
-      ::
+      .. code-block:: bash
 
          # assign 1x 1G huge page on processor/numa-node 0 on controller-0 to vswitch
          system host-memory-modify -f vswitch -1G 1 controller-0 0
@@ -312,10 +314,10 @@ The newly installed controller needs to be configured.
          huge pages to enable networking and must use a flavor with property:
          hw:mem_page_size=large
 
-         Configure the huge pages for |VMs| in an |OVS|-|DPDK| environment on this host with
-         the commands:
+         Configure the huge pages for |VMs| in an |OVS|-|DPDK| environment on
+         this host with the commands:
 
-         ::
+         .. code-block:: bash
 
             # assign 1x 1G huge page on processor/numa-node 0 on controller-0 to applications
             system host-memory-modify -f application -1G 10 controller-0 0
@@ -333,20 +335,25 @@ The newly installed controller needs to be configured.
 
       .. code-block:: bash
 
-         export NODE=controller-0
-
-         echo ">>> Getting root disk info"
-         ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
-         ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
-         echo "Root disk: $ROOT_DISK, UUID: $ROOT_DISK_UUID"
-
-         echo ">>>> Configuring nova-local"
-         NOVA_SIZE=34
-         NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${NOVA_SIZE})
-         NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
          system host-lvg-add ${NODE} nova-local
-         system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
+
+         # Get UUID of DISK to create PARTITION to be added to ‘nova-local’ local volume group
+         # CEPH OSD Disks can NOT be used
+         # For best performance, do NOT use system/root disk, use a separate physical disk.
+
+         # List host’s disks and take note of UUID of disk to be used
+         system host-disk-list ${NODE}
+         # ( if using ROOT DISK, select disk with device_path of
+         #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
+
+         # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
+         PARTITION_SIZE=34   # Use default of 34G for this nova-local partition
+         system hostdisk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+
+         # Add new partition to ‘nova-local’ local volume group
+         system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
          sleep 2
+
 
    #. **For OpenStack only:** Configure data interfaces for controller-0.
       Data class interfaces are vswitch interfaces used by vswitch to provide
@@ -359,7 +366,7 @@ The newly installed controller needs to be configured.
 
       * Configure the data interfaces for controller-0.
 
-        ::
+        .. code-block:: bash
 
            export NODE=controller-0
 
@@ -406,7 +413,7 @@ Optionally Configure PCI-SRIOV Interfaces
 
    * Configure the pci-sriov interfaces for controller-0.
 
-     ::
+     .. code-block:: bash
 
         export NODE=controller-0
 
@@ -448,7 +455,7 @@ Optionally Configure PCI-SRIOV Interfaces
        containers on this host, configure the number of 1G Huge pages required
        on both |NUMA| nodes.
 
-       ::
+       .. code-block:: bash
 
           # assign 10x 1G huge page on processor/numa-node 0 on controller-0 to applications
           system host-memory-modify -f application controller-0 0 -1G 10
@@ -567,7 +574,8 @@ machine.
        system host-disk-wipe -s --confirm controller-0 /dev/sdb
 
       values.yaml for rook-ceph-apps.
-      ::
+
+      .. code-block:: yaml
 
        cluster:
          storage:

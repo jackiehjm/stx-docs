@@ -135,8 +135,9 @@ Bootstrap system on controller-0
 
       .. only:: starlingx
 
-         In either of the above options, the bootstrap playbook’s default values
-         will pull all container images required for the |prod-p| from Docker hub.
+         In either of the above options, the bootstrap playbook’s default
+         values will pull all container images required for the |prod-p| from
+         Docker hub.
 
          If you have setup a private Docker registry to use for bootstrapping
          then you will need to add the following lines in $HOME/localhost.yml:
@@ -147,7 +148,7 @@ Bootstrap system on controller-0
             :start-after: docker-reg-begin
             :end-before: docker-reg-end
 
-      .. code-block::
+      .. code-block:: yaml
 
          docker_registries:
            quay.io:
@@ -186,7 +187,7 @@ Bootstrap system on controller-0
             :start-after: firewall-begin
             :end-before: firewall-end
 
-      .. code-block::
+      .. code-block:: bash
 
          # Add these lines to configure Docker to use a proxy server
          docker_http_proxy: http://my.proxy.com:1080
@@ -228,7 +229,7 @@ Configure controller-0
    Use the |OAM| port name that is applicable to your deployment environment,
    for example eth0:
 
-   ::
+   .. code-block:: bash
 
      OAM_IF=<OAM-PORT>
      system host-if-modify controller-0 $OAM_IF -c platform
@@ -240,7 +241,7 @@ Configure controller-0
    Use the MGMT port name that is applicable to your deployment environment,
    for example eth1:
 
-   ::
+   .. code-block:: bash
 
      MGMT_IF=<MGMT-PORT>
      system host-if-modify controller-0 lo -c none
@@ -432,7 +433,7 @@ Configure controller-1
    Use the |OAM| port name that is applicable to your deployment environment,
    for example eth0:
 
-   ::
+   .. code-block:: bash
 
       OAM_IF=<OAM-PORT>
       system host-if-modify controller-1 $OAM_IF -c platform
@@ -523,7 +524,7 @@ Configure worker nodes
    (Note that the MGMT interfaces are partially set up automatically by the
    network install procedure.)
 
-   ::
+   .. code-block:: bash
 
      for NODE in worker-0 worker-1; do
         system interface-network-assign $NODE mgmt0 cluster-host
@@ -543,7 +544,7 @@ Configure worker nodes
    #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
       support of installing the stx-openstack manifest and helm-charts later.
 
-      ::
+      .. code-block:: bash
 
          for NODE in worker-0 worker-1; do
            system host-label-assign $NODE  openstack-compute-node=enabled
@@ -559,7 +560,7 @@ Configure worker nodes
       numa-node for |OVS|-|DPDK| vswitch.  This should have been automatically
       configured, if not run the following command.
 
-      ::
+      .. code-block:: bash
 
         for NODE in worker-0 worker-1; do
 
@@ -576,7 +577,7 @@ Configure worker nodes
       each |NUMA| node where vswitch is running on this host, with the
       following command:
 
-      ::
+      .. code-block:: bash
 
          for NODE in worker-0 worker-1; do
 
@@ -598,7 +599,7 @@ Configure worker nodes
          Configure the huge pages for |VMs| in an |OVS|-|DPDK| environment for
          this host with the command:
 
-         ::
+         .. code-block:: bash
 
             for NODE in worker-0 worker-1; do
 
@@ -613,17 +614,27 @@ Configure worker nodes
    #. **For OpenStack only:** Setup disk partition for nova-local volume group,
       needed for stx-openstack nova ephemeral disks.
 
-      ::
+      .. code-block:: bash
 
          for NODE in worker-0 worker-1; do
-           echo "Configuring Nova local for: $NODE"
-           ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
-           ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
-           PARTITION_SIZE=10
-           NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
-           NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
-           system host-lvg-add ${NODE} nova-local
-           system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
+            system host-lvg-add ${NODE} nova-local
+
+            # Get UUID of DISK to create PARTITION to be added to ‘nova-local’ local volume group
+            # CEPH OSD Disks can NOT be used
+            # For best performance, do NOT use system/root disk, use a separate physical disk.
+
+            # List host’s disks and take note of UUID of disk to be used
+            system host-disk-list ${NODE}
+            # ( if using ROOT DISK, select disk with device_path of
+            #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
+
+            # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
+            PARTITION_SIZE=34   # Use default of 34G for this nova-local partition
+            system hostdisk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+
+            # Add new partition to ‘nova-local’ local volume group
+            system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
+            sleep 2
          done
 
    #. **For OpenStack only:** Configure data interfaces for worker nodes.
@@ -637,7 +648,7 @@ Configure worker nodes
 
       * Configure the data interfaces for worker nodes.
 
-        ::
+        .. code-block:: bash
 
            # Execute the following lines with
            export NODE=worker-0
@@ -680,13 +691,13 @@ Optionally Configure PCI-SRIOV Interfaces
    .. only:: openstack
 
       This step is **optional** for OpenStack.  Do this step if using |SRIOV|
-      vNICs in hosted application VMs.  Note that pci-sriov interfaces can
+      vNICs in hosted application |VMs|.  Note that pci-sriov interfaces can
       have the same Data Networks assigned to them as vswitch data interfaces.
 
 
    * Configure the pci-sriov interfaces for worker nodes.
 
-     ::
+     .. code-block::
 
         # Execute the following lines with
         export NODE=worker-0
@@ -723,7 +734,7 @@ Optionally Configure PCI-SRIOV Interfaces
 
      * Configure the Kubernetes |SRIOV| device plugin.
 
-       ::
+       .. code-block:: bash
 
           for NODE in worker-0 worker-1; do
              system host-label-assign $NODE sriovdp=enabled
@@ -733,7 +744,7 @@ Optionally Configure PCI-SRIOV Interfaces
        containers on this host, configure the number of 1G Huge pages required
        on both |NUMA| nodes.
 
-       ::
+       .. code-block:: bash
 
           for NODE in worker-0 worker-1; do
 
@@ -752,7 +763,7 @@ Unlock worker nodes
 
 Unlock worker nodes in order to bring them into service:
 
-::
+.. code-block:: bash
 
   for NODE in worker-0 worker-1; do
      system host-unlock $NODE
@@ -767,7 +778,7 @@ If configuring Ceph Storage Backend, Add Ceph OSDs to controllers
 
 #. Add |OSDs| to controller-0. The following example adds |OSDs| to the `sdb` disk:
 
-   ::
+   .. code-block:: bash
 
      HOST=controller-0
 
@@ -783,7 +794,7 @@ If configuring Ceph Storage Backend, Add Ceph OSDs to controllers
 
 #. Add |OSDs| to controller-1. The following example adds |OSDs| to the `sdb` disk:
 
-   ::
+   .. code-block:: bash
 
      HOST=controller-1
 
