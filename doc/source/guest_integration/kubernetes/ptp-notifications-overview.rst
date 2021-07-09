@@ -31,8 +31,11 @@ same pod and communicates with the application via a REST API.
 -   Supports the **ptp4l** module and |PTP| port that is configured in
     Subordinate mode \(Secondary mode\).
 
--   The |PTP| status notifications are derived based on the following conditions:
+-   The |PTP| notification Sidecar container can be configured with a Liveness
+    Probe, if required. See, :ref:`Liveness Probe <liveness-probe>` for more
+    information.
 
+-   The |PTP| status notifications are derived based on the following conditions:
 
 
 .. _ptp-notifications-overview-simpletable-n1r-dcf-t4b:
@@ -57,7 +60,6 @@ same pod and communicates with the application via a REST API.
 
 **Integrated Containerized Applications**
 
-
 .. _ptp-notifications-overview-ul-rn5-5w2-t4b:
 
 -   Applications that rely on |PTP| for synchronization have the ability to
@@ -73,4 +75,38 @@ same pod and communicates with the application via a REST API.
 The figure below describes the subscription framework for |PTP| notifications.
 
 .. image:: figures/gvf1614702096862.png
+   :width: 500
+
+
+**Liveness Probe**
+
+.. _liveness-probe:
+
+The |PTP| notification Sidecar container can be configured with a Liveness
+probe, if required. You can edit the Sidecar values in the deployment
+manifest to include these parameters.
+
+.. note::
+    Port and timeout values can be configured to meet user preferences.
+
+.. code-block:: none
+
+    cat <<EOF >
+    items:
+    spec:
+      template:
+        spec:
+          containers:
+            livenessProbe:
+              exec:
+                command:
+                - timeout
+                - "2"
+                - curl
+                - http://127.0.0.1:8080/health
+              failureThreshold: 3
+              periodSeconds: 3
+              successThreshold: 1
+              timeoutSeconds: 3
+    EOF
 
