@@ -69,6 +69,9 @@ The following procedure shows how to configure the Container-backed Remote
 
         The file admin-openrc.sh downloads.
 
+        .. note::
+            For a Distributed Cloud system, navigate to **Project** \> **Central Cloud Regions** \> **RegionOne** \>
+            and download the **Openstack RC file**.
 
 #.  On the remote workstation, configure the client access.
 

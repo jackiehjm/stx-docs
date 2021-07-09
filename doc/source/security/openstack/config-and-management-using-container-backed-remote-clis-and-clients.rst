@@ -10,6 +10,10 @@ Remote openstack |CLIs| can be used in any shell after sourcing the generated
 remote |CLI|/client RC file. This RC file sets up the required environment
 variables and aliases for the remote |CLI| commands.
 
+.. note::
+    For a Distributed Cloud system, navigate to **Project** \> **Central Cloud Regions** \> **RegionOne** \>
+    and download the **Openstack RC file**.
+
 .. rubric:: |context|
 
 .. note::
