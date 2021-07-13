@@ -75,7 +75,7 @@ immediately in the event of a persistent loss of maintenance heartbeat.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system service-parameter-modify <platform maintenance heartbeat_failure_action>=degrade
+        ~(keystone_admin)$ system service-parameter-modify platform maintenance heartbeat_failure_action=degrade
         +-------------+--------------------------------------+
         | Property    | Value                                |
         +-------------+--------------------------------------+
