@@ -73,8 +73,30 @@ resources are available to migrate any running instances.
    On AIO Simplex systems you do not need to lock and unlock the host. The
    changes are applied automatically.
 
-For more information about the default firewall rules, see
-:ref:`Default Firewall Rules <security-default-firewall-rules>`.
+.. rubric:: |postreq|
 
-For more information about modifying the firewall options, see
-:ref:`Modify Firewall Options <security-firewall-options>`.
+\(Optional\) If you are running Docker proxy on your system, you need to
+change the **no_proxy** service parameter using the CLI to append the new
+OAM IP, using the following steps:
+
+#.  To list the service parameters, use the :command:`system service-parameter-list`
+    command. Note the old **no_proxy** values.
+
+#.  To append the new OAM IP to the no_proxy parameter, use the
+    :command:`system serviceparameter-modify docker proxy no_proxy=old_value, new_oam_ip(s)`
+    command.
+
+    Where, *<new_oam_ip(s)>* is the new OAM IP(s) that needs to be appended
+    to the **no_proxy** parameter. Ensure you include new values for the
+    floating OAM, controller-0 OAM, and controller-1 if they are changed.
+
+#.  To apply the changes, use the :command:`system service-parameter-apply docker`
+    command.
+
+#.  Lock and unlock the controller(s).
+
+.. seealso::
+
+    :ref:`Default Firewall Rules <security-default-firewall-rules>`
+
+    :ref:`Modify Firewall Options <security-firewall-options>`
