@@ -194,7 +194,7 @@ Configure storage nodes
    (Note that the MGMT interfaces are partially set up automatically by the
    network install procedure.)
 
-   ::
+   .. code-block:: bash
 
     for NODE in storage-0 storage-1; do
        system interface-network-assign $NODE mgmt0 cluster-host
@@ -202,7 +202,7 @@ Configure storage nodes
 
 #. Add |OSDs| to storage-0.
 
-   ::
+   .. code-block:: bash
 
      HOST=storage-0
 
@@ -218,19 +218,19 @@ Configure storage nodes
 
 #. Add |OSDs| to storage-1.
 
-   ::
+   .. code-block:: bash
 
-     HOST=storage-1
+      HOST=storage-1
 
-     # List host’s disks and identify disks you want to use for CEPH OSDs, taking note of their UUID
-     # By default, /dev/sda is being used as system disk and can not be used for OSD.
-     system host-disk-list ${HOST}
+      # List host’s disks and identify disks you want to use for CEPH OSDs, taking note of their UUID
+      # By default, /dev/sda is being used as system disk and can not be used for OSD.
+      system host-disk-list ${HOST}
 
-     # Add disk as an OSD storage
-     system host-stor-add ${HOST} osd <disk-uuid>
+      # Add disk as an OSD storage
+      system host-stor-add ${HOST} osd <disk-uuid>
 
-     # List OSD storage devices and wait for configuration of newly added OSD to complete.
-     system host-stor-list ${HOST}
+      # List OSD storage devices and wait for configuration of newly added OSD to complete.
+      system host-stor-list ${HOST}
 
 --------------------
 Unlock storage nodes
@@ -238,7 +238,7 @@ Unlock storage nodes
 
 Unlock storage nodes in order to bring them into service:
 
-::
+.. code-block:: bash
 
     for STORAGE in storage-0 storage-1; do
        system host-unlock $STORAGE
@@ -259,7 +259,7 @@ Configure worker nodes
    Complete the MGMT interface configuration of the worker nodes by specifying
    the attached network of "cluster-host".
 
-   ::
+   .. code-block:: bash
 
     for NODE in worker-0 worker-1; do
        system interface-network-assign $NODE mgmt0 cluster-host
@@ -279,7 +279,7 @@ Configure worker nodes
    #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
       support of installing the stx-openstack manifest and helm-charts later.
 
-      ::
+      .. code-block:: bash
 
          for NODE in worker-0 worker-1; do
            system host-label-assign $NODE  openstack-compute-node=enabled
@@ -295,7 +295,7 @@ Configure worker nodes
       numa-node for |OVS|-|DPDK| vswitch.  This should have been automatically
       configured, if not run the following command.
 
-      ::
+      .. code-block:: bash
 
         for NODE in worker-0 worker-1; do
 
@@ -312,7 +312,7 @@ Configure worker nodes
       each |NUMA| node where vswitch is running on this host, with the
       following command:
 
-      ::
+      .. code-block:: bash
 
          for NODE in worker-0 worker-1; do
 
@@ -334,7 +334,7 @@ Configure worker nodes
          Configure the huge pages for |VMs| in an |OVS|-|DPDK| environment for
          this host with the command:
 
-         ::
+         .. code-block:: bash
 
             for NODE in worker-0 worker-1; do
 
@@ -349,17 +349,27 @@ Configure worker nodes
    #. **For OpenStack only:** Setup disk partition for nova-local volume group,
       needed for stx-openstack nova ephemeral disks.
 
-      ::
+      .. code-block:: bash
 
          for NODE in worker-0 worker-1; do
-           echo "Configuring Nova local for: $NODE"
-           ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
-           ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
-           PARTITION_SIZE=10
-           NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
-           NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
-           system host-lvg-add ${NODE} nova-local
-           system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
+            system host-lvg-add ${NODE} nova-local
+
+            # Get UUID of DISK to create PARTITION to be added to ‘nova-local’ local volume group
+            # CEPH OSD Disks can NOT be used
+            # For best performance, do NOT use system/root disk, use a separate physical disk.
+
+            # List host’s disks and take note of UUID of disk to be used
+            system host-disk-list ${NODE}
+            # ( if using ROOT DISK, select disk with device_path of
+            #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
+
+            # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
+            PARTITION_SIZE=34   # Use default of 34G for this nova-local partition
+            system hostdisk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+
+            # Add new partition to ‘nova-local’ local volume group
+            system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
+            sleep 2
          done
 
    #. **For OpenStack only:** Configure data interfaces for worker nodes.
@@ -373,7 +383,7 @@ Configure worker nodes
 
       * Configure the data interfaces for worker nodes.
 
-        ::
+        .. code-block:: bash
 
            # Execute the following lines with
            export NODE=worker-0
@@ -416,13 +426,13 @@ Optionally Configure PCI-SRIOV Interfaces
    .. only:: openstack
 
       This step is **optional** for OpenStack.  Do this step if using |SRIOV|
-      vNICs in hosted application VMs.  Note that pci-sriov interfaces can
+      vNICs in hosted application |VMs|.  Note that pci-sriov interfaces can
       have the same Data Networks assigned to them as vswitch data interfaces.
 
 
    * Configure the pci-sriov interfaces for worker nodes.
 
-     ::
+     .. code-block:: none
 
         # Execute the following lines with
         export NODE=worker-0
@@ -459,7 +469,7 @@ Optionally Configure PCI-SRIOV Interfaces
 
      * Configure the Kubernetes |SRIOV| device plugin.
 
-       ::
+       .. code-block:: bash
 
           for NODE in worker-0 worker-1; do
              system host-label-assign $NODE sriovdp=enabled
@@ -469,7 +479,7 @@ Optionally Configure PCI-SRIOV Interfaces
        containers on this host, configure the number of 1G Huge pages required
        on both |NUMA| nodes.
 
-       ::
+       .. code-block:: bash
 
           for NODE in worker-0 worker-1; do
 
@@ -488,7 +498,7 @@ Unlock worker nodes
 
 Unlock worker nodes in order to bring them into service:
 
-::
+.. code-block:: bash
 
     for NODE in worker-0 worker-1; do
        system host-unlock $NODE

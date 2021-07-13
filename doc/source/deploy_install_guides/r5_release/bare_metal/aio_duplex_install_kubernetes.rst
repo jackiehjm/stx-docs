@@ -347,7 +347,6 @@ Configure controller-0
 
          ::
 
-
             # assign 10x 1G huge page on processor/numa-node 0 on controller-0 to applications
             system host-memory-modify -f application -1G 10 controller-0 0
 
@@ -362,26 +361,30 @@ Configure controller-0
    #. **For OpenStack only:** Set up disk partition for nova-local volume
       group, which is needed for stx-openstack nova ephemeral disks.
 
-      ::
+      .. code-block:: bash
 
-        export NODE=controller-0
+         system host-lvg-add ${NODE} nova-local
 
-        echo ">>> Getting root disk info"
-        ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
-        ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
-        echo "Root disk: $ROOT_DISK, UUID: $ROOT_DISK_UUID"
+         # Get UUID of DISK to create PARTITION to be added to ‘nova-local’ local volume group
+         # CEPH OSD Disks can NOT be used
+         # For best performance, do NOT use system/root disk, use a separate physical disk.
 
-        echo ">>>> Configuring nova-local"
-        NOVA_SIZE=34
-        NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${NOVA_SIZE})
-        NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
-        system host-lvg-add ${NODE} nova-local
-        system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
-        sleep 2
+         # List host’s disks and take note of UUID of disk to be used
+         system host-disk-list ${NODE}
+         # ( if using ROOT DISK, select disk with device_path of
+         #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
+
+         # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
+         PARTITION_SIZE=34   # Use default of 34G for this nova-local partition
+         system hostdisk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+
+         # Add new partition to ‘nova-local’ local volume group
+         system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
+         sleep 2
 
    #. **For OpenStack only:** Configure data interfaces for controller-0.
       Data class interfaces are vswitch interfaces used by vswitch to provide
-      VM virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the
+      |VM| virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the
       underlying assigned Data Network.
 
       .. important::
@@ -657,7 +660,7 @@ Configure controller-1
       for |OVS|-|DPDK| vswitch.  This should have been automatically configured,
       if not run the following command.
 
-      ::
+      .. code-block:: bash
 
         # assign 1 core on processor/numa-node 0 on controller-1 to vswitch
         system host-cpu-modify -f vswitch -p0 1 controller-1
@@ -667,7 +670,7 @@ Configure controller-1
       each |NUMA| node where vswitch is running on this host, with the
       following command:
 
-      ::
+      .. code-block:: bash
 
          # assign 1x 1G huge page on processor/numa-node 0 on controller-1 to vswitch
          system host-memory-modify -f vswitch -1G 1 controller-1 0
@@ -682,7 +685,7 @@ Configure controller-1
          Configure the huge pages for |VMs| in an |OVS|-|DPDK| environment for
          this host with the command:
 
-         ::
+         .. code-block:: bash
 
             # assign 10x 1G huge page on processor/numa-node 0 on controller-1 to applications
             system host-memory-modify -f application -1G 10 controller-1 0
@@ -694,21 +697,25 @@ Configure controller-1
    #. **For OpenStack only:** Set up disk partition for nova-local volume group,
       which is needed for stx-openstack nova ephemeral disks.
 
-      ::
+      .. code-block:: bash
 
-         export NODE=controller-1
-
-         echo ">>> Getting root disk info"
-         ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
-         ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
-         echo "Root disk: $ROOT_DISK, UUID: $ROOT_DISK_UUID"
-
-         echo ">>>> Configuring nova-local"
-         NOVA_SIZE=34
-         NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${NOVA_SIZE})
-         NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
          system host-lvg-add ${NODE} nova-local
-         system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
+
+         # Get UUID of DISK to create PARTITION to be added to ‘nova-local’ local volume group
+         # CEPH OSD Disks can NOT be used
+         # For best performance, do NOT use system/root disk, use a separate physical disk.
+
+         # List host’s disks and take note of UUID of disk to be used
+         system host-disk-list ${NODE}
+         # ( if using ROOT DISK, select disk with device_path of
+         #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
+
+         # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
+         PARTITION_SIZE=34   # Use default of 34G for this nova-local partition
+         system hostdisk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+
+         # Add new partition to ‘nova-local’ local volume group
+         system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
          sleep 2
 
    #. **For OpenStack only:** Configure data interfaces for controller-1.
@@ -722,7 +729,7 @@ Configure controller-1
 
       * Configure the data interfaces for controller-1.
 
-        ::
+        .. code-block:: bash
 
            export NODE=controller-1
 
@@ -768,7 +775,7 @@ Optionally Configure PCI-SRIOV Interfaces
 
    * Configure the pci-sriov interfaces for controller-1.
 
-     ::
+     .. code-block:: bash
 
         export NODE=controller-1
 
@@ -802,7 +809,7 @@ Optionally Configure PCI-SRIOV Interfaces
 
      * Configure the Kubernetes |SRIOV| device plugin.
 
-       ::
+       .. code-block:: bash
 
           system host-label-assign controller-1 sriovdp=enabled
 
@@ -810,7 +817,7 @@ Optionally Configure PCI-SRIOV Interfaces
        containers on this host, configure the number of 1G Huge pages required
        on both |NUMA| nodes.
 
-       ::
+       .. code-block:: bash
 
           # assign 10x 1G huge page on processor/numa-node 0 on controller-1 to applications
           system host-memory-modify -f application controller-1 0 -1G 10
@@ -827,7 +834,7 @@ For host-based Ceph:
 
 #. Add an |OSD| on controller-1 for host-based Ceph:
 
-   ::
+   .. code-block:: bash
 
       # List host’s disks and identify disks you want to use for CEPH OSDs, taking note of their UUID
       # By default, /dev/sda is being used as system disk and can not be used for OSD.
@@ -850,7 +857,7 @@ For host-based Ceph:
    #. Assign Rook host labels to controller-1 in support of installing the
       rook-ceph-apps manifest/helm-charts later:
 
-      ::
+      .. code-block:: bash
 
          system host-label-assign controller-1 ceph-mon-placement=enabled
          system host-label-assign controller-1 ceph-mgr-placement=enabled
@@ -862,7 +869,7 @@ Unlock controller-1
 
 Unlock controller-1 in order to bring it into service:
 
-::
+.. code-block:: bash
 
   system host-unlock controller-1
 
@@ -897,13 +904,14 @@ machine.
    #. Configure Rook to use /dev/sdb on controller-0 and controller-1 as a ceph
       |OSD|.
 
-      ::
+      .. code-block:: bash
 
        $ system host-disk-wipe -s --confirm controller-0 /dev/sdb
        $ system host-disk-wipe -s --confirm controller-1 /dev/sdb
 
       values.yaml for rook-ceph-apps.
-      ::
+
+      .. code-block:: yaml
 
        cluster:
          storage:
