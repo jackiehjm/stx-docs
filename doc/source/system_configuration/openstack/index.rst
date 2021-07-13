@@ -16,6 +16,7 @@ Configure OpenStack Services Using Helm Chart Overrides
    configuring-a-live-migration-completion-timeout-in-nova
    configuring-a-pci-alias-in-nova
    configuring-the-rpc-response-timeout-in-cinder
+   configure-the-nfs-backend-on-cinder-backup
    enabling-the-qos-extension-for-neutron
    enabling-the-trunk-extension-for-neutron
    using-helm-overrides-to-enable-internal-dns
