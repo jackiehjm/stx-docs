@@ -6,8 +6,16 @@
 Configure CPU Core Assignments
 ==============================
 
-You can improve the performance and capacity of specific functions by assigning them more
-CPU cores from the Horizon Web interface.
+You can improve the performance and capacity of specific functions by assigning
+them more CPU cores from the Horizon Web interface.
+
+.. note::
+    For better Horizon Web interface response time when installing an
+    |AIO-SX| or |AIO-DX|, it is recommended to configure at least 4 platform
+    cores, in order to reach a performance approximately of 6 platform
+    cores. As CPUs are shared, ensure that you have enough cores available
+    for the application, defined by the total number of cores minus the cores
+    reserved for the platform, vSwitch, isolated, and shared cores.
 
 .. rubric:: |proc|
 
