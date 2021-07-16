@@ -70,3 +70,6 @@
 ..
 
 .. |installer-image-name| replace:: bootimage
+
+.. |OVS-DPDK| replace:: |OVS|-|DPDK|
+.. |ovs-dpdk| replace:: ovs-dpdk

@@ -261,12 +261,11 @@ OpenStack-specific host configuration
      system host-cpu-modify -f vswitch -p0 1 controller-0
 
    Once vswitch_type is set to |OVS|-|DPDK|, any subsequent nodes created will
-   default to automatically assigning 1 vSwitch core for AIO controllers and 2
-   vSwitch cores for compute-labeled worker nodes.
+   default to automatically assigning 1 vSwitch core for |AIO| controllers and
+   2 vSwitch cores for compute-labeled worker nodes.
 
-   When using |OVS|-|DPDK|, configure vSwitch memory per NUMA node with the
-   following
-   command:
+   When using |OVS|-|DPDK|, configure vSwitch memory per |NUMA| node with the
+   following command:
 
    ::
 
@@ -333,7 +332,8 @@ Unlock controller-0 in order to bring it into service:
   system host-unlock controller-0
 
 Controller-0 will reboot in order to apply configuration changes and come into
-service. This can take 5-10 minutes, depending on the performance of the host machine.
+service. This can take 5-10 minutes, depending on the performance of the host
+machine.
 
 -------------------------------------------------
 Install software on controller-1 and worker nodes
@@ -377,17 +377,18 @@ Install software on controller-1 and worker nodes
 
      system host-update 3 personality=worker hostname=worker-0
 
-   Repeat for worker-1. Power on worker-1 and wait for the new host (hostname=None) to
-   be discovered by checking 'system host-list':
+   Repeat for worker-1. Power on worker-1 and wait for the new host
+   (hostname=None) to be discovered by checking 'system host-list':
 
    ::
 
      system host-update 4 personality=worker hostname=worker-1
 
-   For rook storage, there is no storage personality. Some hosts with worker personality
-   providers storage service. Here we still named these worker host storage-x.
-   Repeat for storage-0 and storage-1. Power on storage-0, storage-1 and wait for the
-   new host (hostname=None) to be discovered by checking 'system host-list':
+   For rook storage, there is no storage personality. Some hosts with worker
+   personality providers storage service. Here we still named these worker host
+   storage-x. Repeat for storage-0 and storage-1. Power on storage-0, storage-1
+   and wait for the new host (hostname=None) to be discovered by checking
+   'system host-list':
 
    ::
 
@@ -401,9 +402,9 @@ Install software on controller-1 and worker nodes
         A node with Edgeworker personality is also available. See
         :ref:`deploy-edgeworker-nodes` for details.
 
-#. Wait for the software installation on controller-1, worker-0, and worker-1 to
-   complete, for all servers to reboot, and for all to show as locked/disabled/online in
-   'system host-list'.
+#. Wait for the software installation on controller-1, worker-0, and worker-1
+   to complete, for all servers to reboot, and for all to show as
+   locked/disabled/online in 'system host-list'.
 
    ::
 
@@ -426,9 +427,9 @@ Configure controller-1
 
 .. incl-config-controller-1-start:
 
-Configure the OAM and MGMT interfaces of controller-0 and specify the attached
-networks. Use the OAM and MGMT port names, for example eth0, that are applicable
-to your deployment environment.
+Configure the |OAM| and MGMT interfaces of controller-0 and specify the
+attached networks. Use the |OAM| and MGMT port names, for example eth0, that
+are applicable to your deployment environment.
 
 (Note that the MGMT interface is partially set up automatically by the network
 install procedure.)
@@ -516,12 +517,12 @@ Configure worker nodes
 
         This step is **required** for OpenStack.
 
-        This step is optional for Kubernetes: Do this step if using SRIOV network
-        attachments in hosted application containers.
+        This step is optional for Kubernetes: Do this step if using |SRIOV|
+        network attachments in hosted application containers.
 
-   For Kubernetes SRIOV network attachments:
+   For Kubernetes |SRIOV| network attachments:
 
-   * Configure SRIOV device plug in:
+   * Configure |SRIOV| device plug in:
 
      ::
 
@@ -529,10 +530,10 @@ Configure worker nodes
          system host-label-assign ${NODE} sriovdp=enabled
       done
 
-   * If planning on running DPDK in containers on this host, configure the number
-     of 1G Huge pages required on both NUMA nodes:
+   * If planning on running |DPDK| in containers on this host, configure the
+     number of 1G Huge pages required on both |NUMA| nodes:
 
-     ::
+     .. code-block:: bash
 
         for NODE in worker-0 worker-1; do
            system host-memory-modify ${NODE} 0 -1G 100
@@ -541,7 +542,7 @@ Configure worker nodes
 
    For both Kubernetes and OpenStack:
 
-   ::
+   .. code-block:: bash
 
       DATA0IF=<DATA-0-PORT>
       DATA1IF=<DATA-1-PORT>
@@ -587,7 +588,7 @@ OpenStack-specific host configuration
 #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
    support of installing the stx-openstack manifest and helm-charts later.
 
-   ::
+   .. code-block:: bash
 
      for NODE in worker-0 worker-1; do
        system host-label-assign $NODE  openstack-compute-node=enabled
@@ -598,7 +599,7 @@ OpenStack-specific host configuration
 #. **For OpenStack only:** Set up disk partition for nova-local volume group,
    which is needed for stx-openstack nova ephemeral disks.
 
-   ::
+   .. code-block:: bash
 
      for NODE in worker-0 worker-1; do
        echo "Configuring Nova local for: $NODE"
@@ -617,14 +618,15 @@ Unlock worker nodes
 
 Unlock worker nodes in order to bring them into service:
 
-::
+.. code-block:: bash
 
   for NODE in worker-0 worker-1; do
      system host-unlock $NODE
   done
 
-The worker nodes will reboot in order to apply configuration changes and come into
-service. This can take 5-10 minutes, depending on the performance of the host machine.
+The worker nodes will reboot in order to apply configuration changes and come
+into service. This can take 5-10 minutes, depending on the performance of the
+host machine.
 
 -----------------------
 Configure storage nodes
@@ -632,9 +634,10 @@ Configure storage nodes
 
 #. Assign the cluster-host network to the MGMT interface for the storage nodes.
 
-   Note that the MGMT interfaces are partially set up by the network install procedure.
+   Note that the MGMT interfaces are partially set up by the network install
+   procedure.
 
-   ::
+   .. code-block:: bash
 
       for NODE in storage-0 storage-1; do
          system interface-network-assign $NODE mgmt0 cluster-host
@@ -653,7 +656,7 @@ Unlock storage nodes
 
 Unlock storage nodes in order to bring them into service:
 
-::
+.. code-block:: bash
 
   for STORAGE in storage-0 storage-1; do
      system host-unlock $STORAGE
@@ -715,7 +718,7 @@ On host storage-0 and storage-1:
 
     system application-apply rook-ceph-apps
 
-#. Wait for OSDs pod ready.
+#. Wait for |OSDs| pod ready.
 
    ::
 

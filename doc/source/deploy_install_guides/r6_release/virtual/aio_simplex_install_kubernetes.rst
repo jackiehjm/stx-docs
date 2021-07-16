@@ -209,6 +209,10 @@ For host-based Ceph,
       system host-disk-list controller-0 | awk '/\/dev\/sdb/{print $2}' | xargs -i system host-stor-add controller-0 {}
       system host-stor-list controller-0
 
+   See :ref:`configure-ceph-osds-on-a-host <configure-ceph-osds-on-a-host>` for
+   additional info on configuring the Ceph storage backend such as supporting
+   SSD-backed journals, multiple storage tiers, and so on.
+
 For Rook container-based Ceph:
 
 #. Initialize with add ceph-rook backend:
@@ -301,11 +305,11 @@ OpenStack-specific host configuration
 
 #. **For OpenStack only:** A vSwitch is required.
 
-   The default vSwitch is containerized OVS that is packaged with the
+   The default vSwitch is containerized |OVS| that is packaged with the
    stx-openstack manifest/helm-charts. StarlingX provides the option to use
-   OVS-DPDK on the host, however, in the virtual environment OVS-DPDK is NOT
-   supported, only OVS is supported. Therefore, simply use the default OVS
-   vSwitch here.
+   |OVS-DPDK| on the host, however, in the virtual environment |OVS-DPDK| is
+   NOT supported, only |OVS| is supported. Therefore, simply use the default
+   |OVS| vSwitch here.
 
 #. **For OpenStack Only:** Set up disk partition for nova-local volume group,
    which is needed for stx-openstack nova ephemeral disks.
@@ -339,8 +343,8 @@ Unlock virtual controller-0 to bring it into service:
 
   system host-unlock controller-0
 
-Controller-0 will reboot to apply configuration changes and come into
-service. This can take 5-10 minutes, depending on the performance of the host machine.
+Controller-0 will reboot to apply configuration changes and come into service.
+This can take 5-10 minutes, depending on the performance of the host machine.
 
 --------------------------------------------------------------------------
 Optionally, finish configuration of Ceph-based Persistent Storage Backend
@@ -393,7 +397,7 @@ On **virtual** controller-0:
 
     system application-apply rook-ceph-apps
 
-#. Wait for OSDs pod ready
+#. Wait for |OSDs| pod ready.
 
    ::
 

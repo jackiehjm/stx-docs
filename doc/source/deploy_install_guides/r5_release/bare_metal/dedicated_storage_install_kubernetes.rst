@@ -273,8 +273,8 @@ Configure worker nodes
 
    .. important::
 
-      **These steps are required only if the StarlingX OpenStack application
-      (stx-openstack) will be installed.**
+      These steps are required only if the |prod-os| application
+      (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
       support of installing the stx-openstack manifest and helm-charts later.
@@ -289,10 +289,10 @@ Configure worker nodes
 
    #. **For OpenStack only:** Configure the host settings for the vSwitch.
 
-      **If using OVS-DPDK vswitch, run the following commands:**
+      If using |OVS-DPDK| vswitch, run the following commands:
 
       Default recommendation for worker node is to use a single core on each
-      numa-node for |OVS|-|DPDK| vswitch.  This should have been automatically
+      numa-node for |OVS-DPDK| vswitch.  This should have been automatically
       configured, if not run the following command.
 
       .. code-block:: bash
@@ -308,9 +308,15 @@ Configure worker nodes
         done
 
 
-      When using |OVS|-|DPDK|, configure 1x 1G huge page for vSwitch memory on
-      each |NUMA| node where vswitch is running on this host, with the
-      following command:
+        When using |OVS-DPDK|, configure 1G of huge pages for vSwitch memory on
+        each |NUMA| node where vswitch is running on the host. It is recommended
+        to configure 1x 1G huge page (-1G 1) for vSwitch memory on each |NUMA|
+        node where vswitch is running on host.
+
+        However, due to a limitation with Kubernetes, only a single huge page
+        size is supported on any one host. If your application |VMs| require 2M
+        huge pages, then configure 500x 2M huge pages (-2M 500) for vSwitch
+        memory on each |NUMA| node where vswitch is running on host.
 
       .. code-block:: bash
 
@@ -327,12 +333,13 @@ Configure worker nodes
 
       .. important::
 
-         |VMs| created in an |OVS|-|DPDK| environment must be configured to use
+         |VMs| created in an |OVS-DPDK| environment must be configured to use
          huge pages to enable networking and must use a flavor with property:
          hw:mem_page_size=large
 
-         Configure the huge pages for |VMs| in an |OVS|-|DPDK| environment for
-         this host with the command:
+         Configure the huge pages for |VMs| in an |OVS-DPDK| environment on
+         this host, assuming 1G huge page size is being used on this host, with
+         the following commands:
 
          .. code-block:: bash
 
@@ -364,7 +371,14 @@ Configure worker nodes
             #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
 
             # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
-            PARTITION_SIZE=34   # Use default of 34G for this nova-local partition
+            # The size of the PARTITION needs to be large enough to hold the aggregate size of
+            # all nova ephemeral disks of all VMs that you want to be able to host on this host,
+            # but is limited by the size and space available on the physical disk you chose above.
+            # The following example uses a small PARTITION size such that you can fit it on the
+            # root disk, if that is what you chose above.
+            # Additional PARTITION(s) from additional disks can be added later if required.
+            PARTITION_SIZE=30
+
             system hostdisk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
 
             # Add new partition to ‘nova-local’ local volume group
@@ -374,12 +388,13 @@ Configure worker nodes
 
    #. **For OpenStack only:** Configure data interfaces for worker nodes.
       Data class interfaces are vswitch interfaces used by vswitch to provide
-      VM virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the
+      |VM| virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the
       underlying assigned Data Network.
 
       .. important::
 
-         A compute-labeled worker host **MUST** have at least one Data class interface.
+         A compute-labeled worker host **MUST** have at least one Data class
+         interface.
 
       * Configure the data interfaces for worker nodes.
 
@@ -426,7 +441,7 @@ Optionally Configure PCI-SRIOV Interfaces
    .. only:: openstack
 
       This step is **optional** for OpenStack.  Do this step if using |SRIOV|
-      vNICs in hosted application VMs.  Note that pci-sriov interfaces can
+      vNICs in hosted application |VMs|.  Note that pci-sriov interfaces can
       have the same Data Networks assigned to them as vswitch data interfaces.
 
 
@@ -453,7 +468,8 @@ Optionally Configure PCI-SRIOV Interfaces
            system host-if-modify -m 1500 -n sriov0 -c pci-sriov ${NODE} <sriov0-if-uuid>
            system host-if-modify -m 1500 -n sriov1 -c pci-sriov ${NODE} <sriov1-if-uuid>
 
-           # Create Data Networks that the 'pci-sriov' interfaces will be connected to
+           # If not created already, create Data Networks that the 'pci-sriov'
+           # interfaces will be connected to
            DATANET0='datanet0'
            DATANET1='datanet1'
            system datanetwork-add ${DATANET0} vlan
@@ -464,8 +480,8 @@ Optionally Configure PCI-SRIOV Interfaces
            system interface-datanetwork-assign ${NODE} <sriov1-if-uuid> ${DATANET1}
 
 
-   * To enable using |SRIOV| network attachments for the above interfaces in
-     Kubernetes hosted application containers:
+   * **For Kubernetes only:** To enable using |SRIOV| network attachments for
+     the above interfaces in Kubernetes hosted application containers:
 
      * Configure the Kubernetes |SRIOV| device plugin.
 

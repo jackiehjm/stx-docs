@@ -103,6 +103,8 @@ Host memory provisioning
    host_memory_provisioning/allocating-host-memory-using-horizon
    host_memory_provisioning/allocating-host-memory-using-the-cli
 
+.. _node-interfaces-index:
+
 ---------------
 Node interfaces
 ---------------

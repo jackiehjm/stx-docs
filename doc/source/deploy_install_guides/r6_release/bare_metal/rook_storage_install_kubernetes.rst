@@ -118,7 +118,7 @@ Bootstrap system on controller-0
       as shown in the example below. Use the OAM IP SUBNET and IP ADDRESSing
       applicable to your deployment environment.
 
-      ::
+      .. code-block:: bash
 
         cd ~
         cat <<EOF > localhost.yml
@@ -180,7 +180,7 @@ Configure controller-0
    attached networks. Use the OAM and MGMT port names, for example eth0, that are
    applicable to your deployment environment.
 
-   ::
+   .. code-block:: bash
 
      OAM_IF=<OAM-PORT>
      MGMT_IF=<MGMT-PORT>
@@ -242,9 +242,10 @@ OpenStack-specific host configuration
    used:
 
    * Runs directly on the host (it is not containerized).
-   * Requires that at least 1 core be assigned/dedicated to the vSwitch function.
+   * Requires that at least 1 core be assigned/dedicated to the vSwitch
+     function.
 
-   To deploy the default containerized OVS|:
+   To deploy the default containerized |OVS|:
 
    ::
 
@@ -261,12 +262,11 @@ OpenStack-specific host configuration
      system host-cpu-modify -f vswitch -p0 1 controller-0
 
    Once vswitch_type is set to |OVS|-|DPDK|, any subsequent nodes created will
-   default to automatically assigning 1 vSwitch core for AIO controllers and 2
-   vSwitch cores for compute-labeled worker nodes.
+   default to automatically assigning 1 vSwitch core for |AIO| controllers and
+   2 vSwitch cores for compute-labeled worker nodes.
 
-   When using |OVS|-|DPDK|, configure vSwitch memory per NUMA node with the
-   following
-   command:
+   When using |OVS|-|DPDK|, configure vSwitch memory per |NUMA| node with the
+   following command:
 
    ::
 
@@ -282,7 +282,7 @@ OpenStack-specific host configuration
    pages to enable networking and must use a flavor with property:
    hw:mem_page_size=large
 
-   Configure the huge pages for VMs in an |OVS|-|DPDK| environment with the
+   Configure the huge pages for |VMs| in an |OVS|-|DPDK| environment with the
    command:
 
    ::
@@ -298,7 +298,7 @@ OpenStack-specific host configuration
    .. note::
 
       After controller-0 is unlocked, changing vswitch_type requires
-      locking and unlocking all compute-labeled worker nodes (and/or AIO
+      locking and unlocking all compute-labeled worker nodes (and/or |AIO|
       controllers) to apply the change.
 
 .. incl-config-controller-0-storage-end:
@@ -346,8 +346,8 @@ Install software on controller-1 and worker nodes
 #. As controller-1 boots, a message appears on its console instructing you to
    configure the personality of the node.
 
-#. On the console of controller-0, list hosts to see newly discovered controller-1
-   host (hostname=None):
+#. On the console of controller-0, list hosts to see newly discovered
+   controller-1 host (hostname=None):
 
    ::
 
@@ -428,9 +428,9 @@ Configure controller-1
 
 .. incl-config-controller-1-start:
 
-Configure the |OAM| and MGMT interfaces of controller-0 and specify the attached
-networks. Use the |OAM| and MGMT port names, for example eth0, that are applicable
-to your deployment environment.
+Configure the |OAM| and MGMT interfaces of controller-0 and specify the
+attached networks. Use the |OAM| and MGMT port names, for example eth0, that
+are applicable to your deployment environment.
 
 (Note that the MGMT interface is partially set up automatically by the network
 install procedure.)
@@ -518,12 +518,12 @@ Configure worker nodes
 
         This step is **required** for OpenStack.
 
-        This step is optional for Kubernetes: Do this step if using SRIOV network
-        attachments in hosted application containers.
+        This step is optional for Kubernetes: Do this step if using |SRIOV|
+        network attachments in hosted application containers.
 
-   For Kubernetes SRIOV network attachments:
+   For Kubernetes |SRIOV| network attachments:
 
-   * Configure SRIOV device plug in:
+   * Configure |SRIOV| device plug in:
 
      ::
 
@@ -531,8 +531,8 @@ Configure worker nodes
          system host-label-assign ${NODE} sriovdp=enabled
       done
 
-   * If planning on running |DPDK| in containers on this host, configure the number
-     of 1G Huge pages required on both |NUMA| nodes:
+   * If planning on running |DPDK| in containers on this host, configure the
+     number of 1G Huge pages required on both |NUMA| nodes:
 
      ::
 
@@ -619,7 +619,7 @@ Unlock worker nodes
 
 Unlock worker nodes in order to bring them into service:
 
-::
+.. code-block:: bash
 
   for NODE in worker-0 worker-1; do
      system host-unlock $NODE
@@ -638,7 +638,7 @@ Configure storage nodes
    Note that the MGMT interfaces are partially set up by the network install
    procedure.
 
-   ::
+   .. code-block:: bash
 
       for NODE in storage-0 storage-1; do
          system interface-network-assign $NODE mgmt0 cluster-host
@@ -657,7 +657,7 @@ Unlock storage nodes
 
 Unlock storage nodes in order to bring them into service:
 
-::
+.. code-block:: bash
 
   for STORAGE in storage-0 storage-1; do
      system host-unlock $STORAGE

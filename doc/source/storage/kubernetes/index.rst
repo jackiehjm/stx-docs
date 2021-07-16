@@ -98,6 +98,8 @@ Storage Hosts
    storage-hosts-storage-on-storage-hosts
    replication-groups
 
+.. _configure-ceph-osds-on-a-host:
+
 -----------------------------
 Configure Ceph OSDs on a Host
 -----------------------------
