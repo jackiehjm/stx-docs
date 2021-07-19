@@ -12,7 +12,7 @@ it can be used as a HW accelerator by hosted vRAN containerized workloads on
 
 .. rubric:: |context|
 
-The following procedure shows an example of configuring an AIO-SX system such
+The following procedure shows an example of configuring an |AIO-SX| system such
 that it can support hosting a |DPDK| FlexRAN-reference-architecture container
 image that uses the Mount Bryce HW accelerator. The procedure enables the
 required |SRIOV| drivers, CPU policies and memory of controller-0, and then
@@ -97,7 +97,7 @@ enables the Mount Bryce device.
         | 1d3b      | Communication controller        | Intel Corporation   |
         | 1d2d      | USB controller                  | Intel Corporation   |
         | 1d26      | USB controller                  | Intel Corporation   |
-        | 1d02      | |SATA| controller               | Intel Corporation   |
+        | 1d02      | SATA controller                 | Intel Corporation   |
         | 1d22      | SMBus                           | Intel Corporation   |
         | 1d68      | Serial Attached SCSI controller | Intel Corporation   |
         | 1d70      | SMBus                           | Intel Corporation   |
@@ -113,9 +113,9 @@ enables the Mount Bryce device.
         | C600/X79 series chipset MEI Controller #2                | 0         | False   |
         | C600/X79 series chipset USB2 Enhanced Host Controller #2 | 0         | False   |
         | C600/X79 series chipset USB2 Enhanced Host Controller #1 | 0         | False   |
-        | C600/X79 series chipset 6-Port |SATA| AHCI Controller    | 0         | False   |
+        | C600/X79 series chipset 6-Port SATA AHCI Controller      | 0         | False   |
         | C600/X79 series chipset SMBus Host Controller            | 0         | False   |
-        | C606 chipset Dual 4-Port |SATA|/|SAS| Storage Control uni| 0         | False   |
+        | C606 chipset Dual 4-Port  SATA/SAS Storage Control uni.. | 0         | False   |
         | C600/X79 series chipset SMBus Controller 0               | 0         | False   |
         | C608/C606/X79 series chipset SMBus Controller 1          | 0         | False   |
         | Device 1eb8                                              | 0         | False   |
@@ -124,7 +124,7 @@ enables the Mount Bryce device.
         +----------------------------------------------------------+-----------+---------+
 
 #.  Modify the Mount Bryce device to enable it, specify the base driver and
-    vf driver, and configure it for 16 VFs.
+    vf driver, and configure it for 16 |VFs|.
 
     .. code-block:: none
 

@@ -113,9 +113,9 @@ subcloud, the subcloud installation has these phases:
 
     For example, :command:`--install-values /home/sysadmin/install-values.yaml`.
 
-    .. code-block:: none
+    .. parsed-literal::
 
-        # Specify the |pp| software version, for example 'nn.nn' for the |pp| nn.nn release of software.
+        # Specify the |prod| software version, for example 'nn.nn' for the |prod| nn.nn release of software.
         software_version: <software_version>
         bootstrap_interface: <bootstrap_interface_name> # e.g. eno1
         bootstrap_address: <bootstrap_interface_ip_address> # e.g.128.224.151.183
@@ -213,7 +213,7 @@ subcloud, the subcloud installation has these phases:
     This configuration will install container images from the local registry on
     your central cloud. The Central Cloud's local registry's HTTPS Certificate
     must have the Central Cloud's |OAM| IP, **registry.local** and
-    **registry.central** in the certificate's SAN list. For example, a valid
+    **registry.central** in the certificate's |SAN| list. For example, a valid
     certificate contains a |SAN| list:
 
     .. code-block:: none
@@ -228,7 +228,7 @@ subcloud, the subcloud installation has these phases:
 
         ~(keystone_admin)]$ system certificate-install -m docker_registry path_to_cert
 
-    If you prefer to install container images from the default WRS AWS ECR
+    If you prefer to install container images from the default WRS |AWS| ECR
     external registries, make the following substitutions for the
     **docker\_registries** sections of the file.
 
@@ -253,8 +253,8 @@ subcloud, the subcloud installation has these phases:
         --install-values /home/sysadmin/install-values.yaml \
         --bmc-password <bmc_password>
 
-        if the ``--sysadmin-password`` is not specified, you are prompted to
-        enter it once the full commmand is invoked.  The password is masked
+        If the ``--sysadmin-password`` is not specified, you are prompted to
+        enter it once the full command is invoked.  The password is masked
         when it is entered.
 
     .. code-block:: none

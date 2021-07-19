@@ -27,13 +27,13 @@ To list the storage backend types installed on a system:
 
     ~(keystone_admin)$  system storage-backend-list
 
-    +--------+---------------+--------+-----------+----+--------+------------+
-    | uuid   | name          |backend |state      |task|services|capabilities|
-    +--------+---------------+--------+-----------+----+--------+------------+
-    | 27e... |ceph-store     |ceph    |configured |None| None   |min_repli.:1|
-    |        |               |        |           |    |        |replicati.:1|
-    | 502... |shared_services|external|configured |None| glance |            |
-    +--------+---------------+--------+-----------+----+--------+------------+
+    +--------+-----------------+----------+------------+------+----------+--------------+
+    | uuid   | name            | backend  | state      | task | services | capabilities |
+    +--------+-----------------+----------+------------+------+----------+--------------+
+    | 27e... | ceph-store      | ceph     | configured | None | None     | min_repli.:1 |
+    |        |                 |          |            |      |          | replicati.:1 |
+    | 502... | shared_services | external | configured | None | glance   |              |
+    +--------+-----------------+----------+------------+------+----------+--------------+
 
 
 
@@ -49,28 +49,28 @@ For example:
 .. code-block:: none
 
     ~(keystone_admin)$  system storage-backend-show ceph-store
-    +--------------------+-------------------------------------+
-    |Property            | Value                               |
-    +--------------------+-------------------------------------+
-    |backend             | ceph                                |
-    |name                | ceph-store                          |
-    |state               | configured                          |
-    |task                | None                                |
-    |services            | None                                |
-    |capabilities        | min_replication: 1                  |
-    |                    | replication: 1                      |
-    |object_gateway      | False                               |
-    |ceph_total_space_gib| 198                                 |
-    |object_pool_gib     | None                                |
-    |cinder_pool_gib     | None                                |
-    |kube_pool_gib       | None                                |
-    |glance_pool_gib     | None                                |
-    |ephemeral_pool_gib  | None                                |
-    |tier_name           | storage                             |
-    |tier_uuid           | d3838363-a527-4110-9345-00e299e6a252|
-    |created_at          | 2019-08-12T21:08:50.166006+00:00    |
-    |updated_at          | None                                |
-    +--------------------+-------------------------------------+
+    +----------------------+--------------------------------------+
+    | Property             | Value                                |
+    +----------------------+--------------------------------------+
+    | backend              | ceph                                 |
+    | name                 | ceph-store                           |
+    | state                | configured                           |
+    | task                 | None                                 |
+    | services             | None                                 |
+    | capabilities         | min_replication: 1                   |
+    |                      | replication: 1                       |
+    | object_gateway       | False                                |
+    | ceph_total_space_gib | 198                                  |
+    | object_pool_gib      | None                                 |
+    | cinder_pool_gib      | None                                 |
+    | kube_pool_gib        | None                                 |
+    | glance_pool_gib      | None                                 |
+    | ephemeral_pool_gib   | None                                 |
+    | tier_name            | storage                              |
+    | tier_uuid            | d3838363-a527-4110-9345-00e299e6a252 |
+    | created_at           | 2019-08-12T21:08:50.166006+00:00     |
+    | updated_at           | None                                 |
+    +----------------------+--------------------------------------+
 
 
 .. _storage-configuring-and-management-storage-related-cli-commands-section-N10086-N1001C-N10001:
