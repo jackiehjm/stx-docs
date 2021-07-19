@@ -122,11 +122,15 @@ the system configuration is updated.
 
 .. rubric:: |postreq|
 
-If alarms are not cleared after a few minutes, lock and unlock the worker
-nodes to apply any other incomplete configuration changes.
+-   If alarms are not cleared after a few minutes, lock and unlock the worker
+    nodes to apply any other incomplete configuration changes.
 
-For more information about the default firewall rules, see
-:ref:`Default Firewall Rules <security-default-firewall-rules>`.
+-   \(Optional\) If you are running Docker proxy on your system, you need to
+    change the **no_proxy** service parameter using the CLI to append the new
+    OAM IP. See, :ref:`Change the OAM IP Configuration Using the CLI <changing-the-oam-ip-configuration-using-the-cli>`.
 
-For more information about modifying the firewall options, see
-:ref:`Modify Firewall Options <security-firewall-options>`.
+.. seealso::
+
+    :ref:`Default Firewall Rules <security-default-firewall-rules>`
+
+    :ref:`Modify Firewall Options <security-firewall-options>`
