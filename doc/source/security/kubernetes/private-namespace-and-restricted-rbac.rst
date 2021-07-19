@@ -189,7 +189,7 @@ with read/write type access to a single private namespace
 
         .. code-block:: none
 
-            ~(keystone_admin)$ system helm-override-update --values rbd-namespaces.yaml \
+            ~(keystone_admin)$ system helm-override-update --reuse-values --values rbd-namespaces.yaml \
             platform-integ-apps rbd-provisioner kube-system
 
     #.  Apply the application.

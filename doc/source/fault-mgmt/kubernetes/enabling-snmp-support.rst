@@ -147,7 +147,7 @@ In order to enable and configure |SNMP|, complete the following steps.
 
     .. code-block:: none
 
-       ~(keystone_admin)$ system helm-override-update --values user_conf.yaml snmp snmp kube-system
+       ~(keystone_admin)$ system helm-override-update --reuse-values --values user_conf.yaml snmp snmp kube-system
        +----------------+------------------------------------------------------------------------------------------------------------+
        | Property       | Value                                                                                                      |
        +----------------+------------------------------------------------------------------------------------------------------------+
@@ -230,7 +230,7 @@ In order to enable and configure |SNMP|, complete the following steps.
 
     .. code-block:: none
 
-       ~(keystone_admin)$ system helm-override-update --values snmp_port.yaml nginx-ingress-controller ingress-nginx kube-system
+       ~(keystone_admin)$ system helm-override-update --reuse-values --values snmp_port.yaml nginx-ingress-controller ingress-nginx kube-system
        +----------------+------------------------------------------+
        | Property       | Value                                    |
        +----------------+------------------------------------------+
@@ -369,7 +369,7 @@ update its configuration.
 
     .. code-block:: none
 
-       ~(keystone_admin)$ system helm-override-update --values user_conf.yaml snmp snmp kube-system
+       ~(keystone_admin)$ system helm-override-update --reuse-values --values user_conf.yaml snmp snmp kube-system
        +----------------+------------------------------------------------------------------------------------------------------------+
        | Property       | Value                                                                                                      |
        +----------------+------------------------------------------------------------------------------------------------------------+
@@ -442,7 +442,7 @@ Modify the external UDP port used for receiving SNMP requests.
 
     .. code-block:: none
 
-       ~(keystone_admin)$ system helm-override-update --values snmp_port.yaml nginx-ingress-controller nginx-ingress kube-system
+       ~(keystone_admin)$ system helm-override-update --reuse-values --values snmp_port.yaml nginx-ingress-controller nginx-ingress kube-system
        +----------------+------------------------------------------+
        | Property       | Value                                    |
        +----------------+------------------------------------------+
@@ -511,7 +511,7 @@ traps will not be generated.
 
     .. code-block:: none
 
-       ~(keystone_admin)$ system helm-override-update --values user_conf.yaml snmp snmp kube-system
+       ~(keystone_admin)$ system helm-override-update --reuse-values --values user_conf.yaml snmp snmp kube-system
        ~(keystone_admin)$ system application-apply snmp
 
 #.  Modify your nginx ingress controller Helm chart values file
@@ -537,5 +537,5 @@ traps will not be generated.
 
     .. code-block:: none
 
-       ~(keystone_admin)$ system helm-override-update --values snmp_port.yaml nginx-ingress-controller nginx-ingress kube-system
+       ~(keystone_admin)$ system helm-override-update --reuse-values --values snmp_port.yaml nginx-ingress-controller nginx-ingress kube-system
        ~(keystone_admin)$ system application-apply nginx-ingress-controller

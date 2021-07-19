@@ -64,7 +64,7 @@ repository, see |admintasks-doc|: :ref:`Set up a Public Repository in Local Dock
 
         .. code-block:: none
 
-            ~(keystone_admin)]$ system helm-override-update --values cm-override-values.yaml cert-manager cert-manager cert-manager
+            ~(keystone_admin)]$ system helm-override-update --reuse-values --values cm-override-values.yaml cert-manager cert-manager cert-manager
 
     #.  Reapply cert-manager.
 

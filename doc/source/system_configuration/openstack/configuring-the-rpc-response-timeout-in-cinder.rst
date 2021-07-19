@@ -26,7 +26,7 @@ override.
 
     .. parsed-literal::
 
-        ~(keystone_admin)]$ system helm-override-update --values /home/sysadmin/cinder-overrides.yaml |prefix|-openstack cinder openstack --reuse-values
+        ~(keystone_admin)]$ system helm-override-update --reuse-values --values /home/sysadmin/cinder-overrides.yaml |prefix|-openstack cinder openstack
 
 #.  Confirm that the user\_override lists the correct live migration completion timeout.
 

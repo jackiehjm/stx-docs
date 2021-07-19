@@ -89,7 +89,7 @@ list.
 
     .. parsed-literal::
 
-        ~(keystone_admin)]$ system helm-override-update --values ./gpu_override.yaml |prefix|-openstack nova openstack --reuse-values
+        ~(keystone_admin)]$ system helm-override-update --reuse-values --values ./gpu_override.yaml |prefix|-openstack nova openstack --reuse-values
 
 #.  Apply the changes.
 
