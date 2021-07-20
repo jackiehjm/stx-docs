@@ -21,13 +21,24 @@ these http/https proxies.
 Proxy overview
 --------------
 
-The figure below shows how proxies are used in StarlingX.
+The figure below shows how proxies are used in |prod|.
 
-.. figure:: figures/stx_proxy_overview.png
-   :scale: 60%
-   :alt: StarlingX proxy usage
+.. only:: starlingx
 
-   *Figure 1: StarlingX proxy usage*
+   .. figure:: figures/stx_proxy_overview.png
+      :width: 500
+      :alt: StarlingX proxy usage
+
+      *Figure 1: StarlingX proxy usage*
+
+.. only:: partner
+
+   .. figure:: figures/stx_proxy_overview.png
+      :width: 500
+      :alt: Proxy usage
+
+      Figure 1: Proxy usage
+
 
 The items labeled *a* and *b* in the figure indicate two configuration files:
 
@@ -73,13 +84,15 @@ The numbered items in the figure indicate the process flow:
     kubectl and system operations, will use the sysadmin shell and
     configuration file *a*.
 
+.. only:: starlingx
 
-----------------------
-Set proxy at bootstrap
-----------------------
+   ----------------------
+   Set proxy at bootstrap
+   ----------------------
 
-To set the Docker proxy at bootstrap time, refer to
-:doc:`Ansible Bootstrap Configurations <../deploy_install_guides/r3_release/ansible_bootstrap_configs>`.
+   To set the Docker proxy at bootstrap time, refer to :doc:`Ansible Bootstrap
+   Configurations
+   <../deploy_install_guides/r5_release/ansible_bootstrap_configs>`.
 
 ------------------
 Set HTTP proxy URL

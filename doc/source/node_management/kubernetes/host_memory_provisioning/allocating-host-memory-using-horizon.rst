@@ -15,8 +15,6 @@ Allocate Host Memory Using Horizon
 .. only:: partner
 
     .. include:: /_includes/avs-note.rest
-        :start-after: introduction-text-begin
-        :end-before: introduction-text-end
 
 Due to limitations in Kubernetes, only a single huge page size can be used
 per host.
@@ -29,8 +27,6 @@ per host.
 .. only:: partner
 
     .. include:: /_includes/avs-note.rest
-        :start-after: usage-text-begin
-        :end-before: usage-text-end
 
 You must also provision one 1GiB huge page per |NUMA| node prior to unlocking a
 worker or an |AIO| controller.
