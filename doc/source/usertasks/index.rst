@@ -14,8 +14,13 @@ end-user tasks.
 
    kubernetes/index
 
----------
-OpenStack
----------
+.. only:: partner
 
-Coming soon
+   ---------
+   OpenStack
+   ---------
+
+   .. toctree::
+      :maxdepth: 2
+
+      openstack/index
