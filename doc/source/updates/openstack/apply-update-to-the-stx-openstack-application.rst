@@ -57,8 +57,8 @@ and the following is a positional argument which must come last:
 
 .. note::
 
-    In a |prod-dc| configuration the |prod-dc| System Controllers should be
-    upgrade before the subclouds.
+    In a |prod-dc| configuration the System Controllers should be
+    upgraded before the subclouds.
 
 .. rubric:: |proc|
 

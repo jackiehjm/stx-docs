@@ -36,7 +36,6 @@ To list the storage backend types installed on a system:
     +--------+-----------------+----------+------------+------+----------+--------------+
 
 
-
 To show details for a storage backend:
 
 .. code-block:: none

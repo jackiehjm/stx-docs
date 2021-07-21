@@ -20,10 +20,9 @@ to receive the packet in order to reach the |VM|.
 
 .. only:: partner
 
-    .. include:: /_includes/static-vxlan.rest
-
-    :start-after: vswitch-text-1-begin
-    :end-before:  vswitch-text-1-end
+    .. include:: ../../_includes/static-vxlan.rest
+        :start-after: vswitch-text-1-begin
+        :end-before:  vswitch-text-1-end
 
 
 Static |VXLAN| is limited to use on one data network. If configured, it must be
