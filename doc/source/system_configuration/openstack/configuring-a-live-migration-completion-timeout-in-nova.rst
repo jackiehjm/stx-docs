@@ -36,7 +36,7 @@ to apply other Nova overrides globally.
 
     .. parsed-literal::
 
-        ~(keystone_admin)]$ system helm-override-update --values ./nova_override.yaml |prefix|-openstack nova openstack --reuse-values
+        ~(keystone_admin)]$ system helm-override-update --reuse-values --values ./nova_override.yaml |prefix|-openstack nova openstack --reuse-values
 
 #.  Confirm that the user\_override lists the correct live migration completion timeout.
 
