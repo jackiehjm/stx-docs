@@ -43,6 +43,7 @@
 .. |FQDN| replace:: :abbr:`FQDN (Fully Qualified Domain Name)`
 .. |FQDNs| replace:: :abbr:`FQDNs (Fully Qualified Domain Names)`
 .. |GNP| replace:: :abbr:`GNP (Global Network Policy)`
+.. |GCC| replace:: :abbr:`GCC (GNU Compiler Collection)`
 .. |ICMP| replace:: :abbr:`ICMP (Internet Control Message Protocol)`
 .. |IEEE| replace:: :abbr:`IEEE (Institute of Electrical and Electronics Engineers)`
 .. |IGMP| replace:: :abbr:`IGMP (Internet Group Management Protocol)`
