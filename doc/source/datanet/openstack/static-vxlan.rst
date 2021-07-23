@@ -20,7 +20,7 @@ to receive the packet in order to reach the |VM|.
 
 .. only:: partner
 
-    .. include:: ../../_includes/static-vxlan.rest
+    .. include:: /_includes/static-vxlan.rest
         :start-after: vswitch-text-1-begin
         :end-before:  vswitch-text-1-end
 
