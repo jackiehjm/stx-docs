@@ -2,36 +2,44 @@
 .. klf1569260954792
 .. _using-kubernetes-cpu-manager-static-policy:
 
-========================================
-Use Kubernetes CPU Manager Static Policy
-========================================
+===================================================================================
+Use Kubernetes CPU Manager Static Policy’s Guaranteed QoS class with exclusive CPUs
+===================================================================================
 
-You can launch a container pinned to a particular set of CPU cores using a
-Kubernetes CPU manager static policy.
+You can launch a container pinned to a particular set of CPU cores using the
+Kubernetes CPU manager static policy's **Guaranteed QoS** class.
 
 .. rubric:: |prereq|
 
-You will need to enable this CPU management mechanism before applying a
-policy.
+You will need to enable the Kubernetes CPU Manager's Static Policy for the
+target worker node(s).
 
-See |admintasks-doc|: :ref:`Optimizing Application Performance <kubernetes-cpu-manager-policies>` for details on how to enable this CPU management mechanism.
+See |admintasks-doc|: :ref:`Kubernetes CPU Manager Policies
+<kubernetes-cpu-manager-policies>` for details on how to enable this CPU
+management mechanism.
 
 .. rubric:: |proc|
 
-#.  Define a container running a CPU stress command.
+#.  Create your pod with <resources:requests:cpu/memory> and
+    <resources:limits:cpu/memory> according to
+    `https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/#cpu-management-policies
+    <https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/#cpu-management-policies>`__,
+    in order to select the Guaranteed QoS class with exclusive CPUs.
+    Specifically this requires either:
 
-    .. note::
+    -   <resources:requests:cpu/memory> to be equal to
+        <resources:limits:cpu/memory>, and cpu to be an integer value > 1,
 
-        -   The pod will be pinned to the allocated set of CPUs on the host
-            and have exclusive use of those CPUs if <resource:request:cpu> is
-            equal to <resource:cpulimit>.
+    or
 
-        -   Resource memory must also be specified for guaranteed resource
-            allocation.
+    -   only <resources:limits:cpu/memory> to be specified, and cpu to be an
+        integer value > 1.
 
-        -   Processes within the pod can float across the set of CPUs allocated
-            to the pod, unless the application in the pod explicitly pins them
-            to a subset of the CPUs.
+    The CPUs allocated to the pod will be exclusive (or dedicated/pinned) to
+    the pod, and taken from the CPUs configured as ‘application’ function for
+    the host. Processes within the pod can float across the set of CPUs
+    allocated to the pod, unless the application in the pod explicitly pins the
+    process(es) to a subset of the CPUs.
 
     For example:
 

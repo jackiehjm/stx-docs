@@ -12,15 +12,9 @@ which are completely isolated from the host process scheduler.
 This allows you to customize Kubernetes CPU management when policy is set to
 static so that low-latency applications run with optimal efficiency.
 
-The following restrictions apply when using application-isolated cores in the
-Horizon Web interface and sysinv:
+The following restriction applies when using application-isolated cores:
 
 -   There must be at least one platform and one application core on each host.
-
-    .. warning::
-        The presence of an application core on the node and nodes missing this
-        configuration will fail.
-
 
 For example:
 
@@ -32,9 +26,10 @@ For example:
     ~(keystone)admin)$ system host-cpu-modify  -f application-isolated -p1 15 worker-1
     ~(keystone)admin)$ system host-unlock worker-1
 
-All SMT siblings on a core will have the same assigned function. On host boot,
-any CPUs designated as isolated will be specified as part of the isolcpu kernel
-boot argument, which will isolate them from the process scheduler.
+All |SMT| siblings (hyperthreads, if enabled) on a core will have the same
+assigned function. On host boot, any CPUs designated as isolated will be
+specified as part of the isolcpus kernel boot argument, which will isolate them
+from the process scheduler.
 
 .. only:: partner
 
