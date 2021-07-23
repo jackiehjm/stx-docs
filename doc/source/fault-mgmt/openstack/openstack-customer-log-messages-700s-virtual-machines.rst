@@ -39,7 +39,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.106  | Create canceled for instance <instance\_name>\[, reason = <reason\_text>\]                                                                                                         | C        |
+    | 700.106  | Create cancelled for instance <instance\_name>\[, reason = <reason\_text>\]                                                                                                        | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -63,7 +63,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.112  | Delete canceled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                    | C        |
+    | 700.112  | Delete cancelled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                   | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -75,7 +75,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.115  | Pause issued by <tenant\_name\> or by the system  against instance <instance\_name> owned by <tenant\_name> on host <host\_name>\[, reason = <reason\_text>\]                      | C        |
+    | 700.115  | Pause issued by <tenant\_name\> or by the system against instance <instance\_name> owned by <tenant\_name> on host <host\_name>\[, reason = <reason\_text>\]                       | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -87,7 +87,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.118  | Pause canceled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                     | C        |
+    | 700.118  | Pause cancelled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                    | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -111,7 +111,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.124  | Unpause canceled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                   | C        |
+    | 700.124  | Unpause cancelled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                  | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -135,7 +135,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.130  | Suspend canceled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                   | C        |
+    | 700.130  | Suspend cancelled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                  | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -159,7 +159,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.136  | Resume canceled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                    | C        |
+    | 700.136  | Resume cancelled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                   | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -183,7 +183,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.142  | Start canceled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                     | C        |
+    | 700.142  | Start cancelled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                    | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -207,7 +207,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.148  | Stop canceled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                      | C        |
+    | 700.148  | Stop cancelled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                     | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -231,7 +231,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.154  | Live-Migrate canceled for instance <instance\_name> now on host <host\_name>\[, reason = <reason\_text>\]                                                                          | C        |
+    | 700.154  | Live-Migrate cancelled for instance <instance\_name> now on host <host\_name>\[, reason = <reason\_text>\]                                                                         | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -255,7 +255,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.160  | Cold-Migrate canceled for instance <instance\_name> now on host <host\_name>\[, reason = <reason\_text>\]                                                                          | C        |
+    | 700.160  | Cold-Migrate cancelled for instance <instance\_name> now on host <host\_name>\[, reason = <reason\_text>\]                                                                         | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -279,7 +279,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.166  | Cold-Migrate-Confirm canceled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                      | C        |
+    | 700.166  | Cold-Migrate-Confirm cancelled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                     | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -303,7 +303,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.172  | Cold-Migrate-Revert canceled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                       | C        |
+    | 700.172  | Cold-Migrate-Revert cancelled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                      | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -327,7 +327,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.178  | Evacuate canceled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                  | C        |
+    | 700.178  | Evacuate cancelled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                 | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -352,7 +352,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.184  | Reboot canceled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                    | C        |
+    | 700.184  | Reboot cancelled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                   | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -376,7 +376,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.190  | Rebuild canceled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                   | C        |
+    | 700.190  | Rebuild cancelled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                  | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -400,7 +400,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.196  | Resize canceled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                    | C        |
+    | 700.196  | Resize cancelled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                                   | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -424,7 +424,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.202  | Resize-Confirm canceled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                            | C        |
+    | 700.202  | Resize-Confirm cancelled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                           | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
@@ -448,7 +448,7 @@ Customer Log Messages 700s - Virtual Machines
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+
-    | 700.208  | Resize-Revert canceled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                             | C        |
+    | 700.208  | Resize-Revert cancelled for instance <instance\_name> on host <host\_name>\[, reason = <reason\_text>\]                                                                            | C        |
     |          |                                                                                                                                                                                    |          |
     |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                      |          |
     +----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+

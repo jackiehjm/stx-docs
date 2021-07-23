@@ -10,266 +10,78 @@ Alarm Messages - 700s
 
 .. _alarm-messages-700s-table-zrd-tg5-v5:
 
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
+.. table:: Table 1. Alarm Messages
+    :widths: auto
 
-   * - **Alarm ID: 700.001**
-     - Instance <instance\_name> owned by <tenant\_name> has failed on host
-       <host\_name>
-
-       Instance <instance\_name> owned by <tenant\_name> has failed to
-       schedule
-   * - Entity Instance
-     - tenant=<tenant-uuid>.instance=<instance-uuid>
-   * - Severity:
-     - C\*
-   * - Proposed Repair Action
-     - The system will attempt recovery; no repair action required.
-
------
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Alarm ID: 700.002**
-     - Instance <instance\_name> owned by <tenant\_name> is paused on host
-       <host\_name>.
-   * - Entity Instance
-     - tenant=<tenant-uuid>.instance=<instance-uuid>
-   * - Severity:
-     - C\*
-   * - Proposed Repair Action
-     - Unpause the instance.
-
------
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Alarm ID: 700.003**
-     - Instance <instance\_name> owned by <tenant\_name> is suspended on host
-       <host\_name>.
-   * - Entity Instance
-     - tenant=<tenant-uuid>.instance=<instance-uuid>
-   * - Severity:
-     - C\*
-   * - Proposed Repair Action
-     - Resume the instance.
-
------
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Alarm ID: 700.004**
-     - Instance <instance\_name> owned by <tenant\_name> is stopped on host
-       <host\_name>.
-   * - Entity Instance
-     - tenant=<tenant-uuid>.instance=<instance-uuid>
-   * - Severity:
-     - C\*
-   * - Proposed Repair Action
-     - Start the instance.
-
------
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Alarm ID: 700.005**
-     - Instance <instance\_name> owned by <tenant\_name> is rebooting on host
-       <host\_name>.
-   * - Entity Instance
-     - tenant=<tenant-uuid>.instance=<instance-uuid>
-   * - Severity:
-     - C\*
-   * - Proposed Repair Action
-     - Wait for reboot to complete; if problem persists contact next level of
-       support.
-
------
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Alarm ID: 700.006**
-     - Instance <instance\_name> owned by <tenant\_name> is rebuilding on host
-       <host\_name>.
-   * - Entity Instance
-     - tenant=<tenant-uuid>.instance=<instance-uuid>
-   * - Severity:
-     - C\*
-   * - Proposed Repair Action
-     - Wait for rebuild to complete; if problem persists contact next level of
-       support.
-
------
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Alarm ID: 700.007**
-     - Instance <instance\_name> owned by <tenant\_name> is evacuating from host
-       <host\_name>.
-   * - Entity Instance
-     - tenant=<tenant-uuid>.instance=<instance-uuid>
-   * - Severity:
-     - C\*
-   * - Proposed Repair Action
-     - Wait for evacuate to complete; if problem persists contact next level of
-       support.
-
------
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Alarm ID: 700.008**
-     - Instance <instance\_name> owned by <tenant\_name> is live migrating from
-       host <host\_name>
-   * - Entity Instance
-     - tenant=<tenant-uuid>.instance=<instance-uuid>
-   * - Severity:
-     - W\*
-   * - Proposed Repair Action
-     - Wait for live migration to complete; if problem persists contact next
-       level of support.
-
------
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Alarm ID: 700.009**
-     - Instance <instance\_name> owned by <tenant\_name> is cold migrating from
-       host <host\_name>
-   * - Entity Instance
-     - tenant=<tenant-uuid>.instance=<instance-uuid>
-   * - Severity:
-     - C\*
-   * - Proposed Repair Action
-     - Wait for cold migration to complete; if problem persists contact next
-       level of support.
-
------
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Alarm ID: 700.010**
-     - Instance <instance\_name> owned by <tenant\_name> has been cold-migrated
-       to host <host\_name> waiting for confirmation.
-   * - Entity Instance
-     - tenant=<tenant-uuid>.instance=<instance-uuid>
-   * - Severity:
-     - C\*
-   * - Proposed Repair Action
-     - Confirm or revert cold-migrate of instance.
-
------
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Alarm ID: 700.011**
-     - Instance <instance\_name> owned by <tenant\_name> is reverting cold
-       migrate to host <host\_name>
-   * - Entity Instance
-     - tenant=<tenant-uuid>.instance=<instance-uuid>
-   * - Severity:
-     - C\*
-   * - Proposed Repair Action
-     - Wait for cold migration revert to complete; if problem persists contact
-       next level of support.
-
------
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Alarm ID: 700.012**
-     - Instance <instance\_name> owned by <tenant\_name> is resizing on host
-       <host\_name>
-   * - Entity Instance
-     - tenant=<tenant-uuid>.instance=<instance-uuid>
-   * - Severity:
-     - C\*
-   * - Proposed Repair Action
-     - Wait for resize to complete; if problem persists contact next level of
-       support.
-
------
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Alarm ID: 700.013**
-     - Instance <instance\_name> owned by <tenant\_name> has been resized on
-       host <host\_name> waiting for confirmation.
-   * - Entity Instance
-     - tenant=<tenant-uuid>.instance=<instance-uuid>
-   * - Severity:
-     - C\*
-   * - Proposed Repair Action
-     - Confirm or revert resize of instance.
-
------
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Alarm ID: 700.014**
-     - Instance <instance\_name> owned by <tenant\_name> is reverting resize
-       on host <host\_name>.
-   * - Entity Instance
-     - tenant=<tenant-uuid>.instance=<instance-uuid>
-   * - Severity:
-     - C\*
-   * - Proposed Repair Action
-     - Wait for resize revert to complete; if problem persists contact next
-       level of support.
-
------
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Alarm ID: 700.016**
-     - Multi-Node Recovery Mode
-   * - Entity Instance
-     - subsystem=vim
-   * - Severity:
-     - m\*
-   * - Proposed Repair Action
-     - Wait for the system to exit out of this mode.
-
------
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Alarm ID: 700.017**
-     - Server group <server\_group\_name> <policy> policy was not satisfied.
-   * - Entity Instance
-     - server-group<server-group-uuid>
-   * - Severity:
-     - M
-   * - Proposed Repair Action
-     - Migrate instances in an attempt to satisfy the policy; if problem
-       persists contact next level of support.
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | Alarm ID | Description                                                                                                         | Severity | Proposed Repair Action                                                                                    |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | Entity Instance ID                                                                                                                                                                                                                         |
+    +==========+=====================================================================================================================+==========+===========================================================================================================+
+    | 700.001  | Instance <instance_name> owned by <tenant_name> has failed on host <host_name>.                                     | C\*      | The system will attempt recovery; no repair action required.                                              |
+    |          |                                                                                                                     |          |                                                                                                           |
+    |          | Instance <instance_name> owned by <tenant_name> has failed to schedule.                                             |          |                                                                                                           |
+    |          |                                                                                                                     |          |                                                                                                           |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                                                                              |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | 700.002  | Instance <instance_name> owned by <tenant_name> is paused on host <host_name>.                                      | C\*      | Unpause the instance.                                                                                     |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                                                                              |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | 700.003  | Instance <instance_name> owned by <tenant_name> is suspended on host <host_name>.                                   | C\*      | Resume the instance.                                                                                      |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                                                                              |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | 700.004  | Instance <instance_name> owned by <tenant_name> is stopped on host <host_name>.                                     | C\*      | Start the instance.                                                                                       |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                                                                              |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | 700.005  | Instance <instance_name> owned by <tenant_name> is rebooting on host <host_name>.                                   | C\*      | Wait for reboot to complete; if problem persists contact next level of support.                           |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                                                                              |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | 700.006  | Instance <instance_name> owned by <tenant_name> is rebuilding on host <host_name>.                                  | C\*      | Wait for rebuild to complete; if problem persists contact next level of support.                          |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                                                                              |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | 700.007  | Instance <instance_name> owned by <tenant_name> is evacuating from host <host_name>.                                | C\*      | Wait for evacuate to complete; if problem persists contact next level of support.                         |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                                                                              |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | 700.008  | Instance <instance_name> owned by <tenant_name> is live migrating from host <host_name>.                            | W\*      | Wait for live migration to complete; if problem persists contact next level of support.                   |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                                                                              |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | 700.009  | Instance <instance_name> owned by <tenant_name> is cold migrating from host <host_name>.                            | C\*      | Wait for cold migration to complete; if problem persists contact next level of support.                   |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                                                                              |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | 700.010  | nstance <instance_name> owned by <tenant_name> has been cold-migrated to host <host_name> waiting for confirmation. | C\*      | Confirm or revert cold-migrate of instance.                                                               |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                                                                              |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | 700.011  | Instance <instance_name> owned by <tenant_name> is reverting cold migrate to host <host_name>.                      | C\*      | Wait for cold migration revert to complete; if problem persists contact next level of support.            |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                                                                              |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | 700.012  | Instance <instance_name> owned by <tenant_name> is resizing on host <host_name>.                                    | C\*      | Wait for resize to complete; if problem persists contact next level of support.                           |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                                                                              |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | 700.013  | Instance <instance_name> owned by <tenant_name> has been resized on host <host_name> waiting for confirmation.      | C\*      | Confirm or revert resize of instance.                                                                     |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                                                                              |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | 700.014  | Instance <instance_name> owned by <tenant_name> is reverting resize on host <host_name>.                            | C\*      | Wait for resize revert to complete; if problem  persists contact next level of support.                   |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | tenant=<tenant-uuid>.instance=<instance-uuid>                                                                                                                                                                                              |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | 700.016  | Multi-Node Recovery Mode.                                                                                           | m\*      |Wait for the system to exit out of this mode.                                                              |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | subsystem=vim                                                                                                                                                                                                                              |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    | 700.017  | Server group <server_group_name> <policy> policy was not satisfied.                                                 | m\*      | Migrate instances in an attempt to satisfy the policy; if problem persists contact next level of support. |
+    +          +---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+
+    |          | server-group<server-group-uuid>                                                                                                                                                                                                            |
+    +----------+---------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------+

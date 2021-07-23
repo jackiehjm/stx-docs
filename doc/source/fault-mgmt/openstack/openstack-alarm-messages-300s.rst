@@ -34,10 +34,8 @@ management-affecting alarm is one that cannot be ignored at the indicated
 severity level or higher by using relaxed alarm rules during an orchestrated
 patch or upgrade operation.
 
-.. note::
-
-    Differences exist between the terminology emitted by some alarms and that
-    used in the |CLI|, GUI, and elsewhere in the documentations:
+Differences exist between the terminology emitted by some alarms and that used
+in the |CLI|, GUI, and elsewhere in the documentation:
 
 .. _alarm-messages-300s-ul-dsf-dxn-bhb:
 
@@ -64,15 +62,15 @@ patch or upgrade operation.
     +----------+-------------------------------------------------------------------------------------+----------+---------------------------------------------------------------------------------------------------+
     | 300.004  | No enabled compute host with connectivity to provider network.                      | M\*      | Enable compute hosts with required provider network connectivity.                                 |
     +          +-------------------------------------------------------------------------------------+----------+---------------------------------------------------------------------------------------------------+
-    |          | host=<hostname>.providernet=<pnet-uuid>                                                                                                                                                            |
+    |          | service=networking.providernet=<pnet-uuid>                                                                                                                                                         |
     +----------+-------------------------------------------------------------------------------------+----------+---------------------------------------------------------------------------------------------------+
-    | 300.005  | Communication failure detected over provider network x% for ranges y% on host z%.   | M\*      | Check neighbor switch port VLAN assignments.                                                      |
+    | 300.005  | Communication failure detected over provider network x% for ranges y% on host z%.   | M\*      | Check neighbour switch port VLAN assignments.                                                     |
     |          |                                                                                     |          |                                                                                                   |
     |          | or                                                                                  |          |                                                                                                   |
     |          |                                                                                     |          |                                                                                                   |
     |          | Communication failure detected over provider network x% on host z%.                 |          |                                                                                                   |
     +          +-------------------------------------------------------------------------------------+----------+---------------------------------------------------------------------------------------------------+
-    |          | providernet=<pnet-uuid>.host=<hostname>                                                                                                                                                            |
+    |          | host=<hostname>.service=networking.providernet=<pnet-uuid>                                                                                                                                         |
     +----------+-------------------------------------------------------------------------------------+----------+---------------------------------------------------------------------------------------------------+
     | 300.010  | ML2 Driver Agent non-reachable                                                      | M\*      | Monitor and if condition persists, contact next level of support.                                 |
     |          |                                                                                     |          |                                                                                                   |
@@ -106,7 +104,7 @@ patch or upgrade operation.
     +          +-------------------------------------------------------------------------------------+----------+---------------------------------------------------------------------------------------------------+
     |          | host=<hostname>                                                                                                                                                                                    |
     +----------+-------------------------------------------------------------------------------------+----------+---------------------------------------------------------------------------------------------------+
-    | 300.016  | Dynamic routing agent x% lost connectivity to peer y%                               | M\*      | If condition persists, fix connectivity to peer                                                   |
+    | 300.016  | Dynamic routing agent x% lost connectivity to peer y%                               | M\*      | If condition persists, fix connectivity to peer.                                                  |
     +          +-------------------------------------------------------------------------------------+----------+---------------------------------------------------------------------------------------------------+
     |          | host=<hostname>,agent=<agent-uuid>,bgp-peer=<bgp-peer>                                                                                                                                             |
     +----------+-------------------------------------------------------------------------------------+----------+---------------------------------------------------------------------------------------------------+

@@ -26,8 +26,8 @@ severity level or higher by using relaxed alarm rules during an orchestrated
 patch or upgrade operation.
 
 
-Differences exist between the terminology emitted by some alarms and that
-used in the CLI, GUI, and elsewhere in the documentations:
+Differences exist between the terminology emitted by some alarms and that used
+in the |CLI|, GUI, and elsewhere in the documentation:
 
 -   References to provider networks in alarms refer to data networks.
 
