@@ -51,7 +51,7 @@ Follow these steps to perform the configuration.
                   runAsUser: 42424                                                   # cinder UID
 
     For other options for configuring |NFS| backend on cinder-backup, see:
-    `NFS Backup Driver <https://docs.openstack.org/cinder/wallaby/configuration/block-storage/backup/nfs-backup-driver.html>`__.
+    `NFS Backup Driver <https://docs.openstack.org/cinder/ussuri/configuration/block-storage/backup/nfs-backup-driver.html>`__.
 
 #.  The following commands are used for updating the Cinder Helm Chart overrides for |prod-os|:
 
@@ -61,7 +61,7 @@ Follow these steps to perform the configuration.
 
            ~(keystone_admin)]$ system helm-override-update |prefix|-openstack cinder openstack --values=\<path/to/override/file\>
 
-    #. Shows the updated Helm Chart overrides for Cinder:
+    #. Show the updated Helm Chart overrides for Cinder:
 
        .. parsed-literal::
 
@@ -69,7 +69,7 @@ Follow these steps to perform the configuration.
 
 #.  The following commands are used to apply the updated Helm Chart overrides:
 
-    #. Applies updated Helm Chart overrides:
+    #. Apply updated Helm Chart overrides:
 
        .. parsed-literal::
 
@@ -88,9 +88,10 @@ Follow these steps to perform the configuration.
 
        .. code-block:: none
 
-           sed '/export OS_AUTH_URL/c\export OS_AUTH_URL=http://keystone.openstack.svc.cluster.local/v3' /etc/platform/openrc > ~/openrc.os source ./openrc.os
+           ~(keystone_admin)]$ sed '/export OS_AUTH_URL/c\export OS_AUTH_URL=http://keystone.openstack.svc.cluster.local/v3' /etc/platform/openrc > ~/openrc.os
+           ~(keystone_admin)]$ source ./openrc.os
 
-    #. Shows the OpenStack volume service:
+    #. Show the OpenStack volume service:
 
        .. code-block:: none
 
