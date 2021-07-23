@@ -140,6 +140,7 @@ Optimize application performance
    :maxdepth: 1
 
    using-kubernetes-cpu-manager-static-policy
+   use-application-isolated-cores
 
 ----------------------------------------
 Adding an SRIOV interface to a container

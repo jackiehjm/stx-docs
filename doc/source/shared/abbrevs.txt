@@ -106,6 +106,7 @@
 .. |SLA| replace:: :abbr:`SLA (Service Level Agreement)`
 .. |SLAs| replace:: :abbr:`SLAs (Service Level Agreements)`
 .. |SM| replace:: :abbr:`SM (Service Manager)`
+.. |SMT| replace:: :abbr:`SMT (Simultaneous Multithreading)`
 .. |SNAT| replace:: :abbr:`SNAT (Source Network Address Translation)`
 .. |SNMP| replace:: :abbr:`SNMP (Simple Network Management Protocol)`
 .. |SRIOV| replace:: :abbr:`SR-IOV (Single Root I/O Virtualization)`
