@@ -218,6 +218,10 @@ For host-based Ceph,
       system host-disk-list controller-0 | awk '/\/dev\/sdb/{print $2}' | xargs -i system host-stor-add controller-0 {}
       system host-stor-list controller-0
 
+   See :ref:`configure-ceph-osds-on-a-host <configure-ceph-osds-on-a-host>` for
+   additional info on configuring the Ceph storage backend such as supporting
+   SSD-backed journals, multiple storage tiers, and so on.
+
 For Rook container-based Ceph:
 
 #. Initialize with add ceph-rook backend:

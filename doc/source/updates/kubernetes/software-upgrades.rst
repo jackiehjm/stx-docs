@@ -18,9 +18,10 @@ hosts are upgraded one at time while continuing to provide its hosting services
 to its hosted applications. An upgrade can be performed manually or using
 Upgrade Orchestration, which automates much of the upgrade procedure, leaving a
 few manual steps to prevent operator oversight. For more information on manual
-upgrades, see :ref:`Manual |prod| Components Upgrade
+upgrades, see :ref:`Manual PLatform Components Upgrade
 <manual-upgrade-overview>`. For more information on upgrade orchestration, see
-:ref:`Orchestrated |prod| Component Upgrade <orchestration-upgrade-overview>`.
+:ref:`Orchestrated Platform Component Upgrade
+<orchestration-upgrade-overview>`.
 
 .. warning::
     Do NOT use information in the |updates-doc| guide for |prod-dc|
@@ -56,7 +57,7 @@ message formats from the old release of software. Before upgrading the second
 controller, is the "point-of-no-return for an in-service abort" of the upgrades
 process. The second controller is loaded with the new release of software and
 becomes the new Standby controller. For more information on manual upgrades,
-see :ref:`Manual |prod| Components Upgrade <manual-upgrade-overview>` .
+see :ref:`Manual Platform Components Upgrade <manual-upgrade-overview>` .
 
 If present, storage nodes are locked, upgraded and unlocked one at a time in
 order to respect the redundancy model of |prod| storage nodes. Storage nodes

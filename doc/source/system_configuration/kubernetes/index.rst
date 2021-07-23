@@ -35,6 +35,8 @@ NTP Server Configuration
    configuring-ntp-servers-and-services-using-the-cli
    resynchronizing-a-host-to-the-ntp-server
 
+.. _ptp-server-config-index:
+
 ------------------------
 PTP Server Configuration
 ------------------------

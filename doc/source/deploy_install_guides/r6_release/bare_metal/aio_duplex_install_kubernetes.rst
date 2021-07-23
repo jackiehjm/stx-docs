@@ -39,7 +39,8 @@ Bootstrap system on controller-0
 --------------------------------
 
 #. Login using the username / password of "sysadmin" / "sysadmin".
-   When logging in for the first time, you will be forced to change the password.
+   When logging in for the first time, you will be forced to change the
+   password.
 
    ::
 
@@ -107,9 +108,9 @@ Bootstrap system on controller-0
    #. Create a minimal user configuration override file.
 
       To use this method, create your override file at ``$HOME/localhost.yml``
-      and provide the minimum required parameters for the deployment configuration
-      as shown in the example below. Use the OAM IP SUBNET and IP ADDRESSing
-      applicable to your deployment environment.
+      and provide the minimum required parameters for the deployment
+      configuration as shown in the example below. Use the OAM IP SUBNET and IP
+      ADDRESSing applicable to your deployment environment.
 
       ::
 
@@ -222,8 +223,9 @@ Configure controller-0
 #. Configure the |OAM| interface of controller-0 and specify the
    attached network as "oam".
 
-   Use the |OAM| port name that is applicable to your deployment environment,
-   for example eth0:
+   The following example configures the |OAM| interface on a physical untagged
+   ethernet port. Use  the |OAM| port name that is applicable to your
+   deployment environment, for example eth0:
 
    .. code-block:: bash
 
@@ -231,11 +233,15 @@ Configure controller-0
      system host-if-modify controller-0 $OAM_IF -c platform
      system interface-network-assign controller-0 $OAM_IF oam
 
+   To configure a vlan or aggregated ethernet interface, see :ref:`Node
+   Interfaces <node-interfaces-index>`.
+
 #. Configure the MGMT interface of controller-0 and specify the attached
    networks of both "mgmt" and "cluster-host".
 
-   Use the MGMT port name that is applicable to your deployment environment,
-   for example eth1:
+   The following example configures the MGMT interface on a physical untagged
+   ethernet port. Use the MGMT port name that is applicable to your deployment
+   environment, for example eth1:
 
    .. code-block:: bash
 
@@ -249,11 +255,17 @@ Configure controller-0
      system interface-network-assign controller-0 $MGMT_IF mgmt
      system interface-network-assign controller-0 $MGMT_IF cluster-host
 
+   To configure a vlan or aggregated ethernet interface, see :ref:`Node
+   Interfaces <node-interfaces-index>`.
+
 #. Configure |NTP| servers for network time synchronization:
 
    ::
 
      system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org
+
+     To configure |PTP| instead of |NTP|, see ref:`PTP Server Configuration
+     <ptp-server-config-index>`.
 
 .. only:: openstack
 
@@ -276,56 +288,111 @@ Configure controller-0
         system host-label-assign controller-0 openvswitch=enabled
         system host-label-assign controller-0 sriov=enabled
 
+   #. **For OpenStack only:** Due to the additional openstack services running
+      on the |AIO| controller platform cores, a minimum of 4 platform cores are
+      required, 6 platform cores are recommended.
+
+      Increase the number of platform cores with the following commands:
+
+      .. code-block::
+
+         # assign 6 cores on processor/numa-node 0 on controller-0 to platform
+         system host-cpu-modify -f platform -p0 6 controller-0
+
+   #. Due to the additional openstack services’ containers running on the
+      controller host, the size of the docker filesystem needs to be
+      increased from the default size of 30G to 60G.
+
+      .. code-block:: bash
+
+         # check existing size of docker fs
+         system host-fs-list controller-1
+         # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
+         system host-lvg-list controller-1
+         # if existing docker fs size + cgts-vg available space is less than 60G,
+         # you will need to add a new disk partition to cgts-vg
+
+            # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
+            # ( if not use another unused disk )
+
+            # Get device path of ROOT DISK
+            system host-show controller-1 --nowrap | fgrep rootfs
+
+            # Get UUID of ROOT DISK by listing disks
+            system host-disk-list controller-1
+
+            # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
+            # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
+            PARTITION_SIZE=30
+            system hostdisk-partition-add -t lvm_phys_vol controller-1 <root-disk-uuid> ${PARTITION_SIZE}
+
+            # Add new partition to ‘cgts-vg’ local volume group
+            system host-pv-add controller-1 cgts-vg <NEW_PARTITION_UUID>
+            sleep 2    # wait for partition to be added
+
+            # Increase docker filesystem to 60G
+            system host-fs-modify controller-1 docker=60
+
+
    #. **For OpenStack only:** Configure the system setting for the vSwitch.
 
-      StarlingX has |OVS| (kernel-based) vSwitch configured as default:
+      .. only:: starlingx
 
-      * Runs in a container; defined within the helm charts of stx-openstack
-        manifest.
-      * Shares the core(s) assigned to the platform.
+         StarlingX has |OVS| (kernel-based) vSwitch configured as default:
 
-      If you require better performance, |OVS|-|DPDK| (|OVS| with the Data
-      Plane Development Kit, which is supported only on bare metal hardware)
-      should be used:
+         * Runs in a container; defined within the helm charts of stx-openstack
+           manifest.
+         * Shares the core(s) assigned to the platform.
 
-      * Runs directly on the host (it is not containerized).
-      * Requires that at least 1 core be assigned/dedicated to the vSwitch
-        function.
+         If you require better performance, |OVS-DPDK| (|OVS| with the Data
+         Plane Development Kit, which is supported only on bare metal hardware)
+         should be used:
 
-      **To deploy the default containerized OVS:**
+         * Runs directly on the host (it is not containerized).
+           Requires that at least 1 core be assigned/dedicated to the vSwitch
+           function.
 
-      ::
+         To deploy the default containerized |OVS|:
 
-           system modify --vswitch_type none
+         ::
 
-      This does not run any vSwitch directly on the host, instead, it uses the
-      containerized |OVS| defined in the helm charts of stx-openstack
-      manifest.
+              system modify --vswitch_type none
 
-      **To deploy OVS-DPDK, run the following command:**
+         This does not run any vSwitch directly on the host, instead, it uses
+         the containerized |OVS| defined in the helm charts of stx-openstack
+         manifest.
 
-      ::
+      To deploy |OVS-DPDK|, run the following command:
 
-        system modify --vswitch_type ovs-dpdk
+      .. parsed-literal::
 
-      Default recommendation for an |AIO|-controller is to use a single core
-      for |OVS|-|DPDK| vswitch.
+         system modify --vswitch_type |ovs-dpdk|
+
+      Default recommendation for an |AIO|-controller is to use a single
+      core for |OVS-DPDK| vswitch.
 
       .. code-block:: bash
 
         # assign 1 core on processor/numa-node 0 on controller-0 to vswitch
-        system host-cpu-modify -f vswitch -p0 1 controller-0
+        system host-cpu-modify -f vswitch -p0 0 controller-0
 
-      Once vswitch_type is set to |OVS|-|DPDK|, any subsequent nodes created
-      will default to automatically assigning 1 vSwitch core for |AIO|
-      controllers and 2 vSwitch cores for compute-labeled worker nodes.
+      Once vswitch_type is set to |OVS-DPDK|, any subsequent nodes created will
+      default to automatically assigning 1 vSwitch core for |AIO| controllers
+      and 2 vSwitch cores (1 on each numa-node) for compute-labeled worker
+      nodes.
+
+      When using |OVS-DPDK|, configure 1G huge page for vSwitch memory on each
+      |NUMA| node where vswitch is running on this host. It is recommended to
+      configure 1x 1G huge page (-1G 1) for vSwitch memory on each |NUMA| node
+      where vswitch is running on host.
+
+      However, due to a limitation with Kubernetes, only a single huge page
+      size is supported on any one host. If your application |VMs| require 2M
+      huge pages, then configure 500x 2M huge pages (-2M 500) for vSwitch
+      memory on each |NUMA| node where vswitch is running on host.
 
 
-      When using |OVS|-|DPDK|, configure 1x 1G huge page for vSwitch memory on
-      each |NUMA| node where vswitch is running on this host, with the
-      following command:
-
-      .. code-block:: bash
+      .. code-block::
 
          # assign 1x 1G huge page on processor/numa-node 0 on controller-0 to vswitch
          system host-memory-modify -f vswitch -1G 1 controller-0 0
@@ -333,12 +400,13 @@ Configure controller-0
 
       .. important::
 
-         |VMs| created in an |OVS|-|DPDK| environment must be configured to use
+         |VMs| created in an |OVS-DPDK| environment must be configured to use
          huge pages to enable networking and must use a flavor with property:
-         hw:mem_page_size=large
+         ``hw:mem_page_size=large``
 
-         Configure the huge pages for |VMs| in an |OVS|-|DPDK| environment on this host with
-         the commands:
+         Configure the huge pages for |VMs| in an |OVS-DPDK| environment on
+         this host, assuming 1G huge page size is being used on this host, with
+         the following commands:
 
          .. code-block:: bash
 
@@ -348,6 +416,7 @@ Configure controller-0
 
             # assign 10x 1G huge page on processor/numa-node 1 on controller-0 to applications
             system host-memory-modify -f application -1G 10 controller-0 1
+
 
       .. note::
 
@@ -372,7 +441,14 @@ Configure controller-0
          #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
 
          # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
-         PARTITION_SIZE=34   # Use default of 34G for this nova-local partition
+         # The size of the PARTITION needs to be large enough to hold the aggregate size of
+         # all nova ephemeral disks of all VMs that you want to be able to host on this host,
+         # but is limited by the size and space available on the physical disk you chose above.
+         # The following example uses a small PARTITION size such that you can fit it on the
+         # root disk, if that is what you chose above.
+         # Additional PARTITION(s) from additional disks can be added later if required.
+         PARTITION_SIZE=30
+
          system hostdisk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
 
          # Add new partition to ‘nova-local’ local volume group
@@ -381,12 +457,13 @@ Configure controller-0
 
    #. **For OpenStack only:** Configure data interfaces for controller-0.
       Data class interfaces are vswitch interfaces used by vswitch to provide
-      VM virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the
+      |VM| virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the
       underlying assigned Data Network.
 
       .. important::
 
-         A compute-labeled All-in-one controller host **MUST** have at least one Data class interface.
+         A compute-labeled All-in-one controller host **MUST** have at least
+         one Data class interface.
 
       * Configure the data interfaces for controller-0.
 
@@ -454,7 +531,8 @@ Optionally Configure PCI-SRIOV Interfaces
         system host-if-modify -m 1500 -n sriov0 -c pci-sriov ${NODE} <sriov0-if-uuid>
         system host-if-modify -m 1500 -n sriov1 -c pci-sriov ${NODE} <sriov1-if-uuid>
 
-        # Create Data Networks that the 'pci-sriov' interfaces will be connected to
+        # If not already created, create Data Networks that the 'pci-sriov'
+        # interfaces will be connected to
         DATANET0='datanet0'
         DATANET1='datanet1'
         system datanetwork-add ${DATANET0} vlan
@@ -465,8 +543,8 @@ Optionally Configure PCI-SRIOV Interfaces
         system interface-datanetwork-assign ${NODE} <sriov1-if-uuid> ${DATANET1}
 
 
-   * To enable using |SRIOV| network attachments for the above interfaces in
-     Kubernetes hosted application containers:
+   * **For Kubernetes Only:** To enable using |SRIOV| network attachments for
+     the above interfaces in Kubernetes hosted application containers:
 
      * Configure the Kubernetes |SRIOV| device plugin.
 
@@ -608,14 +686,18 @@ Configure controller-1
 #. Configure the |OAM| interface of controller-1 and specify the
    attached network of "oam".
 
-   Use the |OAM| port name that is applicable to your deployment environment,
-   for example eth0:
+   The following example configures the |OAM| interface on a physical untagged
+   ethernet port, use  the |OAM| port name that is applicable to your
+   deployment environment, for example eth0:
 
    ::
 
       OAM_IF=<OAM-PORT>
       system host-if-modify controller-1 $OAM_IF -c platform
       system interface-network-assign controller-1 $OAM_IF oam
+
+   To configure a vlan or aggregated ethernet interface, see :ref:`Node
+   Interfaces <node-interfaces-index>`.
 
 #. The MGMT interface is partially set up by the network install procedure;
    configuring the port used for network install as the MGMT port and
@@ -636,11 +718,11 @@ Configure controller-1
 
    .. important::
 
-      **These steps are required only if the StarlingX OpenStack application
-      (stx-openstack) will be installed.**
+      These steps are required only if the |prod-os| application
+      (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to controller-1 in
-      support of installing the stx-openstack manifest and helm-charts later.
+      support of installing the |prefix|-openstack manifest and helm-charts later.
 
       ::
 
@@ -649,12 +731,58 @@ Configure controller-1
          system host-label-assign controller-1 openvswitch=enabled
          system host-label-assign controller-1 sriov=enabled
 
+   #. **For OpenStack only:** Due to the additional openstack services running
+      on the |AIO| controller platform cores, a minimum of 4 platform cores are
+      required, 6 platform cores are recommended.
+
+      Increase the number of platform cores with the following commands:
+
+      .. code-block::
+
+         # assign 6 cores on processor/numa-node 0 on controller-1 to platform
+         system host-cpu-modify -f platform -p0 6 controller-1
+
+   #. Due to the additional openstack services’ containers running on the
+      controller host, the size of the docker filesystem needs to be
+      increased from the default size of 30G to 60G.
+
+      .. code-block:: bash
+
+         # check existing size of docker fs
+         system host-fs-list controller-1
+         # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
+         system host-lvg-list controller-1
+         # if existing docker fs size + cgts-vg available space is less than 60G,
+         # you will need to add a new disk partition to cgts-vg
+
+            # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
+            # ( if not use another unused disk )
+
+            # Get device path of ROOT DISK
+            system host-show controller-1 --nowrap | fgrep rootfs
+
+            # Get UUID of ROOT DISK by listing disks
+            system host-disk-list controller-1
+
+            # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
+            # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
+            PARTITION_SIZE=30
+            system hostdisk-partition-add -t lvm_phys_vol controller-1 <root-disk-uuid> ${PARTITION_SIZE}
+
+            # Add new partition to ‘cgts-vg’ local volume group
+            system host-pv-add controller-1 cgts-vg <NEW_PARTITION_UUID>
+            sleep 2    # wait for partition to be added
+
+            # Increase docker filesystem to 60G
+            system host-fs-modify controller-1 docker=60
+
+
    #. **For OpenStack only:** Configure the host settings for the vSwitch.
 
-      **If using OVS-DPDK vswitch, run the following commands:**
+      If using |OVS-DPDK| vswitch, run the following commands:
 
-      Default recommendation for an AIO-controller is to use a single core
-      for |OVS|-|DPDK| vswitch.  This should have been automatically configured,
+      Default recommendation for an |AIO|-controller is to use a single core
+      for |OVS-DPDK| vswitch.  This should have been automatically configured,
       if not run the following command.
 
       .. code-block:: bash
@@ -663,9 +791,16 @@ Configure controller-1
         system host-cpu-modify -f vswitch -p0 1 controller-1
 
 
-      When using |OVS|-|DPDK|, configure 1x 1G huge page for vSwitch memory on
-      each |NUMA| node where vswitch is running on this host, with the
-      following command:
+      When using |OVS-DPDK|, configure 1G of huge pages for vSwitch memory on
+      each |NUMA| node where vswitch is running on the host. It is recommended
+      to configure 1x 1G huge page (-1G 1) for vSwitch memory on each |NUMA|
+      node where vswitch is running on host.
+
+      However, due to a limitation with Kubernetes, only a single huge page
+      size is supported on any one host. If your application VMs require 2M
+      huge pages, then configure 500x 2M huge pages (-2M 500) for vSwitch
+      memory on each |NUMA| node where vswitch is running on host.
+
 
       .. code-block:: bash
 
@@ -675,14 +810,15 @@ Configure controller-1
 
       .. important::
 
-         |VMs| created in an |OVS|-|DPDK| environment must be configured to use
+         |VMs| created in an |OVS-DPDK| environment must be configured to use
          huge pages to enable networking and must use a flavor with property:
          hw:mem_page_size=large
 
-         Configure the huge pages for |VMs| in an |OVS|-|DPDK| environment for
-         this host with the command:
+         Configure the huge pages for |VMs| in an |OVS-DPDK| environment on
+         this host, assuming 1G huge page size is being used on this host, with
+         the following commands:
 
-         ::
+         .. code-block:: bash
 
             # assign 10x 1G huge page on processor/numa-node 0 on controller-1 to applications
             system host-memory-modify -f application -1G 10 controller-1 0
@@ -709,7 +845,14 @@ Configure controller-1
          #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
 
          # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
-         PARTITION_SIZE=34   # Use default of 34G for this nova-local partition
+         # The size of the PARTITION needs to be large enough to hold the aggregate size of
+         # all nova ephemeral disks of all VMs that you want to be able to host on this host,
+         # but is limited by the size and space available on the physical disk you chose above.
+         # The following example uses a small PARTITION size such that you can fit it on the
+         # root disk, if that is what you chose above.
+         # Additional PARTITION(s) from additional disks can be added later if required.
+         PARTITION_SIZE=30
+
          system hostdisk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
 
          # Add new partition to ‘nova-local’ local volume group
@@ -791,7 +934,8 @@ Optionally Configure PCI-SRIOV Interfaces
         system host-if-modify -m 1500 -n sriov0 -c pci-sriov ${NODE} <sriov0-if-uuid>
         system host-if-modify -m 1500 -n sriov1 -c pci-sriov ${NODE} <sriov1-if-uuid>
 
-        # Create Data Networks that the 'pci-sriov' interfaces will be connected to
+        # If not already created, create Data Networks that the 'pci-sriov' interfaces
+        # will be connected to
         DATANET0='datanet0'
         DATANET1='datanet1'
         system datanetwork-add ${DATANET0} vlan
@@ -802,12 +946,12 @@ Optionally Configure PCI-SRIOV Interfaces
         system interface-datanetwork-assign ${NODE} <sriov1-if-uuid> ${DATANET1}
 
 
-   * To enable using |SRIOV| network attachments for the above interfaces in
-     Kubernetes hosted application containers:
+   * **For Kubernetes only:** To enable using |SRIOV| network attachments for
+     the above interfaces in Kubernetes hosted application containers:
 
      * Configure the Kubernetes |SRIOV| device plugin.
 
-       ::
+       .. code-block:: bash
 
           system host-label-assign controller-1 sriovdp=enabled
 
@@ -855,7 +999,7 @@ For host-based Ceph:
    #. Assign Rook host labels to controller-1 in support of installing the
       rook-ceph-apps manifest/helm-charts later:
 
-      ::
+      .. code-block:: bash
 
          system host-label-assign controller-1 ceph-mon-placement=enabled
          system host-label-assign controller-1 ceph-mgr-placement=enabled
@@ -867,7 +1011,7 @@ Unlock controller-1
 
 Unlock controller-1 in order to bring it into service:
 
-::
+.. code-block:: bash
 
   system host-unlock controller-1
 
@@ -902,7 +1046,7 @@ machine.
    #. Configure Rook to use /dev/sdb on controller-0 and controller-1 as a ceph
       |OSD|.
 
-      ::
+      .. code-block:: bash
 
        $ system host-disk-wipe -s --confirm controller-0 /dev/sdb
        $ system host-disk-wipe -s --confirm controller-1 /dev/sdb
