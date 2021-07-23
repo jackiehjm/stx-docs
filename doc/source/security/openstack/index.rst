@@ -1,10 +1,20 @@
----------
-OpenStack
----------
+========
+Contents
+========
 
-=================
-Access the System
-=================
+-----------------
+Keystone Accounts
+-----------------
+
+.. toctree::
+   :maxdepth: 1
+
+   openstack-keystone-accounts
+   security-system-account-password-rules
+
+-----------------
+Access the system
+-----------------
 
 .. toctree::
    :maxdepth: 1
@@ -15,8 +25,15 @@ Access the System
    update-the-domain-name
    configure-remote-clis-and-clients
    config-and-management-using-container-backed-remote-clis-and-clients
-   install-a-trusted-ca-certificate
-   install-rest-api-and-horizon-certificate
-   openstack-keystone-accounts
-   security-system-account-password-rules
    openstack-login-protection
+
+----------------------------------------
+Install REST API and Horizon certificate
+----------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   install-rest-api-and-horizon-certificate
+   install-a-trusted-ca-certificate
+
