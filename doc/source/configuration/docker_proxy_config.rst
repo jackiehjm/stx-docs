@@ -23,21 +23,9 @@ Proxy overview
 
 The figure below shows how proxies are used in |prod|.
 
-.. only:: starlingx
-
-   .. figure:: figures/stx_proxy_overview.png
-      :width: 500
-      :alt: StarlingX proxy usage
-
-      *Figure 1: StarlingX proxy usage*
-
-.. only:: partner
-
-   .. figure:: figures/stx_proxy_overview.png
-      :width: 500
-      :alt: Proxy usage
-
-      Figure 1: Proxy usage
+.. include:: /_includes/docker-proxy-config.rest
+   :start-after: figures_begin
+   :end-before: figures_end
 
 
 The items labeled *a* and *b* in the figure indicate two configuration files:

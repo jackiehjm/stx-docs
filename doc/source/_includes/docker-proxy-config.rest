@@ -1,0 +1,23 @@
+
+.. figures_begin
+
+.. figure:: /configuration/figures/stx_proxy_overview.png
+   :width: 500
+   :alt: |prod| proxy usage
+
+   Figure 1: |prod| proxy usage
+
+.. figures_end
+
+.. r3_begin
+
+----------------------
+Set proxy at bootstrap
+----------------------
+
+To set the Docker proxy at bootstrap time, refer to :doc:`Ansible Bootstrap
+Configurations
+<../deploy_install_guides/r6_release/ansible_bootstrap_configs>`.
+
+.. r3_end
+
