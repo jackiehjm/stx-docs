@@ -9,8 +9,8 @@ Enhanced RBAC Policies
 
 The standard OpenStack RBAC roles and policies can be enhanced by updating
 policy configuration in individual OpenStack Services' Helm charts.  |prod|
-provides an optional set of updated policy configurations for nova, neutron,
-glance, cinder, keystone and horizon services that introduce two new roles
+provides an optional set of updated policy configurations for Nova, Neutron,
+Glance, Cinder, Keystone and Horizon services that introduce two new roles
 ('project_admin' and 'project_readonly') and modify the capabilities of the
 default 'member' role.  A high-level summary of the new roles' capabilities and
 the modified 'default' role capabilities are in the following table; a detailed
@@ -22,7 +22,7 @@ description is provided at end of page.
     +------------------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
     | Design           | Roles            | Permissions summary                                                                                                                         |
     +==================+==================+=============================================================================================================================================+
-    | Default Role:    | member           | Users with role 'member' can fully manage a subset of resources of the project                                                              |
+    | Default Role:    | member           | Users with role 'member' may have a limited management of project resources                                                                 |
     +------------------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
     | New Role to add: | project_admin    | Users with role 'project_admin' can fully manage all resources of the project                                                               |
     +------------------+------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
@@ -61,13 +61,14 @@ this document.
 
     .. code-block:: none
 
+        ~(keystone_admin)]$ openstack role list
         ~(keystone_admin)]$ openstack role create project_admin
         ~(keystone_admin)]$ openstack role create project_readonly
 
 #.  In order to enable the extensions required for some of the neutron tests,
     include the following configuration to the neutron Helm override yml file:
 
-    .. code-block:: none
+    .. parsed-literal::
 
         cat <<EOF >neutron-extensions.yml
         conf:
@@ -127,8 +128,8 @@ overrides were successfully applied.
 
 .. rubric:: |proc|
 
-#.  Change directory to the openstack-enhanced-policies-0.1.0 you transferred to
-    your controller node:
+#.  Change directory to the openstack-enhanced-policies-0.1.0 you transferred
+    to your controller node:
 
     .. code-block:: none
 
@@ -171,7 +172,7 @@ test on the environment:
 
     $ source /etc/platform/openrc
     $ OS_AUTH_URL=http://keystone.openstack.svc.cluster.local/v3
-    $ bash run-cleanup-all.sh
+    $ bash tests/run-cleanup-all.sh
 
 -----------------------
 Role Permission Details
@@ -186,12 +187,12 @@ Role Permission Details
     |    member         | All operations that legacy role 'member' can do   | - Can get list and detail of instances                | - Can only create/update/delete port                                                             | - Can create and update image, upload image content   | - Can create volume                                            |
     |                   |                                                   | - Can create instance/Can open console of instance    | - Can get list and detail of resources: subnetpool, address scope, networks, subnets, etc.       |                                                       | - Can create volume from image                                 |
     |                   |                                                   | - Can access log of instance                          |                                                                                                  |                                                       | - Can create volume snapshot                                   |
-    |                   |                                                   | - Can access log of instance                          |                                                                                                  |                                                       | - Can create volume-backup                                     |
-    |                   |                                                   | - Can manage keypairs of his/her own                  |                                                                                                  |                                                       |                                                                |
+    |                   |                                                   | - Can manage keypairs of his/her own                  |                                                                                                  |                                                       | - Can create volume-backup                                     |
+    |                   |                                                   |                                                       |                                                                                                  |                                                       |                                                                |
     +-------------------+---------------------------------------------------+-------------------------------------------------------+--------------------------------------------------------------------------------------------------+-------------------------------------------------------+----------------------------------------------------------------+
     | project_admin     | All operations that legacy role 'member' can do   | All operations that legacy role 'member' can do       | - All operations that legacy role 'member' can do                                                | - All operations that legacy role 'member' can do     | - All operations that legacy role 'member' can do              |
-    |                   |                                                   |                                                       | - Can create/update/delete 'shared' subnetpool                                                   | - Can publicize_image                                 |                                                                |
-    |                   |                                                   |                                                       | - Can create/update/delete address scope                                                         |                                                       |                                                                |
+    |                   |                                                   |                                                       | - Can create/update/delete 'shared' subnetpool                                                   | - Can publicize image                                 |                                                                |
+    |                   |                                                   |                                                       | - Can create/update/delete address scope                                                         | - Can communitize image                               |                                                                |
     |                   |                                                   |                                                       | - Can create/update/delete shared network                                                        |                                                       |                                                                |
     +-------------------+---------------------------------------------------+-------------------------------------------------------+--------------------------------------------------------------------------------------------------+-------------------------------------------------------+----------------------------------------------------------------+
     | project_readonly  | All operations that legacy role 'member' can do   | - Can only get list and detail of instances           | - Can only get list and detail of resources: subnetpool, address scopes, networks, subnets,etc.  | - Can only get list and detail of images              | - Can only get list and detail of volumes, backups, snapshots  |
