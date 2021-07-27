@@ -264,8 +264,8 @@ Configure controller-0
 
      system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org
 
-     To configure |PTP| instead of |NTP|, see ref:`PTP Server Configuration
-     <ptp-server-config-index>`.
+   To configure |PTP| instead of |NTP|, see :ref:`PTP Server Configuration
+   <ptp-server-config-index>`.
 
 .. only:: openstack
 
@@ -281,12 +281,20 @@ Configure controller-0
    #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
       support of installing the stx-openstack manifest and helm-charts later.
 
-      ::
+      .. only:: starlingx
 
-        system host-label-assign controller-0 openstack-control-plane=enabled
-        system host-label-assign controller-0 openstack-compute-node=enabled
-        system host-label-assign controller-0 openvswitch=enabled
-        system host-label-assign controller-0 sriov=enabled
+         ::
+
+            system host-label-assign controller-0 openstack-control-plane=enabled
+            system host-label-assign controller-0 openstack-compute-node=enabled
+            system host-label-assign controller-0 openvswitch=enabled
+            system host-label-assign controller-0 sriov=enabled
+
+      .. only:: partner
+
+         .. include:: /_includes/aio_duplex_install_kubernetes.rest
+            :start-after: ref1-begin
+            :end-before: ref1-end
 
    #. **For OpenStack only:** Due to the additional openstack services running
       on the |AIO| controller platform cores, a minimum of 4 platform cores are
@@ -306,9 +314,9 @@ Configure controller-0
       .. code-block:: bash
 
          # check existing size of docker fs
-         system host-fs-list controller-1
+         system host-fs-list controller-0
          # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
-         system host-lvg-list controller-1
+         system host-lvg-list controller-0
          # if existing docker fs size + cgts-vg available space is less than 60G,
          # you will need to add a new disk partition to cgts-vg
 
@@ -316,22 +324,22 @@ Configure controller-0
             # ( if not use another unused disk )
 
             # Get device path of ROOT DISK
-            system host-show controller-1 --nowrap | fgrep rootfs
+            system host-show controller-0 --nowrap | fgrep rootfs
 
             # Get UUID of ROOT DISK by listing disks
-            system host-disk-list controller-1
+            system host-disk-list controller-0
 
             # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
             # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
             PARTITION_SIZE=30
-            system hostdisk-partition-add -t lvm_phys_vol controller-1 <root-disk-uuid> ${PARTITION_SIZE}
+            system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
 
             # Add new partition to ‘cgts-vg’ local volume group
-            system host-pv-add controller-1 cgts-vg <NEW_PARTITION_UUID>
+            system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
             sleep 2    # wait for partition to be added
 
             # Increase docker filesystem to 60G
-            system host-fs-modify controller-1 docker=60
+            system host-fs-modify controller-0 docker=60
 
 
    #. **For OpenStack only:** Configure the system setting for the vSwitch.
@@ -449,7 +457,7 @@ Configure controller-0
          # Additional PARTITION(s) from additional disks can be added later if required.
          PARTITION_SIZE=30
 
-         system hostdisk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+         system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
 
          # Add new partition to ‘nova-local’ local volume group
          system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
@@ -603,10 +611,6 @@ For host-based Ceph:
       # List OSD storage devices
       system host-stor-list controller-0
 
-
-      # Add disk as an OSD storage
-      system host-stor-add controller-0 osd <disk-uuid>
-
 .. only:: starlingx
 
    For Rook container-based Ceph:
@@ -724,12 +728,20 @@ Configure controller-1
    #. **For OpenStack only:** Assign OpenStack host labels to controller-1 in
       support of installing the |prefix|-openstack manifest and helm-charts later.
 
-      ::
+      .. only:: starlingx
 
-         system host-label-assign controller-1 openstack-control-plane=enabled
-         system host-label-assign controller-1 openstack-compute-node=enabled
-         system host-label-assign controller-1 openvswitch=enabled
-         system host-label-assign controller-1 sriov=enabled
+         ::
+
+            system host-label-assign controller-1 openstack-control-plane=enabled
+            system host-label-assign controller-1 openstack-compute-node=enabled
+            system host-label-assign controller-1 openvswitch=enabled
+            system host-label-assign controller-1 sriov=enabled
+
+      .. only:: partner
+
+         .. include:: /_includes/aio_duplex_install_kubernetes.rest
+            :start-after: ref2-begin
+            :end-before: ref2-end
 
    #. **For OpenStack only:** Due to the additional openstack services running
       on the |AIO| controller platform cores, a minimum of 4 platform cores are
@@ -832,6 +844,8 @@ Configure controller-1
 
       .. code-block:: bash
 
+         export NODE=controller-1
+
          # Create ‘nova-local’ local volume group
          system host-lvg-add ${NODE} nova-local
 
@@ -853,7 +867,7 @@ Configure controller-1
          # Additional PARTITION(s) from additional disks can be added later if required.
          PARTITION_SIZE=30
 
-         system hostdisk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+         system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
 
          # Add new partition to ‘nova-local’ local volume group
          system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
@@ -891,8 +905,6 @@ Configure controller-1
            # Create Data Networks that vswitch 'data' interfaces will be connected to
            DATANET0='datanet0'
            DATANET1='datanet1'
-           system datanetwork-add ${DATANET0} vlan
-           system datanetwork-add ${DATANET1} vlan
 
            # Assign Data Networks to Data Interfaces
            system interface-datanetwork-assign ${NODE} <data0-if-uuid> ${DATANET0}
@@ -938,8 +950,6 @@ Optionally Configure PCI-SRIOV Interfaces
         # will be connected to
         DATANET0='datanet0'
         DATANET1='datanet1'
-        system datanetwork-add ${DATANET0} vlan
-        system datanetwork-add ${DATANET1} vlan
 
         # Assign Data Networks to PCI-SRIOV Interfaces
         system interface-datanetwork-assign ${NODE} <sriov0-if-uuid> ${DATANET0}
@@ -988,11 +998,7 @@ For host-based Ceph:
       # List OSD storage devices
       system host-stor-list controller-1
 
-      # Add disk as an OSD storage
-      system host-stor-add controller-1 osd <disk-uuid>
-
-
-.. only:: starlingx
+   .. only:: starlingx
 
    For Rook container-based Ceph:
 
