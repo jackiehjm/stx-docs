@@ -37,7 +37,6 @@ For example:
     ~(keystone)admin)$ system host-cpu-modify -f application-isolated -p0 15 worker-1
     ~(keystone)admin)$ system host-cpu-modify -f application-isolated -p1 15 worker-1
     ~(keystone)admin)$ system host-unlock worker-1
-    ~(keystone)admin)$ system application-apply stx-openstack
 
 To configure a flavor to use the dedicated CPU policy, run:
 
