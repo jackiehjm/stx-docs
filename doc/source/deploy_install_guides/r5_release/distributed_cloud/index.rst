@@ -277,6 +277,8 @@ At the System Controller:
       | 1  | subcloud1 | unmanaged  | offline      | complete      | unknown |
       +----+-----------+------------+--------------+---------------+---------+
 
+.. _install_a_subcloud_step_4_r5_link:
+
 4. Continue provisioning the subcloud system as required using the StarlingX
    R5.0 Installation procedures and starting from the 'Configure controller-0'
    step.

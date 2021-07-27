@@ -323,6 +323,7 @@ subcloud, the subcloud installation process has two phases:
     Subcloud <updating-docker-registry-credentials-on-a-subcloud>` for more
     information.
 
--   For more information on bootstrapping and deploying see |inst-doc|.
+-   For more information on bootstrapping and deploying see |inst-doc|,
+    :ref:`Install a subcloud <install_a_subcloud_step_4_r5_link>`.
 
 
