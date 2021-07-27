@@ -10,36 +10,31 @@ Customer Log Messages 401s - Services
 
 .. _customer-log-messages-401s-services-table-zgf-jvw-v5:
 
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
+.. table:: Table 1. Customer Log Messages - Virtual Machines
+    :widths: auto
 
-   * - **Log Message: 401.001**
-     - Service group <group> state change from <state> to <state> on host <host\_name>
-   * - Entity Instance
-     - service\_domain=<domain>.service\_group=<group>.host=<host\_name>
-   * - Severity:
-     - C
-
-.. list-table::
-   :widths: 6 15
-   :header-rows: 0
-
-   * - **Log Message: 401.002**
-     - Service group <group> loss of redundancy; expected <X> standby member but no standby members available.
-
-       or
-
-       Service group <group> loss of redundancy; expected <X> standby member but only <Y> standby member\(s\) available.
-
-       or
-
-       Service group <group> has no active members available; expected <X> active member\(s\)
-
-       or
-
-       Service group <group> loss of redundancy; expected <X> active member\(s\) but only <Y> active member\(s\) available.
-   * - Entity Instance
-     - service\_domain=<domain>.service\_group=<group>
-   * - Severity:
-     - C
+    +-----------+--------------------------------------------------------------------------------------------------------------------+----------+
+    | Log ID    | Description                                                                                                        | Severity |
+    +           +--------------------------------------------------------------------------------------------------------------------+----------+
+    |           | Entity Instance ID                                                                                                 |          |
+    +===========+====================================================================================================================+==========+
+    | 401.001   | Service group <group> state change from <state> to <state> on host <host_name>                                     | C        |
+    |           |                                                                                                                    |          |
+    |           | service_domain=<domain>.service_group=<group>.host=<host_name>                                                     |          |
+    +-----------+--------------------------------------------------------------------------------------------------------------------+----------+
+    | 401.002   | Service group <group> loss of redundancy; expected <X> standby member but no standby members available             | C        |
+    |           |                                                                                                                    |          |
+    |           | or                                                                                                                 |          |
+    |           |                                                                                                                    |          |
+    |           | Service group <group> loss of redundancy; expected <X> standby member but only <Y> standby member(s) available     |          |
+    |           |                                                                                                                    |          |
+    |           | or                                                                                                                 |          |
+    |           |                                                                                                                    |          |
+    |           | Service group <group> has no active members available; expected <X> active member(s).                              |          |
+    |           |                                                                                                                    |          |
+    |           | or                                                                                                                 |          |
+    |           |                                                                                                                    |          |
+    |           | Service group <group> loss of redundancy; expected <X> active member(s) but only <Y> active member(s) available.   |          |
+    |           |                                                                                                                    |          |
+    |           | service_domain=<domain>.service_group=<group>                                                                      |          |
+    +-----------+--------------------------------------------------------------------------------------------------------------------+----------+
