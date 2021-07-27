@@ -2,9 +2,9 @@
 .. ble1606166239734
 .. _configure-an-optional-cinder-file-system:
 
-========================================
-Configure an Optional Cinder File System
-========================================
+===================================================
+Configure the Optional Image Conversion File System
+===================================================
 
 By default, **qcow2** to raw **image-conversion** is done using the
 **docker\_lv** file system. To avoid filling up the **docker\_lv** file system,
