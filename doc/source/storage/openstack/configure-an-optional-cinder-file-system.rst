@@ -11,38 +11,37 @@ By default, **qcow2** to raw **image-conversion** is done using the
 you can create a new file system dedicated for image conversion as described in
 this section.
 
-**Prerequisites**:
+
+.. rubric:: |prereq|
 
 
 .. _configure-an-optional-cinder-file-system-ul-sbz-3zn-tnb:
 
--   The requested size of the **image-conversion** file system should be big
-    enough to accommodate any image that is uploaded to Glance.
 
--   The recommended size for the file system must be at least twice as large as
+*   The requested size of the image-conversion file system should be big enough
+    to accommodate any image that is uploaded to Glance.
+
+*   The recommended size for the file system must be at least twice as large as
     the largest converted image from qcow2 to raw.
 
--   The conversion file system can be added before or after |prefix|-openstack
-    is applied.
+*   The conversion file system can be added before or after wr-openstack is
+    applied.
 
--   The conversion file system must be added on both controllers. Otherwise,
+*   The conversion file system must be added on both controllers. Otherwise,
     |prefix|-openstack will not use the new file system.
 
--   If the conversion file system is added after |prefix|-openstack is applied,
-    changes to |prefix|-openstack will only take effect once the application is
+*   If the conversion file system is added after wr-openstack is applied,
+    changes to wr-openstack will only take effect once the application is
     reapplied.
 
+*   The **image-conversion** file system can only be added on the controllers, and
+    must be added, with the same size, to both controllers. Alarms will be raised,
+    if:
 
-The **image-conversion** file system can only be added on the controllers, and
-must be added, with the same size, to both controllers. Alarms will be raised,
-if:
 
+    -   The conversion file system is not added on both controllers.
 
-.. _configure-an-optional-cinder-file-system-ul-dtd-fb4-tnb:
-
--   The conversion file system is not added on both controllers.
-
--   The size of the file system is not the same on both controllers.
+    -   The size of the file system is not the same on both controllers.
 
 
 
