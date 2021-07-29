@@ -233,8 +233,7 @@ Configure controller-0
      system host-if-modify controller-0 $OAM_IF -c platform
      system interface-network-assign controller-0 $OAM_IF oam
 
-   To configure a vlan or aggregated ethernet interface, see :ref:`Node
-   Interfaces <node-interfaces-index>`.
+   To configure a vlan or aggregated ethernet interface, see :ref:`Node Interfaces <node-interfaces-index>`.
 
 #. Configure the MGMT interface of controller-0 and specify the attached
    networks of both "mgmt" and "cluster-host".
@@ -373,28 +372,31 @@ Configure controller-0
       .. code-block:: bash
 
         # assign 1 core on processor/numa-node 0 on controller-0 to vswitch
-        system host-cpu-modify -f vswitch -p0 0 controller-0
+        system host-cpu-modify -f vswitch -p0 1 controller-0
 
       Once vswitch_type is set to |OVS-DPDK|, any subsequent nodes created will
       default to automatically assigning 1 vSwitch core for |AIO| controllers
-      and 2 vSwitch cores (1 on each numa-node) for compute-labeled worker
-      nodes.
+      and 2 vSwitch cores (both on numa-node 0; physical NICs are typically on
+      first numa-node) for compute-labeled worker nodes.
 
       When using |OVS-DPDK|, configure 1G huge page for vSwitch memory on each
-      |NUMA| node where vswitch is running on this host. It is recommended to
-      configure 1x 1G huge page (-1G 1) for vSwitch memory on each |NUMA| node
-      where vswitch is running on host.
+      |NUMA| node on the host. It is recommended to configure 1x 1G huge page
+      (-1G 1) for vSwitch memory on each |NUMA| node on the host.
 
       However, due to a limitation with Kubernetes, only a single huge page
       size is supported on any one host. If your application |VMs| require 2M
       huge pages, then configure 500x 2M huge pages (-2M 500) for vSwitch
-      memory on each |NUMA| node where vswitch is running on host.
+      memory on each |NUMA| node on the host.
 
 
       .. code-block::
 
          # assign 1x 1G huge page on processor/numa-node 0 on controller-0 to vswitch
          system host-memory-modify -f vswitch -1G 1 controller-0 0
+
+         # Assign 1x 1G huge page on processor/numa-node 1 on controller-0 to vswitch
+         system host-memory-modify -f vswitch -1G 1 controller-0 1
+
 
       .. important::
 
@@ -777,7 +779,7 @@ Configure controller-1
       If using |OVS-DPDK| vswitch, run the following commands:
 
       Default recommendation for an |AIO|-controller is to use a single core
-      for |OVS-DPDK| vswitch.  This should have been automatically configured,
+      for |OVS-DPDK| vSwitch. This should have been automatically configured,
       if not run the following command.
 
       .. code-block:: bash
@@ -787,19 +789,23 @@ Configure controller-1
 
 
       When using |OVS-DPDK|, configure 1G of huge pages for vSwitch memory on
-      each |NUMA| node where vswitch is running on the host. It is recommended
+      each |NUMA| node on the host. It is recommended
       to configure 1x 1G huge page (-1G 1) for vSwitch memory on each |NUMA|
-      node where vswitch is running on host.
+      node on the host.
 
       However, due to a limitation with Kubernetes, only a single huge page
       size is supported on any one host. If your application VMs require 2M
       huge pages, then configure 500x 2M huge pages (-2M 500) for vSwitch
-      memory on each |NUMA| node where vswitch is running on host.
+      memory on each |NUMA| node on the host.
 
       .. code-block:: bash
 
          # assign 1x 1G huge page on processor/numa-node 0 on controller-1 to vswitch
          system host-memory-modify -f vswitch -1G 1 controller-1 0
+
+         # Assign 1x 1G huge page on processor/numa-node 1 on controller-0 to vswitch
+         system host-memory-modify -f vswitch -1G 1 controller-1 1
+
 
 
       .. important::
