@@ -295,8 +295,10 @@ The newly installed controller needs to be configured.
          system host-fs-list controller-0
          # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
          system host-lvg-list controller-0
-         # if existing docker fs size + cgts-vg available space is less than 60G,
-         # you will need to add a new disk partition to cgts-vg
+         # if existing docker fs size + cgts-vg available space is less than
+         # 80G, you will need to add a new disk partition to cgts-vg.
+         # There must be at least 20GB of available space after the docker
+         # filesystem is increased.
 
             # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
             # ( if not use another unused disk )
