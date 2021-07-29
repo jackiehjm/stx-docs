@@ -289,34 +289,29 @@ Configure worker nodes
 
    #. **For OpenStack only:** Configure the host settings for the vSwitch.
 
-      If using |OVS-DPDK| vswitch, run the following commands:
+      If using |OVS-DPDK| vSwitch, run the following commands:
 
-      Default recommendation for worker node is to use a single core on each
-      numa-node for |OVS-DPDK| vswitch.  This should have been automatically
-      configured, if not run the following command.
+      Default recommendation for worker node is to use two cores on numa-node 0
+      for |OVS-DPDK| vSwitch. This should have been automatically configured,
+      if not run the following command.
 
       .. code-block:: bash
 
         for NODE in worker-0 worker-1; do
 
-           # assign 1 core on processor/numa-node 0 on worker-node to vswitch
-           system host-cpu-modify -f vswitch -p0 1 $NODE
-
-           # assign 1 core on processor/numa-node 1 on worker-node to vswitch
-           system host-cpu-modify -f vswitch -p1 1 $NODE
+            # assign 2 cores on processor/numa-node 0 on worker-node to vswitch
+            system host-cpu-modify -f vswitch -p0 2 $NODE
 
         done
 
-
       When using |OVS-DPDK|, configure 1G of huge pages for vSwitch memory on
-      each |NUMA| node where vswitch is running on the host. It is recommended
-      to configure 1x 1G huge page (-1G 1) for vSwitch memory on each |NUMA|
-      node where vswitch is running on host.
+      each |NUMA| node on the host. It is recommended to configure 1x 1G huge
+      page (-1G 1) for vSwitch memory on each |NUMA| node on the host.
 
       However, due to a limitation with Kubernetes, only a single huge page
       size is supported on any one host. If your application |VMs| require 2M
       huge pages, then configure 500x 2M huge pages (-2M 500) for vSwitch
-      memory on each |NUMA| node where vswitch is running on host.
+      memory on each |NUMA| node on the host.
 
       .. code-block:: bash
 

@@ -55,17 +55,19 @@
    .. code-block:: bash
 
       # assign 1 core on processor/numa-node 0 on controller-0 to vswitch
-      system host-cpu-modify -f vswitch -p0 0 controller-0
+      system host-cpu-modify -f vswitch -p0 1 controller-0
 
 
    When using |OVS-DPDK|, configure 1x 1G huge page for vSwitch memory on
-   each |NUMA| node where vswitch is running on this host, with the
-   following command:
+   each |NUMA| node on the host, with the following command:
 
    .. code-block:: bash
 
       # assign 1x 1G huge page on processor/numa-node 0 on controller-0 to vswitch
       system host-memory-modify -f vswitch -1G 1 controller-0 0
+
+      # assign 1x 1G huge page on processor/numa-node 1 on controller-0 to vswitch
+      system host-memory-modify -f vswitch -1G 1 controller-0 1
 
    |VMs| created in an |OVS-DPDK| environment must be configured to use
    huge pages to enable networking and must use a flavor with property:

@@ -351,17 +351,16 @@ The newly installed controller needs to be configured.
       .. code-block:: bash
 
          # assign 1 core on processor/numa-node 0 on controller-0 to vswitch
-         system host-cpu-modify -f vswitch -p0 0 controller-0
-
+         system host-cpu-modify -f vswitch -p0 1 controller-0
 
       When using |OVS-DPDK|, configure 1G of huge pages for vSwitch memory on
-      each |NUMA| node where vswitch is running on the host. It is recommended
-      to configure 1x 1G huge page (-1G 1) for vSwitch memory on each |NUMA|
-      node where vswitch is running on host. However, due to a limitation with
-      Kubernetes, only a single huge page size is supported on any one host. If
-      your application |VMs| require 2M huge pages, then configure 500x 2M huge
-      pages (-2M 500) for vSwitch memory on each |NUMA| node where vswitch is
-      running on host.
+      each |NUMA| node on the host. It is recommended to configure 1x 1G huge
+      page (-1G 1) for vSwitch memory on each |NUMA| node on the host.
+
+      However, due to a limitation with Kubernetes, only a single huge page
+      size is supported on any one host. If your application |VMs| require 2M
+      huge pages, then configure 500x 2M huge pages (-2M 500) for vSwitch
+      memory on each |NUMA| node on the host.
 
 
       .. code-block::
@@ -369,6 +368,8 @@ The newly installed controller needs to be configured.
          # Assign 1x 1G huge page on processor/numa-node 0 on controller-0 to vswitch
          system host-memory-modify -f vswitch -1G 1 controller-0 0
 
+         # Assign 1x 1G huge page on processor/numa-node 1 on controller-0 to vswitch
+         system host-memory-modify -f vswitch -1G 1 controller-0 1
 
       .. important::
 
