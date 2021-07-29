@@ -41,6 +41,12 @@ subcloud, the subcloud installation process has two phases:
 
 .. _installing-a-subcloud-without-redfish-platform-management-service-ul-g5j-3f3-qjb:
 
+.. only:: partner
+
+    .. include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
+       :start-after: prereq-begin
+       :end-before:  prereq-end
+
 -   You must have downloaded update-iso.sh from |dnload-loc|.
 
 -   In order to be able to deploy subclouds from either controller, all local
@@ -59,7 +65,7 @@ subcloud, the subcloud installation process has two phases:
         Controller management subnet, and between the subcloud OAM subnet and
         the System Controller subnet.
 
-    .. include:: ../_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
+    .. include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
        :start-after: begin-ref-1
        :end-before: end-ref-1
 
@@ -136,7 +142,7 @@ subcloud, the subcloud installation process has two phases:
 #.  At the subcloud location, install the |prod| software from a USB
     device or a |PXE| Boot Server on the server designated as controller-0.
 
-    .. include:: ../_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
+    .. include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
        :start-after: begin-ref-1
        :end-before: end-ref-1
 
@@ -323,6 +329,9 @@ subcloud, the subcloud installation process has two phases:
     Subcloud <updating-docker-registry-credentials-on-a-subcloud>` for more
     information.
 
--   For more information on bootstrapping and deploying see |inst-doc|.
+-   For more information on bootstrapping and deploying see the following
+    StarlingX procedure `Install a subcloud
+    <https://docs.starlingx.io/deploy_install_guides/r5_release/distributed_cloud/index.html#install-a-subcloud>`__,
+    step 4.
 
 
