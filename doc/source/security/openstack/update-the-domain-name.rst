@@ -74,6 +74,7 @@ service‐parameter-add` command to configure and set the OpenStack domain name:
         # define alias for general domain for nova compute provisioning REST
         API URLs
         nova.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com
+        nova-api-internal.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com
         placement.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com
         rest-api.<my-|prefix|-domain> IN CNAME <my-|prefix|-domain>.<my-company>.com
 
