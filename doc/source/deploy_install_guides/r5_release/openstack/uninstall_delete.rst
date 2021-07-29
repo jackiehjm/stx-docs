@@ -1,13 +1,28 @@
-=============================
-Uninstall StarlingX OpenStack
-=============================
 
-This section provides additional commands for uninstalling and deleting the
-StarlingX OpenStack application.
+.. _uninstall_delete-r5:
+
+===================
+Uninstall OpenStack
+===================
+
+This section provides commands for uninstalling and deleting the
+|prod| OpenStack application.
 
 .. warning::
 
    Uninstalling the OpenStack application will terminate all OpenStack services.
+
+------------------------------
+Remove all OpenStack resources
+------------------------------
+
+In order to ensure that all resources are properly released, use the OpenStack
+|CLI| to remove all resources created in the OpenStack environment. This
+includes:
+
+-   Terminating/Deleting all servers/instances/|VMs|
+-   Removing all volumes, volume backups, volume snapshots
+-   Removing all Glance images
 
 -----------------------------
 Bring down OpenStack services
@@ -30,4 +45,3 @@ Use the system CLI to delete the OpenStack application definition:
 
    system application-delete stx-openstack
    system application-list
-
