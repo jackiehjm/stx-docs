@@ -259,12 +259,20 @@ The newly installed controller needs to be configured.
    #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
       support of installing the stx-openstack manifest and helm-charts later.
 
-      ::
+      .. only:: starlingx
 
-        system host-label-assign controller-0 openstack-control-plane=enabled
-        system host-label-assign controller-0 openstack-compute-node=enabled
-        system host-label-assign controller-0 openvswitch=enabled
-        system host-label-assign controller-0 sriov=enabled
+         ::
+
+            system host-label-assign controller-0 openstack-control-plane=enabled
+            system host-label-assign controller-0 openstack-compute-node=enabled
+            system host-label-assign controller-0 openvswitch=enabled
+            system host-label-assign controller-0 sriov=enabled
+
+      .. only:: partner
+
+         .. include:: /_includes/aio_simplex_install_kubernetes.rest
+            :start-after: ref1-begin
+            :end-before: ref1-end
 
    #. **For OpenStack only:** Due to the additional openstack services running
       on the |AIO| controller platform cores, a minimum of 4 platform cores are
@@ -284,9 +292,9 @@ The newly installed controller needs to be configured.
       .. code-block:: bash
 
          # check existing size of docker fs
-         system host-fs-list controller-1
+         system host-fs-list controller-0
          # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
-         system host-lvg-list controller-1
+         system host-lvg-list controller-0
          # if existing docker fs size + cgts-vg available space is less than 60G,
          # you will need to add a new disk partition to cgts-vg
 
@@ -294,22 +302,22 @@ The newly installed controller needs to be configured.
             # ( if not use another unused disk )
 
             # Get device path of ROOT DISK
-            system host-show controller-1 --nowrap | fgrep rootfs
+            system host-show controller-0 --nowrap | fgrep rootfs
 
             # Get UUID of ROOT DISK by listing disks
-            system host-disk-list controller-1
+            system host-disk-list controller-0
 
             # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
             # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
             PARTITION_SIZE=30
-            system hostdisk-partition-add -t lvm_phys_vol controller-1 <root-disk-uuid> ${PARTITION_SIZE}
+            system hostdisk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
 
             # Add new partition to ‘cgts-vg’ local volume group
-            system host-pv-add controller-1 cgts-vg <NEW_PARTITION_UUID>
+            system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
             sleep 2    # wait for partition to be added
 
             # Increase docker filesystem to 60G
-            system host-fs-modify controller-1 docker=60
+            system host-fs-modify controller-0 docker=60
 
    #. **For OpenStack only:** Configure the system setting for the vSwitch.
 
@@ -420,7 +428,7 @@ The newly installed controller needs to be configured.
          # Additional PARTITION(s) from additional disks can be added later if required.
          PARTITION_SIZE=30
 
-         system hostdisk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+         system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
 
          # Add new partition to ‘nova-local’ local volume group
          system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>

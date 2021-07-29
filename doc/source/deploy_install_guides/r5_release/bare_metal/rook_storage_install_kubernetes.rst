@@ -588,13 +588,22 @@ OpenStack-specific host configuration
 #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
    support of installing the stx-openstack manifest and helm-charts later.
 
-   .. code-block:: bash
 
-     for NODE in worker-0 worker-1; do
-       system host-label-assign $NODE  openstack-compute-node=enabled
-       system host-label-assign $NODE  openvswitch=enabled
-       system host-label-assign $NODE  sriov=enabled
-     done
+   .. only:: starlingx
+
+      .. code-block:: bash
+
+         for NODE in worker-0 worker-1; do
+             system host-label-assign $NODE  openstack-compute-node=enabled
+             system host-label-assign $NODE  openvswitch=enabled
+             system host-label-assign $NODE  sriov=enabled
+         done
+
+   .. only:: partner
+
+      .. include:: /_includes/rook_storage_install_kubernetes.rest
+         :start-after: ref1-begin
+         :end-before: ref1-end
 
 #. **For OpenStack only:** Set up disk partition for nova-local volume group,
    which is needed for stx-openstack nova ephemeral disks.

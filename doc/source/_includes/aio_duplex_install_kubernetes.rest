@@ -1,0 +1,5 @@
+.. ref1-begin
+.. ref1-end
+
+.. ref2-begin
+.. ref2-end
