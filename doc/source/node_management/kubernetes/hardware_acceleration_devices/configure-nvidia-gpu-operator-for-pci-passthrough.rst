@@ -85,7 +85,7 @@ Use the following steps to configure the GPU Operator container:
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ helm install -–name gpu-operator /path/to/gpu-operator-1.6.0.3.tgz
+        ~(keystone_admin)]$ helm install gpu-operator /path/to/gpu-operator-1.6.0.3.tgz
 
 #.  Check if the GPU Operator is deployed using the following command.
 
