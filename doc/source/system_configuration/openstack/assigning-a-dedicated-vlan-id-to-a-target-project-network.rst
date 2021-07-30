@@ -27,15 +27,6 @@ To assign a dedicated |VLAN| segment ID you must first enable the Neutron
              - segments
         ...
 
-#.  If you have not done so already, upload the |prefix|-openstack application
-    charts.
-
-    For example:
-
-    .. parsed-literal::
-
-        ~(keystone_admin)]$ system application-upload |prefix|-openstack-20.10-0.tgz
-
 #.  Update the |prefix|-openstack application using the overrides file created above.
 
     Assuming you named the file neutron-overrides.yaml, run:
@@ -192,3 +183,4 @@ To assign a dedicated |VLAN| segment ID you must first enable the Neutron
         Dedicated segment IDs should not be in the range created using the
         :command:`openstack network segment range create` commands. This can
         cause conflict errors.
+
