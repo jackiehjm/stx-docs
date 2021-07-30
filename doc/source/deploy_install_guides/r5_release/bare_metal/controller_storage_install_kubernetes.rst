@@ -263,8 +263,8 @@ Configure controller-0
       system interface-network-assign controller-0 $MGMT_IF mgmt
       system interface-network-assign controller-0 $MGMT_IF cluster-host
 
-      To configure a vlan or aggregated ethernet interface, see :ref:`Node
-      Interfaces <node-interfaces-index>`.
+   To configure a vlan or aggregated ethernet interface, see :ref:`Node
+   Interfaces <node-interfaces-index>`.
 
 #. Configure |NTP| servers for network time synchronization:
 
