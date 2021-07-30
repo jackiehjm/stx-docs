@@ -1,11 +1,16 @@
-.. Admin tasks file, created by
-   sphinx-quickstart on Thu Sep  3 15:14:59 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _admin-tasks-title:
 
-===========
-Admin Tasks
-===========
+.. only: starlingx
+
+   ===========
+   Admin Tasks
+   ===========
+
+.. only:: partner
+
+   ..include:: /_includes/title-overrides.rest
+      :start-after: admin-title-begin
+      :end-before: admin-title-end
 
 --------------------
 StarlingX Kubernetes

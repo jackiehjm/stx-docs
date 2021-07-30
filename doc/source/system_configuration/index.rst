@@ -1,8 +1,17 @@
 .. _sysconf_main_index:
 
-====================
-System Configuration
-====================
+.. only:: starlingx
+
+   ====================
+   System Configuration
+   ====================
+
+.. only:: partner
+
+   ..include:: /_includes/title-overrides.rest
+      :start-after: sysconf-title-begin
+      :end-before: sysconf-title-end
+
 
 --------------------
 StarlingX Kubernetes
