@@ -37,14 +37,14 @@ where the following are optional arguments:
         |                          |           | -manifest                     | _manifest.yaml            |          |           |
         | oidc-auth-apps           | 20.06-28  | oidc-auth-manifest            | manifest.yaml             | uploaded | completed |
         | platform-integ-apps      | 20.06-11  | platform-integration-manifest | manifest.yaml             | applied  | completed |
-        | |prefix|-openstack |s|           | 20.10-0-  | armada-manifest               | |prefix|-openstack.yaml |s|        | applied  | completed |
+        | |prefix|-openstack |s|           | 21.07-0-  | armada-manifest               | |prefix|-openstack.yaml |s|        | applied  | completed |
         |                          | centos-   |                               |                           |          |           |
         |                          | stable-   |                               |                           |          |           |
         |                          | versioned |                               |                           |          |           |
         +--------------------------+-----------+-------------------------------+---------------------------+----------+-----------+
 
         The output indicates that the currently installed version of
-        |prefix|-openstack is 20.10-0.
+        |prefix|-openstack is 21.07-0.
 
 **<version>**
     The version to update the application to.
@@ -89,7 +89,7 @@ and the following is a positional argument which must come last:
 
     .. parsed-literal::
 
-        ~(keystone_admin)$ system application-update |prefix|-openstack-20.10-1.tgz
+        ~(keystone_admin)$ system application-update |prefix|-openstack-21.07-0.tgz
 
 #.  Monitor the status of the application-apply operation until it has
     completed successfully.
@@ -101,7 +101,7 @@ and the following is a positional argument which must come last:
         | Property      | Value                            |
         +---------------+----------------------------------+
         | active        | True                             |
-        | app_version   | 20.06-1                          |
+        | app_version   | 21.07-0                          |
         | created_at    | 2020-05-02T17:11:48.718963+00:00 |
         | manifest_file | |prefix|-openstack.yaml |s|              |
         | manifest_name | openstack-armada-manifest        |
@@ -110,3 +110,4 @@ and the following is a positional argument which must come last:
         | status        | applied                          |
         | updated_at    | 2020-05-02T17:44:40.152201+00:00 |
         +---------------+----------------------------------+
+
