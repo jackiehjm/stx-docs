@@ -41,6 +41,12 @@ subcloud, the subcloud installation process has two phases:
 
 .. _installing-a-subcloud-without-redfish-platform-management-service-ul-g5j-3f3-qjb:
 
+.. only:: partner
+
+    .. include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
+       :start-after: prereq-begin
+       :end-before:  prereq-end
+
 -   You must have downloaded update-iso.sh from |dnload-loc|.
 
 -   In order to be able to deploy subclouds from either controller, all local
