@@ -12,6 +12,14 @@ or the CLI to set the Kubernetes CPU Manager policy.
 The **kube-cpu-mgr-policy** host label supports the values ``none`` and
 ``static``.
 
+For example:
+
+.. code-block:: none
+
+    ~(keystone)admin)$ system host-lock worker-1
+    ~(keystone)admin)$ system host-label-assign --overwrite worker-1 kube-cpu-mgr-policy=static
+    ~(keystone)admin)$ system host-unlock worker-1
+
 Setting either of these values results in kubelet on the host being configured
 with the policy of the same name as described at `https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/#cpu-management-policies <https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/#cpu-management-policies>`__,
 but with the following differences:
@@ -26,7 +34,7 @@ Static policy customizations
     throttling for Guaranteed QoS pods is disabled.
 
 -   When using the static policy, improved performance can be achieved if
-    one also uses the Isolated CPU behavior as described at :ref:`Isolating CPU Cores to Enhance Application Performance <isolating-cpu-cores-to-enhance-application-performance>`.
+    you also use the Isolated CPU behavior as described at :ref:`Isolating CPU Cores to Enhance Application Performance <isolating-cpu-cores-to-enhance-application-performance>`.
 
 -   For Kubernetes pods with a **Guaranteed** QoS \(see `https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/ <https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/>`__
     for background information\), CFS quota throttling is disabled as it
@@ -45,9 +53,20 @@ Static policy customizations
 .. xreflink and |node-doc|: :ref:`Configuring Node Labels from the CLI <assigning-node-labels-from-the-cli>`.
 
 
------------
-Limitations
------------
+---------------
+Recommendations
+---------------
 
 |org| recommends using the static policy.
 
+--------
+See also
+--------
+
+See |usertasks-doc|: :ref:`Use Kubernetes CPU Manager Static Policy’s 
+Guaranteed QoS class with exclusive CPUs 
+<using-kubernetes-cpu-manager-static-policy>` for an example of how to 
+configure a Pod in the ‘Guaranteed QOS’ class with exclusive (or 
+dedicated/pinned) cpus.
+
+See |usertasks-doc|: :ref:`Use Kubernetes CPU Manager Static Policy with application-isolated cores <use-application-isolated-cores>` for an example of how to configure a Pod with cores that are both ‘isolated from the host process scheduler’ and exclusive/dedicated/pinned cpus.
