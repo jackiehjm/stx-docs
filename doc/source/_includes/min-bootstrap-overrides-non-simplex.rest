@@ -1,0 +1,31 @@
+::
+
+   cd ~
+
+   cat <<EOF > localhost.yml
+
+   system_mode: duplex
+
+   dns_servers:
+     - 8.8.8.8
+     - 8.8.4.4
+
+   external_oam_subnet: <OAM-IP-SUBNET>/<OAM-IP-SUBNET-LENGTH>
+   external_oam_gateway_address: <OAM-GATEWAY-IP-ADDRESS>
+   external_oam_floating_address: <OAM-FLOATING-IP-ADDRESS>
+   external_oam_node_0_address: <OAM-CONTROLLER-0-IP-ADDRESS>
+   external_oam_node_1_address: <OAM-CONTROLLER-1-IP-ADDRESS>
+
+   admin_username: admin
+   admin_password: <admin-password>
+   ansible_become_pass: <sysadmin-password>
+
+   # OPTIONALLY provide a ROOT CA certificate and key for k8s root ca,
+   # if not specified, one will be auto-generated,
+   # see ‘Kubernetes Root CA Certificate’ in Security Guide for details.
+   k8s_root_ca_cert: < your_root_ca_cert.pem >
+   k8s_root_ca_key: < your_root_ca_key.pem >
+   apiserver_cert_sans:
+     - < your_hostname_for_oam_floating.your_domain >
+
+   EOF
