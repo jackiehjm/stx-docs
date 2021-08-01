@@ -1,17 +1,9 @@
 .. _dist-cloud-index:
 
-.. only:: starlingx
 
-   =================
-   Distributed Cloud
-   =================
-
-.. only:: partner
-
-   ..include:: /_includes/title-overrides.rest
-      :start-after: dc-title-begin
-      :end-before: dc-title-end
-
+=================
+Distributed Cloud
+=================
 
 ------------
 Introduction

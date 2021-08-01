@@ -1,16 +1,9 @@
 .. _admin-tasks-title:
 
-.. only: starlingx
 
-   ===========
-   Admin Tasks
-   ===========
-
-.. only:: partner
-
-   ..include:: /_includes/title-overrides.rest
-      :start-after: admin-title-begin
-      :end-before: admin-title-end
+===========
+Admin Tasks
+===========
 
 --------------------
 StarlingX Kubernetes

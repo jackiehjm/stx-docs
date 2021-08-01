@@ -1,16 +1,8 @@
 .. _sysconf_main_index:
 
-.. only:: starlingx
-
-   ====================
-   System Configuration
-   ====================
-
-.. only:: partner
-
-   ..include:: /_includes/title-overrides.rest
-      :start-after: sysconf-title-begin
-      :end-before: sysconf-title-end
+====================
+System Configuration
+====================
 
 
 --------------------
