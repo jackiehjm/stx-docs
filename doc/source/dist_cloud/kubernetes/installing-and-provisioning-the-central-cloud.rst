@@ -28,7 +28,7 @@ A Standard System Controller with Controller Storage is not supported.
 Complete the |prod| procedure for your deployment scenario with the
 modifications noted above and below.
 
-.. include:: ../_includes/installing-and-provisioning-the-central-cloud.rest
+.. include:: /_includes/installing-and-provisioning-the-central-cloud.rest
    :start-after: deployment-scenario-begin
    :end-before: deployment-scenario-end
 
@@ -51,7 +51,7 @@ You will also need to make the following modifications:
    installs with the Redfish Platform Management Service, and subcloud installs
    using a Ceph storage backend.
 
-.. include:: ../_includes/installing-and-provisioning-the-central-cloud.rest
+.. include:: /_includes/installing-and-provisioning-the-central-cloud.rest
 
 
 where <X.Y.Z> are replaced with the correct values for your environment.

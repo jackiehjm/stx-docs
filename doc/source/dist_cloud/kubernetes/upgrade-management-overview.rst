@@ -86,4 +86,4 @@ The following prerequisites apply to a |prod-dc| upgrade management service.
 
 .. only:: partner
 
-    .. include:: ../_includes/upgrade-management-overview.rest
+    .. include:: /_includes/upgrade-management-overview.rest

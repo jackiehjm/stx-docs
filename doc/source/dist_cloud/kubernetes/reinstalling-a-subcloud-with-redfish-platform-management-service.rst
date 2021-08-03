@@ -27,7 +27,7 @@ Executing the dcmanager subcloud reinstall command in the Central Cloud:
 
 .. only:: partner
 
-    .. include:: ../_includes/reinstalling-a-subcloud-with-redfish-platform-management-service.rest
+    .. include:: /_includes/reinstalling-a-subcloud-with-redfish-platform-management-service.rest
        :start-after: begin-ref-1
        :end-before: end-ref-1
 
@@ -83,7 +83,7 @@ Executing the dcmanager subcloud reinstall command in the Central Cloud:
 
     .. only:: partner
 
-        .. include:: ../_includes/reinstalling-a-subcloud-with-redfish-platform-management-service.rest
+        .. include:: /_includes/reinstalling-a-subcloud-with-redfish-platform-management-service.rest
             :start-after: begin-ref-2
             :end-before: end-ref-2
 
@@ -97,7 +97,7 @@ Executing the dcmanager subcloud reinstall command in the Central Cloud:
 
     .. only:: partner
 
-        .. include:: ../_includes/reinstalling-a-subcloud-with-redfish-platform-management-service.rest
+        .. include:: /_includes/reinstalling-a-subcloud-with-redfish-platform-management-service.rest
             :start-after: begin-ref-3
             :end-before: end-ref-3
 
@@ -147,7 +147,7 @@ Executing the dcmanager subcloud reinstall command in the Central Cloud:
 
 .. only:: partner
 
-    .. include:: ../_includes/reinstalling-a-subcloud-with-redfish-platform-management-service.rest
+    .. include:: /_includes/reinstalling-a-subcloud-with-redfish-platform-management-service.rest
         :start-after: begin-ref-4
         :end-before: end-ref-4
 
