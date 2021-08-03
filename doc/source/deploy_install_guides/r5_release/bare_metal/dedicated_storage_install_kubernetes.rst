@@ -277,13 +277,13 @@ Configure worker nodes
       (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
-      support of installing the stx-openstack manifest and helm-charts later.
+      support of installing the |prereq|-openstack manifest and helm-charts later.
 
-      .. code-block:: bash
+      .. parsed-literal
 
          for NODE in worker-0 worker-1; do
            system host-label-assign $NODE  openstack-compute-node=enabled
-           system host-label-assign $NODE  openvswitch=enabled
+           system host-label-assign $NODE  |vswitch-label|
            system host-label-assign $NODE  sriov=enabled
          done
 
@@ -349,7 +349,7 @@ Configure worker nodes
             done
 
    #. **For OpenStack only:** Setup disk partition for nova-local volume group,
-      needed for stx-openstack nova ephemeral disks.
+      needed for |prereq|-openstack nova ephemeral disks.
 
       .. code-block:: bash
 
@@ -363,7 +363,7 @@ Configure worker nodes
             # List host’s disks and take note of UUID of disk to be used
             system host-disk-list ${NODE}
             # ( if using ROOT DISK, select disk with device_path of
-            #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
+            #   ‘system host-show ${NODE} | fgrep rootfs’   )
 
             # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
             # The size of the PARTITION needs to be large enough to hold the aggregate size of
