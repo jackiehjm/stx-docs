@@ -91,4 +91,4 @@ and finalized. If failure occurs:
 
 .. only:: partner
 
-    .. include:: ../_includes/distributed-upgrade-orchestration-process-using-the-cli.rest
+    .. include:: /_includes/distributed-upgrade-orchestration-process-using-the-cli.rest

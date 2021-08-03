@@ -89,7 +89,7 @@ subcloud, the subcloud installation has these phases:
        management subnet, and between the subcloud |OAM| subnet and the
        System Controller subnet.
 
-    .. include:: ../_includes/installing-a-subcloud-using-redfish-platform-management-service.rest
+    .. include:: /_includes/installing-a-subcloud-using-redfish-platform-management-service.rest
        :start-after: begin-ref-1
        :end-before: end-ref-1
 

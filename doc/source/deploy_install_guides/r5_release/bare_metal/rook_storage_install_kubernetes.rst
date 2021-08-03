@@ -1,3 +1,5 @@
+.. _rook_storage_install_kubernetes:
+
 =====================================================================
 Install StarlingX Kubernetes on Bare Metal Standard with Rook Storage
 =====================================================================

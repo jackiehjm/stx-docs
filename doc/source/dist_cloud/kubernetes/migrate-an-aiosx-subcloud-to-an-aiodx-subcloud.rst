@@ -136,7 +136,7 @@ using the ansible playbook.
 
 .. only:: partner
 
-    .. include:: ../_includes/migrate-an-aiosx-subcloud-to-an-aiodx-subcloud.rest
+    .. include:: /_includes/migrate-an-aiosx-subcloud-to-an-aiodx-subcloud.rest
 
 
 .. _manually-migrate-a-subcloud-from-AIO-SX-to-AIO-DX:

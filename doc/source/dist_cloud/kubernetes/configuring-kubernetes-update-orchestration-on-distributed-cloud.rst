@@ -68,7 +68,7 @@ Hosts that need to be upgraded must be in the **unlocked-enabled** state.
 
 .. only:: partner
 
-    .. include:: ../_includes/configuring-kubernetes-update-orchestration-on-distributed-cloud.rest
+    .. include:: /_includes/configuring-kubernetes-update-orchestration-on-distributed-cloud.rest
 
 All  :command:`dcmanager` strategies must be deleted.
 

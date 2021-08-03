@@ -65,7 +65,7 @@ subcloud, the subcloud installation process has two phases:
         Controller management subnet, and between the subcloud OAM subnet and
         the System Controller subnet.
 
-    .. include:: ../_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
+    .. include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
        :start-after: begin-ref-1
        :end-before: end-ref-1
 
@@ -142,7 +142,7 @@ subcloud, the subcloud installation process has two phases:
 #.  At the subcloud location, install the |prod| software from a USB
     device or a |PXE| Boot Server on the server designated as controller-0.
 
-    .. include:: ../_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
+    .. include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
        :start-after: begin-ref-1
        :end-before: end-ref-1
 
