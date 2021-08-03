@@ -1,70 +1,30 @@
-.. _admin-tasks-title:
-
+.. _admintasks-index:
 
 ===========
 Admin Tasks
 ===========
 
---------------------
-StarlingX Kubernetes
---------------------
+The |prod-long| Kubernetes administration tutorials provide working examples
+of common administrative tasks.
+
+----------
+Kubernetes
+----------
 
 .. toctree::
-   :maxdepth: 1
+    :maxdepth: 2
 
-   about-the-admin-tutorials
-   installing-and-running-cpu-manager-for-kubernetes
-
-----------------------
-Application management
-----------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   kubernetes-admin-tutorials-helm-package-manager
-   kubernetes-admin-tutorials-starlingx-application-package-manager
-   admin-application-commands-and-helm-overrides
-
----------------------
-Local Docker registry
----------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   local-docker-registry
-   kubernetes-admin-tutorials-authentication-and-authorization
-   installing-updating-the-docker-registry-certificate
-   setting-up-a-public-repository
-   freeing-space-in-the-local-docker-registry
-
---------------------------------
-Optimize application performance
---------------------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   kubernetes-cpu-manager-policies
-   isolating-cpu-cores-to-enhance-application-performance
-   kubernetes-topology-manager-policies
-
-
---------------
-Metrics Server
---------------
-
-.. toctree::
-   :maxdepth: 1
-
-   kubernetes-admin-tutorials-metrics-server
+    kubernetes/index
 
 -------------------
 StarlingX OpenStack
 -------------------
 
-.. toctree::
-   :maxdepth: 2
+|prod| supports configuring Nova's dedicated and shared CPU pools on a per
+openstack-compute host basis.
 
-   openstack/index
+
+.. toctree::
+    :maxdepth: 2
+
+    openstack/index
