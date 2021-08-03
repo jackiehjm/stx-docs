@@ -279,11 +279,11 @@ Configure worker nodes
    #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
       support of installing the stx-openstack manifest and helm-charts later.
 
-      .. code-block:: bash
+      .. parsed-literal::
 
          for NODE in worker-0 worker-1; do
            system host-label-assign $NODE  openstack-compute-node=enabled
-           system host-label-assign $NODE  openvswitch=enabled
+           system host-label-assign $NODE  |vswitch-label|
            system host-label-assign $NODE  sriov=enabled
          done
 

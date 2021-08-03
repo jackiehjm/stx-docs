@@ -591,11 +591,11 @@ OpenStack-specific host configuration
 
    .. only:: starlingx
 
-      .. code-block:: bash
+      .. parsed-literal::
 
          for NODE in worker-0 worker-1; do
              system host-label-assign $NODE  openstack-compute-node=enabled
-             system host-label-assign $NODE  openvswitch=enabled
+             system host-label-assign $NODE  |vswitch-label|
              system host-label-assign $NODE  sriov=enabled
          done
 

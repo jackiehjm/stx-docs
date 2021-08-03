@@ -236,19 +236,19 @@ The newly installed controller needs to be configured.
    .. important::
 
       **These steps are required only if the StarlingX OpenStack application
-      (stx-openstack) will be installed.**
+      (|prereq|-openstack) will be installed.**
 
    #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
-      support of installing the stx-openstack manifest and helm-charts later.
+      support of installing the |prereq|-openstack manifest and helm-charts later.
 
 
       .. only:: starlingx
 
-         ::
+         .. parsed-literal::
 
             system host-label-assign controller-0 openstack-control-plane=enabled
             system host-label-assign controller-0 openstack-compute-node=enabled
-            system host-label-assign controller-0 openvswitch=enabled
+            system host-label-assign controller-0 |vswitch-label|
             system host-label-assign controller-0 sriov=enabled
 
       .. only:: partner
@@ -275,7 +275,7 @@ The newly installed controller needs to be configured.
 
          StarlingX has |OVS| (kernel-based) vSwitch configured as default:
 
-         * Runs in a container; defined within the helm charts of stx-openstack
+         * Runs in a container; defined within the helm charts of |prereq|-openstack
            manifest.
          * Shares the core(s) assigned to the platform.
 
@@ -356,7 +356,7 @@ The newly installed controller needs to be configured.
          locking and unlocking controller-0 to apply the change.
 
    #. **For OpenStack only:** Set up disk partition for nova-local volume
-      group, which is needed for stx-openstack nova ephemeral disks.
+      group, which is needed for |prereq|-openstack nova ephemeral disks.
 
       .. code-block:: bash
 
@@ -370,7 +370,7 @@ The newly installed controller needs to be configured.
          # List host’s disks and take note of UUID of disk to be used
          system host-disk-list ${NODE}
          # ( if using ROOT DISK, select disk with device_path of
-         #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
+         #   ‘system host-show ${NODE} | fgrep rootfs’   )
 
          # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
          # The size of the PARTITION needs to be large enough to hold the aggregate size of

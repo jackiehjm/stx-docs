@@ -243,11 +243,11 @@ The newly installed controller needs to be configured.
 
       .. only:: starlingx
 
-         ::
+         .. parsed-literal::
 
             system host-label-assign controller-0 openstack-control-plane=enabled
             system host-label-assign controller-0 openstack-compute-node=enabled
-            system host-label-assign controller-0 openvswitch=enabled
+            system host-label-assign controller-0 |vswitch-label|
             system host-label-assign controller-0 sriov=enabled
 
       .. only:: partner

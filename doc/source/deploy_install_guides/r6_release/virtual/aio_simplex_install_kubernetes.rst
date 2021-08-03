@@ -296,11 +296,11 @@ OpenStack-specific host configuration
 #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
    support of installing the stx-openstack manifest/helm-charts later.
 
-   ::
+   .. parsed-literal::
 
      system host-label-assign controller-0 openstack-control-plane=enabled
      system host-label-assign controller-0 openstack-compute-node=enabled
-     system host-label-assign controller-0 openvswitch=enabled
+     system host-label-assign controller-0 |vswitch-label|
      system host-label-assign controller-0 sriov=enabled
 
 #. **For OpenStack only:** A vSwitch is required.

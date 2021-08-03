@@ -255,18 +255,18 @@ Configure controller-0
    .. important::
 
       **These steps are required only if the StarlingX OpenStack application
-      (stx-openstack) will be installed.**
+      (|prefix|-openstack) will be installed.**
 
    #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
-      support of installing the stx-openstack manifest and helm-charts later.
+      support of installing the |prefix|-openstack manifest and helm-charts later.
 
       .. only:: starlingx
 
-         ::
+         .. parsed-literal::
 
             system host-label-assign controller-0 openstack-control-plane=enabled
             system host-label-assign controller-0 openstack-compute-node=enabled
-            system host-label-assign controller-0 openvswitch=enabled
+            system host-label-assign controller-0 |vswitch-label|
             system host-label-assign controller-0 sriov=enabled
 
       .. only:: partner
@@ -293,7 +293,7 @@ Configure controller-0
 
          StarlingX has |OVS| (kernel-based) vSwitch configured as default:
 
-         * Runs in a container; defined within the helm charts of stx-openstack
+         * Runs in a container; defined within the helm charts of |prefix|-openstack
            manifest.
          * Shares the core(s) assigned to the platform.
 
@@ -312,7 +312,7 @@ Configure controller-0
               system modify --vswitch_type none
 
          This does not run any vSwitch directly on the host, instead, it uses
-         the containerized |OVS| defined in the helm charts of stx-openstack
+         the containerized |OVS| defined in the helm charts of |prefix|-openstack
          manifest.
 
       To deploy |OVS-DPDK|, run the following command:
@@ -378,7 +378,7 @@ Configure controller-0
          locking and unlocking controller-0 to apply the change.
 
    #. **For OpenStack only:** Set up disk partition for nova-local volume
-      group, which is needed for stx-openstack nova ephemeral disks.
+      group, which is needed for |prefix|-openstack nova ephemeral disks.
 
       .. code-block:: bash
 
@@ -558,21 +558,21 @@ For host-based Ceph:
 
    .. only:: starlingx
 
-   For Rook container-based Ceph:
+      For Rook container-based Ceph:
 
-   #. Initialize with add ceph-rook backend:
+      #. Initialize with add ceph-rook backend:
 
-      ::
+         ::
 
-         system storage-backend-add ceph-rook --confirmed
+            system storage-backend-add ceph-rook --confirmed
 
-   #. Assign Rook host labels to controller-0 in support of installing the
-      rook-ceph-apps manifest/helm-charts later:
+      #. Assign Rook host labels to controller-0 in support of installing the
+         rook-ceph-apps manifest/helm-charts later:
 
-      ::
+         ::
 
-         system host-label-assign controller-0 ceph-mon-placement=enabled
-         system host-label-assign controller-0 ceph-mgr-placement=enabled
+            system host-label-assign controller-0 ceph-mon-placement=enabled
+            system host-label-assign controller-0 ceph-mgr-placement=enabled
 
 
 -------------------
@@ -717,7 +717,7 @@ Configure controller-1
 
             system host-label-assign controller-1 openstack-control-plane=enabled
             system host-label-assign controller-1 openstack-compute-node=enabled
-            system host-label-assign controller-1 openvswitch=enabled
+            system host-label-assign controller-1 |vswitch-label|
             system host-label-assign controller-1 sriov=enabled
 
       .. only:: partner
@@ -792,7 +792,7 @@ Configure controller-1
 
 
    #. **For OpenStack only:** Set up disk partition for nova-local volume group,
-      which is needed for stx-openstack nova ephemeral disks.
+      which is needed for |prefix|-openstack nova ephemeral disks.
 
       .. code-block:: bash
 
