@@ -28,7 +28,7 @@ Follow the steps below to manually upgrade the System Controller:
 
     .. only:: partner
 
-        .. include:: ../_includes/upgrading-the-systemcontroller-using-the-cli.rest
+        .. include:: /_includes/upgrading-the-systemcontroller-using-the-cli.rest
            :start-after: license-begin
            :end-before: license-end
 

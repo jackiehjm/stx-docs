@@ -40,17 +40,16 @@ associated user guides (if applicable).
 
   A new storage backend rook-ceph to provide storage service to StarlingX.
 
-  Guide: :doc:`Install StarlingX Kubernetes on Bare Metal Standard with Rook
-  Storage </deploy_install_guides/r5_release/bare_metal/rook_storage_install_kubernetes>`
+  Guide: :ref:`Install StarlingX Kubernetes on Bare Metal Standard with Rook
+  Storage <rook_storage_install_kubernetes>`
 
 * FPGA image update orchestration for distributed cloud
 
   Added support for orchestrating updates to the Intel N3000 FPGA Programmable
   Acceleration Card across the subclouds in a distributed cloud configuration.
 
-.. R5 branch not merged yet; comment this out
-  Guide:  :doc:`Device Image Update
-  Orchestration </dist_cloud/device-image-update-orchestration>`
+  Guide:  :ref:`Device Image Update
+  Orchestration <device-image-update-orchestration>`
 
 * Automatic certificate renewal for DC admin endpoints
 
@@ -60,8 +59,8 @@ associated user guides (if applicable).
   certificates. This feature adds support for automatically renewing the
   certificates associated with these ``admin`` endpoints.
 
-  Guide:  :doc:`Certificate Management for Admin REST API Endpoints
-  </dist_cloud/certificate-management-for-admin-rest-api-endpoints>`
+  Guide:  :ref:`Certificate Management for Admin REST API Endpoints
+  <certificate-management-for-admin-rest-api-endpoints>`
 
 * Vault integration for secret management support
 
@@ -79,7 +78,7 @@ associated user guides (if applicable).
     provides the ability to automatically unseal Vault pods in deployments
     where an external autounseal provider is not available.
 
-  Guide:  :doc:`Vault Overview </security/kubernetes/security-vault-overview>`
+  Guide:  :ref:`Vault Overview <security-vault-overview>`
 
 * Support for container image signature validation
 
@@ -111,13 +110,13 @@ associated user guides (if applicable).
   system application. The SNMP system application now supports both SNMPv2c
   and SNMPv3.
 
-  Guide:  :doc:`SNMP Overview </fault-mgmt/kubernetes/snmp-overview>`
+  Guide:  :ref:`SNMP Overview <snmp-overview>`
 
 * Distributed cloud scaling
 
   The distributed cloud deployment now supports up to 200 |AIO-SX| subclouds.
 
-  Guide:  :doc:`Distributed Cloud Architecture </dist_cloud/distributed-cloud-architecture>`
+  Guide:  :ref:`Distributed Cloud Architecture <distributed-cloud-architecture>`
 
 * Secure Device Onboard (SDO)
 
@@ -133,8 +132,9 @@ associated user guides (if applicable).
   Added support for Intel Ice Lake CPU, Intel Mt. Bryce eASIC (Pomona Lake),
   and Intel Columbiaville NIC.
 
-  Guides:  :doc:`Configuring VF Interfaces Rate Limiting Using the CLI
-  </node_management/kubernetes/node_interfaces/configuring-vf-interfaces-rate-limiting-using-cli>` and :doc:`Verified Commercial Hardware </planning/kubernetes/verified-commercial-hardware>`
+  Guides:  :ref:`Configuring VF Interfaces Rate Limiting Using the CLI
+  <configuring-vf-interfaces-rate-limiting-using-cli>` and :ref:`Verified
+  Commercial Hardware <verified-commercial-hardware>`
 
 
 ----------

@@ -9,7 +9,7 @@ Install and Provision a Subcloud
 You can install and provision a subcloud with or without using the Redfish
 Platform Management Service.
 
-.. include:: ../_includes/installing-and-provisioning-a-subcloud.rest
+.. include:: /_includes/installing-and-provisioning-a-subcloud.rest
    :start-after: begin-redfish-vms
    :end-before: end-redfish-vms
 
@@ -23,6 +23,6 @@ Platform Management Service.
 
 .. only:: partner
 
-    .. include:: ../_includes/installing-and-provisioning-a-subcloud.rest
+    .. include:: /_includes/installing-and-provisioning-a-subcloud.rest
        :start-after: begin-shared-nic
        :end-before: end-shared-nic

@@ -68,12 +68,12 @@ Hosts that need to be upgraded must be in the **unlocked-enabled** state.
 
 .. only:: partner
 
-    .. include:: ../_includes/configuring-kubernetes-update-orchestration-on-distributed-cloud.rest
+    .. include:: /_includes/configuring-kubernetes-update-orchestration-on-distributed-cloud.rest
 
 All  :command:`dcmanager` strategies must be deleted.
 
 The system controller should already be upgraded to the new version of
-Kubernetes. This will cause the 'audit' for the subclouds to note that they are
+Kubernetes. This will cause the 'audit' for the subclouds note that they are
 now out of sync.
 
 Hosts that need to be upgraded must be in the unlocked-enabled state.
@@ -128,8 +128,7 @@ controller for access by subclouds. For example:
                                                       [--noindent] [--prefix PREFIX]
                                                       [--subcloud-apply-type {parallel,serial}]
                                                       [--max-parallel-subclouds MAX_PARALLEL_SUBCLOUDS]
-                                                      [--stop-on-failure]
-                                                      [--force]
+                                                      [--stop-on-failure] [--force]
                                                       [--group GROUP]
                                                       [cloud_name]
 
@@ -137,39 +136,27 @@ controller for access by subclouds. For example:
     where the following are significant for performing an orchestrated Kubernetes
     upgrade:
 
-    ``--subcloud-apply-type``
+    **--subcloud-apply-type**
         Determines whether the subclouds are upgraded in parallel, or serially. If
         this is not specified using the CLI, the values for subcloud\_update\_type
         defined for each subcloud group will be used by default.
 
-    ``--max-parallel-subclouds``
+    **--max-parallel-subclouds**
         Sets the maximum number of subclouds that can be upgraded in parallel
         \(default 20\). If this is not specified using the CLI, the values for
         max\_parallel\_subclouds defined for each subcloud group will be used by
         default.
 
-    ``--stop-on-failure``
-        ``true`` \(default\) or ``false`` — determines whether upgrade
+    **--stop-on-failure**
+        **true** \(default\) or **false** — determines whether upgrade
         orchestration failure for a subcloud prevents application to subsequent
         subclouds.
 
-    ``--force``
-        Disregard subcloud availability status, intended for some upgrade
-        recovery scenarios. Subcloud name must be specified. This option can
-        only be used if you also specify a specific subcloud using the
-        ``cloud_name`` parameter. For example:
-
-        .. code-block:: none
-
-           dcmanager kube-upgrade-strategy create –force subcloud1
-
-    ``--group``
+    **--group**
         Optionally pass the name or ID of a subcloud group to the
         :command:`dcmanager kube-upgrade-strategy` command. This results in a
         strategy that is only applied to all subclouds in the specified group. If
         not specified, all subcloud groups are upgraded.
-    ``[cloud_name]``
-        The specific subcloud.
 
 
 #.  Optional: Display the strategy in summary, if required. The Kubernetes
@@ -194,7 +181,7 @@ controller for access by subclouds. For example:
 
 #.  Apply the strategy.
 
-    The scope of the subcloud orchestration is restricted through the ``group``
+    The scope of the subcloud orchestration is restricted through the 'group'
     argument.
 
     .. code-block:: none

@@ -325,12 +325,12 @@ the secret payload is, "username: admin password:<password>", see,
 
 .. only:: partner
 
-   .. include:: ../_includes/distributed-upgrade-orchestration-process-using-the-cli.rest
+   .. include:: /_includes/distributed-upgrade-orchestration-process-using-the-cli.rest
       :start-after: syscontroller-begin
       :end-before: syscontroller-end
 
 .. only:: partner
 
-   .. include:: ../_includes/distributed-upgrade-orchestration-process-using-the-cli.rest
+   .. include:: /_includes/distributed-upgrade-orchestration-process-using-the-cli.rest
       :start-after: dcupgrade-begin
       :end-before: dcupgrade-end
