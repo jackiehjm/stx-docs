@@ -1,64 +1,30 @@
-.. Admin tasks file, created by
-   sphinx-quickstart on Thu Sep  3 15:14:59 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _admintasks-index:
 
 ===========
 Admin Tasks
 ===========
 
---------------------
-StarlingX Kubernetes
---------------------
+The |prod-long| Kubernetes administration tutorials provide working examples
+of common administrative tasks.
+
+----------
+Kubernetes
+----------
 
 .. toctree::
-   :maxdepth: 1
+    :maxdepth: 2
 
-   about-the-admin-tutorials
-   installing-and-running-cpu-manager-for-kubernetes
+    kubernetes/index
 
-----------------------
-Application management
-----------------------
+-------------------
+StarlingX OpenStack
+-------------------
+
+|prod| supports configuring Nova's dedicated and shared CPU pools on a per
+openstack-compute host basis.
+
 
 .. toctree::
-   :maxdepth: 1
+    :maxdepth: 2
 
-   kubernetes-admin-tutorials-helm-package-manager
-   kubernetes-admin-tutorials-starlingx-application-package-manager
-   admin-application-commands-and-helm-overrides
-
----------------------
-Local Docker registry
----------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   local-docker-registry
-   kubernetes-admin-tutorials-authentication-and-authorization
-   installing-updating-the-docker-registry-certificate
-   setting-up-a-public-repository
-   freeing-space-in-the-local-docker-registry
-
---------------------------------
-Optimize application performance
---------------------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   kubernetes-cpu-manager-policies
-   isolating-cpu-cores-to-enhance-application-performance
-   kubernetes-topology-manager-policies
-
-
---------------
-Metrics Server
---------------
-
-.. toctree::
-   :maxdepth: 1
-
-   kubernetes-admin-tutorials-metrics-server
-
+    openstack/index

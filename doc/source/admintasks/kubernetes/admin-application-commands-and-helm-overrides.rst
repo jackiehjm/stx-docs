@@ -9,6 +9,10 @@ Application Commands and Helm Overrides
 Use |prod| :command:`system application` and :command:`system helm-override`
 commands to manage containerized applications provided as part of |prod|.
 
+.. note::
+    Application commands and Helm overrides apply to **user overrides** only
+    and take precedence over system overrides.
+
 .. rubric:: |proc|
 
 -   Use the following command to list all containerized applications provided
