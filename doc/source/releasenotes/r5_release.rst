@@ -99,7 +99,7 @@ associated user guides (if applicable).
   They usually do not meet worker nodes' minimum requirements but now they can
   be managed by StarlingX.
 
-  Guide: :doc:`Deploy Edgeworker Nodes </deploy/deploy-edgeworker-nodes>`
+  Guide: :doc:`Deploy Edgeworker Nodes </deploy/kubernetes/deploy-edgeworker-nodes>`
 
 * SNMP v3 support
 
