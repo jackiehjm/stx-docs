@@ -351,6 +351,23 @@ The newly installed controller needs to be configured.
          After controller-0 is unlocked, changing vswitch_type requires
          locking and unlocking controller-0 to apply the change.
 
+   #. **For OpenStack Only:** Optionally configure the number of host CPUs in
+      NOVA’s dedicated CPU Pool for this host.  By default, all remaining host
+      CPUs, outside of platform and vswitch host CPUs, are assigned to NOVA’s
+      shared CPU Pool for this host.  List the number of host cpus and function
+      assignments and configure the required dedicated host CPUs.
+
+      .. code-block:: bash
+
+         # list the number and function assignments for host’s CPUs
+         # ‘application’ function → in NOVA’s shared CPU Pool
+         # ‘application-isolated’ function → in NOVA’s dedicated CPU Pool
+         ~(keystone)admin)$ system host-cpu-list controller-0
+
+         # Configure the required number of host CPUs in NOVA’s dedicated CPU Pool for each processor/socket
+         ~(keystone)admin)$ system host-cpu-modify -f application-isolated -p0 10 controller-0
+         ~(keystone)admin)$ system host-cpu-modify -f application-isolated -p1 10 controller-0
+
    #. **For OpenStack only:** Set up disk partition for nova-local volume
       group, which is needed for stx-openstack nova ephemeral disks.
 
