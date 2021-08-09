@@ -11,6 +11,7 @@ Keystone Accounts
 
    openstack-keystone-accounts
    security-system-account-password-rules
+   openstack-login-protection
 
 -----------------
 Access the system
@@ -25,7 +26,7 @@ Access the system
    update-the-domain-name
    configure-remote-clis-and-clients
    config-and-management-using-container-backed-remote-clis-and-clients
-   openstack-login-protection
+
 
 ----------------------------------------
 Install REST API and Horizon certificate
