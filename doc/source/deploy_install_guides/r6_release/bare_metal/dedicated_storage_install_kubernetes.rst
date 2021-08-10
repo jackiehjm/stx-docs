@@ -348,6 +348,28 @@ Configure worker nodes
 
             done
 
+   #. **For OpenStack Only:** Optionally configure the number of host CPUs in
+      NOVA’s dedicated CPU Pool for this host.  By default, all remaining host
+      CPUs, outside of platform and vswitch host CPUs, are assigned to NOVA’s
+      shared CPU Pool for this host.  List the number of host cpus and function
+      assignments and configure the required dedicated host CPUs.
+
+      .. code-block:: bash
+
+         # list the number and function assignments for host’s CPUs
+         # ‘application’ function → in NOVA’s shared CPU Pool
+         # ‘application-isolated’ function → in NOVA’s dedicated CPU Pool
+         ~(keystone)admin)$ system host-cpu-list worker-0
+         ~(keystone)admin)$ system host-cpu-list worker-1
+
+         # Configure the required number of host CPUs in NOVA’s dedicated CPU Pool for each processor/socket
+         for NODE in worker-0 worker-1; do
+
+            system host-cpu-modify -f application-isolated -p0 10 $NODE
+            system host-cpu-modify -f application-isolated -p1 10 $NODE
+
+         done
+
    #. **For OpenStack only:** Setup disk partition for nova-local volume group,
       needed for stx-openstack nova ephemeral disks.
 
