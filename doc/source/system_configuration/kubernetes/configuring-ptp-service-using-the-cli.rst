@@ -232,6 +232,12 @@ settings to use the system in a much wider range of |PTP| configurations.
 
 The following service parameters are available:
 
+**ptp global default_sync=0**
+    This service parameter disables the selection of a default port by phc2sys.
+    This option should be used when there are three or more |PTP| ports
+    configured in order to prevent phc2sys from synchronizing the time across
+    all ports before they have become synchronized with the primary clock.
+
 **ptp global <name>=<value>**
     This service parameter allows you to write or overwrite values found
     in the global section of the ptp4l configuration file. For example,
@@ -247,8 +253,8 @@ The following service parameters are available:
 
         domainNumber 24
 
-    ptp global service parameters take precedence over the system ptp
-    values. For example, if the system ptp delay mechanism is
+    |PTP| global service parameters take precedence over the system |PTP|
+    values. For example, if the system |PTP| delay mechanism is
     **E2E**, and you subsequently run the command
 
     .. code-block:: none
