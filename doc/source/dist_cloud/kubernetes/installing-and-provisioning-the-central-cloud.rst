@@ -13,15 +13,13 @@ system.
 
 The Central Cloud supports either:
 
--  |AIO-DX| deployment
+-  |AIO-DX| with 0 or more Worker Nodes deployment
 
--  Standard with dedicated Storage Nodes deployment
+-  Standard with dedicated Storage Nodes and 1 or more Worker Nodes deployment,
+   or
 
--  Standard with Controller Storage deployment, or
-
--  Standard with Dedicated Storage Nodes deployment
-
-A Standard System Controller with Controller Storage is not supported.
+-  Standard with external Netapp Storage backend and 0 or more Worker Nodes
+   deployment
 
 .. rubric:: |proc|
 
