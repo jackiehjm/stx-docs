@@ -47,7 +47,7 @@ if using the CLI.
     The subclouds are |prod| instances used to host containerized applications.
     Any type of |prod| deployment configuration, i.e. simplex, duplex or
     standard with or without storage nodes, can be used for a subcloud.
-    Starting in Release 5.0, up to 200 simplex subclouds are supported.
+    Up to 500 |AIO-SX| subclouds can currently be supported.
 
     Alarms raised at the subclouds are sent to the System Controller for
     central reporting.
