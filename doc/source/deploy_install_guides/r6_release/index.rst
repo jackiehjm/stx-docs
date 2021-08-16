@@ -54,6 +54,13 @@ Use a private Docker registry
 
    bare_metal/bootstrapping-from-a-private-docker-registry
 
+Set up a Simple DNS Server in Lab
+*********************************
+
+.. toctree::
+   :maxdepth: 1
+
+   setup-simple-dns-server-in-lab
 
 Install controller-0 from a PXE boot server
 *******************************************
