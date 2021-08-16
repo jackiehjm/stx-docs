@@ -358,33 +358,33 @@ machine.
 
         # check existing size of docker fs
         system host-fs-list controller-0
+
         # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
         system host-lvg-list controller-0
+
         # if existing docker fs size + cgts-vg available space is less than
-        # 80G, you will need to add a new disk partition to cgts-vg.
-        # There must be at least 20GB of available space after the docker
-        # filesystem is increased.
+        # 60G, you will need to add a new disk partition to cgts-vg.
 
-           # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
-           # ( if not use another unused disk )
+                # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
+                # ( if not use another unused disk )
 
-           # Get device path of ROOT DISK
-           system host-show controller-0 --nowrap | fgrep rootfs
+                # Get device path of ROOT DISK
+                system host-show controller-0 --nowrap | fgrep rootfs
 
-           # Get UUID of ROOT DISK by listing disks
-           system host-disk-list controller-0
+                # Get UUID of ROOT DISK by listing disks
+                system host-disk-list controller-0
 
-           # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
-           # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
-           PARTITION_SIZE=30
-           system system host-disk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
+                # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
+                # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
+                PARTITION_SIZE=30
+                system system host-disk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
 
-           # Add new partition to ‘cgts-vg’ local volume group
-           system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
-           sleep 2    # wait for partition to be added
+                # Add new partition to ‘cgts-vg’ local volume group
+                system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
+                sleep 2    # wait for partition to be added
 
-           # Increase docker filesystem to 60G
-           system host-fs-modify controller-0 docker=60
+        # Increase docker filesystem to 60G
+        system host-fs-modify controller-0 docker=60
 
 -------------------------------------------------
 Install software on controller-1 and worker nodes
@@ -541,33 +541,33 @@ machine.
 
          # check existing size of docker fs
          system host-fs-list controller-1
+
          # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
          system host-lvg-list controller-1
+
          # if existing docker fs size + cgts-vg available space is less than
-         # 80G, you will need to add a new disk partition to cgts-vg.
-         # There must be at least 20GB of available space after the docker
-         # filesystem is increased.
+         # 60G, you will need to add a new disk partition to cgts-vg.
 
-            # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
-            # ( if not use another unused disk )
+                  # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
+                  # ( if not use another unused disk )
 
-            # Get device path of ROOT DISK
-            system host-show controller-1 --nowrap | fgrep rootfs
+                  # Get device path of ROOT DISK
+                  system host-show controller-1 --nowrap | fgrep rootfs
 
-            # Get UUID of ROOT DISK by listing disks
-            system host-disk-list controller-1
+                  # Get UUID of ROOT DISK by listing disks
+                  system host-disk-list controller-1
 
-            # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
-            # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
-            PARTITION_SIZE=30
-            system hostdisk-partition-add -t lvm_phys_vol controller-1 <root-disk-uuid> ${PARTITION_SIZE}
+                  # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
+                  # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
+                  PARTITION_SIZE=30
+                  system hostdisk-partition-add -t lvm_phys_vol controller-1 <root-disk-uuid> ${PARTITION_SIZE}
 
-            # Add new partition to ‘cgts-vg’ local volume group
-            system host-pv-add controller-1 cgts-vg <NEW_PARTITION_UUID>
-            sleep 2    # wait for partition to be added
+                  # Add new partition to ‘cgts-vg’ local volume group
+                  system host-pv-add controller-1 cgts-vg <NEW_PARTITION_UUID>
+                  sleep 2    # wait for partition to be added
 
-            # Increase docker filesystem to 60G
-            system host-fs-modify controller-1 docker=60
+         # Increase docker filesystem to 60G
+         system host-fs-modify controller-1 docker=60
 
 .. incl-unlock-controller-1-end:
 
