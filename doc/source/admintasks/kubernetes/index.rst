@@ -49,6 +49,7 @@ Optimize application performance
    kubernetes-cpu-manager-policies
    isolating-cpu-cores-to-enhance-application-performance
    kubernetes-topology-manager-policies
+   k8s_qat_device_plugin
 
 
 --------------
