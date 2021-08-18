@@ -12,6 +12,69 @@ This guide contains StarlingX-specific tasks and guidelines.
    :local:
    :depth: 2
 
+-------------------------------------
+Pre-review and pre-submission testing
+-------------------------------------
+
+* For the majority of cases, it is expected that the author completes their
+  testing before posting a review.
+* Update existing automated unit tests and add new ones when applicable.
+* Make sure the new code compiles and builds successfully.
+* For each package being modified, update the ``TIS_PATCH_VER`` variable in
+  the centos/build_srpm.data. If ``TIS_PATCH_VER=PKG_GITREVCOUNT`` is already present,
+  then changes to increment is for testing only; and is not required in commit
+  as the version is automatically incremented on commit. This ensures that packages
+  are versioned correctly and the latest version will be used. If up-versioning a
+  package, then reset ``TIS_PATCH_VER`` to 0.
+* Check build dependencies of a new or modified package using
+  ``build-pkgs --dep-test <pkg>`` (see details below).
+* Run tox tests (flake8, py27, etc) successfully. These can all be run manually
+  prior to launching a review.
+* Verify basic functional testing on a live system to ensure the new code gets
+  executed and functions correctly.
+* If the code changes are related to config/stx-puppet/ansible, impact on the following
+  should be assessed.  If appropriate, additional tests should be executed.
+
+  * Bootstrap
+  * Backup and restore
+  * Upgrade
+* If needed, consult with the core reviewers or send questions to the StarlingX
+  discuss mailing list (starlingx-discuss@lists.starlingx.io) regarding
+  required/recommended testing.
+* The commit message should include a **Test Plan** section that lists the test case
+  titles of manual tests executed on the update. In addition to the success path
+  test cases, additional test plan subsections are recommended.
+  For example.::
+
+      Test Plan: <success path test cases for new or changed behaviors>
+
+      PASS: Verify new functional behavior 1
+      PASS: Verify affected functional behavior 2
+
+      Failure Path: <failure path, i.e. negative tests>
+
+      PASS: Verify feature error path 1 is handled properly
+      PASS: Verify feature error path 2 is handled properly
+      PASS: Verify feature error path n is handled properly
+
+      Regression: <test cases that should still work but should be confirmed>
+
+      PASS: Verify system install
+      PASS: Verify feature alarm handling
+      PASS: Verify no core dumps and no memory leaks
+      PASS: Verify feature logging
+
+      Notes on the above "Execution Status Key":
+          FAIL: test failed; author is investigating while review is in progress
+          PASS: test passed
+              : no status means the test is not yet run.
+
+  After completing testing, when the code is ready for submission, it's not
+  necessary to add expected results.  Just the titles are sufficient.  The
+  formatting of the **Test Plan** section must conform to standard commit
+  message rules.  The goal is to inform reviewers about the testing done
+  as part of this new code.
+
 ------------
 Code reviews
 ------------
@@ -90,30 +153,6 @@ Link reviews to story or bug
     commit using "Closes-Bug"
   * Example: https://review.openstack.org/596305
 
--------------------------------------
-Pre-review and pre-submission testing
--------------------------------------
-
-* For the majority of cases, it is expected that the author completes their
-  testing before posting a review.
-* Make sure the new code compiles and builds successfully.
-* For each package being modified, update the ``TIS_PATCH_VER`` variable in
-  the centos/build_srpm.data. This ensures that packages are versioned
-  correctly and the latest version will be used. If up-versioning a
-  package, then reset ``TIS_PATCH_VER`` to 0.
-* Check build dependencies of a new or modified package using
-  ``build-pkgs --dep-test <pkg>`` (see details below).
-* Run tox tests (flake8, py27, etc) successfully. These can all be run manually
-  prior to launching a review.
-* Update existing automated unit tests and add new ones when applicable.
-* Verify basic functional testing on a live system to ensure the new code gets
-  executed and functions correctly.
-* If needed, consult with the core reviewers or send questions to the mailing
-  list regarding required/recommended testing.
-* Add the details of the testing performed as a comment in the review so that
-  the core reviewers are aware of it. It will save time if they don't have to
-  ask for this information and wait for it to be added.
-
 ************************
 Check build dependencies
 ************************
@@ -157,6 +196,9 @@ Cherry-picking
 
 * All code changes must be pushed to master first and then cherry-picked to the
   appropriate release branch as needed
+* When cherry-picking updates using “git cherry-pick”, include the '-x' option. This
+  automatically adds the “(cherry picked from commit XXXXX)” line to your commit
+  message, which is helpful to code reviewers.
 * Exception: Feature branches used during development
 
 ------------
