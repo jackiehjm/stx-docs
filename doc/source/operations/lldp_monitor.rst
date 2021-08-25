@@ -9,7 +9,7 @@ See the story for additional information about what is needed:
 `Add LLDP Monitoring and Display Guide <https://storyboard.openstack.org/#!/story/2006876>`_
 
 For information about contributing to the StarlingX documentation, see the
-:doc:`/contributor/doc_contribute_guide`.
+:ref:`doc_contribute_guide`.
 
 .. contents::
    :local:

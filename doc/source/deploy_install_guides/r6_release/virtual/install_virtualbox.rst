@@ -324,7 +324,7 @@ Controller Node Install vs Graphics Controller Node Install), and hitting the
 tab key to allow command line modification. The example below shows how to
 modify the ``rootfs_device`` specification.
 
-.. figure:: ../figures/install_virtualbox_configparms.png
+.. figure:: /deploy_install_guides/r6_release/figures/install_virtualbox_configparms.png
    :scale: 100%
    :alt: Install controller-0
 
@@ -361,6 +361,6 @@ If you’d prefer to install to the second disk on your node, use the command:
 Alternatively, these values can be set from the GUI via the ``Edit Host``
 option.
 
-.. figure:: ../figures/install_virtualbox_guiscreen.png
+.. figure:: /deploy_install_guides/r6_release/figures/install_virtualbox_guiscreen.png
    :scale: 100%
    :alt: Install controller-0

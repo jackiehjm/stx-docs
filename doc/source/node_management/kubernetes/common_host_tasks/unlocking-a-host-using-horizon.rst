@@ -34,5 +34,5 @@ see :ref:`Reboot Limits for Host Unlock <reboot-limits-for-host-unlock>`.
 
 #.  From the **Edit** menu for the host, select **Unlock Host**.
 
-    .. figure:: ../figures/mwl1579716430090.png
+    .. figure:: /node_management/kubernetes/figures/mwl1579716430090.png
         :scale: 100%

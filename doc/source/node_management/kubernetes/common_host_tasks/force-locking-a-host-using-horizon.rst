@@ -30,7 +30,7 @@ configuration and maintenance purposes.
 
     #.  From the **Edit** menu for the host, select **Force Lock Host**.
 
-        .. figure:: ../figures/xwu1579713699282.png
+        .. figure:: /node_management/kubernetes/figures/xwu1579713699282.png
             :scale: 100%
 
         The system displays a warning message appropriate to the

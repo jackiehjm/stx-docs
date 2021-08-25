@@ -113,7 +113,7 @@ For more information, see :ref:`Provision SR-IOV Interfaces using the CLI
 
             .. only:: partner
 
-                .. include:: ../../../_includes/provisioning-sr-iov-vf-interfaces-using-the-cli.rest
+                .. include:: /_includes/provisioning-sr-iov-vf-interfaces-using-the-cli.rest
 
     **networks**
         A list of data networks that are attached to the interface, delimited

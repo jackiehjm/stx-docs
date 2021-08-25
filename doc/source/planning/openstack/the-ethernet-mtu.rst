@@ -103,4 +103,4 @@ default |MTU| size:
 
 ..  .. only:: partner
 
-.. include:: ../../_includes/the-ethernet-mtu.rest
+.. include:: /_includes/the-ethernet-mtu.rest

@@ -84,7 +84,7 @@ On virtual controller-0:
       The default location where Ansible looks for and imports user
       configuration override files for hosts. For example: ``$HOME/<hostname>.yml``.
 
-   .. include:: ../ansible_install_time_only.txt
+   .. include:: /shared/_includes/r5_ansible_install_time_only.txt
 
    Specify the user configuration override file for the Ansible bootstrap
    playbook using one of the following methods:
@@ -129,7 +129,7 @@ On virtual controller-0:
    Refer to :doc:`/deploy_install_guides/r5_release/ansible_bootstrap_configs`
    for information on additional Ansible bootstrap configurations for advanced
    Ansible bootstrap scenarios, such as Docker proxies when deploying behind a
-   firewall, etc. Refer to :doc:`/../../configuration/docker_proxy_config` for
+   firewall, etc. Refer to :ref:`docker_proxy_config` for
    details about Docker proxy settings.
 
 #. Run the Ansible bootstrap playbook:
@@ -288,7 +288,7 @@ For Rook container-based Ceph:
 
        system service-parameter-list platform docker
 
-   #. Refer to :doc:`/../../configuration/docker_proxy_config` for
+   #. Refer to :ref:`docker_proxy_config` for
       details about Docker proxy settings.
 
 *************************************
@@ -579,4 +579,4 @@ On **virtual** controller-0 and controller-1:
 Next steps
 ----------
 
-.. include:: ../kubernetes_install_next.txt
+.. include:: /_includes/r5_kubernetes_install_next.txt

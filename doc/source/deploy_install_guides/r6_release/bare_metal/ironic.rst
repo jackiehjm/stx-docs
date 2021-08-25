@@ -17,10 +17,10 @@ more bare metal servers.
 .. note::
 
    If you are behind a corporate firewall or proxy, you need to set proxy
-   settings. Refer to :doc:`/../../configuration/docker_proxy_config` for
+   settings. Refer to :ref:`docker_proxy_config` for
    details.
 
-.. figure:: ../figures/starlingx-deployment-options-ironic.png
+.. figure:: /deploy_install_guides/r6_release/figures/starlingx-deployment-options-ironic.png
    :scale: 50%
    :alt: Standard with Ironic deployment configuration
 

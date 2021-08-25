@@ -14,7 +14,7 @@ All non-|NIC| |PCI| devices that can be exposed
 to a guest application are listed. They are automatically detected by the
 system, and cannot be manually added or deleted.
 
-.. figure:: ../figures/szv1567164542479.png
+.. figure:: /node_management/kubernetes/figures/szv1567164542479.png
     :scale: 100%
 
 .. note::

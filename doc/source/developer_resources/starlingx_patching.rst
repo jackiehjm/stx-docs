@@ -1,3 +1,5 @@
+.. _starlingx_patching:
+
 ==================
 StarlingX patching
 ==================

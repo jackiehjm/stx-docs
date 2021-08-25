@@ -6,9 +6,9 @@ Virtual Standard with Dedicated Storage Installation R6.0
 Overview
 --------
 
-.. include:: ../desc_dedicated_storage.txt
+.. include:: /shared/_includes/desc_dedicated_storage.txt
 
-.. include:: ../ipv6_note.txt
+.. include:: /shared/_includes/ipv6_note.txt
 
 ------------
 Installation

@@ -27,7 +27,7 @@ extra specification. From the |os-prod-hor| interface, use the **Custom
 Extra Spec** selection in the **Create Flavor Extra Spec** drop-down menu. For
 the **Key**, use **pci\_passthrough:alias**.
 
-.. image:: ../figures/kho1513370501907.png
+.. image:: /node_management/figures/kho1513370501907.png
 
 
 

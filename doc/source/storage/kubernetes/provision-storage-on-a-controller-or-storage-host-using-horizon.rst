@@ -70,7 +70,7 @@ must add the storage tier first. For more about storage tiers, see
 #.  Select the **Storage** tab to view the disks and storage functions for
     the node.
 
-    .. image:: ../figures/qgh1567533283603.png
+    .. image:: /shared/figures/storage/qgh1567533283603.png
 
     .. note::
         User-defined partitions are not supported on storage hosts.
@@ -80,7 +80,7 @@ must add the storage tier first. For more about storage tiers, see
     #.  Click **Assign Storage Function** to open the Assign Storage
         Function dialog box.
 
-        .. image:: ../figures/bse1464884816923.png
+        .. image:: /shared/figures/storage/bse1464884816923.png
 
     #.  In the **Disks** field, select the OSD to use for storage.
 
@@ -104,7 +104,7 @@ must add the storage tier first. For more about storage tiers, see
 
     The storage function is added.
 
-    .. image:: ../figures/caf1464886132887.png
+    .. image:: /shared/figures/storage/caf1464886132887.png
 
 #.  Unlock the host to make it available for use.
 

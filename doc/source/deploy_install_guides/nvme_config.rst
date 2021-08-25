@@ -1,3 +1,5 @@
+.. _nvme_config:
+
 ====================================
 Configure NVMe Drive as Primary Disk
 ====================================

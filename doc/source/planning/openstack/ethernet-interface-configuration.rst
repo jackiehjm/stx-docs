@@ -91,4 +91,4 @@ accelerator from Intel. |prod-os| manages the allocation of |SRIOV| VFs to
 
 .. only:: partner
 
-   .. include:: ../../_includes/ethernet-interface-configuration.rest
+   .. include:: /_includes/ethernet-interface-configuration.rest

@@ -21,7 +21,7 @@ devices as you have network annotations.
 
 .. only:: partner
 
-    .. include:: ../../_includes/using-network-attachment-definitions-in-a-container.rest
+    .. include:: /_includes/using-network-attachment-definitions-in-a-container.rest
 
 .. xreflink For information about PCI-SRIOV Interface Support, see the :ref:`|datanet-doc|
    <data-network-management-data-networks>` guide.

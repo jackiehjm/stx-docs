@@ -9,7 +9,7 @@ Filesystems Tab
 The **Filesystems** tab on the Host Detail page presents file system details
 for a host.
 
-.. figure:: ../figures/mov1566319898101.png
+.. figure:: /node_management/kubernetes/figures/mov1566319898101.png
     :scale: 100%
 
 The **Filesystems** tab includes the following items:

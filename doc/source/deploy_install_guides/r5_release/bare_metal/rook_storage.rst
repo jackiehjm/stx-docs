@@ -6,9 +6,9 @@ Bare metal Standard with Rook Storage Installation R5.0
 Overview
 --------
 
-.. include:: ../desc_rook_storage.txt
+.. include:: /shared/_includes/r5_desc_rook_storage.txt
 
-.. include:: ../ipv6_note.txt
+.. include:: /shared/_includes/r5_ipv6_note.txt
 
 
 ------------

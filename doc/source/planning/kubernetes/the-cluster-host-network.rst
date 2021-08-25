@@ -48,4 +48,4 @@ available next hop controller and/or worker nodes' cluster host IP Addresses.
 
 .. only:: partner
 
-    .. include:: ../../_includes/subnet-sizing-restrictions.rest
+    .. include:: /_includes/subnet-sizing-restrictions.rest

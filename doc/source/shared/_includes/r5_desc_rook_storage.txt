@@ -12,10 +12,10 @@ A Standard with Rook Storage configuration provides the following benefits:
 .. note::
 
    If you are behind a corporate firewall or proxy, you need to set proxy
-   settings. Refer to :doc:`/../../configuration/docker_proxy_config` for
+   settings. Refer to :doc:`/configuration/docker_proxy_config` for
    details.
 
-.. figure:: ../figures/starlingx-deployment-options-controller-storage.png
+.. figure:: /deploy_install_guides/r5_release/figures/starlingx-deployment-options-controller-storage.png
    :scale: 50%
    :alt: Standard with Rook Storage deployment configuration
 

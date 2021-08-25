@@ -28,7 +28,7 @@ to receive the packet in order to reach the |VM|.
 Static |VXLAN| is limited to use on one data network. If configured, it must be
 enabled on all OpenStack compute nodes.
 
-.. figure:: ../figures/oeg1510005898965.png
+.. figure:: /shared/figures/datanet/oeg1510005898965.png
 
     `Static Endpoint Distribution`
 

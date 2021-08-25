@@ -13,7 +13,7 @@ In a redundant |ToR| switch configuration, each link in a link aggregate is
 connected to a different switch, as shown in the accompanying figure. If one
 switch fails, another is available to service the link aggregate.
 
-.. figure:: ../figures/jow1438030468959.png
+.. figure:: /shared/figures/planning/jow1438030468959.png
 
    *Redundant Top-of-Rack Switches*
 

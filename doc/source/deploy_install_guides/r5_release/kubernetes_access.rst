@@ -1,3 +1,5 @@
+.. _kubernetes_access:
+
 ================================
 Access StarlingX Kubernetes R5.0
 ================================

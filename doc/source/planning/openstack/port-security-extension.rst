@@ -24,4 +24,4 @@ By default, the port security extension driver is disabled.
 
 .. only:: partner
 
-   .. include:: ../../_includes/port-security-extension.rest
+   .. include:: /_includes/port-security-extension.rest

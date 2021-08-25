@@ -11,7 +11,7 @@ logical L2 network interfaces on a node.
 
 The following example is for an unlocked controller node:
 
-.. figure:: ../figures/hxu1567097201027.png
+.. figure:: /node_management/kubernetes/figures/hxu1567097201027.png
     :scale: 100%
 
 On a configured worker node, the Interfaces tab may include additional

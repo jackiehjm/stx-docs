@@ -6,9 +6,9 @@ Virtual Standard with Rook Storage Installation R6.0
 Overview
 --------
 
-.. include:: ../desc_rook_storage.txt
+.. include:: /shared/_includes/desc_rook_storage.txt
 
-.. include:: ../ipv6_note.txt
+.. include:: /shared/_includes/ipv6_note.txt
 
 ------------
 Installation

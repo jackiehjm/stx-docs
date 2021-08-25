@@ -157,14 +157,14 @@ using the :command:`openstack` command. For example:
 
 The image below shows a typical successful run.
 
-.. figure:: ../figures/starlingx-access-openstack-flavorlist.png
+.. figure:: /deploy_install_guides/r5_release/figures/starlingx-access-openstack-flavorlist.png
    :alt: starlingx-access-openstack-flavorlist
    :scale: 50%
 
    *Figure 1: StarlingX OpenStack Flavorlist*
 
 
-.. figure:: ../figures/starlingx-access-openstack-command.png
+.. figure:: /deploy_install_guides/r5_release/figures/starlingx-access-openstack-command.png
    :alt: starlingx-access-openstack-command
    :scale: 50%
 

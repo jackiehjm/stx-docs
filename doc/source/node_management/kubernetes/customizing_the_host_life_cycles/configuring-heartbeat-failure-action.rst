@@ -101,7 +101,7 @@ Customer logs are created. The customer can change from one action to any
 other action at any time and the log reflects the from <action> to <action>
 change in the log text. For example,
 
-.. figure:: ../figures/wnz1537822287984.jpeg
+.. figure:: /node_management/kubernetes/figures/wnz1537822287984.jpeg
     :scale: 65%
 
 The heartbeat alarms, such as Management Network can be viewed. For example:

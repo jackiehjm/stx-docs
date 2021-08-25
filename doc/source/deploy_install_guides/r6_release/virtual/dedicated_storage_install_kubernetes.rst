@@ -399,4 +399,4 @@ Unlock worker nodes
 Next steps
 ----------
 
-.. include:: ../kubernetes_install_next.txt
+.. include:: /_includes/kubernetes_install_next.txt

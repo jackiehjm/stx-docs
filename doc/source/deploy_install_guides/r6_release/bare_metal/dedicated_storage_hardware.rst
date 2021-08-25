@@ -28,7 +28,7 @@ host types are:
 | Minimum memory      | 64 GB                     | 64 GB                 | 32 GB                 |
 +---------------------+---------------------------+-----------------------+-----------------------+
 | Primary disk        | 500 GB SSD or NVMe (see   | 120 GB (min. 10k RPM) | 120 GB (min. 10k RPM) |
-|                     | :doc:`../../nvme_config`) |                       |                       |
+|                     | :ref:`nvme_config`)       |                       |                       |
 +---------------------+---------------------------+-----------------------+-----------------------+
 | Additional disks    | None                      | - 1 or more 500 GB    | - For OpenStack,      |
 |                     |                           |   (min. 10K RPM) for  |   recommend 1 or more |

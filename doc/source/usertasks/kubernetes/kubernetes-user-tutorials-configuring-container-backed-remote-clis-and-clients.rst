@@ -129,7 +129,7 @@ and clients for a non-admin user.
 
         .. only:: partner
 
-            .. include:: ../../_includes/kubernetes-user-tutorials-configuring-container-backed-remote-clis-and-clients.rest
+            .. include:: /_includes/kubernetes-user-tutorials-configuring-container-backed-remote-clis-and-clients.rest
 
         If you specify repositories that require authentication, as shown
         above, you must remember to perform a :command:`docker login` to

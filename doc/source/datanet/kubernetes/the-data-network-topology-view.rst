@@ -18,7 +18,7 @@ hosts or networks to highlight their connections and obtain more details.
 To display this view, select **Admin** \> **Platform** \> **Data Network
 Topology**.
 
-.. image:: ../figures/sqw1475425312420.png
+.. image:: /datanet/figures/sqw1475425312420.png
    :height: 365px
 
 .. _the-data-network-topology-view-section-N1002F-N1001C-N10001:
@@ -75,7 +75,7 @@ using icons superimposed on the entities. The alarms are color-coded for
 severity using the same colors as the Global Alarm Banner. Details for the
 alarms are listed in the **Related Alarms** tab for the entity.
 
-.. image:: ../figures/eal1475518780745.png
+.. image:: /shared/figures/datanet/eal1475518780745.png
 
 .. _the-data-network-topology-view-section-N100AD-N1001C-N10001:
 

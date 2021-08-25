@@ -32,7 +32,7 @@ Management Control from Horizon
 
 #.  Switch to the Board Management tab.
 
-    .. figure:: ../figures/sxl1575923501137.jpeg
+    .. figure:: /node_management/kubernetes/figures/sxl1575923501137.jpeg
         :scale: 80%
 
 #.  From the **Board Management Controller Type** drop-down list, select

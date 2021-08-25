@@ -30,7 +30,7 @@ This section describes the steps to install the |prod| Kubernetes platform on a
    Install software on controller-0
    --------------------------------
 
-   .. include:: inc-install-software-on-controller.rest
+   .. include:: /shared/_includes/inc-install-software-on-controller.rest
       :start-after: incl-install-software-controller-0-standard-start
       :end-before: incl-install-software-controller-0-standard-end
 
@@ -547,7 +547,7 @@ host machine.
    Next steps
    ----------
 
-   .. include:: ../kubernetes_install_next.txt
+   .. include:: /_includes/kubernetes_install_next.txt
 
 
 .. only:: partner

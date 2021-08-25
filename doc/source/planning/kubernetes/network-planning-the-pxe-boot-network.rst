@@ -19,7 +19,7 @@ IPv4.
 
 .. only:: partner
 
-   .. include:: ../../_includes/subnet-sizing-restrictions.rest
+   .. include:: /_includes/subnet-sizing-restrictions.rest
 
 .. note::
     |prod| does not support IPv6 |PXE| booting.

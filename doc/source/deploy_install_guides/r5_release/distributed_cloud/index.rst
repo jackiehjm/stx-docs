@@ -85,7 +85,7 @@ networks, as shown in Figure 1.
   Alarms raised at the subclouds are sent to the SystemController for
   central reporting.
 
-.. figure:: ../figures/starlingx-deployment-options-distributed-cloud.png
+.. figure:: /deploy_install_guides/r5_release/figures/starlingx-deployment-options-distributed-cloud.png
    :scale: 45%
    :alt: Distributed cloud deployment configuration
 

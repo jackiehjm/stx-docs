@@ -9,7 +9,7 @@ See the story for additional information about what is needed:
 `Add Storage Utilization Display Guide <https://storyboard.openstack.org/#!/story/2006875>`_
 
 For information about contributing to the StarlingX documentation, see the
-:doc:`/contributor/doc_contribute_guide`.
+:ref:`doc_contribute_guide`.
 
 .. contents::
    :local:

@@ -111,7 +111,7 @@ Edge cloud platform
 *******************
 
 #. Install STX environment: follow the instructions from the
-   :doc:`Installation Guides <../deploy_install_guides/index>` to install one
+   :doc:`Installation Guides </deploy_install_guides/index>` to install one
    STX environment (for example STX AIO).
 
 #. Prepare a :abbr:`VM (Virtual Machine)` image. Create image ``tsn_ubuntu_19_04.img``

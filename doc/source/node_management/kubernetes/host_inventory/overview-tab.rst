@@ -9,7 +9,7 @@ Overview Tab
 The **Overview** tab on the Host Detail page summarizes essential information
 about a host object.
 
-.. figure:: ../figures/pcd1567096217474.png
+.. figure:: /node_management/kubernetes/figures/pcd1567096217474.png
     :scale: 100%
 
 

@@ -6,13 +6,13 @@ Bare metal All-in-one Duplex Installation R5.0
 Overview
 --------
 
-.. include:: ../desc_aio_duplex.txt
+.. include:: /shared/_includes/r5_desc_aio_duplex.txt
 
 The bare metal AIO-DX deployment configuration may be extended with up to four
 worker nodes (not shown in the diagram). Installation instructions for
 these additional nodes are described in :doc:`aio_duplex_extend`.
 
-.. include:: ../ipv6_note.txt
+.. include:: /shared/_includes/r5_ipv6_note.txt
 
 ------------
 Installation

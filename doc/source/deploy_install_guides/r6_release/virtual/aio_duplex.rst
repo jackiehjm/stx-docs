@@ -6,9 +6,9 @@ Virtual All-in-one Duplex Installation R6.0
 Overview
 --------
 
-.. include:: ../desc_aio_duplex.txt
+.. include:: /shared/_includes/desc_aio_duplex.txt
 
-.. include:: ../ipv6_note.txt
+.. include:: /shared/_includes/ipv6_note.txt
 
 ------------
 Installation

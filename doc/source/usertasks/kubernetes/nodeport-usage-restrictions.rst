@@ -20,4 +20,4 @@ The following usage restrictions apply when using NodePorts:
 
 .. only:: partner
 
-    .. include:: ../../_includes/nodeport-usage-restrictions.rest
+    .. include:: /_includes/nodeport-usage-restrictions.rest

@@ -69,5 +69,5 @@ shut down and physically moved.
     #.  On the Hosts tab of the **Admin** \> **Platform** \>
         **Host Inventory** page, select **Edit Host** \> **Unlock Host**.
 
-        .. figure:: ../figures/rst1446643548268.png
+        .. figure:: /node_management/kubernetes/figures/rst1446643548268.png
             :scale: 100%

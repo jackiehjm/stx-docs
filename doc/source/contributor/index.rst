@@ -32,8 +32,8 @@ Additional StarlingX-specific resources are listed below.
    :maxdepth: 1
 
    development_process
-   ../developer_resources/code-submission-guide
-   ../developer_resources/debug_issues
+   /developer_resources/code-submission-guide
+   /developer_resources/debug_issues
 
 --------------------
 Additional resources

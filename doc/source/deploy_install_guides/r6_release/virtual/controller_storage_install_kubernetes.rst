@@ -89,7 +89,7 @@ On virtual controller-0:
       The default location where Ansible looks for and imports user
       configuration override files for hosts. For example: ``$HOME/<hostname>.yml``.
 
-   .. include:: ../ansible_install_time_only.txt
+   .. include:: /_includes/ansible_install_time_only.txt
 
    Specify the user configuration override file for the Ansible bootstrap
    playbook using one of the following methods:
@@ -215,7 +215,7 @@ On virtual controller-0:
 
        system service-parameter-list platform docker
 
-   #. Refer to :doc:`/../../configuration/docker_proxy_config` for
+   #. Refer to :ref:`docker_proxy_config` for
       details about Docker proxy settings.
 
 *************************************
@@ -597,4 +597,4 @@ On virtual controller-0:
 Next steps
 ----------
 
-.. include:: ../kubernetes_install_next.txt
+.. include:: /_includes/kubernetes_install_next.txt

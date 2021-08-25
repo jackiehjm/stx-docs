@@ -9,7 +9,7 @@ Processor Tab
 The **Processor** tab on the Host Detail page presents processor details for
 a host.
 
-.. figure:: ../figures/ldv1567165392491.png
+.. figure:: /node_management/kubernetes/figures/ldv1567165392491.png
     :scale: 100%
 
 

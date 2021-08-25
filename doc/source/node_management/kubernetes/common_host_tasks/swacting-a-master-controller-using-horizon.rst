@@ -26,5 +26,5 @@ when updating hardware or replacing faulty components.
 
 #.  From the **Edit** menu for the standby controller, select **Swact Host**.
 
-    .. figure:: ../figures/wwd1579715313055.png
+    .. figure:: /node_management/kubernetes/figures/wwd1579715313055.png
         :scale: 100%

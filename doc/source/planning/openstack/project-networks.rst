@@ -27,7 +27,7 @@ For data networks of the |VLAN| type, consider the following guidelines:
 
 .. only:: partner
 
-   .. include:: ../../_includes/project-networks.rest
+   .. include:: /_includes/project-networks.rest
    :start-after: vlan-begin
    :end-before: vxlan-begin
 
@@ -56,7 +56,7 @@ For data networks of the |VXLAN| type, consider the following guidelines:
 -   Layer 3 routers used to interconnect compute nodes must be
     multicast-enabled, as required by the |VXLAN| protocol.
 
-.. include:: ../../_includes/project-networks.rest
+.. include:: /_includes/project-networks.rest
    :start-after: vxlan-begin
 
 -   To support |IGMP| and |MLD| snooping, Layer 3 routers must be configured

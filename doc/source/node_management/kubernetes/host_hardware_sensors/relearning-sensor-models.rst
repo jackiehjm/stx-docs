@@ -50,7 +50,7 @@ for your system.
 
 #.  On the Sensors page, click **Relearn Sensor Model**.
 
-    .. figure:: ../figures/eoc1497190198018.png
+    .. figure:: /node_management/kubernetes/figures/eoc1497190198018.png
         :scale: 100%
 
     Allow about two minutes for the sensor information to be updated.

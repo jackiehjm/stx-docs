@@ -1,3 +1,5 @@
+.. _stx_ipv6_deployment:
+
 =========================
 StarlingX IPv6 Deployment
 =========================
