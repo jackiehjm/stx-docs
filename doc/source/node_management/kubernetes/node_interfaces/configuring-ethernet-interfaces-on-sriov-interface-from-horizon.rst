@@ -21,7 +21,7 @@ the CLI <provisioning-sr-iov-interfaces-using-the-cli>`.
     \> **Host Inventory** in the left-hand panel, under **Actions** click on the
     down arrow button on "Edit Host" and select "Lock Host".
 
-    .. image:: ../figures/rst1442611298701.png
+    .. image:: /shared/figures/system_configuration/rst1442611298701.png
        :width: 550
 
 #.  Open the Host Detail page for the host.
@@ -36,7 +36,7 @@ the CLI <provisioning-sr-iov-interfaces-using-the-cli>`.
 
 #.  Select the **Interfaces** tab.
 
-    .. image:: ../figures/vpw1612788524636.png
+    .. image:: /node_management/kubernetes/figures/vpw1612788524636.png
 
 #.  Open the **Host Inventory** page, available from **Admin** \> **Platform**
     \> **Host Inventory** in the left-hand panel, under **Actions** click on the
@@ -56,4 +56,4 @@ the CLI <provisioning-sr-iov-interfaces-using-the-cli>`.
 
 #.  Click **Create Interface** to save your changes and close the dialog box.
 
-    .. image:: ../figures/qes1612788640104.png
+    .. image:: /node_management/kubernetes/figures/qes1612788640104.png

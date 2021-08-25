@@ -35,12 +35,12 @@ management network, you must update this manually to **aggregated ethernet**.
 
 #.  Select the **Interfaces** tab to display the existing interfaces.
 
-    .. figure:: ../figures/zbl1538147657952.png
+    .. figure:: /node_management/kubernetes/figures/zbl1538147657952.png
         :scale: 100%
 
 #.  Click **Edit Interface** for the interface you want to change.
 
-    .. figure:: ../figures/bvb1538146331222.png
+    .. figure:: /node_management/kubernetes/figures/bvb1538146331222.png
         :scale: 100%
 
 #.  Make the required changes and then click **Save**.

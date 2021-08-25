@@ -21,7 +21,7 @@ Disks
 This list is presented for all host types. It lists all available hardware
 devices used for storage.
 
-.. figure:: ../figures/bsa1464962126609.png
+.. figure:: /node_management/kubernetes/figures/bsa1464962126609.png
     :scale: 100%
 
 For each device, the following information is included:
@@ -58,7 +58,7 @@ Partitions
 
 For all host types, this list shows user-created disk partitions.
 
-.. figure:: ../figures/lci1515513441685.png
+.. figure:: /node_management/kubernetes/figures/lci1515513441685.png
     :scale: 100%
 
 **UUID**
@@ -88,7 +88,7 @@ Physical Volumes
 On controller and worker hosts, this list shows physical volumes
 \(disk or partitions\) assigned to local volume groups.
 
-.. figure:: ../figures/fph1515514594885.png
+.. figure:: /node_management/kubernetes/figures/fph1515514594885.png
     :scale: 100%
 
 **Name**
@@ -123,7 +123,7 @@ Storage Functions
 This list is presented for storage hosts. It shows a list of logical storage
 functions \(OSDs and Ceph journal functions\) defined on available disks.
 
-.. figure:: ../figures/caf1464886132887.png
+.. figure:: /shared/figures/storage/caf1464886132887.png
     :scale: 100%
 
 For each volume, the following information is included:

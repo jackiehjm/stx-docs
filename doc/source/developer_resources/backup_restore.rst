@@ -182,7 +182,7 @@ The backup contains the following:
 
 * Docker registries on controller
 
-* Docker proxy  (See :doc:`../configuration/docker_proxy_config` for details.)
+* Docker proxy  (See :ref:`docker_proxy_config` for details.)
 
 * Backup data:
 

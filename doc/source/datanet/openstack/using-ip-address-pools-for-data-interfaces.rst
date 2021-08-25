@@ -37,7 +37,7 @@ To make interface changes, you must lock the compute node first.
 
 #.  Select the **Address Pools** tab.
 
-    .. image:: ../figures/jow1445971002260.png
+    .. image:: /shared/figures/datanet/jow1445971002260.png
 
     You can use the controls on the Address Pools page to create, update, or
     delete address pools.
@@ -45,7 +45,7 @@ To make interface changes, you must lock the compute node first.
 #.  To create an address pool, click **Create Address Pool** and complete the
     dialog box.
 
-    .. image:: ../figures/jow1445971475692.png
+    .. image:: /shared/figures/datanet/jow1445971475692.png
 
     **Name**
         A name used for selecting the pool during data interface setup.

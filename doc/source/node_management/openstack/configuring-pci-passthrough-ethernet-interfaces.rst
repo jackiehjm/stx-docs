@@ -44,12 +44,12 @@ already, and that |VLAN| ID 10 is a valid segmentation ID assigned to
     #.  Select the **Interfaces** tab.
 
     #.  Click the **Edit Interface** button associated with the interface you
-    want to configure.
+        want to configure.
 
 
     The Edit Interface dialog appears.
 
-    .. image:: ../figures/ptj1538163621289.png
+    .. image:: /node_management/figures/ptj1538163621289.png
 
 
 
@@ -77,7 +77,7 @@ already, and that |VLAN| ID 10 is a valid segmentation ID assigned to
     -   The segmentation ID is set to 10.
 
 
-    .. image:: ../figures/bek1516655307871.png
+    .. image:: /node_management/figures/bek1516655307871.png
 
 
 
@@ -141,7 +141,7 @@ to the **net0** project network identified with |VLAN| ID 10.
 
 .. only:: partner
 
-    .. include:: ../../_includes/configuring-pci-passthrough-ethernet-interfaces.rest
+    .. include:: /_includes/configuring-pci-passthrough-ethernet-interfaces.rest
 
     :start-after: warning-text-begin
     :end-before: warning-text-end
@@ -164,7 +164,7 @@ virtual machines in the same |prod-os| cluster. In this case:
 
 .. only:: partner
 
-    .. include:: ../../_includes/configuring-pci-passthrough-ethernet-interfaces.rest
+    .. include:: /_includes/configuring-pci-passthrough-ethernet-interfaces.rest
 
     :start-after: vlan-bullet-1-begin
     :end-before: vlan-bullet-1-end
@@ -188,14 +188,14 @@ following configuration is also required:
 
 .. only:: partner
 
-    .. include:: ../../_includes/configuring-pci-passthrough-ethernet-interfaces.rest
+    .. include:: /_includes/configuring-pci-passthrough-ethernet-interfaces.rest
 
     :start-after: vlan-bullet-2-begin
     :end-before: vlan-bullet-2-end
 
 .. only:: partner
 
-    .. include:: ../../_includes/configuring-pci-passthrough-ethernet-interfaces.rest
+    .. include:: /_includes/configuring-pci-passthrough-ethernet-interfaces.rest
 
     :start-after: vlan-bullet-3-begin
     :end-before: vlan-bullet-3-end

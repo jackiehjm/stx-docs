@@ -28,5 +28,5 @@ You can specify up to three DNS servers using the Horizon Web interface.
 #.  In the Edit DNS dialog box, add or edit the IP addresses, and then
     click **Save**.
 
-    .. figure:: ../figures/jow1413850386429.png
+    .. figure:: /shared/figures/system_configuration/jow1413850386429.png
         :scale: 100%

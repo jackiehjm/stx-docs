@@ -20,7 +20,7 @@ You can assign and remove labels to modify node functionality using Horizon.
 
 #.  Select the Labels tab.
 
-    .. figure:: ../figures/qes1567103095290.png
+    .. figure:: /node_management/kubernetes/figures/qes1567103095290.png
         :scale: 100%
 
 #.  To delete a label, select the **Delete Label** button for the label key

@@ -74,14 +74,14 @@ Before changing storage allotments, prepare as follows:
         The Controller Filesystem page appears, showing the currently
         defined storage allotments.
 
-        .. image:: ../figures/ele1569534467005.jpeg
+        .. image:: /shared/figures/storage/ele1569534467005.jpeg
 
 
     #.  Click **Edit Filesystem**.
 
         The Edit Controller Filesystem dialog box appears.
 
-        .. image:: ../figures/ngh1569534630524.jpeg
+        .. image:: /shared/figures/storage/ngh1569534630524.jpeg
 
 
     #.  Replace the storage allotments as required.

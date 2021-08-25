@@ -76,7 +76,7 @@ heartbeat failures.
     Customer logs are created. The customer logs record **from** and **to**
     changes in the log text. For example:
 
-    .. figure:: ../figures/oio1537823446860.jpeg
+    .. figure:: /node_management/kubernetes/figures/oio1537823446860.jpeg
         :scale: 65%
 
 #.  Apply the service parameter change.

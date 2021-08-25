@@ -543,4 +543,4 @@ On virtual storage-0 and storage-1:
 Next steps
 ----------
 
-.. include:: ../kubernetes_install_next.txt
+.. include:: /_includes/r5_kubernetes_install_next.txt

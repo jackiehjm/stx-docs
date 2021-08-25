@@ -43,7 +43,7 @@ OpenStack role.
 
 .. only:: partner
 
-    .. include:: ../../_includes/using-labels-to-identify-openstack-nodes.rest
+    .. include:: /_includes/using-labels-to-identify-openstack-nodes.rest
 
     :start-after: table-1-of-contents-begin
     :end-before: table-1-of-contents-end
@@ -90,6 +90,6 @@ Nodes must be locked before labels can be assigned or removed.
 
 .. only:: partner
 
-    .. include:: ../../_includes/using-labels-to-identify-openstack-nodes.rest
+    .. include:: /_includes/using-labels-to-identify-openstack-nodes.rest
 
     :start-after: table-1-of-contents-end

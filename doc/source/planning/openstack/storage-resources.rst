@@ -21,7 +21,7 @@ Storage Services and Backends
 
 The figure below shows the storage options and backends for |prod-os|.
 
-.. figure:: ../figures/zpk1486667625575.png
+.. figure:: /shared/figures/storage/zpk1486667625575.png
 
    |prod-os| Storage Options and Backends
 

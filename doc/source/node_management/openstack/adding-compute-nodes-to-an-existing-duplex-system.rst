@@ -13,7 +13,7 @@ the standard procedures for adding compute nodes to a system.
 
 .. only:: partner
 
-    .. include:: ../../_includes/adding-compute-nodes-to-an-existing-duplex-system.rest
+    .. include:: /_includes/adding-compute-nodes-to-an-existing-duplex-system.rest
 
 Before adding compute nodes to a duplex system, you can either add and
 provision platform RAM and CPU cores on the controllers or reallocate RAM and

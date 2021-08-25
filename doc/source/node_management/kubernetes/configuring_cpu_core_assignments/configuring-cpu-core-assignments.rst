@@ -33,7 +33,7 @@ CPU cores from the Horizon Web interface.
 
     The Edit CPU Assignments dialog appears.
 
-    .. figure:: ../figures/tku1572941730454.png
+    .. figure:: /node_management/kubernetes/figures/tku1572941730454.png
         :scale: 100%
 
 #.  Make CPU allocation changes.
@@ -82,7 +82,7 @@ CPU cores from the Horizon Web interface.
 
     .. only:: partner
 
-       ../../_includes/configure-cpu-core-vswitch.rest
+       /_includes/configure-cpu-core-vswitch.rest
 
     **Shared**
         Not currently supported.
@@ -90,5 +90,5 @@ CPU cores from the Horizon Web interface.
     To see how many cores a processor contains, hover over the
     **Information** icon.
 
-    .. figure:: ../figures/jow1436300231676.png
+    .. figure:: /node_management/kubernetes/figures/jow1436300231676.png
         :scale: 100%

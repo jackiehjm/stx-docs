@@ -13,7 +13,7 @@ Ethernet interfaces to networks.
 
 .. only:: partner
 
-    ../../../_includes/configuring-aggregated-ethernet-interfaces-using-the-cli.rest
+    /_includes/configuring-aggregated-ethernet-interfaces-using-the-cli.rest
 
 For more about link aggregation modes and policies, see :ref:`Link Aggregation
 Settings <link-aggregation-settings>`.

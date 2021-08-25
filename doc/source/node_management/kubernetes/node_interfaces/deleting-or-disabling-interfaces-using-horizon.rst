@@ -26,12 +26,12 @@ You can delete an interface using the Horizon Web interface.
         +-------------------------------------------+--------------------------------------------------------------------------------------------+
         | **To delete a non-Ethernet Interface**    | Select **Delete Interface** from the **Actions** menu for the interface.                   |
         |                                           |                                                                                            |
-        |                                           | .. figure:: ../figures/wuq1538163902474.png                                                |
+        |                                           | .. figure:: /node_management/kubernetes/figures/wuq1538163902474.png                       |
         |                                           |    :scale: 60%                                                                             |
         +-------------------------------------------+--------------------------------------------------------------------------------------------+
         | **To disable an Ethernet Interface**      | #.  Select **Edit Interface** from the **Actions** menu for the interface.                 |
         |                                           |                                                                                            |
         |                                           | #.  In the Edit Interface pop-up, set **Interface Class** to None and select **Save**.     |
         |                                           |                                                                                            |
-        |                                           | .. figure:: ../figures/juc1579524423575.png                                                |
+        |                                           | .. figure:: /node_management/kubernetes/figures/juc1579524423575.png                       |
         +-------------------------------------------+--------------------------------------------------------------------------------------------+

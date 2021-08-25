@@ -31,7 +31,7 @@ host types are:
 +-------------------------+-----------------------------------------------------------+
 | Minimum memory          | 64 GB                                                     |
 +-------------------------+-----------------------------------------------------------+
-| Primary disk            | 500 GB SSD or NVMe (see :doc:`../../nvme_config`)         |
+| Primary disk            | 500 GB SSD or NVMe (see :ref:`nvme_config`)               |
 +-------------------------+-----------------------------------------------------------+
 | Additional disks        | - 1 or more 500 GB (min. 10K RPM) for Ceph OSD            |
 |                         | - Recommended, but not required: 1 or more SSDs or NVMe   |

@@ -54,5 +54,5 @@ the network interfaces through the BIOS boot option.
 
 #.  From the **Edit** menu for the host, select **Reinstall Host**.
 
-    .. figure:: ../figures/mwl1579716430090.png
+    .. figure:: /node_management/kubernetes/figures/mwl1579716430090.png
         :scale: 100%

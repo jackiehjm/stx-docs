@@ -12,7 +12,7 @@ detailed information about the hosts, and execute maintenance operations.
 
 A sample **Hosts** tab is illustrated below:
 
-.. figure:: ../figures/jpx1567098739405.png
+.. figure:: /node_management/kubernetes/figures/jpx1567098739405.png
     :scale: 100%
 
 **Host Name**
@@ -139,7 +139,7 @@ A sample **Hosts** tab is illustrated below:
     The **Edit Host** button displays the Edit Host window, as illustrated
     below for a worker node:
 
-    .. figure:: ../figures/gkb1569351598356.png
+    .. figure:: /node_management/kubernetes/figures/gkb1569351598356.png
         :scale: 100%
 
     This is the same window you use to assign the host's personality when

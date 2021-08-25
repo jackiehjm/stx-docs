@@ -30,7 +30,7 @@ Install Kubernetes Platform on All-in-one Duplex
    Install software on controller-0
    --------------------------------
 
-   .. include:: inc-install-software-on-controller.rest
+   .. include:: /shared/_includes/r5_inc-install-software-on-controller.rest
       :start-after: incl-install-software-controller-0-aio-start
       :end-before: incl-install-software-controller-0-aio-end
 
@@ -91,7 +91,7 @@ Bootstrap system on controller-0
 
    .. only:: starlingx
 
-      .. include:: ../ansible_install_time_only.txt
+      .. include:: /shared/_includes/r5_ansible_install_time_only.txt
 
    Specify the user configuration override file for the Ansible bootstrap
    playbook using one of the following methods:
@@ -1101,7 +1101,7 @@ machine.
    Next steps
    ----------
 
-   .. include:: ../kubernetes_install_next.txt
+   .. include:: /_includes/r5_kubernetes_install_next.txt
 
 
 .. only:: partner

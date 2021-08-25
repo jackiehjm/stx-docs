@@ -40,4 +40,4 @@ see the |datanet-doc| documentation:
 
 .. only:: partner
 
-   .. include:: ../../_includes/os-data-networks-overview.rest
+   .. include:: /_includes/os-data-networks-overview.rest

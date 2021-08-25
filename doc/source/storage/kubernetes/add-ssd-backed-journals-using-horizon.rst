@@ -44,7 +44,7 @@ monitors run on **controller-0**, **controller-1**, and **storage-0** only\).
 
 #.  Select the **Storage** tab to view the **Disks** and **Storage Functions** for the host.
 
-    .. image:: ../figures/yts1496238000598.png
+    .. image:: /shared/figures/storage/yts1496238000598.png
 
 #.  Assign the SSD to use for Ceph journals.
 
@@ -54,14 +54,14 @@ monitors run on **controller-0**, **controller-1**, and **storage-0** only\).
 
     #.  Click **Assign Storage Function** to open the Assign Storage Function dialog box.
 
-        .. image:: ../figures/wlx1464876289283.png
+        .. image:: /shared/figures/storage/wlx1464876289283.png
 
 
     #.  In the **Function** field, select Journal.
 
         A simplified dialog is displayed.
 
-        .. image:: ../figures/pzu1464883037926.png
+        .. image:: /shared/figures/storage/pzu1464883037926.png
 
 
     #.  In the **Disks** field, select the SSD device.
@@ -70,14 +70,14 @@ monitors run on **controller-0**, **controller-1**, and **storage-0** only\).
 
         The journal function is assigned to the SSD.
 
-        .. image:: ../figures/zfd1464884207881.png
+        .. image:: /shared/figures/storage/zfd1464884207881.png
 
 #.  Assign the journal function for use by one or more OSDs.
 
     Use the **Edit** button for the OSD to open the Edit Storage Volume
     dialog box, and then select the **Journal** to use with the OSD.
 
-    .. image:: ../figures/eew1464963403075.png
+    .. image:: /shared/figures/storage/eew1464963403075.png
 
 #.  Unlock the host to make it available for use.
 

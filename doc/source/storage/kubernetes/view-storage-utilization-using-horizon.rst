@@ -24,7 +24,7 @@ For more information on per-host storage, see |node-doc|: :ref:`Storage Tab
     system are configured with storage with Ceph OSDs **osd.0** through
     **osd.5**.
 
-    .. image:: ../figures/gzf1569521230362.png
+    .. image:: /shared/figures/storage/gzf1569521230362.png
 
     Rank is evaluated and assigned when a monitor is added to the cluster. It
     is based on the IP address and port assigned.

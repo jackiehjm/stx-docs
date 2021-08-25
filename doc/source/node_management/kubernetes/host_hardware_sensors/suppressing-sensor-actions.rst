@@ -43,11 +43,11 @@ see :ref:`CLI Commands for Managing Sensors <cli-commands-for-managing-sensors>`
         +------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
         | **For a group of sensors**   | To suppress actions for a group of sensors, open the **Actions** menu for the group, and then select **Suppress SensorGroup**. |
         |                              |                                                                                                                                |
-        |                              | .. figure:: ../figures/jow1443890971677.png                                                                                    |
+        |                              | .. figure:: /node_management/kubernetes/figures/jow1443890971677.png                                                           |
         +------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
         | **For an individual sensor** | To suppress actions for an individual sensor, locate the sensor in the **Sensors** list, and click **Suppress Sensor**.        |
         |                              |                                                                                                                                |
-        |                              | .. figure:: ../figures/jow1443890898358.png                                                                                    |
+        |                              | .. figure:: /node_management/kubernetes/figures/jow1443890898358.png                                                           |
         +------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
 
 .. rubric:: |result|

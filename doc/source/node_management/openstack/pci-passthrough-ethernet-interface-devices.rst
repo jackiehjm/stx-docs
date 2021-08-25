@@ -24,7 +24,7 @@ taken into consideration. They include:
 
 .. only:: partner
 
-    .. include:: ../../_includes/pci-passthrough-ethernet-interface-devices.rest
+    .. include:: /_includes/pci-passthrough-ethernet-interface-devices.rest
 
     :start-after: avs-bullet-3-begin
     :end-before: avs-bullet-3-end
@@ -39,7 +39,7 @@ taken into consideration. They include:
 
 .. only:: partner
 
-    .. include:: ../../_includes/pci-passthrough-ethernet-interface-devices.rest
+    .. include:: /_includes/pci-passthrough-ethernet-interface-devices.rest
 
     :start-after: avs-text-begin
     :end-before: avs-text-end

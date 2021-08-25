@@ -9,7 +9,7 @@ Ports Tab
 The **Ports** tab on the Host Detail page presents information about the
 physical ports on a host.
 
-.. figure:: ../figures/iln1567164165572.png
+.. figure:: /node_management/kubernetes/figures/iln1567164165572.png
     :scale: 100%
 
 Currently none of the port attributes is configurable; they are all read

@@ -29,12 +29,12 @@ for different types of interface, see :ref:`Interface Settings
 
 #.  Select the **Interfaces** tab.
 
-    .. figure:: ../figures/zbl1538147657952.png
+    .. figure:: /node_management/kubernetes/figures/zbl1538147657952.png
         :scale: 100%
 
 #.  Click **Create Interface**.
 
-    .. figure:: ../figures/bpw1538149046903.png
+    .. figure:: /node_management/kubernetes/figures/bpw1538149046903.png
         :scale: 100%
 
 #.  Select the class of the interface, from the **Interface Class** drop-down
@@ -69,4 +69,4 @@ The interface is created and attached to the network.
 
 .. only:: partner
 
-   .. include:: ../../../_includes/configuring-aggregated-ethernet-interfaces-using-horizon.rest
+   .. include:: /_includes/configuring-aggregated-ethernet-interfaces-using-horizon.rest

@@ -1,0 +1,13 @@
+.. note::
+
+   By default, StarlingX uses IPv4. To use StarlingX with IPv6:
+
+   * The entire infrastructure and cluster configuration must be IPv6, with the
+     exception of the PXE boot network.
+
+   * Not all external servers are reachable via IPv6 addresses (for example
+     Docker registries). Depending on your infrastructure, it may be necessary
+     to deploy a NAT64/DNS64 gateway to translate the IPv4 addresses to IPv6.
+
+   * Refer to :ref:`stx_ipv6_deployment` for details on how to deploy a
+     NAT64/DNS64 gateway to use StarlingX with IPv6.

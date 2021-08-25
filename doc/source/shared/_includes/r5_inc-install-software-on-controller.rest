@@ -1,0 +1,43 @@
+.. incl-install-software-controller-0-aio-start
+
+#. Insert the bootable USB into a bootable USB port on the host you are
+   configuring as controller-0.
+
+#. Power on the host.
+
+#. Attach to a console, ensure the host boots from the USB, and wait for the
+   StarlingX Installer Menus.
+
+#. Make the following menu selections in the installer:
+
+   #. First menu: Select 'All-in-one Controller Configuration'
+
+   #. Second menu: Select 'Graphical Console' or 'Textual Console' depending on
+      your terminal access to the console port
+
+#. Wait for non-interactive install of software to complete and server to reboot.
+   This can take 5-10 minutes, depending on the performance of the server.
+
+.. incl-install-software-controller-0-aio-end
+
+.. incl-install-software-controller-0-standard-start
+
+#. Insert the bootable USB into a bootable USB port on the host you are
+   configuring as controller-0.
+
+#. Power on the host.
+
+#. Attach to a console, ensure the host boots from the USB, and wait for the
+   StarlingX Installer Menus.
+
+#. Make the following menu selections in the installer:
+
+   #. First menu: Select 'Standard Controller Configuration'
+
+   #. Second menu: Select 'Graphical Console' or 'Textual Console' depending on
+      your terminal access to the console port.
+
+#. Wait for non-interactive install of software to complete and server to reboot.
+   This can take 5-10 minutes, depending on the performance of the server.
+
+.. incl-install-software-controller-0-standard-end

@@ -73,4 +73,4 @@ guidelines:
 
 .. only:: partner
 
-   .. include:: ../../_includes/subnet-sizing-restrictions.rest
+   .. include:: /_includes/subnet-sizing-restrictions.rest

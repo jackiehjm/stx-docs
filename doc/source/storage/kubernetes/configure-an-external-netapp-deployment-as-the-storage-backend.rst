@@ -27,7 +27,7 @@ procedure.
 
     .. only:: partner
 
-    .. include:: ../../_includes/configure-external-netapp.rest
+    .. include:: /_includes/configure-external-netapp.rest
 
 
 #.  If you have not done so already, create an address pool for the

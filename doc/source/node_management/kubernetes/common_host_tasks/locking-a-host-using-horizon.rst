@@ -37,5 +37,5 @@ the host, causing any containers on that host to be evicted.
 
 #.  From the **Edit** menu for the host, select **Lock Host**.
 
-    .. figure:: ../figures/rst1442611298701.png
+    .. figure:: /shared/figures/system_configuration/rst1442611298701.png
         :scale: 100%

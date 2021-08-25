@@ -1,3 +1,5 @@
+.. _doc_contribute_guide:
+
 ===============================
 Documentation Contributor Guide
 ===============================

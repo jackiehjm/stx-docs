@@ -37,7 +37,7 @@ for more complex routing requirements but requires IP multicast enabled routers.
        :start-after: vswitch-text-1-begin
        :end-before:  vswitch-text-1-end
 
-.. figure:: ../figures/eol1510005391750.png
+.. figure:: /shared/figures/datanet/eol1510005391750.png
 
 Multicast Endpoint Distribution
 

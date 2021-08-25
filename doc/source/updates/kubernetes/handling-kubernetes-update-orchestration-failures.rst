@@ -89,7 +89,7 @@ Strategy Apply Failure
 
     .. only:: partner
 
-        .. include:: ../../_includes/handling-kubernetes-update-orchestration-failures.rest
+        .. include:: /_includes/handling-kubernetes-update-orchestration-failures.rest
 
 -   **Reason**: lock host failed.
 

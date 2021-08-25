@@ -46,7 +46,7 @@ from the available memory, an informative message is displayed.
 
 #.  On the **Memory** tab, click **Update Memory**.
 
-    .. figure:: ../figures/esy1567176125909.png
+    .. figure:: /node_management/kubernetes/figures/esy1567176125909.png
         :scale: 100%
 
 #.  Use the Update Memory Allocation dialog box to set the memory allocations
@@ -59,7 +59,7 @@ from the available memory, an informative message is displayed.
         in Kubernetes, only a single huge page size can be used per host, across
         Application memory.
 
-        .. figure:: ../figures/yfv1567176747837.png
+        .. figure:: /node_management/kubernetes/figures/yfv1567176747837.png
            :scale: 100%
 
     .. only:: partner
@@ -75,7 +75,7 @@ from the available memory, an informative message is displayed.
         minimum requirement, hover over the information icon next to the
         field.
 
-        .. figure:: ../figures/jow1436294915672.png
+        .. figure:: /node_management/kubernetes/figures/jow1436294915672.png
             :scale: 100%
 
     **\# of Application 2M Hugepages Node n**
@@ -124,7 +124,7 @@ from the available memory, an informative message is displayed.
     on a node \(assuming that pages of another size are not also requested\),
     hover over the information icon next to the field.
 
-    .. figure:: ../figures/jow1432129731308.png
+    .. figure:: /node_management/kubernetes/figures/jow1432129731308.png
         :scale: 100%
 
     Any unused memory is automatically allocated as 4 KiB pages of regular

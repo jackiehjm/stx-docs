@@ -39,7 +39,7 @@ To manage the physical volumes that support local volume groups, see
 
     You can now review and modify the parameters for the local volume group.
 
-    .. image:: ../figures/qig1590585618135.png
+    .. image:: /shared/figures/storage/qig1590585618135.png
        :width: 550
 
 

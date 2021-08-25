@@ -12,7 +12,7 @@ neighbors' ports though the Link Layer Discovery Protocol.
 The **LLDP** tab provides the following information about each LLDP-enabled
 neighbor device:
 
-.. figure:: ../figures/blp1567103635948.png
+.. figure:: /node_management/kubernetes/figures/blp1567103635948.png
     :scale: 100%
 
 ------------

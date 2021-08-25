@@ -111,7 +111,7 @@ Implement fixes
     *   Make the changes in your *development workspace* with the StarlingX
         codebase.
     *   Build the related packages using ``build-pkgs <package_name>``.
-    *   Create and apply the patch using the :doc:`starlingx_patching` guide.
+    *   Create and apply the patch using the :ref:`starlingx_patching` guide.
     *   Restart the services using the ``systemctl`` command or the StarlingX
         ``sm`` (service management) command.
 

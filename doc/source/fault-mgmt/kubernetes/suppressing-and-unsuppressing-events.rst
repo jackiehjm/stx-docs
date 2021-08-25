@@ -34,4 +34,4 @@ You can set events to a suppressed state and toggle them back to unsuppressed.
     replaced by **Unsuppress Event**, providing a way to toggle the event back
     to unsuppressed.
 
-    .. image:: ../figures/nlc1463584178366.png
+    .. image:: /shared/figures/fault-mgmt/nlc1463584178366.png

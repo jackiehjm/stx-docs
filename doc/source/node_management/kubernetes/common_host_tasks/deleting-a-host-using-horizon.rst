@@ -22,5 +22,5 @@ hard drive.
 
 #.  From the **Edit** menu for the host, select **Delete Host**.
 
-    .. figure:: ../figures/mwl1579716430090.png
+    .. figure:: /node_management/kubernetes/figures/mwl1579716430090.png
         :scale: 100%

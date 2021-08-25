@@ -31,7 +31,7 @@ To use the command-line interface, see :ref:`CLI Commands for Managing Sensors
 #.  In the **Sensor Groups** list, click **Edit SensorGroup** for the
     group you want to configure.
 
-    .. figure:: ../figures/jow1443885204993.png
+    .. figure:: /node_management/kubernetes/figures/jow1443885204993.png
         :scale: 100%
 
     In the Edit SensorGroup dialog box, change the settings as required.

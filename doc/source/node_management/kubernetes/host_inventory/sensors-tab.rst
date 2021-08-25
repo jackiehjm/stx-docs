@@ -13,7 +13,7 @@ This tab lists the available |BMC| sensors and
 shows their status. It also lists sensor groups that have been defined for
 the sensors.
 
-.. figure:: ../figures/jow1443825878164.png
+.. figure:: /node_management/kubernetes/figures/jow1443825878164.png
     :scale: 100%
 
 .. _sensors-tab-section-N1006C-N10029-N10001:

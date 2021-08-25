@@ -17,7 +17,7 @@ interface drivers in addition to the standard OpenStack choices.
 
     .. only:: partner
 
-       .. include:: ../../_includes/vm-network-interface-options.rest
+       .. include:: /_includes/vm-network-interface-options.rest
           :start-after: unmodified-guests-virtio-begin
           :end-before: highest-performance-begin
 
@@ -34,7 +34,7 @@ interface drivers in addition to the standard OpenStack choices.
 
 .. only:: partner
 
-   .. include:: ../../_includes/vm-network-interface-options.rest
+   .. include:: /_includes/vm-network-interface-options.rest
    :start-after: highest-performance-begin
 
 .. xbooklink For more information about |AVP| drivers, see OpenStack VNF Integration: :ref:`Accelerated Virtual Interfaces <accelerated-virtual-interfaces>`.

@@ -8,7 +8,7 @@ Memory Tab
 
 The **Memory** tab on the Host Detail page displays host memory details.
 
-.. figure:: ../figures/qjh1567165597148.png
+.. figure:: /node_management/kubernetes/figures/qjh1567165597148.png
     :scale: 100%
 
 The information is presented in three columns, as follows:

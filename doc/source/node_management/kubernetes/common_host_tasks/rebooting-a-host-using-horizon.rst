@@ -23,5 +23,5 @@ The host then reboots automatically.
 
 #.  From the **Edit** menu for the host, select **Reboot Host**.
 
-    .. figure:: ../figures/mwl1579716430090.png
+    .. figure:: /node_management/kubernetes/figures/mwl1579716430090.png
         :scale: 100%

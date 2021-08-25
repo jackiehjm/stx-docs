@@ -46,13 +46,13 @@ see :ref:`Interface Settings <interface-settings>`.
 
 #.  Select the **Interfaces** tab.
 
-    .. figure:: ../figures/zbl1538147657952.png
+    .. figure:: /node_management/kubernetes/figures/zbl1538147657952.png
         :scale: 100%
 
 #.  Click **Edit Interface** for the interface you want to attach to a
     network.
 
-    .. figure:: ../figures/bvb1538146331222.png
+    .. figure:: /node_management/kubernetes/figures/bvb1538146331222.png
         :scale: 100%
 
     For an Ethernet interface, the **Port** is already selected.

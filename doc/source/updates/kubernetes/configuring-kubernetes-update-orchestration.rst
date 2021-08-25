@@ -76,7 +76,7 @@ For example:
 
 .. only:: partner
 
-   .. include:: ../../_includes/configuring-kubernetes-update-orchestration.rest
+   .. include:: /_includes/configuring-kubernetes-update-orchestration.rest
 
 
 .. rubric:: |proc|

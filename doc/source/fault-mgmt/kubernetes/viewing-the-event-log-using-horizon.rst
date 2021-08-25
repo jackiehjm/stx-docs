@@ -45,7 +45,7 @@ buffer, with older entries discarded as needed to release logging space.
     The **Suppression Status** column is only shown in the table when
     **Show Suppressed** filter button is selected.
 
-    .. image:: ../figures/psa1567524091300.png
+    .. image:: /shared/figures/fault-mgmt/psa1567524091300.png
 
     You can sort the entries by clicking on the column titles. For example, to
     sort the view of the entries by severity, click **Severity**; the entries

@@ -32,12 +32,12 @@ can do this using the Horizon Web interface or the CLI.
 
 #.  Select the **Interfaces** tab.
 
-    .. figure:: ../figures/zbl1538147657952.png
+    .. figure:: /node_management/kubernetes/figures/zbl1538147657952.png
         :scale: 100%
 
 #.  Click **Create Interface**.
 
-    .. figure:: ../figures/bpw1538149046903.png
+    .. figure:: /node_management/kubernetes/figures/bpw1538149046903.png
         :scale: 100%
 
 #.  Select the type of network for the interface.

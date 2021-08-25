@@ -1,0 +1,9 @@
+<<<<<<< HEAD   (752ff6 Merge "Updated "Install and Provision the Central Cloud" top)
+=======
+----------------------
+Set proxy at bootstrap
+----------------------
+
+To set the Docker proxy at bootstrap time, refer to
+:doc:`Ansible Bootstrap Configurations </deploy_install_guides/r3_release/ansible_bootstrap_configs>`.
+>>>>>>> CHANGE (2b62f4 Fix symlinks)
