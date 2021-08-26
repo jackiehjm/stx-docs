@@ -27,6 +27,19 @@ The Intel N3000 |FPGA| also supports |FEC| capabilities that are exposed as a
 |PCI| device that may be used by a |DPDK| enabled container application to
 perform accelerated 5G |LDPC| encoding and decoding operations.
 
+The **pf-bb-config** package is used to statically configure the baseband
+device within N3000 devices. The baseband *configuration* file for N3000
+devices is taken from `https://github.com/intel/pf-bb-config/blob/v21.6/fpga_5gnr/fpga_5gnr_config_vf.cfg <https://github.com/intel/pf-bb-config/blob/v21.6/fpga_5gnr/fpga_5gnr_config_vf.cfg>`_,
+and customized to assign the UL and DL queues to VF0 only. It is then
+applied to the enabled N3000 device, if required.
+
+.. note::
+    The N3000 device configuration using **pf-bb-config** package is
+    based only on the contents of the **_fpga_5gnr_config_vf.cfg_** file
+    regardless of the actual number of VFs configured via the
+    :command:`system host-device-modify` command.
+
+
 .. seealso::
    :ref:`N3000 FPGA Forward Error Correction
    <n3000-fpga-forward-error-correction>`
