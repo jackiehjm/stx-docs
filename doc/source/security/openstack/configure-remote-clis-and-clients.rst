@@ -33,6 +33,11 @@ installed. Download the latest release tarball for Cygwin from
 tarball, extract it to any location and change the Windows <PATH> variable to
 include its bin folder from the extracted winpty folder.
 
+For access to remote CLI, it is required to set the DNS in the cluster using the
+:command:`system service-parameter-add openstack helm endpoint_domain=domain_name`
+command and reapply OpenStack using **system application-apply |prefix|-openstack**
+command.
+
 The following procedure shows how to configure the Container-backed Remote
 |CLIs| for OpenStack remote access.
 
@@ -52,7 +57,7 @@ The following procedure shows how to configure the Container-backed Remote
     .. parsed-literal::
 
         $ cd $HOME
-        $ tar xvf |prefix|-remote-clients-<version>.tgz
+        $ tar xvf |l-prefix|-remote-clients-<version>.tgz
 
 #.  Download the user/tenant **openrc** file from the |os-prod-hor-long| to the
     remote workstation.
@@ -70,14 +75,14 @@ The following procedure shows how to configure the Container-backed Remote
         The file admin-openrc.sh downloads.
 
 
-#.  On the remote workstation, configure the client access.
+#.  On the remote workstation, configure the OpenStack client access.
 
 
     #.  Change to the location of the extracted tarball.
 
         .. parsed-literal::
 
-            $ cd $HOME/|prefix|-remote-clients-<version>/
+            $ cd $HOME/|l-prefix|-remote-clients-<version>/
 
     #.  Create a working directory that will be mounted by the container
         implementing the remote |CLIs|.
@@ -86,14 +91,20 @@ The following procedure shows how to configure the Container-backed Remote
 
             $ mkdir -p $HOME/remote_cli_wd
 
-    #.  Run the :command:`configure\_client.sh` script.
+    #.  Run the :command:`configure\_client.sh` script to install and configure
+        the OpenStack CLIs/Clients.
 
-        .. parsed-literal::
+        .. only:: starlingx
 
-            $ ./configure_client.sh -t openstack -r admin_openrc.sh -w
-            $HOME/remote_cli_wd -p
-            625619392498.dkr.ecr.us-west-2.amazonaws.com/docker.io/starlingx/stx-platformclients:stx.5.0-v1.4.3
+           ::
 
+              $ ./configure_client.sh -t openstack -r admin-openrc.sh -w $HOME/remote_cli_wd
+
+        .. only:: partner
+
+           .. include:: /_includes/configure-remote-clis-and-clients.rest
+              :start-after: remote-cli-begin
+              :end-before: remote-cli-end
 
         If you specify repositories that require authentication, as shown
         above, you must remember to perform a :command:`docker login` to that
@@ -103,7 +114,7 @@ The following procedure shows how to configure the Container-backed Remote
 
         **-t**
             The type of client configuration. The options are platform \(for
-            |prod-long| |CLI| and clients\) and openstack \(for
+            |prod-long| |CLI| and clients\) and OpenStack \(for
             |prod-os| application |CLI| and clients\).
 
             The default value is platform.
@@ -121,7 +132,7 @@ The following procedure shows how to configure the Container-backed Remote
             commands.
 
             For the platform client setup, the default is
-            remote\_client\_platform.sh. For the openstack application client
+            remote\_client\_platform.sh. For the OpenStack application client
             setup, the default is remote\_client\_openstack.sh.
 
         **-w**
@@ -138,14 +149,6 @@ The following procedure shows how to configure the Container-backed Remote
             By default, the platform |CLIs| and clients container image is pulled
             from docker.io/starlingx/stx-platformclients.
 
-            For example, to use the container images from the |prod| |AWS| ECR:
-
-            .. parsed-literal::
-
-                $ ./configure_client.sh -t platform -r admin-openrc.sh -k
-                admin-kubeconfig -w $HOME/remote_cli_wd -p
-                625619392498.dkr.ecr.us-west-2.amazonaws.com/docker.io/starlingx/stx-platformclients:stx.5.0-v1.4.3
-
             If you specify repositories that require authentication, you must
             first perform a :command:`docker login` to that repository before
             using remote |CLIs|.
@@ -161,7 +164,7 @@ The following procedure shows how to configure the Container-backed Remote
         in the shell to set up required environment variables and aliases
         before any remote |CLI| commands can be run.
 
-    #.  Copy the file remote\_client\_platform.sh to $HOME/remote\_cli\_wd
+    #.  Copy the file remote\_client\_openstack.sh to $HOME/remote\_cli\_wd
 
 
 .. rubric:: |postreq|
@@ -176,7 +179,7 @@ variables and aliases for the remote |CLI| commands.
     your shells will automatically be initialized with the environment
     variables and aliases for the remote |CLI| commands.
 
-See :ref:`Use Container-backed Remote |CLI|s and Clients
+See :ref:`Use Container-backed Remote CLIs and Clients
 <config-and-management-using-container-backed-remote-clis-and-clients>` for
 details.
 

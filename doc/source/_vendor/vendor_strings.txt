@@ -43,6 +43,7 @@
    used in sample domain names etc.
 
 .. |prefix| replace:: stx
+.. |l-prefix| replace:: |prefix|
 
 .. space character. Needed for padding in tabular output. Currently
    used where |prefix| replacement is a length shorter than 3.

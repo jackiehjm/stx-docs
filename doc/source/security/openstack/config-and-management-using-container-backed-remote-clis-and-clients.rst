@@ -23,12 +23,12 @@ variables and aliases for the remote |CLI| commands.
 
 -   Consider adding the following command to your .login or shell rc file, such
     that your shells will automatically be initialized with the environment
-    variables and aliases for the remote |CLI| commands. Otherwise, execute it before
-    proceeding:
+    variables and aliases for the remote |CLI| commands. Otherwise, execute it
+    before proceeding:
 
     .. code-block:: none
 
-        root@myclient:/home/user/remote_cli_wd# source remote_client_platform.sh
+        $ source remote_client_openstack.sh
 
 -   You must have completed the configuration steps in :ref:`Configure Remote
     CLIs <configure-remote-clis-and-clients>` before proceeding.
