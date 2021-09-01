@@ -71,3 +71,8 @@
 ..
 
 .. |installer-image-name| replace:: bootimage
+
+.. |OVS-DPDK| replace:: |OVS|-|DPDK|
+.. |ovs-dpdk| replace:: ovs-dpdk
+
+.. |vswitch-label| replace:: openvswitch=enabled
