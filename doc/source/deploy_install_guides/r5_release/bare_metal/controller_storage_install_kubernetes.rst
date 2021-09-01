@@ -62,7 +62,7 @@ Bootstrap system on controller-0
    PORT, IP-ADDRESS/SUBNET-LENGTH and GATEWAY-IP-ADDRESS applicable to your
    deployment environment.
 
-   ::
+   .. code-block:: bash
 
       sudo ip address add <IP-ADDRESS>/<SUBNET-LENGTH> dev <PORT>
       sudo ip link set up dev <PORT>
@@ -111,7 +111,7 @@ Bootstrap system on controller-0
       configuration as shown in the example below. Use the OAM IP SUBNET and IP
       ADDRESSing applicable to your deployment environment.
 
-      ::
+      .. code-block:: bash
 
         cd ~
         cat <<EOF > localhost.yml
@@ -135,8 +135,9 @@ Bootstrap system on controller-0
 
       .. only:: starlingx
 
-         In either of the above options, the bootstrap playbook’s default values
-         will pull all container images required for the |prod-p| from Docker hub.
+         In either of the above options, the bootstrap playbook’s default
+         values will pull all container images required for the |prod-p| from
+         Docker hub.
 
          If you have setup a private Docker registry to use for bootstrapping
          then you will need to add the following lines in $HOME/localhost.yml:
@@ -147,7 +148,7 @@ Bootstrap system on controller-0
             :start-after: docker-reg-begin
             :end-before: docker-reg-end
 
-      .. code-block::
+      .. code-block:: yaml
 
          docker_registries:
            quay.io:
@@ -186,7 +187,7 @@ Bootstrap system on controller-0
             :start-after: firewall-begin
             :end-before: firewall-end
 
-      .. code-block::
+      .. code-block:: bash
 
          # Add these lines to configure Docker to use a proxy server
          docker_http_proxy: http://my.proxy.com:1080
@@ -194,9 +195,9 @@ Bootstrap system on controller-0
          docker_no_proxy:
             - 1.2.3.4
 
-      Refer to :ref:`Ansible Bootstrap Configurations <ansible_bootstrap_configs_r5>`
-      for information on additional Ansible bootstrap configurations for advanced
-      Ansible bootstrap scenarios.
+      Refer to :ref:`Ansible Bootstrap Configurations
+      <ansible_bootstrap_configs_r5>` for information on additional Ansible
+      bootstrap configurations for advanced Ansible bootstrap scenarios.
 
 #. Run the Ansible bootstrap playbook:
 
@@ -225,21 +226,27 @@ Configure controller-0
 #. Configure the |OAM| interface of controller-0 and specify the
    attached network as "oam".
 
-   Use the |OAM| port name that is applicable to your deployment environment, for example eth0:
+   The following example configures the |OAM| interface on a physical untagged
+   ethernet port, use the |OAM| port name that is applicable to your deployment
+   environment, for example eth0:
 
-   ::
+   .. code-block:: bash
 
      OAM_IF=<OAM-PORT>
      system host-if-modify controller-0 $OAM_IF -c platform
      system interface-network-assign controller-0 $OAM_IF oam
 
+     To configure a vlan or aggregated ethernet interface, see :ref:`Node
+     Interfaces <node-interfaces-index>`.
+
 #. Configure the MGMT interface of controller-0 and specify the attached
    networks of both "mgmt" and "cluster-host".
 
-   Use the MGMT port name that is applicable to your deployment environment,
-   for example eth1:
+   The following example configures the MGMT interface on a physical untagged
+   ethernet port, use the MGMT port name that is applicable to your deployment
+   environment, for example eth1:
 
-   .. code-block:: none
+   .. code-block:: bash
 
       MGMT_IF=<MGMT-PORT>
 
@@ -256,12 +263,17 @@ Configure controller-0
       system interface-network-assign controller-0 $MGMT_IF mgmt
       system interface-network-assign controller-0 $MGMT_IF cluster-host
 
+      To configure a vlan or aggregated ethernet interface, see :ref:`Node
+      Interfaces <node-interfaces-index>`.
 
 #. Configure |NTP| servers for network time synchronization:
 
    ::
 
      system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org
+
+   To configure |PTP| instead of |NTP|, see :ref:`PTP Server Configuration
+   <ptp-server-config-index>`.
 
 #. If required, configure Ceph storage backend:
 
@@ -285,8 +297,8 @@ Configure controller-0
 
    .. important::
 
-      **These steps are required only if the StarlingX OpenStack application
-      (stx-openstack) will be installed.**
+      These steps are required only if the |prod-os| application
+      (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
       support of installing the stx-openstack manifest and helm-charts later.
@@ -297,44 +309,48 @@ Configure controller-0
 
    #. **For OpenStack only:** Configure the system setting for the vSwitch.
 
-      StarlingX has |OVS| (kernel-based) vSwitch configured as default:
+      .. only:: starlingx
 
-      * Runs in a container; defined within the helm charts of stx-openstack
-        manifest.
-      * Shares the core(s) assigned to the platform.
+         StarlingX has |OVS| (kernel-based) vSwitch configured as default:
 
-      If you require better performance, |OVS|-|DPDK| (OVS with the Data Plane
-      Development Kit, which is supported only on bare metal hardware) should
-      be used:
+         * Runs in a container; defined within the helm charts of stx-openstack
+           manifest.
+         * Shares the core(s) assigned to the platform.
 
-      * Runs directly on the host (it is not containerized).
-      * Requires that at least 1 core be assigned/dedicated to the vSwitch function.
+         If you require better performance, |OVS-DPDK| (|OVS| with the Data
+         Plane Development Kit, which is supported only on bare metal hardware)
+         should be used:
 
-      **To deploy the default containerized OVS:**
+         * Runs directly on the host (it is not containerized).
+           Requires that at least 1 core be assigned/dedicated to the vSwitch
+           function.
 
-      ::
+         To deploy the default containerized |OVS|:
 
-        system modify --vswitch_type none
+         ::
 
-      This does not run any vSwitch directly on the host, instead, it uses the
-      containerized |OVS| defined in the helm charts of stx-openstack manifest.
+              system modify --vswitch_type none
 
-      **To deploy OVS-DPDK, run the following command:**
+         This does not run any vSwitch directly on the host, instead, it uses
+         the containerized |OVS| defined in the helm charts of stx-openstack
+         manifest.
 
-      ::
+      To deploy |OVS-DPDK|, run the following command:
 
-        system modify --vswitch_type ovs-dpdk
+      .. parsed-literal::
 
-      Once vswitch_type is set to OVS-|DPDK|, any subsequent AIO-controller or
-      worker nodes created will default to automatically assigning 1 vSwitch
-      core for |AIO| controllers and 2 vSwitch cores for compute-labeled worker
-      nodes.
+         system modify --vswitch_type |ovs-dpdk|
+
+      Once vswitch_type is set to |OVS-DPDK|, any subsequent |AIO|-controller
+      or worker nodes created will default to automatically assigning 1 vSwitch
+      core for |AIO| controllers and 2 vSwitch cores (both on numa-node 0;
+      physical |NICs| are typically on first numa-node) for compute-labeled
+      worker nodes.
 
       .. note::
-
          After controller-0 is unlocked, changing vswitch_type requires
-         locking and unlocking all compute-labeled worker nodes (and/or |AIO|
-         controllers) to apply the change.
+         locking and unlocking controller-0 to apply the change.
+
 
       .. incl-config-controller-0-storage-end:
 
@@ -434,14 +450,19 @@ Configure controller-1
 #. Configure the |OAM| interface of controller-1 and specify the
    attached network of "oam".
 
-   Use the |OAM| port name that is applicable to your deployment environment,
-   for example eth0:
+   The following example configures the |OAM| interface on a physical untagged
+   ethernet port, use the |OAM| port name that is applicable to your deployment
+   environment, for example eth0:
 
-   ::
+   .. code-block:: bash
 
       OAM_IF=<OAM-PORT>
       system host-if-modify controller-1 $OAM_IF -c platform
       system interface-network-assign controller-1 $OAM_IF oam
+
+   To configure a vlan or aggregated ethernet interface, see :ref:`Node
+   Interfaces <node-interfaces-index>`.
+
 
 #. The MGMT interface is partially set up by the network install procedure;
    configuring the port used for network install as the MGMT port and
@@ -463,8 +484,8 @@ Configure controller-1
 
    .. important::
 
-      **This step is required only if the StarlingX OpenStack application
-      (stx-openstack) will be installed.**
+      This step is required only if the |prod-os| application
+      (|prefix|-openstack) will be installed.
 
    **For OpenStack only:** Assign OpenStack host labels to controller-1 in
    support of installing the stx-openstack manifest and helm-charts later.
@@ -528,7 +549,7 @@ Configure worker nodes
    (Note that the MGMT interfaces are partially set up automatically by the
    network install procedure.)
 
-   ::
+   .. code-block:: bash
 
      for NODE in worker-0 worker-1; do
         system interface-network-assign $NODE mgmt0 cluster-host
@@ -542,13 +563,13 @@ Configure worker nodes
 
    .. important::
 
-      **These steps are required only if the StarlingX OpenStack application
-      (stx-openstack) will be installed.**
+      These steps are required only if the |prod-os| application
+      (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
       support of installing the stx-openstack manifest and helm-charts later.
 
-      ::
+      .. code-block:: bash
 
          for NODE in worker-0 worker-1; do
            system host-label-assign $NODE  openstack-compute-node=enabled
@@ -558,30 +579,33 @@ Configure worker nodes
 
    #. **For OpenStack only:** Configure the host settings for the vSwitch.
 
-      **If using OVS-DPDK vswitch, run the following commands:**
+      If using |OVS-DPDK| vswitch, run the following commands:
 
-      Default recommendation for worker node is to use a single core on each
-      numa-node for |OVS|-|DPDK| vswitch.  This should have been automatically
-      configured, if not run the following command.
+      Default recommendation for worker node is to use two cores on numa-node 0
+      for |OVS-DPDK| vSwitch; physical NICs are typically on first numa-node.
+      This should have been automatically configured, if not run the following
+      command.
 
-      ::
+      .. code-block:: bash
 
-        for NODE in worker-0 worker-1; do
+          for NODE in worker-0 worker-1; do
 
-           # assign 1 core on processor/numa-node 0 on worker-node to vswitch
-           system host-cpu-modify -f vswitch -p0 1 $NODE
+              # assign 2 cores on processor/numa-node 0 on worker-node to vswitch
+              system host-cpu-modify -f vswitch -p0 2 $NODE
 
-           # assign 1 core on processor/numa-node 1 on worker-node to vswitch
-           system host-cpu-modify -f vswitch -p1 1 $NODE
-
-        done
+          done
 
 
-      When using |OVS|-|DPDK|, configure 1x 1G huge page for vSwitch memory on
-      each |NUMA| node where vswitch is running on this host, with the
-      following command:
+      When using |OVS-DPDK|, configure 1G of huge pages for vSwitch memory on
+      each |NUMA| node on the host. It is recommended to configure 1x 1G huge
+      page (-1G 1) for vSwitch memory on each |NUMA| node on the host.
 
-      ::
+      However, due to a limitation with Kubernetes, only a single huge page
+      size is supported on any one host. If your application |VMs| require 2M
+      huge pages, then configure 500x 2M huge pages (-2M 500) for vSwitch
+      memory on each |NUMA| node on the host.
+
+      .. code-block:: bash
 
          for NODE in worker-0 worker-1; do
 
@@ -596,14 +620,15 @@ Configure worker nodes
 
       .. important::
 
-         |VMs| created in an |OVS|-|DPDK| environment must be configured to use
-         huge pages to enable networking and must use a flavor with property:
-         hw:mem_page_size=large
+         |VMs| created in an |OVS-DPDK| environment must be configured to use
+         huge pages to enable networking and must use a flavor with the
+         property ``hw:mem_page_size=large``
 
-         Configure the huge pages for |VMs| in an |OVS|-|DPDK| environment for
-         this host with the command:
+         Configure the huge pages for |VMs| in an |OVS-DPDK| environment on
+         this host, assuming 1G huge page size is being used on this host, with
+         the following commands:
 
-         ::
+         .. code-block:: bash
 
             for NODE in worker-0 worker-1; do
 
@@ -618,31 +643,49 @@ Configure worker nodes
    #. **For OpenStack only:** Setup disk partition for nova-local volume group,
       needed for stx-openstack nova ephemeral disks.
 
-      ::
+      .. code-block:: bash
 
          for NODE in worker-0 worker-1; do
-           echo "Configuring Nova local for: $NODE"
-           ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
-           ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
-           PARTITION_SIZE=10
-           NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
-           NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
-           system host-lvg-add ${NODE} nova-local
-           system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
+            system host-lvg-add ${NODE} nova-local
+
+            # Get UUID of DISK to create PARTITION to be added to ‘nova-local’ local volume group
+            # CEPH OSD Disks can NOT be used
+            # For best performance, do NOT use system/root disk, use a separate physical disk.
+
+            # List host’s disks and take note of UUID of disk to be used
+            system host-disk-list ${NODE}
+            # ( if using ROOT DISK, select disk with device_path of
+            #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
+
+            # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
+            # The size of the PARTITION needs to be large enough to hold the aggregate size of
+            # all nova ephemeral disks of all VMs that you want to be able to host on this host,
+            # but is limited by the size and space available on the physical disk you chose above.
+            # The following example uses a small PARTITION size such that you can fit it on the
+            # root disk, if that is what you chose above.
+            # Additional PARTITION(s) from additional disks can be added later if required.
+            PARTITION_SIZE=30
+
+            system hostdisk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+
+            # Add new partition to ‘nova-local’ local volume group
+            system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
+            sleep 2
          done
 
    #. **For OpenStack only:** Configure data interfaces for worker nodes.
       Data class interfaces are vswitch interfaces used by vswitch to provide
-      VM virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the
+      |VM| virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the
       underlying assigned Data Network.
 
       .. important::
 
-         A compute-labeled worker host **MUST** have at least one Data class interface.
+         A compute-labeled worker host **MUST** have at least one Data class
+         interface.
 
       * Configure the data interfaces for worker nodes.
 
-        ::
+        .. code-block:: bash
 
            # Execute the following lines with
            export NODE=worker-0
@@ -685,13 +728,13 @@ Optionally Configure PCI-SRIOV Interfaces
    .. only:: openstack
 
       This step is **optional** for OpenStack.  Do this step if using |SRIOV|
-      vNICs in hosted application VMs.  Note that pci-sriov interfaces can
+      vNICs in hosted application |VMs|.  Note that pci-sriov interfaces can
       have the same Data Networks assigned to them as vswitch data interfaces.
 
 
    * Configure the pci-sriov interfaces for worker nodes.
 
-     ::
+     .. code-block:: bash
 
         # Execute the following lines with
         export NODE=worker-0
@@ -712,7 +755,8 @@ Optionally Configure PCI-SRIOV Interfaces
            system host-if-modify -m 1500 -n sriov0 -c pci-sriov ${NODE} <sriov0-if-uuid>
            system host-if-modify -m 1500 -n sriov1 -c pci-sriov ${NODE} <sriov1-if-uuid>
 
-           # Create Data Networks that the 'pci-sriov' interfaces will be connected to
+           # If not already created, create Data Networks that the 'pci-sriov'
+           # interfaces will be connected to
            DATANET0='datanet0'
            DATANET1='datanet1'
            system datanetwork-add ${DATANET0} vlan
@@ -723,12 +767,12 @@ Optionally Configure PCI-SRIOV Interfaces
            system interface-datanetwork-assign ${NODE} <sriov1-if-uuid> ${DATANET1}
 
 
-   * To enable using |SRIOV| network attachments for the above interfaces in
-     Kubernetes hosted application containers:
+   * **For Kubernetes only:** To enable using |SRIOV| network attachments for
+     the above interfaces in Kubernetes hosted application containers:
 
      * Configure the Kubernetes |SRIOV| device plugin.
 
-       ::
+       .. code-block:: bash
 
           for NODE in worker-0 worker-1; do
              system host-label-assign $NODE sriovdp=enabled
@@ -738,7 +782,7 @@ Optionally Configure PCI-SRIOV Interfaces
        containers on this host, configure the number of 1G Huge pages required
        on both |NUMA| nodes.
 
-       ::
+       .. code-block:: bash
 
           for NODE in worker-0 worker-1; do
 
@@ -757,7 +801,7 @@ Unlock worker nodes
 
 Unlock worker nodes in order to bring them into service:
 
-::
+.. code-block:: bash
 
   for NODE in worker-0 worker-1; do
      system host-unlock $NODE
@@ -772,7 +816,7 @@ If configuring Ceph Storage Backend, Add Ceph OSDs to controllers
 
 #. Add |OSDs| to controller-0. The following example adds |OSDs| to the `sdb` disk:
 
-   ::
+   .. code-block:: bash
 
      HOST=controller-0
 
@@ -788,7 +832,7 @@ If configuring Ceph Storage Backend, Add Ceph OSDs to controllers
 
 #. Add |OSDs| to controller-1. The following example adds |OSDs| to the `sdb` disk:
 
-   ::
+   .. code-block:: bash
 
      HOST=controller-1
 
