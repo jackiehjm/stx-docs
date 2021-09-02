@@ -111,27 +111,7 @@ Bootstrap system on controller-0
       configuration as shown in the example below. Use the OAM IP SUBNET and IP
       ADDRESSing applicable to your deployment environment.
 
-      .. code-block:: bash
-
-        cd ~
-        cat <<EOF > localhost.yml
-        system_mode: duplex
-
-        dns_servers:
-          - 8.8.8.8
-          - 8.8.4.4
-
-        external_oam_subnet: <OAM-IP-SUBNET>/<OAM-IP-SUBNET-LENGTH>
-        external_oam_gateway_address: <OAM-GATEWAY-IP-ADDRESS>
-        external_oam_floating_address: <OAM-FLOATING-IP-ADDRESS>
-        external_oam_node_0_address: <OAM-CONTROLLER-0-IP-ADDRESS>
-        external_oam_node_1_address: <OAM-CONTROLLER-1-IP-ADDRESS>
-
-        admin_username: admin
-        admin_password: <admin-password>
-        ansible_become_pass: <sysadmin-password>
-
-        EOF
+      .. include:: /_includes/min-bootstrap-overrides-non-simplex.rest
 
       .. only:: starlingx
 
@@ -263,8 +243,8 @@ Configure controller-0
       system interface-network-assign controller-0 $MGMT_IF mgmt
       system interface-network-assign controller-0 $MGMT_IF cluster-host
 
-      To configure a vlan or aggregated ethernet interface, see :ref:`Node
-      Interfaces <node-interfaces-index>`.
+   To configure a vlan or aggregated ethernet interface, see :ref:`Node
+   Interfaces <node-interfaces-index>`.
 
 #. Configure |NTP| servers for network time synchronization:
 
@@ -301,7 +281,7 @@ Configure controller-0
       (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
-      support of installing the stx-openstack manifest and helm-charts later.
+      support of installing the |prereq|-openstack manifest and helm-charts later.
 
       ::
 
@@ -313,7 +293,7 @@ Configure controller-0
 
          StarlingX has |OVS| (kernel-based) vSwitch configured as default:
 
-         * Runs in a container; defined within the helm charts of stx-openstack
+         * Runs in a container; defined within the helm charts of |prereq|-openstack
            manifest.
          * Shares the core(s) assigned to the platform.
 
@@ -332,7 +312,7 @@ Configure controller-0
               system modify --vswitch_type none
 
          This does not run any vSwitch directly on the host, instead, it uses
-         the containerized |OVS| defined in the helm charts of stx-openstack
+         the containerized |OVS| defined in the helm charts of |prereq|-openstack
          manifest.
 
       To deploy |OVS-DPDK|, run the following command:
@@ -367,6 +347,44 @@ Unlock controller-0 in order to bring it into service:
 Controller-0 will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host
 machine.
+
+.. only:: openstack
+
+   * **For OpenStack only:** Due to the additional openstack services’
+     containers running on the controller host, the size of the docker
+     filesystem needs to be increased from the default size of 30G to 60G.
+
+     .. code-block:: bash
+
+        # check existing size of docker fs
+        system host-fs-list controller-0
+
+        # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
+        system host-lvg-list controller-0
+
+        # if existing docker fs size + cgts-vg available space is less than
+        # 60G, you will need to add a new disk partition to cgts-vg.
+
+                # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
+                # ( if not use another unused disk )
+
+                # Get device path of ROOT DISK
+                system host-show controller-0 --nowrap | fgrep rootfs
+
+                # Get UUID of ROOT DISK by listing disks
+                system host-disk-list controller-0
+
+                # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
+                # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
+                PARTITION_SIZE=30
+                system system host-disk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
+
+                # Add new partition to ‘cgts-vg’ local volume group
+                system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
+                sleep 2    # wait for partition to be added
+
+        # Increase docker filesystem to 60G
+        system host-fs-modify controller-0 docker=60
 
 -------------------------------------------------
 Install software on controller-1 and worker nodes
@@ -488,7 +506,7 @@ Configure controller-1
       (|prefix|-openstack) will be installed.
 
    **For OpenStack only:** Assign OpenStack host labels to controller-1 in
-   support of installing the stx-openstack manifest and helm-charts later.
+   support of installing the |prereq|-openstack manifest and helm-charts later.
 
    ::
 
@@ -508,9 +526,48 @@ Unlock controller-1 in order to bring it into service:
 
   system host-unlock controller-1
 
+
 Controller-1 will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host
 machine.
+
+.. only:: openstack
+
+   #. **For OpenStack only:** Due to the additional openstack services’
+      containers running on the controller host, the size of the docker
+      filesystem needs to be increased from the default size of 30G to 60G.
+
+      .. code-block:: bash
+
+         # check existing size of docker fs
+         system host-fs-list controller-1
+
+         # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
+         system host-lvg-list controller-1
+
+         # if existing docker fs size + cgts-vg available space is less than
+         # 60G, you will need to add a new disk partition to cgts-vg.
+
+                  # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
+                  # ( if not use another unused disk )
+
+                  # Get device path of ROOT DISK
+                  system host-show controller-1 --nowrap | fgrep rootfs
+
+                  # Get UUID of ROOT DISK by listing disks
+                  system host-disk-list controller-1
+
+                  # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
+                  # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
+                  PARTITION_SIZE=30
+                  system hostdisk-partition-add -t lvm_phys_vol controller-1 <root-disk-uuid> ${PARTITION_SIZE}
+
+                  # Add new partition to ‘cgts-vg’ local volume group
+                  system host-pv-add controller-1 cgts-vg <NEW_PARTITION_UUID>
+                  sleep 2    # wait for partition to be added
+
+         # Increase docker filesystem to 60G
+         system host-fs-modify controller-1 docker=60
 
 .. incl-unlock-controller-1-end:
 
@@ -567,13 +624,13 @@ Configure worker nodes
       (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
-      support of installing the stx-openstack manifest and helm-charts later.
+      support of installing the |prereq|-openstack manifest and helm-charts later.
 
-      .. code-block:: bash
+      .. parsed-literal::
 
          for NODE in worker-0 worker-1; do
            system host-label-assign $NODE  openstack-compute-node=enabled
-           system host-label-assign $NODE  openvswitch=enabled
+           system host-label-assign $NODE  |vswitch-label|
            system host-label-assign $NODE  sriov=enabled
          done
 
@@ -641,7 +698,7 @@ Configure worker nodes
             done
 
    #. **For OpenStack only:** Setup disk partition for nova-local volume group,
-      needed for stx-openstack nova ephemeral disks.
+      needed for |prereq|-openstack nova ephemeral disks.
 
       .. code-block:: bash
 
@@ -655,7 +712,7 @@ Configure worker nodes
             # List host’s disks and take note of UUID of disk to be used
             system host-disk-list ${NODE}
             # ( if using ROOT DISK, select disk with device_path of
-            #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
+            #   ‘system host-show ${NODE} | fgrep rootfs’   )
 
             # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
             # The size of the PARTITION needs to be large enough to hold the aggregate size of
