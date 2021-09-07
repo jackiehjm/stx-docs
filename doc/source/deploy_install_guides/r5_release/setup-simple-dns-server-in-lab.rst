@@ -1,8 +1,8 @@
 .. _setup-simple-dns-server-in-lab:
 
-=================================
-Set up a Simple DNS Server in Lab
-=================================
+=====================================
+Set up a Simple DNS Server in the Lab
+=====================================
 
 While installing or using |prod|, you may require a |DNS| server that you can add
 entries to for name resolution.
@@ -12,14 +12,14 @@ standing up a simple Bind server on an Ubuntu 20.04 server.
 
 .. rubric:: |proc|
 
-#.  Run the following to install.
+#.  Run the following commands to install.
 
     .. code-block:: bash
 
         $ sudo apt update
         $ sudo apt install bind9
 
-#.  This is the basic setup.
+#.  Use the following commands for a basic setup.
 
     .. code-block:: bash
 
