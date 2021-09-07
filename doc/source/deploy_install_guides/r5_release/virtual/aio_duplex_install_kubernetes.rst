@@ -456,11 +456,11 @@ OpenStack-specific host configuration
 #. **For OpenStack only:** Assign OpenStack host labels to controller-1 in
    support of installing the stx-openstack manifest/helm-charts later:
 
-   ::
+   .. parsed-literal::
 
     system host-label-assign controller-1 openstack-control-plane=enabled
     system host-label-assign controller-1 openstack-compute-node=enabled
-    system host-label-assign controller-1 openvswitch=enabled
+    system host-label-assign controller-1 |vswitch-label|
     system host-label-assign controller-1 sriov=enabled
 
 #. **For OpenStack only:** Set up disk partition for nova-local volume group,
