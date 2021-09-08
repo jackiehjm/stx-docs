@@ -277,9 +277,9 @@ Configure worker nodes
       (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
-      support of installing the |prereq|-openstack manifest and helm-charts later.
+      support of installing the |prefix|-openstack manifest and helm-charts later.
 
-      .. parsed-literal
+      .. parsed-literal::
 
          for NODE in worker-0 worker-1; do
            system host-label-assign $NODE  openstack-compute-node=enabled
@@ -302,6 +302,7 @@ Configure worker nodes
 
               # assign 2 cores on processor/numa-node 0 on worker-node to vswitch
               system host-cpu-modify -f vswitch -p0 2 $NODE
+
           done
 
       When using |OVS-DPDK|, configure 1G of huge pages for vSwitch memory on
@@ -349,7 +350,7 @@ Configure worker nodes
             done
 
    #. **For OpenStack only:** Setup disk partition for nova-local volume group,
-      needed for |prereq|-openstack nova ephemeral disks.
+      needed for |prefix|-openstack nova ephemeral disks.
 
       .. code-block:: bash
 
