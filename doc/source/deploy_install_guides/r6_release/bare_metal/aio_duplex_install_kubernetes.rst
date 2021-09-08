@@ -255,19 +255,19 @@ Configure controller-0
 
    .. important::
 
-      **These steps are required only if the StarlingX OpenStack application
-      (stx-openstack) will be installed.**
+      These steps are required only if the StarlingX OpenStack application
+      (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
-      support of installing the stx-openstack manifest and helm-charts later.
+      support of installing the |prefix|-openstack manifest and helm-charts later.
 
       .. only:: starlingx
 
-         ::
+      .. parsed-literal::
 
             system host-label-assign controller-0 openstack-control-plane=enabled
             system host-label-assign controller-0 openstack-compute-node=enabled
-            system host-label-assign controller-0 openvswitch=enabled
+            system host-label-assign controller-0 |vswitch-label|
             system host-label-assign controller-0 sriov=enabled
 
       .. only:: partner
@@ -294,7 +294,7 @@ Configure controller-0
 
          StarlingX has |OVS| (kernel-based) vSwitch configured as default:
 
-         * Runs in a container; defined within the helm charts of stx-openstack
+         * Runs in a container; defined within the helm charts of |prefix|-openstack
            manifest.
          * Shares the core(s) assigned to the platform.
 
@@ -313,8 +313,8 @@ Configure controller-0
               system modify --vswitch_type none
 
          This does not run any vSwitch directly on the host, instead, it uses
-         the containerized |OVS| defined in the helm charts of stx-openstack
-         manifest.
+         the containerized |OVS| defined in the helm charts of
+         |prefix|-openstack manifest.
 
       To deploy |OVS-DPDK|, run the following command:
 
@@ -380,25 +380,9 @@ Configure controller-0
          After controller-0 is unlocked, changing vswitch_type requires
          locking and unlocking controller-0 to apply the change.
 
-   #. **For OpenStack Only:** Optionally configure the number of host CPUs in
-      NOVA’s dedicated CPU Pool for this host.  By default, all remaining host
-      CPUs, outside of platform and vswitch host CPUs, are assigned to NOVA’s
-      shared CPU Pool for this host.  List the number of host cpus and function
-      assignments and configure the required dedicated host CPUs.
-
-      .. code-block:: bash
-
-         # list the number and function assignments for host’s CPUs
-         # ‘application’ function → in NOVA’s shared CPU Pool
-         # ‘application-isolated’ function → in NOVA’s dedicated CPU Pool
-         ~(keystone)admin)$ system host-cpu-list controller-0
-
-         # Configure the required number of host CPUs in NOVA’s dedicated CPU Pool for each processor/socket
-         ~(keystone)admin)$ system host-cpu-modify -f application-isolated -p0 10 controller-0
-         ~(keystone)admin)$ system host-cpu-modify -f application-isolated -p1 10 controller-0
 
    #. **For OpenStack only:** Set up disk partition for nova-local volume
-      group, which is needed for stx-openstack nova ephemeral disks.
+      group, which is needed for |prefix|-openstack nova ephemeral disks.
 
       .. code-block:: bash
 
@@ -464,8 +448,6 @@ Configure controller-0
            # Create Data Networks that vswitch 'data' interfaces will be connected to
            DATANET0='datanet0'
            DATANET1='datanet1'
-           system datanetwork-add ${DATANET0} vlan
-           system datanetwork-add ${DATANET1} vlan
 
            # Assign Data Networks to Data Interfaces
            system interface-datanetwork-assign ${NODE} <data0-if-uuid> ${DATANET0}
@@ -619,19 +601,18 @@ Unlock controller-0
          # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
          system host-lvg-list controller-0
          # if existing docker fs size + cgts-vg available space is less than
-         # 80G, you will need to add a new disk partition to cgts-vg.
-         # There must be at least 20GB of available space after the docker
-         # filesystem is increased.
+         # 60G, you will need to add a new disk partition to cgts-vg.
+
             # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
             # ( if not use another unused disk )
             # Get device path of ROOT DISK
-            system host-show controller-0 --nowrap | fgrep rootfs
+            system host-show controller-0 | fgrep rootfs
             # Get UUID of ROOT DISK by listing disks
             system host-disk-list controller-0
             # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
             # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
             PARTITION_SIZE=30
-            system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+            system host-disk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
             # Add new partition to ‘cgts-vg’ local volume group
             system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
             sleep 2    # wait for partition to be added
@@ -734,7 +715,7 @@ Configure controller-1
 
             system host-label-assign controller-1 openstack-control-plane=enabled
             system host-label-assign controller-1 openstack-compute-node=enabled
-            system host-label-assign controller-1 openvswitch=enabled
+            system host-label-assign controller-1 |vswitch-label|
             system host-label-assign controller-1 sriov=enabled
 
       .. only:: partner
@@ -757,7 +738,7 @@ Configure controller-1
 
    #. **For OpenStack only:** Configure the host settings for the vSwitch.
 
-      If using |OVS-DPDK| vSwitch, run the following commands:
+      If using |OVS-DPDK| vswitch, run the following commands:
 
       Default recommendation for an |AIO|-controller is to use a single core
       for |OVS-DPDK| vSwitch. This should have been automatically configured,
@@ -770,8 +751,9 @@ Configure controller-1
 
 
       When using |OVS-DPDK|, configure 1G of huge pages for vSwitch memory on
-      each |NUMA| node on the host. It is recommended to configure 1x 1G huge
-      page (-1G 1) for vSwitch memory on each |NUMA| node on the host.
+      each |NUMA| node on the host. It is recommended
+      to configure 1x 1G huge page (-1G 1) for vSwitch memory on each |NUMA|
+      node on the host.
 
       However, due to a limitation with Kubernetes, only a single huge page
       size is supported on any one host. If your application VMs require 2M
@@ -784,7 +766,7 @@ Configure controller-1
          # assign 1x 1G huge page on processor/numa-node 0 on controller-1 to vswitch
          system host-memory-modify -f vswitch -1G 1 controller-1 0
 
-         # assign 1x 1G huge page on processor/numa-node 1 on controller-0 to vswitch
+         # Assign 1x 1G huge page on processor/numa-node 1 on controller-0 to vswitch
          system host-memory-modify -f vswitch -1G 1 controller-1 1
 
 
@@ -806,25 +788,9 @@ Configure controller-1
             # assign 10x 1G huge page on processor/numa-node 1 on controller-1 to applications
             system host-memory-modify -f application -1G 10 controller-1 1
 
-   #. **For OpenStack Only:** Optionally configure the number of host CPUs in
-      NOVA’s dedicated CPU Pool for this host.  By default, all remaining host
-      CPUs, outside of platform and vswitch host CPUs, are assigned to NOVA’s
-      shared CPU Pool for this host.  List the number of host cpus and function
-      assignments and configure the required dedicated host CPUs.
-
-      .. code-block:: bash
-
-         # list the number and function assignments for host’s CPUs
-         # ‘application’ function → in NOVA’s shared CPU Pool
-         # ‘application-isolated’ function → in NOVA’s dedicated CPU Pool
-         ~(keystone)admin)$ system host-cpu-list controller-1
-
-         # Configure the required number of host CPUs in NOVA’s dedicated CPU Pool for each processor/socket
-         ~(keystone)admin)$ system host-cpu-modify -f application-isolated -p0 10 controller-1
-         ~(keystone)admin)$ system host-cpu-modify -f application-isolated -p1 10 controller-1
 
    #. **For OpenStack only:** Set up disk partition for nova-local volume group,
-      which is needed for stx-openstack nova ephemeral disks.
+      which is needed for |prefix|-openstack nova ephemeral disks.
 
       .. code-block:: bash
 
@@ -1012,8 +978,8 @@ machine.
 .. only:: openstack
 
    *  **For OpenStack only:** Due to the additional openstack services’ containers
-      running on the controller host, the size of the docker filesystem needs to
-      be increased from the default size of 30G to 60G.
+      running on the controller host, the size of the docker filesystem needs to be
+      increased from the default size of 30G to 60G.
 
       .. code-block:: bash
 

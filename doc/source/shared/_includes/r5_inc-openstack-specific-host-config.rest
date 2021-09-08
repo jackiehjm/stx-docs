@@ -2,11 +2,11 @@
 
 .. important::
 
-   **This step is required only if the StarlingX OpenStack application
-   (|prereq|-openstack) will be installed.**
+   This step is required only if the StarlingX OpenStack application
+   (|prefix-openstack) will be installed.
 
 #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
-   support of installing the |prereq|-openstack manifest and helm-charts later.
+   support of installing the |prefix|-openstack manifest and helm-charts later.
 
    .. parsed-literal::
 
@@ -21,7 +21,7 @@
 
       StarlingX has |OVS| (kernel-based) vSwitch configured as default:
 
-      * Runs in a container; defined within the helm charts of |prereq|-openstack
+      * Runs in a container; defined within the helm charts of |prefix|-openstack
         manifest.
       * Shares the core(s) assigned to the platform.
 
@@ -40,7 +40,7 @@
            system modify --vswitch_type none
 
       This does not run any vSwitch directly on the host, instead, it uses
-      the containerized |OVS| defined in the helm charts of |prereq|-openstack
+      the containerized |OVS| defined in the helm charts of |prefix|-openstack
       manifest.
 
    To deploy |OVS-DPDK|, run the following command:
@@ -94,7 +94,7 @@
       controllers) to apply the change.
 
    #. **For OpenStack only:** Set up disk partition for nova-local volume
-      group, which is needed for |prereq|-openstack nova ephemeral disks.
+      group, which is needed for |prefix|-openstack nova ephemeral disks.
 
       ::
 

@@ -195,7 +195,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     For example:
 
-    .. code-block:: none
+    .. parsed-literal::
 
         ~(keystone_admin)]$ system helm-override-show |prefix|-openstack glance openstack
 
@@ -329,7 +329,7 @@ commands to manage containerized applications provided as part of |prod|.
     **mode**
         An application-specific mode controlling how the manifest is
         applied. This option is used to back-up and restore the
-        **|prefix|-openstack** application.
+        |prefix|-openstack application.
 
     and the following is a positional argument:
 
@@ -369,7 +369,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     For example:
 
-    .. code-block:: none
+    .. parsed-literal::
 
         ~(keystone_admin)]$ system application-abort |prefix|-openstack
         Application abort request has been accepted. If the previous operation has not

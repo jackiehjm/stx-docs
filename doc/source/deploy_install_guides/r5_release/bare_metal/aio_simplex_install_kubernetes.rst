@@ -216,6 +216,7 @@ The newly installed controller needs to be configured.
 
    To configure a vlan or aggregated ethernet interface, see :ref:`Node
    Interfaces <node-interfaces-index>`.
+
 #. Configure |NTP| servers for network time synchronization:
 
    ::
@@ -235,11 +236,11 @@ The newly installed controller needs to be configured.
 
    .. important::
 
-      **These steps are required only if the StarlingX OpenStack application
-      (|prereq|-openstack) will be installed.**
+      These steps are required only if the StarlingX OpenStack application
+      (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
-      support of installing the |prereq|-openstack manifest and helm-charts later.
+      support of installing the |prefix|-openstack manifest and helm-charts later.
 
 
       .. only:: starlingx
@@ -275,7 +276,7 @@ The newly installed controller needs to be configured.
 
          StarlingX has |OVS| (kernel-based) vSwitch configured as default:
 
-         * Runs in a container; defined within the helm charts of |prereq|-openstack
+         * Runs in a container; defined within the helm charts of |prefix|-openstack
            manifest.
          * Shares the core(s) assigned to the platform.
 
@@ -311,7 +312,6 @@ The newly installed controller needs to be configured.
         # assign 1 core on processor/numa-node 0 on controller-0 to vswitch
         system host-cpu-modify -f vswitch -p0 1 controller-0
 
-
       When using |OVS-DPDK|, configure 1G of huge pages for vSwitch memory on
       each |NUMA| node on the host. It is recommended
       to configure 1x 1G huge page (-1G 1) for vSwitch memory on each |NUMA|
@@ -330,7 +330,6 @@ The newly installed controller needs to be configured.
 
          # Assign 1x 1G huge page on processor/numa-node 1 on controller-0 to vswitch
          system host-memory-modify -f vswitch -1G 1 controller-0 1
-
 
       .. important::
 
@@ -356,7 +355,7 @@ The newly installed controller needs to be configured.
          locking and unlocking controller-0 to apply the change.
 
    #. **For OpenStack only:** Set up disk partition for nova-local volume
-      group, which is needed for |prereq|-openstack nova ephemeral disks.
+      group, which is needed for |prefix|-openstack nova ephemeral disks.
 
       .. code-block:: bash
 
@@ -583,8 +582,8 @@ machine.
 .. only:: openstack
 
    *  **For OpenStack only:** Due to the additional openstack services’
-      containers running on the controller host, the size of the docker filesystem
-      needs to be increased from the default size of 30G to 60G.
+      containers running on the controller host, the size of the docker
+      filesystem needs to be increased from the default size of 30G to 60G.
 
       .. code-block:: bash
 

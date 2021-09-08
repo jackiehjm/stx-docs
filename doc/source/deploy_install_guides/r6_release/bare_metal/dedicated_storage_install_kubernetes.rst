@@ -277,7 +277,7 @@ Configure worker nodes
       (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
-      support of installing the stx-openstack manifest and helm-charts later.
+      support of installing the |prefix|-openstack manifest and helm-charts later.
 
       .. parsed-literal::
 
@@ -291,9 +291,10 @@ Configure worker nodes
 
       If using |OVS-DPDK| vSwitch, run the following commands:
 
-      Default recommendation for worker node is to use two cores on numa-node 0
-      for |OVS-DPDK| vSwitch. This should have been automatically configured,
-      if not run the following command.
+      Default recommendation for worker node is to use node two cores on
+      numa-node 0 for |OVS-DPDK| vSwitch; physical NICs are typically on first
+      numa-node. This should have been automatically configured, if not run
+      the following command.
 
       .. code-block:: bash
 
@@ -348,28 +349,6 @@ Configure worker nodes
 
             done
 
-   #. **For OpenStack Only:** Optionally configure the number of host CPUs in
-      NOVA’s dedicated CPU Pool for this host.  By default, all remaining host
-      CPUs, outside of platform and vswitch host CPUs, are assigned to NOVA’s
-      shared CPU Pool for this host.  List the number of host cpus and function
-      assignments and configure the required dedicated host CPUs.
-
-      .. code-block:: bash
-
-         # list the number and function assignments for host’s CPUs
-         # ‘application’ function → in NOVA’s shared CPU Pool
-         # ‘application-isolated’ function → in NOVA’s dedicated CPU Pool
-         ~(keystone)admin)$ system host-cpu-list worker-0
-         ~(keystone)admin)$ system host-cpu-list worker-1
-
-         # Configure the required number of host CPUs in NOVA’s dedicated CPU Pool for each processor/socket
-         for NODE in worker-0 worker-1; do
-
-            system host-cpu-modify -f application-isolated -p0 10 $NODE
-            system host-cpu-modify -f application-isolated -p1 10 $NODE
-
-         done
-
    #. **For OpenStack only:** Setup disk partition for nova-local volume group,
       needed for stx-openstack nova ephemeral disks.
 
@@ -385,7 +364,7 @@ Configure worker nodes
             # List host’s disks and take note of UUID of disk to be used
             system host-disk-list ${NODE}
             # ( if using ROOT DISK, select disk with device_path of
-            #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
+            #   ‘system host-show ${NODE} | fgrep rootfs’   )
 
             # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
             # The size of the PARTITION needs to be large enough to hold the aggregate size of
