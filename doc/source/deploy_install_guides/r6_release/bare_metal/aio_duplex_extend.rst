@@ -101,9 +101,9 @@ Configure worker nodes
       .. parsed-literal::
 
          for NODE in worker-0 worker-1; do
-           system host-label-assign $NODE  openstack-compute-node=enabled
-           system host-label-assign $NODE  |vswitch-label|
-           system host-label-assign $NODE  sriov=enabled
+            system host-label-assign $NODE  openstack-compute-node=enabled
+            system host-label-assign $NODE  |vswitch-label|
+            system host-label-assign $NODE  sriov=enabled
          done
 
    #. **For OpenStack only:** Configure the host settings for the vSwitch.

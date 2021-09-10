@@ -263,7 +263,7 @@ Configure controller-0
 
       .. only:: starlingx
 
-      .. parsed-literal::
+         .. parsed-literal::
 
             system host-label-assign controller-0 openstack-control-plane=enabled
             system host-label-assign controller-0 openstack-compute-node=enabled
@@ -598,24 +598,31 @@ Unlock controller-0
 
          # check existing size of docker fs
          system host-fs-list controller-0
-         # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
-         system host-lvg-list controller-0
-         # if existing docker fs size + cgts-vg available space is less than
-         # 60G, you will need to add a new disk partition to cgts-vg.
 
-            # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
-            # ( if not use another unused disk )
-            # Get device path of ROOT DISK
-            system host-show controller-0 | fgrep rootfs
-            # Get UUID of ROOT DISK by listing disks
-            system host-disk-list controller-0
-            # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
-            # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
-            PARTITION_SIZE=30
-            system host-disk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
-            # Add new partition to ‘cgts-vg’ local volume group
-            system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
-            sleep 2    # wait for partition to be added
+            # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
+            system host-lvg-list controller-0
+
+            # if existing docker fs size + cgts-vg available space is less than
+            # 60G, you will need to add a new disk partition to cgts-vg.
+
+                     # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
+                     # ( if not use another unused disk )
+
+                     # Get device path of ROOT DISK
+                     system host-show controller-0 | grep rootfs
+
+                     # Get UUID of ROOT DISK by listing disks
+                     system host-disk-list controller-0
+
+                     # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
+                     # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
+                     PARTITION_SIZE=30
+                     system host-disk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
+
+                     # Add new partition to ‘cgts-vg’ local volume group
+                     system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
+                     sleep 2    # wait for partition to be added
+
             # Increase docker filesystem to 60G
             system host-fs-modify controller-0 docker=60
 
@@ -711,7 +718,7 @@ Configure controller-1
 
       .. only:: starlingx
 
-         ::
+         .. parsed-literal::
 
             system host-label-assign controller-1 openstack-control-plane=enabled
             system host-label-assign controller-1 openstack-compute-node=enabled
@@ -950,10 +957,10 @@ For host-based Ceph:
 
    .. only:: starlingx
 
-   For Rook container-based Ceph:
+      For Rook container-based Ceph:
 
-   #. Assign Rook host labels to controller-1 in support of installing the
-      rook-ceph-apps manifest/helm-charts later:
+      #. Assign Rook host labels to controller-1 in support of installing the
+         rook-ceph-apps manifest/helm-charts later:
 
       .. code-block:: bash
 
@@ -989,8 +996,8 @@ machine.
          # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
          system host-lvg-list controller-1
 
-         # if existing docker fs size + cgts-vg available space is less than
-         # 60G, you will need to add a new disk partition to cgts-vg.
+         # if existing docker fs size + cgts-vg available space is less than 60G,
+         # you will need to add a new disk partition to cgts-vg.
 
                   # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
                   # ( if not use another unused disk )
