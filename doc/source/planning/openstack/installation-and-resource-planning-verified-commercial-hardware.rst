@@ -188,8 +188,7 @@ here.
 
   :ref:`Kubernetes Verified Commercial Hardware <verified-commercial-hardware>`
 
-.. Uncomment on r5 and add missing target after merge as branch review.
-.. To configure a PCI-Passthrough Interface to a NVIDIA GPU in a |VM|, see :ref:`Configure PCI-Passthrough Interface to NVIDIA GPU in a VM <configure-pci-passthrough-interface-to-nvidia-gpu>`.
+To configure a PCI-Passthrough Interface to a NVIDIA GPU in a |VM|, see :ref:`Configure PCI-Passthrough Interface to NVIDIA GPU in a VM <configure-pci-passthrough-interface-to-nvidia-gpu>`.
 
 .. include:: /_includes/installation-and-resource-planning-verified-commercial-hardware.rest
 
