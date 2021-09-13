@@ -18,7 +18,7 @@ hosts or networks to highlight their connections and obtain more details.
 To display this view, select **Admin** \> **Platform** \> **Data Network
 Topology**.
 
-.. image:: /datanet/figures/sqw1475425312420.png
+.. image:: /shared/figures/datanet/sqw1475425312420.png
    :height: 365px
 
 .. _the-data-network-topology-view-section-N1002F-N1001C-N10001:
