@@ -113,9 +113,9 @@ enables the Mount Bryce device.
         | C600/X79 series chipset MEI Controller #2                | 0         | False   |
         | C600/X79 series chipset USB2 Enhanced Host Controller #2 | 0         | False   |
         | C600/X79 series chipset USB2 Enhanced Host Controller #1 | 0         | False   |
-        | C600/X79 series chipset 6-Port |SATA| AHCI Controller    | 0         | False   |
+        | C600/X79 series chipset 6-Port  SATA  AHCI Controller    | 0         | False   |
         | C600/X79 series chipset SMBus Host Controller            | 0         | False   |
-        | C606 chipset Dual 4-Port |SATA|/|SAS| Storage Control uni| 0         | False   |
+        | C606 chipset Dual 4-Port  SATA/SAS  Storage Control unit | 0         | False   |
         | C600/X79 series chipset SMBus Controller 0               | 0         | False   |
         | C608/C606/X79 series chipset SMBus Controller 1          | 0         | False   |
         | Device 1eb8                                              | 0         | False   |
