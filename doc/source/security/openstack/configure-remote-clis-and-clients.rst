@@ -33,10 +33,10 @@ installed. Download the latest release tarball for Cygwin from
 tarball, extract it to any location and change the Windows <PATH> variable to
 include its bin folder from the extracted winpty folder.
 
-For access to remote CLI, it is required to set the DNS in the cluster using the
-:command:`system service-parameter-add openstack helm endpoint_domain=domain_name`
-command and reapply OpenStack using **system application-apply |prefix|-openstack**
-command.
+For access to remote CLI, it is required to set the DNS in the cluster using
+the :command:`system service-parameter-add openstack helm
+endpoint_domain=domain_name` command and reapply OpenStack using the system
+application-apply |prefix|-openstack command.
 
 The following procedure shows how to configure the Container-backed Remote
 |CLIs| for OpenStack remote access.

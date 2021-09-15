@@ -116,8 +116,9 @@ Bootstrap system on controller-0
 
       .. only:: starlingx
 
-         In either of the above options, the bootstrap playbook’s default values
-         will pull all container images required for the |prod-p| from Docker hub.
+         In either of the above options, the bootstrap playbook’s default
+         values will pull all container images required for the |prod-p| from
+         Docker hub
 
          If you have setup a private Docker registry to use for bootstrapping
          then you will need to add the following lines in $HOME/localhost.yml:
@@ -235,11 +236,11 @@ The newly installed controller needs to be configured.
 
    .. important::
 
-      **These steps are required only if the StarlingX OpenStack application
-      (stx-openstack) will be installed.**
+      These steps are required only if the StarlingX OpenStack application
+      (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
-      support of installing the stx-openstack manifest and helm-charts later.
+      support of installing the |prefix|-openstack manifest and helm-charts later.
 
       .. only:: starlingx
 
@@ -274,7 +275,7 @@ The newly installed controller needs to be configured.
 
          StarlingX has |OVS| (kernel-based) vSwitch configured as default:
 
-         * Runs in a container; defined within the helm charts of stx-openstack
+         * Runs in a container; defined within the helm charts of |prefix|-openstack
            manifest.
          * Shares the core(s) assigned to the platform.
 
@@ -303,7 +304,7 @@ The newly installed controller needs to be configured.
          system modify --vswitch_type |ovs-dpdk|
 
       Default recommendation for an |AIO|-controller is to use a single core
-      for |OVS-DPDK| vswitch.
+      for |OVS-DPDK| vSwitch.
 
       .. code-block:: bash
 
@@ -311,8 +312,9 @@ The newly installed controller needs to be configured.
          system host-cpu-modify -f vswitch -p0 1 controller-0
 
       When using |OVS-DPDK|, configure 1G of huge pages for vSwitch memory on
-      each |NUMA| node on the host. It is recommended to configure 1x 1G huge
-      page (-1G 1) for vSwitch memory on each |NUMA| node on the host.
+      each |NUMA| node on the host. It is recommended
+      to configure 1x 1G huge page (-1G 1) for vSwitch memory on each |NUMA|
+      node on the host.
 
       However, due to a limitation with Kubernetes, only a single huge page
       size is supported on any one host. If your application |VMs| require 2M
@@ -351,25 +353,8 @@ The newly installed controller needs to be configured.
          After controller-0 is unlocked, changing vswitch_type requires
          locking and unlocking controller-0 to apply the change.
 
-   #. **For OpenStack Only:** Optionally configure the number of host CPUs in
-      NOVA’s dedicated CPU Pool for this host.  By default, all remaining host
-      CPUs, outside of platform and vswitch host CPUs, are assigned to NOVA’s
-      shared CPU Pool for this host.  List the number of host cpus and function
-      assignments and configure the required dedicated host CPUs.
-
-      .. code-block:: bash
-
-         # list the number and function assignments for host’s CPUs
-         # ‘application’ function → in NOVA’s shared CPU Pool
-         # ‘application-isolated’ function → in NOVA’s dedicated CPU Pool
-         ~(keystone)admin)$ system host-cpu-list controller-0
-
-         # Configure the required number of host CPUs in NOVA’s dedicated CPU Pool for each processor/socket
-         ~(keystone)admin)$ system host-cpu-modify -f application-isolated -p0 10 controller-0
-         ~(keystone)admin)$ system host-cpu-modify -f application-isolated -p1 10 controller-0
-
    #. **For OpenStack only:** Set up disk partition for nova-local volume
-      group, which is needed for stx-openstack nova ephemeral disks.
+      group, which is needed for |prefix|-openstack nova ephemeral disks.
 
       .. code-block:: bash
 
@@ -383,7 +368,7 @@ The newly installed controller needs to be configured.
          # List host’s disks and take note of UUID of disk to be used
          system host-disk-list ${NODE}
          # ( if using ROOT DISK, select disk with device_path of
-         #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
+         #   ‘system host-show ${NODE} | fgrep rootfs’   )
 
          # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
          # The size of the PARTITION needs to be large enough to hold the aggregate size of

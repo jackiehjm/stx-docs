@@ -281,7 +281,7 @@ Configure controller-0
       (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
-      support of installing the |prereq|-openstack manifest and helm-charts later.
+      support of installing the |prefix|-openstack manifest and helm-charts later.
 
       ::
 
@@ -293,7 +293,7 @@ Configure controller-0
 
          StarlingX has |OVS| (kernel-based) vSwitch configured as default:
 
-         * Runs in a container; defined within the helm charts of |prereq|-openstack
+         * Runs in a container; defined within the helm charts of |prefix|-openstack
            manifest.
          * Shares the core(s) assigned to the platform.
 
@@ -312,7 +312,7 @@ Configure controller-0
               system modify --vswitch_type none
 
          This does not run any vSwitch directly on the host, instead, it uses
-         the containerized |OVS| defined in the helm charts of |prereq|-openstack
+         the containerized |OVS| defined in the helm charts of |prefix|-openstack
          manifest.
 
       To deploy |OVS-DPDK|, run the following command:
@@ -481,7 +481,6 @@ Configure controller-1
    To configure a vlan or aggregated ethernet interface, see :ref:`Node
    Interfaces <node-interfaces-index>`.
 
-
 #. The MGMT interface is partially set up by the network install procedure;
    configuring the port used for network install as the MGMT port and
    specifying the attached network of "mgmt".
@@ -506,7 +505,7 @@ Configure controller-1
       (|prefix|-openstack) will be installed.
 
    **For OpenStack only:** Assign OpenStack host labels to controller-1 in
-   support of installing the |prereq|-openstack manifest and helm-charts later.
+   support of installing the |prefix|-openstack manifest and helm-charts later.
 
    ::
 
@@ -525,7 +524,6 @@ Unlock controller-1 in order to bring it into service:
 ::
 
   system host-unlock controller-1
-
 
 Controller-1 will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host
@@ -624,7 +622,7 @@ Configure worker nodes
       (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
-      support of installing the |prereq|-openstack manifest and helm-charts later.
+      support of installing the |prefix|-openstack manifest and helm-charts later.
 
       .. parsed-literal::
 
@@ -698,7 +696,7 @@ Configure worker nodes
             done
 
    #. **For OpenStack only:** Setup disk partition for nova-local volume group,
-      needed for |prereq|-openstack nova ephemeral disks.
+      needed for |prefix|-openstack nova ephemeral disks.
 
       .. code-block:: bash
 

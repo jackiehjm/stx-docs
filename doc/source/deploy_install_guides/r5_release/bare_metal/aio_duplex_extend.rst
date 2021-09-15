@@ -92,13 +92,13 @@ Configure worker nodes
 
    .. important::
 
-      **These steps are required only if the StarlingX OpenStack application
-      (|prefix|-openstack) will be installed.**
+      These steps are required only if the StarlingX OpenStack application
+      (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
       support of installing the |prefix|-openstack manifest and helm-charts later.
 
-      .. parsed-literal
+      .. parsed-literal::
 
          for NODE in worker-0 worker-1; do
            system host-label-assign $NODE  openstack-compute-node=enabled
@@ -111,7 +111,7 @@ Configure worker nodes
       If using |OVS-DPDK| vswitch, run the following commands:
 
       Default recommendation for worker node is to use two cores on numa-node 0
-      for |OVS-DPDK| vSwitch; physical NICs are typically on first numa-node.
+      for |OVS-DPDK| vSwitch; physical |NICs| are typically on first numa-node.
       This should have been automatically configured, if not run the following
       command.
 
@@ -123,7 +123,6 @@ Configure worker nodes
             system host-cpu-modify -f vswitch -p0 2 $NODE
 
           done
-
 
       When using |OVS-DPDK|, configure 1G of huge pages for vSwitch memory on
       each |NUMA| node on the host. It is recommended to configure 1x 1G huge

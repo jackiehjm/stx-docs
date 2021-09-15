@@ -29,7 +29,7 @@ Install software on worker nodes
       | id | hostname     | personality | administrative | operational | availability |
       +----+--------------+-------------+----------------+-------------+--------------+
       | 1  | controller-0 | controller  | unlocked       | enabled     | available    |
-      | 2  | controller-0 | controller  | unlocked       | enabled     | available    |
+      | 2  | controller-1 | controller  | unlocked       | enabled     | available    |
       | 3  | None         | None        | locked         | disabled    | offline      |
       | 4  | None         | None        | locked         | disabled    | offline      |
       +----+--------------+-------------+----------------+-------------+--------------+
@@ -93,10 +93,10 @@ Configure worker nodes
    .. important::
 
       **These steps are required only if the StarlingX OpenStack application
-      (stx-openstack) will be installed.**
+      (|prefix|-openstack) will be installed.**
 
    #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
-      support of installing the stx-openstack manifest and helm-charts later.
+      support of installing the |prefix|-openstack manifest and helm-charts later.
 
       .. parsed-literal::
 
@@ -108,10 +108,10 @@ Configure worker nodes
 
    #. **For OpenStack only:** Configure the host settings for the vSwitch.
 
-      **If using OVS-DPDK vswitch, run the following commands:**
+      If using |OVS-DPDK| vswitch, run the following commands:
 
       Default recommendation for worker node is to use two cores on numa-node 0
-      for |OVS|-|DPDK| vSwitch; physical |NICs| are typically on first numa-node.
+      for |OVS-DPDK| vSwitch; physical |NICs| are typically on first numa-node.
       This should have been automatically configured, if not run the following
       command.
 
@@ -124,9 +124,9 @@ Configure worker nodes
 
         done
 
-      When using |OVS|-|DPDK|, configure 1G of huge pages for vSwitch memory on
+      When using |OVS-DPDK|, configure 1G of huge pages for vSwitch memory on
       each |NUMA| node on the host. It is recommended to configure 1x 1G huge
-      page (-1G 1) for vSwitch memory on each |NUMA| node on host.
+      page (-1G 1) for vSwitch memory on each |NUMA| node on the host.
 
       However, due to a limitation with Kubernetes, only a single huge page
       size is supported on any one host. If your application VMs require 2M
@@ -148,7 +148,7 @@ Configure worker nodes
 
       .. important::
 
-         |VMs| created in an |OVS|-|DPDK| environment must be configured to use
+         |VMs| created in an |OVS-DPDK| environment must be configured to use
          huge pages to enable networking and must use a flavor with property:
          hw:mem_page_size=large
 
@@ -168,30 +168,8 @@ Configure worker nodes
 
             done
 
-   #. **For OpenStack Only:** Optionally configure the number of host CPUs in
-      NOVA’s dedicated CPU Pool for this host.  By default, all remaining host
-      CPUs, outside of platform and vswitch host CPUs, are assigned to NOVA’s
-      shared CPU Pool for this host.  List the number of host cpus and function
-      assignments and configure the required dedicated host CPUs.
-
-      .. code-block:: bash
-
-         # list the number and function assignments for host’s CPUs
-         # ‘application’ function → in NOVA’s shared CPU Pool
-         # ‘application-isolated’ function → in NOVA’s dedicated CPU Pool
-         ~(keystone)admin)$ system host-cpu-list worker-0
-         ~(keystone)admin)$ system host-cpu-list worker-1
-
-         # Configure the required number of host CPUs in NOVA’s dedicated CPU Pool for each processor/socket
-         for NODE in worker-0 worker-1; do
-
-            system host-cpu-modify -f application-isolated -p0 10 $NODE
-            system host-cpu-modify -f application-isolated -p1 10 $NODE
-
-         done
-
    #. **For OpenStack only:** Setup disk partition for nova-local volume group,
-      needed for stx-openstack nova ephemeral disks.
+      needed for |prefix|-openstack nova ephemeral disks.
 
       .. code-block:: bash
 
@@ -205,7 +183,7 @@ Configure worker nodes
             # List host’s disks and take note of UUID of disk to be used
             system host-disk-list ${NODE}
             # ( if using ROOT DISK, select disk with device_path of
-            #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
+            #   ‘system host-show ${NODE} | fgrep rootfs’   )
 
             # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
             # The size of the PARTITION needs to be large enough to hold the aggregate size of
@@ -216,7 +194,7 @@ Configure worker nodes
             # Additional PARTITION(s) from additional disks can be added later if required.
             PARTITION_SIZE=30
 
-            system hostdisk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+            system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
 
             # Add new partition to ‘nova-local’ local volume group
             system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>

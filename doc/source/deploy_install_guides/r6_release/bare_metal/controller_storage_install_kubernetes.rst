@@ -175,9 +175,9 @@ Bootstrap system on controller-0
          docker_no_proxy:
             - 1.2.3.4
 
-      Refer to :ref:`Ansible Bootstrap Configurations <ansible_bootstrap_configs_r6>`
-      for information on additional Ansible bootstrap configurations for advanced
-      Ansible bootstrap scenarios.
+      Refer to :ref:`Ansible Bootstrap Configurations
+      <ansible_bootstrap_configs_r6>` for information on additional Ansible
+      bootstrap configurations for advanced Ansible bootstrap scenarios.
 
 #. Run the Ansible bootstrap playbook:
 
@@ -281,7 +281,7 @@ Configure controller-0
       (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
-      support of installing the stx-openstack manifest and helm-charts later.
+      support of installing the |prefix|-openstack manifest and helm-charts later.
 
       ::
 
@@ -293,7 +293,7 @@ Configure controller-0
 
          StarlingX has |OVS| (kernel-based) vSwitch configured as default:
 
-         * Runs in a container; defined within the helm charts of stx-openstack
+         * Runs in a container; defined within the helm charts of |prefix|-openstack
            manifest.
          * Shares the core(s) assigned to the platform.
 
@@ -312,7 +312,7 @@ Configure controller-0
               system modify --vswitch_type none
 
          This does not run any vSwitch directly on the host, instead, it uses
-         the containerized |OVS| defined in the helm charts of stx-openstack
+         the containerized |OVS| defined in the helm charts of |prefix|-openstack
          manifest.
 
       To deploy |OVS-DPDK|, run the following command:
@@ -324,7 +324,7 @@ Configure controller-0
       Once vswitch_type is set to |OVS-DPDK|, any subsequent |AIO|-controller
       or worker nodes created will default to automatically assigning 1 vSwitch
       core for |AIO| controllers and 2 vSwitch cores (both on numa-node 0;
-      physical NICs are typically on first numa-node) for compute-labeled
+      physical |NICs| are typically on first numa-node) for compute-labeled
       worker nodes.
 
       .. note::
@@ -505,7 +505,7 @@ Configure controller-1
       (|prefix|-openstack) will be installed.
 
    **For OpenStack only:** Assign OpenStack host labels to controller-1 in
-   support of installing the stx-openstack manifest and helm-charts later.
+   support of installing the |prefix|-openstack manifest and helm-charts later.
 
    ::
 
@@ -622,13 +622,13 @@ Configure worker nodes
       (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
-      support of installing the stx-openstack manifest and helm-charts later.
+      support of installing the |prefix|-openstack manifest and helm-charts later.
 
-      .. code-block:: bash
+      .. parsed-literal::
 
          for NODE in worker-0 worker-1; do
            system host-label-assign $NODE  openstack-compute-node=enabled
-           system host-label-assign $NODE  openvswitch=enabled
+           system host-label-assign $NODE  |vswitch-label|
            system host-label-assign $NODE  sriov=enabled
          done
 
@@ -695,30 +695,8 @@ Configure worker nodes
 
             done
 
-   #. **For OpenStack Only:** Optionally configure the number of host CPUs in
-      NOVA’s dedicated CPU Pool for this host.  By default, all remaining host
-      CPUs, outside of platform and vswitch host CPUs, are assigned to NOVA’s
-      shared CPU Pool for this host.  List the number of host cpus and function
-      assignments and configure the required dedicated host CPUs.
-
-      .. code-block:: bash
-
-         # list the number and function assignments for host’s CPUs
-         # ‘application’ function → in NOVA’s shared CPU Pool
-         # ‘application-isolated’ function → in NOVA’s dedicated CPU Pool
-         ~(keystone)admin)$ system host-cpu-list worker-0
-         ~(keystone)admin)$ system host-cpu-list worker-1
-
-         # Configure the required number of host CPUs in NOVA’s dedicated CPU Pool for each processor/socket
-         for NODE in worker-0 worker-1; do
-
-            system host-cpu-modify -f application-isolated -p0 10 $NODE
-            system host-cpu-modify -f application-isolated -p1 10 $NODE
-
-         done
-
    #. **For OpenStack only:** Setup disk partition for nova-local volume group,
-      needed for stx-openstack nova ephemeral disks.
+      needed for |prefix|-openstack nova ephemeral disks.
 
       .. code-block:: bash
 
@@ -732,7 +710,7 @@ Configure worker nodes
             # List host’s disks and take note of UUID of disk to be used
             system host-disk-list ${NODE}
             # ( if using ROOT DISK, select disk with device_path of
-            #   ‘system host-show ${NODE} --nowrap | fgrep rootfs’   )
+            #   ‘system host-show ${NODE} | fgrep rootfs’   )
 
             # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
             # The size of the PARTITION needs to be large enough to hold the aggregate size of
@@ -811,7 +789,7 @@ Optionally Configure PCI-SRIOV Interfaces
 
    * Configure the pci-sriov interfaces for worker nodes.
 
-     .. code-block::
+     .. code-block:: bash
 
         # Execute the following lines with
         export NODE=worker-0

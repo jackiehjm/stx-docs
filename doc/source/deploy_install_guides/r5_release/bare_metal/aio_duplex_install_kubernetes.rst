@@ -254,8 +254,8 @@ Configure controller-0
 
    .. important::
 
-      **These steps are required only if the StarlingX OpenStack application
-      (|prefix|-openstack) will be installed.**
+      These steps are required only if the StarlingX OpenStack application
+      (|prefix|-openstack) will be installed.
 
    #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
       support of installing the |prefix|-openstack manifest and helm-charts later.

@@ -138,7 +138,7 @@ service‐parameter-add` command to configure and set the OpenStack domain name:
 
     .. note::
         If an error occurs, remove the following ingress parameters, **nova-cluster-fqdn**
-        and **nova-namespace-fqdn** and reapply OpenStack using :command:`system application-apply |prefix|-openstack`.
+        and **nova-namespace-fqdn** and reapply OpenStack using system application-apply |prefix|-openstack.
 
 #.  Apply the |prefix|-openstack application.
 
