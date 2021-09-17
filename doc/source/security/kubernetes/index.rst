@@ -1,6 +1,12 @@
-========
-Contents
-========
+.. _security-kubernetes-index:
+
+.. include:: /_includes/toc-title-security-kub.rest
+
+.. only:: partner
+
+   .. include:: /security/index.rst
+      :start-after: kub-begin
+      :end-before: kub-end
 
 ***************
 System Accounts

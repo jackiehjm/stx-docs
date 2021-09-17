@@ -1,6 +1,13 @@
-========
-Contents
-========
+
+.. _node-mgmt-openstack-index:
+
+.. include:: /_includes/toc-title-node-os.rest
+
+.. only:: partner
+
+   .. include:: /node_management/index.rst
+      :start-after: os-begin
+      :end-before: os-end
 
 .. toctree::
    :maxdepth: 1
@@ -8,7 +15,6 @@ Contents
    node-management-overview
    adding-compute-nodes-to-an-existing-duplex-system
    using-labels-to-identify-openstack-nodes
-
 
 -------------------------
 PCI Device Access for VMs

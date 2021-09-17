@@ -1,7 +1,4 @@
-.. Fault Management file, created by
-   sphinx-quickstart on Thu Sep  3 15:14:59 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _guest-integration-index:
 
 =================
 Guest Integration
@@ -11,9 +8,13 @@ Guest Integration
 Kubernetes container integration
 --------------------------------
 
+.. kub-begin
+
 |prod-long| supports applications that rely on |PTP| for synchronization. These
 applications are able to receive |PTP| status notifications from
 |prod-long| hosting the application.
+
+.. kub-end
 
 .. toctree::
     :maxdepth: 2
@@ -24,9 +25,13 @@ applications are able to receive |PTP| status notifications from
 OpenStack VNF integration
 -------------------------
 
+.. os-begin
+
 The |VNF| Integration document contains information specific to |VNF| or
 |VM| application writers that assists them with integrating their
 application on |prod-os|.
+
+.. os-end
 
 .. toctree::
     :maxdepth: 2

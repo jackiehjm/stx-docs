@@ -1,6 +1,12 @@
-========
-Contents
-========
+.. _usertasks-kubernetes-index:
+
+.. include:: /_includes/toc-title-usertasks-kub.rest
+
+.. only:: partner
+
+   .. include:: /usertasks/index.rst
+      :start-after: kub-begin
+      :end-before: kub-end
 
 -------------
 System access

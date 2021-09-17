@@ -1,6 +1,13 @@
-========
-Contents
-========
+
+.. _node-mgmt-kubernetes-index:
+
+.. include:: /_includes/toc-title-node-kub.rest
+
+.. only:: partner
+
+   .. include:: /node_management/index.rst
+      :start-after: kub-begin
+      :end-before: kub-end
 
 ------------
 Introduction

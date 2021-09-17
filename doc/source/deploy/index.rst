@@ -4,6 +4,8 @@
 Deployment Configurations
 =========================
 
+.. kub-begin
+
 A variety of |prod-long| deployment configuration options are supported.
 
 **All-in-one Simplex**
@@ -22,6 +24,8 @@ A variety of |prod-long| deployment configuration options are supported.
 **Standard with Storage Cluster on dedicated Storage Nodes**
     A two node HA controller node cluster with a 2-9 node Ceph storage
     cluster, managing up to 200 worker nodes.
+
+.. kub-end
 
 .. toctree::
     :maxdepth: 2

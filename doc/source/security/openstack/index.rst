@@ -1,6 +1,13 @@
-========
-Contents
-========
+
+.. _security-openstack-index:
+
+.. include:: /_includes/toc-title-security-os.rest
+
+.. only:: partner
+
+   .. include:: /security/index.rst
+      :start-after: os-begin
+      :end-before: os-end
 
 -----------------
 Keystone Accounts

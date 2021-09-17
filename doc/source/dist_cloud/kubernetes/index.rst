@@ -1,9 +1,13 @@
 .. _dist-cloud-kubernetes-index:
 
 
-========
-Contents
-========
+.. include:: /_includes/toc-title-dc-kub.rest
+
+.. only:: partner
+
+   .. include:: /dist_cloud/index.rst
+      :start-after: kub-begin
+      :end-before: kub-end
 
 ------------
 Introduction

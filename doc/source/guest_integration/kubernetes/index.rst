@@ -1,6 +1,12 @@
-=====================
-Container Integration
-=====================
+.. _guest-kubernetes-index:
+
+.. include:: /_includes/toc-title-guest-kub.rest
+
+.. only:: partner
+
+   .. include:: /guest_integration/index.rst
+      :start-after: kub-begin
+      :end-before: kub-end
 
 ----------------
 PTP Notification

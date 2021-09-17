@@ -1,11 +1,12 @@
-.. Fault Management file, created by
-   sphinx-quickstart on Thu Sep  3 15:14:59 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _fault-mgmt-openstack-index:
 
-========
-Contents
-========
+.. include:: /_includes/toc-title-fm-os.rest
+
+.. only:: partner
+
+   .. include:: /fault-mgmt/index.rst
+      :start-after: os-begin
+      :end-before: os-end
 
 .. toctree::
    :maxdepth: 1

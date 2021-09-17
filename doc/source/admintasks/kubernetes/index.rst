@@ -1,13 +1,13 @@
-.. _admin-tasks-title:
+.. _admintasks-kubernetes-index:
 
 
-========
-Contents
-========
+.. include:: /_includes/toc-title-admintasks-kub.rest
 
---------------------
-StarlingX Kubernetes
---------------------
+.. only:: partner
+
+   .. include:: /admintasks/index.rst
+      :start-after: kub-begin
+      :end-before: kub-end
 
 .. toctree::
    :maxdepth: 1

@@ -1,7 +1,13 @@
 
-==========
-Kubernetes
-==========
+.. _updates_kubernetes_index:
+
+.. include:: /_includes/toc-title-updates-kub.rest
+
+.. only:: partner
+
+   .. include:: /updates/index.rst
+      :start-after: kub-begin
+      :end-before: kub-end
 
 ------------
 Introduction
