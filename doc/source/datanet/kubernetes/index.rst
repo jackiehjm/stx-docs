@@ -2,9 +2,13 @@
 
 .. _datanet_kubernetes_index:
 
-========
-Overview
-========
+.. include:: /_includes/toc-title-datanet-kub.rest
+
+.. only:: partner
+
+   .. include:: /datanet/index.rst
+      :start-after: kub-begin
+      :end-before: kub-end
 
 .. toctree::
    :maxdepth: 1

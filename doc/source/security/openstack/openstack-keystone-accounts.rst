@@ -18,5 +18,3 @@ API.
 
 .. seealso::
     :ref:`System Account Password Rules <security-system-account-password-rules>`
-
-

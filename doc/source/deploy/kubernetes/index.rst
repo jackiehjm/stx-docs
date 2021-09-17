@@ -1,11 +1,15 @@
-.. Deployment Configurations file, created by
-   sphinx-quickstart on Thu Sep  3 15:14:59 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _deploy-kubernetes-index:
 
-========
-Contents
-========
+
+.. only:: starlingx
+
+   .. include:: /_includes/toc-title-deploy-kub.rest
+
+.. only:: partner
+
+   .. include:: /deploy/index.rst
+      :start-after: kub-begin
+      :end-before: kub-end
 
 .. toctree::
    :maxdepth: 1

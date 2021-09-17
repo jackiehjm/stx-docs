@@ -6,6 +6,8 @@ Node Management
 Kubernetes
 ----------
 
+.. kub-begin
+
 You can perform |prod-long| node management of worker hosts that comprise
 resource pools for hosting guest applications.
 
@@ -33,6 +35,8 @@ Complete instructions for adding a worker node are provided in the
 `StarlingX Installation and Deployment Guide
 <https://docs.starlingx.io/deploy_install_guides/index.html>`__.
 
+.. kub-end
+
 .. toctree::
    :maxdepth: 2
 
@@ -42,10 +46,14 @@ Complete instructions for adding a worker node are provided in the
 OpenStack
 ---------
 
+.. os-begin
+
 You can add OpenStack compute nodes to an existing |AIO| Duplex system,
 and use labels to identify OpenStack Nodes.
 
-Guidelines for VMs in a duplex system remain unchanged.
+Guidelines for |VMs| in a duplex system remain unchanged.
+
+.. os-end
 
 *****************************
 Add an OpenStack compute node

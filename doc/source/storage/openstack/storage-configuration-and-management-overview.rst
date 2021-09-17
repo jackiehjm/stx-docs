@@ -13,6 +13,6 @@ information, see |prod-long| System Configuration:
 
 .. xbooklink :ref:`System Configuration Management Overview <system-configuration-management-overview>`.
 
-This chapter covers concepts and additional considerations related to storage
+This section covers concepts and additional considerations related to storage
 management that are specific to |prod-os|.
 

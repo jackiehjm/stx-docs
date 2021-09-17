@@ -11,6 +11,10 @@ Fault Management
 StarlingX Kubernetes
 --------------------
 
+.. kub-begin
+
+.. kub-end
+
 .. toctree::
    :maxdepth: 2
 
@@ -20,11 +24,15 @@ StarlingX Kubernetes
 StarlingX OpenStack
 -------------------
 
+.. os-begin
+
 |prod-os| is a containerized application running on top of |prod|.
 
 This section provides the list of OpenStack related Alarms and Customer Logs
 that are monitored and reported for the |prod-os| application through the
 |prod| fault management interfaces.
+
+.. os-end
 
 .. toctree::
    :maxdepth: 2

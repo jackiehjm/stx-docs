@@ -1,8 +1,12 @@
 .. _sysconf_kubernetes_index:
 
-==========
-Kubernetes
-==========
+.. include:: /_includes/toc-title-sys-conf-kub.rest
+
+.. only:: partner
+
+   .. include:: /system_configuration/index.rst
+      :start-after: kub-begin
+      :end-before: kub-end
 
 ----------------------
 Timezone Configuration

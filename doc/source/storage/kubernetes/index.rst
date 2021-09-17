@@ -1,6 +1,12 @@
-========
-Contents
-========
+.. _storage-kubernetes-index:
+
+.. include:: /_includes/toc-title-storage-kub.rest
+
+.. only:: partner
+
+   .. include:: /storage/index.rst
+      :start-after: kub-begin
+      :end-before: kub-end
 
 --------
 Overview

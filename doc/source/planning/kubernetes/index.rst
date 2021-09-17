@@ -1,8 +1,12 @@
 .. _planning_kubernetes_index:
 
-----------
-Kubernetes
-----------
+.. include:: /_includes/toc-title-planning-kub.rest
+
+.. only:: partner
+
+   .. include:: /planning/index.rst
+      :start-after: kub-begin
+      :end-before: kub-end
 
 ************
 Introduction

@@ -6,8 +6,9 @@ Security
 Kubernetes
 ----------
 
-|prod-long| security encompasses a broad number of features.
+.. kub-begin
 
+|prod-long| security encompasses a broad number of features.
 
 .. _overview-of-starlingx-security-ul-ezc-k5f-p3b:
 
@@ -28,6 +29,11 @@ Kubernetes
 
 -   Signed software updates
 
+.. kub-end
+
+Contents:
+---------
+
 .. toctree::
    :maxdepth: 2
 
@@ -37,7 +43,9 @@ Kubernetes
 OpenStack
 ---------
 
-.. check what put here
+.. os-begin
+
+.. os-end
 
 .. toctree::
     :maxdepth: 2

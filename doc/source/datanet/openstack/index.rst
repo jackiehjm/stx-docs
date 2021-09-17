@@ -1,11 +1,12 @@
-.. Data networks file, created by
-   sphinx-quickstart on Thu Sep  3 15:14:59 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _datanet_openstack_index:
 
-========
-Contents
-========
+.. include:: /_includes/toc-title-datanet-os.rest
+
+.. only:: partner
+
+   .. include:: /datanet/index.rst
+      :start-after: os-begin
+      :end-before: os-end
 
 .. toctree::
    :maxdepth: 1
