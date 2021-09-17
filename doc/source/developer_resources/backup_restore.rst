@@ -212,7 +212,7 @@ The backup contains the following:
 
     ok: [localhost] => (item=/opt/patching)
 
-    ok: [localhost] => (item=/www/pages/updates)
+    ok: [localhost] => (item=/var/www/pages/updates)
 
   * Extension filesystem
 
