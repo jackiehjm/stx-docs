@@ -23,10 +23,17 @@ This section describes the manual upgrade procedures.
    procedure, see |distcloud-doc|: :ref:`Orchestration Upgrade Overview
    <orchestration-upgrade-overview>`.
 
-Before starting the upgrades process, the system must be “patch current,” there
-must be no management-affecting alarms present on the system, the new software
-load must be imported, and a valid license file for the upgrade must be
-installed.
+Before starting the upgrade process, ensure that the following conditions are 
+met:
+
+-   The system is patch current.
+
+-   There are no management-affecting alarms and the "system
+    health-query-upgrade" check passes.
+
+-   The new software load has been imported.
+
+-   A valid license file has been installed.
 
 The upgrade procedure is different for the All-in-One Simplex configuration
 versus the All-in-One Duplex, and Standard configurations. For more

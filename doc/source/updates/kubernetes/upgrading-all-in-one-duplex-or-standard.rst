@@ -21,8 +21,8 @@ of |prod| software.
        restore operations, blade replacement, or upgrades.
 
 -   The system must be "patch current". All updates available for the current
-    release running on the system must be applied. To find and download
-    applicable updates, visit the |dnload-loc|.
+    release running on the system must be applied, and all patches must be
+    committed. To find and download applicable updates, visit the |dnload-loc|.
 
 -   Transfer the new release software load to controller-0 \(or onto a USB
     stick\); controller-0 must be active.

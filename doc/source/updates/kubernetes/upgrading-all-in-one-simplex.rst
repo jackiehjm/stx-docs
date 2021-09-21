@@ -21,9 +21,16 @@ software.
        an upgrade. Home directories are not preserved during backup or restore
        operations, blade replacement, or upgrades.
 
--   The system must be 'patch current'. All upgrades available for the current
-    release running on the system must be applied. To find and download
-    applicable upgrades, visit |dnload-loc| site.
+-   Ensure that the following conditions are met:
+
+    -   The system is patch current.
+
+    -   There should be sufficient free space in /opt/platform-backup. Remove
+        any unused files if necessary.
+
+    -   The new software load has been imported.
+
+    -   A valid license file has been installed.
 
 -   Transfer the new release software load to controller-0 \(or onto a USB
     stick\); controller-0 must be active.
