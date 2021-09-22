@@ -9,6 +9,8 @@ You can find details about a release on the specific release page.
 +------------------------+---------------------+------------------------+---------------------------+
 | Version                | Release Date        | Notes                  | Status                    |
 +========================+=====================+========================+===========================+
+| StarlingX R5.0.1       | 2021-09             | :doc:`r5_0_1_release`  | Maintained                |
++------------------------+---------------------+------------------------+---------------------------+
 | StarlingX R5.0         | 2021-05             | :doc:`r5_release`      | Maintained                |
 +------------------------+---------------------+------------------------+---------------------------+
 | StarlingX R4.0         | 2020-08             | :doc:`r4_release`      | Maintained                |
@@ -38,4 +40,5 @@ project-team-guide/stable-branches.html#maintenance-phases>`_ definitions.
    r3_release
    r4_release
    r5_release
+   r5_0_1_release
 
