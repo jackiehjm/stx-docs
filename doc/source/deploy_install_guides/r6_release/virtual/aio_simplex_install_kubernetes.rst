@@ -182,8 +182,8 @@ Optionally, initialize a Ceph-based Persistent Storage Backend
 
     A persistent storage backend is required if your application requires
     Persistent Volume Claims (PVCs). The StarlingX OpenStack application
-    (stx-openstack) requires PVCs, therefore if you plan on using the
-    stx-openstack application, then you must configure a persistent storage
+    (|prefix|-openstack) requires PVCs, therefore if you plan on using the
+    |prefix|-openstack application, then you must configure a persistent storage
     backend.
 
     There are two options for persistent storage backend:
@@ -234,7 +234,7 @@ For Rook container-based Ceph:
    .. important::
 
       **This step is required only if the StarlingX OpenStack application
-      (stx-openstack) will be installed.**
+      (|prefix|-openstack) will be installed.**
 
       1G Huge Pages are not supported in the virtual environment and there is no
       virtual NIC supporting SRIOV. For that reason, data interfaces are not
@@ -291,10 +291,10 @@ OpenStack-specific host configuration
 .. important::
 
    **This step is required only if the StarlingX OpenStack application
-   (stx-openstack) will be installed.**
+   (|prefix|-openstack) will be installed.**
 
 #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
-   support of installing the stx-openstack manifest/helm-charts later.
+   support of installing the |prefix|-openstack manifest/helm-charts later.
 
    .. parsed-literal::
 
@@ -306,13 +306,13 @@ OpenStack-specific host configuration
 #. **For OpenStack only:** A vSwitch is required.
 
    The default vSwitch is containerized |OVS| that is packaged with the
-   stx-openstack manifest/helm-charts. StarlingX provides the option to use
+   |prefix|-openstack manifest/helm-charts. StarlingX provides the option to use
    |OVS-DPDK| on the host, however, in the virtual environment |OVS-DPDK| is
    NOT supported, only |OVS| is supported. Therefore, simply use the default
    |OVS| vSwitch here.
 
 #. **For OpenStack Only:** Set up disk partition for nova-local volume group,
-   which is needed for stx-openstack nova ephemeral disks.
+   which is needed for |prefix|-openstack nova ephemeral disks.
 
    ::
 

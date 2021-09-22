@@ -350,7 +350,7 @@ Configure worker nodes
             done
 
    #. **For OpenStack only:** Setup disk partition for nova-local volume group,
-      needed for stx-openstack nova ephemeral disks.
+      needed for |prefix|-openstack nova ephemeral disks.
 
       .. code-block:: bash
 
