@@ -33,7 +33,7 @@ dedicated/pinned) to the pod.
     application-isolated cores are NOT supported with **Guaranteed
     QoS** class. Specifically this requires either:
 
-    -   for **Best Effort**, do NOT specify resources:limits:cpu/memory>
+    -   for **Best Effort**, do NOT specify <resources:limits:cpu/memory>
 
     or
 
@@ -85,7 +85,7 @@ dedicated/pinned) to the pod.
     .. note::
 
         The nodeSelector is optional and it can be left out entirely. In which
-        case, it will run in any valid note.
+        case, it will run in any valid node.
 
     You will likely need to adjust some values shown above to reflect your
     deployment configuration. For example, on an AIO-SX or AIO-DX system.
@@ -114,7 +114,7 @@ dedicated/pinned) to the pod.
     CPU details per core:
 
 #.  Describe the pod or node to see the CPU Request, CPU Limits and that it is
-    in the "Guaranteed" QoS Class.
+    in the "Burstable" QoS Class.
 
     For example:
 
