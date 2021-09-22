@@ -2,11 +2,12 @@
 
 .. include:: /_includes/toc-title-datanet-os.rest
 
-.. only:: partner
-
-   .. include:: /datanet/index.rst
-      :start-after: os-begin
-      :end-before: os-end
+.. For future DS OpenStack reorg
+.. .. only:: partner
+..
+..    .. include:: /datanet/index.rst
+..       :start-after: os-begin
+..       :end-before: os-end
 
 .. toctree::
    :maxdepth: 1

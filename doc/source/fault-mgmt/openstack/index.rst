@@ -2,11 +2,12 @@
 
 .. include:: /_includes/toc-title-fm-os.rest
 
-.. only:: partner
-
-   .. include:: /fault-mgmt/index.rst
-      :start-after: os-begin
-      :end-before: os-end
+.. For future DS OpenStack reorg
+.. .. only:: partner
+..
+..    .. include:: /fault-mgmt/index.rst
+..       :start-after: os-begin
+..       :end-before: os-end
 
 .. toctree::
    :maxdepth: 1
