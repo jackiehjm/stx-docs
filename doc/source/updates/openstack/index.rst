@@ -3,11 +3,12 @@
 
 .. include:: /_includes/toc-title-updates-os.rest
 
-.. only:: partner
-
-   .. include:: /updates/index.rst
-      :start-after: os-begin
-      :end-before: os-end
+.. For future DS OpenStack reorg
+.. .. only:: partner
+..
+..    .. include:: /updates/index.rst
+..       :start-after: os-begin
+..       :end-before: os-end
 
 ===============
 Software Update

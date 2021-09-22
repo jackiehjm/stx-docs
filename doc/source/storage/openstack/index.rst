@@ -2,11 +2,12 @@
 
 .. include:: /_includes/toc-title-storage-os.rest
 
-.. only:: partner
-
-   .. include:: /storage/index.rst
-      :start-after: os-begin
-      :end-before: os-end
+.. For future DS OpenStack reorg
+.. .. only:: partner
+..
+..    .. include:: /storage/index.rst
+..       :start-after: os-begin
+..       :end-before: os-end
 
 .. toctree::
    :maxdepth: 1
