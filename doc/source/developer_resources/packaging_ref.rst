@@ -311,7 +311,7 @@ script or create your own srpm build script.
         # If a build fails on a tmpfs based node due to disk space exhaustion, then at minimum this value must be greater than the tpmfs size
         # as seen in the "MOCKCHAIN_RESOURCE_ALLOCATION=0:10:10:5" log.
 
-        BUILD_IS_SLOW5
+        BUILD_IS_SLOW=5
         # An estimate of the build time on disk in minutes.
         # A larger value will tell the build system to schedule this job sooner
         # rather than later, to maximize parallelism.
