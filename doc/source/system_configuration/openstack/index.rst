@@ -1,8 +1,12 @@
 .. _sysconf_openstack_index:
 
-===================
-StarlingX OpenStack
-===================
+.. include:: /_includes/toc-title-sys-conf-os.rest
+
+.. only:: partner
+
+   .. include:: /system_configuration/index.rst
+      :start-after: os-begin
+      :end-before: os-end
 
 -------------------------------------------------------
 Configure OpenStack Services Using Helm Chart Overrides

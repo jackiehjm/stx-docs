@@ -1,7 +1,13 @@
 
----------
-OpenStack
----------
+.. _updates_openstack_index:
+
+.. include:: /_includes/toc-title-updates-os.rest
+
+.. only:: partner
+
+   .. include:: /updates/index.rst
+      :start-after: os-begin
+      :end-before: os-end
 
 ===============
 Software Update

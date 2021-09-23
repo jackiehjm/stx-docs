@@ -3,13 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-----------
-Kubernetes
-----------
-
-==================
-Backup and Restore
-==================
+.. include:: /_includes/toc-title-backup-kub.rest
 
 -------------
 System backup

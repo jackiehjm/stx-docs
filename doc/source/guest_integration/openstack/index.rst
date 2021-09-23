@@ -1,6 +1,12 @@
-=========================
-OpenStack VNF Integration
-=========================
+.. _guest-openstack-index:
+
+.. include:: /_includes/toc-title-guest-os.rest
+
+.. only:: partner
+
+   .. include:: /guest_integration/index.rst
+      :start-after: os-begin
+      :end-before: os-end
 
 .. only:: starlinx
 

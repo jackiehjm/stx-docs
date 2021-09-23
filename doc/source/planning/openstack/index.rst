@@ -1,7 +1,13 @@
 
----------
-OpenStack
----------
+.. _planning-openstack-index:
+
+.. include:: /_includes/toc-title-planning-os.rest
+
+.. only:: partner
+
+   .. include:: /planning/index.rst
+      :start-after: os-begin
+      :end-before: os-end
 
 ================
 Network planning

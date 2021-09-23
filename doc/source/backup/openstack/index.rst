@@ -1,7 +1,5 @@
 
----------
-OpenStack
----------
+.. include:: /_includes/toc-title-backup-kub.rest
 
 ==================
 Backup and Restore
