@@ -99,6 +99,7 @@ Secure HTTPS Connectivity
    :maxdepth: 2
 
    https-access-overview
+   utility-script-to-display-certificates
    starlingx-rest-api-applications-and-the-web-administration-server
    kubernetes-root-ca-certificate
    security-install-update-the-docker-registry-certificate
