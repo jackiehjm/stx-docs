@@ -140,6 +140,12 @@ There are six phases for Rehoming a subcloud:
         that the image is correctly located based on the new System Controller
         configuration**.
 
+#.  If the previous System Controller is still running, delete the subcloud
+    after it goes offline, using the following command.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ dcmanager subcloud delete <subcloud-name>
 
 #.  For an |AIO-SX| subcloud, use the following commands to lock/unlock the
     controller \(wait for the lock to complete before unlocking the controller\).
