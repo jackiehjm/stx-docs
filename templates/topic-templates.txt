@@ -1,0 +1,78 @@
+echo "Loading topic types ..."
+
+# Add convenience templates for rst content here.
+
+# Task-oriented procedures
+task=".. _$filename:
+
+$strike
+$title
+$strike
+
+.. rubric:: |context|
+
+.. context here
+
+.. rubric:: |prereq|
+
+.. prerequisites here
+
+.. rubric:: |proc|
+
+#. Step 1
+
+#. Step 2
+
+.. rubric:: |result|
+
+.. procedure results here
+"
+# EOT
+
+
+# Index file names should be unique across all repos
+index=".. _$filename:
+
+$strike
+$title
+$strike
+
+.. Uncomment topic-a etc. below and replace with the names of your topics,
+   excluding the ".rst" extension
+
+.. toctree::
+   :maxdepth: 2
+
+..   topic-a
+..   topic-b
+"
+
+# Tabular data
+reference=".. _$filename:
+
+$strike
+$title
+$strike
+
+.. See https://docutils.sourceforge.io/docs/ref/rst/directives.html#list-table
+
+.. list-table::
+
+   * - Column 1
+     - Column 2
+     - Column 3
+   * - Row 1, value 1
+     - Value 1
+     - Value 2
+"
+
+# Generic topic
+topic=".. _$filename:
+
+$strike
+$title
+$strike
+
+.. content here
+
+"
