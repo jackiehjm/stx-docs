@@ -168,6 +168,140 @@ between the StarlingX and OpenStack practices are highlighted below.
     Configure endpoint
     ------------------
 
+.. _create-rst-files:
+
+----------------
+Create rST Files
+----------------
+
+Use the :command:`tox -e newfile` command to create new |RST| files.
+
+.. rubric:: |context|
+
+All |RST| files created in StarlingX documentation repositories must have the
+following characteristics:
+
+* They must have unique file names.
+* They must have |RST| labels at the beginning of the files that match the file
+  names.
+
+.. important::
+    These rules apply to *index* files as well as those containing user
+    documentation.
+
+A utility is available for use from within each documentation repository you
+have installed to generate uniquely named files for you.
+
+.. rubric:: |prereq|
+
+You must have :program:`uuidgen` installed on your system. This program is
+included by default on most modern Linux distributions. If it is not installed,
+consult your distribution's documentation for instructions.
+
+.. rubric:: |proc|
+
+#. Change to the directory where you wish to create a new topic.
+
+   Typically, this will be below the :file:`doc/source` directory of the
+   repository.
+
+#. Run the following :command:`tox` command.
+
+   .. code-block:: bash
+
+       tox -e newfile
+
+#. When prompted, enter a title for the new topic.
+
+   .. code-block:: none
+      :emphasize-lines: 3
+
+       You are about to create a new reStructuredText file in
+
+       /home/jdoe/starlingx/docs/doc/source/intro
+
+       If this is not what you want, press CTL-C to quit and change to the directory
+       you want to create the file in.
+
+       Enter a title for the new topic. The file name and topic label used for
+       linking will be based on this value.
+
+
+       Topic title:
+
+   #. Review the directory (an example is highlighted above) that the utility
+      will create the new file in.
+
+   #. If this is not correct, press :kbd:`CTL-C` to quit, change to the correct
+      directory, and run the command again; otherwise, type the topic title and
+      press :kbd:`ENTER`.
+
+#. When prompted, select the type of |RST| stub file you want to create.
+
+   .. code-block:: none
+
+      Thanks. Now choose a topic type. Enter one of the following characters:
+
+      t) A task topic. Will contain the outline of a procedure.
+      i) An index.
+      r) A reference topic. Will contain a minimal list-table definition.
+      g) A minimal generic topic.
+      Topic type:
+
+   Each option creates a stub file with different templated content useful for
+   getting started. Press the corresponding key.
+
+.. rubric:: |result|
+
+The new |RST| file is created.
+
+
+The title used in the new |RST| file matches what you typed exactly. However,
+some changes have been made to the file name and topic label.
+
+For example, if you entered ``Architectural Considerations!`` as a title,
+listing the directory will show a file similar to the following:
+
+.. code-block:: bash
+
+    ls
+
+.. code-block:: none
+
+    architectural-considerations--d9dd4c105700.rst
+
+The following changes were made:
+
+* All alphabetical characters were converted to lower case.
+* All spaces and special characters, such as the ``!`` were replaced by
+  dashes.
+* A final dash and 12 digit random string were appended to the file name.
+* The extension :file:`.rst` was added.
+* If you chose to create an ``index`` file by selecting :kbd:`i` when prompted,
+  :file:`index-` was prepended to the file name.
+
+Examining the file reveals that the label matches the file name, while the
+title is preserved as typed.
+
+.. code-block:: bash
+
+    cat architectural-considerations--d9dd4c105700.rst
+
+.. code-block:: none
+   :emphasize-lines: 1,4
+
+   .. _architectural-considerations--d9dd4c105700:
+
+   =============================
+   Architectural Considerations!
+   =============================
+
+   .. content here
+
+When you reference this file in ``toctree`` and ``ref`` directives, use
+the file name/label string like this:  ``architectural-considerations--d9dd4c105700``
+
+
 ---------------
 RST conventions
 ---------------

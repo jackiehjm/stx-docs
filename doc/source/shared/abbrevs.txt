@@ -97,6 +97,7 @@
 .. |RBAC| replace:: :abbr:`RBAC (Role-Based Access Control)`
 .. |RBD| replace:: :abbr:`RBD (RADOS Block Device)`
 .. |RPC| replace:: :abbr:`RPC (Remote Procedure Call)`
+.. |RST| replace:: :abbr:`rST (reStructuredText)`
 .. |SAN| replace:: :abbr:`SAN (Subject Alternative Name)`
 .. |SANs| replace:: :abbr:`SANs (Subject Alternative Names)`
 .. |SAS| replace:: :abbr:`SAS (Serial Attached SCSI)`
