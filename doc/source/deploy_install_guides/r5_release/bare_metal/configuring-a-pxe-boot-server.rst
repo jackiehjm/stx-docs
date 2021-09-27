@@ -70,7 +70,7 @@ Use a Linux workstation as the |PXE| Boot server.
 
     .. code-block:: none
 
-        option arch code 93 unsigned integer 16;  #  ref RFC4578
+        option arch code 93 = unsigned integer 16;  #  ref RFC4578
         # ...
         subnet 192.168.1.0 netmask 255.255.255.0 {
           if option arch = 00:07 {
