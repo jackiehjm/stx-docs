@@ -67,6 +67,8 @@ Local Docker registry
 
    kubernetes-user-tutorials-authentication-and-authorization
    using-an-image-from-the-local-docker-registry-in-a-container-spec
+   delete-image-tags-in-the-docker-registry-8e2e91d42294
+
 
 ---------------------------
 NodePort usage restrictions
