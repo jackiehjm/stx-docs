@@ -7,7 +7,7 @@ Enable Mount Bryce HW Accelerator for Hosted vRAN Containerized Workloads
 ===========================================================================
 
 You can enable and access Mount Bryce ACC100 eASIC card from Intel® such that
-it can be used as a HW accelerator by hosted vRAN containerized workloads on
+it can be used as a HW accelerator by hosted |vRAN| containerized workloads on
 |prod-long|.
 
 .. rubric:: |context|
@@ -97,7 +97,7 @@ enables the Mount Bryce device.
         | 1d3b      | Communication controller        | Intel Corporation   |
         | 1d2d      | USB controller                  | Intel Corporation   |
         | 1d26      | USB controller                  | Intel Corporation   |
-        | 1d02      | |SATA| controller               | Intel Corporation   |
+        | 1d02      | SATA controller                 | Intel Corporation   |
         | 1d22      | SMBus                           | Intel Corporation   |
         | 1d68      | Serial Attached SCSI controller | Intel Corporation   |
         | 1d70      | SMBus                           | Intel Corporation   |
@@ -124,7 +124,7 @@ enables the Mount Bryce device.
         +----------------------------------------------------------+-----------+---------+
 
 #.  Modify the Mount Bryce device to enable it, specify the base driver and
-    vf driver, and configure it for 16 VFs.
+    vf driver, and configure it for 16 |VFs|.
 
     .. code-block:: none
 
