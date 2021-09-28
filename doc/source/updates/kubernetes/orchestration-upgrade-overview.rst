@@ -66,8 +66,9 @@ conditions:
 -   An upgrade has been started, and controller-1 has been upgraded and is
     active.
 
--   No update orchestration strategy exists. An upgrade cannot be orchestrated
-    while update orchestration is in progress.
+-   No orchestration strategy exists. Patch, upgrade, firmware, kubernetes,
+    and kube rootca are all types of orchestration. An upgrade cannot be
+    orchestrated while another orchestration is in progress.
 
 -   Sufficient free capacity or unused worker resources must be available
     across the cluster. A rough calculation is: Required spare capacity \( %\)
