@@ -80,15 +80,17 @@ NodePort usage restrictions
 
    nodeport-usage-restrictions
 
-------------
-Cert Manager
-------------
+----------------------
+Certificate Management
+----------------------
 
 .. toctree::
    :maxdepth: 1
 
    kubernetes-user-tutorials-cert-manager
    letsencrypt-example
+   internal-ca-and-nodeport-example-2afa2a84603a
+   issuers-in-distributed-cloud-fbc035675c0f
 
 --------------------------------
 Vault secret and data management

@@ -2,11 +2,16 @@
 .. nst1588348086813
 .. _letsencrypt-example:
 
-===================
-LetsEncrypt Example
-===================
+==========================================
+External CA and Ingress Controller Example
+==========================================
 
-The LetsEncrypt example illustrates cert-manager usage.
+This section describes how to configure an application to use Ingress
+Controller to both expose its |TLS|-based service and to use an External |CA|
+for signing CERTIFICATEs.
+
+NOTE that alternatively an Internal |CA| could be used with an Ingress
+Controller -based solution as well.
 
 .. rubric:: |prereq|
 
@@ -14,15 +19,28 @@ This example requires that:
 
 .. _letsencrypt-example-ul-h3j-f2w-nlb:
 
--   the LetsEncrypt CA in the public internet can send an http01 challenge to
-    the FQDN of your |prod|'s floating OAM IP Address.
+-   The LetsEncrypt |CA| in the public internet can send an http01 challenge to
+    the |FQDN| of the |prod|'s floating |OAM| IP Address.
 
--   your |prod| has access to the kuard demo application at
-    gcr.io/kuar-demo/kuard-amd64:blue
+-   The |prod| has access to the kuard demo application at
+    `gcr.io/kuar-demo/kuard-amd64:blue <gcr.io/kuar-demo/kuard-amd64:blue>`__
+
+-   Ensure that your |prod| administrator has shared the local
+    registry’s public repository’s credentials/secret with the namespace where
+    you will create certificates. This will allow you to leverage the
+    :command:`registry.local:9001/public/cert-manager-acmesolver` image. See
+    :ref:`Set up a Public Repository in Local Docker Registry
+    <setting-up-a-public-repository>`.
+
+-   Ensure that your |prod| administrator has enabled use of the
+    cert-manager apiGroups in your |RBAC| policies.
+
+-   Ensure that your |prod| administrator has opened port 80 and 443 in
+    GlobalNetworkPolicy.
 
 .. rubric:: |proc|
 
-#.  Create a LetsEncrypt Issuer in the default namespace by applying the
+#.  Create a LetsEncrypt ISSUER in the default namespace by applying the
     following manifest file.
 
     .. code-block:: none
@@ -48,10 +66,15 @@ This example requires that:
 
 #.  Create a deployment of the kuard demo application
     \(`https://github.com/kubernetes-up-and-running/kuard
-    <https://github.com/kubernetes-up-and-running/kuard>`__\) with an ingress
+    <https://github.com/kubernetes-up-and-running/kuard>`__\) with an INGRESS
     using cert-manager by applying the following manifest file:
 
-    Substitute values in the example as required for your environment.
+    Where both ``starlingx.mycompany.com`` and
+    ``kuard.starlingx.mycompany.com`` are |FQDNs| that map to the |OAM|
+    Floating IP of |prod|.
+
+    (You should substitute these for |FQDNs| for the |prod| installation.)
+
 
     .. parsed-literal::
 
@@ -101,10 +124,10 @@ This example requires that:
         spec:
           tls:
           - hosts:
-            - kuard.my-fqdn-for-|prefix|.company.com
+            - kuard.starlingx.mycompany.com
             secretName: kuard-ingress-tls
           rules:
-            - host: kuard.my-fqdn-for-|prefix|.company.com
+            - host: kuard.starlingx.mycompany.com
               http:
                 paths:
                   - backend:
@@ -113,5 +136,5 @@ This example requires that:
                     path: /
 
 #.  Access the kuard demo from your browser to inspect and verify that the
-    certificate is signed by LetsEncrypt CA. For this example, the URL
-    would be https://kuard.my-fqdn-for-|prefix|.company.com.
+    certificate is signed by LetsEncrypt |CA|. For this example, the URL
+    would be https://kuard.starlingx.mycompany.com.
