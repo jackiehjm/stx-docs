@@ -183,6 +183,8 @@ Bootstrap system on controller-0
 
 #. Run the Ansible bootstrap playbook:
 
+   .. include:: /shared/_includes/ntp-update-note.rest
+
    ::
 
       ansible-playbook /usr/share/ansible/stx-ansible/playbooks/bootstrap.yml
