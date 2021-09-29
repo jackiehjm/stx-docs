@@ -57,6 +57,7 @@ Application management
    :maxdepth: 1
 
    kubernetes-user-tutorials-helm-package-manager
+   migrate-releases-from-helm-v2-to-helm-v3-a6066193c2a8
 
 ---------------------
 Local Docker registry
