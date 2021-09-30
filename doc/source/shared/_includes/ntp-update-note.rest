@@ -1,0 +1,18 @@
+.. note::
+    Before running the Ansible bootstrap playbook, it is important that you
+    ensure that controller-0 server time is synchronized correctly. Run the following
+    command:
+
+    .. code-block:: bash
+
+       # check the current server time
+       $ date
+
+       # if the current server time is not correct, update with NTP
+
+             # first add nameserver for DNS resolution
+             $ echo "nameserver 8.8.8.8" >> /etc/resolvconf
+             $ echo "nameserver 8.8.4.4" >> /etc/resolvconf
+
+             # run ntpdate
+             $ sudo ntpdate 0.pool.ntp.org 1.pool.ntp.org
