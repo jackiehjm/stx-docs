@@ -47,6 +47,11 @@ key in a single file, and copy the file to the controller host.
 Also obtain the certificate of the intermediate or Root CA that signed the
 above certificate.
 
+Ensure all certificates are valid before starting an upgrade. Run the
+:command:`show-certs.sh` script to display an overview of the various
+certificates that exist in the system along with their expiry date. For more
+information, see, :ref:`Display Certificates Installed on a System <utility-script-to-display-certificates>`.
+
 .. rubric:: |proc|
 
 .. _installing-updating-the-docker-registry-certificate-d271e71:
