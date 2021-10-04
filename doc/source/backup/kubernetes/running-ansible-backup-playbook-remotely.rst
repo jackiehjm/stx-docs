@@ -74,3 +74,15 @@ and target it at controller-0.
         inventory\_hostname\_docker\_local\_registry\_backup\_timestamp.tgz
         file needs to copied off the host machine to be used if a restore is
         needed.
+
+#.  After the backup is complete, run the following:
+
+    .. code-block:: none
+
+        $ system helm-override-update nginx-ingress-controller ingress-nginx kube-system --set controller.admissionWebhooks.enabled=true
+
+#.  Then, reapply the nginx app to restore the admissionWebhook:
+
+    .. code-block:: none
+
+        $ system application-apply nginx-ingress-controller

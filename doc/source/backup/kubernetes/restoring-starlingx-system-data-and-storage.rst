@@ -93,6 +93,10 @@ conditions are in place:
     network when powered on. If this is not the case, you must configure each
     host manually for network boot immediately after powering it on.
 
+    .. note::
+        After the backup or restore process, the nginx webhook should be
+        restored.
+
 -   If you are restoring a |prod-dc| subcloud first, ensure it is in
     an **unmanaged** state on the Central Cloud \(SystemController\) by using
     the following commands:
@@ -406,3 +410,15 @@ conditions are in place:
 ..  xreflink  removed from step 'Install network connectivity required for the subcloud.':
     For details, refer to the |distcloud-doc|: :ref:`Installing and
     Provisioning a Subcloud <installing-and-provisioning-a-subcloud>`.
+
+-   When you complete the backup the following steps must be done:
+
+    .. code-block:: none
+
+        $ system helm-override-update nginx-ingress-controller ingress-nginx kube-system --set controller.admissionWebhooks.enabled=true
+
+-   Then, reapply the nginx app to restore the admissionWebhook
+
+    .. code-block:: none
+
+        $ system application-apply nginx-ingress-controller
