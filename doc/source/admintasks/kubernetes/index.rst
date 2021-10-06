@@ -23,6 +23,7 @@ Application management
    :maxdepth: 1
 
    kubernetes-admin-tutorials-helm-package-manager
+   migrate-releases-from-helm-v2-to-helm-v3-9984e7aa7374
    kubernetes-admin-tutorials-starlingx-application-package-manager
    admin-application-commands-and-helm-overrides
 
