@@ -1,7 +1,7 @@
 .. _migrate-releases-from-helm-v2-to-helm-v3-9984e7aa7374:
 
 ========================================
-migrate-releases-from-helm-v2-to-helm-v3
+Migrate Releases from Helm v2 to Helm v3
 ========================================
 
 .. rubric:: |context|
