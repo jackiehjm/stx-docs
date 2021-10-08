@@ -92,39 +92,43 @@ specialized equipment.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ system device-image-upload <imagefile> functional <pci_vendor> <pci_device> --bitstream-id <bitstream_id> --name <imagename> --description <description> --image-version <version>
+            ~(keystone_admin)$ system device-image-upload <imagefile> functional <pci_vendor> <pci_device> --bitstream-id <bitstream_id> --name <imagename> --description <description> --image-version <version> --retimer-included <true/false>
 
     In the above :command:`device-image-upload` commands, the following
     substitutions apply:
 
-    **<imagefile>**
+    ``<imagefile>``
         The filepath of the binary device image file.
 
-    **<pci\_vendor>**
+    ``<pci_vendor>``
         The hexadecimal string identifying the |PCI| vendor ID of the device
         this image applies to.
 
-    **<pci\_device>**
+    ``<pci_device>``
         The hexadecimal string identifying the |PCI| device ID of the device
         this image applies to.
 
-    **<key\_signature>**
+    ``<key_signature>``
         A hexidecimal string identifying the root key device image.
 
-    **<revoke\_key\_id>**
+    ``<revoke_key_id>``
         A decimal key ID for the key revocation device image.
 
-    **<bitstream\_id>**
+    ``<bitstream_id>``
         A hexidecimal string of the functional device image.
 
-    **<name>**
+    ``<name>``
         The name of the device image \(optional\).
 
-    **<description>**
+    ``<description>``
         Is the description of the device image \(optional\).
 
-    **<image-version>**
+    ``<image-version>``
         The version of the device image \(optional\).
+
+    ``--retimer-included <true/false>``
+        A boolean indicates whether the |BMC| firmware includes a retimer
+        firmware (optional).
 
 #.  Assign a device label to the device.
 
@@ -211,7 +215,7 @@ specialized equipment.
 
     -   Once all pending device updates for the host are complete,
         :command:`system host-show` <hostname> will again display an empty
-        string for **device\_image\_update**.
+        string for **device_image_update**.
 
 #.  Lock and unlock the host.
 
