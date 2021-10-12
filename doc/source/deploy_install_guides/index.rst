@@ -22,7 +22,9 @@ StarlingX R6.0 is under development.
 Supported release
 -----------------
 
-StarlingX R5.0 is the most recent supported release of StarlingX.
+StarlingX R5.0.1 is the most recent supported release of StarlingX.
+
+Use the R5.0 Installation Guides to install R5.0.1.
 
 .. toctree::
    :maxdepth: 1
