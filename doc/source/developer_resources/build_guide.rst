@@ -442,7 +442,7 @@ Build packages
    ::
 
      cd $MY_REPO_ROOT_DIR/stx-tools/toCOPY
-     bash generate-local-repo.sh /import/mirrors/CentOS/stx/CentOS/
+     bash generate-centos-repo.sh /import/mirrors/CentOS/stx/CentOS/
 
 #. Build the packages:
 
