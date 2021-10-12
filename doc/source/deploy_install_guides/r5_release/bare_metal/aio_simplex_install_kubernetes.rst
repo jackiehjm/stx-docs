@@ -361,6 +361,8 @@ The newly installed controller needs to be configured.
 
       .. code-block:: bash
 
+         export NODE=controller-0
+
          # Create ‘nova-local’ local volume group
          system host-lvg-add ${NODE} nova-local
 
