@@ -362,8 +362,8 @@ Configure controller-0
          ``hw:mem_page_size=large``
 
          Configure the huge pages for |VMs| in an |OVS-DPDK| environment on
-         this host, assuming 1G huge page size is being used on this host, with
-         the following commands:
+         this host, the following commands are an example that assumes that 1G
+         huge page size is being used on this host:
 
          .. code-block:: bash
 

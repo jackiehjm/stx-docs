@@ -339,9 +339,9 @@ The newly installed controller needs to be configured.
          huge pages to enable networking and must use a flavor with property:
          hw:mem_page_size=large
 
-         Configure the huge pages for VMs in an |OVS-DPDK| environment on this
-         host, assuming 1G huge page size is being used on this host, with the
-         following commands:
+         Configure the huge pages for |VMs| in an |OVS-DPDK| environment on
+         this host, the following commands are an example that assumes that 1G
+         huge page size is being used on this host:
 
          .. code-block:: bash
 
