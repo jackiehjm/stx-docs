@@ -54,40 +54,47 @@ StarlingX/System CLI – Trusted CA Certificate Install
 
 After installation, adding a trusted |CA| to the |prod| system may be required.
 This is the case if images stored in a docker registry, whose certificate has
-been signed by an unknown Certificate Authority, are referred to by helm
+been signed by a not-well-known Certificate Authority, are referred to by helm
 charts and/or yaml manifest files.
 
+Multiple trusted |CA| certificates can be added with single install command by
+including multiple |CA| certificates in the specified |PEM| file.
+
 The certificate must be in |PEM| file format.
+
 From the command line, run the :command:`certificate-install` command.
 
 .. code-block:: none
 
     ~(keystone_admin)]$ system certificate-install -m ssl_ca <trusted-ca-bundle-pem-file>
 
+where ``<trusted-ca-bundle-pem-file>`` contains 1 or more public certificates
+of CAs that should be trusted by |prod|.
+
+
+The system will print a list of the certificates that were successfully
+installed from the |PEM| file and a list of certificates that were not
+installed from the |PEM| file due to a certificate error.
 
 For example:
 
 .. code-block:: none
 
-    ~(keystone_admin)]$ system certificate-install -m ssl_ca external-registry-ca-crt.pem
-    WARNING: For security reasons, the original certificate,
-    containing the private key, will be removed,
-    once the private key is processed.
-    +-------------+--------------------------------------+
-    | Property    | Value                                |
-    +-------------+--------------------------------------+
-    | uuid        | c986249f-b304-4ab4-b88e-14f92e75269d |
-    | certtype    | ssl_ca                               |
-    | signature   | ssl_ca_14617336624230451058          |
-    | start_date  | 2019-05-22 18:24:41+00:00            |
-    | expiry_date | 2020-05-21 18:24:41+00:00            |
-    +-------------+--------------------------------------+
+    ~(keystone_admin)]$ system certificate-install -m ssl_ca ext-registry-ca-certificates.pem
 
-
-.. note::
-    Multiple trusted |CA| certificates can be added with single install
-    command by including multiple |CA| certificates in the |PEM| file.
-
+    +-------------+------------------------------------------------+
+    | Property    | Value                                          |
+    +-------------+------------------------------------------------+
+    | uuid        | 5f677003-a08a-4725-9082-2b4ea81b33d5           |
+    | certtype    | ssl_ca                                         |
+    | signature   | ssl_ca_252107869940582877573916937829152170776 |
+    | start_date  | 2021-08-17 01:48:21+00:00                      |
+    | expiry_date | 2021-08-17 02:48:21+00:00                      |
+    +-------------+------------------------------------------------+
+    WARNING: Some certificates were not installed.
+    Error with cert number 2 in the file: certificate is not valid before 2021-08-13 14:00:21 nor after 2021-08-13 15:00:21
+    Error with cert number 3 in the file: certificate is not valid before 2021-08-13 14:00:21 nor after 2021-08-13 15:00:21
+    Error with cert number 4 in the file: certificate is not valid before 2018-08-16 20:28:20 nor after 2021-06-05 20:28:20
 
 .. _add-a-trusted-ca-section-phr-jw4-3mb:
 
@@ -102,7 +109,7 @@ running the following command:
 
     ~(keystone_admin)]$ system certificate-list
 
-where, all entries with certtype = ssl\_ca are trusted |CA| certificates.
+where, all entries with certtype = ssl_ca are trusted |CA| certificates.
 
 Then remove a Trusted |CA| Certificate from the list of trusted |CAs| by
 running the following command:
