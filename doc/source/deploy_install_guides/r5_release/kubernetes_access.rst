@@ -117,7 +117,7 @@ controller-0:
     cat <<EOF > dashboard-values.yaml
     service:
       type: NodePort
-      nodePort: 30000
+      nodePort: 32000
 
     rbac:
       create: true
@@ -168,7 +168,7 @@ controller-0:
 Access the Kubernetes dashboard GUI with the following steps:
 
 #. Enter the OAM floating IP address in your browser:
-   ``\https://<oam-floating-ip-address>:30000``.
+   ``\https://<oam-floating-ip-address>:32000``.
 
    Discover your OAM floating IP address with the :command:`system oam-show`
    command.
