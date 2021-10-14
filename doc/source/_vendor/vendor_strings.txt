@@ -12,8 +12,10 @@
 .. |prod-os| replace:: StarlingX OpenStack
 .. |prod-dc| replace:: Distributed Cloud
 .. |prod-p| replace:: StarlingX Platform
-.. |os-prod-hor-long| replace:: OpenStack Horizon Web Interface
-.. |os-prod-hor| replace:: OpenStack Horizon
+.. |prod-hor| replace:: Horizon
+.. |prod-hor-long| replace:: |prod-hor| Web Interface
+.. |os-prod-hor-long| replace:: OpenStack |prod-hor-long|
+.. |os-prod-hor| replace:: OpenStack |prod-hor|
 .. |prod-img| replace:: http://mirror.starlingx.cengn.ca/mirror/starlingx/
 .. |prod-abbr| replace:: StX
 
