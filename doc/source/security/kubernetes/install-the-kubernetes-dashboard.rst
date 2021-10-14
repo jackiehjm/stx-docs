@@ -100,19 +100,19 @@ Dashboard.
 
         ~(keystone_admin)]$ kubectl apply -f recommended.yaml
 
-#.  Patch the kubernetes dashboard service to type=NodePort and port=30000.
+#.  Patch the kubernetes dashboard service to type=NodePort and port=32000.
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ kubectl patch service kubernetes-dashboard -n kubernetes-dashboard -p '{"spec":{"type":"NodePort","ports":[{"port":443, "nodePort":30000}]}}'
+        ~(keystone_admin)]$ kubectl patch service kubernetes-dashboard -n kubernetes-dashboard -p '{"spec":{"type":"NodePort","ports":[{"port":443, "nodePort":32000}]}}'
 
 #.  Test the Kubernetes Dashboard deployment.
 
-    The Kubernetes Dashboard is listening at port 30000 on the machine
+    The Kubernetes Dashboard is listening at port 32000 on the machine
     defined above for |prod| cluster's |OAM| floating IP.
 
 
-    #.  Access the dashboard at https://<fqdn>:30000
+    #.  Access the dashboard at https://<fqdn>:32000
 
         Because the certificate created earlier in this procedure was not
         signed by a trusted |CA|, you will need to acknowledge an insecure
