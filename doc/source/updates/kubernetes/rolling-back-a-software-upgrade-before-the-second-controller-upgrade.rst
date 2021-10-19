@@ -6,8 +6,11 @@
 Roll Back a Software Upgrade Before the Second Controller Upgrade
 =================================================================
 
-You can perform an in-service abort of an upgrade before the second Controller
-\(controller-0 in the examples of this procedure\) have been upgraded.
+After the first controller is upgraded, you can still perform an in-service
+abort of an upgrade before the second Controller \(controller-0 in the examples
+of this procedure\) has been upgraded. The :command:`system upgrade-abort`
+command can be run from the node that is updated with the latest release and
+has upgraded successfully.
 
 .. rubric:: |proc|
 
@@ -49,12 +52,19 @@ You can perform an in-service abort of an upgrade before the second Controller
 
     The host is re-installed with the previous release load.
 
+    .. note::
+        The downgrade process will take a minimum of 20 to 30 minutes to
+        complete.
+
+        You can view the downgrade progress on controller-1 using the
+        BMC console.
+
 #.  Unlock controller-1.
 
     .. code-block:: none
 
         $ system host-unlock controller-1
-        
+
 #.  Complete the upgrade.
 
     .. code-block:: none
