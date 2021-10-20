@@ -7,7 +7,7 @@ Keystone Accounts
 =================
 
 |prod| uses tenant accounts and user accounts to identify and manage access to
-StarlingX resources, and images in the Local Docker Registry.
+|prod| resources, and images in the Local Docker Registry.
 
 You can create and manage Keystone projects and users from the web management
 interface, the CLI, or the |prod|'s Keystone REST API.

@@ -38,4 +38,6 @@ This section describes how to change or reset a Keystone user password.
 
     where <user> is the username and <temp\_password> is a temporary password.
 
+.. only:: partner
 
+    .. include:: /_includes/dm-credentials-on-keystone-pwds.rest
