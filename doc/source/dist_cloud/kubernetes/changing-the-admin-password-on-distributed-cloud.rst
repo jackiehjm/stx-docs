@@ -56,4 +56,6 @@ Ensure that all subclouds are managed and online.
         command :command:`keyring set CGCS admin` and provide the new admin
         password.
 
+.. only:: partner
 
+    .. include:: /_includes/dm-credentials-on-keystone-pwds.rest
