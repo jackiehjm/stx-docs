@@ -2,20 +2,35 @@
 .. vri1561486014514
 .. _security-install-update-the-docker-registry-certificate:
 
-=================================
-Local Docker Registry Certificate
-=================================
+==================================
+Local Registry Server Certificates
+==================================
 
-The local Docker registry provides secure HTTPS access using the registry API.
+For the Local Docker Registry, HTTPS is always enabled. By default, a
+self-signed server certificate and key is generated and installed for this
+endpoint. However, it is strongly recommended that you update the server
+certificate used after installation with an Intermediate or Root |CA|-signed
+server certificate and key. Refer to the documentation for the external
+Intermediate or Root |CA| that you are using, on how to create public
+certificate and private key pairs, signed by a Root |CA|, for HTTPS.
+
+The local Docker registry provides Docker image service that can be accessed
+using the registry API by secure HTTPS. Standalone system, central cloud and
+every subcloud of |DC| system has their own Docker registry called
+`registry.local`.
+
+The Docker registry on the central cloud of |DC| system has an
+alias of `registry.central`, which is used by subcloud to remotely login or
+pull images from this central Docker registry.
 
 .. rubric:: |context|
 
 By default a self-signed certificate is generated at installation time for the
-registry API. For more secure access, an intermediate or Root |CA|-signed
+registry API. For more secure access, an Intermediate or Root |CA|-signed
 certificate is strongly recommended.
 
-The intermediate or Root |CA|-signed certificate for the registry must have at
-least the following |SANs|: DNS:registry.local, DNS:registry.central, IP
+The Intermediate or Root |CA|-signed certificate for the registry must have at
+least the following |SANs|: ``DNS:registry.local``, ``DNS:registry.central``, IP
 Address:<oam-floating-ip-address>, IP Address:<mgmt-floating-ip-address>. Use
 the :command:`system addrpool-list` command to get the |OAM| floating IP
 Address and management floating IP Address for your system. You can add any
@@ -29,19 +44,19 @@ an expired or soon to expire certificate.
 .. rubric:: |prereq|
 
 Obtain an intermediate or Root |CA|-signed certificate and key from a trusted
-intermediate or Root |CA|. Refer to the documentation for the external Root
+Intermediate or Root |CA|. Refer to the documentation for the external Root
 |CA| that you are using, on how to create public certificate and private key
-pairs, signed by an intermediate or Root |CA|, for HTTPS.
+pairs, signed by an Intermediate or Root |CA|, for HTTPS.
 
 For lab purposes, see :ref:`Create Certificates Locally using openssl
 <create-certificates-locally-using-openssl>` for how to create a test
-intermediate or Root |CA| certificate and key, and use it to sign test
+Intermediate or Root |CA| certificate and key, and use it to sign test
 certificates.
 
 Put the |PEM| encoded versions of the certificate and key in a single file,
 and copy the file to the controller host.
 
-Also, obtain the certificate of the intermediate or Root |CA| that signed the
+Also, obtain the certificate of the Intermediate or Root |CA| that signed the
 above certificate.
 
 .. rubric:: |proc|
@@ -62,7 +77,7 @@ above certificate.
 
     ``<pathTocertificate>``
         is the path to the intermediate or Root |CA| certificate associated
-        with the Docker registry's intermediate or Root |CA|-signed
+        with the Docker registry's Intermediate or Root |CA|-signed
         certificate.
 
 #.  Update the Docker registry certificate using the
@@ -79,6 +94,8 @@ above certificate.
 
     ``<pathTocertificateAndKey>``
         is the path to the file containing both the Docker registry's
-        intermediate or Root CA-signed certificate and private key to install.
+        Intermediate or Root CA-signed certificate and private key to install.
 
-
+Refer to :ref:`Install/Update Local Registry Certificates
+<installing-updating-the-docker-registry-certificate>` on how to install/update
+and renew local registry certificates.

@@ -6,7 +6,7 @@
 For StarlingX, Platform OpenStack and Kubernetes CLIs from the 'sysadmin' Linux Account Login
 =============================================================================================
 
-You can establish credentials for StarlingX, Platform OpenStack and Kubernetes
+You can establish credentials for |prod|, Platform OpenStack and Kubernetes
 |CLIs| from the 'sysadmin' Linux account login.
 
 .. rubric:: |context|

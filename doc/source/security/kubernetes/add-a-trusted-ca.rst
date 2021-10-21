@@ -3,8 +3,13 @@
 .. _add-a-trusted-ca:
 
 ==============================
-Manage Trusted CA Certificates
+System Trusted CA Certificates
 ==============================
+
+|prod| also supports the ability to update the trusted |CA| certificate
+bundle on all nodes in the system. This is required, for example, when
+container images are being pulled from an external Docker registry with a
+certificate signed by a non-well-known |CA|.
 
 Generally a trusted |CA| certificate needs to be added if |prod| clients on
 the hosts will be connecting to server\(s\) secured with SSL and whose
@@ -14,9 +19,16 @@ certificate is signed by an unknown |CA|.
    :local:
    :depth: 1
 
-For example, a trusted |CA| certificate is required if your helm charts or
-yaml manifest files refer to images stored in a docker registry whose
+For example, a trusted |CA| certificate is required if your Helm charts or
+yaml manifest files refer to images stored in a Docker registry whose
 certificate has been signed by an unknown Certificate Authority.
+
+Trusted |CA| certificates can be added as part of the Ansible Bootstrap
+Playbook or by using the StarlingX/system REST API or CLI after installation.
+
+-----------------------------------------
+Install/Uninstall Trusted CA certificates
+-----------------------------------------
 
 Trusted |CA| certificates can be added as part of the Ansible Bootstrap
 Playbook or by using the StarlingX/system REST API or CLI after installation.
@@ -29,7 +41,7 @@ Ansible Bootstrap Playbook
 --------------------------
 
 A trusted |CA| certificate may need to be specified as an override parameter
-for the Ansible Bootstrap Playbook. Specifically, if the docker registries,
+for the Ansible Bootstrap Playbook. Specifically, if the Docker registries,
 specified by the bootstrap overrides file, use a certificate signed by an
 unknown |CA|. If this is the case then the ssl\_ca\_cert parameter needs to
 be specified in the ansible overrides file, /home/sysadmin/localhost.yml, as
@@ -48,13 +60,13 @@ and the file may contain one or more |CA| certificates.
 
 .. _add-a-trusted-ca-section-N10047-N1001C-N10001:
 
------------------------------------------------------
-StarlingX/System CLI – Trusted CA Certificate Install
------------------------------------------------------
+-------------------------------------------
+System CLI – Trusted CA certificate install
+-------------------------------------------
 
 After installation, adding a trusted |CA| to the |prod| system may be required.
-This is the case if images stored in a docker registry, whose certificate has
-been signed by a not-well-known Certificate Authority, are referred to by helm
+This is the case if images stored in a Docker registry, whose certificate has
+been signed by a not-well-known Certificate Authority, are referred to by Helm
 charts and/or yaml manifest files.
 
 Multiple trusted |CA| certificates can be added with single install command by
@@ -69,7 +81,7 @@ From the command line, run the :command:`certificate-install` command.
     ~(keystone_admin)]$ system certificate-install -m ssl_ca <trusted-ca-bundle-pem-file>
 
 where ``<trusted-ca-bundle-pem-file>`` contains 1 or more public certificates
-of CAs that should be trusted by |prod|.
+of |CAs| that should be trusted by |prod|.
 
 
 The system will print a list of the certificates that were successfully
@@ -98,9 +110,9 @@ For example:
 
 .. _add-a-trusted-ca-section-phr-jw4-3mb:
 
--------------------------------------------------------
-StarlingX/System CLI – Trusted CA Certificate Uninstall
--------------------------------------------------------
+---------------------------------------------
+System CLI – Trusted CA certificate uninstall
+---------------------------------------------
 
 To remove a Trusted |CA| Certificate, first list the trusted |CAs| by
 running the following command:
@@ -120,3 +132,23 @@ running the following command:
 
 where, <UUID> is the UUID of the ssl\_ca certtype to be removed.
 
+-----------------------------------
+Update/Renew trusted CA certficates
+-----------------------------------
+
+.. warning::
+
+    System trusted |CA| certificates can not be auto renewed, as they are not
+    owned by |prod|.
+
+    The administrator should update the trusted |CA| certificates following the
+    install/uninstall procedure as requested, or when trusted |CA| certificates
+    in use are approaching expiration.
+
+For example, when the |CA| certificate signing an external Docker registry’s
+server certificate needs to be renewed, either because an external Docker
+registry has a new server certificate signed by a new |CA|, or the |CA|
+certificate signing an external Docker registry’s current server certificate
+approaching expiration, the administrator can update the |CA| certificate for
+the external Docker registry access by uninstalling the old one, and installing
+the new one.

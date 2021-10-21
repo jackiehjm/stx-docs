@@ -48,7 +48,7 @@ For example:
 
 For scalability in a Distributed cloud system, the Subcloud ICA certificates
 are redirected to a file. The script displays the path to the file with a note
-at the end of the output file.
+at the end of the displayed output.
 
 .. code-block:: none
 
