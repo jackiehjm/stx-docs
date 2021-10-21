@@ -12,8 +12,9 @@ In this method you can run Ansible Restore playbook and point to controller-0.
 
 .. _system-backup-running-ansible-restore-playbook-remotely-ul-ylm-g44-bkb:
 
--   You need to have Ansible installed on your remote workstation, along
-    with the Ansible Backup/Restore playbooks.
+-   It is recommended that you have Ansible version 2.7.5 or higher installed
+    on your remote workstation. Copy the Ansible Backup/Restore playbooks
+    from directory ``/usr/share/ansible/stx-ansible/playbooks/``.
 
 -   Your network has IPv6 connectivity before running Ansible Playbook, if
     the system configuration is IPv6.
