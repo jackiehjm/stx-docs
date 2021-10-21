@@ -30,6 +30,7 @@
 .. |CSKs| replace:: :abbr:`CSKs (Code Signing Keys)`
 .. |CVE| replace:: :abbr:`CVE (Common Vulnerabilities and Exposures)`
 .. |DAD| replace:: :abbr:`DAD (Duplicate Address Detection)`
+.. |DC| replace:: :abbr:`DC (Distributed Cloud)`
 .. |DHCP| replace:: :abbr:`DHCP (Dynamic Host Configuration Protocol)`
 .. |DMA| replace:: :abbr:`DMA (Direct Memory Access)`
 .. |DNS| replace:: :abbr:`DNS (Domain Name System)`
@@ -146,5 +147,6 @@
 .. |VTEP| replace:: abbr:`VTEP (Virtual Tunnel End Point)`
 .. |VXLAN| replace:: :abbr:`VXLAN (Virtual eXtensible Local Area Network)`
 .. |VXLANs| replace:: :abbr:`VXLANs (Virtual eXtensible Local Area Networks)`
+.. |WAD| replace:: :abbr:`WAD (Windows Active Directory)`
 .. |XML| replace:: :abbr:`XML (eXtensible Markup Language)`
 .. |YAML| replace:: :abbr:`YAML (YAML Ain't Markup Language)`

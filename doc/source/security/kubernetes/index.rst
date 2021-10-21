@@ -49,6 +49,8 @@ Manage Non-Admin Type Users
    assign-pod-security-policies
    resource-management
 
+.. _user-authentication-using-windows-active-directory-security-index:
+
 **************************************************
 User Authentication Using Windows Active Directory
 **************************************************
@@ -91,9 +93,9 @@ Firewall Options
    security-default-firewall-rules
    security-firewall-options
 
-*************************
-Secure HTTPS Connectivity
-*************************
+****************************
+HTTPS Certificate Management
+****************************
 
 .. toctree::
    :maxdepth: 2
@@ -101,9 +103,15 @@ Secure HTTPS Connectivity
    https-access-overview
    utility-script-to-display-certificates
    starlingx-rest-api-applications-and-the-web-administration-server
-   kubernetes-root-ca-certificate
+   kubernetes-certificates-f4196d7cae9c
+   etcd-certificates-c1fc943e4a9c
    security-install-update-the-docker-registry-certificate
+   oidc-client-dex-server-certificates-dc174462d51a
+   portieris-server-certificate-a0c7054844bd
+   vault-server-certificate-8573125eeea6
+   dc-admin-endpoint-certificates-8fe7adf3f932
    add-a-trusted-ca
+   one-single-root-ca-multiple-server-client-certificates-0692df6ce16d
 
 ************
 Cert Manager
@@ -116,6 +124,8 @@ Cert Manager
    the-cert-manager-bootstrap-process
    cert-manager-post-installation-setup
 
+.. _portieris-admission-controller-security-index:
+
 ******************************
 Portieris Admission Controller
 ******************************
@@ -127,6 +137,8 @@ Portieris Admission Controller
    install-portieris
    portieris-clusterimagepolicy-and-imagepolicy-configuration
    remove-portieris
+
+.. _vault-secret-and-data-management-security-index:
 
 ********************************
 Vault Secret and Data Management

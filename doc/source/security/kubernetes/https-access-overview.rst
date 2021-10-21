@@ -2,98 +2,102 @@
 .. ddq1552672412979
 .. _https-access-overview:
 
-=====================
-HTTPS Access Overview
-=====================
+==========================================
+HTTPS and Certificates Management Overview
+==========================================
 
-You can enable secure HTTPS access and manage HTTPS certificates for all
-external |prod| service endpoints.
+Certificates are heavily used for secure HTTPS access and authentication on
+|prod| platform. This table lists the major certificates being used in the
+system, and indicates which certificates are automatically created/renewed by
+the system versus which certificates must be manually created/renewed by the
+system administrator. Details on manual management of certificates can be found
+in the following sections.
 
-These include:
+.. table::
+    :widths: auto
 
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | Certificate                                               | Auto Created                                                                | Renewal Status                                                                                     |
+    +===========================================================+=============================================================================+====================================================================================================+
+    | Kubernetes Root CA Certificate                            | Yes                                                                         | NOT AUTO-RENEWED; Default expiry is set at 10 years                                                |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | Cluster Admin client certificate used by kubectl          | Yes                                                                         | auto-renewed by cron job                                                                           |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | kube-controller-manager client certificate                | Yes                                                                         | auto-renewed by cron job                                                                           |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | kube-scheduler client certificate                         | Yes                                                                         | auto-renewed by cron job                                                                           |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | kube-apiserver server certificate                         | Yes                                                                         | auto-renewed by cron job                                                                           |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | kube-apiserver's kubelet client certificate               | Yes                                                                         | auto-renewed by cron job                                                                           |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | kubelet client certificate                                | Yes                                                                         | auto-renewed by kubelet feature enabled by default                                                 |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    |                                                                                                                                                                                                                                              |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | etcd Root CA certificate                                  | Yes                                                                         | NOT AUTO-RENEWED; Default expiry is set at 10 years                                                |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | etcd server certificate                                   | Yes                                                                         | auto-renewed by cron job                                                                           |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | etcd client certificate                                   | Yes                                                                         | auto-renewed by cron job                                                                           |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | kube-apiserver's etcd client certificate                  | Yes                                                                         | auto-renewed by cron job                                                                           |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    |                                                                                                                                                                                                                                              |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | StarlingX REST API & HORIZON Server Certificate           | Yes (But the auto-created certificate is self-signed and should be changed) | NOT AUTO-RENEWED; CUSTOMER MUST renew via CLIs                                                     |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    |                                                                                                                                                                                                                                              |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | Local Registry Server Certificate                         | Yes (But the auto-created certificate is self-signed and should be changed) | NOT AUTO-RENEWED; CUSTOMER MUST renew via CLIs                                                     |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    |                                                                                                                                                                                                                                              |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | OIDC Client and Dex Server Server Certificate             | No                                                                          | NOT AUTO-RENEWED; CUSTOMER MUST renew via CLIs                                                     |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | OIDC Client and Dex Server CA certificate                 | No                                                                          | NOT AUTO-RENEWED. CUSTOMER MUST renew via CLIs                                                     |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | OIDC Remote WAD CA Certificate                            | No                                                                          | NOT AUTO-RENEWED. CUSTOMER MUST renew via CLIs                                                     |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    |                                                                                                                                                                                                                                              |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | Vault Server Certificate                                  | Yes                                                                         | NOT AUTO-RENEWED; CUSTOMER MUST renew via CLIs                                                     |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | Vault Root CA certificate                                 | Yes                                                                         | NOT AUTO-RENEWED; CUSTOMER MUST renew via CLIs                                                     |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    |                                                                                                                                                                                                                                              |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | Portieris Server Certificate                              | Yes                                                                         | Auto renewed by cert-manager; BUT COSTOMER MUST restart Portieris after the certificate is renewed |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | Portieris remote registry and notary server CA Certificate| No                                                                          | NOT AUTO-RENEWED; CUSTOMER MUST renew via CLIs                                                     |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    |                                                                                                                                                                                                                                              |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | Root CA DC Admin Endpoint CA Certificate                  | Yes                                                                         | auto-renewed                                                                                       |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | Intermediate CA DC Admin Endpoint CA Certificate          | Yes                                                                         | auto-renewed                                                                                       |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | DC Admin Endpoint Server Certificate                      | Yes                                                                         | auto-renewed                                                                                       |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    |                                                                                                                                                                                                                                              |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
+    | System trusted CA Certificates                            | No                                                                          | NOT AUTO-RENEWED as these are certificates that are not necessarily owned by Cloud Platform        |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+
 
-.. _https-access-overview-ul-eyn-5ln-gjb:
+Where:
 
-.. contents::
-   :local:
-   :depth: 1
+-   Auto created: the certificate is generated during system deployment or
+    triggered by certain operations.
 
-.. _https-access-overview-section-N10048-N10024-N10001:
+-   Renewal Status: whether the certificate is renewed automatically by the system
+    when expiry date approaches.
 
--------------------------------------------------------
-REST API Applications and the web administration server
--------------------------------------------------------
+The following sections provide details on managing these certificates.
 
-By default, |prod| provides HTTP access to REST API application endpoints
-\(Keystone, Barbican and |prod|\) and the web administration server. For
-improved security, you can enable HTTPS access. When HTTPS access is
-enabled, HTTP access is disabled.
+-   :ref:`StarlingX REST API Applications and the Web Administration Server Certificate <starlingx-rest-api-applications-and-the-web-administration-server>`
 
-When HTTPS is enabled for the first time on a |prod| system, a self-signed
-certificate and key are automatically generated and installed for
-REST and Web Server endpoints. In order to connect, remote clients must be
-configured to accept the self-signed certificate without verifying it. This
-is called insecure mode.
+-   :ref:`Kubernetes Certificates <kubernetes-certificates-f4196d7cae9c>`
 
-For secure-mode connections, an intermediate or Root |CA|-signed certificate
-and key are required. The use of an intermediate or Root |CA|-signed
-certificate is strongly recommended. Refer to the documentation for the
-external intermediate or Root |CA| that you are using, on how to create public
-certificate and private key pairs, signed by an intermediate or Root |CA|, for
-HTTPS.
+-   :ref:`Local Registry Server Certificates <security-install-update-the-docker-registry-certificate>`
 
-You can update the certificate and key used by |prod| for the
-REST and Web Server endpoints at any time after installation.
-
-For additional security, |prod| optionally supports storing the private key
-of the StarlingX REST and Web Server certificate in a |prod| |TPM| hardware
-device. |TPM| 2.0-compliant hardware must be available on the controller
-hosts.
-
-
-.. _https-access-overview-section-N1004F-N10024-N10001:
-
-----------
-Kubernetes
-----------
-
-For the Kubernetes API Server, HTTPS is always enabled. You must use a Root CA
-certificate; intermediate CA certificates are not supported by upstream
-Kubernetes. By default, a self-signed certificate and key is generated and
-installed for the Kubernetes Root |CA| certificate and key. This Kubernetes
-Root |CA| is used to create and sign various certificates used within
-Kubernetes, including the certificate used by the kube-apiserver API endpoint.
-
-It is recommended that you update the Kubernetes Root |CA| and with a custom
-Root |CA| certificate and key, generated by yourself, and trusted by your
-external servers connecting to |prod|'s Kubernetes API endpoint. The |prod|'s
-Kubernetes Root |CA| is configured as part of the bootstrap during
-installation.
-
-
-.. _https-access-overview-section-N10094-N10024-N10001:
-
----------------------
-Local Docker Registry
----------------------
-
-For the Local Docker Registry, HTTPS is always enabled. Similarly, by default,
-a self-signed certificate and key is generated and installed for this endpoint.
-However, it is recommended that you update the certificate used after
-installation with an intermediate or Root |CA|-signed certificate and key.
-Refer to the documentation for the external intermediate or Root |CA| that you
-are using, on how to create public certificate and private key pairs, signed by
-a Root |CA|, for HTTPS.
-
-
-.. _https-access-overview-section-N10086-N10024-N10001:
-
------------
-Trusted CAs
------------
-
-|prod| also supports the ability to update the trusted |CA| certificate
-bundle on all nodes in the system. This is required, for example, when
-container images are being pulled from an external docker registry with a
-certificate signed by a non-well-known |CA|.
-
+-   :ref:`System Trusted CA Certificates <add-a-trusted-ca>`
