@@ -86,6 +86,15 @@ this data network.
         .. code-block:: none
 
             ~(keystone_admin)]$ cat <<EOF > net3.yaml
+            apiVersion: crd.projectcalico.org/v1
+            kind: IPPool
+            metadata:
+              name: mypool
+            spec:
+              cidr: "10.56.219.0/24"
+              ipipMode: "Never"
+              natOutgoing: True
+            ---
             apiVersion: "k8s.cni.cncf.io/v1"
             kind: NetworkAttachmentDefinition
             metadata:
@@ -96,14 +105,15 @@ this data network.
               config: '{
                   "cniVersion": "0.3.0",
                   "type": "sriov",
-                 "ipam": {
-                     "type": "calico-ipam"
-                     "subnet": "10.56.219.0/24",
-                     "routes": [{
-                        "dst": "0.0.0.0/0"
-                     }],
-                    "gateway": "10.56.219.1"
-                 }
+                  "ipam": {
+                    "type": "calico-ipam",
+                    "assign_ipv4": "true",
+                    "ipv4_pools": ["mypool"]
+                  },
+                  "kubernetes": {
+                    "kubeconfig": "/etc/cni/net.d/calico-kubeconfig"
+                  },
+                  "datastore_type": "kubernetes"
                 }'
             EOF
 
