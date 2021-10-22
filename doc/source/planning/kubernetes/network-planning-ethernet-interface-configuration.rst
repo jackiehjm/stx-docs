@@ -34,9 +34,11 @@ A single interface can be configured to support more than one network using
 
 On the controller nodes, all Ethernet interfaces are configured when the nodes
 are initialized based on the information provided in the Ansible Bootstrap
-Playbook. For more information, see the `StarlingX Installation and Deployment
-Guide <https://docs.starlingx.io/deploy_install_guides/index.html>`__. On
-worker and storage nodes, the Ethernet interface for the internal management
+Playbook.
+
+.. include:: /_includes/ethernet-interface-configuration.rest
+
+On worker and storage nodes, the Ethernet interface for the internal management
 networks are configured. The remaining interfaces require manual configuration.
 
 .. note::
