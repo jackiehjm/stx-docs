@@ -19,7 +19,7 @@ health of the system.
    :header-rows: 0
 
    * - **Alarm ID: 500.100**
-     - TPM initialization failed on host.
+     - |TPM| initialization failed on host.
    * - Entity Instance
      - tenant=<tenant-uuid>
    * - Degrade Affecting Severity:
@@ -47,3 +47,76 @@ health of the system.
    * - Proposed Repair Action
      - Reinstall system to disable developer certificate and remove untrusted
        patches.
+
+-----
+
+.. list-table::
+   :widths: 6 25
+   :header-rows: 0
+
+   * - **Alarm ID: 500.200**
+     - Certificate ‘system certificate-show <uuid>' (mode=<ssl/ssl_ca/docker_registry/openstack/openstack_ca>) expiring soon on <date>.
+       OR
+       Certificate ‘<Namespace>/<Certificate/Secret>’ expiring soon on <date>.
+       OR
+       Certificate ‘<k8sRootCA/EtcdCA>’ expiring soon on <date>.
+       system.certificate.k8sRootCA
+   * - Entity Instance
+     - system.certificate.mode=<mode>.uuid=<uuid>
+       OR
+       namespace=<namespace-name>.certificate=<certificate-name>
+       OR
+       namespace=<namespace-name>.secret=<secret-name>
+   * - Degrade Affecting Severity:
+     - None
+   * - Severity:
+     - M
+   * - Proposed Repair Action
+     - Renew certificate for the entity identified.
+   * - Alarm_Type:
+     - operational-violation
+   * - Probable_Cause:
+     - certificate-expiration
+   * - Service_Affecting:
+     - False
+   * - Suppression:
+     - False
+   * - Management_Affecting_Severity:
+     - none
+
+-----
+
+.. list-table::
+   :widths: 6 25
+   :header-rows: 0
+
+   * - **Alarm ID: 500.210**
+     - Certificate ‘system certificate-show <uuid>' (mode=<ssl/ssl_ca/docker_registry/openstack/openstack_ca>) expired.
+       OR
+       Certificate ‘<Namespace>/<Certificate/Secret>’ expired.
+       OR
+       Certificate ‘<k8sRootCA/EtcdRootCA>’ expired.
+   * - Entity Instance
+     - system.certificate.mode=<mode>.uuid=<uuid>
+       OR
+       namespace=<namespace-name>.certificate=<certificate-name>
+       OR
+       namespace=<namespace-name>.secret=<secret-name>
+       OR
+       system.certificate.k8sRootCA
+   * - Degrade Affecting Severity:
+     - None
+   * - Severity:
+     - C
+   * - Proposed Repair Action
+     - Renew certificate for the entity identified.
+   * - Inhibit_Alarms:
+     - Alarm_Type: operational-violation
+   * - Probable_Cause:
+     - certificate-expiration
+   * - Service_Affecting:
+     - False
+   * - Suppression:
+     - False
+   * - Management_Affecting_Severity:
+     - none

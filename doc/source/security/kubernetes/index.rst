@@ -112,6 +112,7 @@ HTTPS Certificate Management
    dc-admin-endpoint-certificates-8fe7adf3f932
    add-a-trusted-ca
    one-single-root-ca-multiple-server-client-certificates-0692df6ce16d
+   alarm-expiring-soon-and-expired-certificates-baf5b8f73009
 
 ************
 Cert Manager
