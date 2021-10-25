@@ -31,17 +31,17 @@ and uploaded by default.
     key \(dex-key.pem file\) for the dex |OIDC| Identity Provider of
     **oidc-auth-apps**.
 
-    This certificate *must* have the |prod|'s floating OAM IP Address in
+    This certificate *must* have the |prod|'s floating |OAM| IP Address in
     the |SAN| list. If you are planning on defining and using a DNS
-    name for the |prod|'s floating OAM IP Address, then this DNS name
+    name for the |prod|'s floating |OAM| IP Address, then this DNS name
     *must* also be in the |SAN| list. Refer to the documentation for
     the external |CA| that you are using, in order to create a signed
     certificate and key.
 
     If you are using an intermediate |CA| to sign the dex certificate, include
     both the dex certificate \(signed by the intermediate |CA|\), and the
-    intermediate |CA|'s certificate \(signed by the Root |CA|\) in that order, in
-    **dex-cert.pem**.
+    intermediate |CA|'s certificate \(signed by the Root |CA|\) in that order,
+    in **dex-cert.pem**.
 
 -   You must have the certificate of the |CA|\(**dex-ca.pem** file\) that
     signed the above certificate for the dex |OIDC| Identity Provider of
@@ -52,12 +52,11 @@ and uploaded by default.
     **dex-cert.pem**, then the **dex-ca.pem** file should contain the root
     |CA|'s certificate.
 
-    If the signing |CA| \(**dex-ca.pem**\) is not a well-known trusted |CA|, you
-    must ensure the system trusts the |CA| by specifying it either during the
-    bootstrap phase of system installation, by specifying '**ssl\_ca\_cert:
-    dex-ca.pem**' in the ansible bootstrap overrides **localhost.yml** file,
-    or by using the **system certificate-install -m ssl\_ca dex-ca.pem**
-    command.
+    If the signing |CA| \(**dex-ca.pem**\) is not a well-known trusted |CA|,
+    you must ensure the system trusts the |CA| by specifying it either during
+    the bootstrap phase of system installation, by specifying '**ssl\_ca\_cert:
+    dex-ca.pem**' in the ansible bootstrap overrides **localhost.yml** file, or
+    by using the **system certificate-install -m ssl\_ca dex-ca.pem** command.
 
 
 .. rubric:: |proc|
@@ -100,20 +99,18 @@ and uploaded by default.
         ~(keystone_admin)]$ system helm-override-update oidc-auth-apps dex kube-system --values /home/sysadmin/dex-overrides.yaml
 
     The dex-overrides.yaml file contains the desired dex helm chart overrides
-    \(that is, the LDAP connector configuration for the Active Directory
+    \(that is, the |LDAP| connector configuration for the Active Directory
     service, optional token expiry, and so on.\), and volume mounts for
     providing access to the **wadcert** secret, described in this section.
 
     For the complete list of dex helm chart values supported, see `Dex Helm
     Chart Values
     <https://github.com/helm/charts/blob/92b6289ae93816717a8453cfe62bad51cbdb
-    8ad0/stable/dex/values.yaml>`__. For the complete list of parameters of
-    the dex LDAP connector configuration, see `Dex LDAP Connector
-    Configuration
-    <https://github.com/dexidp/dex/blob/master/Documentation/connectors/ldap.
-    md>`__.
+    8ad0/stable/dex/values.yaml>`__. For the complete list of parameters of the
+    dex |LDAP| connector configuration, see `Authentication Through LDAP
+    <https://dexidp.io/docs/connectors/ldap/>`__.
 
-    The example below configures a token expiry of ten hours, a single LDAP
+    The example below configures a token expiry of ten hours, a single |LDAP|
     connector to an Active Directory service using HTTPS \(LDAPS\) using the
     **wadcert** secret configured in this section, the required Active
     Directory service login information \(that is, bindDN, and bindPW\), and
