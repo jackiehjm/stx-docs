@@ -31,8 +31,8 @@ subcloud, the subcloud installation has these phases:
 
     After a successful remote installation of a subcloud in a Distributed Cloud
     system, a subsequent remote reinstallation fails because of an existing ssh
-    key entry in the /root/.ssh/known\_hosts on the System Controller. In this
-    case, delete the host key entry, if present, from /root/.ssh/known\_hosts
+    key entry in the /root/.ssh/known_hosts on the System Controller. In this
+    case, delete the host key entry, if present, from /root/.ssh/known_hosts
     on the System Controller before doing reinstallations.
 
 .. rubric:: |prereq|
@@ -203,7 +203,7 @@ subcloud, the subcloud installation has these phases:
             password: <sysinv_password>
             type: docker
 
-    Where <sysinv\_password> can be found by running the following command as
+    Where <sysinv_password> can be found by running the following command as
     'sysadmin' on the Central Cloud:
 
     .. code-block:: none
@@ -230,7 +230,7 @@ subcloud, the subcloud installation has these phases:
 
     If you prefer to install container images from the default WRS |AWS| ECR
     external registries, make the following substitutions for the
-    **docker\_registries** sections of the file.
+    **docker_registries** sections of the file.
 
     .. code-block:: none
 
@@ -332,9 +332,9 @@ subcloud, the subcloud installation has these phases:
     bootstrapping and deployment by monitoring the following log files on the
     active controller in the Central Cloud.
 
-    /var/log/dcmanager/<subcloud\_name>\_install\_<date\_stamp>.log.
+    /var/log/dcmanager/<subcloud_name>_install_<date_stamp>.log.
 
-    /var/log/dcmanager/<subcloud\_name>\_bootstrap\_<date\_stamp>.log.
+    /var/log/dcmanager/<subcloud_name>_bootstrap_<date_stamp>.log.
 
 
     For example:

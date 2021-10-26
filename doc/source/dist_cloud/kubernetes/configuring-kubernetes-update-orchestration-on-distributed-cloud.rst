@@ -138,13 +138,13 @@ controller for access by subclouds. For example:
 
     **--subcloud-apply-type**
         Determines whether the subclouds are upgraded in parallel, or serially. If
-        this is not specified using the CLI, the values for subcloud\_update\_type
+        this is not specified using the CLI, the values for subcloud_update_type
         defined for each subcloud group will be used by default.
 
     **--max-parallel-subclouds**
         Sets the maximum number of subclouds that can be upgraded in parallel
         \(default 20\). If this is not specified using the CLI, the values for
-        max\_parallel\_subclouds defined for each subcloud group will be used by
+        max_parallel_subclouds defined for each subcloud group will be used by
         default.
 
     **--stop-on-failure**

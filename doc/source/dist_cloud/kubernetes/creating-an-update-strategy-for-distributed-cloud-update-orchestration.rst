@@ -35,8 +35,8 @@ You must be in **SystemController** mode. To change the mode, see
     tab.
 
     .. image:: figures/vhy1525122582274.png
-    
-    
+
+
 
 #.  On the Cloud Patching Orchestration tab, click **Create Strategy**.
 
@@ -49,7 +49,7 @@ You must be in **SystemController** mode. To change the mode, see
         parallel or serially.
 
         If this is not specified using the |CLI|, the values for
-        :command:`subcloud\_update\_type` defined for each subcloud group will
+        :command:`subcloud_update_type` defined for each subcloud group will
         be used by default.
 
     **max-parallel-subclouds**
@@ -57,7 +57,7 @@ You must be in **SystemController** mode. To change the mode, see
         \(default 20\).
 
         If this is not specified using the |CLI|, the values for
-        :command:`max\_parallel\_subclouds` defined for each subcloud group
+        :command:`max_parallel_subclouds` defined for each subcloud group
         will be used by default.
 
     **stop-on-failure**
@@ -82,7 +82,7 @@ You must be in **SystemController** mode. To change the mode, see
         To change the update strategy settings, you must delete the update
         strategy and create a new one.
 
-.. seealso:: 
+.. seealso::
 
     :ref:`Customizing the Update Configuration for Distributed Cloud Update
     Orchestration <customizing-the-update-configuration-for-distributed-cloud-update-orchestration>`

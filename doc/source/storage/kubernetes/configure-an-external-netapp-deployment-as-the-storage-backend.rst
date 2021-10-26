@@ -85,7 +85,7 @@ procedure.
     .. _configuring-an-external-netapp-deployment-as-the-storage-backend-mod-localhost:
 
 #.  Configure Netapps configurable parameters and run the provided
-    install\_netapp\_backend.yml ansible playbook to enable connectivity to
+    install_netapp_backend.yml ansible playbook to enable connectivity to
     Netapp as a storage backend for |prod|.
 
 #.  Provide Netapp backend configurable parameters in an overrides yaml
@@ -98,11 +98,11 @@ procedure.
 
     The following parameters are mandatory:
 
-    ``ansible\_become\_pass``
+    ``ansible_become_pass``
         Provide the admin password.
 
-    ``netapp\_backends``
-        ``name``
+    ``netapp_backends``
+        **name**
         A name for the storage class.
 
     ``provisioner``
@@ -136,18 +136,18 @@ procedure.
 
     The following parameters are optional:
 
-    ``trident\_setup\_dir``
+    ``trident_setup_dir``
         Set a staging directory for generated configuration files. The
         default is /tmp/trident.
 
-    ``trident\_namespace``
+    ``trident_namespace``
         Set this option to use an alternate Kubernetes namespace.
 
-    ``trident\_rest\_api\_port``
+    ``trident_rest_api_port``
         Use an alternate port for the Trident REST API. The default is
         8000.
 
-    ``trident\_install\_extra\_params``
+    ``trident_install_extra_params``
         Add extra space-separated parameters when installing trident.
 
     For complete listings of available parameters, see
@@ -190,8 +190,8 @@ procedure.
             username: "admin"
             password: "secret"
 
-    This file is sectioned into ``netapp\_k8s\_storageclass``,
-    ``netapp\_k8s\_snapshotstorageclasses``, and ``netapp\_backends``.
+    This file is sectioned into ``netapp_k8s_storageclass``,
+    ``netapp_k8s_snapshotstorageclasses``, and ``netapp_backends``.
     You can add multiple backends and/or storage classes.
 
     .. note::

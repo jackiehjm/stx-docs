@@ -132,7 +132,7 @@ conditions are in place:
 #.  Install network connectivity required for the subcloud.
 
 #.  Ensure that the backup file are available on the controller. Run both
-    Ansible Restore playbooks, restore\_platform.yml and restore\_user\_images.yml.
+    Ansible Restore playbooks, restore_platform.yml and restore_user_images.yml.
     For more information on restoring the back up file, see :ref:`Run Restore
     Playbook Locally on the Controller
     <running-restore-playbook-locally-on-the-controller>`, and :ref:`Run
@@ -143,7 +143,7 @@ conditions are in place:
         The backup files contain the system data and updates.
 
 #.  If the backup file contains patches, Ansible Restore playbook
-    restore\_platform.yml will apply the patches and prompt you to reboot the
+    restore_platform.yml will apply the patches and prompt you to reboot the
     system, you will need to re-run Ansible Restore playbook.
 
     The current software version on the controller is compared against the
@@ -166,7 +166,7 @@ conditions are in place:
     Rerun the Ansible Playbook if there were patches applied and you were
     prompted to reboot the system.
 
-#.  Restore the local registry using the file restore\_user\_images.yml.
+#.  Restore the local registry using the file restore_user_images.yml.
 
     This must be done before unlocking controller-0.
 
@@ -180,7 +180,7 @@ conditions are in place:
     becomes operational.
 
 #.  If the system is a Distributed Cloud system controller, restore the **dc-vault**
-    using the restore\_dc\_vault.yml playbook. Perform this step after unlocking
+    using the restore_dc_vault.yml playbook. Perform this step after unlocking
     controller-0:
 
     .. code-block:: none
@@ -265,7 +265,7 @@ conditions are in place:
             | 6  | compute-1   | worker     | locked        |disabled   |offline     |
             +----+-------------+------------+---------------+-----------+------------+
 
-#. Restore storage configuration. If :command:`wipe\_ceph\_osds` is set to
+#. Restore storage configuration. If :command:`wipe_ceph_osds` is set to
    **True**, follow the same procedure used to restore **controller-1**,
    beginning with host **storage-0** and proceeding in sequence.
 
@@ -279,12 +279,12 @@ conditions are in place:
        the restore procedure without interruption.
 
        Standard with Controller Storage install or reinstall depends on the
-       :command:`wipe\_ceph\_osds` configuration:
+       :command:`wipe_ceph_osds` configuration:
 
-       #.  If :command:`wipe\_ceph\_osds` is set to **true**, reinstall the
+       #.  If :command:`wipe_ceph_osds` is set to **true**, reinstall the
            storage hosts.
 
-       #.  If :command:`wipe\_ceph\_osds` is set to **false** \(default
+       #.  If :command:`wipe_ceph_osds` is set to **false** \(default
            option\), do not reinstall the storage hosts.
 
            .. caution::
@@ -319,9 +319,9 @@ conditions are in place:
 
        .. caution::
            Do not proceed until the Ceph cluster is healthy and the message
-           HEALTH\_OK appears.
+           HEALTH_OK appears.
 
-       If the message HEALTH\_WARN appears, wait a few minutes and then try
+       If the message HEALTH_WARN appears, wait a few minutes and then try
        again. If the warning condition persists, consult the public
        documentation for troubleshooting Ceph monitors \(for example,
        `http://docs.ceph.com/docs/master/rados/troubleshooting/troubleshootin

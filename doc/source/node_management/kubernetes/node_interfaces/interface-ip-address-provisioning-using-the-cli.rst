@@ -35,12 +35,12 @@ The procedure for adding an IP address depends on the interface type.
         ~(keystone_admin)$ systemhost-if-add <hostname> -V --vlan_id -c --ifclass <interfacename> <ethname>
 
 **Virtual Function interfaces**
-    You can create an SROIV VF interface on top of an existing SROIV VF
+    You can create an |SRIOV| |VF| interface on top of an existing |SRIOV| |VF|
     interface in order to configure a subset of virtual functions with
-    different drivers. For example, if the ethernet SR-IOV interface is
-    configured with the kernel VF driver, you can create a VF interface to
+    different drivers. For example, if the ethernet |SRIOV| interface is
+    configured with the kernel VF driver, you can create a |VF| interface to
     configure a subset of virtual functions with the vfio driver that can be
-    used with userspace libraries such as DPDK.
+    used with userspace libraries such as |DPDK|.
 
     .. code-block:: none
 
@@ -57,6 +57,7 @@ They can only be modified to use different physical ports when required.
     On the second worker and storage nodes, the Ethernet interface for the
     internal management network is attached automatically to support
     installation using |PXE| booting.
+    
     On the initial controller node, the interface for the internal management
     network is attached according to the settings specified during the
     Ansible bootstrapping of the system.
@@ -77,12 +78,12 @@ They can only be modified to use different physical ports when required.
     where the following options are available:
 
     ``node``
-        The name or UUID of the worker node.
+        The name or |UUID| of the worker node.
 
     ``ifname``
         The name of the interface.
 
-    ``ip\_address``
+    ``ip_address``
         An IPv4 or IPv6 address.
 
     ``prefix``
