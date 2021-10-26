@@ -36,8 +36,8 @@ sections on :ref:`Accessing the System <access-using-the-default-set-up>`.
 
 #.  Apply the Helm chart overrides containing the certificate changes.
 
-    .. code-block:: none
+    .. parsed-literal::
 
-        ~(keystone_admin)$ system application-apply wr-openstack
+        ~(keystone_admin)$ system application-apply |prefix|-openstack
 
 

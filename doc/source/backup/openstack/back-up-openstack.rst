@@ -47,6 +47,6 @@ of restoring the underlying platform.
 
     After export, copy the data off-box for safekeeping.
 
-For details on performing a |prod| back-up, see :ref:`
-System Backup and Restore <backing-up-starlingx-system-data>`.
+For details on performing a |prod| back-up, see
+:ref:`System Backup and Restore <backing-up-starlingx-system-data>`.
 
