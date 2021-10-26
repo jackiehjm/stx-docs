@@ -245,3 +245,6 @@ If all attempts fail, restore the subcloud from backups, that will revert the
 subcloud to the original state prior to rehoming.
 
 
+.. only:: partner
+
+    .. include:: /_includes/dm-credentials-on-keystone-pwds.rest
