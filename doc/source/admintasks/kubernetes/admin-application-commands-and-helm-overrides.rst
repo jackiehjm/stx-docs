@@ -51,7 +51,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     where:
 
-    **<app\_name>**
+    **<app_name>**
         The name of the application to show details.
 
     For example:
@@ -83,7 +83,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     where the following are optional arguments:
 
-    **<app\_name>**
+    **<app_name>**
         Assigns a custom name for application. You can use this name to
         interact with the application in the future.
 
@@ -92,7 +92,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     and the following is a positional argument:
 
-    **<tar\_file>**
+    **<tar_file>**
         The path to the tar file containing the application to be uploaded.
 
     For example:
@@ -126,7 +126,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     where the following is a positional argument:
 
-    **<app\_name>**
+    **<app_name>**
         The name of the application.
 
     and the following is an optional argument:
@@ -175,7 +175,7 @@ commands to manage containerized applications provided as part of |prod|.
         +---------------------+--------------------------------+---------------+
 
 -   To show the overrides for a particular chart, use the following command.
-    System overrides are displayed in the **system\_overrides** section of
+    System overrides are displayed in the **system_overrides** section of
     the **Property** column.
 
     .. code-block:: none
@@ -185,10 +185,10 @@ commands to manage containerized applications provided as part of |prod|.
 
     where the following are positional arguments:
 
-    **<app\_name>**
+    **<app_name>**
         The name of the application.
 
-    **< chart\_name>**
+    **< chart_name>**
         The name of the chart.
 
     **<namespace>**
@@ -212,10 +212,10 @@ commands to manage containerized applications provided as part of |prod|.
 
     where the following are positional arguments:
 
-    **<app\_name>**
+    **<app_name>**
         The name of the application.
 
-    **<chart\_name>**
+    **<chart_name>**
         The name of the chart.
 
     **<namespace>**
@@ -257,7 +257,7 @@ commands to manage containerized applications provided as part of |prod|.
         |                |       DEBUG: true |
         +----------------+-------------------+
 
-    The user overrides are shown in the **user\_overrides** section of the
+    The user overrides are shown in the **user_overrides** section of the
     **Property** column.
 
     .. note::
@@ -280,10 +280,10 @@ commands to manage containerized applications provided as part of |prod|.
 
     and the following are positional arguments:
 
-    **<app\_name>**
+    **<app_name>**
         The name of the application.
 
-    **<chart\_name>**
+    **<chart_name>**
         The name of the chart.
 
     **<namespace>**
@@ -302,10 +302,10 @@ commands to manage containerized applications provided as part of |prod|.
 
     where the following are positional arguments:
 
-    **<app\_name>**
+    **<app_name>**
         The name of the application.
 
-    **<chart\_name>**
+    **<chart_name>**
         The name of the chart.
 
     **<namespace>**
@@ -334,7 +334,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     and the following is a positional argument:
 
-    **<app\_name>**
+    **<app_name>**
         The name of the application to apply.
 
     For example:
@@ -366,7 +366,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     where:
 
-    **<app\_name>**
+    **<app_name>**
         The name of the application to abort.
 
     For example:
@@ -389,7 +389,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     where the following are optional arguments:
 
-    **<app\_name>**
+    **<app_name>**
         The name of the application to update.
 
         You can look up the name of an application using the
@@ -417,7 +417,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     and the following is a positional argument which must come last:
 
-    **<tar\_file>**
+    **<tar_file>**
         The tar file containing the application manifest, Helm charts and
         configuration file.
 
@@ -431,7 +431,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     where:
 
-    **<app\_name>**
+    **<app_name>**
         The name of the application to remove.
 
     For example:
@@ -466,7 +466,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     where:
 
-    **<app\_name>**
+    **<app_name>**
         The name of the application to delete.
 
     You must run :command:`application-remove` before deleting an application.

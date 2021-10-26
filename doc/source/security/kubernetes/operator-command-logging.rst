@@ -49,7 +49,7 @@ Remarks
 
     :command:`system modify --description="A TEST"` is logged to sysinv-api.log because it issues a REST POST call
 
-    :command:`system snmp-comm-delete "TEST\_COMMUNITY1"` - is logged to sysinv-api.log because it issues a REST DELETE call
+    :command:`system snmp-comm-delete "TEST_COMMUNITY1"` - is logged to sysinv-api.log because it issues a REST DELETE call
 
 -   If the :command:`sysinv` command only issues a REST GET call, it is not logged.
 

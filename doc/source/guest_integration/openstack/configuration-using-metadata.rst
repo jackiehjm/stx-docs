@@ -29,7 +29,7 @@ configuration file.
 
 To send user data when calling nova boot, use the ``--user-data
 /path/to/filename`` option, or use the Heat service and set the
-``user\_data`` property and ``user\_data\_format`` to RAW.
+``user_data`` property and ``user_data_format`` to RAW.
 
 On initialization, the |VM| queries the metadata service through either
 the EC2 compatibility API. For example:

@@ -82,7 +82,7 @@ They can only be modified to use different physical ports when required.
     ``ifname``
         The name of the interface.
 
-    ``ip\_address``
+    ``ip_address``
         An IPv4 or IPv6 address.
 
     ``prefix``

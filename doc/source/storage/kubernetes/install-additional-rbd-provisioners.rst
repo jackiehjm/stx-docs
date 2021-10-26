@@ -24,7 +24,7 @@ This procedure uses standard Helm mechanisms to install a second
 
 #.  Capture a list of monitors.
 
-    This will be stored in the environment variable ``<MON\_LIST>`` and
+    This will be stored in the environment variable ``<MON_LIST>`` and
     used in the following step.
 
     .. code-block:: none

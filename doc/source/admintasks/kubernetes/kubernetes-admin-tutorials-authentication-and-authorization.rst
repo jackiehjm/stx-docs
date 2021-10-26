@@ -52,7 +52,7 @@ example, the user **testuser** is correct in the following URL, while
     cloud/systemController, access to the local registry can only be done using
     registry.local:9001. registry.central:9001 will be inaccessible. Installing
     a |CA|-signed certificate for the registry and the certificate of the |CA| as
-    an 'ssl\_ca' certificate will remove this restriction.
+    an 'ssl_ca' certificate will remove this restriction.
 
 For more information about Docker commands, see
 `https://docs.docker.com/engine/reference/commandline/docker/ <https://docs.docker.com/engine/reference/commandline/docker/>`__.

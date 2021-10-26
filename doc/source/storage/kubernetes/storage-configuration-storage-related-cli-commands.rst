@@ -24,7 +24,7 @@ You can change the space allotted for the Ceph monitor, if required.
 
     ~(keystone_admin)]$ system ceph-mon-modify <controller> ceph_mon_gib=<size>
 
-where ``<partition\_size>`` is the size in GiB to use for the Ceph monitor.
+where ``<partition_size>`` is the size in GiB to use for the Ceph monitor.
 The value must be between 21 and 40 GiB.
 
 .. code-block:: none
@@ -140,10 +140,10 @@ The following are optional arguments:
     For a Ceph backend, this is a user-assigned name for the backend. The
     default is **ceph-store** for a Ceph backend.
 
-**-t,** ``--tier\_uuid``
+**-t,** ``--tier_uuid``
     For a Ceph backend, is the UUID of a storage tier to back.
 
-**-c,** ``--ceph\_conf``
+**-c,** ``--ceph_conf``
     Location of the Ceph configuration file used for provisioning an
     external backend.
 
@@ -152,7 +152,7 @@ The following are optional arguments:
     reversible.
 
 ``--ceph-mon-gib``
-    For a Ceph backend, this is the space in gibibytes allotted for the
+    For a Ceph backend, this is the space in GB allotted for the
     Ceph monitor.
 
 .. note::
