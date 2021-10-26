@@ -30,6 +30,6 @@ service REST API endpoints.
 
 #.  Apply the updated Helm chart overrides containing the certificate changes:
 
-    .. code-block:: none
+    .. parsed-literal::
 
-        ~(keystone_admin)$ system application-apply wr-openstack
+        ~(keystone_admin)$ system application-apply |prefix|-openstack

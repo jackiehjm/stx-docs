@@ -25,96 +25,115 @@ You can restore |prod-os| from a backup with or without Ceph.
 
         Images and volumes will remain in Ceph.
 
-    .. code-block:: none
+    .. parsed-literal::
 
-        ~(keystone_admin)$ system application-remove wr-openstack
-        ~(keystone_admin)$ system application-delete wr-openstack
-        ~(keystone_admin)$ system application-upload wr-openstack.tgz
+        ~(keystone_admin)$ system application-remove |prefix|-openstack
+        ~(keystone_admin)$ system application-delete |prefix|-openstack
+        ~(keystone_admin)$ system application-upload |prefix|-openstack.tgz
 
 #.  Restore |prod-os|.
 
     You can choose either of the following options:
 
 
-    -   Restore only |prod-os| system. This option will not restore the Ceph
-        data \(that is, it will not run comands like :command:`rbd import`\).
-        This procedure will preserve any existing Ceph data at restore-time.
+    -   Restore only |prod-os| system data. This option will not restore the
+        Ceph data \(that is, it will not run commands like :command:`rbd
+        import`\). This procedure will preserve any existing Ceph data at
+        restore-time.
 
     -   Restore |prod-os| system data, Cinder volumes and Glance images. You'll
         want to run this step if your Ceph data will be wiped after the backup.
 
 
+------------------------------------
+Restore only application system data
+------------------------------------
 
-    .. table::
-        :widths: 200, 668
+Run the following command:
 
-        +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-        | **Restore only OpenStack application system data:**                                                                                                                                      | #.  Run the following command:                                                                                                                                                           |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          |     .. code-block:: none                                                                                                                                                                 |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          |         ~(keystone_admin)$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/ \                                                                                                  |
-        |                                                                                                                                                                                          |         restore_openstack.yml \                                                                                                                                                          |
-        |                                                                                                                                                                                          |         -e 'initial_backup_dir=<location_of_backup_filename> \                                                                                                                           |
-        |                                                                                                                                                                                          |         ansible_become_pass=<admin_password> \                                                                                                                                           |
-        |                                                                                                                                                                                          |         admin_password=<admin_password> \                                                                                                                                                |
-        |                                                                                                                                                                                          |         backup_filename=wr-openstack_backup.tgz'                                                                                                                                         |
-        +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-        | **Restore OpenStack application system data, cinder volumes and glance images:**                                                                                                         | #.  Run the following command:                                                                                                                                                           |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          |     .. code-block:: none                                                                                                                                                                 |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          |         ~(keystone_admin)$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/ \                                                                                                  |
-        |                                                                                                                                                                                          |         restore_openstack.yml \                                                                                                                                                          |
-        |                                                                                                                                                                                          |         -e 'restore_cinder_glance_data=true \                                                                                                                                            |
-        |                                                                                                                                                                                          |         initial_backup_dir=<location_of_backup_filename> \                                                                                                                               |
-        |                                                                                                                                                                                          |         ansible_become_pass=<admin_password> \                                                                                                                                           |
-        |                                                                                                                                                                                          |         admin_password=<admin_password> \                                                                                                                                                |
-        |                                                                                                                                                                                          |         backup_filename=wr-openstack_backup.tgz'                                                                                                                                         |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          | When this step has completed, the Cinder, Glance and MariaDB services will be up, and Mariadb data restored.                                                                             |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          | #.  Restore Ceph data.                                                                                                                                                                   |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          |     #.  Restore Cinder volumes using :command:`rbd import` command.                                                                                                                      |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          | For example:                                                                                                                                                                             |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          | .. code-block:: none                                                                                                                                                                     |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          |     ~(keystone_admin)$ rbd import -p cinder-volumes /tmp/611157b9-78a4-4a26-af16-f9ff75a85e1b                                                                                            |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          | Where tmp/611157b9-78a4-4a26-af16-f9ff75a85e1b is a file saved earlier at the backup procedure as described in [#]_ .                                                                    |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          | #.  Restore Glance images using the :command:`image-backup` script.                                                                                                                      |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          | For example if we have an archive named image\_3f30adc2-3e7c-45bf-9d4b-a4c1e191d879.tgz in the/opt/backups directory we can use restore it using the following command:                  |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          | .. code-block:: none                                                                                                                                                                     |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          |     ~(keystone_admin)$ sudo image-backup.sh import image_3f30adc2-3e7c-45bf-9d4b-a4c1e191d879.tgz                                                                                        |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          | #.  Use the :command:`tidy\_storage\_post\_restore` utilitary to detect any discrepancy between Cinder/Glance DB and rbd pools:                                                          |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          |     .. code-block:: none                                                                                                                                                                 |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          |         ~(keystone_admin)$ tidy_storage_post_restore <log_file>                                                                                                                          |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          | After the script finishes, some command output will be written to the log file. They will help reconcile discrepancies between the |prod-os| database and CEPH data.                     |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          | #.  Run the playbook again with the restore\_openstack\_continue flag set to true to bring up the remaining Openstack services.                                                          |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          |     .. code-block:: none                                                                                                                                                                 |
-        |                                                                                                                                                                                          |                                                                                                                                                                                          |
-        |                                                                                                                                                                                          |         ~(keystone_admin)$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/ \                                                                                                  |
-        |                                                                                                                                                                                          |         restore_openstack.yml \                                                                                                                                                          |
-        |                                                                                                                                                                                          |         -e 'restore_openstack_continue=true \                                                                                                                                            |
-        |                                                                                                                                                                                          |         initial_backup_dir=<location_of_backup_filename>                                                                                                                                 |
-        |                                                                                                                                                                                          |         ansible_become_pass=<admin_password> \                                                                                                                                           |
-        |                                                                                                                                                                                          |         admin_password=<admin_password> \                                                                                                                                                |
-        |                                                                                                                                                                                          |         backup_filename=wr-openstack_backup.tgz'                                                                                                                                         |
-        +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+.. parsed-literal::
+
+    ~(keystone_admin)$ ansible-playbook /usr/share/ansible/|prefix|-ansible/playbooks/ \
+    restore_openstack.yml \
+    -e 'initial_backup_dir=<location_of_backup_filename> \
+    ansible_become_pass=<admin_password> \
+    admin_password=<admin_password> \
+    backup_filename=<nnn>-openstack_backup.tgz'
+
+Where ``<nnn>`` is a user-defined value, such as |prefix| or the backup
+date.
+
+
+-----------------------------------------------------------------
+Restore application system data, cinder volumes and glance images
+-----------------------------------------------------------------
+
+#.  Run the following command:
+
+    .. parsed-literal::
+
+        ~(keystone_admin)$ ansible-playbook /usr/share/ansible/|prefix|-ansible/playbooks/ \
+        restore_openstack.yml \
+        -e 'restore_cinder_glance_data=true \
+        initial_backup_dir=<location_of_backup_filename> \
+        ansible_become_pass=<admin_password> \
+        admin_password=<admin_password> \
+        backup_filename=<nnn>-openstack_backup.tgz'
+
+    Where ``<nnn>`` is a user-defined value, such as |prefix| or the backup
+    date.
+
+    When this step has completed, the Cinder, Glance and MariaDB services will
+    be up, and Mariadb data restored.
+
+#.  Restore Ceph data.
+
+    #.  Restore Cinder volumes using the :command:`rbd import` command.
+
+        For example:
+
+        .. code-block:: none
+
+            ~(keystone_admin)$ rbd import -p cinder-volumes /tmp/611157b9-78a4-4a26-af16-f9ff75a85e1b
+
+        Where ``tmp/611157b9-78a4-4a26-af16-f9ff75a85e1b`` is a file saved
+        earlier at the backup procedure as described in [#]_ .
+
+    #.  Restore Glance images using the :command:`image-backup` script.
+
+        For example, if we have an archive named
+        ``image_3f30adc2-3e7c-45bf-9d4b-a4c1e191d879.tgz`` in the ``/opt/backups``
+        directory, we can use restore it using the following command:
+
+        .. code-block:: none
+
+            ~(keystone_admin)$ sudo image-backup.sh import image_3f30adc2-3e7c-45bf-9d4b-a4c1e191d879.tgz
+
+    #.  Use the :command:`tidy_storage_post_restore` utility to detect any
+        discrepancy between Cinder/Glance DB and rbd pools:
+
+        .. code-block:: none
+
+            ~(keystone_admin)$ tidy_storage_post_restore <log_file>
+
+        After the script finishes, some command output will be written to the
+        log file. They will help reconcile discrepancies between the |prod-os|
+        database and CEPH data.
+
+#.  Run the playbook again with the ``restore_openstack_continue`` flag set to
+    ``true`` to bring up the remaining OpenStack services.
+
+    .. parsed-literal::
+
+        ~(keystone_admin)$ ansible-playbook /usr/share/ansible/|prefix|-ansible/playbooks/ \
+        restore_openstack.yml \
+        -e 'restore_openstack_continue=true \
+        initial_backup_dir=<location_of_backup_filename>
+        ansible_become_pass=<admin_password> \
+        admin_password=<admin_password> \
+        backup_filename=<nnn>-openstack_backup.tgz'
+
+    Where ``<nnn>`` is a user-defined value, such as |prefix| or the backup
+    date.
 
 .. include:: /_includes/restore-openstack-from-a-backup.rest
