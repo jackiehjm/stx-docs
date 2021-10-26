@@ -1,1 +1,2 @@
-
+For more information, see the `StarlingX Installation and Deployment
+Guide <https://docs.starlingx.io/deploy_install_guides/index.html>`__.
