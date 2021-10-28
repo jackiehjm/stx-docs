@@ -45,7 +45,7 @@ The following steps use Vault's REST API and is run from controller-0.
 
     -   `https://www.vaultproject.io/docs/auth <https://www.vaultproject.io/docs/auth>`__
 
-    -   `https://www.vaultproject.io/docs/auth/kubernetes%20 <https://www.vaultproject.io/docs/auth/kubernetes%20>`__
+    -   `https://www.vaultproject.io/docs/auth/kubernetes <https://www.vaultproject.io/docs/auth/kubernetes>`__
 
 
     .. code-block:: none
