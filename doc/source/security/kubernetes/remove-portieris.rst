@@ -25,7 +25,6 @@ system.
 
         ~(keystone_admin)]$ kubectl delete clusterroles.rbac.authorization.k8s.io portieris
         ~(keystone_admin)]$ kubectl delete clusterrolebindings.rbac.authorization.k8s.io admission-portieris-webhook
-        ~(keystone_admin)]$ kubectl delete -n portieris secret/portieris-certs
         ~(keystone_admin)]$ kubectl delete -n portieris cm/image-policy-crds
         ~(keystone_admin)]$ kubectl delete -n portieris serviceaccounts/portieris
 

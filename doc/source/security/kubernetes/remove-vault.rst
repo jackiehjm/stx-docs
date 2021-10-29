@@ -23,23 +23,20 @@ resources created by the Armada installation. For more information, see
 
         $ system application-remove vault
 
-#.  \(Optional\) If you want to reinstall Vault, and only retain Vault data
-    stored in PVCs, use the following command:
+
+#.  Reinstall Vault, if required using the following command:
 
     .. code-block:: none
 
-        $ kubectl delete secrets -n vault vault-server-tls
+        $ system application-apply vault
 
-
-    #.  Reinstall Vault, if required using the following command:
+    .. note::
+        It is recommended to do a complete remove of all resources if you want
+        to reinstall Vault.
 
         .. code-block:: none
 
-            $ system application-apply vault
-
-        .. note::
-            It is recommended to do a complete remove of all resources if you
-            want to reinstall Vault.
+            $ kubectl delete ns vault
 
 
 #.  To completely remove Vault, including PVCs \(PVCs are intended to
