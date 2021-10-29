@@ -42,16 +42,55 @@ Collect Tool Caveats and Usage
 
         .. code-block:: none
 
-            (keystone_admin)$ collect -–all
+            (keystone_admin)$ collect --all
+
+        You can also use the short form ``-a`` for this option.
+
+        .. note::
+            Hosts or subclouds explicitly added with the ``--all`` option will
+            be ignored.
 
     -   For large deployments:
 
         .. code-block:: none
 
+            (keystone_admin)$ collect host1 host2 host3
+
+        Or you can use the ``--list`` option. This syntax is deprecated.
+
+        .. code-block:: none
+
             (keystone_admin)$ collect --list host1 host2 host3
 
+        You can also use the short form ``-l`` for this option.
 
--   For systems with an up-time of more than 2 months, use the date range options.
+        .. note::
+            Systems and subclouds are collected in parallel to reduce the
+            overall collection time. Use the ``--inline`` (or ``-in``) option
+            to collect serially.  ``--inline`` can be combined with the
+            ``--all`` option.
+
+    -   For subcloud deployments:
+
+        .. code-block:: none
+
+            (keystone_admin)$ collect --subcloud subcloud1 subcloud2 subcloud3
+
+        You can also use the short form ``-sc`` for this option. The
+        ``--subcloud`` and ``--all`` options can be combined.
+
+        .. code-block:: none
+
+            (keystone_admin)$ collect --all --subcloud
+
+
+        .. note::
+           The ``--all`` (``-a``) option is not recommended with large subcloud
+           deployments due to disk storage requirements.
+
+
+-   For systems with an up-time of more than 2 months, use the date range
+    options. The default behavior is to collect one month of logs.
 
     Use ``--start-date`` for the collection of logs on and after a given date:
 
@@ -90,9 +129,9 @@ Collect Tool Caveats and Usage
     before collecting logs for a node that is rebooting indefinitely.
 
 -   You may be required to run the local :command:`collect` command if the
-    collect tool running from the active controller node fails to collect
-    logs from one of the system nodes. Execute the :command:`collect` command
-    using the console or BMC connection on the node that displays the failure.
+    collect tool running from the active controller node fails to collect logs
+    from one of the system nodes. Execute the :command:`collect` command using
+    the console or |BMC| connection on the node that displays the failure.
 
 .. only:: partner
 
