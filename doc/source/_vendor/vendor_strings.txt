@@ -76,3 +76,5 @@
 .. |ovs-dpdk| replace:: ovs-dpdk
 
 .. |vswitch-label| replace:: openvswitch=enabled
+
+.. |registry-url| replace:: https://hub.docker.com/layers
