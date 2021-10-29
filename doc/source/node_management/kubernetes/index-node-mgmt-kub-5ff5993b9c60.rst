@@ -202,6 +202,18 @@ Interface IP address provisioning
 
    node_interfaces/interface-ip-address-provisioning-using-the-cli
 
+
+***************
+NIC replacement
+***************
+
+.. toctree::
+   :maxdepth: 1
+
+   node_interfaces/replace-a-nic-with-a-different-vendor-or-device-id-b406c1c190a9
+   node_interfaces/nic-replacement-with-the-same-vendor-and-device-id-32942b7b05e5
+
+
 ----
 LLDP
 ----
@@ -212,6 +224,7 @@ LLDP
    lldp/lldp-overview
    lldp/viewing-lldp-information-using-horizon
    lldp/viewing-lldp-neighbor-information-using-the-cli
+
 
 ---------------------
 Host hardware sensors
@@ -279,9 +292,14 @@ Node inventory tasks
    node_inventory_tasks/starting-starlingx
    node_inventory_tasks/shutting-down-starlingx
 
+
+.. _index_hardware-acceleration-devices:
+
 -----------------------------
 Hardware acceleration devices
 -----------------------------
+
+.. _index-intel-n3000-support:
 
 ************************
 Intel N3000 FPGA support
@@ -314,11 +332,25 @@ Common device management tasks
 ***********************************************
 vRAN Accelerator ACC100 Adapter \(Mount Bryce\)
 ***********************************************
+
 .. toctree::
    :maxdepth: 1
 
    hardware_acceleration_devices/enabling-mount-bryce-hw-accelerator-for-hosted-vram-containerized-workloads
    hardware_acceleration_devices/set-up-pods-to-use-sriov
+
+
+
+****************************
+N3000 and ACC100 replacement
+****************************
+
+.. toctree::
+   :maxdepth: 1
+
+   hardware_acceleration_devices/fec-replacement-with-different-vendor-or-device-id-b1ab1440e15f
+   hardware_acceleration_devices/n3000-and-acc100-replacement-with-the-same-vendor-and-device-id-cccabcdc5d43
+
 
 
 *******************
