@@ -185,9 +185,9 @@ and clients for a non-admin user.
 
             For example, to use the container images from the WRS AWS ECR:
 
-            .. code-block:: none
+            .. parsed-literal::
 
-                $ ./configure_client.sh -t platform -r my-openrc.sh -k user-kubeconfig -w $HOME/remote_cli_wd -p 625619392498.dkr.ecr.us-west-2.amazonaws.com/docker.io/starlingx/stx-platformclients:stx.5.0-v1.4.3
+                $ ./configure_client.sh -t platform -r my-openrc.sh -k user-kubeconfig -w $HOME/remote_cli_wd -p |registry-url|/starlingx/stx-platformclients:stx.5.0-v1.4.3
 
             If you specify repositories that require authentication, you must
             perform a :command:`docker login` to that repository before using
