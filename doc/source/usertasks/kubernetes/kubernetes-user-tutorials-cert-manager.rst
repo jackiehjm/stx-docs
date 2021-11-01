@@ -44,8 +44,7 @@ supports the following general modes of operation:
     CERTIFICATE specs), in order to renew the CERTIFICATE and update the
     Kubernetes SECRET holding the certificate.
 
-    .. figure:: /usertasks/figures/figure_1_cert_manager.png
-        :scale: 100%
+    .. figure:: /usertasks/kubernetes/figures/figure_1_cert_manager.png
 
 -   Providing an Internal Certificate Authority
 
@@ -76,8 +75,7 @@ supports the following general modes of operation:
     CERTIFICATE specs), in order to renew the CERTIFICATE and update the
     Kubernetes SECRET holding the certificate.
 
-    .. figure:: /usertasks/figures/figure_2_cert_manager.png
-        :scale: 100%
+    .. figure:: /usertasks/kubernetes/figures/figure_2_cert_manager.png
 
 -   Combination of the above two modes
 
