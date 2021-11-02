@@ -60,7 +60,8 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
 
 .. _security-configure-container-backed-remote-clis-and-clients-d70e93:
 
-#.  On the Controller, configure a Kubernetes service account for user on the remote client.
+#.  On the Controller, configure a Kubernetes service account for users on the
+    remote client.
 
     You must configure a Kubernetes service account on the target system
     and generate a configuration file based on that service account.
@@ -132,7 +133,7 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
 
 			~(keystone_admin)]$ OAM_IP=$(system oam-show |grep oam_floating_ip| awk '{print $4}')
 
-        #.  AIO-SX uses <oam\_ip> instead of <oam\_floating\_ip>. The
+        #.  |AIO-SX| uses <oam\_ip> instead of <oam\_floating\_ip>. The
             following shell code ensures that <OAM\_IP> is assigned the correct
             IP address.
 
@@ -242,12 +243,9 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
 
     #.  Run the :command:`configure\_client.sh` script.
 
-        .. code-block:: none
+        .. parsed-literal::
 
-            $ ./configure_client.sh -t platform -r admin_openrc.sh -k
-            admin-kubeconfig -w HOME/remote_cli_wd -p
-            625619392498.dkr.ecr.us-west-2.amazonaws.com/docker.io/starlingx/stx-platfo
-            rmclients:stx.5.0-v1.4.3
+            $ ./configure_client.sh -t platform -r admin_openrc.sh -k admin-kubeconfig -w HOME/remote_cli_wd -p |registry-url|/starlingx/stx-platformclients:stx.5.0-v1.4.3
 
         If you specify repositories that require authentication, as shown
         above, you must first perform a :command:`docker login` to that
@@ -300,13 +298,9 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
 
         For example, to use the container images from the WRS AWS ECR:
 
-        .. code-block:: none
+        .. parsed-literal::
 
-            $ ./configure_client.sh -t platform -r admin-openrc.sh -k
-            admin-kubeconfig -w $HOME/remote_cli_wd -p
-            625619392498.dkr.ecr.us-west-2.amazonaws.com/docker.io/starlingx/stx-platformclients:stx.5.0-v1.4.3
-
-
+            $ ./configure_client.sh -t platform -r admin-openrc.sh -k admin-kubeconfig -w $HOME/remote_cli_wd -p |registry-url|/starlingx/stx-platformclients:stx.5.0-v1.4.3
 
         If you specify repositories that require authentication, you must first
         perform a :command:`docker login` to that repository before using

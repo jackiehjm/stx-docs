@@ -38,8 +38,7 @@ options for the cert-manager ISSUERs they use:
 
             See below:
 
-            .. figure:: /usertasks/figures/figure_3_issuers_dist_cloud.png
-                :scale: 100%
+            .. figure:: /usertasks/kubernetes/figures/figure_3_issuers_dist_cloud.png
 
             The RootCA Certificate and Intermediate |CA| Certificates are
             created/renewed automatically by |prod|.
