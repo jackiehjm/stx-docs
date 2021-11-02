@@ -119,13 +119,14 @@ of |prod| software.
 #.  Confirm that the system is healthy.
 
     Check the current system health status, resolve any alarms and other issues
-    reported by the :command:`health-query-upgrade` command, then recheck the
-    system health status to confirm that all **System Health** fields are set
-    to **OK**.
+    reported by the :command:`system health-query-upgrade` command, then
+    recheck the system health status to confirm that all **System Health**
+    fields are set to **OK**. For example:
 
     .. code-block:: none
 
         ~(keystone_admin)]$ system health-query-upgrade
+
         System Health:
         All hosts are provisioned: [OK]
         All hosts are unlocked/enabled: [OK]
@@ -137,6 +138,7 @@ of |prod| software.
         All kubernetes control plane pods are ready: [OK]
         Required patches are applied: [OK]
         License valid for upgrade: [OK]
+        No instances running on controller-1: [OK]
 
     By default, the upgrade process cannot be run and is not recommended to be
     run with Active Alarms present. However, management affecting alarms can be
@@ -228,6 +230,13 @@ of |prod| software.
 
             -   System data is being migrated from release N to release N+1.
 
+            .. note::
+                The upgrade process will take a minimum of 20 to 30 minutes to
+                complete.
+
+                You can view the upgrade progress on controller-1 using the
+                BMC console.
+
         -   data-migration-complete or upgrading-controllers:
 
             -   State entered when controller-1 upgrade is complete.
@@ -240,6 +249,10 @@ of |prod| software.
             -   State entered if data migration on controller-1 fails.
 
             -   Upgrade must be aborted.
+
+            .. note::
+                Review the /var/log/sysinv.log on the active controller for
+                more details on data migration failure.
 
     #.  Check the upgrade state.
 
@@ -279,8 +292,7 @@ of |prod| software.
         If it transitions to **unlocked-disabled-failed**, check the issue
         before proceeding to the next step. The alarms may indicate a
         configuration error. Check the result of the configuration logs on
-        controller-1, \(for example, Error logs in
-        controller1:/var/log/puppet\).
+        controller-1, \(for example, Error logs in controller1:/var/log/puppet\).
 
 #.  Set controller-1 as the active controller. Swact to controller-1.
 
@@ -321,6 +333,10 @@ of |prod| software.
             -   State entered when both controllers are running release nn.nn
                 software.
 
+        .. note::
+            |AIO-DX| or Controllers of Standard configurations can be
+            upgraded, using steps 1-9 above.
+
 #.  Check the system health to ensure that there are no unexpected alarms.
 
     .. code-block:: none
@@ -330,6 +346,9 @@ of |prod| software.
     Clear all alarms unrelated to the upgrade process.
 
 #.  If using Ceph storage backend, upgrade the storage nodes one at a time.
+
+    .. note::
+        Proceed to step 13 if no storage/worker node is present.
 
     The storage node must be locked and all OSDs must be down in order to do
     the upgrade.
