@@ -73,24 +73,24 @@ In this method you can run Ansible Restore playbook and point to controller-0.
             expects both the **initial_backup_dir** and **backup_filename**
             to be specified.
 
-    -   The backup\_filename is the platform backup tar file. It must be
+    -   The backup_filename is the platform backup tar file. It must be
         provided using the ``-e`` option on the command line, for example:
 
         .. code-block:: none
 
            -e backup\_filename= localhost_platform_backup_2019_07_15_14_46_37.tgz
 
-    -   The initial\_backup\_dir is the location on the Ansible control
+    -   The initial_backup_dir is the location on the Ansible control
         machine where the platform backup tar file is placed to restore the
         platform. It must be provided using ``-e`` option on the command line.
 
-    -   The :command:`admin\_password`, :command:`ansible\_become\_pass`,
-        and :command:`ansible\_ssh\_pass` need to be set correctly using
+    -   The :command:`admin_password`, :command:`ansible_become_pass`,
+        and :command:`ansible_ssh_pass` need to be set correctly using
         the ``-e`` option on the command line or in the Ansible secret file.
-        :command:`ansible\_ssh\_pass` is the password to the sysadmin user
+        :command:`ansible_ssh_pass` is the password to the sysadmin user
         on controller-0.
 
-    -   The :command:`ansible\_remote\_tmp` should be set to a new
+    -   The :command:`ansible_remote_tmp` should be set to a new
         directory \(not required to create it ahead of time\) under
         /home/sysadmin on controller-0 using the ``-e`` option on the command
         line.
@@ -106,7 +106,7 @@ In this method you can run Ansible Restore playbook and point to controller-0.
         the patches and prompt you to reboot the system. Then you will need to
         re-run Ansible Restore playbook.
 
-#.  After running the restore\_platform.yml playbook, you can restore the local
+#.  After running the restore_platform.yml playbook, you can restore the local
     registry images.
 
     .. note::
@@ -119,33 +119,33 @@ In this method you can run Ansible Restore playbook and point to controller-0.
 
     where optional-extra-vars can be:
 
-    -   The backup\_filename is the local registry backup tar file. It
+    -   The backup_filename is the local registry backup tar file. It
         must be provided using the ``-e`` option on the command line, for
         example:
 
         .. code-block:: none
 
-            -e backup\_filename= localhost_docker_local_registry_backup_2020_07_15_21_24_22.tgz
+            -e backup_filename= localhost_docker_local_registry_backup_2020_07_15_21_24_22.tgz
 
-    -   The initial\_backup\_dir is the location on the Ansible control
+    -   The initial_backup_dir is the location on the Ansible control
         machine where the platform backup tar file is located. It must be
         provided using ``-e`` option on the command line.
 
-    -   The :command:`ansible\_become\_pass`, and
-        :command:`ansible\_ssh\_pass` need to be set correctly using the
+    -   The :command:`ansible_become_pass`, and
+        :command:`ansible_ssh_pass` need to be set correctly using the
         ``-e`` option on the command line or in the Ansible secret file.
-        :command:`ansible\_ssh\_pass` is the password to the sysadmin user
+        :command:`ansible_ssh_pass` is the password to the sysadmin user
         on controller-0.
 
-    -   The backup\_dir should be set to a directory on controller-0.
+    -   The backup_dir should be set to a directory on controller-0.
         The directory must have sufficient space for local registry backup
-        to be copied. The backup\_dir is set using the ``-e`` option on the
+        to be copied. The backup_dir is set using the ``-e`` option on the
         command line.
 
-    -   The :command:`ansible\_remote\_tmp` should be set to a new
+    -   The :command:`ansible_remote_tmp` should be set to a new
         directory on controller-0. Ansible will use this directory to copy
         files, and the directory must have sufficient space for local
-        registry backup to be copied. The :command:`ansible\_remote\_tmp`
+        registry backup to be copied. The :command:`ansible_remote_tmp`
         is set using the ``-e`` option on the command line.
 
     For example, run the local registry restore playbook, where

@@ -42,7 +42,7 @@ following conditions:
     require remote install using Redfish.
 
 -   Redfish |BMC| is required for orchestrated subcloud upgrades. The install
-    values, and :command:`bmc\_password` for each |AIO-SX| subcloud controller
+    values, and :command:`bmc_password` for each |AIO-SX| subcloud controller
     must be provided using the following |CLI| command on the System Controller.
 
     .. note::
@@ -84,7 +84,7 @@ following conditions:
     each subcloud, use the following command to remove the previous upgrade
     data:
 
-    :command:`sudo rm /opt/platform-backup/upgrade\_data\*`
+    :command:`sudo rm /opt/platform-backup/upgrade_data\*`
 
 .. rubric:: |proc|
 
@@ -93,7 +93,7 @@ following conditions:
 #.  Review the upgrade status for the subclouds.
 
     After the System Controller upgrade is completed, wait for 10 minutes for
-    the **load\_sync\_status** of all subclouds to be updated.
+    the **load_sync_status** of all subclouds to be updated.
 
     To identify which subclouds are upgrade-current \(in-sync\), use the
     :command:`subcloud list` command. For example:
@@ -169,7 +169,7 @@ following conditions:
         upgraded in parallel, or serially.
 
         If this is not specified using the CLI, the values for
-        :command:`subcloud\_update\_type` defined for each subcloud group will
+        :command:`subcloud_update_type` defined for each subcloud group will
         be used by default.
 
     **max-parallel-subclouds**
@@ -177,7 +177,7 @@ following conditions:
         \(default 20\).
 
         If this is not specified using the CLI, the values for
-        :command:`max\_parallel\_subclouds` defined for each subcloud group
+        :command:`max_parallel_subclouds` defined for each subcloud group
         will be used by default.
 
     **stop-on-failure**

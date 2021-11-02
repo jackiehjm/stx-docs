@@ -86,12 +86,12 @@ configuration is required in order to use :command:`helm`.
         .. note::
             In order for your remote host to trust the certificate used by
             the |prod-long| K8S API, you must ensure that the
-            ``k8s\_root\_ca\_cert`` specified at install time is a trusted
+            ``k8s_root_ca_cert`` specified at install time is a trusted
             |CA| certificate by your host. Follow the instructions for adding
             a trusted |CA| certificate for the operating system distribution
             of your particular host.
 
-            If you did not specify a ``k8s\_root\_ca\_cert`` at install
+            If you did not specify a ``k8s_root_ca_cert`` at install
             time, then specify ``--insecure-skip-tls-verify``, as shown below.
 
         The following example configures the default ~/.kube/config. See the

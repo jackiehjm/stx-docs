@@ -33,13 +33,13 @@ your server is isolated from the public Internet.
             username: <your_my-registry.io_username>
             password: <your_my-registry.io_password>
 
-    Where ``<your\_my-registry.io\_username>`` and
-    ``<your\_my-registry.io\_password>`` are your login credentials for the
+    Where ``<your_my-registry.io_username>`` and
+    ``<your_my-registry.io_password>`` are your login credentials for the
     ``<my-registry.io>`` private Docker registry.
 
     .. note::
         ``<my-registry.io>`` must be a DNS name resolvable by the dns servers
-        configured in the ``dns\_servers:`` structure of the ansible bootstrap
+        configured in the ``dns_servers:`` structure of the ansible bootstrap
         override file /home/sysadmin/localhost.yml.
 
 #.  For any additional local registry images required, use the full image name

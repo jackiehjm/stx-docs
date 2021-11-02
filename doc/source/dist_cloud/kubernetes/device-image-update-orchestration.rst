@@ -54,7 +54,7 @@ device image updates, including |FPGA| updates.
 
         .. code-block:: none
 
-            ~(keystone_admin)]$ system host-device-list <hostname_or_id> 
+            ~(keystone_admin)]$ system host-device-list <hostname_or_id>
 
         To list devices from the central cloud, run:
 
@@ -143,7 +143,7 @@ device image updates, including |FPGA| updates.
         parallel, or serially.
 
         If this is not specified using the |CLI|, the values for
-        :command:`subcloud\_update\_type` defined for each subcloud group will
+        :command:`subcloud_update_type` defined for each subcloud group will
         be used by default.
 
     **max-parallel-subclouds**
@@ -151,7 +151,7 @@ device image updates, including |FPGA| updates.
         \(default 20\).
 
         If this is not specified using the |CLI|, the values for
-        :command:`max\_parallel\_subclouds` defined for each subcloud group
+        :command:`max_parallel_subclouds` defined for each subcloud group
         will be used by default.
 
     **stop-on-failure**
@@ -198,7 +198,7 @@ device image updates, including |FPGA| updates.
         | created_at             | 2020-08-11T18:13:40.576659 |
         | updated_at             | 2020-08-11T18:13:56.525459 |
         +------------------------+----------------------------+
-        
+
 
 #.  Monitor progress as the strategy is applied.
 
@@ -217,7 +217,7 @@ device image updates, including |FPGA| updates.
             +-----------+-------+----------+------------------------------+----------------------------+----------------------------+
             | subcloud3 |     2 | applying | apply phase is 18% complete  | 2020-08-13 14:12:13.457588 | None                       |
             +-----------+-------+----------+------------------------------+----------------------------+----------------------------+
-            
+
 
     -   To monitor the step currently being performed on a specific subcloud, do the following:
 
