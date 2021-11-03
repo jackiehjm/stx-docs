@@ -9,7 +9,7 @@ Replace a NIC with a different vendor or device-id
 The following procedure allows the replacement of a NIC on a host, without
 requiring a host or system (in case of |AIO-SX|) re-install and
 re-configuration, in the case of the replaced NIC having the different vendor
-or device id info.
+or device ID information.
 
 The normal approach to making such a change would be to do a ``system
 host-delete``, a ``system host-add`` (re-install) and a re-configure of the
@@ -37,20 +37,21 @@ reapply it after replacing the NIC card.
   to take effect.  After doing so, you must lock the host again to reconfigure
   the interface with the desired or previous configuration.
 
-* If the affected interfaces are unconfigured (class is none and “used by i/f”
-  is empty) the procedure described in
+* If the affected interfaces are unconfigured (class is ``none`` and the
+  :guilabel:`used by i/f` column of :command:`host-if-list` output is empty),
+  then the procedure described in
   :ref:`nic-replacement-with-the-same-vendor-and-device-id-32942b7b05e5` can be
   followed.
 
 .. rubric:: |proc|
 
 .. note::
-   UUID values in the output shown below have been truncated for display
-   purposes. When using a UUID value as input to a command, use the entire 36
+   |UUID| values in the output shown below have been truncated for display
+   purposes. When using a |UUID| value as input to a command, use the entire 36
    character string.
 
-#.  If the host in question is the single host of an |AIO-SX| subcloud deployment,
-    set the subcloud as managed
+#.  If the host in question is the single host of an |AIO-SX| subcloud
+    deployment, set the subcloud as unmanaged.
 
     .. code-block:: none
 
@@ -292,10 +293,11 @@ reapply it after replacing the NIC card.
           ~(keystone_admin)]$ system host-if-add <hostname> <previous-sub-interface-name> <iftype [ae,vlan,vf,ethernet]> <interface-name> <previous-parameters>
 
 
-#.  Reconnect the sub-interface with desired network (if it was previously
+#.  Reconnect the sub-interface with the desired network (if it was previously
     connected).
 
-    #. For a platform class interface, select the respective network that supports the desired new sub-interface.
+    #. For a platform class interface, select the respective network that
+       supports the desired new sub-interface.
 
        .. code-block:: none
 
@@ -332,11 +334,9 @@ reapply it after replacing the NIC card.
 
        ~(keystone_admin)]$ system host-unlock <hostname>
 
-#.  If the host in question is the single host of an |AIO-SX| subcloud deployment,
-    set the subcloud as managed
+#.  If the host in question is the single host of an |AIO-SX| subcloud
+    deployment, set the subcloud as managed.
 
     .. code-block:: none
 
        ~(keystone_admin)]$ dcmanager subcloud manage <subcloud-name>
-
-

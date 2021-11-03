@@ -1,15 +1,15 @@
 .. _fec-replacement-with-different-vendor-or-device-id-b1ab1440e15f:
 
-===============================================================
-N3000 and ACC100 replacement with different vendor or device-id
-===============================================================
+==============================================================
+Replace N3000 and ACC100 with a different vendor and device-id
+==============================================================
 
 .. rubric:: |context|
 
-The following procedure allows the replacement of a N3000 or ACC100 device on a
-host, without requiring a host or system (in case of |AIO-SX|) re-install and
+The following procedure allows the replacement of an N3000 or ACC100 device on
+a host, without requiring a host or system (in case of |AIO-SX|) re-install and
 re-configuration, in the case of the replaced device having different vendor or
-device id info.
+device ID information.
 
 The normal approach to doing such a change would be to do a ``system
 host-delete``, a ``system host-add`` (re-install) and a re-configure of the
@@ -68,7 +68,7 @@ For information on replacing an N3000 or ACC100 with the same model, see
         | pci_0000_da_00_0 | 0000:da:00.0 | 0b4000   | 8086      | 37c8      | Co-processor              | Intel Corporation       | C62x Chipset QuickAssist Technology | 1         | True    |
         +------------------+--------------+----------+-----------+-----------+---------------------------+-------------------------+-------------------------------------+-----------+---------+
 
-    N3000 has vendor ID 8086 and device IDs 0b30 and 0d8f ACC100 has vendor ID
+    N3000 has vendor ID 8086 and device IDs 0b30 and 0d8f. ACC100 has vendor ID
     8086 and device ID 0d5c.
 
 #.  Record the current device configuration.
@@ -96,14 +96,14 @@ For information on replacing an N3000 or ACC100 with the same model, see
         +-----------------------+---------------------------------------------------------------------------------------------------------+
 
 
-#.  Remove the |VF| configuration (if any) for device 0d8f (N3000) or 0d5c
+#.  Remove the |VF| configuration, if any, for device 0d8f (N3000) or 0d5c
     (ACC100).
 
     .. code-block::
 
         ~(keystone_admin)]$ system host-device-modify <hostname> <device-name-or-address> --vf-driver none -N 0
 
-#.  Remove the driver configuration (if any) for device 0d8f (N3000) or 0d5c
+#.  Remove the driver configuration, if any, for device 0d8f (N3000) or 0d5c
     (ACC100).
 
     .. code-block::
@@ -122,7 +122,7 @@ For information on replacing an N3000 or ACC100 with the same model, see
 
 #.  Reconfigure the device 0d8f (N3000) or 0d5c (ACC100).
 
-    The new device’s number of |VFs| is limited by the parameter
+    The new device's number of |VFs| is limited by the parameter
     ``sriov_totalvfs``.
 
     .. code-block::
@@ -130,7 +130,7 @@ For information on replacing an N3000 or ACC100 with the same model, see
         ~(keystone_admin)]$ system host-device-modify <hostname> <name-or-address> --driver <vf-driver> --vf-driver <vf driver> -N <number-of-vfs> --enable true
 
 #.  If the replaced |PCI| card is an N3000 and its |FPGA| was not
-    pre-loaded with an updated image, follow the steps described
+    pre-loaded with an updated image, follow the steps described in
     :ref:`index-intel-n3000-support`.
 
 #.  Unlock the host.
@@ -139,8 +139,8 @@ For information on replacing an N3000 or ACC100 with the same model, see
 
         ~(keystone_admin)]$ system host-unlock <hostname>
 
-#.  If the host in question is the single host of an |AIO-SX| subcloud deployment,
-    set the subcloud as managed.
+#.  If the host in question is the single host of an |AIO-SX| subcloud
+    deployment, set the subcloud as managed.
 
     .. code-block::
 

@@ -1,13 +1,13 @@
 .. _n3000-and-acc100-replacement-with-the-same-vendor-and-device-id-cccabcdc5d43:
 
-===============================================================
-N3000 and ACC100 replacement with the same vendor and device-id
-===============================================================
+===========================================================
+Replace N3000 and ACC100 with the same vendor and device-id
+===========================================================
 
-The following procedure allows the replacement of a N3000 or ACC100 device on a
-host, without requiring a host or system (in case of |AIO-SX|) re-install and
+The following procedure allows the replacement of an N3000 or ACC100 device on
+a host, without requiring a host or system (in case of |AIO-SX|) re-install and
 re-configuration, in the case of the replaced device having the same vendor and
-device id info.
+device ID information.
 
 The normal approach to doing such a change would be to do a ``system
 host-delete``, a ``system host-add`` (re-install) and a re-configure of the
@@ -20,8 +20,8 @@ result in a full system re-install and full system re-configuration.
 
 .. rubric:: |prereq|
 
-The vendor and device-id of currently installed |PCI| card can be
-obtained with:
+The vendor and device-id of currently installed |PCI| card can be obtained
+with:
 
 .. code-block:: none
 
