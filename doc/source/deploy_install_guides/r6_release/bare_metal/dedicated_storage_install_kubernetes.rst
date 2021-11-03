@@ -461,8 +461,8 @@ Optionally Configure PCI-SRIOV Interfaces
 
            # Modify configuration for these interfaces
            # Configuring them as ‘pci-sriov’ class interfaces, MTU of 1500 and named sriov#
-           system host-if-modify -m 1500 -n sriov0 -c pci-sriov ${NODE} <sriov0-if-uuid>
-           system host-if-modify -m 1500 -n sriov1 -c pci-sriov ${NODE} <sriov1-if-uuid>
+           system host-if-modify -m 1500 -n sriov0 -c pci-sriov ${NODE} <sriov0-if-uuid> -N <num_vfs>
+           system host-if-modify -m 1500 -n sriov1 -c pci-sriov ${NODE} <sriov1-if-uuid> -N <num_vfs>
 
            # If not created already, create Data Networks that the 'pci-sriov'
            # interfaces will be connected to
