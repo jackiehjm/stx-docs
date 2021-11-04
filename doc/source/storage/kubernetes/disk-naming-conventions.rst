@@ -18,7 +18,7 @@ complement on a host.
 
 In the Horizon Web interface and in |CLI| output, both identifications are
 shown. For example, the output of the :command:`system host-disk-show`
-command includes both the **device\_node** and the **device\_path**.
+command includes both the **device_node** and the **device_path**.
 
 .. code-block:: none
 

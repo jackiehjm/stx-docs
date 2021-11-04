@@ -12,7 +12,7 @@ connected to the Central Cloud over L3 networks.
 The Central Cloud has two regions: RegionOne, used to manage the nodes in the
 Central Cloud, and System Controller, used to manage the subclouds in the
 |prod-dc| system. You can select RegionOne or System Controller regions from the
-Horizon Web interface or by setting the <OS\_REGION\_NAME> environment variable
+Horizon Web interface or by setting the <OS_REGION_NAME> environment variable
 if using the CLI.
 
 **Central Cloud**
