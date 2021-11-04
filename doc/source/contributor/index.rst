@@ -19,6 +19,7 @@ Contribute to documentation
    doc_contribute_guide
    api_contribute_guide
    release_note_contribute_guide
+   blog_contribute_guide
 
 ------------------
 Contribute to code
