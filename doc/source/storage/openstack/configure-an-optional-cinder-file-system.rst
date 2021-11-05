@@ -24,14 +24,14 @@ this section.
 *   The recommended size for the file system must be at least twice as large as
     the largest converted image from qcow2 to raw.
 
-*   The conversion file system can be added before or after wr-openstack is
-    applied.
+*   The conversion file system can be added before or after |prefix|-openstack
+    is applied.
 
 *   The conversion file system must be added on both controllers. Otherwise,
     |prefix|-openstack will not use the new file system.
 
-*   If the conversion file system is added after wr-openstack is applied,
-    changes to wr-openstack will only take effect once the application is
+*   If the conversion file system is added after |prefix|-openstack is applied,
+    changes to |prefix|-openstack will only take effect once the application is
     reapplied.
 
 *   The **image-conversion** file system can only be added on the controllers, and
