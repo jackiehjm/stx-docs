@@ -36,6 +36,7 @@ Installation
     installing-a-subcloud-using-redfish-platform-management-service
     installing-a-subcloud-without-redfish-platform-management-service
     reinstalling-a-subcloud-with-redfish-platform-management-service
+    subcloud-deployment-with-local-installation-4982449058d5
 
 ---------
 Operation
