@@ -175,6 +175,12 @@ conditions are in place:
     After you unlock controller-0, storage nodes become available and Ceph
     becomes operational.
 
+#.  For an |AIO-SX| system, run the following command:
+
+    .. code-block:: none
+
+        $ system service-parameter-apply kubernetes
+
 #.  If the system is a Distributed Cloud system controller, restore the **dc-vault**
     using the restore_dc_vault.yml playbook. Perform this step after unlocking
     controller-0:
