@@ -67,8 +67,7 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
 
 
 -   To show information about the oam-floating-ip field for a specific
-    subcloud, use the :command:`subcloud
-    show`<<subcloud-name\>>:command:`--detail` command.
+    subcloud, use the :command:`subcloud show <subcloud-name> --detail` command.
 
     For example,
 
@@ -137,7 +136,7 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
         <<filepath>> --sysadmin-password <<password>>
 
 
-    where``--deploy-config`` must reference the deployment configuration file.
+    where ``--deploy-config`` must reference the deployment configuration file.
     For more information, see either,
 
 .. xbooklink |inst-doc|: :ref:`The
