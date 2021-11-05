@@ -102,7 +102,7 @@ On completion of the script, the command prompt is displayed.
 
 .. rubric:: |result|
 
-The |LDAP| account is created. For information about the user login process, see
-ref:`For StarlingX and Platform OpenStack CLIs from a Local LDAP Linux Account
-Login <establish-keystone-credentials-from-a-linux-account>`.
+The |LDAP| account is created. For information about the user login process,
+see :ref:`For StarlingX and Platform OpenStack CLIs from a Local LDAP Linux
+Account Login <establish-keystone-credentials-from-a-linux-account>`.
 
