@@ -218,8 +218,8 @@ Configure controller-0
      system host-if-modify controller-0 $OAM_IF -c platform
      system interface-network-assign controller-0 $OAM_IF oam
 
-     To configure a vlan or aggregated ethernet interface, see :ref:`Node
-     Interfaces <node-interfaces-index>`.
+   To configure a vlan or aggregated ethernet interface, see :ref:`Node
+   Interfaces <node-interfaces-index>`.
 
 #. Configure the MGMT interface of controller-0 and specify the attached
    networks of both "mgmt" and "cluster-host".
