@@ -6,6 +6,10 @@
 StarlingX REST API Applications and the Web Administration Server Certificate
 =============================================================================
 
+.. note::
+    This procedure is deprecated. For up-to-date information, refer to:
+    :ref:`starlingx-rest-api-applications-and-the-web-admin-server-cert-9196c5794834`.
+
 By default, |prod| provides HTTP access to REST API application endpoints
 \(Keystone, Barbican and |prod|\) and the web administration server. For
 improved security, you can enable HTTPS access. When HTTPS access is

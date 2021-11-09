@@ -14,7 +14,7 @@ of tokens.
 
 .. note::
 
-    For details on how installing, configuring, and using oidc-auth-apps,
+    For details on installing, configuring, and using oidc-auth-apps,
     refer to :ref:`User Authentication Using Windows Active Directory
     <user-authentication-using-windows-active-directory-security-index>`.
 
@@ -41,7 +41,7 @@ This certificate is stored in Kubernetes TLS secret ``local-dex.tls``.
 The |OIDC| trusted |CA| certificate is the |CA| certificate that signs the
 |OIDC| client and identity server certificate.
 
-It has to be installed for |OIDC| client to verify identity server’s
+It has to be installed for |OIDC| client to verify identity server's
 certificate for HTTPS connection.
 
 |OIDC| trusted |CA| certificate is stored in Kubernetes secret
@@ -54,7 +54,7 @@ Directory that |OIDC| is configured to proxy authentication requests to.
 
 In order for |OIDC| identity provider (as the authentication proxy) to securely
 connect and authenticate users to the Windows Active Directory by HTTPS, the
-|WAD|’s |CA| certificate needs to installed and configured for |OIDC| to trust
+|WAD|'s |CA| certificate needs to installed and configured for |OIDC| to trust
 the Windows Active Directory.
 
 -------------------------
@@ -74,15 +74,24 @@ Kubernetes secrets.
 Update/Renew OIDC certificates
 ------------------------------
 
-.. warning::
 
-    |OIDC| certificates are not auto renewed. They have to be updated manually
-    by updating the secrets from the new certificate files and restart the
-    ``oidc-auth`` application.
+The |OIDC| client and identity provider certificate, if configured via
+cert-manager (as described in :ref:`Configure OIDC Auth Applications
+<configure-oidc-auth-applications>`), is auto-renewed.
+
+However, the |OIDC| client and identity provider trusted |CA| certificate and
+the Windows Active Directory |CA| certificate are not auto renewed.  They have
+to be renewed manually by updating the secrets from the new certificate files
+and restarting the ``oidc-auth`` application.
 
 .. rubric:: |proc|
 
 #.  Update/renew |OIDC| client and identity provider server certificate:
+
+    .. note::
+        This step is only required if you are not using cert-manager for your
+        certificate as described in :ref:`Configure OIDC Auth Applications
+        <configure-oidc-auth-applications>`.
 
     .. code-block:: none
 
@@ -106,4 +115,3 @@ Update/Renew OIDC certificates
 
         ~(keystone_admin)]$ kubectl rollout restart deployment oidc-dex -n kube-system
         ~(keystone_admin)]$ kubectl rollout restart deployment stx-oidc-client -n kube-system
-

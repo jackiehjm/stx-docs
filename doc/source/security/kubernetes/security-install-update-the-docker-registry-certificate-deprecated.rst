@@ -6,6 +6,10 @@
 Local Registry Server Certificates
 ==================================
 
+.. note::
+    This procedure is deprecated. For up-to-date information, refer to:
+    :ref:`configure-docker-registry-certificate-after-installation-c519edbfe90a`.
+
 For the Local Docker Registry, HTTPS is always enabled. By default, a
 self-signed server certificate and key is generated and installed for this
 endpoint. However, it is strongly recommended that you update the server

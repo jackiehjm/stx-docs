@@ -102,10 +102,12 @@ HTTPS Certificate Management
 
    https-access-overview
    utility-script-to-display-certificates
-   starlingx-rest-api-applications-and-the-web-administration-server
+   starlingx-rest-api-applications-and-the-web-admin-server-cert-9196c5794834
    kubernetes-certificates-f4196d7cae9c
    etcd-certificates-c1fc943e4a9c
-   security-install-update-the-docker-registry-certificate
+   kubernetes-root-ca-certificate
+   configure-rest-api-applications-and-web-administration-server-certificates-after-installation-6816457ab95f
+   configure-docker-registry-certificate-after-installation-c519edbfe90a
    oidc-client-dex-server-certificates-dc174462d51a
    portieris-server-certificate-a0c7054844bd
    vault-server-certificate-8573125eeea6
@@ -259,6 +261,16 @@ Security Features
    secure-https-external-connectivity
    security-hardening-firewall-options
    isolate-starlingx-internal-cloud-management-network
+
+************************
+Deprecated Functionality
+************************
+
+.. toctree::
+   :maxdepth: 1
+
+   starlingx-rest-api-applications-and-the-web-administration-server-deprecated
+   security-install-update-the-docker-registry-certificate-deprecated
 
 ***************************************
 Appendix: Locally creating certificates
