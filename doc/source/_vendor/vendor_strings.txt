@@ -80,3 +80,5 @@
 .. |vswitch-label| replace:: openvswitch=enabled
 
 .. |registry-url| replace:: https://hub.docker.com/layers
+
+.. |only-target| replace:: StarlingX
