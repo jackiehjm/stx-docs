@@ -2,9 +2,9 @@
 .. btn1592861794542
 .. _upgrading-all-in-one-duplex-or-standard:
 
-======================================
+====================================
 Upgrade All-in-One Duplex / Standard
-======================================
+====================================
 
 You can upgrade the |prod| Duplex or Standard configurations with a new release
 of |prod| software.
@@ -141,9 +141,9 @@ of |prod| software.
         No instances running on controller-1: [OK]
 
     By default, the upgrade process cannot be run and is not recommended to be
-    run with Active Alarms present. However, management affecting alarms can be
-    ignored with the :command:`--force` option with the :command:`system
-    upgrade-start` command to force the upgrade process to start.
+    run with active alarms present. Use the command :command:`system upgrade-start --force`
+    to force the upgrade process to start and ignore non-management-affecting
+    alarms.
 
     .. note::
         It is strongly recommended that you clear your system of any and all
@@ -169,9 +169,9 @@ of |prod| software.
         | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
-    This will make a copy of the system data to be used in the upgrade.
-    Configuration changes are not allowed after this point until the swact to
-    controller-1 is completed.
+    This will make a copy of the upgrade data onto a DRBD file system to be used
+     in the upgrade. Configuration changes are not allowed after this point
+     until the swact to controller-1 is completed.
 
     The following upgrade state applies once this command is executed:
 
@@ -193,7 +193,7 @@ of |prod| software.
 
     .. note::
         Use the command :command:`system upgrade-start --force` to force the
-        upgrades process to start and to ignore management affecting alarms.
+        upgrade process to start and ignore non-management-affecting alarms.
         This should ONLY be done if you feel these alarms will not be an issue
         over the upgrades process.
 
@@ -235,7 +235,7 @@ of |prod| software.
                 complete.
 
                 You can view the upgrade progress on controller-1 using the
-                BMC console.
+                serial console.
 
         -   data-migration-complete or upgrading-controllers:
 
