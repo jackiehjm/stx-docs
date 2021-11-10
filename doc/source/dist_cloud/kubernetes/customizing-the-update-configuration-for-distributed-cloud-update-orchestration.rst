@@ -74,7 +74,7 @@ independently.
         .. note::
 
             This parameter is only applicable to hosted application VMs with
-            the stx-openstack application.
+            the |prefix|-openstack application.
 
         migrate or stop-start — determines whether hosted application VMs are
         migrated or stopped and restarted when a worker host is upgraded
@@ -89,7 +89,7 @@ independently.
 For information about creating and applying a patch strategy, see :ref:`Update
 Management for Distributed Cloud <update-management-for-distributed-cloud>`.
 
-**Related information**  
+**Related information**
 
 .. seealso::
 
