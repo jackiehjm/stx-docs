@@ -37,11 +37,11 @@ follows:
 
 .. rubric:: |prereq|
 
-For |AIO-SX| subclouds, end user container images in `registry.local` will be
-backed up during the upgrade process. This only includes images other than
-|prod| system and application images. These images are limited to 5 GBytes in
-total size. If the system contains more than 5 GBytes of these images, the
-upgrade start will fail.
+For all deployment configurations, end user container images in
+`registry.local` will be backed up during the upgrade process. This only
+includes images other than |prod| system and application images. These images
+are limited to 5 GB in total size. If the system contains more than 5 GB of
+these images, the upgrade start will fail.
 
 The following prerequisites apply to a |prod-dc| upgrade management service.
 
@@ -74,15 +74,6 @@ The following prerequisites apply to a |prod-dc| upgrade management service.
 
 -   The subclouds must all be |AIO-SX|, and must use the Redfish
     platform management service.
-
--   **Remove Non GA Applications**:
-
-    -   Use the :command:`system application-remove` and :command:`system
-        application-delete` commands to remove the application on the
-        subclouds:
-
-    -   Remove any non-GA and |prefix|-openstack applications, from the
-        |prod-dc| system, if they exist.
 
 .. only:: partner
 
