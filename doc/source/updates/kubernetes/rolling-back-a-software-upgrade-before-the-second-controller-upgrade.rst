@@ -57,7 +57,7 @@ has upgraded successfully.
         complete.
 
         You can view the downgrade progress on controller-1 using the
-        BMC console.
+        serial console.
 
 #.  Unlock controller-1.
 
