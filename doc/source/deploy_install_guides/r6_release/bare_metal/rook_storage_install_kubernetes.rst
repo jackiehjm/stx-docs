@@ -219,11 +219,11 @@ OpenStack-specific host configuration
 
 .. important::
 
-   **This step is required only if the StarlingX OpenStack application
-   (stx-openstack) will be installed.**
+   This step is required only if the StarlingX OpenStack application
+   (|prefix|-openstack) will be installed.
 
 #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
-   support of installing the stx-openstack manifest and helm-charts later.
+   support of installing the |prefix|-openstack manifest and helm-charts later.
 
    ::
 
@@ -233,7 +233,7 @@ OpenStack-specific host configuration
 
    StarlingX has |OVS| (kernel-based) vSwitch configured as default:
 
-   * Runs in a container; defined within the helm charts of stx-openstack
+   * Runs in a container; defined within the helm charts of |prefix|-openstack
      manifest.
    * Shares the core(s) assigned to the platform.
 
@@ -252,7 +252,7 @@ OpenStack-specific host configuration
      system modify --vswitch_type none
 
    Do not run any vSwitch directly on the host, instead, use the containerized
-   |OVS| defined in the helm charts of stx-openstack manifest.
+   |OVS| defined in the helm charts of |prefix|-openstack manifest.
 
    To deploy |OVS|-|DPDK|, run the following command:
 
@@ -449,11 +449,11 @@ OpenStack-specific host configuration
 
 .. important::
 
-   **This step is required only if the StarlingX OpenStack application
-   (stx-openstack) will be installed.**
+   This step is required only if the StarlingX OpenStack application
+   (|prefix|-openstack) will be installed.
 
 **For OpenStack only:** Assign OpenStack host labels to controller-1 in support
-of installing the stx-openstack manifest and helm-charts later.
+of installing the |prefix|-openstack manifest and helm-charts later.
 
 ::
 
@@ -583,11 +583,11 @@ OpenStack-specific host configuration
 
 .. important::
 
-   **This step is required only if the StarlingX OpenStack application
-   (stx-openstack) will be installed.**
+   This step is required only if the StarlingX OpenStack application
+   (|prefix|-openstack) will be installed.
 
 #. **For OpenStack only:** Assign OpenStack host labels to the worker nodes in
-   support of installing the stx-openstack manifest and helm-charts later.
+   support of installing the |prefix|-openstack manifest and helm-charts later.
 
    .. only:: starlingx
 
@@ -606,7 +606,7 @@ OpenStack-specific host configuration
          :end-before: ref1-end
 
 #. **For OpenStack only:** Set up disk partition for nova-local volume group,
-   which is needed for stx-openstack nova ephemeral disks.
+   which is needed for |prefix|-openstack nova ephemeral disks.
 
    ::
 

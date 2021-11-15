@@ -49,10 +49,11 @@ you can configure the DNS Server that owns `<domain_name>` with the OpenStack
 service names underneath the domain.
 
 For example:
-::
+
+.. parsed-literal::
 
   system service-parameter-add openstack helm endpoint_domain=my-starlingx-domain.my-company.com
-  system application-apply stx-openstack
+  system application-apply |prefix|-openstack
 
 This command updates the helm charts of all OpenStack services and restarts them.
 For example it would change `cinder‐api.openstack.svc.cluster.local` to

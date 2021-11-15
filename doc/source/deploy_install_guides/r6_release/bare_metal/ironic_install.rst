@@ -126,17 +126,17 @@ Configure Ironic network on deployed standard StarlingX
 Generate user Helm overrides
 ****************************
 
-Ironic Helm Charts are included in the stx-openstack application. By default,
-Ironic is disabled.
+Ironic Helm Charts are included in the |prefix|-openstack application. By
+default, Ironic is disabled.
 
 To enable Ironic, update the following Ironic Helm Chart attributes:
 
-::
+.. parsed-literal::
 
-   system helm-override-update stx-openstack ironic openstack \
-   --set network.pxe.neutron_subnet_alloc_start=10.10.20.10 \
-   --set network.pxe.neutron_subnet_gateway=10.10.20.1 \
-   --set network.pxe.neutron_provider_network=ironic-data
+      system helm-override-update |prefix|-openstack ironic openstack \
+      --set network.pxe.neutron_subnet_alloc_start=10.10.20.10 \
+      --set network.pxe.neutron_subnet_gateway=10.10.20.1 \
+      --set network.pxe.neutron_provider_network=ironic-data
 
 :command:`network.pxe.neutron_subnet_alloc_start` sets the DHCP start IP to
 Neutron for Ironic node provision, and reserves several IPs for the platform.
@@ -148,18 +148,18 @@ If the data network name for Ironic is changed, modify
 
    --set network.pxe.neutron_provider_network=ironic-data
 
-*******************************
-Apply stx-openstack application
-*******************************
+***************************
+Apply OpenStack application
+***************************
 
-Re-apply the stx-openstack application to apply the changes to Ironic:
+Re-apply the |prefix|-openstack application to apply the changes to Ironic:
 
-::
+.. parsed-literal::
 
-   system helm-chart-attribute-modify stx-openstack ironic openstack \
-   --enabled true
+      system helm-chart-attribute-modify |prefix|-openstack ironic openstack \
+      --enabled true
 
-   system application-apply stx-openstack
+      system application-apply |prefix|-openstack
 
 --------------------
 Start an Ironic node
