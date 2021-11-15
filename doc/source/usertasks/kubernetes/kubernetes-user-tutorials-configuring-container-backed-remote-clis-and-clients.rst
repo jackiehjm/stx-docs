@@ -15,6 +15,7 @@ This functionality is made available using a docker container with
 pre-installed |CLIs| and clients. The container's image is pulled as required
 by the remote CLI/client configuration scripts.
 
+
 .. rubric:: |prereq|
 
 .. _kubernetes-user-tutorials-configuring-container-backed-remote-clis-and-clients-ul-ev3-bfq-nlb:
@@ -50,6 +51,7 @@ by the remote CLI/client configuration scripts.
 -   You will need a kubectl config file containing your user account and login
     credentials from your |prod| administrator.
 
+
 The following procedure helps you configure the Container-backed remote |CLIs|
 and clients for a non-admin user.
 
@@ -77,28 +79,29 @@ and clients for a non-admin user.
 
         In this example, we use 'user1' user in the 'tenant1' tenant.
 
-    #.  Navigate to **Project** \> **API Access** \> **Download Openstack RC
-        file**.
+    #.  Navigate to :menuselection:`Project --> API Access --> Download Openstack RC
+        file`.
 
-    #.  Select **Openstack RC file**.
+    #.  Select :guilabel:`Openstack RC file`.
 
-        The file my-openrc.sh downloads.
+        The file ``my-openrc.sh`` downloads.
 
     .. note::
 
-        For a Distributed Cloud system, navigate to **Project** \> **Central Cloud Regions** \> **RegionOne** \>
-        and download the **Openstack RC file**.
+        For a Distributed Cloud system, navigate to  :menuselection:`Project
+        --> Central Cloud Regions --> RegionOne` and download the **Openstack
+        RC file**.
 
-#.  Copy the user-kubeconfig file \(received from your administrator containing
-    your user account and credentials\) to the remote workstation.
+#.  Copy the user-kubeconfig file received from your administrator containing
+    your user account and credentials to the remote workstation.
 
     You can copy the file to any location on the remote workstation. For
     convenience, this example assumes that it is copied to the location of the
     extracted tarball.
 
     .. note::
-        Ensure that the user-kubeconfig file has 666 permissions after copying
-        the file to the remote workstation, otherwise, use the following
+        Confirm that the user-kubeconfig file has 666 permissions after copying
+        the file to the remote workstation. If necessary, use the following
         command to change permissions, :command:`chmod 666 user-kubeconfig`.
 
 #.  On the remote workstation, configure the client access.
@@ -112,8 +115,10 @@ and clients for a non-admin user.
     #.  Create a working directory that will be mounted by the container
         implementing the remote |CLIs|.
 
-        See the description of the :command:`configure\_client.sh` ``-w`` option
-        :ref:`below <kubernetes-user-tutorials-configuring-container-backed-remote-clis-and-clients-w-option>` for more details.
+        See the description of the :command:`configure\_client.sh` ``-w``
+        option :ref:`below
+        <kubernetes-user-tutorials-configuring-container-backed-remote-clis-and-clients-w-option>`
+        for more details.
 
         .. code-block:: none
 
@@ -216,15 +221,15 @@ variables and aliases for the remote |CLI| commands.
     your shells will automatically be initialized with the environment
     variables and aliases for the remote |CLI| commands.
 
-See :ref:`Using Container-backed Remote CLIs and Clients <using-container-based-remote-clis-and-clients>` for details.
-
-**Related information**
+See :ref:`Using Container-backed Remote CLIs and Clients
+<using-container-based-remote-clis-and-clients>` for details.
 
 .. seealso::
-    :ref:`Using Container-backed Remote CLIs and Clients
-    <using-container-based-remote-clis-and-clients>`
 
-    :ref:`Installing Kubectl and Helm Clients Directly on a Host
-    <kubernetes-user-tutorials-installing-kubectl-and-helm-clients-directly-on-a-host>`
+   * :ref:`Using Container-backed Remote CLIs and Clients
+     <using-container-based-remote-clis-and-clients>`
 
-    :ref:`Configuring Remote Helm Client <configuring-remote-helm-client>`
+   * :ref:`Installing Kubectl and Helm Clients Directly on a Host
+     <kubernetes-user-tutorials-installing-kubectl-and-helm-clients-directly-on-a-host>`
+
+   * :ref:`Configuring Remote Helm Client <configuring-remote-helm-client>`

@@ -68,6 +68,32 @@ variables and aliases for the remote |CLI| commands.
         ...
         root@myclient:/home/user/remote_cli_wd#
 
+
+    .. note::
+
+        See the procedure for configuring the |SSL| platform certificate at
+        :ref:`install-update-the-starlingx-rest-and-web-server-certificate`.
+
+        If HTTPS is enabled for the StarlingX REST API Server on the |prod|
+        system, copy the certificate of the |CA| that issued/signed the
+        StarlingX REST API Server's |SSL| certificate to the folder
+        ``$HOME/remote_wd_cli`` on the remote machine and execute commands as
+        follows:
+
+        * For ``system`` commands:
+
+          .. code-block:: none
+
+             ~(keystone_admin)]$ system --ca-file ca.pem host-list
+
+        * For ``dcmanager`` commands:
+
+          .. code-block:: none
+
+             ~(keystone_admin)]$ OS_CACERT=ca.pem
+             ~(keystone_admin)]$ dcmanager subcloud list
+
+
     .. note::
         Some |CLI| commands are designed to leave you in a shell prompt, for example:
 
