@@ -192,12 +192,12 @@ Edge cloud platform
 
 #. Enable Nova PCI passthrough configuration in STX.
 
-   .. code:: sh
+   .. parsed-literal::
 
       # set pci-passthrough config
-      system helm-override-update  stx-openstack nova openstack --values
+      system helm-override-update  |prefix|-openstack nova openstack --values
       nova-tsn-pt.yaml
-      system application-apply stx-openstack
+      system application-apply |prefix|-openstack
 
 #. Create VM instance.
 
