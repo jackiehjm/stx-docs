@@ -57,15 +57,15 @@ controller-0 using the following example commands:
     #.  The recommended size for the file system is at least 2 times as
         large as the largest converted image from qcow2 to raw.
 
-    #.  The conversion file system can be added before or after stx-openstack is
-        applied.
+    #.  The conversion file system can be added before or after
+        |prefix|-openstack is applied.
 
     #.  The conversion file system must be added on both controllers. If not,
-        stx-openstack will not use the new file system.
+        |prefix|-openstack will not use the new file system.
 
-    #.  If the conversion file system is added after stx-openstack is applied,
-        changes to stx-openstack will only take effect once the application is
-        re-applied.
+    #.  If the conversion file system is added after |prefix|-openstack is
+        applied, changes to |prefix|-openstack will only take effect once the
+        application is re-applied.
 
 The ``image-conversion`` file system can be added only on controller nodes.
 
@@ -110,7 +110,7 @@ removed.
 ..  Note::
 
         You cannot delete an image-conversion file system when
-        stx-openstack is in the applying, applied, or removing state.
+        |prefix|-openstack is in the applying, applied, or removing state.
 
 You cannot add or remove any other file systems using these commands.
 

@@ -448,11 +448,11 @@ Steps:
     a.  Delete the old OpenStack application and upload the application again.
         (Note that images and volumes will remain in Ceph.)
 
-        ::
+        .. parsed-literal::
 
-          system application-remove stx-openstack
-          system application-delete stx-openstack
-          system application-upload stx-openstack-<ver>.tgz
+            system application-remove |prefix|-openstack
+            system application-delete |prefix|-openstack
+            system application-upload |prefix|-openstack-<ver>.tgz
 
     #.  (Optional) If you want to delete the Ceph data, remove old Glance images
         and Cinder volumes from the Ceph pool.
