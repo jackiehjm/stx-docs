@@ -162,6 +162,17 @@ Encrypt Kubernetes Secret Data at Rest
 
    encrypt-kubernetes-secret-data-at-rest
 
+
+*********************
+Linux Auditing System
+*********************
+
+.. toctree::
+   :maxdepth: 1
+
+   auditd-support-339a51d8ce16
+
+
 *************************************
 Operator Login/Authentication Logging
 *************************************
