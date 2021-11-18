@@ -5,8 +5,6 @@
 Rehome a Subcloud
 =================
 
-|release-caveat|
-
 When the System Controller needs to be reinstalled, or when the subclouds from
 multiple System Controllers are being consolidated into a single System
 Controller, you can add already deployed subclouds to a different System
