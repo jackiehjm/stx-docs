@@ -30,10 +30,10 @@ Bring down OpenStack services
 
 Use the system CLI to uninstall the OpenStack application:
 
-::
+.. parsed-literal::
 
-   system application-remove stx-openstack
-   system application-list
+      system application-remove |prefix|-openstack
+      system application-list
 
 ---------------------------------------
 Delete OpenStack application definition
@@ -41,7 +41,7 @@ Delete OpenStack application definition
 
 Use the system CLI to delete the OpenStack application definition:
 
-::
+.. parsed-literal::
 
-   system application-delete stx-openstack
-   system application-list
+      system application-delete |prefix|-openstack
+      system application-list

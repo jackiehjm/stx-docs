@@ -233,8 +233,8 @@ For Rook container-based Ceph:
 
    .. important::
 
-      **This step is required only if the StarlingX OpenStack application
-      (|prefix|-openstack) will be installed.**
+      This step is required only if the StarlingX OpenStack application
+      (|prefix|-openstack) will be installed.
 
       1G Huge Pages are not supported in the virtual environment and there is no
       virtual NIC supporting SRIOV. For that reason, data interfaces are not
@@ -290,8 +290,8 @@ OpenStack-specific host configuration
 
 .. important::
 
-   **This step is required only if the StarlingX OpenStack application
-   (|prefix|-openstack) will be installed.**
+   This step is required only if the StarlingX OpenStack application
+   (|prefix|-openstack) will be installed.
 
 #. **For OpenStack only:** Assign OpenStack host labels to controller-0 in
    support of installing the |prefix|-openstack manifest/helm-charts later.
