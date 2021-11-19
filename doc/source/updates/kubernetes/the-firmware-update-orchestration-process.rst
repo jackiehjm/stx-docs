@@ -27,10 +27,10 @@ parameters:
     **parallel** mode is selected
 
 
-For hosts that have the stx-openstack application running with active instances
-and since the firmware update is a reboot required operation for a host, the
-strategy offers **stop/start** or **migrate** options for managing instances
-over the **lock/unlock** \(reboot\) steps in the update process.
+For hosts that have the |prefix|-openstack application running with active
+instances and since the firmware update is a reboot required operation for a
+host, the strategy offers **stop/start** or **migrate** options for managing
+instances over the **lock/unlock** \(reboot\) steps in the update process.
 
 You must use the **sw-manager** |CLI| tool to **create**, and then **apply** the
 update strategy. A created strategy can be monitored with the **show** command.
@@ -79,12 +79,12 @@ steps involved in a firmware update for a single or group of hosts include:
 
 #.  Unlock Host – reboots the host so the updated image is used.
 
-Systems with stx-openstack application enabled could include additional
+Systems with |prefix|-openstack application enabled could include additional
 instance management steps. For more information, see :ref:`Firmware Update
 Operations Requiring Manual Migration
 <firmware-update-operations-requiring-manual-migration>`.
 
-On systems with stx-openstack application, the *Firmware Update Orchestration
+On systems with |prefix|-openstack application, the *Firmware Update Orchestration
 Strategy* considers any configured server groups and host aggregates when
 creating the stages to reduce the impact to running instances. The *Firmware
 Update Orchestration Strategy* automatically manages the instances during the

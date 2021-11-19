@@ -64,8 +64,8 @@ associated space from the file system. To do so, you must also run the
         download the deleted image from the same source and push it back into
         the local Docker registry under the same name and tag.
 
-        If you need to free space consumed by **stx-openstack** images, you can
-        delete older tagged versions.
+        If you need to free space consumed by |prefix|-openstack images, you
+        can delete older tagged versions.
 
 #.  Free up file system space associated with the deleted/unreferenced images.
 

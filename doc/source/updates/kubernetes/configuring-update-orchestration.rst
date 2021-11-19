@@ -101,7 +101,7 @@ status before creating a update strategy.
         -   Ignore: Worker hosts will not be updated
 
     **Default Instance Action**
-        This parameter only applies for systems with the stx-openstack
+        This parameter only applies for systems with the |prefix|-openstack
         application.
 
         -   Stop-Start \(default\): hosted applications VMs will be stopped

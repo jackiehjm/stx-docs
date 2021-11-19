@@ -3,7 +3,7 @@
 .. _apply-update-to-the-stx-openstack-application:
 
 =========================================
-Apply Update to the Openstack Application
+Apply Update to the OpenStack Application
 =========================================
 
 |prod-os| is managed using the StarlingX Application Package Manager.
@@ -37,7 +37,7 @@ where the following are optional arguments:
         |                          |           | -manifest                     | _manifest.yaml            |          |           |
         | oidc-auth-apps           | 20.06-28  | oidc-auth-manifest            | manifest.yaml             | uploaded | completed |
         | platform-integ-apps      | 20.06-11  | platform-integration-manifest | manifest.yaml             | applied  | completed |
-        | |prefix|-openstack |s|           | 21.07-0-  | armada-manifest               | |prefix|-openstack.yaml |s|        | applied  | completed |
+        | |prefix|-openstack |s|           | 21.07-0-  | armada-manifest               | |prefix|-openstack.yaml |s|       | applied  | completed |
         |                          | centos-   |                               |                           |          |           |
         |                          | stable-   |                               |                           |          |           |
         |                          | versioned |                               |                           |          |           |
