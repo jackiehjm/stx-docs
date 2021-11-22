@@ -25,28 +25,51 @@ and target it at controller-0.
 
 #.  Log in to the remote workstation.
 
-#.  Provide an Ansible hosts file, either, a customized one that is
-    specified using the ``-i`` option, or the default one that resides in the
-    Ansible configuration directory \(that is, /etc/ansible/hosts\). You must
-    specify the floating |OAM| IP of the controller host. For example, if the
-    host name is |prefix|\_Cluster, the inventory file should have an entry
-    |prefix|\_Cluster, for example:
+#.  Create secret and backup folders.
 
-    .. parsed-literal::
+    For example:
 
-        ---
-        all:
-          hosts:
-            wc68:
-              ansible_host: 128.222.100.02
-            |prefix|\_Cluster:
-              ansible_host: 128.224.141.74
+    .. code-block::
 
-#.  Create an ansible secrets file.
+        cd $HOME
+        mkdir -p <br> <overrides>
+
+#.  Provide either a customized Ansible hosts file specified using the ``-i``
+    option, or use the default one in the Ansible configuration directory
+    \(that is, /etc/ansible/hosts\).
+
+    #. If using a customized file, change to the ``<br>`` directory created
+       in the previous step.
+
+    #. Make the following modifications. You must specify the floating |OAM| IP
+       of the controller host. For example, if the host name is
+       |prefix|\_Cluster, the inventory file should have an entry
+       |prefix|\_Cluster, for example:
+
+       .. parsed-literal::
+
+           ---
+           all:
+             hosts:
+               wc68:
+                 ansible_host: 128.222.100.02
+               |prefix|\_Cluster:
+                 ansible_host: 128.224.141.74
+
+#.  Switch to the <overrides> directory created previously.
+
+#.  Create a new secret file encrypted with Ansible-Vault using the
+    :command:`ansible-vault create secrets.yml` command.
+
+    Set and confirm a new Ansible-Vault password. Ansible will open an editing
+    window where you can enter your desired contents.
+
+    The following settings are usually common to all hosts, in which case they
+    can be placed in the ``secrets.yml`` file.
+
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ cat <<EOF > secrets.yml
         vault_password_change_responses:
             yes/no: 'yes'
             sysadmin*: 'sysadmin'
@@ -56,13 +79,22 @@ and target it at controller-0.
         admin_password: Li69nux*
         ansible_become_pass: Li69nux*
         ansible_ssh_pass: Li69nux*
-        EOF
+
+    Save your changes and quit the editor. If you need to make additional
+    changes, you can use the command :command:`ansible-vault edit
+    override_dir/secrets.yml`.
 
 #.  Run Ansible Backup playbook:
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ ansible-playbook <path-to-backup-playbook-entry-file> --limit host-name -i <inventory-file> -e "backup_user_local_registry=true"
+        ~(keystone_admin)]$ ansible-playbook <path-to-backup-playbook-entry-file> -ask-vault-pass -e "host_backup_dir=$HOME/br_test override_files_dir=$HOME/override_dir"
+
+    For example:
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ ansible-playbook backup.yml --limit sm5 -i $HOME/br_test/hosts --ask-vault-pass -e "host_backup_dir=$HOME/br_test override_files_dir=$HOME/override_dir"
 
     The generated backup tar file can be found in <host\_backup\_dir>, that
     is, /home/sysadmin, by default. You can overwrite it using the **-e**
@@ -71,6 +103,6 @@ and target it at controller-0.
     .. warning::
         If a backup of the **local registry images** file is created, the file
         is not copied from the remote machine to the local machine. The
-        inventory\_hostname\_docker\_local\_registry\_backup\_timestamp.tgz
+        ``inventory_hostname_docker_local_registry_backup_timestamp.tgz``
         file needs to copied off the host machine to be used if a restore is
         needed.
