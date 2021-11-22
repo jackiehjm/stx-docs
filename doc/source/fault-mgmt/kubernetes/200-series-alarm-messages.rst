@@ -349,6 +349,11 @@ health of the system.
 
 -----
 
+.. only:: partner
+
+   .. include:: /_includes/200-series-alarm-messages.rest
+
+
 .. list-table::
    :widths: 6 25
    :header-rows: 0
