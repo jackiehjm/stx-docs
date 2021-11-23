@@ -27,6 +27,12 @@ interface or the CLI. You can use IPv4 or IPv6 addresses.
     addresses in their |SANs| must be updated with new certificates reflecting
     the new addresses.
 
+.. note::
+    If you are running docker proxy on your system, you need to change the
+    ``no_proxy`` service parameter using the CLI to append the new |OAM| IP
+    address. For more information, see :ref:`Change the OAM IP Configuration
+    Using the CLI <changing-the-oam-ip-configuration-using-the-cli>`.
+
 .. rubric:: |prereq|
 
 Before changing the |OAM| IP configuration, review the Fault Management page
