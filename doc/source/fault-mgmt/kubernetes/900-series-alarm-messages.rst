@@ -103,8 +103,44 @@ health of the system.
    :widths: 6 25
    :header-rows: 0
 
+   * - **Alarm ID: 900.008**
+     - Kubernetes rootca update in progress.
+   * - Entity Instance
+     - host=controller
+   * - Degrade Affecting Severity:
+     - None
+   * - Severity:
+     - m
+   * - Proposed Repair Action
+     - Wait for kubernetes rootca procedure to complete.
+
+-----
+
+.. list-table::
+   :widths: 6 25
+   :header-rows: 0
+
+   * - **Alarm ID: 900.009**
+     - Kubernetes root CA update aborted, certificates may not be fully updated.
+   * - Entity Instance
+     - host=controller
+   * - Degrade Affecting Severity:
+     - None
+   * - Severity:
+     - m
+   * - Management Affecting Severity:
+     - w
+   * - Proposed Repair Action
+     - Fully update certificates by a new root CA update.
+
+-----
+
+.. list-table::
+   :widths: 6 25
+   :header-rows: 0
+
    * - **Alarm ID: 900.101**
-     - Software patch auto-apply inprogress.
+     - Software patch auto-apply in progress.
    * - Entity Instance
      - orchestration=sw-patch
    * - Degrade Affecting Severity:
@@ -257,4 +293,64 @@ health of the system.
      - M\*
    * - Proposed Repair Action
      - Attempt to apply firmware update manually; if problem persists
+       contact next level of support.
+
+-----
+
+.. list-table::
+   :widths: 6 25
+   :header-rows: 0
+
+   * - **Alarm ID: 900.501**
+     - Kubernetes rootca update auto-apply in progress
+   * - Entity Instance
+     - orchestration=kube-rootca-update
+   * - Degrade Affecting Severity:
+     - None
+   * - Severity:
+     - M
+   * - Management Affecting Severity:
+     - w
+   * - Proposed Repair Action
+     - Wait for kubernetes rootca update auto-apply to complete; if problem
+       persists contact next level of support.
+
+-----
+
+.. list-table::
+   :widths: 6 25
+   :header-rows: 0
+
+   * - **Alarm ID: 900.502**
+     - Kubernetes rootca update auto-apply aborting.
+   * - Entity Instance
+     - orchestration=kube-rootca-update
+   * - Degrade Affecting Severity:
+     - None
+   * - Severity:
+     - M
+   * - Management Affecting Severity:
+     - w
+   * - Proposed Repair Action
+     - Wait for kubernetes rootca update auto-apply abort to complete; if
+       problem persists contact next level of support.
+
+-----
+
+.. list-table::
+   :widths: 6 25
+   :header-rows: 0
+
+   * - **Alarm ID: 900.503**
+     - Kubernetes rootca update auto-apply failed.
+   * - Entity Instance
+     - orchestration=kube-rootca-update
+   * - Degrade Affecting Severity:
+     - None
+   * - Severity:
+     - C
+   * - Management Affecting Severity:
+     - w
+   * - Proposed Repair Action
+     - Attempt to apply kubernetes rootca update manually; if problem persists
        contact next level of support.

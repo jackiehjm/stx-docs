@@ -73,14 +73,6 @@ health of the system.
      - M
    * - Proposed Repair Action
      - Renew certificate for the entity identified.
-   * - Alarm_Type:
-     - operational-violation
-   * - Probable_Cause:
-     - certificate-expiration
-   * - Service_Affecting:
-     - False
-   * - Suppression:
-     - False
    * - Management_Affecting_Severity:
      - none
 
@@ -110,13 +102,5 @@ health of the system.
      - C
    * - Proposed Repair Action
      - Renew certificate for the entity identified.
-   * - Inhibit_Alarms:
-     - Alarm_Type: operational-violation
-   * - Probable_Cause:
-     - certificate-expiration
-   * - Service_Affecting:
-     - False
-   * - Suppression:
-     - False
    * - Management_Affecting_Severity:
      - none
