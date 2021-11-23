@@ -42,19 +42,13 @@ Ensure that all subclouds are managed and online.
             $ source /etc/platform/openrc
             ~(keystone_admin)]$
 
-
-#.  After five minutes, lock and then unlock each controller in the System
-    Controller.
-
-#.  Lock and then unlock each controller in each subcloud.
-
-    .. note::
-        In a subcloud, if the |CLI| command returns an authentication error after
-        you source the script /etc/platform/openrc, you can verify the password
-        on the subcloud by using the command :command:`env \| grep
-        OS\_PASSWORD`. If it returns the old password, you will need to run the
-        command :command:`keyring set CGCS admin` and provide the new admin
-        password.
+        .. note::
+            In a subcloud, if the |CLI| command returns an authentication error
+            after you source the script /etc/platform/openrc, you can verify
+            the password on the subcloud by using the :command:`env \| grep OS\_PASSWORD`
+            command . If it returns the old password, you will need to run the
+            :command:`keyring set CGCS admin` command and provide the new admin
+            password.
 
 .. only:: partner
 
