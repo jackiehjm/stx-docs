@@ -83,14 +83,14 @@ For example:
 
 #. List available upgrades.
 
-   .. code-block: none
+   .. code-block:: none
 
       ~(keystone_admin)$ system kube-version-list
       +-----------------+--------+-----------+
       | version         | target | state     |
       +-----------------+--------+-----------+
       | v1.18.1         | True   | active    |
-      | v1.18.1-upgrade | False  | available |
+      | v1.19.13        | False  | available |
       +-----------------+--------+-----------+
 
 
@@ -106,7 +106,7 @@ For example:
 
     .. code-block:: none
 
-        ~(keystone_admin)$ sw-manager kube-upgrade-strategy create --to-version v1.18.1-upgrade
+        ~(keystone_admin)$ sw-manager kube-upgrade-strategy create --to-version v1.19.13
         Strategy Kubernetes Upgrade Strategy:
           strategy-uuid:                          f7585178-cea6-4d2f-bda0-e0972145ebcf
           controller-apply-type:                  serial
@@ -122,8 +122,8 @@ For example:
     where:
 
     ``--to-version``
-       The version of Kubernetes to upgrade to. For example,
-       ``v1.18.1-upgrade``. This argument is required.
+       The version of Kubernetes to upgrade to. For example, ``v1.19.13``.
+       This argument is required.
 
     ``--controller-apply-type`` and ``--storage-apply-type``
        These options cannot be changed from ``serial`` because Kubernetes
@@ -297,7 +297,7 @@ For example:
         +--------------+--------------------------------------+
         | uuid         | 3d2da123-bff4-4b3a-a64a-b320c3b498cc |
         | from_version | v1.18.1                              |
-        | to_version   | v1.18.1-upgrade                      |
+        | to_version   | v1.19.13                             |
         | state        | downloading-images                   |
         | created_at   | 2021-02-23T00:08:24.579257+00:00     |
         | updated_at   | 2021-02-23T00:09:35.413307+00:00     |
@@ -324,7 +324,7 @@ For example:
        +--------------+--------------------------------------+
        | uuid         | 426d7e11-2de2-40ba-b482-ed3691625383 |
        | from_version | v1.18.1                              |
-       | to_version   | v1.18.1-upgrade                      |
+       | to_version   | v1.19.13                             |
        | state        | upgrade-complete                     |
        | created_at   | 2021-04-12T17:58:36.492523+00:00     |
        | updated_at   | 2021-04-12T18:49:11.673259+00:00     |
@@ -335,7 +335,7 @@ For example:
        | version         | target | state     |
        +-----------------+--------+-----------+
        | v1.18.1         | False  | available |
-       | v1.18.1-upgrade | True   | active    |
+       | v1.19.13        | True   | active    |
        +-----------------+--------+-----------+
 
 #.  Delete the strategy.
