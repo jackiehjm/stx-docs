@@ -119,9 +119,10 @@ Configure Ceph OSDs on a Host
    add-ssd-backed-journals-using-horizon
    add-ssd-backed-journals-using-the-cli
    add-a-storage-tier-using-the-cli
-   replace-osds-and-journal-disks
    provision-storage-on-a-controller-or-storage-host-using-horizon
    provision-storage-on-a-storage-host-using-the-cli
+   replace-osds-and-journal-disks
+   replace-osds-on-an-aio-dx-system-319b0bc2f7e6
 
 -------------------------
 Persistent Volume Support
