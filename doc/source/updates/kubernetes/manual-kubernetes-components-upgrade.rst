@@ -43,6 +43,11 @@ and upgrade various systems.
 -   All updates required for the new Kubernetes version must be transferred to
     the active controller.
 
+.. note::
+    The default version on a fresh install will be Kubernetes 1.21.3, while
+    on an upgrade from |prod| |prod-ver| it will be 1.18.1. You will need to
+    upgrade Kubernetes to each version up to 1.21.3 in order to be ready to
+    upgrade to the next version of |prod|.
 
 .. rubric:: |proc|
 
@@ -53,15 +58,33 @@ and upgrade various systems.
 
 #.  List the available Kubernetes versions.
 
+    On a fresh install of |prod| |prod-ver|, the following output appears:
+
     .. code-block:: none
 
         ~(keystone_admin)]$ system kube-version-list
-        +---------+--------+-----------+
-        | Version | Target | State     |
-        +---------+--------+-----------+
-        | v1.16.1 | True   | active    |
-        | v1.16.2 | False  | available |
-        +---------+--------+-----------+
+        +---------+--------+-------------+
+        | Version | Target | State       |
+        +---------+--------+-------------+
+        | v1.18.1 | False  | unavailable |
+        | v1.19.13| False  | unavailable |
+        | v1.20.9 | False  | unavailable |
+        | v1.21.3 | True   | active      |
+        +---------+--------+-------------+
+
+    If |prod| was upgraded to |prod-ver|, the following appears:
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system kube-version-list
+        +---------+--------+-------------+
+        | Version | Target | State       |
+        +---------+--------+-------------+
+        | v1.18.1 | True   | active      |
+        | v1.19.13| False  | available   |
+        | v1.20.9 | False  | unavailable |
+        | v1.21.3 | False  | unavailable |
+        +---------+--------+-------------+
 
     The following meanings apply to the output shown:
 
@@ -81,22 +104,10 @@ and upgrade various systems.
         **available**
             The version can be upgraded to.
 
-#.  Upload, apply and install the kubeadm update.
-
-    Use the standard :command:`sw-patch`, :command:`upload`, :command:`apply`
-    and :command:`install` commands to perform these operations.
-
-#.  Upload the kubelet update.
-
-    .. note::
-        Run the :command:`upload` command only:
-
-        .. code-block:: none
-
-            ~(keystone_admin)]$ sw-patch upload <kubelet-patch>
-
-
-        The kubelet update cannot be applied before upgrading kubelet.
+        **unavailable**
+            The version is not available for upgrading. Either it is a
+            downgrade or it requires an intermediate upgrade first. Kubernetes
+            can be only upgraded one version at a time.
 
 #.  Start the Kubernetes upgrade.
 
@@ -104,12 +115,12 @@ and upgrade various systems.
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system kube-upgrade-start v1.16.2
+        ~(keystone_admin)]$ system kube-upgrade-start v1.19.13
         +-------------------+-------------------+
         | Property          | Value             |
         +-------------------+-------------------+
-        | from_version      | v1.16.1           |
-        | to_version        | v1.16.2           |
+        | from_version      | v1.18.1           |
+        | to_version        | v1.19.13          |
         | state             | upgrade-started   |
         +-------------------+-------------------+
 
@@ -118,10 +129,9 @@ and upgrade various systems.
     validates the system is ready for an upgrade.
 
     .. warning::
-        If you use the command :command:`system kube-upgrade-start --force` to
-        cause the upgrades process to ignore management affecting alarms and
-        start, first determine that these alarms will not compromise the
-        upgrade process.
+        The command :command:`system kube-upgrade-start --force` causes the 
+        upgrade process to ignore non-management-affecting alarms.
+        Kubernetes cannot be upgraded if there are management-affecting alarms.
 
 #.  Download the Kubernetes images.
 
@@ -134,8 +144,8 @@ and upgrade various systems.
         | Property     | Value                                |
         +--------------+--------------------------------------+
         | uuid         | b5f7dada-2537-4416-9d2c-f9ca9fcd0e22 |
-        | from_version | v1.16.1                              |
-        | to_version   | v1.16.2                              |
+        | from_version | v1.18.1                              |
+        | to_version   | v1.19.13                             |
         | state        | downloading-images                   |
         | created_at   | 2020-02-20T16:08:48.854869+00:00     |
         | updated_at   | None                                 |
@@ -150,36 +160,12 @@ and upgrade various systems.
         | Property     | Value                                |
         +--------------+--------------------------------------+
         | uuid         | b5f7dada-2537-4416-9d2c-f9ca9fcd0e22 |
-        | from_version | v1.16.1                              |
-        | to_version   | v1.16.2                              |
+        | from_version | v1.18.1                              |
+        | to_version   | v1.19.13                             |
         | state        | downloaded-images                    |
         | created_at   | 2020-02-20T16:08:48.854869+00:00     |
         | updated_at   | 2020-02-20T16:10:37.858661+00:00     |
         +--------------+--------------------------------------+
-
-
-#.  Upgrade the control plane on the first controller.
-
-    .. code-block:: none
-
-        ~(keystone_admin)]$ system kube-host-upgrade controller-1 control-plane
-        +-----------------------+-------------------------+
-        | Property              | Value                   |
-        +-----------------------+-------------------------+
-        | control_plane_version | v1.16.1                 |
-        | hostname              | controller-1            |
-        | id                    | 2                       |
-        | kubelet_version       | v1.16.1                 |
-        | personality           | controller              |
-        | status                | upgrading-control-plane |
-        | target_version        | v1.16.2                 |
-        +-----------------------+-------------------------+
-
-
-    You can upgrade either controller first.
-
-    The state **upgraded-first-master** will be entered when the first control
-    plane upgrade has completed.
 
 #.  Upgrade Kubernetes networking.
 
@@ -193,8 +179,8 @@ and upgrade various systems.
         | Property     | Value                                |
         +--------------+--------------------------------------+
         | uuid         | b5f7dada-2537-4416-9d2c-f9ca9fcd0e22 |
-        | from_version | v1.16.1                              |
-        | to_version   | v1.16.2                              |
+        | from_version | v1.18.1                              |
+        | to_version   | v1.19.13                             |
         | state        | upgrading-networking                 |
         | created_at   | 2020-02-20T16:08:48.854869+00:00     |
         | updated_at   | 2020-02-20T16:18:11.459736+00:00     |
@@ -202,6 +188,29 @@ and upgrade various systems.
 
     The state **upgraded-networking** will be entered when the networking
     upgrade has completed.
+
+#.  Upgrade the control plane on the first controller.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system kube-host-upgrade controller-1 control-plane
+        +-----------------------+-------------------------+
+        | Property              | Value                   |
+        +-----------------------+-------------------------+
+        | control_plane_version | v1.18.1                 |
+        | hostname              | controller-1            |
+        | id                    | 2                       |
+        | kubelet_version       | v1.18.1                 |
+        | personality           | controller              |
+        | status                | upgrading-control-plane |
+        | target_version        | v1.19.13                |
+        +-----------------------+-------------------------+
+
+
+    You can upgrade either controller first.
+
+    The state **upgraded-first-master** will be entered when the first control
+    plane upgrade has completed.
 
 #.  Upgrade the control plane on the second controller.
 
@@ -211,13 +220,13 @@ and upgrade various systems.
         +-----------------------+-------------------------+
         | Property              | Value                   |
         +-----------------------+-------------------------+
-        | control_plane_version | v1.16.1                 |
+        | control_plane_version | v1.18.1                 |
         | hostname              | controller-0            |
         | id                    | 1                       |
-        | kubelet_version       | v1.16.1                 |
+        | kubelet_version       | v1.18.1                 |
         | personality           | controller              |
         | status                | upgrading-control-plane |
-        | target_version        | v1.16.2                 |
+        | target_version        | v1.19.13                |
         +-----------------------+-------------------------+
 
     The state **upgraded-second-master** will be entered when the upgrade has
@@ -231,21 +240,13 @@ and upgrade various systems.
         +----+--------------+-------------+----------------+-----------------------+-----------------+--------+
         | id | hostname     | personality | target_version | control_plane_version | kubelet_version | status |
         +----+--------------+-------------+----------------+-----------------------+-----------------+--------+
-        | 1  | controller-0 | controller  | v1.16.2        | v1.16.2               | v1.16.1         | None   |
-        | 2  | controller-1 | controller  | v1.16.2        | v1.16.2               | v1.16.1         | None   |
-        | 3  | worker-0     | worker      | v1.16.1        | N/A                   | v1.16.1         | None   |
-        | 4  | worker-1     | worker      | v1.16.1        | N/A                   | v1.16.1         | None   |
+        | 1  | controller-0 | controller  | v1.19.13       | v1.19.13              | v1.18.1         | None   |
+        | 2  | controller-1 | controller  | v1.19.13       | v1.19.13              | v1.18.1         | None   |
+        | 3  | worker-0     | worker      | v1.18.1        | N/A                   | v1.18.1         | None   |
+        | 4  | worker- 1    | worker      | v1.18.1        | N/A                   | v1.18.1         | None   |
         +----+--------------+-------------+----------------+-----------------------+-----------------+--------+
 
-    The control planes of both controllers are now upgraded to v1.16.2.
-
-#.  Apply and install the kubectl update.
-
-    Use the standard :command:`sw-patch`, :command:`apply` and
-    :command:`install` commands to perform these operations.
-
-    This places the new version of kubelet binary on each host, but will not
-    restart kubelet.
+    The control planes of both controllers are now upgraded to v1.19.13.
 
 #.  Upgrade kubelet on both controllers.
 
@@ -279,13 +280,13 @@ and upgrade various systems.
             +-----------------------+-------------------+
             | Property              | Value             |
             +-----------------------+-------------------+
-            | control_plane_version | v1.16.2           |
+            | control_plane_version | v1.19.13          |
             | hostname              | controller-1      |
             | id                    | 2                 |
-            | kubelet_version       | v1.16.1           |
+            | kubelet_version       | v1.18.1           |
             | personality           | controller        |
             | status                | upgrading-kubelet |
-            | target_version        | v1.16.2           |
+            | target_version        | v1.19.13          |
             +-----------------------+-------------------+
 
     #.  For non |AIO-SX| systems, unlock the controller.
@@ -306,8 +307,8 @@ and upgrade various systems.
         | Property     | Value                                |
         +--------------+--------------------------------------+
         | uuid         | b5f7dada-2537-4416-9d2c-f9ca9fcd0e22 |
-        | from_version | v1.16.1                              |
-        | to_version   | v1.16.2                              |
+        | from_version | v1.18.1                              |
+        | to_version   | v1.19.13                             |
         | state        | upgrading-kubelets                   |
         | created_at   | 2020-02-20T16:08:48.854869+00:00     |
         | updated_at   | 2020-02-20T21:53:16.347406+00:00     |
@@ -339,13 +340,13 @@ and upgrade various systems.
             +-----------------------+-------------------+
             | Property              | Value             |
             +-----------------------+-------------------+
-            | control_plane_version | v1.16.2           |
+            | control_plane_version | v1.19.13          |
             | hostname              | worker-1          |
             | id                    | 3                 |
-            | kubelet_version       | v1.16.1           |
+            | kubelet_version       | v1.18.1           |
             | personality           | worker            |
             | status                | upgrading-kubelet |
-            | target_version        | v1.16.2           |
+            | target_version        | v1.19.13          |
             +-----------------------+-------------------+
 
     #.  Unlock the host.
@@ -366,12 +367,19 @@ and upgrade various systems.
         | Property     | Value                                |
         +--------------+--------------------------------------+
         | uuid         | 4e942297-465e-47d4-9e1b-9fb1630be33c |
-        | from_version | v1.16.1                              |
-        | to_version   | v1.16.2                              |
+        | from_version | v1.18.1                              |
+        | to_version   | v1.19.13                             |
         | state        | upgrade-complete                     |
         | created_at   | 2020-02-19T20:59:51.079966+00:00     |
         | updated_at   | 2020-02-24T15:03:34.572199+00:00     |
         +--------------+--------------------------------------+
+
+#.  Remove the alarm 900.007 (Kubernetes upgrade in progress) if it is still
+    running after the upgrade.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system kube-upgrade-delete
 
 .. from step 1
 .. For more
