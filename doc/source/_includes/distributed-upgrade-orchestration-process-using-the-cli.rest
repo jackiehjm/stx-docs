@@ -4,3 +4,6 @@
 
 .. dcupgrade-begin
 .. dcupgrade-end
+
+.. dcsubcloud-begin
+.. dcsubcloud-end
