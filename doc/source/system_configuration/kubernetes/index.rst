@@ -64,6 +64,17 @@ OAM IP Configuration
    changing-the-mtu-of-an-oam-interface-using-the-cli
 
 ----------------------
+collectd Configuration
+----------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   configure-collectd-to-store-host-performance-data-caf7802851bc
+
+
+
+----------------------
 Application Management
 ----------------------
 

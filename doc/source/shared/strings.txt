@@ -34,3 +34,5 @@
 .. |row-alt-off| raw:: html
 
    <style>table.docutils tr.row-odd {background-color: #fff;}</style>
+
+.. |optional| replace:: **Optional step:**
