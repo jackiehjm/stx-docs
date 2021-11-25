@@ -20,3 +20,4 @@ See :ref:`Keystone Accounts <about-keystone-accounts>` for more details.
     manage-keystone-accounts
     configure-the-keystone-token-expiration-time
     password-recovery
+    keystone-security-compliance-configuration-b149adca6a7f
