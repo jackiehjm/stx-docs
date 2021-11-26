@@ -70,7 +70,7 @@ available:
         [–-stop-on-failure <level>] \
         [--group group] \
         [<subcloud>]
-        
+
 
     For example:
 
@@ -114,7 +114,7 @@ available:
         | created_at             | 2018-02-02T14:42:13.822499 |
         | updated_at             | None                       |
         +------------------------+----------------------------+
-        
+
 
     .. note::
 
@@ -136,7 +136,7 @@ available:
         | created_at             | 2018-02-02T14:42:13.822499 |
         | updated_at             | 2018-02-02T14:42:19.376688 |
         +------------------------+----------------------------+
-        
+
 
 -   To show the step currently being performed on each of the subclouds, use
     the :command:`strategy-step list` command.
@@ -155,7 +155,7 @@ available:
             | subcloud-5       |     2 | finishing   |                             | 2018-03-13 14:16:02.473669 | None                       |
             | subcloud-6       |     2 | applying... | apply phase is 66% complete | 2018-03-13 14:16:02.483422 | None                       |
             +------------------+-------+-------------+-----------------------------+----------------------------+----------------------------+
-        
+
 -   To show the step currently being performed on a subcloud, use the
     :command:`strategy-step show` <subcloud> command.
 
@@ -191,7 +191,7 @@ available:
         | created_at             | 2018-03-23T20:04:50.992444 |
         | updated_at             | 2018-03-23T20:05:14.157352 |
         +------------------------+----------------------------+
-        
+
 
 .. _update-orchestration-of-central-clouds-regionone-and-subclouds-using-the-cli-section-N1022D-N10029-N10001:
 
@@ -245,7 +245,7 @@ individual subclouds.
         | all clouds default | parallel           | parallel           |                    10 | relaxed                | migrate          |
         | subcloud-6         | parallel           | parallel           |                     2 | relaxed                | stop-start       |
         +--------------------+--------------------+--------------------+-----------------------+------------------------+------------------+
-           
+
 -   To show the configuration settings applicable to all subclouds by default,
     use the :command:`patch-strategy-config show` command.
 
@@ -264,7 +264,7 @@ individual subclouds.
         | created_at              | None               |
         | updated_at              | None               |
         +-------------------------+--------------------+
-        
+
 
 -   To update the settings, or to create a custom configuration for a subcloud,
     use the :command:`patch-strategy-config update` command.
@@ -296,18 +296,16 @@ individual subclouds.
     **alarm restriction type**
         relaxed or strict — determines whether the orchestration is aborted for
         alarms that are not management-affecting. For more information, refer
-        to the 
-    
-.. xbooklink :ref:`|updates-doc| <software-updates-and-upgrades-software-updates>` guide.
+        to |updates-doc|: :ref:`Configure Update Orchestration <configuring-update-orchestration>`.
 
     **default instance action**
         .. note::
 
             This parameter is only applicable to hosted application VMs with
-            the stx-openstack application.
+            the |prefix|-openstack application.
 
         migrate or stop-start — determines whether hosted application VMs are
-        migrated or stopped and restarted when a worker host is upgraded
+        migrated or stopped and restarted when a worker host is upgraded.
 
     **subcloud\_name**
         The name of the subcloud to use the custom strategy. If this omitted,
@@ -323,7 +321,7 @@ individual subclouds.
     .. code-block:: none
 
         ~(keystone_admin)]$ dcmanager patch-strategy-config show [<name>]
-        
+
 
     For example:
 
@@ -342,7 +340,7 @@ individual subclouds.
         | created_at              | 2018-03-12 20:08:48.917866 |
         | updated_at              | None                       |
         +-------------------------+----------------------------+
-        
+
 
     If custom configuration settings have not been created for the subcloud,
     the following message is displayed:

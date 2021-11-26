@@ -3,7 +3,7 @@
 .. _apply-update-to-the-stx-openstack-application:
 
 =========================================
-Apply Update to the Openstack Application
+Apply Update to the OpenStack Application
 =========================================
 
 |prod-os| is managed using the StarlingX Application Package Manager.
@@ -29,19 +29,20 @@ where the following are optional arguments:
     .. parsed-literal::
 
         ~(keystone_admin)$ system application-list
-        +--------------------------+----------+-------------------------------+---------------------------+----------+-----------+
-        | application              | version  | manifest name                 | manifest file             | status   | progress  |
-        +--------------------------+----------+-------------------------------+---------------------------+----------+-----------+
-        | cert-manager             | 20.06-5  | cert-manager-manifest         | certmanager-manifest.yaml | applied  | completed |
-        | nginx-ingress-controller | 20.06-0  | nginx-ingress-controller-     | nginx_ingress_controller  | applied  | completed |
-        |                          |          | -manifest                     | _manifest.yaml            |          |           |
-        | oidc-auth-apps           | 20.06-28 | oidc-auth-manifest            | manifest.yaml             | uploaded | completed |
-        | platform-integ-apps      | 20.06-11 | platform-integration-manifest | manifest.yaml             | applied  | completed |
-        | |prefix|-openstack |s|           | 20.10-0- | armada-manifest               | |prefix|-openstack.yaml |s|        | applied  | completed |
-        |                          | centos-  |                               |                           |          |           |
-        |                          | stable-  |                               |                           |          |           |
-        |                          | versioned|                               |                           |          |           |
-        +--------------------------+----------+-------------------------------+---------------------------+----------+-----------+
+        +--------------------------+-----------+-------------------------------+---------------------------+----------+-----------+
+        | application              | version   | manifest name                 | manifest file             | status   | progress  |
+        +--------------------------+-----------+-------------------------------+---------------------------+----------+-----------+
+        | cert-manager             | 20.06-5   | cert-manager-manifest         | certmanager-manifest.yaml | applied  | completed |
+        | nginx-ingress-controller | 20.06-0   | nginx-ingress-controller-     | nginx_ingress_controller  | applied  | completed |
+        |                          |           | -manifest                     | _manifest.yaml            |          |           |
+        | oidc-auth-apps           | 20.06-28  | oidc-auth-manifest            | manifest.yaml             | uploaded | completed |
+        | platform-integ-apps      | 20.06-11  | platform-integration-manifest | manifest.yaml             | applied  | completed |
+        | |prefix|-openstack |s|           | 21.07-0-  | armada-manifest               | |prefix|-openstack.yaml |s|       | applied  | completed |
+        |                          | centos-   |                               |                           |          |           |
+        |                          | stable-   |                               |                           |          |           |
+        |                          | versioned |                               |                           |          |           |
+        +--------------------------+-----------+-------------------------------+---------------------------+----------+-----------+
+
 
         The output indicates that the currently installed version of
         |prefix|-openstack is 20.10-0.

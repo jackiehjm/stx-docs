@@ -29,19 +29,19 @@ commands to manage containerized applications provided as part of |prod|.
 
     For example:
 
-    .. code-block:: none
+    .. parsed-literal::
 
         ~(keystone_admin)]$ system application-list --nowrap
 
-        +-------------+---------+---------------+---------------+----------+-----------+
-        | application | version | manifest name | manifest file | status   | progress  |
-        +-------------+---------+---------------+---------------+----------+-----------+
-        | platform-   | 1.0-7   | platform-     | manifest.yaml | applied  | completed |
-        | integ-apps  |         | integration-  |               |          |           |
-        |             |         | manifest      |               |          |           |
-        | stx-        | 1.0-18  | armada-       | stx-openstack | uploaded | completed |
-        | openstack   |         | manifest      | .yaml         |          |           |
-        +-------------+---------+---------------+---------------+----------+-----------+
+        +--------------+---------+---------------+----------------+----------+-----------+
+        | application  | version | manifest name | manifest file  | status   | progress  |
+        +--------------+---------+---------------+----------------+----------+-----------+
+        | platform-    | 1.0-7   | platform-     | manifest.yaml  | applied  | completed |
+        | integ-apps   |         | integration-  |                |          |           |
+        |              |         | manifest      |                |          |           |
+        | |prefix|-|s|         | 1.0-18  | armada-       | |prefix|- |s|          | uploaded | completed |
+        | openstack    |         | manifest      | openstack.yaml |          |           |
+        +--------------+---------+---------------+----------------+----------+-----------+
 
 -   Use the following command to show details for |prod|.
 
@@ -56,9 +56,9 @@ commands to manage containerized applications provided as part of |prod|.
 
     For example:
 
-    .. code-block:: none
+    .. parsed-literal::
 
-        ~(keystone_admin)]$ system application-show stx-openstack
+        ~(keystone_admin)]$ system application-show |prefix|-openstack
 
         +---------------+----------------------------------+
         | Property      | Value                            |
@@ -66,9 +66,9 @@ commands to manage containerized applications provided as part of |prod|.
         | active        | False                            |
         | app_version   | 1.0-18                           |
         | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | stx-openstack.yaml               |
+        | manifest_file | |prefix|-openstack.yaml   |s|            |
         | manifest_name | armada-manifest                  |
-        | name          | stx-openstack                    |
+        | name          | |prefix|-openstack   |s|                 |
         | progress      | completed                        |
         | status        | uploaded                         |
         | updated_at    | 2019-09-06T15:34:46.995929+00:00 |
@@ -97,24 +97,24 @@ commands to manage containerized applications provided as part of |prod|.
 
     For example:
 
-    .. code-block:: none
+    .. parsed-literal::
 
-        ~(keystone_admin)]$ system application-upload stx-openstack-1.0-18.tgz
+        ~(keystone_admin)]$ system application-upload |prefix|-openstack-1.0-18.tgz
         +---------------+----------------------------------+
         | Property      | Value                            |
         +---------------+----------------------------------+
         | active        | False                            |
         | app_version   | 1.0-18                           |
         | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | stx-openstack.yaml               |
+        | manifest_file | |prefix|-openstack.yaml  |s|             |
         | manifest_name | armada-manifest                  |
-        | name          | stx-openstack                    |
+        | name          | |prefix|-openstack       |s|             |
         | progress      | None                             |
         | status        | uploading                        |
         | updated_at    | None                             |
         +---------------+----------------------------------+
-        Please use 'system application-list' or 'system application-show
-        stx-openstack' to view the current progress.
+        Please use 'system application-list' or 'system application-show |prefix|-openstack'
+        to view the current progress.
 
 -   To list the Helm chart overrides for the |prod|, use the following
     command:
@@ -139,9 +139,9 @@ commands to manage containerized applications provided as part of |prod|.
 
     For example:
 
-    .. code-block:: none
+    .. parsed-literal::
 
-        ~(keystone_admin)]$ system helm-override-list stx-openstack --long
+        ~(keystone_admin)]$ system helm-override-list |prefix|-openstack --long
         +---------------------+--------------------------------+---------------+
         | chart name          | overrides namespaces           | chart enabled |
         +---------------------+--------------------------------+---------------+
@@ -188,7 +188,7 @@ commands to manage containerized applications provided as part of |prod|.
     **<app_name>**
         The name of the application.
 
-    **< chart_name>**
+    **<chart_name>**
         The name of the chart.
 
     **<namespace>**
@@ -196,9 +196,9 @@ commands to manage containerized applications provided as part of |prod|.
 
     For example:
 
-    .. code-block:: none
+    .. parsed-literal::
 
-        ~(keystone_admin)]$ system helm-override-show stx-openstack glance openstack
+        ~(keystone_admin)]$ system helm-override-show |prefix|-openstack glance openstack
 
 -   To modify service configuration parameters using user-specified overrides,
     use the following command. To update a single configuration parameter, you
@@ -243,9 +243,10 @@ commands to manage containerized applications provided as part of |prod|.
     For example, to enable the glance debugging log, use the following
     command:
 
-    .. code-block:: none
+    .. parsed-literal::
 
-        ~(keystone_admin)]$ system helm-override-update stx-openstack glance openstack --set conf.glance.DEFAULT.DEBUG=true
+        ~(keystone_admin)]$ system helm-override-update |prefix|-openstack
+        glance openstack --set conf.glance.DEFAULT.DEBUG=true
         +----------------+-------------------+
         | Property       | Value             |
         +----------------+-------------------+
@@ -313,10 +314,10 @@ commands to manage containerized applications provided as part of |prod|.
 
     For example:
 
-    .. code-block:: none
+    .. parsed-literal::
 
-        ~(keystone_admin)]$ system helm-override-delete stx-openstack glance openstack
-        Deleted chart overrides glance:openstack for application stx-openstack
+        ~(keystone_admin)]$ system helm-override-delete |prefix|-openstack glance openstack
+        Deleted chart overrides glance:openstack for application |prefix|-openstack
 
 -   Use the following command to apply or reapply an application, making it
     available for service.
@@ -330,7 +331,7 @@ commands to manage containerized applications provided as part of |prod|.
     **mode**
         An application-specific mode controlling how the manifest is
         applied. This option is used to delete and restore the
-        **stx-openstack** application.
+        |prefix|-openstack application.
 
     and the following is a positional argument:
 
@@ -339,24 +340,24 @@ commands to manage containerized applications provided as part of |prod|.
 
     For example:
 
-    .. code-block:: none
+    .. parsed-literal::
 
-        ~(keystone_admin)]$ system application-apply stx-openstack
+        ~(keystone_admin)]$ system application-apply |prefix|-openstack
         +---------------+----------------------------------+
         | Property      | Value                            |
         +---------------+----------------------------------+
         | active        | False                            |
         | app_version   | 1.0-18                           |
         | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | stx-openstack.yaml               |
+        | manifest_file | |prefix|-openstack.yaml  |s|             |
         | manifest_name | armada-manifest                  |
-        | name          | stx-openstack                    |
+        | name          | |prefix|-openstack       |s|             |
         | progress      | None                             |
         | status        | applying                         |
         | updated_at    | 2019-09-06T15:34:46.995929+00:00 |
         +---------------+----------------------------------+
-        Please use 'system application-list' or 'system application-show
-        stx-openstack' to view the current progress.
+        Please use 'system application-list' or 'system application-show |prefix|-openstack'
+        to view the current progress.
 
 -   Use the following command to abort the current application.
 
@@ -371,9 +372,9 @@ commands to manage containerized applications provided as part of |prod|.
 
     For example:
 
-    .. code-block:: none
+    .. parsed-literal::
 
-        ~(keystone_admin)]$ system application-abort stx-openstack
+        ~(keystone_admin)]$ system application-abort |prefix|-openstack
         Application abort request has been accepted. If the previous operation has not
         completed/failed, it will be cancelled shortly.
 
@@ -436,24 +437,24 @@ commands to manage containerized applications provided as part of |prod|.
 
     For example:
 
-    .. code-block:: none
+    .. parsed-literal::
 
-        ~(keystone_admin)]$ system application-remove stx-openstack
+        ~(keystone_admin)]$ system application-remove |prefix|-openstack
         +---------------+----------------------------------+
         | Property      | Value                            |
         +---------------+----------------------------------+
         | active        | False                            |
         | app_version   | 1.0-18                           |
         | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | stx-openstack.yaml               |
+        | manifest_file | |prefix|-openstack.yaml   |s|            |
         | manifest_name | armada-manifest                  |
-        | name          | stx-openstack                    |
+        | name          | |prefix|-openstack       |s|             |
         | progress      | None                             |
         | status        | removing                         |
         | updated_at    | 2019-09-06T17:39:19.813754+00:00 |
         +---------------+----------------------------------+
-        Please use 'system application-list' or 'system application-show
-        stx-openstack' to view the current progress.
+        Please use 'system application-list' or 'system application-show |prefix|-openstack'
+        to view the current progress.
 
     This command places the application in the uploaded state.
 
@@ -473,7 +474,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     For example:
 
-    .. code-block:: none
+    .. parsed-literal::
 
-        ~(keystone_admin)]$ system application-delete stx-openstack
-        Application stx-openstack deleted.
+        ~(keystone_admin)]$ system application-delete |prefix|-openstack
+        Application |prefix|-openstack deleted.

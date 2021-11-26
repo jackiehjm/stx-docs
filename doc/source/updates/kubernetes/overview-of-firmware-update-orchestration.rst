@@ -37,10 +37,10 @@ following conditions:
     creation step will fail if there are no qualified hosts detected.
 
 -   Firmware update is a reboot required operation. Therefore, in systems that
-    have the stx-openstack application applied with running instances, if the
-    migrate option is selected there must be spare openstack-compute \(worker\)
-    capacity to move instances off the openstack-compute \(worker\) host\(s\)
-    being updated.
+    have the |prefix|-openstack application applied with running instances, if
+    the migrate option is selected there must be spare openstack-compute \
+    (worker\) capacity to move instances off the openstack-compute \
+    (worker\) host\(s\) being updated.
 
     .. note::
         Administrative controller Swacts should be avoided during firmware
