@@ -16,7 +16,7 @@ Install application manifest and helm-charts
 --------------------------------------------
 
 #. Modify the size of the docker_lv filesystem. By default, the size of the
-   docker_lv filesystem is 30G, which is not enough for stx-openstack
+   docker_lv filesystem is 30G, which is not enough for |prefix|-openstack
    installation. Use the ``host-fs-modify`` CLI to increase the filesystem size.
 
    The syntax is:
@@ -38,8 +38,8 @@ Install application manifest and helm-charts
 
     system host-fs-modify controller-0 docker=60
 
-#. Get the latest StarlingX OpenStack application (stx-openstack) manifest and
-   helm charts. Use one of the following options:
+#. Get the latest StarlingX OpenStack application (|prefix|-openstack) manifest
+   and helm charts. Use one of the following options:
 
    *  Private StarlingX build. See :ref:`Build-stx-openstack-app` for details.
    *  Public download from
@@ -47,13 +47,13 @@ Install application manifest and helm-charts
 
       After you select a release, helm charts are located in ``centos/outputs/helm-charts``.
 
-#. Load the stx-openstack application's package into StarlingX. The tarball
-   package contains stx-openstack's Airship Armada manifest and stx-openstack's
-   set of helm charts. For example:
+#. Load the |prefix|-openstack application's package into StarlingX. The tarball
+   package contains |prefix|-openstack's Airship Armada manifest and
+   |prefix|-openstack's set of helm charts. For example:
 
-   ::
+   .. parsed-literal::
 
-     system application-upload stx-openstack-<version>-centos-stable-versioned.tgz
+       system application-upload |prefix|-openstack-<version>-centos-stable-versioned.tgz
 
    This will:
 
@@ -63,13 +63,14 @@ Install application manifest and helm-charts
      the current state of the underlying StarlingX Kubernetes platform and the
      recommended StarlingX configuration of OpenStack services.
 
-#. Apply the stx-openstack application in order to bring StarlingX OpenStack into
-   service. If your environment is preconfigured with a proxy server, then
-   make sure HTTPS proxy is set before applying stx-openstack.
+#. Apply the |prefix|-openstack application in order to bring StarlingX
+   OpenStack into service. If your environment is preconfigured with a proxy
+   server, then make sure HTTPS proxy is set before applying
+   |prefix|-openstack.
 
-   ::
+   .. parsed-literal::
 
-     system application-apply stx-openstack
+        system application-apply |prefix|-openstack
 
    .. note::
 
@@ -79,7 +80,7 @@ Install application manifest and helm-charts
         To set the HTTPS proxy after installation, refer to
         `Docker Proxy Configuration <https://docs.starlingx.io/configuration/docker_proxy_config.html>`_.
 
-#. Wait for the activation of stx-openstack to complete.
+#. Wait for the activation of |prefix|-openstack to complete.
 
    This can take 5-10 minutes depending on the performance of your host machine.
 

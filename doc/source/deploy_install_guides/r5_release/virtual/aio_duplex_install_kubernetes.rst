@@ -191,9 +191,8 @@ Optionally, initialize a Ceph-based Persistent Storage Backend
 
     A persistent storage backend is required if your application requires
     Persistent Volume Claims (PVCs). The StarlingX OpenStack application
-    (stx-openstack) requires PVCs, therefore if you plan on using the
-    stx-openstack application, then you must configure a persistent storage
-    backend.
+    requires PVCs, therefore if you plan on using the |prefix|-openstack
+    application, then you must configure a persistent storage backend.
 
     There are two options for persistent storage backend:
     1) the host-based Ceph solution and
@@ -238,8 +237,8 @@ For Rook container-based Ceph:
 
    .. important::
 
-      **This step is required only if the StarlingX OpenStack application
-      (stx-openstack) will be installed.**
+      This step is required only if the |prefix|-openstack application
+      will be installed.
 
       1G Huge Pages are not supported in the virtual environment and there is no
       virtual NIC supporting SRIOV. For that reason, data interfaces are not
@@ -383,8 +382,8 @@ On virtual controller-0:
 
    .. important::
 
-      **This step is required only if the StarlingX OpenStack application
-      (stx-openstack) will be installed.**
+      This step is required only if the |prefix|-openstack application
+      will be installed.
 
       1G Huge Pages are not supported in the virtual environment and there is no
       virtual NIC supporting SRIOV. For that reason, data interfaces are not
@@ -450,11 +449,11 @@ OpenStack-specific host configuration
 
 .. important::
 
-   **This step is required only if the StarlingX OpenStack application
-   (stx-openstack) will be installed.**
+   This step is required only if the |prefix|-openstack application
+   will be installed.
 
 #. **For OpenStack only:** Assign OpenStack host labels to controller-1 in
-   support of installing the stx-openstack manifest/helm-charts later:
+   support of installing the |prefix|-openstack manifest/helm-charts later:
 
    .. parsed-literal::
 
@@ -464,7 +463,7 @@ OpenStack-specific host configuration
     system host-label-assign controller-1 sriov=enabled
 
 #. **For OpenStack only:** Set up disk partition for nova-local volume group,
-   which is needed for stx-openstack nova ephemeral disks:
+   which is needed for |prefix|-openstack nova ephemeral disks:
 
    ::
 
