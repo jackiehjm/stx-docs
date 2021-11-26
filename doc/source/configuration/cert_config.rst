@@ -223,15 +223,15 @@ To enable HTTPS for OpenStack:
 #.  If not already done, upload the OpenStack application manifest and Helm
     charts:
 
-    ::
+    .. parsed-literal::
 
-    $ system application-upload stx-openstack <stx-openstack-armada-tar-ball>
+        $ system application-upload |prefix|-openstack <|prefix|-openstack-armada-tar-ball>
 
 #.  Update the OpenStack Helm charts and apply them to OpenStack services.
 
-    ::
+    .. parsed-literal::
 
-    $ system application-apply stx-openstack
+        $ system application-apply |prefix|-openstack
 
 -----------
 Trusted CAs
@@ -287,6 +287,6 @@ an external Docker registry with a certificate signed by a non-standard CA.
 
 *   To update the OpenStack Helm charts and apply them:
 
-    ::
+    .. parsed-literal::
 
-    ~(keystone_admin)]$ system application-apply stx-openstack
+        ~(keystone_admin)]$ system application-apply |prefix|-openstack

@@ -109,9 +109,9 @@ Integration Steps
 
      source /etc/platform/openrc
 
-#. Load the stx-openstack application package into |prod|. The tarball
-   package contains the stx-openstack Airship Armada manifest and stx-openstack
-   set of Helm charts. For example:
+#. Load the |prefix|-openstack application package into |prod|. The tarball
+   package contains the |prefix|-openstack Airship Armada manifest and
+   |prefix|-openstack set of Helm charts. For example:
 
    ::
 

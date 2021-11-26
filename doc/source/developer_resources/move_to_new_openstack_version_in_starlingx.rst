@@ -206,24 +206,24 @@ Here are some tips for testing and debugging your upgrade:
 #. Use `system application management <sys_app_management>`_ commands to manage
    the application. For example:
 
-   ::
+   .. parsed-literal::
 
-       system application-upload -n stx-openstack stx-openstack-1.0-16.tgz
-       system application-apply stx-openstack
-       system application-remove stx-openstack
-       system application-delete stx-openstack
-       watch -n 5 system application-list
+          system application-upload -n |prefix|-openstack |prefix|-openstack-1.0-16.tgz
+          system application-apply |prefix|-openstack
+          system application-remove |prefix|-openstack
+          system application-delete |prefix|-openstack
+          watch -n 5 system application-list
 
 #. Use kubectl commands for log analysis. For example:
 
-   ::
+   .. parsed-literal::
 
-       tail -f /var/log/sysinv.log
-       tail -f /var/log/armada/stx-openstack-apply.log
-       kubectl -n openstack get po
-       kubectl -n openstack logs nova-compute-compute-0-75ea0372-nmtz2
-       kubectl -n openstack exec -it nova-compute-compute-0-31b0f4b3-2rqgf -- bash
-       kubectl -n openstack describe pod nova-compute-compute-0-31b0f4b3-2rqgf
-       kubectl -n openstack get pod nova-compute-compute-0-31b0f4b3-2rqgf -o yaml
-       /var/log/container/*.log  //To see related pod logs for issue debug
+          tail -f /var/log/sysinv.log
+          tail -f /var/log/armada/|prefix|-openstack-apply.log
+          kubectl -n openstack get po
+          kubectl -n openstack logs nova-compute-compute-0-75ea0372-nmtz2
+          kubectl -n openstack exec -it nova-compute-compute-0-31b0f4b3-2rqgf -- bash
+          kubectl -n openstack describe pod nova-compute-compute-0-31b0f4b3-2rqgf
+          kubectl -n openstack get pod nova-compute-compute-0-31b0f4b3-2rqgf -o yaml
+          /var/log/container/\*.log  //To see related pod logs for issue debug
 

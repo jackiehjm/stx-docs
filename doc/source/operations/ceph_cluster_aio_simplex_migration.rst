@@ -623,42 +623,42 @@ Delete pod mariadb-server-0 osh-openstack-rabbitmq-rabbitmq-0
 
 Update override for cinder helm chart.
 
-::
+.. parsed-literal::
 
-  $ system helm-override-update stx-openstack cinder openstack --reuse-value --values cinder_override.yaml
+     $ system helm-override-update |prefix|-openstack cinder openstack --reuse-value --values cinder_override.yaml
 
-  $ controller-0:~$ cat cinder_override.yaml
-  conf:
-    backends:
-      ceph-store:
-        image_volume_cache_enabled: "True"
-        rbd_ceph_conf: /etc/ceph/ceph.conf
-        rbd_pool: cinder-volumes
-        rbd_user: cinder
-        volume_backend_name: ceph-store
-        volume_driver: cinder.volume.drivers.rbd.RBDDriver
-      rbd1:
-        volume_driver: ""
+     $ controller-0:~$ cat cinder_override.yaml
+     conf:
+       backends:
+         ceph-store:
+           image_volume_cache_enabled: "True"
+           rbd_ceph_conf: /etc/ceph/ceph.conf
+           rbd_pool: cinder-volumes
+           rbd_user: cinder
+           volume_backend_name: ceph-store
+           volume_driver: cinder.volume.drivers.rbd.RBDDriver
+         rbd1:
+           volume_driver: ""
 
-Apply application stx-openstack again
+Apply application |prefix|-openstack again.
 
-::
+.. parsed-literal::
 
-  [sysadmin@controller-0 script(keystone_admin)]$ system application-apply stx-openstack
-  +---------------+----------------------------------+
-  | Property      | Value                            |
-  +---------------+----------------------------------+
-  | active        | True                             |
-  | app_version   | 1.0-45                           |
-  | created_at    | 2020-07-08T05:47:24.019723+00:00 |
-  | manifest_file | stx-openstack.yaml               |
-  | manifest_name | armada-manifest                  |
-  | name          | stx-openstack                    |
-  | progress      | None                             |
-  | status        | applying                         |
-  | updated_at    | 2020-07-08T06:27:08.836258+00:00 |
-  +---------------+----------------------------------+
-  Please use 'system application-list' or 'system application-show stx-openstack' to view the current progress.
-  [sysadmin@controller-0 script(keystone_admin)]$
+     [sysadmin@controller-0 script(keystone_admin)]$ system application-apply |prefix|-openstack
+     +---------------+----------------------------------+
+     | Property      | Value                            |
+     +---------------+----------------------------------+
+     | active        | True                             |
+     | app_version   | 1.0-45                           |
+     | created_at    | 2020-07-08T05:47:24.019723+00:00 |
+     | manifest_file | |prefix|-openstack.yaml   |s|            |
+     | manifest_name | armada-manifest                  |
+     | name          | |prefix|-openstack        |s|            |
+     | progress      | None                             |
+     | status        | applying                         |
+     | updated_at    | 2020-07-08T06:27:08.836258+00:00 |
+     +---------------+----------------------------------+
+     Please use 'system application-list' or 'system application-show |prefix|-openstack' to view the current progress.
+     [sysadmin@controller-0 script(keystone_admin)]$
 
 Check application apply successfully and all pods work well without error.
