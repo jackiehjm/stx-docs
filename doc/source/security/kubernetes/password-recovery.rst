@@ -24,12 +24,6 @@ This section describes how to change or reset a Keystone user password.
 
             ~(keystone_admin)]$ openstack user password set
 
-        .. warning::
-            Both controller nodes must be locked and unlocked after changing
-            the Keystone admin password. You must wait five minutes before
-            performing the lock/unlock operations.
-
-
 -   Use the following command to reset a Keystone non-admin user \(tenant user\) account.
 
     .. code-block:: none
