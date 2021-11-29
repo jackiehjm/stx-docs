@@ -1,5 +1,0 @@
-.. usage-limitation-begin
-.. usage-limitation-end
-
-.. changes-relative-to-root-begin
-.. changes-relative-to-root-end

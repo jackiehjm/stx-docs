@@ -14,14 +14,16 @@ performance. For more details, see: `https://docs.openstack.org/nova/latest/admi
 
 For an openstack-compute host:
 
-- host CPUs configured as **application** function will be mapped to Nova's Shared CPU pool,
+- host CPUs configured as **application** function will be mapped to Nova's
+  Shared CPU pool,
 
   and
 
-- host CPUs configured as **application-isolated** function will be mapped to Nova's Dedicated CPU pool.
+- host CPUs configured as **application-isolated** function will be mapped to
+  Nova's Dedicated CPU pool.
 
-The above mapping is done automatically, via system-generated Nova Helm Chart overrides,
-when the openstack application is applied.
+The above mapping is done automatically, via system-generated Nova Helm Chart
+overrides, when the openstack application is applied.
 
 The following restrictions apply when configuring host CPU functions:
 
@@ -50,8 +52,3 @@ It is also possible to configure the CPU policy via image metadata:
 
     ~(keystone)$ openstack image set [IMAGE_ID] --property hw_cpu_policy=dedicated
 
-.. only:: partner
-
-    .. include:: /_includes/isolating-cpu-cores-to-enhance-application-performance.rest
-       :start-after: changes-relative-to-root-begin
-       :end-before: changes-relative-to-root-end
