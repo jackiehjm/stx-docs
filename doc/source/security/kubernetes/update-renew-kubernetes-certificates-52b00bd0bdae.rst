@@ -8,7 +8,11 @@ Updating Kubernetes Root |CA| certificate is a complex process, because it is
 not only the Root |CA| certificate that needs to be updated, but also all the
 other Kubernetes certificates signed by it need to be regenerated and updated.
 
-The update of the Kubernetes Root |CA| certificate is currently not supported.
+See :ref:`Manual Kubernetes Root CA Certificate Update
+<manual-kubernetes-root-ca-certificate-update-8e9df2cd7fb9>` or
+:ref:`Kubernetes Root CA Certificate Update Cloud Orchestration
+<kubernetes-root-ca-certificate-update-cloud-orchestration-a627f9d02d6d>` for
+how to update the Kubernetes Root |CA| certificate.
 
 The other leaf certificates generated from the Kubernetes Root |CA| are
 monitored by a cronjob, which runs every day at midnight to check if any of
