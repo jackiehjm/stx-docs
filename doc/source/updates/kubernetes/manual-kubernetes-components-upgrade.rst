@@ -233,10 +233,8 @@ and upgrade various systems.
         +----+--------------+-------------+----------------+-----------------------+-----------------+--------+
         | 1  | controller-0 | controller  | v1.16.2        | v1.16.2               | v1.16.1         | None   |
         | 2  | controller-1 | controller  | v1.16.2        | v1.16.2               | v1.16.1         | None   |
-        | 3  | storage-0    | storage     | v1.16.1        | N/A                   | N/A             | None   |
-        | 4  | storage-1    | storage     | v1.16.1        | N/A                   | N/A             | None   |
-        | 5  | worker-0     | worker      | v1.16.1        | N/A                   | v1.16.1         | None   |
-        | 6  | worker- 1    | worker      | v1.16.1        | N/A                   | v1.16.1         | None   |
+        | 3  | worker-0     | worker      | v1.16.1        | N/A                   | v1.16.1         | None   |
+        | 4  | worker-1     | worker      | v1.16.1        | N/A                   | v1.16.1         | None   |
         +----+--------------+-------------+----------------+-----------------------+-----------------+--------+
 
     The control planes of both controllers are now upgraded to v1.16.2.
