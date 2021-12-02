@@ -92,7 +92,7 @@ specialized equipment.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ system device-image-upload <imagefile> functional <pci_vendor> <pci_device> --bitstream-id <bitstream_id> --name <imagename> --description <description> --image-version <version> --retimer-included <true/false>
+            ~(keystone_admin)$ system device-image-upload <imagefile> functional <pci_vendor> <pci_device> --bitstream-id <bitstream_id> --name <imagename> --description <description> --image-version <version> --bmc <true/false> --retimer-included <true/false>
 
     In the above :command:`device-image-upload` commands, the following
     substitutions apply:
@@ -125,6 +125,9 @@ specialized equipment.
 
     ``<image-version>``
         The version of the device image \(optional\).
+
+    ``--bmc <true/false>``
+        A boolean indicating whether it is a |BMC| functional image (optional).
 
     ``--retimer-included <true/false>``
         A boolean indicates whether the |BMC| firmware includes a retimer
