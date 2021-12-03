@@ -337,7 +337,8 @@ health of the system.
    :header-rows: 0
 
    * - **Alarm ID: 250.003**
-     - Kubernetes certificates rotation failed on host <hostname>.
+     - Kubernetes certificates rotation failed on host <hostname>[, reason =
+       <reason_text>].
    * - Entity Instance
      - host=<hostname>
    * - Degrade Affecting Severity:
@@ -345,7 +346,8 @@ health of the system.
    * - Severity:
      - M/w
    * - Proposed Repair Action
-     - Rotate kubernetes certificates manually.
+     - Lock and unlock the host to update services with new certificates
+       (Manually renew kubernetes certificates first if renewal failed).
 
 -----
 
