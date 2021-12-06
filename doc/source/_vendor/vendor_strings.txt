@@ -62,6 +62,17 @@
 
 .. |pn| replace:: STLX
 
+.. versioning
+
+.. StarlingX (|prod|)
+
+.. |prod-ver|  replace:: 5.0.1
+
+.. StX OpenStack (|prod-os|)
+
+.. |prod-os-ver| replace:: |prod-ver|
+
+
 .. Product version used in patch file names
 
 .. |pvr| replace:: 00004
