@@ -39,9 +39,9 @@ software components. These components include:
 
 .. rubric:: |prereq|
 
-Download the **gpu-operator-v3-1.6.0.3.tgz** file at
-`http://mirror.starlingx.cengn.ca/mirror/starlingx/
-<http://mirror.starlingx.cengn.ca/mirror/starlingx/>`__.
+Download the **gpu-operator-v3-1.8.1.4.tgz** file at
+`http://mirror.starlingx.cengn.ca/mirror/starlingx/release/latest_release/centos/containers/inputs/downloads/
+<http://mirror.starlingx.cengn.ca/mirror/starlingx/release/latest_release/centos/containers/inputs/downloads/>`__.
 
 Use the following steps to configure the GPU Operator container:
 
@@ -53,7 +53,8 @@ Use the following steps to configure the GPU Operator container:
 
         ~(keystone_admin)]$  system host-lock <hostname>
 
-#.  Configure the Container Runtime host path to the NVIDIA runtime which will be installed by the GPU Operator Helm deployment.
+#.  Configure the Container Runtime host path to the NVIDIA runtime which will
+    be installed by the GPU Operator Helm deployment.
 
     .. code-block:: none
 
@@ -65,41 +66,32 @@ Use the following steps to configure the GPU Operator container:
 
         ~(keystone_admin)]$ system host-unlock <hostname>
 
-#.  Create the RuntimeClass resource definition and apply it to the system.
-
-    .. code-block:: none
-
-        cat > nvidia.yml << EOF
-            kind: RuntimeClass
-            apiVersion: node.k8s.io/v1beta1
-            metadata:
-              name: nvidia
-            handler: nvidia
-        EOF
-
-    .. code-block:: none
-
-        ~(keystone_admin)]$ kubectl apply -f nvidia.yml
-
 #.  Install the GPU Operator Helm charts.
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ helm install gpu-operator /path/to/gpu-operator-1.6.0.3.tgz
+        ~(keystone_admin)]$ helm install gpu-operator /path/to/gpu-operator-v3-1.8.1.4.tgz
 
 #.  Check if the GPU Operator is deployed using the following command.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ kubectl get pods –A
-        NAMESPACE                     NAME                                                          READY   STATUS      RESTART    AGE
-        default                       gpu-operator-596c49cb9b-2tdlw                                 1/1     Running     1          24h
-        default                       gpu-operator-node-feature-discovery-master-7f87b4d6bb-wsbn4   1/1     Running     2          24h
-        default                       gpu-operator-node-feature-discovery-worker-hqzvw              1/1     Running     4          24h
-        gpu-operator-resources        nvidia-container-toolkit-daemonset-8f7nl                      1/1     Running     0          14h
-        gpu-operator-resources        nvidia-device-plugin-daemonset-g9lmk                          1/1     Running     0          14h
-        gpu-operator-resources        nvidia-device-plugin-validation                               0/1     Pending     0          24h
-        gpu-operator-resources        nvidia-driver-daemonset-9mnwr                                 1/1     Running     0          14h
+        NAMESPACE                NAME                                                          READY   STATUS      RESTARTS   AGE
+        ..............
+        default                  gpu-operator-5dddfcbb58-xpwbh                                 1/1     Running     0          3m13s
+        default                  gpu-operator-node-feature-discovery-master-58d884d5cc-56qch   1/1     Running     0          3m13s
+        default                  gpu-operator-node-feature-discovery-worker-p495j              1/1     Running     0          3m13s
+        gpu-operator-resources   gpu-feature-discovery-swmj8                                   1/1     Running     0          2m52s
+        gpu-operator-resources   nvidia-cuda-validator-zcfp9                                   0/1     Completed   0          2m31s
+        gpu-operator-resources   nvidia-dcgm-9447k                                             1/1     Running     0          2m52s
+        gpu-operator-resources   nvidia-dcgm-exporter-9c82q                                    1/1     Running     0          2m52s
+        gpu-operator-resources   nvidia-device-plugin-daemonset-ljm4q                          1/1     Running     0          2m52s
+        gpu-operator-resources   nvidia-device-plugin-validator-j9kjz                          0/1     Completed   0          2m25s
+        gpu-operator-resources   nvidia-driver-daemonset-qph2s                                 1/1     Running     0          2m52s
+        gpu-operator-resources   nvidia-operator-validator-dw6sc                               1/1     Running     0          2m52s
+        ..........
+        kube-system              toolkit-installer-xzrt8                                       1/1     Running     0          3m13s
 
     The plugin validation pod is marked completed.
 

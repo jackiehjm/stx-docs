@@ -21,7 +21,6 @@ Ensure that all user generated pods with access to `nvidia.com/gpu` resources ar
     .. code-block:: none
 
         ~(keystone_admin)]$ helm delete gpu-operator
-        ~(keystone_admin)]$ kubectl delete runtimeclasses.node.k8s.io nvidia
 
 #.  Remove the GPU Operator, and remove the service parameter platform
     `container\_runtime custom\_container\_runtime` from the system, using the
