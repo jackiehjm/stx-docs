@@ -8,6 +8,28 @@ Change the OAM IP Configuration Using the CLI
 
 If you prefer, you can use the CLI to view or change the |OAM| IP Configuration.
 
+.. rubric:: |context|
+
+During installation, |prod-long| is configured with an |OAM| network subnet and
+related IP addresses. You can change these addresses using the the CLI or the
+Horizon Web Interface. You can use IPv4 or IPv6 addresses.
+
+.. caution::
+
+    Access to the |OAM| network is interrupted during this procedure. When a
+    :command:`swact` is performed on the controllers, the newly active
+    controller uses the changed |OAM| IP addresses. The existing |OAM| IP
+    addresses are no longer valid, and you must use the new OAM IP addresses
+    to reconnect to the controller. Changes to external |OAM| access routing
+    settings may also be required. In addition, |VNC| console access to
+    worker-node hosts is interrupted until the hosts are locked and unlocked.
+
+    Once the |OAM| IP addresses are changed, any existing server certificates
+    (ssl, docker_registry, OpenStack etc.) that have the old |OAM| IP addresses
+    in their |SANs| must be updated with new certificates reflecting the new
+    addresses. For more information, see :ref:`Install/Update Local Registry
+    Certificates <installing-updating-the-docker-registry-certificate>`.
+
 To view the existing |OAM| IP configuration, use the following command.
 
 .. code-block:: none
@@ -75,7 +97,7 @@ resources are available to migrate any running instances.
 
 .. rubric:: |postreq|
 
-\(Optional\) If you are running Docker proxy on your system, you need to
+(Optional) If you are running Docker proxy on your system, you need to
 change the **no_proxy** service parameter using the CLI to append the new
 OAM IP, using the following steps:
 
