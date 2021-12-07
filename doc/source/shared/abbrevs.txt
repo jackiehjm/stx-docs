@@ -32,6 +32,7 @@
 .. |CVE| replace:: :abbr:`CVE (Common Vulnerabilities and Exposures)`
 .. |DAD| replace:: :abbr:`DAD (Duplicate Address Detection)`
 .. |DC| replace:: :abbr:`DC (Distributed Cloud)`
+.. |DOR| replace:: :abbr:`DOR (Dead Office Recovery)`
 .. |DHCP| replace:: :abbr:`DHCP (Dynamic Host Configuration Protocol)`
 .. |DMA| replace:: :abbr:`DMA (Direct Memory Access)`
 .. |DNS| replace:: :abbr:`DNS (Domain Name System)`
@@ -120,6 +121,7 @@
 .. |SSH| replace:: :abbr:`SSH (Secure Shell)`
 .. |SSL| replace:: :abbr:`SSL (Secure Socket Layer)`
 .. |STP| replace:: :abbr:`STP (Spanning Tree Protocol)`
+.. |SWACT| replace:: :abbr:`SWACT (SWitch ACTivity)`
 .. |TCP| replace:: :abbr:`TCP (Transition Control Protocol)`
 .. |TFTP| replace:: :abbr:`TFTP (Trivial File Transfer Protocol)`
 .. |TLS| replace:: :abbr:`TLS (Transport Layer Security)`
