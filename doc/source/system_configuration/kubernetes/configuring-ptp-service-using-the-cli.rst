@@ -17,7 +17,7 @@ using the Horizon Web interface see
 :ref:`Configure PTP Service Using Horizon
 <configuring-ptp-service-using-horizon>`.
 
-You can also specify the |PTP| service for **clock\_synchronization** using
+You can also specify the |PTP| service for **clock_synchronization** using
 the |os-prod-hor| interface.
 
 .. xbooklink For more information, see |node-doc|: `Host Inventory <hosts-tab>`.
@@ -45,7 +45,7 @@ To view the existing |PTP| status, use the following command.
     |NTP| and |PTP| are mutually exclusive on a particular host; only one can be
     enabled at any time.
 
-The default value for **clock\_synchronization** is **ntp**. Use the
+The default value for **clock_synchronization** is **ntp**. Use the
 following command to change the clock synchronization on the host. |NTP|
 and |PTP| are configured per host. Lock/unlock the host when updating.
 
@@ -194,10 +194,10 @@ To view the |PTP| service configuration, use the following command:
     The **ptp\_role** option can be added to interfaces, and can be defined for
     primary, secondary, and none. This option allows administrators to
     configure interfaces that can be used for |PTP| services. The primary and
-    secondary roles are limited to platform, |SRIOV|, and VF interfaces. Any
+    secondary roles are limited to |OAM|, platform or data interfaces. Any
     number of primary and secondary interfaces can be specified per host.
 
-    If a host has **clock\_synchronization=ptp**, there must be at least one
+    If a host has **clock_synchronization=ptp**, there must be at least one
     host interface with a |PTP| role specified. This is enforced during host
     unlock.
 
