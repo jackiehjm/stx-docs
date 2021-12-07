@@ -19,8 +19,8 @@ user must wait before the lockout is reset.
     sessions, perform this procedure during a scheduled maintenance period
     only.
 
-By default, after three consecutive failed login attempts, a user must wait
-five minutes \(300 seconds\) before attempting another login. During this
+By default, after five consecutive failed login attempts, a user must wait
+thirty minutes \(1800 seconds\) before attempting another login. During this
 period, all Web administration interface login attempts by the user are
 refused, including those using the correct password.
 
@@ -28,30 +28,28 @@ This behavior is controlled by the lockout\_retries parameter and the
 lockout\_seconds service parameter. To review their current values, use the
 :command:`system service-parameter-list` command.
 
-You can change the duration of the lockout using the following CLI command:
+You can change the duration of the lockout using the following |CLI| command:
 
 .. code-block:: none
 
-    ~(keystone_admin)]$ system service-parameter-modify horizon auth \
-    lockout_seconds=<duration>
+    ~(keystone_admin)]$ system service-parameter-modify identity security_compliance lockout_seconds=<duration>
 
-where <duration> is the time in seconds.
+where ``<duration>`` is the time in seconds.
 
 You can change the number of allowed retries before a lockout is imposed
-using the following CLI command:
+using the following |CLI| command:
 
 .. code-block:: none
 
-    ~(keystone_admin)]$ system service-parameter-modify horizon auth \
-    lockout_retries=<attempts>
+    ~(keystone_admin)]$ system service-parameter-modify identity security_compliance lockout_retries=<attempts>
 
-where <attempts> is the number of allowed retries.
+where ``<attempts>`` is the number of allowed retries.
 
 For the changes to take effect, you must apply them:
 
 .. code-block:: none
 
-    ~(keystone_admin)]$ system service-parameter-apply horizon
+    ~(keystone_admin)]$ system service-parameter-apply identity
 
 Allow about 30 seconds after applying the changes for the Web service to
 restart.
