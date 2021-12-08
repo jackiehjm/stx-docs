@@ -13,20 +13,27 @@ subclouds from the System Controller.
 
 -   To list subclouds, select **Distributed Cloud Admin** \> **Cloud Overview**.
 
-    .. image:: figures/uhp1521894539008.png
+    .. image:: figures/cloud-overview.png
 
 
     You can perform full-text searches or filter by column using the search-bar
     above the subcloud list.
 
-    .. image:: figures/pdn1591034100660.png
-
+    .. image:: figures/cloud-overview-search.png
 
 
 -   To perform operations on a subcloud, use the **Actions** menu.
 
-    .. image:: figures/pvr1591032739503.png
+    .. image:: figures/cloud-overview-actions.png
 
+-   To change a Subcloud Group for a specific Subcloud, select the Subcloud
+    Group name.
+
+    .. image:: figures/cloud-overview-edit-subcloud.png
+
+-   Confirm changes and check the new assignment in the Subcloud summary.
+
+    .. image:: figures/cloud-overview-summary.png
 
     .. caution::
 
@@ -37,9 +44,3 @@ subclouds from the System Controller.
     Web interface for that subcloud. To switch back to the System Controller,
     use the subcloud or region selection menu at the top left of the Horizon
     window.
-
-    .. image:: figures/rpn1518108364837.png
-
-
-
-
