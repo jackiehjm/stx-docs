@@ -69,13 +69,35 @@ stored in file systems:
 Install custom etcd Root CA certificate
 ---------------------------------------
 
-Etcd Root |CA| certificate and corresponding private key are generated during
-system bootstrap. By default it has 10 years validation. Installing custom etcd
-Root |CA| certificate is not currently supported.
+By default, etcd Root |CA| certificate and corresponding private key are
+generated during system bootstrap and have 10 years validation.
 
 The other etcd certificates are generated from the Root |CA| certificate during
 system bootstrap once the Root |CA| certificate is generated and available.
-These certificates have 10 years validation too.
+The following generated certificates have 1 year validation:
+
+-   ``etcd-client``
+-   ``etcd-server``
+-   ``kube-apiserver-etcd-client``
+
+To provide a Root |CA| for etcd, add the ``etcd_root_ca_key`` and
+``etcd_root_ca_cert`` overrides to ``localhost.yml`` before bootstrap.
+
+For example:
+
+.. code-block::
+
+    etcd_root_ca_key: /home/sysadmin/<my-root-ca-key.pem>
+    etcd_root_ca_cert: /home/sysadmin/<my-root-ca-cert.pem>
+
+.. note::
+
+    The values must be absolute file paths.
+
+    Both key and cert must be provided (or omitted).
+
+    The certificate should be valid for 5-10 years as currently there is no
+    mechanism to update this certificate.
 
 ------------------------------
 Update/Renew etcd certificates
