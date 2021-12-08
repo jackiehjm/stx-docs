@@ -2,6 +2,11 @@
 OpenStack Cinder File System Configuration
 ==========================================
 
+.. note::
+
+   This guide was replaced by:
+   :ref:`Configure the Optional Image Conversion File System <configure-an-optional-cinder-file-system>`
+
 This guide describes an optional file system that can be used by Cinder to
 convert qcow2 images to raw format.
 

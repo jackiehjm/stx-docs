@@ -2,6 +2,11 @@
 Authenticate Kubernetes Users with Windows Active Directory Server
 ==================================================================
 
+.. note::
+
+   This guide was replaced by:
+   :ref:`Overview of Windows Active Directory <overview-of-windows-active-directory>`
+
 This guide describes how to authenticate users of the Kubernetes API via a
 remote Windows Active Directory server, using the oidc-auth-apps application.
 

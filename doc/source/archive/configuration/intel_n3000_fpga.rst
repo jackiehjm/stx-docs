@@ -2,6 +2,10 @@
 Host FPGA Configuration - Intel N3000
 =====================================
 
+.. note::
+
+   This guide was replaced by: :ref:`N3000 FPGA Overview <n3000-overview>`
+
 This guide describes how to configure and integrate an Intel N3000 |FPGA|
 |PAC| on StarlingX.
 

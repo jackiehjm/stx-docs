@@ -2,6 +2,11 @@
 Host Configuration
 ==================
 
+.. note::
+
+   This guide was replaced by:
+   :doc:`Node Management Guide </node_management/index>`
+
 This is a stub page for the topic: Host Configuration. You can help StarlingX by
 expanding the content.
 

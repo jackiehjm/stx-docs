@@ -2,6 +2,10 @@
 Pod Security Policies
 =====================
 
+.. note::
+
+   This guide was replaced by: :ref:`Pod Security Policies <pod-security-policies>`
+
 This guide describes how to enable Kubernetes pod security policies.
 
 .. contents::
