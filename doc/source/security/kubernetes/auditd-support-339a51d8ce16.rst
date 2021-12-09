@@ -34,12 +34,11 @@ System, and is responsible for writing the audit logs. For more information on
 To run **auditd** on |prod-p|, you must enable **auditd** in the kernel of
 |prod-p| hosts and then upload and apply the **auditd** system application.
 
-
 ---------------------------
 Enable Auditd in the Kernel
 ---------------------------
 
-The Linux Auditing System is disabled in the |prod-p| kernel by default.
+The Linux Auditing System is disabled in the |prod| kernel by default.
 
 To enable **auditd** in the kernel of all hosts in the system, set the system
 service parameter **audit** to '1' and apply the service-parameter change,
@@ -51,12 +50,42 @@ using the following commands, executed on the active controller.
     ~(keystone_admin)]$ system service-parameter-apply platform
 
 To persist the service parameter change, all hosts need to be locked and
-unlocked, using the following commands on each host:
+unlocked, using the following commands for each host depending on the deployed
+configuration:
+
+For |AIO-SX| deployments:
 
 .. code-block:: none
 
-    ~(keystone_admin)]$ system host-lock <hostname>
-    ~(keystone_admin)]$ system host-unlock <hostname>
+        ~(keystone_admin)$ system host-lock controller-0
+        ~(keystone_admin)$ system host-unlock controller-0
+
+For |AIO-DX| and Standards deployments, after controller-1 is locked/unlocked
+swact controller-0 to make controller-1 the active node. The next set of
+commands are executed on controller-0 node:
+
+.. code-block:: none
+
+    ~(keystone_admin)$ system host-lock controller-1
+    ~(keystone_admin)$ system host-unlock controller-1
+    ~(keystone_admin)$ system host-swact controller-0
+
+On controller-1, after controller-0 is locked/unlocked swact controller-1 to go
+back to controller-0 as the active node. The next set of commands are executed
+on controller-1 node:
+
+.. code-block:: none
+
+    ~(keystone_admin)$ system host-lock controller-0
+    ~(keystone_admin)$ system host-unlock controller-0
+    ~(keystone_admin)$ system host-swact controller-1
+
+For each worker node in the configuration execute the commands from controller-0:
+
+.. code-block:: none
+
+    ~(keystone_admin)$ system host-lock worker-0
+    ~(keystone_admin)$ system host-unlock worker-0
 
 To verify if the grub kernel parameter **audit** was updated to '1', for a
 particular host, ssh to the host, and check the cmdline parameters, for example:
