@@ -173,11 +173,11 @@ health of the system.
    :header-rows: 0
 
    * - **Alarm ID: 100.109**
-     - 'OAM' Interface degraded.
+     - 'MGMT' Interface degraded.
 
        or
 
-       'OAM' Interface failed.
+       'MGMT' Interface failed.
    * - Entity Instance
      - host=<hostname>.interface=<if-name>
    * - Degrade Affecting Severity:
