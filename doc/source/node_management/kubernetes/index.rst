@@ -277,6 +277,7 @@ Customize host life cycles
    customizing_the_host_life_cycles/adjusting-the-host-heartbeat-interval-and-heartbeat-response-thresholds
    customizing_the_host_life_cycles/configuring-heartbeat-failure-action
    customizing_the_host_life_cycles/configuring-multi-node-failure-avoidance
+   customizing_the_host_life_cycles/handling-maintenance-heartbeat-failure-for-active-controller-service-activation-70fb51663717
 
 --------------------
 Node inventory tasks
