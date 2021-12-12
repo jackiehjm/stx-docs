@@ -5,8 +5,6 @@
 Migrate an AIO-SX to an AIO-DX Subcloud
 ---------------------------------------
 
-|release-caveat|
-
 .. rubric:: |context|
 
 You can migrate an |AIO-SX| subcloud to an |AIO-DX| subcloud without
