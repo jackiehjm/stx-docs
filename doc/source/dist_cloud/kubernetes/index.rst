@@ -51,9 +51,6 @@ Operation
     switching-to-a-subcloud-from-the-system-controller
     synchronization-monitoring-and-control
     cli-commands-for-dc-alarms-management
-    managing-subcloud-groups
-    creating-subcloud-groups
-    ochestration-strategy-using-subcloud-groups
     managing-ldap-linux-user-accounts-on-the-system-controller
     changing-the-admin-password-on-distributed-cloud
     updating-docker-registry-credentials-on-a-subcloud
@@ -71,6 +68,9 @@ Manage Subcloud Groups
 
     managing-subcloud-groups
     creating-subcloud-groups
+    create-subcloud-groups-using-the-horizon-web-interface-69d357303531
+    edit-subcloud-groups-85232c3a7d33
+    delete-subcloud-groups-22a7c65e66d7
     ochestration-strategy-using-subcloud-groups
 
 -------------------------
