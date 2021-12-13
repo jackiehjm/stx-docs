@@ -137,3 +137,25 @@ cluster.
 ``kube-upgrade-strategy show``
     Show a strategy.
 
+***************************************
+Kubernetes Root CA update orchestration
+***************************************
+
+The :command:`kube-rootca-update-strategy` commands create, apply and monitor
+the orchestration of Kubernetes Root |CA| certificate updates across all hosts
+of a |prod| cluster.
+
+``kube-rootca-update-strategy create``
+    Create a strategy.
+
+``kube-rootca-update-strategy delete``
+    Delete a strategy.
+
+``kube-rootca-update-strategy apply``
+    Apply a strategy.
+
+``kube-rootca-update-strategy abort``
+    Abort a strategy.
+
+``kube-rootca-update-strategy show``
+    Show a strategy.

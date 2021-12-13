@@ -15,7 +15,6 @@ Introduction
 
 .. toctree::
     :maxdepth: 1
-    :caption: Contents:
 
     overview-of-distributed-cloud
     distributed-cloud-architecture
@@ -29,7 +28,6 @@ Installation
 
 .. toctree::
     :maxdepth: 1
-    :caption: Contents:
 
     installing-and-provisioning-the-central-cloud
     installing-and-provisioning-a-subcloud
@@ -44,7 +42,6 @@ Operation
 
 .. toctree::
     :maxdepth: 1
-    :caption: Contents:
 
     monitoring-subclouds-using-horizon
     managing-subclouds-using-the-cli
@@ -64,7 +61,6 @@ Manage Subcloud Groups
 
 .. toctree::
     :maxdepth: 1
-    :caption: Contents:
 
     managing-subcloud-groups
     creating-subcloud-groups
@@ -79,7 +75,6 @@ Update (Patch) management
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contents:
 
    update-management-for-distributed-cloud
    reviewing-update-status-for-distributed-cloud-using-horizon
@@ -110,7 +105,6 @@ FPGA device image update management
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contents:
 
    device-image-update-orchestration
 
@@ -120,10 +114,18 @@ Kubernetes Version Upgrade Distributed Cloud Orchestration
 
 .. toctree::
     :maxdepth: 1
-    :caption: Contents:
 
     the-kubernetes-distributed-cloud-update-orchestration-process
     configuring-kubernetes-update-orchestration-on-distributed-cloud
+
+---------------------------------------------------------
+Kubernetes Root CA Update Distributed Cloud Orchestration
+---------------------------------------------------------
+
+.. toctree::
+    :maxdepth: 1
+
+    orchestration-commands-for-dcmanager-4947f9fb9588
 
 ------------------
 Upgrade management
@@ -131,7 +133,6 @@ Upgrade management
 
 .. toctree::
     :maxdepth: 1
-    :caption: Contents:
 
     upgrade-management-overview
     upgrading-the-systemcontroller-using-the-cli
@@ -156,7 +157,6 @@ Appendix
 
 .. toctree::
     :maxdepth: 1
-    :caption: Contents:
 
     distributed-cloud-ports-reference
     certificate-management-for-admin-rest-api-endpoints
