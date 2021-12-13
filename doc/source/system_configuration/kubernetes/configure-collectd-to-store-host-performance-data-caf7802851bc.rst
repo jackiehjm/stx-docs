@@ -55,7 +55,7 @@ Add collectd configuration parameters
 
    .. code-block:: none
 
-       platform collectd network_servers=<host>:<port>,<host>:<port>,...,<hostN>:<portN>
+       system service-parameter-add platform collectd network_servers=<host1>:<port1>,<host2>:<port2>,...,<hostN>:<portN>
 
    where:
 
@@ -118,14 +118,50 @@ Add collectd configuration parameters
        | 3346bec7... | radosgw    | config   | service_enabled | false                    | None        | None     |
        +-------------+------------+----------+-----------------+--------------------------+-------------+----------+
 
-#. Lock and unlock the controller to have your changes take effect:
+#. (AIO-SX only) Lock and unlock the controller to have your changes take
+   effect:
 
    .. code-block:: none
 
        ~(keystone_admin)]$ system host-lock controller-0
        ~(keystone_admin)]$ system host-unlock controller-0
 
+#. (AIO-DX or Standard systems) Lock and unlock controller-1.
+
+   .. code-block:: none
+
+       ~(keystone_admin)]$ system host-lock controller-1
+       ~(keystone_admin)]$ system host-unlock controller-1
+
    This step can take up to 10 minutes.
+
+   #. Make controller-1 active.
+
+      .. code-block::
+
+          ~(keystone_admin)]$ system host-swact controller-0
+
+      #. Log in to controller-1.
+
+      #. Lock and unlock controller-0.
+
+         .. code-block::
+
+             ~(keystone_admin)]$ system host-lock controller-1
+             ~(keystone_admin)]$ system host-unlock controller-1
+
+         This step can take up to 10 minutes.
+
+   #. Set controller-0 as the active controller.
+
+      Swact to controller-0.
+
+      .. code-block::
+
+          ~(keystone_admin)]$ system host-swact controller-1
+
+      This step can take up to 10 minutes.
+
 
 Edit collectd configuration parameters
 ======================================
@@ -144,17 +180,17 @@ existing collectd configuration.
 
        ~(keystone_admin)]$ system service-parameter-modify platform collectd network_servers=192.168.1.200:25000,influxdb-host:25826
 
-       +-------------+--------------------------------------+
-       | Property    | Value                                |
-       +-------------+--------------------------------------+
-       | uuid        | 69553a96-1f73-4e7c-8fd0-1235c0aa1771 |
-       | service     | platform                             |
-       | section     | collectd                             |
-       | name        | network_servers                      |
-       | value       | 192.168.1.200:25000,controller:25826 |
-       | personality | None                                 |
-       | resource    | None                                 |
-       +-------------+--------------------------------------+
+       +-------------+-----------------------------------------+
+       | Property    | Value                                   |
+       +-------------+-----------------------------------------+
+       | uuid        | 69553a96-1f73-4e7c-8fd0-1235c0aa1771    |
+       | service     | platform                                |
+       | section     | collectd                                |
+       | name        | network_servers                         |
+       | value       | 192.168.1.200:25000,influxdb-host:25826 |
+       | personality | None                                    |
+       | resource    | None                                    |
+       +-------------+-----------------------------------------+
 
 #. |optional| Persist the new parameter:
 
@@ -162,12 +198,51 @@ existing collectd configuration.
 
        ~(keystone_admin)]$ system service-parameter-apply platform
 
-#. Lock and unlock the controller to have your changes take effect:
+#. (AIO-SX only) Lock and unlock the controller to have your changes take
+   effect:
 
    .. code-block:: none
 
        ~(keystone_admin)]$ system host-lock controller-0
        ~(keystone_admin)]$ system host-unlock controller-0
+
+#. (AIO-DX or Standard systems) Lock and unlock controller-1.
+
+   .. code-block:: none
+
+       ~(keystone_admin)]$ system host-lock controller-1
+       ~(keystone_admin)]$ system host-unlock controller-1
+
+   This step can take up to 10 minutes.
+
+   #. Make controller-1 active.
+
+      .. code-block::
+
+          ~(keystone_admin)]$ system host-swact controller-0
+
+      #. Log in to controller-1.
+
+      #. Lock and unlock controller-0.
+
+         .. code-block::
+
+             ~(keystone_admin)]$ system host-lock controller-1
+             ~(keystone_admin)]$ system host-unlock controller-1
+
+         This step can take up to 10 minutes.
+
+   #. Set controller-0 as the active controller.
+
+      Swact to controller-0.
+
+      .. code-block::
+
+          ~(keystone_admin)]$ system host-swact controller-1
+
+      This step can take up to 10 minutes.
+
+
 
    This step can take up to 10 minutes.
 
@@ -186,20 +261,20 @@ existing collectd configuration.
 
        ~(keystone_admin)]$ system service-parameter-list
 
-       +--------------------------------------+------------+----------+-----------------+-----------------------+-------------+----------+
-       | uuid                                 | service    | section  | name            | value                 | personality | resource |
-       +--------------------------------------+------------+----------+-----------------+-----------------------+-------------+----------+
-       | 17d024d1-55d3-4bc9-a490-2eda6e19e6d1 | horizon    | auth     | lockout_retries | 3                     | None        | None     |
-       | bf3cefdb-3b27-4dd0-aa77-47f362a23db2 | horizon    | auth     | lockout_seconds | 300                   | None        | None     |
-       | 69553a96-1f73-4e7c-8fd0-1235c0aa1771 | platform   | collectd | network_servers | controller:25826,192. | None        | None     |
-       |                                      |            |          |                 | 168.1.123:25826       |             |          |
-       |                                      |            |          |                 |                       |             |          |
-       | d574763b-e90b-4cca-a577-03269f1fc473 | radosgw    | config   | fs_size_mb      | 25                    | None        | None     |
-       | 03dd07ba-fd7e-4ec1-8113-42ea9d6bcb96 | http       | config   | http_port       | 8080                  | None        | None     |
-       | 1bbdb378-a1d6-4eb0-b210-73d573954b8d | http       | config   | https_port      | 8443                  | None        | None     |
-       | 8dc30732-b617-4ddd-aa97-69edd25e4075 | kubernetes | config   | pod_max_pids    | 10000                 | None        | None     |
-       | 3346bec7-3b57-4f21-a571-24d39f27dd0b | radosgw    | config   | service_enabled | false                 | None        | None     |
-       +--------------------------------------+------------+----------+-----------------+-----------------------+-------------+----------+
+       +--------------------------------------+------------+----------+-----------------+--------------------------+-------------+----------+
+       | uuid                                 | service    | section  | name            | value                    | personality | resource |
+       +--------------------------------------+------------+----------+-----------------+--------------------------+-------------+----------+
+       | 17d024d1-55d3-4bc9-a490-2eda6e19e6d1 | horizon    | auth     | lockout_retries | 3                        | None        | None     |
+       | bf3cefdb-3b27-4dd0-aa77-47f362a23db2 | horizon    | auth     | lockout_seconds | 300                      | None        | None     |
+       | 69553a96-1f73-4e7c-8fd0-1235c0aa1771 | platform   | collectd | network_servers | influxdb-host:25826,192. | None        | None     |
+       |                                      |            |          |                 | 168.1.123:25826          |             |          |
+       |                                      |            |          |                 |                          |             |          |
+       | d574763b-e90b-4cca-a577-03269f1fc473 | radosgw    | config   | fs_size_mb      | 25                       | None        | None     |
+       | 03dd07ba-fd7e-4ec1-8113-42ea9d6bcb96 | http       | config   | http_port       | 8080                     | None        | None     |
+       | 1bbdb378-a1d6-4eb0-b210-73d573954b8d | http       | config   | https_port      | 8443                     | None        | None     |
+       | 8dc30732-b617-4ddd-aa97-69edd25e4075 | kubernetes | config   | pod_max_pids    | 10000                    | None        | None     |
+       | 3346bec7-3b57-4f21-a571-24d39f27dd0b | radosgw    | config   | service_enabled | false                    | None        | None     |
+       +--------------------------------------+------------+----------+-----------------+--------------------------+-------------+----------+
 
    In this example, the |UUID| for collectd is ``69553a96-1f73-4e7c-8fd0-1235c0aa1771``.
 
@@ -229,11 +304,48 @@ existing collectd configuration.
 
    Note that collectd is no longer listed in the :guilabel:`section` column.
 
-#. Lock and unlock the controller to have your changes take effect:
+#. (AIO-SX only) Lock and unlock the controller to have your changes take
+   effect:
 
    .. code-block:: none
 
        ~(keystone_admin)]$ system host-lock controller-0
        ~(keystone_admin)]$ system host-unlock controller-0
 
+#. (AIO-DX or Standard systems) Lock and unlock controller-1.
+
+   .. code-block:: none
+
+       ~(keystone_admin)]$ system host-lock controller-1
+       ~(keystone_admin)]$ system host-unlock controller-1
+
    This step can take up to 10 minutes.
+
+   #. Make controller-1 active.
+
+      .. code-block::
+
+          ~(keystone_admin)]$ system host-swact controller-0
+
+      #. Log in to controller-1.
+
+      #. Lock and unlock controller-0.
+
+         .. code-block::
+
+             ~(keystone_admin)]$ system host-lock controller-1
+             ~(keystone_admin)]$ system host-unlock controller-1
+
+         This step can take up to 10 minutes.
+
+   #. Set controller-0 as the active controller.
+
+      Swact to controller-0.
+
+      .. code-block::
+
+          ~(keystone_admin)]$ system host-swact controller-1
+
+      This step can take up to 10 minutes.
+
+
