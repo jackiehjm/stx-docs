@@ -37,13 +37,13 @@ Perform the following steps to enable Metrics Server such that its services are
 available to containerized applications for horizontal autoscaling and/or use
 of Metrics API.
 
-#.  Go to the path ``/usr/local/share/applications/helm/`` to access ``metrics-server-21.05-6.tgz``
+#.  Go to the path ``/usr/local/share/applications/helm/`` to access ``metrics-server-nn.nn-0.tgz``
 
 #.  Upload the application tarball:
 
     .. code-block::
 
-        ~(keystone_admin)]$ system application-upload metrics-server-21.05-6.tgz
+        ~(keystone_admin)]$ system application-upload metrics-server-nn.nn-0.tgz
 
 #.  Run the application list to confirm that it was uploaded:
 

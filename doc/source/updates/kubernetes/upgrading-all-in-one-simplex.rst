@@ -59,7 +59,7 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
         ~(keystone_admin)]$
 
 #.  Install the license file for the release you are upgrading to, for example,
-    21.05.
+    nn.nn.
 
     .. code-block:: none
 
@@ -374,8 +374,8 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
         +--------------+--------------------------------------+
         | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
         | state        | activation-complete                  |
-        | from_release | 20.06                                |
-        | to_release   | 21.05                                |
+        | from_release | nn.nn                                |
+        | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
 

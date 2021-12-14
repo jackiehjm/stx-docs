@@ -46,7 +46,7 @@ of |prod| software.
 #.  Ensure that controller-0 is the active controller.
 
 #.  Install the license file for the release you are upgrading to, for example,
-    21.05.
+    nn.nn.
 
     .. code-block:: none
 
