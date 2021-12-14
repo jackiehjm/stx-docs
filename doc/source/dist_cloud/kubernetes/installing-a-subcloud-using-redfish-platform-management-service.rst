@@ -239,6 +239,10 @@ subcloud, the subcloud installation has these phases:
            username: <your_wrs-aws.io_username>
            password: <your_wrs-aws.io_password>
 
+    .. include:: /_includes/installing-a-subcloud-using-redfish-platform-management-service.rest
+       :start-after: begin-subcloud-1
+       :end-before: end-subcloud-1
+
 #.  Add the subcloud using :command:`dcmanager`.
 
     When calling the :command:`subcloud add` command, specify the install

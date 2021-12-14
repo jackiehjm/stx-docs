@@ -334,3 +334,9 @@ the secret payload is, "username: admin password:<password>", see,
    .. include:: /_includes/distributed-upgrade-orchestration-process-using-the-cli.rest
       :start-after: dcupgrade-begin
       :end-before: dcupgrade-end
+
+.. only:: partner
+
+   .. include:: /_includes/distributed-upgrade-orchestration-process-using-the-cli.rest
+      :start-after: dcsubcloud-begin
+      :end-before: dcsubcloud-end
