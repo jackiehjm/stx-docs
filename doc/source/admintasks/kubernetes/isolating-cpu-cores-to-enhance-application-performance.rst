@@ -31,23 +31,48 @@ assigned function. On host boot, any CPUs designated as isolated will be
 specified as part of the isolcpus kernel boot argument, which will isolate them
 from the process scheduler.
 
-.. only:: partner
+The use of application-isolated cores is only applicable when using the static
+Kubernetes CPU Manager policy. For more information,
+see :ref:`Kubernetes CPU Manager Policies <kubernetes-cpu-manager-policies>`.
 
-    .. include:: /_includes/isolating-cpu-cores-to-enhance-application-performance.rest
-       :start-after: usage-limitation-begin
-       :end-before: usage-limitation-end
+**Limitation**: If Hyperthreading is enabled in the BIOS and
+application-isolated CPUs are configured, and these CPUs are allocated to more
+than one container, the |SMT| siblings may be allocated to different containers
+and that could adversely impact the performance of the application.
+
+**Workaround**: The suggested workaround is to allocate all
+application-isolated CPUs on a host to a single pod. For more information, see
+Node Management: :ref:`Changing the Hyper-threading Status <changing-the-hyper-threading-status>`.
 
 When using the static CPU manager policy before increasing the number of
 platform CPUs or changing isolated CPUs to application CPUs on a host, ensure
 that no pods on the host are making use of any isolated CPUs that will be
 affected. Otherwise, the pod\(s\) will transition to a Topology Affinity Error
 state. Although not strictly necessary, the simplest way to do this on systems
-other than AIO Simplex is to administratively lock the host, causing all the
+other than |AIO-SX| is to administratively lock the host, causing all the
 pods to be restarted on an alternate host, before changing CPU assigned
-functions. On AIO Simplex systems, you must explicitly delete the pods.
+functions. On |AIO-SX| systems, you must explicitly delete the pods.
 
-.. only:: partner
+This advanced feature introduces changes in |prod| Kubernetes relative to
+standard Kubernetes.
 
-   .. include:: /_includes/isolating-cpu-cores-to-enhance-application-performance.rest
-      :start-after: changes-relative-to-root-begin
-      :end-before: changes-relative-to-root-end
+Kubernetes will report a new **windriver.com/isolcpus** resource for each
+worker node. This corresponds to the application-isolated CPUs. Pods in the
+**Best-effort** or **Burstable** |QoS| class may specify some number of
+**windriver.com/isolcpus** resources and the pod will be scheduled on a host
+\(and possibly |NUMA| node depending on topology manager policy\) with
+sufficient application-isolated cores available, and the container requesting
+the resource will be affined \(and restricted\) to those CPUs via cgroups.
+
+Pods in the Guaranteed |QoS| class should not specify **windriver.com/isolcpus**
+resources as they will be allocated but not used. If there are multiple
+processes within one container, they can be individually affined to separate
+isolated CPUs if the container requests multiple resources. This is highly
+recommended as the Linux kernel does not load balance across application-isolated
+CPUs. Start-up code in the container can determine the available CPUs by
+running :command:`sched_getaffinity()` command, or by parsing
+``/sys/fs/cgroup/cpuset/cpuset.cpus`` within the container.
+
+Isolated CPUs can be identified in the container by looking for files such as
+``/dev/cpu/<X>`` where ``<X>`` is a number, or by referencing
+``/sys/devices/system/cpu/isolated`` against the CPUs associated with this container.
