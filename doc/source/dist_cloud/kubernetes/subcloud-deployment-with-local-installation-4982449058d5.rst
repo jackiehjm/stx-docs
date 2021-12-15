@@ -442,7 +442,7 @@ After install, login as ``sysadmin/sysadmin`` and remove the prestaging logs.
     2021-11-05 19:45:57.556 - Prestaging post: cmdLine: rootwait inst.text inst.gpt boot_device=/dev/sda rootfs_device=/dev/sda biosdevname=0 usbcore.autosuspend=-1 security_profile=standard user_namespace.enable=1 inst.stage2=hd:LABEL=oe_prestaged_iso_boot inst.ks=hd:LABEL=oe_prestaged_iso_boot:/prestaged_installer_ks.cfg console=ttyS0,115200 serial initrd=initrd.img BOOT_IMAGE=vmlinuz
 
     2021-11-05 19:45:57.557 - Prestaging post: install source : /run/install/repo
-    2021-11-05 19:45:57.558 - Prestaging post: SW_VERSION           : 21.05
+    2021-11-05 19:45:57.558 - Prestaging post: SW_VERSION           : nn.nn
     2021-11-05 19:45:57.559 - Prestaging post: IMAGE_MOUNT          : /run/install/repo
     2021-11-05 19:45:57.560 - Prestaging post: PRESTAGING_REPO_DIR  : /run/install/repo/opt/platform-backup
     2021-11-05 19:45:57.561 - Prestaging post: PRESTAGING_LOCAL_DIR : /mnt/platform-backup
@@ -532,7 +532,7 @@ The followimg command is to query Local Install logs:
 
     2021-11-05 05:03:12.059 - Miniboot  pre: prestaged file : bootimage.iso
 
-    2021-11-05 05:03:12.060 - Miniboot  pre: found prestaged iso image /mnt/platform-backup/21.05/bootimage.iso
+    2021-11-05 05:03:12.060 - Miniboot  pre: found prestaged iso image /mnt/platform-backup/nn.nn/bootimage.iso
 
     2021-11-05 05:03:12.060 - Miniboot  pre: prestaged file : bootimage.md5
 
@@ -546,7 +546,7 @@ The followimg command is to query Local Install logs:
 
     2021-11-05 05:03:28.433 - Miniboot  pre: prestaged file : container-image2.tar.gz
 
-    2021-11-05 05:03:28.434 - Miniboot  pre: local iso found : /mnt/platform-backup/21.05/bootimage.iso
+    2021-11-05 05:03:28.434 - Miniboot  pre: local iso found : /mnt/platform-backup/nn.nn/bootimage.iso
 
     2021-11-05 05:03:28.438 - Miniboot  pre: local iso mounted for local install
 
@@ -554,21 +554,21 @@ The followimg command is to query Local Install logs:
 
     2021-11-05 05:10:25.382 - Miniboot post: /mnt/sysimage files : total 82
 
-    2021-11-05 05:10:25.384 - Miniboot post: /mnt/sysimage/www/pages/feed/rel-21.05 files : total 23
+    2021-11-05 05:10:25.384 - Miniboot post: /mnt/sysimage/www/pages/feed/rel-nn.nn files : total 23
 
-    2021-11-05 05:10:25.385 - Miniboot post: /mnt/sysimage/www/pages/updates/rel-21.05 does not exist
+    2021-11-05 05:10:25.385 - Miniboot post: /mnt/sysimage/www/pages/updates/rel-nn.nn does not exist
 
     2021-11-05 05:10:25.386 - Miniboot post: /mnt/sysimage/opt/patching does not exist
 
     2021-11-05 05:10:25.387 - Miniboot post: copying software repository /mnt/bootimage/Packages
 
-    2021-11-05 05:10:25.387 - Miniboot post: /mnt/sysimage/opt/patching/packages/21.05/ does not exist
+    2021-11-05 05:10:25.387 - Miniboot post: /mnt/sysimage/opt/patching/packages/nn.nn/ does not exist
 
     2021-11-05 05:10:26.465 - Miniboot post: updating platform.conf with install uuid : e1beb1c8-db83-4d0e-b2c5-8623b322a2a7
 
     2021-11-05 05:10:26.467 - Miniboot post: Local Install
 
-    2021-11-05 05:10:26.472 - Miniboot post: downloading patch repository http://[2620:10a:a001:a103::167]:8080/iso/21.05/nodes/subcloud1/patches
+    2021-11-05 05:10:26.472 - Miniboot post: downloading patch repository http://[2620:10a:a001:a103::167]:8080/iso/nn.nn/nodes/subcloud1/patches
 
     2021-11-05 05:10:26.474 - Miniboot post: fetch packages
 
