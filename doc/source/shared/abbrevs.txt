@@ -18,6 +18,7 @@
 .. |BOOTP| replace:: :abbr:`BOOTP (Boot Protocol)`
 .. |BPDU| replace:: :abbr:`BPDU (Bridge Protocol Data Unit)`
 .. |BPDUs| replace:: :abbr:`BPDUs (Bridge Protocol Data Units)`
+.. |BPF| replace:: :abbr:`BPF (Berkeley Packet Filter)`
 .. |CA| replace:: :abbr:`CA (Certificate Authority)`
 .. |CAs| replace:: :abbr:`CAs (Certificate Authorities)`
 .. |CLI| replace:: :abbr:`CLI (Command Line Interface)`
@@ -144,6 +145,7 @@
 .. |VNIs| replace:: :abbr:`VNIs (VXLAN Network Interfaces)`
 .. |VPC| replace:: :abbr:`VPC (Virtual Port Channel)`
 .. |vRAN| replace:: :abbr:`vRAN (virtualized Radio Access Network)`
+.. |VRF| replace:: :abbr:`VRF (Virtual Routing and Forwarding)`
 .. |VTEP| replace:: abbr:`VTEP (Virtual Tunnel End Point)`
 .. |VXLAN| replace:: :abbr:`VXLAN (Virtual eXtensible Local Area Network)`
 .. |VXLANs| replace:: :abbr:`VXLANs (Virtual eXtensible Local Area Networks)`
