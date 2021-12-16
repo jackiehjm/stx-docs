@@ -2,6 +2,10 @@
 Resource Policies
 =================
 
+.. note::
+
+   This guide was replaced by: :ref:`Resource Management <resource-management>`
+
 This guide describes two Kubernetes resource policies, LimitRange and
 ResourceQuota, which are enabled by default on StarlingX.
 

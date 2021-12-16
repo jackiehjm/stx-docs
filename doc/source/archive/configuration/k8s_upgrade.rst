@@ -2,6 +2,10 @@
 Upgrade Kubernetes version
 ==========================
 
+.. note::
+
+   This guide was replaced by: :ref:`Manual Kubernetes Version Upgrade <manual-kubernetes-components-upgrade>`
+
 This section describes how to upgrade the components on a system running
 StarlingX from one supported version of Kubernetes (K8s) to another supported
 version.

@@ -200,19 +200,19 @@ Deprecated guides
 The guides listed here have been replaced by new guides that provide more
 details.
 
-*************
-Configuration
-*************
 
 .. toctree::
    :maxdepth: 2
 
+   archive/index-documentation-archive-900988dce206
+
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
    configuration/index
 
-
-****************
-Operation guides
-****************
 
 .. toctree::
    :maxdepth: 2

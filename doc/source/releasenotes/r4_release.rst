@@ -44,7 +44,7 @@ associated user guides (if applicable).
   card's firmware.
 
   Guide: :doc:`Host FPGA Configuration for the Intel N3000 FPGA Programmable
-  Acceleration Card </configuration/intel_n3000_fpga>`
+  Acceleration Card </archive/configuration/intel_n3000_fpga>`
 
 * Kata Containers
 
@@ -61,7 +61,7 @@ associated user guides (if applicable).
   Kubernetes API.
 
   Guide: :doc:`Authenticate Kubernetes Users with Windows Active Directory
-  Server </configuration/k8s_auth_winactivedir>`
+  Server </archive/configuration/k8s_auth_winactivedir>`
 
 * Certificate Manager Integration
 
@@ -69,7 +69,7 @@ associated user guides (if applicable).
   certificate issuance, monitor certificate expiration dates, and configure
   an auto-renew process.
 
-  Guide: :doc:`Enable secure HTTPS access and manage certificates </configuration/cert_config>`
+  Guide: :doc:`Enable secure HTTPS access and manage certificates </archive/configuration/cert_config>`
 
 * Time-Sensitive Networking (TSN) in Kata Containers
 
@@ -103,7 +103,7 @@ associated user guides (if applicable).
   StarlingX now has the capability of updating the Kubernetes images
   installed on the platform.
 
-  Guide: :doc:`Upgrade your Kubernetes version </configuration/k8s_upgrade>`
+  Guide: :doc:`Upgrade your Kubernetes version </archive/configuration/k8s_upgrade>`
 
 * Redfish virtual media support
 

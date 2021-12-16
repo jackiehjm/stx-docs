@@ -2,6 +2,11 @@
 Certificate Configuration
 =========================
 
+.. note::
+
+   This guide was replaced by:
+   :ref:`HTTPS and Certificates Management Overview <https-access-overview>`
+
 This guide describes how to enable secure HTTPS access and manage certificates
 using StarlingX.
 

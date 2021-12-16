@@ -919,7 +919,7 @@ Kubernetes version upgrade
 
 The following set of commands allow you to upgrade the version of Kubernetes.
 For more information, see
-:doc:`Kubernetes upgrade </configuration/k8s_upgrade>`.
+:ref:`Manual Kubernetes Version Upgrade <manual-kubernetes-components-upgrade>`.
 
 ``kube-host-upgrade``
     Perform Kubernetes upgrade for a host.

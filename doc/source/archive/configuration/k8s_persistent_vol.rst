@@ -2,6 +2,11 @@
 Persistent Volume Configuration
 ===============================
 
+.. note::
+
+   This guide was replaced by:
+   :ref:`About Persistent Volume Support <about-persistent-volume-support>`
+
 This is a stub page for the topic: Configuring Persistent Volume Support. You
 can help StarlingX by expanding the content.
 

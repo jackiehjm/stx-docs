@@ -2,6 +2,12 @@
 System Configuration
 =====================
 
+.. note::
+
+   This guide was replaced by:
+   :ref:`System Configuration Guide <sysconf_main_index>`
+
+
 This is a stub page for the topic: System Configuration. You can help StarlingX
 by expanding the content.
 
