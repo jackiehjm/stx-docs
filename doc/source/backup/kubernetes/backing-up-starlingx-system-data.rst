@@ -95,7 +95,7 @@ The backup contains details as listed below:
 
         -   item=/opt/patching
 
-        -   item=/var/www/pages/updates
+        -   item=/www/pages/updates
 
     -   Extension filesystem:
 
