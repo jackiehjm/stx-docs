@@ -76,3 +76,28 @@ $strike
 .. content here
 
 "
+
+# include file
+include="
+.. If this file will contain only one text fragment, delete the \".. begin-\" and 
+   \".. end-\" comments below and simply include your rST content.
+   
+.. If this file will include more than one text fragment, replace <comment-name>
+   with a string describing the fragment. This string must be unique and contain
+   no spaces. Comments must match for each fragment, for example:
+   .. begin-source-env-note
+   .. end-source-env-note
+   Repeat this pattern for each fragment in the file.
+   
+.. This file should be saved to the doc/source/_include directory of your project.
+
+.. For more information on including content fragments, see:
+   https://docutils.sourceforge.io/docs/ref/rst/directives.html#include
+
+.. begin-<comment-name>
+
+.. content here
+
+.. end-<comment-name>
+
+"

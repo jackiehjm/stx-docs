@@ -5,6 +5,8 @@ if ! hash uuidgen 2>/dev/null; then
   exit 1
 fi
 
+INCLUDEDIR="$2/doc/source/_includes"
+
 ask_name () {
 
    echo -e "`cat <<EOF
@@ -12,6 +14,8 @@ ask_name () {
    You are about to create a new reStructuredText file in
 
    ${WD}
+
+   or a content fragment file in doc/source/_includes
 
    If this is not what you want, press CTL-C to quit and change to the directory
    you want to create the file in.
@@ -45,6 +49,7 @@ ask_type () {
     i) An index.
     r) A reference topic. Will contain a minimal list-table definition.
     g) A minimal generic topic.
+    f) A content fragment included in an rST file. Will be saved to doc/source/_includes.
 
 EOF`"
 
@@ -52,7 +57,7 @@ EOF`"
 
        case $input in
 
-           t|i|r|g)
+           t|i|r|g|f)
               break
              ;;
 
@@ -69,9 +74,17 @@ EOF`"
 
 write_stub () {
 
-   echo "$1" > "${WD}/${filename}.rst"
-   if [[ -f ${WD}/${filename}.rst ]]; then
-     echo -e "\nCreated ${WD}/${filename}.rst"
+   if [[ $input == "f" ]]; then
+     outdir=$INCLUDEDIR
+     ext="rest"
+   else
+     outdir=$WD
+     ext="rst"
+   fi
+
+   echo "$1" > "${outdir}/${filename}.${ext}"
+   if [[ -f ${outdir}/${filename}.${ext} ]]; then
+     echo -e "\nCreated ${outdir}/${filename}.${ext}"
      exit 0
    else
      exit 1
@@ -125,6 +138,10 @@ case $input in
 
    g)
       write_stub "${topic}"
+      ;;
+
+   f)
+      write_stub "${include}"
       ;;
 
    *)
