@@ -1,0 +1,3 @@
+.. |this-prod| replace:: |prod-long|
+
+.. |this-ver| replace:: r6.0
