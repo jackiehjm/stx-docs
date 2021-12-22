@@ -10,6 +10,8 @@
 .. Load abbreviations list
 .. include:: /shared/abbrevs.txt
 
+.. Load scoped product information
+.. include:: /_this.txt
 
 .. Task-oriented headings that should not appear in TOC
 .. These are used with the .. rubric:: directive. For example:
