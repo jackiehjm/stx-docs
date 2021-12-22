@@ -193,6 +193,15 @@ Distributed Cloud
 
    dist_cloud/index
 
+------------------------------
+Sample Application Deployments
+------------------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   sample_apps/index
+
 -----------------
 Deprecated guides
 -----------------

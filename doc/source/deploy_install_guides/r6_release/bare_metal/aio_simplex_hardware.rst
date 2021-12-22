@@ -1,3 +1,5 @@
+.. _aio_simplex_hardware_r6:
+
 =====================
 Hardware Requirements
 =====================
