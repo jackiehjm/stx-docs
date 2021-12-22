@@ -130,7 +130,7 @@ and ``/etc/kubernetes/pki/ca.key``.
         Passing ``--active``  will show which step is currently running for the
         orchestration strategy.
 
-#. If you want to delete the strategy.
+#.  If you want to delete the strategy.
 
     .. code-block::
 
