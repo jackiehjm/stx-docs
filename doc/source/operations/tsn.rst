@@ -140,48 +140,54 @@ Edge cloud platform
       openstack image create --container-format bare --disk-format qcow2 --file
       tsn_ubuntu_19_04.img --public tsn-ubuntu-19-04
       # add pci-passthrough property to flavor (for example m1.medium), "h210-1" is the
-      alias name of the PCI device configured in nova.config
+      # alias name of the PCI device configured in nova.config
       openstack flavor set m1.medium --property pci_passthrough:alias=h210-1:1
 
-#. Configure OpenStack Nova to allow for PCI passthrough. Create the
-   ``nova-tsn-pt.yaml`` file to allow PCI passthrough for the i210 adapter (for
-   example device id: 8086:1533).
+#. Configure OpenStack Nova to allow for PCI passthrough.
+
+   Check the correct ``product_id`` of your device with the command:
 
    .. code:: sh
 
+      lspci -nn
+
+   Create the ``nova-tsn-pt.yaml`` file to allow PCI passthrough for the i210
+   adapter (for example device id: 8086:1533):
+
+   .. code:: yaml
+
       conf:
-      nova:
-       pci:
-         alias:
-             type: multistring
-             values:
-             - '{"vendor_id": "8086", "product_id": "1533","device_type":
-             "type-PCI","name": "h210-1"}'
-         passthrough_whitelist:
-             type: multistring
-             values:
-             - '{"class_id": "8086", "product_id":"1533"}'
-      overrides:
-        nova_compute:
-          hosts:
-          - conf:
-              nova:
-               DEFAULT:
-                 my_ip: {host_ip}
-                 shared_pcpu_map: '""'
-                 vcpu_pin_set: '"2-5"'
-               libvirt:
-                 images_type: default
-                 live_migration_inbound_addr: {host_ip}
-               pci:
-                 passthrough_whitelist:
-                   type: multistring
-                   values:
-                   - '{"class_id": "8086", "product_id": "1533"}'
-               vnc:
-                 vncserver_listen: 0.0.0.0
-                 vncserver_proxyclient_address: {host_ip}
-            name: {controller_name}
+        nova:
+          pci:
+            alias:
+              type: multistring
+              values:
+              - '{"vendor_id": "8086", "product_id": "1533", "device_type": "type-PCI", "name": "h210-1"}'
+            passthrough_whitelist:
+              type: multistring
+              values:
+              - '{"class_id": "8086", "product_id":"1533"}'
+        overrides:
+          nova_compute:
+            hosts:
+            - conf:
+                nova:
+                  DEFAULT:
+                    my_ip: {host_ip}
+                    shared_pcpu_map: '""'
+                    vcpu_pin_set: '"2-5"'
+                  libvirt:
+                    images_type: default
+                    live_migration_inbound_addr: {host_ip}
+                  pci:
+                    passthrough_whitelist:
+                    type: multistring
+                    values:
+                    - '{"class_id": "8086", "product_id": "1533"}'
+                  vnc:
+                    vncserver_listen: 0.0.0.0
+                    vncserver_proxyclient_address: {host_ip}
+              name: {controller_name}
 
    .. note::
 
@@ -195,16 +201,14 @@ Edge cloud platform
    .. parsed-literal::
 
       # set pci-passthrough config
-      system helm-override-update  |prefix|-openstack nova openstack --values
-      nova-tsn-pt.yaml
+      system helm-override-update |prefix|-openstack nova openstack --values ./nova-tsn-pt.yaml --reuse-values
       system application-apply |prefix|-openstack
 
 #. Create VM instance.
 
    .. code:: sh
 
-      openstack server create --image tsn-ubuntu-19-04 --network ${network_uuid}
-      --flavor m1.medium tsn
+      openstack server create --image tsn-ubuntu-19-04 --network ${network_uuid} --flavor m1.medium tsn
 
 #. Install the TSN reference application and other test applications. Follow the
    instructions in `TSN Reference Software for Linux`_ to compile and install
@@ -324,7 +328,7 @@ Enable CBS with the commands:
             locredit  -97  \
             offload 1
 
-Enable LaunchTime with the commands:
+Enable LaunchTime with the command:
 
 .. code:: sh
 
