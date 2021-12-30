@@ -11,4 +11,4 @@ This guide describes how to build and deploy sample applications on the |prod| p
 .. toctree::
    :maxdepth: 1
 
-   flexran
+   deploy-flexran-on-starlingx-c4efa00b1b98
