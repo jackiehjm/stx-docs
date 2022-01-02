@@ -220,6 +220,8 @@ consult your distribution's documentation for instructions.
 
        /home/jdoe/starlingx/docs/doc/source/intro
 
+       or a content fragment file in doc/source/_includes
+
        If this is not what you want, press CTL-C to quit and change to the directory
        you want to create the file in.
 
@@ -231,6 +233,12 @@ consult your distribution's documentation for instructions.
 
    #. Review the directory (an example is highlighted above) that the utility
       will create the new file in.
+
+      .. note::
+         This does not apply if you choose to create a content fragment using
+         the :kbd:`f` option when prompted. In that case, the file will be
+         saved to :file:`doc/source/_includes` regardless of your current
+         working directory.
 
    #. If this is not correct, press :kbd:`CTL-C` to quit, change to the correct
       directory, and run the command again; otherwise, type the topic title and
@@ -246,6 +254,7 @@ consult your distribution's documentation for instructions.
       i) An index.
       r) A reference topic. Will contain a minimal list-table definition.
       g) A minimal generic topic.
+      f) A content fragment included in an rST file. Will be saved to doc/source/_includes.
       Topic type:
 
    Each option creates a stub file with different templated content useful for
@@ -270,18 +279,20 @@ listing the directory will show a file similar to the following:
 
     architectural-considerations--d9dd4c105700.rst
 
-The following changes were made:
+The following changes were made.
 
 * All alphabetical characters were converted to lower case.
 * All spaces and special characters, such as the ``!`` were replaced by
   dashes.
 * A final dash and 12 digit random string were appended to the file name.
-* The extension :file:`.rst` was added.
+* The extension :file:`.rst` was added for all options except :kbd:`f`, in
+  which case the extension :file:`.rest` was added.
 * If you chose to create an ``index`` file by selecting :kbd:`i` when prompted,
   :file:`index-` was prepended to the file name.
 
+
 Examining the file reveals that the label matches the file name, while the
-title is preserved as typed.
+title is preserved as typed. No label was added if you selected :kbd:`f`.
 
 .. code-block:: bash
 
