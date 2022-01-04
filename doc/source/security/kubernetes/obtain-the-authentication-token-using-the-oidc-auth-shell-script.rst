@@ -24,6 +24,8 @@ credential for the user in the **kubectl** config file.
 -   On controller-0, **oidc-auth** is installed as part of the base |prod|
     installation, and ready to use.
 
+-   On remote hosts, **oidc-auth** must be installed from |dnload-loc|.
+
 .. xbooklink
 
    -   On a remote workstation using remote-cli container, **oidc-auth** is
@@ -31,17 +33,15 @@ credential for the user in the **kubectl** config file.
         information on configuring remote CLI access, see |sysconf-doc|:
         :ref:`Configure Remote CLI Access <configure-remote-cli-access>`.
 
--   On a remote host, when using directly installed **kubectl** and **helm**, the following setup is required:
+-   On a remote host, when using directly installed **kubectl** and **helm**,
+    the following setup is required:
 
 
     -   Install "Python Mechanize" module using the following command:
 
         .. code-block:: none
 
-            # sudo pip2 install mechanize
-
-    -   Get the **oidc-auth** script from WindShare.
-
+            sudo pip2 install mechanize
 
 
 .. note::
@@ -55,7 +55,8 @@ credential for the user in the **kubectl** config file.
     credentials in **kubectl** config file with the retrieved token.
 
 
-    -   If **oidc-auth-apps** is deployed with a single backend **ldap** connector, run the following command:
+    -   If **oidc-auth-apps** is deployed with a single backend **ldap**
+        connector, run the following command:
 
         .. code-block:: none
 
@@ -71,17 +72,16 @@ credential for the user in the **kubectl** config file.
             Updating kubectl config ...
             User testuser set.
 
-    -   If **oidc-auth-apps** is deployed with multiple backend **ldap** connectors, run the following command:
+    -   If **oidc-auth-apps** is deployed with multiple backend **ldap**
+        connectors, run the following command:
 
         .. code-block:: none
 
             ~(keystone_admin)]$ oidc-auth -b <connector-id> -c <ip> -u <username>
 
-
-
     .. note::
-        If you are running **oidc-auth** within the |prod| containerized
-        remote CLI, you must use the -p <password> option to run the command
+        If you are running **oidc-auth** within the |prod| containerized remote
+        CLI, you must use the ``-p <password>`` option to run the command
         non-interactively.
 
 
