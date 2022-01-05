@@ -69,6 +69,9 @@ There are six phases for Rehoming a subcloud:
     ``--install-values`` option, when running the remote subcloud reinstall,
     upgrade or restore commands.
 
+.. note::
+
+    These prerequisites apply if the old System Controller is still available.
 
 .. rubric:: |proc|
 
@@ -118,7 +121,13 @@ There are six phases for Rehoming a subcloud:
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ dcmanager subcloud add --migrate –bootstrap-address <subcloud-controller-0-oam-address> --bootstrap-values <bootstrap_values_file> [--install-values <install_values_file>]
+        ~(keystone_admin)]$ dcmanager subcloud add --migrate --bootstrap-address <subcloud-controller-0-oam-address> --bootstrap-values <bootstrap_values_file> [--install-values <install_values_file>]
+
+    .. note::
+
+        You will need to update the ``systemcontroller_gateway_address``
+        variable in the bootstrap values file before you perform the migration.
+        This field is the gateway address to the new System Controller.
 
     The subcloud deploy status will change to "pre-rehome" and if the
     preliminary steps complete successfully it will change to "rehoming".
@@ -236,7 +245,7 @@ the new System Controller and re-attempt rehoming using the following commands:
 .. code-block:: none
 
     ~(keystone_admin)]$ dcmanager subcloud delete <subcloud-name>
-    ~(keystone_admin)]$ dcmanager subcloud add --migrate –bootstrap-address <subcloud-controller-0-oam-address> --bootstrap-values <bootstrap_values_file> [--install-values <install_values_file>]
+    ~(keystone_admin)]$ dcmanager subcloud add --migrate --bootstrap-address <subcloud-controller-0-oam-address> --bootstrap-values <bootstrap_values_file> [--install-values <install_values_file>]
 
 If the second attempt fails, it is recommended to contact Wind River Customer
 Support at https://www.windriver.com/support.
