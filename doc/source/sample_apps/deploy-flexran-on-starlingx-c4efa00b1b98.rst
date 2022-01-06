@@ -13,16 +13,18 @@ Scope
 -----
 
 `FlexRAN <https://www.intel.com/content/www/us/en/developer/topic-technology/edge-5g/tools/flexran.html>`__
-is a vRAN reference implementation for virtualized cloud-enabled radio access networks. 
-FlexRAN is not an open-source project. It is provided here as an example of a 5G application running on |prod|.
+is a vRAN reference implementation for virtualized cloud-enabled radio access
+networks. FlexRAN is not an open-source project. It is provided here as an
+example of a 5G application running on |prod|.
 
-In this document, based on |prod| solution, the details on how to build 
-FlexRAN software, how to generate containerized version of the prebuilt 
-FlexRAN binaries, and deploy on |prod| solution are provided.
+This document provides details on how to build FlexRAN software for |prod|,
+generate a containerized version of the prebuilt FlexRAN binaries, and deploy
+on |prod| solution.
 
 .. note::
-    All of the content is generated based on FlexRAN 21.07, the
-    instructions are subject to change in future releases.
+
+    The steps in this guide are based on FlexRAN 21.07. The instructions are
+    subject to change in future releases of FlexRAN.
 
 -----------------
 Intended Audience
@@ -41,13 +43,14 @@ AIO Simplex Installation
 Prepare USB stick with StarlingX Installation ISO
 *************************************************
 
-#. Get StarlingX Installation ISO from following location
+#. Get StarlingX Installation ISO from following location:
 
    http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/latest_build/outputs/iso/bootimage.iso
 
-#. Burn the image to a USB stick
+#. Burn the image to a USB stick:
 
-   .. note:: 
+   .. note::
+
       Be sure to use the correct USB device name when copying the image.
 
    .. code::
@@ -58,9 +61,9 @@ Prepare USB stick with StarlingX Installation ISO
 Follow the installation guide
 *****************************
 
-https://docs.starlingx.io/deploy_install_guides/r6_release/bare_metal/aio_simplex.html
 
-Besides :ref:`aio_simplex_hardware_r6` for |prod|, additional hardware is required for FlexRAN application.
+In addition to the :ref:`aio_simplex_hardware_r6` for |prod|, you will need the
+following hardware for FlexRAN applications.
 
 +---------------------------+--------------------------------------------------------------------------------+
 | Minimum Requirement       | All-in-one Controller Node                                                     |
@@ -85,17 +88,20 @@ Besides :ref:`aio_simplex_hardware_r6` for |prod|, additional hardware is requir
 | Accelerator Card          | Mt. Bryce ACC100 (Intel eASIC chip which can be mounted on third party card)   |
 +---------------------------+--------------------------------------------------------------------------------+
 
-The FlexRAN application on |prod| has been tested on Intel Reference Hardware platform: **Wilson City** (housing ICX-SP).
+The FlexRAN application on |prod| has been tested on Intel Reference Hardware
+platform: **Wilson City** (housing ICX-SP).
 
 .. note::
-    Some third party platforms like SuperMicro / HPE / Dell / Quanta /
-    others can also be used based on customer platform requirements
-    with the optimization for low-latency and power savings mode by the
+
+    Some third-party platforms like SuperMicro / HPE / Dell / Quanta /
+    and others can also be used depending on customer platform requirements,
+    certain optimizations for low-latency and power savings mode by the
     platform vendors.
 
 :ref:`aio_simplex_install_kubernetes_r6`:
 
-#. In addition to required |prod| configuration, ceph backend for Kubernetes PVC, isolcpus and hugepages
+#. In addition to required |prod| configuration, you must set up the Ceph
+   backend for Kubernetes |PVC|, isolcpus and hugepages:
 
    .. code:: bash
 
@@ -117,19 +123,20 @@ The FlexRAN application on |prod| has been tested on Intel Reference Hardware pl
        system host-label-assign $NODE sriovdp=enabled
        system host-label-assign $NODE kube-topology-mgr-policy=restricted
 
-       # ceph backend for k8s pvc
+       # Ceph backend for k8s pvc
        system storage-backend-add ceph --confirmed
        system host-disk-list ${NODE} | awk '/\/dev\/sdb/{print $2}' | xargs -i system host-stor-add ${NODE} {}
 
        # isolate cpus depends on number of the physical core
        system host-cpu-modify -f application-isolated -p0 28 controller-0
 
-       # allocate/enable hugepages for dpdk usage
+       # allocate/enable hugepages for DPDK usage
        system host-memory-modify $NODE -1G 10 0
 
        system host-unlock $NODE
 
-#. After the system has been unlocked and available for the 1st time, configure ACC100 / Mount Bryce.
+#. After the system has been unlocked and available for the first time,
+   configure ACC100 / Mount Bryce:
 
    .. code:: bash
 
@@ -137,73 +144,68 @@ The FlexRAN application on |prod| has been tested on Intel Reference Hardware pl
 
        system host-lock $NODE
 
-       # get the device name of the Mout Bryce, we assume it is pci_0000_85_00_0 here.
+       # get the device name of the Mount Bryce, we assume it is
+       # pci_0000_85_00_0 here.
        system host-device-list controller-0
 
-       # Modify the Mount Bryce device to enable it, specify the base driver and vf driver, and configure it for 1 VFs
+       # Modify the Mount Bryce device to enable it, specify the base driver
+       # and vf driver, and configure it for 1 VFs
 
-       # NOTE: If this is the initial install and have not unlocked, you will get following error message.
-       # Cannot configure device 73b13ddf-99be-44c8-8fbe-db85eb8d99ba until host controller-0 is unlocked for the first time.
+       # NOTE: If this is the initial install and have not unlocked, you will
+       # get following error message.
+       # Cannot configure device 73b13ddf-99be-44c8-8fbe-db85eb8d99ba until host
+       # controller-0 is unlocked for the first time.
        system host-device-modify controller-0 pci_0000_85_00_0 -e true --driver igb_uio --vf-driver vfio -N 1
 
        system host-unlock $NODE
 
------------------------------
-FlexRAN Software Prerequisite
------------------------------
+------------------------------
+FlexRAN Software Prerequisites
+------------------------------
 
-*****************************
-FlexRAN 21.07 Release Package
-*****************************
+* FlexRAN 21.07 Release Package
 
-FlexRAN Software Wireless Access Solutions is available from the following page:
+  FlexRAN Software Wireless Access Solutions is available from the following page:
+  https://www.intel.com/content/www/us/en/developer/topic-technology/edge-5g/tools/flexran.html
 
-https://www.intel.com/content/www/us/en/developer/topic-technology/edge-5g/tools/flexran.html
+* FlexRAN |DPDK| BBDEV v21.07 Patch
 
+  This patch file is also available in FlexRAN Software Wireless Access
+  Solutions mentioned above.
 
-*******************************
-FlexRAN DPDK BBDEV v21.07 Patch
-*******************************
+* |DPDK| version 20.11.1
 
-This patch file is also available in FlexRAN Software Wireless Access
-Solutions mentioned above.
+  |DPDK| version 20.11.1 is available in http://static.dpdk.org/rel/dpdk-20.11.1.tar.xz
 
-********************
-DPDK version 20.11.1
-********************
+* Intel C++ Compiler
 
-DPDK version 20.11.1 is available in http://static.dpdk.org/rel/dpdk-20.11.1.tar.xz
+  The Intel C++ Compiler is used to compile Intel |DPDK| and L1 software. The
+  Intel C++ Compiler can be obtained using the following link:
+  https://software.intel.com/en-us/system-studio/choose-download with community
+  license.
 
-******************
-Intel C++ Compiler
-******************
-
-The Intel C++ Compiler is used to compile Intel |DPDK| and L1 software. The
-Intel C++ Compiler can be obtained using the following link
-https://software.intel.com/en-us/system-studio/choose-download with
-community license. Recommended version of Compiler: **icc (ICC)
-19.0.3.206 20190206**
+  Recommended version of Compiler: **icc (ICC) 19.0.3.206 20190206**
 
 -----------------------------
-FlexRAN Build, Deploy and Run
+Build, Deploy and Run FlexRAN
 -----------------------------
 
-Generally speaking, the building environment and execution environment
-should not be the same environment. In order to facilitate the building, 
-deploying, and running the process on |prod|, a containerized building 
-environment has been prepared and verified, developers can use the 
-instructions to build the building docker image themselves or use
-the prebuilt docker image directly.
+Generally speaking, the build and execution environments should not be the same.
+To facilitate building, deploying, and running the process on |prod|, a
+custom containerized build environment has been prepared and verified. Developers
+can use the instructions to build the customized Docker image themselves or use
+the prebuilt Docker image directly.
 
 Using this method, developers can:
 
-#. Start the building soon after |prod| is ready
-#. Use the scripts provided to generate a docker image with pre-built
-   FlexRAN binaries
-#. Launch the FlexRAN Pod using the image just generated
-#. Execute L1 test cases
+#. Start the build soon after |prod| is ready.
+#. Use the scripts provided to generate a Docker image with pre-built
+   FlexRAN binaries.
+#. Launch the FlexRAN Pod using the image just generated.
+#. Execute L1 test cases.
 
-The following procedures provide detailed instructions for completing the stages described above.
+The following procedures provide detailed instructions for completing the stages
+described above.
 
 *************************
 FlexRAN build preparation
@@ -217,10 +219,11 @@ You can find build instructions in the Compilation Chapter of :title:`FlexRAN 5G
 
 The following steps provide a quick-start procedure for developers.
 
-#. Create a |PVC| for FlexRAN build storage.
+#. Create a |PVC| for FlexRAN build storage:
 
    .. note::
-       The PVC size should be larger than 70G
+
+       The |PVC| size should be larger than 70G.
 
    .. code:: bash
 
@@ -246,13 +249,17 @@ The following steps provide a quick-start procedure for developers.
        NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
        flexran-storage   Bound    pvc-43e50806-785f-440b-8ed2-85bb3c9e8f79   80Gi       RWO            general        9s
 
-#. Launch the `quick start building Pod <https://hub.docker.com/r/wrsnfv/flexran-builder>`__ attaching to the |PVC|.
+#. Launch the `quick start building Pod <https://hub.docker.com/r/wrsnfv/flexran-builder>`__
+   attaching to the |PVC|:
 
    .. note::
-       This pod is assumed to be assigned enough resource to launch quickly after FlexRAN being built.
-       If you don't have isolated CPU, hugepage and accelerator resources configured as part of the
-       system used for building, just feel free to remove related content from the yaml spec file,
-       hugepages-1Gi and intel.com/intel_acc100_fec are not required for the building.
+
+       This pod is assumed to be assigned enough resources to launch quickly
+       after FlexRAN is built. If you don't have isolated CPU, hugepage and
+       accelerator resources configured as part of the system used for
+       building, feel free to remove related content from the yaml spec
+       file. Hugepages-1Gi and intel.com/intel_acc100_fec are not required to
+       perform the build.
 
    .. code:: bash
 
@@ -266,7 +273,7 @@ The following steps provide a quick-start procedure for developers.
          restartPolicy: Never
          containers:
          - name: buildpod
-           image: wrsnfv/flexran-builder:centos7.9
+           image: wrsnfv/flexran-builder:21.07
            imagePullPolicy: IfNotPresent
            volumeMounts:
            - name: usrsrc
@@ -315,24 +322,27 @@ The following steps provide a quick-start procedure for developers.
 
        kubectl create -f flexran-buildpod.yml
 
-#. (Optional) Instructions of the FlexRAN building image creation.
+#. (Optional) Instructions for FlexRAN building image creation:
 
    .. note::
-       You can use following instructions to build the default image or a customized version to meet your needs.
+
+       You can use the following instructions to build the default image or a
+       customized version to meet your needs.
 
    .. code:: bash
 
        mkdir dockerbuilder && cd dockerbuilder
 
-       # prepare the artifacts used for FlexRAN prebuilt binary docker image
+       # prepare the artifacts used for FlexRAN prebuilt binary Docker image
        mkdir docker-image-building
        cat >  docker-image-building/readme << 'EOF'
-       # Instructions of docker image generation
+       # Instructions of Docker image generation
 
-       # Following steps are supposed to be executed inside building Pod, 
+       # Following steps are supposed to be executed inside building Pod,
        # after building FlexRAN from source code
 
        flxr_install_dir=/opt/flexran/
+
        # populate flexran related env var
        cd ${lxr_install_dir}
        source set_env_var.sh -d
@@ -340,7 +350,7 @@ The following steps provide a quick-start procedure for developers.
        # prepare the FlexRAN binaries
        ./transport.sh
 
-       # build the docker image
+       # build the Docker image
        docker build -t flr-run -f Dockerfile .
 
        # tag and push
@@ -504,8 +514,6 @@ The following steps provide a quick-start procedure for developers.
        RUN yum install -y vim gcc-c++ libhugetlbfs* libstdc++* kernel-devel numa* gcc git mlocate \
                   cmake wget ncurses-devel hmaccalc zlib-devel binutils-devel elfutils-libelf-devel \
                   numactl-devel libhugetlbfs-devel bc patch git patch tar zip unzip python3 sudo docker
-       RUN yum install -y centos-release-scl
-       RUN yum install -y devtoolset-8
        RUN yum clean all
 
        RUN pip3 install meson && \
@@ -533,24 +541,24 @@ The following steps provide a quick-start procedure for developers.
        CMD ["/usr/bin/bash"]
        EOF
 
-       # build the docker image for FlexRAN; building environment
+       # build the Docker image for FlexRAN building environment
        orgname=somename
        docker build -t flexran-builder .
-       docker tag flexran-builder ${orgname}/flexran-builder:centos7.9
+       docker tag flexran-builder ${orgname}/flexran-builder:21.07
        docker login
-       docker push ${orgname}/flexran-builder:centos7.9
+       docker push ${orgname}/flexran-builder:21.07
 
 ********************
 Build FlexRAN in Pod
 ********************
 
-#. Use a shell inside Pod to build FlexRAN.
+#. Use a shell inside Pod to build FlexRAN:
 
    .. code:: bash
 
        kubectl exec -it buildpod -- bash
 
-#. Use ``scp`` to copy the FlexRAN related files into the pod's |PVC|.
+#. Use ``scp`` to copy the FlexRAN related files into the pod's |PVC|:
 
    .. code:: bash
 
@@ -564,7 +572,7 @@ Build FlexRAN in Pod
        rm flexran-21.07.tar.gz.part00
        rm flexran-21.07.tar.gz.part01
 
-#. Copy |DPDK| source code into the pod's |PVC|.
+#. Copy |DPDK| source code into the pod's |PVC|:
 
    .. code:: bash
 
@@ -573,7 +581,7 @@ Build FlexRAN in Pod
        mv dpdk-stable-20.11.1 dpdk-flxr-21.07
        cd /opt/dpdk-flxr-21.07 && patch -p1 < /opt/scrach/dpdk_21.07.patch
 
-#. Install Intel System Studio 2019 Update 5.
+#. Install Intel System Studio 2019 Update 5:
 
    .. code:: bash
 
@@ -587,41 +595,43 @@ Build FlexRAN in Pod
 
        cd /opt/scrach/system_studio_2019_update_5_ultimate_edition && ./install.sh -s silent.cfg
 
-#. Extract FlexRAN and populate the environment variables.
+#. Extract FlexRAN and populate the environment variables:
 
    .. code:: bash
 
-       cd /opt/scrach/ && tar zxvf flexran-21.07.tar.gz && ./extract.sh    
+       cd /opt/scrach/ && tar zxvf flexran-21.07.tar.gz && ./extract.sh
        # input '/opt/flexran' for Extract destination directory
 
        cd /opt/flexran && source ./set_env_var.sh -d
        # When following promote message shows:
-       #     Enter Intel SystemStudio / ParallelStudio Install Directory for icc 
+       #     Enter Intel SystemStudio / ParallelStudio Install Directory for icc
        # input: /opt/intel/system_studio_2019/
        # When following promote message shows:
        #     Enter DPDK Install Directory, or just enter to set default
        # input: /opt/dpdk-flxr-21.07
 
-#. Switch to devtoolset-8 environment.
+#. Switch to devtoolset-8 environment:
 
    .. code:: bash
 
+       yum install centos-release-scl
+       yum install devtoolset-8
        scl enable devtoolset-8 bash
 
-#. Build FlexRAN SDK first.
+#. Build FlexRAN SDK:
 
    .. code:: bash
 
        cd /opt/flexran && ./flexran_build.sh -e -r 5gnr_sub6 -b -m sdk && ./flexran_build.sh -e -r 5gnr_mmw -b -m sdk
 
-#. Build |DPDK| with the FlexRAN patch.
+#. Build |DPDK| with the FlexRAN patch:
 
    .. code:: bash
 
        cd /opt/dpdk-flxr-21.07 && meson build
        cd /opt/dpdk-flxr-21.07/build && meson configure -Dflexran_sdk=/opt/flexran/sdk/build-avx512-icc/install && ninja
 
-#. Build the FlexRAN applications.
+#. Build the FlexRAN applications:
 
    .. code:: bash
 
@@ -630,7 +640,7 @@ Build FlexRAN in Pod
        sed -i 's#ioremap_nocache#ioremap_cache#g' ./libs/cpa/mmw/rec/drv/src/nr_dev.c
        ./flexran_build.sh -e -r 5gnr_sub6 -b -n && ./flexran_build.sh -e -r 5gnr_mmw -b -n
 
-#. (Optional) Build the test applications.
+#. (Optional) Build the test applications:
 
    .. code:: bash
 
@@ -641,24 +651,27 @@ Generate Docker image with FlexRAN binaries
 *******************************************
 
 .. note::
-    Since host path ``/var/run/docker.sock`` has been mounted into the building pod, you can build the
-    docker image using the FlexRAN binaries from the previous step inside the building pod.
-    The artifacts used by :command:`docker build` have been integrated into the build image and are ready to use.
 
-#. Prepare the env var for the script in ``/root/docker-image-building/transport.sh``.
+    Since host path ``/var/run/docker.sock`` has been mounted into the building
+    pod, you can build the Docker image using the FlexRAN binaries from the
+    previous step inside the building pod. The artifacts used
+    by :command:`docker build` have been integrated into the build image and
+    are ready to use.
+
+#. Prepare the env var for the script in ``/root/docker-image-building/transport.sh``:
 
    .. code:: bash
 
        cd /opt/flexran && source ./set_env_var.sh -d
 
-#. Prepare binaries and scripts for docker build.
+#. Prepare binaries and scripts for Docker build:
 
    .. code:: bash
 
        cd /root/docker-image-building
        ./transport.sh
 
-#. Build docker image which will be saved in local host.
+#. Build Docker image which will be saved in local host:
 
    .. code:: bash
 
@@ -669,9 +682,10 @@ Generate Docker image with FlexRAN binaries
 Run the FlexRAN Test cases in Pod
 *********************************
 
-After the build and docker image generation steps above, you can launch the FlexRAN execution pod from the host. 
+After the build and Docker image generation steps above, you can launch the
+FlexRAN execution pod from the host.
 
-#. Push the docker image to a registry, for example, `dockerhub.io <https://hub.docker.com/>`__.
+#. Push the Docker image to a registry, for example, `dockerhub.io <https://hub.docker.com/>`__:
 
    .. code:: bash
 
@@ -680,14 +694,16 @@ After the build and docker image generation steps above, you can launch the Flex
       docker tag flr-run ${orgname}/flr-run:v1
       docker push ${orgname}/flr-run:v1
 
-#. Launch the FlexRAN Pod. 
-   
+#. Launch the FlexRAN Pod.
+
    Adjust the CPU and memory for your configuration.
    Memory should be more than 32Gi for the test case pass rate.
 
    .. note::
-       ``command`` should not be used in the spec, otherwise it will overwrite the 
-       default container command which does accelerator |PCI| address filling for L1.
+
+       ``command`` should not be used in the spec, otherwise it will overwrite
+       the default container command which does accelerator |PCI| address
+       filling for L1.
 
    .. code:: bash
 
@@ -740,7 +756,7 @@ After the build and docker image generation steps above, you can launch the Flex
 
 #. Execute L1.
 
-   #. Enter the L1 directory inside Pod.
+   #. Enter the L1 directory inside Pod:
 
       .. code:: bash
 
@@ -748,16 +764,17 @@ After the build and docker image generation steps above, you can launch the Flex
           source set-l1-env.sh 5G
 
 
-   #. Edit L1 configuration file.
-      
+   #. Edit L1 configuration file:
+
       .. note::
-          phycfg_timer.xml has been modified by entry script to use the FEC accelerator:
-          ``<dpdkBasebandFecMode>1</dpdkBasebandFecMode>``
+
+          ``phycfg_timer.xml`` has been modified by entry script to use the FEC
+          accelerator: ``<dpdkBasebandFecMode>1</dpdkBasebandFecMode>``
           ``<dpdkBasebandDevice>0000:8b:00.0</dpdkBasebandDevice>``
 
-          This configuration is scripted and ran automatically, no manual configuration needed.
-          You can use :command:`printenv PCIDEVICE_INTEL_COM_INTEL_ACC100_FEC` 
-          to check dpdkBasebandDevice.
+          This configuration is scripted and runs automatically, no manual
+          configuration is needed. You can use :command:`printenv
+          PCIDEVICE_INTEL_COM_INTEL_ACC100_FEC` to check dpdkBasebandDevice.
 
       .. code:: console
 
@@ -784,7 +801,7 @@ After the build and docker image generation steps above, you can launch the Flex
               </Threads>
 
 
-   #. Run L1 application.
+   #. Run L1 application:
 
       .. code:: bash
 
@@ -793,20 +810,20 @@ After the build and docker image generation steps above, you can launch the Flex
 
 #. Execute testmac after L1 is up and running in another terminal.
 
-   #. Enter the testmac directory inside Pod.
+   #. Enter the testmac directory inside Pod:
 
       .. code:: bash
 
          kubectl exec -it runpod -- bash
          source set-l2-env.sh 5G
 
-   #. Edit testmac configuration file.
+   #. Edit testmac configuration file:
 
       .. code:: console
 
          # Modify default CPU binding in section of <Threads> in testmac_cfg.xml
-         # make sure use the CPU from the CPU whose ID is bigger than 13, this way, 
-         # the Application Threads will not overlapping with the BBUPool CPUs.
+         # Make sure to use the CPU from the CPU whose ID is bigger than 13,
+         # this way, the Application Threads will not overlap with the BBUPool CPUs.
          <!-- CPU Binding to Application Threads -->
              <Threads>
                  <!-- Wireless Subsystem Thread: Core, priority, Policy [0: SCHED_FIFO 1: SCHED_RR] -->
@@ -825,20 +842,21 @@ After the build and docker image generation steps above, you can launch the Flex
          # workaround the known issue of parsing zero value in the config file
          sed -i '/>0</d' testmac_cfg.xml
 
-   #. Run testmac application.
+   #. Run testmac application:
 
       .. code:: bash
 
          # launch testmac
          ./l2.sh --testfile=icelake-sp/icxsp_mu1_100mhz_mmimo_64x64_16stream_hton.cfg
 
-         # Note, case of 3389 is the most stringent case, we can comment out 
+         # Note, case of 3389 is the most stringent case, we can comment out
          # other cases in the file and run this case directly:
-         # TEST_FD, 3389, 3, 5GNR, fd/mu1_100mhz/383/fd_testconfig_tst383.cfg, 
-         #                   5GNR, fd/mu1_100mhz/386/fd_testconfig_tst386.cfg, 
+         # TEST_FD, 3389, 3, 5GNR, fd/mu1_100mhz/383/fd_testconfig_tst383.cfg,
+         #                   5GNR, fd/mu1_100mhz/386/fd_testconfig_tst386.cfg,
          #                   5GNR, fd/mu1_100mhz/386/fd_testconfig_tst386.cfg
 
 .. note::
-    For detailed explanation of the XML configuration used by
-    L1, refer to the FlexRAN documentation available at:
+
+    For detailed explanation of the XML configuration used by L1, refer to the
+    FlexRAN documentation available at:
     https://www.intel.com/content/www/us/en/developer/topic-technology/edge-5g/tools/flexran.html
