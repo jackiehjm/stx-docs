@@ -15,13 +15,18 @@ certain order and phases, with most of the commands to be executed host by
 host.
 
 .. warning::
-
     Do **not** let the Kubernetes Root |CA| certificate expire on your system
     and ensure that certificates with valid/adequate expiry dates are used
     during renewal as there is no easy way to recover a system if the
     Kubernetes Root |CA| certificate expires.
 
     Special care should be taken when updating the Root |CA| certificate.
+
+.. warning::
+    During the Kubernetes Root |CA| update, ``deployments``, ``daemonsets``, and
+    ``statefulsets`` present in the cluster are rolling restarted. This impacts
+    services provided by the application. It is highly recommended to schedule
+    a Kubernetes Root |CA| update during planned maintenance windows.
 
 .. rubric:: |prereq|
 
