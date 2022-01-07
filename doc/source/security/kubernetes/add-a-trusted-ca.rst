@@ -108,6 +108,13 @@ For example:
     Error with cert number 3 in the file: certificate is not valid before 2021-08-13 14:00:21 nor after 2021-08-13 15:00:21
     Error with cert number 4 in the file: certificate is not valid before 2018-08-16 20:28:20 nor after 2021-06-05 20:28:20
 
+.. note::
+
+    Installing a new ``ssl_ca`` with ``system certificate-install -m ssl_ca``
+    or deleting an old ``ssl_ca`` with ``system certificate-uninstall`` must be
+    followed by locking and unlocking all controller nodes for the change to
+    take effect.
+
 .. _add-a-trusted-ca-section-phr-jw4-3mb:
 
 ---------------------------------------------
@@ -131,6 +138,13 @@ running the following command:
     ~(keystone_admin)]$ system certificate-uninstall -m ssl_ca <UUID>
 
 where, <UUID> is the UUID of the ssl\_ca certtype to be removed.
+
+.. note::
+
+    Installing a new ``ssl_ca`` with ``system certificate-install -m ssl_ca``
+    or deleting an old ``ssl_ca`` with ``system certificate-uninstall`` must be
+    followed by locking and unlocking all controller nodes for the change to
+    take effect.
 
 -----------------------------------
 Update/Renew trusted CA certficates
