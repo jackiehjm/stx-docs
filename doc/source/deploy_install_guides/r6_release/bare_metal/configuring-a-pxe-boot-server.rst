@@ -95,11 +95,11 @@ Use a Linux workstation as the |PXE| Boot server.
 
 .. _configuring-a-pxe-boot-server-steps-qfb-kyh-2cb-r6:
 
-#.  Copy the ISO image from the source \(product DVD, USB device, or WindShare
-    `http://windshare.windriver.com <http://windshare.windriver.com>`__\) to a
-    temporary location on the PXE boot server.
+#.  Copy the ISO image from the source \(product DVD, USB device, or
+    |dnload-loc| to a temporary location on the |PXE| boot server.
 
-    This example assumes that the copied image file is tmp/TS-host-installer-1.0.iso.
+    This example assumes that the copied image file is
+    ``tmp/TS-host-installer-1.0.iso``.
 
 #.  Mount the ISO image and make it executable.
 
