@@ -1,8 +1,8 @@
-..  _deploy-flexran-on-starlingx-c4efa00b1b98:
+.. _deploy-flexran-2107-on-starlingx-c4efa00b1b98:
 
-===========================
-Deploy FlexRAN on StarlingX
-===========================
+=================================
+Deploy FlexRAN 21.07 on StarlingX
+=================================
 
 .. contents::
    :local:
@@ -74,15 +74,15 @@ following hardware for FlexRAN applications.
 +---------------------------+--------------------------------------------------------------------------------+
 | Minimum network ports     | OAM: 1x1GE, If only test timer mode, no other NIC required.                    |
 +---------------------------+--------------------------------------------------------------------------------+
-| BIOS settings             | - Hyper-Threading technology: enabled;                                         |
-|                           | - Virtualization technology: enabled;                                          |
-|                           | - VT for directed I/O: enabled;                                                |
-|                           | - CPU power and performance policy set to performance;                         |
-|                           | - CPU C state control: enabled;                                                |
-|                           | - Plug & play BMC detection: disabled;                                         |
-|                           | - Uncore Frequency Scaling : Disabled;                                         |
-|                           | - Performance P-limit : Disabled;                                              |
-|                           | - Enhanced Intel SpeedStep (R) Tech : Enabled;                                 |
+| BIOS settings             | - Hyper-Threading technology : Enabled                                         |
+|                           | - Virtualization technology : Enabled                                          |
+|                           | - VT for directed I/O : Enabled                                                |
+|                           | - CPU Power and Performance Policy : Performance                               |
+|                           | - CPU C state control : Enabled                                                |
+|                           | - Plug & play BMC detection : Disabled                                         |
+|                           | - Uncore Frequency Scaling : Disabled                                          |
+|                           | - Performance P-limit : Disabled                                               |
+|                           | - Enhanced Intel SpeedStep (R) Tech : Enabled                                  |
 |                           | - Intel(R) Turbo Boost Technology : Enabled                                    |
 +---------------------------+--------------------------------------------------------------------------------+
 | Accelerator Card          | Mt. Bryce ACC100 (Intel eASIC chip which can be mounted on third party card)   |
@@ -344,7 +344,7 @@ The following steps provide a quick-start procedure for developers.
        flxr_install_dir=/opt/flexran/
 
        # populate flexran related env var
-       cd ${lxr_install_dir}
+       cd ${flxr_install_dir}
        source set_env_var.sh -d
 
        # prepare the FlexRAN binaries
@@ -563,14 +563,14 @@ Build FlexRAN in Pod
    .. code:: bash
 
        mkdir -p /opt/scrach && cd /opt/scrach
-       scp <options> flexran-21.07.tar.gz.part00 .
-       scp <options> flexran-21.07.tar.gz.part01 .
+       scp <options> FlexRAN-21.07.tar.gz.part00 .
+       scp <options> FlexRAN-21.07.tar.gz.part01 .
        scp <options> dpdk_21.07.patch .
        scp <options> system_studio_2019_update_5_ultimate_edition.tar.gz .
 
-       cat flexran-21.07.tar.gz.part00 flexran-21.07.tar.gz.part01 > flexran-21.07.tar.gz
-       rm flexran-21.07.tar.gz.part00
-       rm flexran-21.07.tar.gz.part01
+       cat FlexRAN-21.07.tar.gz.part00 FlexRAN-21.07.tar.gz.part01 > FlexRAN-21.07.tar.gz
+       rm FlexRAN-21.07.tar.gz.part00
+       rm FlexRAN-21.07.tar.gz.part01
 
 #. Copy |DPDK| source code into the pod's |PVC|:
 

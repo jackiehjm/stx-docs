@@ -9,6 +9,6 @@ This guide describes how to build and deploy sample applications on the |prod| p
 .. sampleapp-end
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
-   deploy-flexran-on-starlingx-c4efa00b1b98
+   flexran/index
