@@ -18,6 +18,12 @@ either an uploaded certificate or an auto generated certificate.
 
     Special care should be taken when updating the Root |CA| certificate.
 
+.. warning::
+    During the Kubernetes Root |CA| update, ``deployments``, ``daemonsets``, and
+    ``statefulsets`` present in the cluster are rolling restarted. This impacts
+    services provided by the application. It is highly recommended to schedule
+    a Kubernetes Root |CA| update during planned maintenance windows.
+
 .. rubric:: |prereq|
 
 -   The system is clear of alarms \(with the exception of alarms for locked

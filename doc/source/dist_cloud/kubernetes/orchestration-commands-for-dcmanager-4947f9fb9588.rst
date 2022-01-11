@@ -4,22 +4,29 @@
 Kubernetes Root CA Certificate Update for Distributed Cloud Orchestration
 =========================================================================
 
+.. warning::
+    During the Kubernetes Root |CA| update, ``deployments``, ``daemonsets``, and
+    ``statefulsets`` present in the cluster are rolling restarted. This impacts
+    services provided by the application. It is highly recommended to schedule
+    a Kubernetes Root |CA| update during planned maintenance windows.
+
 You can use the :command:`dcmanager` command to orchestrate the update of the
 Kubernetes Root |CA| certificate(s) for one or more subclouds in a Distributed
 Cloud Environment.
 
-The Kubernetes Root |CA| Update Distributed Cloud Orchestration commands for
+The Kubernetes Root |CA| update Distributed Cloud Orchestration commands for
 DCManager use the keyword ``kube-rootca-update-strategy`` and provide the same
 five subcommands as the other orchestrations: :command:`create, delete, apply,
 abort, show`.
 
 DCManager Kubernetes Root |CA| update orchestration considers a subcloud to be
-'out of sync' and needing to be orchestrated based on the
-``kube-rootca_sync_status``  field, which is updated based on the presence of
-alarms in the subcloud related to the Kubernetes Root |CA| certificate expiring
-soon (or expired).
+'out of sync' that needs to be orchestrated based on the ``kube-rootca_sync_status``
+field, which is updated based on the presence of alarms in the subcloud
+related to the Kubernetes Root |CA| certificate expiring soon (or expired)
+status.
 
--   To see synchronization details for a subcloud.
+-   Use the :command:`dcmanager subcloud show subcloud1` command to
+    see synchronization details for a subcloud.
 
     .. code-block::
 
@@ -54,7 +61,7 @@ soon (or expired).
         | platform_sync_status        | in-sync                    |
         +-----------------------------+----------------------------+
 
--   A user can pass "help"  to see all the arguments for the strategy create
+-   A user can pass ``help``  to see all the arguments for the :command:`strategy create`
     command.
 
     .. code-block::
@@ -77,7 +84,8 @@ soon (or expired).
         [--cert-file CERT_FILE]
         [cloud_name]
 
-        Create a kube rootca update strategy. This strategy supports: expiry-date, subject and cert-file.
+        Create a Kubernetes Root |CA| update strategy. This strategy supports
+        expiry-date, subject and cert-file parameters.
 
         positional arguments:
         cloud_name Name of a single subcloud to update.
@@ -112,7 +120,7 @@ used with other arguments to orchestrate just one subcloud or subcloud group.
 This is an example of how to orchestrate a new certificate for all subclouds,
 including those that are in-sync that will expire in one year.
 
-#.  Create a Root |CA| update strategy.
+#.  Create a Kubernetes Root |CA| update strategy.
 
     .. code-block::
 
@@ -160,7 +168,7 @@ including those that are in-sync that will expire in one year.
         | updated_at                  | 2021-10-26T14:37:36.865776 |
         +-----------------------------+----------------------------+
 
-#.  You can view the status of the strategy.
+#.  You can view the status of the strategy using the following command.
 
     .. code-block::
 
@@ -178,10 +186,10 @@ including those that are in-sync that will expire in one year.
         | updated_at                  | 2021-10-26 14:37:36.865776 |
         +-----------------------------+----------------------------+
 
-    It is typically more useful to monitor the progress of the strategy as it runs
-    in the subclouds.
+    It is typically more useful to monitor the progress of the strategy as it
+    runs in the subclouds.
 
-    In this example, the |DC| strategy is running the VIM strategy in the subcloud.
+    In example below, the |DC| strategy runs the VIM strategy in the subcloud.
 
     .. code-block::
 
@@ -194,7 +202,7 @@ including those that are in-sync that will expire in one year.
         +-----------+-------+------------------------------------------+----------------------------+----------------------------+-------------+
 
 #.  Wait for the strategy to complete.  If there are failures, the
-    :command:`show` command in the previous step can indicate where the failure
+    :command:`show` command in the previous step indicates where the failure
     occurred.
 
 #.  Only one type of DCManager strategy can exist at a time. Once completed,
