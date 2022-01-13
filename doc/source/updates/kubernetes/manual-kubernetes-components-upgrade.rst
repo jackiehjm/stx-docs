@@ -43,6 +43,10 @@ and upgrade various systems.
 -   All updates required for the new Kubernetes version must be transferred to
     the active controller.
 
+-   If you are using NetApp Trident, ensure that your NetApp version is
+    compatible with Trident 21.04 before upgrading Kubernetes to version 1.19
+    and after updating |prod| to version |prod-ver|.
+
 .. note::
     The default version on a fresh install will be Kubernetes 1.21.3, while
     on an upgrade from |prod| |prod-ver| it will be 1.18.1. You will need to
@@ -129,7 +133,7 @@ and upgrade various systems.
     validates the system is ready for an upgrade.
 
     .. warning::
-        The command :command:`system kube-upgrade-start --force` causes the 
+        The command :command:`system kube-upgrade-start --force` causes the
         upgrade process to ignore non-management-affecting alarms.
         Kubernetes cannot be upgraded if there are management-affecting alarms.
 
