@@ -84,7 +84,7 @@ status.
         [--cert-file CERT_FILE]
         [cloud_name]
 
-        Create a Kubernetes Root |CA| update strategy. This strategy supports
+        Create a Kubernetes Root CA update strategy. This strategy supports
         expiry-date, subject and cert-file parameters.
 
         positional arguments:
