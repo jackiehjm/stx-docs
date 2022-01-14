@@ -74,6 +74,10 @@ For example:
 
 -   Hosts that need to be upgraded must be in the ``unlocked-enabled`` state.
 
+-   If you are using NetApp Trident, ensure that your NetApp version is
+    compatible with Trident 21.04 before upgrading Kubernetes to version 1.19
+    and after updating |prod| to version |prod-ver|.
+
 .. only:: partner
 
    .. include:: /_includes/configuring-kubernetes-update-orchestration.rest
