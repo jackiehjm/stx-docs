@@ -1,7 +1,4 @@
-.. Backup and Restore file, created by
-   sphinx-quickstart on Thu Sep  3 15:14:59 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _index-backup-kub-699e0d16c076:
 
 .. include:: /_includes/toc-title-backup-kub.rest
 
@@ -26,3 +23,4 @@ System and storage restore
    restoring-starlingx-system-data-and-storage
    running-restore-playbook-locally-on-the-controller
    system-backup-running-ansible-restore-playbook-remotely
+
