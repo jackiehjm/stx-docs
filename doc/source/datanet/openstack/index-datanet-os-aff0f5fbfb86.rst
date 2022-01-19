@@ -1,4 +1,4 @@
-.. _datanet_openstack_index:
+.. _index-datanet-os-aff0f5fbfb86:
 
 .. include:: /_includes/toc-title-datanet-os.rest
 

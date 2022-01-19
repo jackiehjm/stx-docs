@@ -93,7 +93,7 @@ Data networks
 .. toctree::
    :maxdepth: 2
 
-   datanet/index
+   datanet/index-datanet-e316bf6c2f6a
 
 ---------------
 Node management
