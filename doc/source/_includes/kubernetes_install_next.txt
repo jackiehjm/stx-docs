@@ -4,4 +4,4 @@ For instructions on how to access StarlingX Kubernetes see
 :ref:`kubernetes_access`.
 
 For instructions on how to install and access StarlingX OpenStack see
-:doc:`/deploy_install_guides/r6_release/openstack/index`.
+:ref:`index-install-r6-os-adc44604968c`.
