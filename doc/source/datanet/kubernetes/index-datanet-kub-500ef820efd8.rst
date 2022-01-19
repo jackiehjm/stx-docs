@@ -1,12 +1,10 @@
-..
-
-.. _datanet_kubernetes_index:
+.. _index-datanet-kub-500ef820efd8:
 
 .. include:: /_includes/toc-title-datanet-kub.rest
 
 .. only:: partner
 
-   .. include:: /datanet/index.rst
+   .. include:: /datanet/index-datanet-e316bf6c2f6a.rst
       :start-after: kub-begin
       :end-before: kub-end
 
@@ -36,3 +34,5 @@ Add, assign, and remove data networks
    adding-data-networks-using-the-cli
    assigning-a-data-network-to-an-interface
    removing-a-data-network-using-the-cli
+
+
