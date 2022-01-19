@@ -1,5 +1,4 @@
-
-.. _dist-cloud-index:
+.. _index-dist-cloud-f5dbeb16b976:
 
 =================
 Distributed Cloud
@@ -16,4 +15,4 @@ distributed network of |prod| systems.
 .. toctree::
     :maxdepth: 2
 
-    kubernetes/index
+    kubernetes/index-dist-cloud-kub-95bef233eef0

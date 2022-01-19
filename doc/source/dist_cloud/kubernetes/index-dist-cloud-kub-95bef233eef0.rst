@@ -1,11 +1,11 @@
-.. _dist-cloud-kubernetes-index:
+.. _index-dist-cloud-kub-95bef233eef0:
 
 
 .. include:: /_includes/toc-title-dc-kub.rest
 
 .. only:: partner
 
-   .. include:: /dist_cloud/index.rst
+   .. include:: /dist_cloud/index-dist-cloud-f5dbeb16b976.rst
       :start-after: kub-begin
       :end-before: kub-end
 
