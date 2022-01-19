@@ -81,7 +81,7 @@ Documentation for StarlingX is organized into the following sections:
 :doc:`/introduction/index`
   Overview of the StarlingX project.
 
-:doc:`/deploy_install_guides/index`
+:doc:`/deploy_install_guides/index-install-e083ca818006`
   Release-specific installation and deployment guides.
 
 :doc:`/archive/configuration/index`

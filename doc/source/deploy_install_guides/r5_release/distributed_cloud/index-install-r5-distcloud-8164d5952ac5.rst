@@ -1,3 +1,5 @@
+.. _index-install-r5-distcloud-8164d5952ac5:
+
 ===================================
 Distributed Cloud Installation R5.0
 ===================================
@@ -156,17 +158,20 @@ Install a subcloud
 
 At the subcloud location:
 
-1. Physically install and cable all subcloud servers.
-2. Physically install the top of rack switch and configure it for the
+#. Physically install and cable all subcloud servers.
+
+#. Physically install the top of rack switch and configure it for the
    required networks.
-3. Physically install the gateway routers which will provide IP routing
-   between the subcloud OAM and Management subnets and the SystemController
-   OAM and management subnets.
-4. On the server designated for controller-0, install the StarlingX
+
+#. Physically install the gateway routers which will provide IP routing
+   between the subcloud |OAM| and Management subnets and the SystemController
+   |OAM| and management subnets.
+
+#. On the server designated for controller-0, install the StarlingX
    Kubernetes software from USB or a PXE Boot server.
 
-5. Establish an L3 connection to the SystemController by enabling the OAM
-   interface (with OAM IP/subnet) on the subcloud controller using the
+#. Establish an L3 connection to the SystemController by enabling the |OAM|
+   interface (with |OAM| IP/subnet) on the subcloud controller using the
    ``config_management`` script. This step is for subcloud ansible bootstrap
    preparation.
 
@@ -176,15 +181,15 @@ At the subcloud location:
 
    Be prepared to provide the following information:
 
-   - Subcloud OAM interface name (for example, enp0s3).
-   - Subcloud OAM interface address, in CIDR format (for example, 10.10.10.12/24).
+   - Subcloud |OAM| interface name (for example, enp0s3).
+   - Subcloud |OAM| interface address, in CIDR format (for example, 10.10.10.12/24).
 
      .. note:: This must match the *external_oam_floating_address* supplied in
                the subcloud's ansible bootstrap override file.
 
-   - Subcloud gateway address on the OAM network
+   - Subcloud gateway address on the |OAM| network
      (for example, 10.10.10.1). A default value is shown.
-   - System Controller OAM subnet (for example, 10,10.10.0/24).
+   - System Controller |OAM| subnet (for example, 10,10.10.0/24).
 
    .. note:: To exit without completing the script, use ``CTRL+C``. Allow a few minutes for
              the script to finish.
@@ -215,7 +220,7 @@ At the subcloud location:
 
 At the System Controller:
 
-1. Create a ``bootstrap-values.yml`` override file for the subcloud. For
+#. Create a ``bootstrap-values.yml`` override file for the subcloud. For
    example:
 
    .. code:: yaml
@@ -244,7 +249,7 @@ At the System Controller:
    .. note:: The `systemcontroller_gateway_address` is the address of central
              cloud management network gateway.
 
-2. Add the subcloud using the CLI command below:
+#. Add the subcloud using the CLI command below:
 
    .. code:: sh
 
@@ -265,7 +270,7 @@ At the System Controller:
 
       tail –f /var/log/dcmanager/<subcloud name>_bootstrap_<time stamp>.log
 
-3. Confirm that the subcloud was deployed successfully:
+#. Confirm that the subcloud was deployed successfully:
 
    .. code:: sh
 
@@ -277,7 +282,7 @@ At the System Controller:
       | 1  | subcloud1 | unmanaged  | offline      | complete      | unknown |
       +----+-----------+------------+--------------+---------------+---------+
 
-4. Continue provisioning the subcloud system as required using the StarlingX
+#. Continue provisioning the subcloud system as required using the StarlingX
    R5.0 Installation procedures and starting from the 'Configure controller-0'
    step.
 
