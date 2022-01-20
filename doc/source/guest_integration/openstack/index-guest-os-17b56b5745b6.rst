@@ -1,10 +1,10 @@
-.. _guest-openstack-index:
+.. _index-guest-os-17b56b5745b6:
 
 .. include:: /_includes/toc-title-guest-os.rest
 
 .. only:: partner
 
-   .. include:: /guest_integration/index.rst
+   .. include:: /guest_integration/index-guest-ef8c9a20bf6c.rst
       :start-after: os-begin
       :end-before: os-end
 

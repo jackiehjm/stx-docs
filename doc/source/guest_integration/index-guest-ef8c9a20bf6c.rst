@@ -1,4 +1,4 @@
-.. _guest-integration-index:
+.. _index-guest-ef8c9a20bf6c:
 
 =================
 Guest Integration
@@ -19,7 +19,7 @@ applications are able to receive |PTP| status notifications from
 .. toctree::
     :maxdepth: 2
 
-    kubernetes/index
+    kubernetes/index-guest-kub-5c89ec07e141
 
 -------------------------
 OpenStack VNF integration
@@ -36,4 +36,4 @@ application on |prod-os|.
 .. toctree::
     :maxdepth: 2
 
-    openstack/index
+    openstack/index-guest-os-17b56b5745b6
