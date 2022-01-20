@@ -4,7 +4,7 @@ Host Interface and Network Configuration
 
 .. note::
 
-   This guide was replaced by: :doc:`Node Management Guide </node_management/index>`
+   This guide was replaced by: :ref:`Node Management Guide <index-node-mgmt-cd0f9d8eaee6>`
 
 This guide describes the following:
 
