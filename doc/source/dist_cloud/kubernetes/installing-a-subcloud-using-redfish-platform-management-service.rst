@@ -193,6 +193,8 @@ subcloud, the subcloud installation has these phases:
             url: registry.central:9001/k8s.gcr.io
           gcr.io:
             url: registry.central:9001/gcr.io
+          ghcr.io:
+            url: registry.central:9001/ghcr.io
           quay.io:
             url: registry.central:9001/quay.io
           docker.io:

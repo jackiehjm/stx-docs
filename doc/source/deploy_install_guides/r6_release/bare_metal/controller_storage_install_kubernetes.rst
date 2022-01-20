@@ -137,8 +137,10 @@ Bootstrap system on controller-0
               url: myprivateregistry.abc.com:9001/docker.elastic.co
            gcr.io:
               url: myprivateregistry.abc.com:9001/gcr.io
+           ghcr.io:
+              url: myprivateregistry.abc.com:9001/gcr.io
            k8s.gcr.io:
-              url: myprivateregistry.abc.com:9001/k8s.gcr.io
+              url: myprivateregistry.abc.com:9001/k8s.ghcr.io
            docker.io:
               url: myprivateregistry.abc.com:9001/docker.io
            defaults:

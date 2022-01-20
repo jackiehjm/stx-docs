@@ -22,6 +22,8 @@ your server is isolated from the public Internet.
             url: <my-registry.io>/k8s.gcr.io
           gcr.io:
             url: <my-registry.io>/gcr.io
+          ghcr.io:
+            url: <my-registry.io>/ghcr.io
           quay.io:
             url: <my-registry.io>/quay.io
           docker.io:
