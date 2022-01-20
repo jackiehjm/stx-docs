@@ -171,7 +171,7 @@ Guest integration
 .. toctree::
    :maxdepth: 2
 
-   guest_integration/index
+   guest_integration/index-guest-ef8c9a20bf6c
 
 
 ---------
