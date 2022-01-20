@@ -84,6 +84,13 @@ Install-time-only parameters
     * ``password``
     * ``secure``
 
+  * ``ghcr.io``
+
+    * ``url``
+    * ``username``
+    * ``password``
+    * ``secure``
+
   * ``quay.io``
 
     * ``url``
@@ -290,6 +297,10 @@ additionally specifies an alternate CA certificate.
        url: my.k8sregistry.io
      gcr.io:
        url: my.gcrregistry.io
+     ghcr.io:
+       url: my.ghrcregistry.io
+     docker.elastic.co
+       url: my.dockerregistry.io
      quay.io:
        url: my.quayregistry.io
      docker.io:
