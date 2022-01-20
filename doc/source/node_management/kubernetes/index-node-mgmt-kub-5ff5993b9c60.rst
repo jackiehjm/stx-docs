@@ -1,11 +1,10 @@
-
-.. _node-mgmt-kubernetes-index:
+.. _index-node-mgmt-kub-5ff5993b9c60:
 
 .. include:: /_includes/toc-title-node-kub.rest
 
 .. only:: partner
 
-   .. include:: /node_management/index.rst
+   .. include:: /node_management/index-node-mgmt-cd0f9d8eaee6.rst
       :start-after: kub-begin
       :end-before: kub-end
 

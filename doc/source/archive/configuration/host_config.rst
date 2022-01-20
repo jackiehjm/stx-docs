@@ -5,7 +5,7 @@ Host Configuration
 .. note::
 
    This guide was replaced by:
-   :doc:`Node Management Guide </node_management/index>`
+   :ref:`Node Management Guide <index-node-mgmt-cd0f9d8eaee6>`
 
 This is a stub page for the topic: Host Configuration. You can help StarlingX by
 expanding the content.

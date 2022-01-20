@@ -1,11 +1,10 @@
-
-.. _node-mgmt-openstack-index:
+.. _index-node-mgmt-os-ccb47338adbc:
 
 .. include:: /_includes/toc-title-node-os.rest
 
 .. only:: partner
 
-   .. include:: /node_management/index.rst
+   .. include:: /node_management/index-node-mgmt-cd0f9d8eaee6.rst
       :start-after: os-begin
       :end-before: os-end
 
