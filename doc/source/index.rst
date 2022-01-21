@@ -151,7 +151,7 @@ Admin tasks
 .. toctree::
    :maxdepth: 2
 
-   admintasks/index
+   admintasks/index-admintasks-768a6e9aaeff
 
 
 ----------
