@@ -1,3 +1,5 @@
+.. _index-usertasks-b18b379ab832:
+
 ==========
 User Tasks
 ==========
@@ -16,7 +18,7 @@ end-user tasks.
 .. toctree::
    :maxdepth: 2
 
-   kubernetes/index
+   kubernetes/index-usertasks-kub-1291759aa985
 
 .. only:: partner
 
@@ -27,4 +29,4 @@ end-user tasks.
    .. toctree::
       :maxdepth: 2
 
-      openstack/index
+      openstack/index-usertasks-os-b137d0020741

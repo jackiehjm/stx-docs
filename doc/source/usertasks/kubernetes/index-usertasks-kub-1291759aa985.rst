@@ -1,10 +1,11 @@
-.. _usertasks-kubernetes-index:
+.. _index-usertasks-kub-1291759aa985:
+
 
 .. include:: /_includes/toc-title-usertasks-kub.rest
 
 .. only:: partner
 
-   .. include:: /usertasks/index.rst
+   .. include:: /usertasks/index-usertasks-b18b379ab832.rst
       :start-after: kub-begin
       :end-before: kub-end
 
