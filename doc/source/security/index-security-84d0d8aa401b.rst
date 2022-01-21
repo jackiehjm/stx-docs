@@ -1,3 +1,5 @@
+.. _index-security-84d0d8aa401b:
+
 ========
 Security
 ========
@@ -21,7 +23,7 @@ Kubernetes
 
 -   Keystone authentication and authorization of StarlingX API / CLI / GUI
 
--   Barbican is used to securely store secrets such as BMC user passwords
+-   Barbican is used to securely store secrets such as |BMC| user passwords
 
 -   Networking policies / Firewalls on external APIs
 
@@ -37,7 +39,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   kubernetes/index
+   kubernetes/index-security-kub-81153c1254c3
 
 ---------
 OpenStack
@@ -50,4 +52,4 @@ OpenStack
 .. toctree::
     :maxdepth: 2
 
-    openstack/index
+    openstack/index-security-os-a2375141dcc2

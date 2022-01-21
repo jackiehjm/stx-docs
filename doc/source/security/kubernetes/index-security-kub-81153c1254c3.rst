@@ -1,10 +1,10 @@
-.. _security-kubernetes-index:
+.. _index-security-kub-81153c1254c3:
 
 .. include:: /_includes/toc-title-security-kub.rest
 
 .. only:: partner
 
-   .. include:: /security/index.rst
+   .. include:: /security/index-security-84d0d8aa401b.rst
       :start-after: kub-begin
       :end-before: kub-end
 
@@ -281,3 +281,4 @@ Appendix: Locally creating certificates
 
    create-certificates-locally-using-openssl
    create-certificates-locally-using-cert-manager-on-the-controller
+
