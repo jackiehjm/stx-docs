@@ -141,7 +141,7 @@ Updates
 .. toctree::
    :maxdepth: 2
 
-   updates/index
+   updates/index-updates-e3b970bb69ce
 
 
 -----------
