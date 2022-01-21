@@ -1,10 +1,10 @@
-.. _sysconf_openstack_index:
+.. _index-sysconf-os-988a21c687cb:
 
 .. include:: /_includes/toc-title-sys-conf-os.rest
 
 .. only:: partner
 
-   .. include:: /system_configuration/index.rst
+   .. include:: /system_configuration/index-sysconf-d511820651f0.rst
       :start-after: os-begin
       :end-before: os-end
 
@@ -37,3 +37,4 @@ Cinder
    :maxdepth: 1
 
    export-and-import-cinder-backups-to-ceph-pool
+
