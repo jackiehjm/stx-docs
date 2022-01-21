@@ -83,7 +83,7 @@ System configuration
 .. toctree::
    :maxdepth: 2
 
-   system_configuration/index
+   system_configuration/index-sysconf-d511820651f0
 
 
 -------------

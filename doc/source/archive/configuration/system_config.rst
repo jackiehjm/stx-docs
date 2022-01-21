@@ -5,7 +5,7 @@ System Configuration
 .. note::
 
    This guide was replaced by:
-   :ref:`System Configuration Guide <sysconf_main_index>`
+   :ref:`System Configuration Guide <index-sysconf-d511820651f0>`
 
 
 This is a stub page for the topic: System Configuration. You can help StarlingX
@@ -20,4 +20,3 @@ For information about contributing to the StarlingX documentation, see the
 .. contents::
    :local:
    :depth: 1
-
