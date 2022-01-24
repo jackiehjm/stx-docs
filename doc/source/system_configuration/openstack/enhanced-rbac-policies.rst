@@ -16,6 +16,13 @@ default 'member' role.  A high-level summary of the new roles' capabilities and
 the modified 'default' role capabilities are in the following table; a detailed
 description is provided at end of page.
 
+.. note::
+
+    All the overrides files should be applied, some of the rules in a policy
+    from one service might depend on other services to work \(e.g. Nova
+    commands might depend on Glance/Cinder/Neutron permissions\), and they
+    should not be used separately.
+
 .. table::
     :widths: auto
 
