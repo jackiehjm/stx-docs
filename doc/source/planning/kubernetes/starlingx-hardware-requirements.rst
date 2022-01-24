@@ -6,7 +6,8 @@
 System Hardware Requirements
 ============================
 
-|prod| has been tested to work with specific hardware configurations:
+|prod| has been tested to work with specific hardware configurations. For
+more information, see `Self Validated and Certified Hosts <https://www.windriver.com/studio/operator/self-validated-and-certified-hosts>`__.
 
 .. contents:: |minitoc|
    :local:
