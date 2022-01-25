@@ -277,7 +277,7 @@ Configure controller-0
             :start-after: ref1-begin
             :end-before: ref1-end
 
-   #. **For OpenStack only:** Due to the additional openstack services running
+   #. **For OpenStack only:** Due to the additional OpenStack services running
       on the |AIO| controller platform cores, a minimum of 4 platform cores are
       required, 6 platform cores are recommended.
 
@@ -324,7 +324,7 @@ Configure controller-0
          system modify --vswitch_type |ovs-dpdk|
 
       Default recommendation for an |AIO|-controller is to use a single
-      core |OVS-DPDK| vswitch.
+      core |OVS-DPDK| vSwitch.
 
       .. code-block:: bash
 
@@ -413,7 +413,7 @@ Configure controller-0
          sleep 2
 
    #. **For OpenStack only:** Configure data interfaces for controller-0.
-      Data class interfaces are vswitch interfaces used by vswitch to provide
+      Data class interfaces are vSwitch interfaces used by vSwitch to provide
       |VM| virtio vNIC connectivity to OpenStack Neutron Tenant Networks on the
       underlying assigned Data Network.
 
@@ -454,19 +454,19 @@ Configure controller-0
 Optionally Configure PCI-SRIOV Interfaces
 *****************************************
 
-#. **Optionally**, configure pci-sriov interfaces for controller-0.
+#. **Optionally**, configure |PCI|-|SRIOV| interfaces for controller-0.
 
    This step is **optional** for Kubernetes. Do this step if using |SRIOV|
    network attachments in hosted application containers.
 
    .. only:: openstack
 
-      This step is **optional** for OpenStack.  Do this step if using |SRIOV|
-      vNICs in hosted application VMs.  Note that pci-sriov interfaces can
-      have the same Data Networks assigned to them as vswitch data interfaces.
+      This step is **optional** for OpenStack. Do this step if using |SRIOV|
+      vNICs in hosted application VMs. Note that |PCI|-|SRIOV| interfaces can
+      have the same Data Networks assigned to them as vSwitch data interfaces.
 
 
-   * Configure the pci-sriov interfaces for controller-0.
+   * Configure the |PCI|-|SRIOV| interfaces for controller-0.
 
    .. code-block:: bash
 
@@ -587,8 +587,8 @@ Unlock controller-0
 
 .. only:: openstack
 
-   *  **For OpenStack only:** Due to the additional openstack services’
-      containers running on the controller host, the size of the docker
+   *  **For OpenStack only:** Due to the additional Openstack services’
+      containers running on the controller host, the size of the Docker
       filesystem needs to be increased from the default size of 30G to 60G.
 
       .. code-block:: bash
@@ -739,6 +739,41 @@ Configure controller-1
          # assign 6 cores on processor/numa-node 0 on controller-1 to platform
          system host-cpu-modify -f platform -p0 6 controller-1
 
+   #. Due to the additional Openstack services’ containers running on the
+      controller host, the size of the Docker filesystem needs to be
+      increased from the default size of 30G to 60G.
+
+      .. code-block:: bash
+
+         # check existing size of docker fs
+         system host-fs-list controller-0
+         # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
+         system host-lvg-list controller-0
+         # if existing docker fs size + cgts-vg available space is less than
+         # 80G, you will need to add a new disk partition to cgts-vg.
+         # There must be at least 20GB of available space after the docker
+         # filesystem is increased.
+
+            # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
+            # ( if not use another unused disk )
+
+            # Get device path of ROOT DISK
+            system host-show controller-0 --nowrap | fgrep rootfs
+
+            # Get UUID of ROOT DISK by listing disks
+            system host-disk-list controller-0
+
+            # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
+            # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
+            PARTITION_SIZE=30
+            system system host-disk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
+
+            # Add new partition to ‘cgts-vg’ local volume group
+            system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
+            sleep 2    # wait for partition to be added
+
+            # Increase docker filesystem to 60G
+            system host-fs-modify controller-0 docker=60
 
    #. **For OpenStack only:** Configure the host settings for the vSwitch.
 
@@ -771,7 +806,6 @@ Configure controller-1
 
          # Assign 1x 1G huge page on processor/numa-node 1 on controller-0 to vswitch
          system host-memory-modify -f vswitch -1G 1 controller-1 1
-
 
 
       .. important::
@@ -875,9 +909,9 @@ Optionally Configure PCI-SRIOV Interfaces
 
    .. only:: openstack
 
-      This step is **optional** for OpenStack.  Do this step if using |SRIOV|
-      vNICs in hosted application VMs.  Note that pci-sriov interfaces can
-      have the same Data Networks assigned to them as vswitch data interfaces.
+      This step is **optional** for OpenStack. Do this step if using |SRIOV|
+      vNICs in hosted application VMs. Note that PCI-SRIOV interfaces can
+      have the same Data Networks assigned to them as vSwitch data interfaces.
 
 
    * Configure the pci-sriov interfaces for controller-1.
@@ -896,7 +930,7 @@ Optionally Configure PCI-SRIOV Interfaces
         system host-if-list -a ${NODE}
 
         # Modify configuration for these interfaces
-        # Configuring them as ‘pci-sriov’ class interfaces, MTU of 1500 and named sriov#
+        # Configuring them as 'pci-sriov' class interfaces, MTU of 1500 and named sriov#
         system host-if-modify -m 1500 -n sriov0 -c pci-sriov ${NODE} <sriov0-if-uuid> -N <num_vfs>
         system host-if-modify -m 1500 -n sriov1 -c pci-sriov ${NODE} <sriov1-if-uuid> -N <num_vfs>
 
@@ -908,7 +942,6 @@ Optionally Configure PCI-SRIOV Interfaces
         # Assign Data Networks to PCI-SRIOV Interfaces
         system interface-datanetwork-assign ${NODE} <sriov0-if-uuid> ${DATANET0}
         system interface-datanetwork-assign ${NODE} <sriov1-if-uuid> ${DATANET1}
-
 
    * **For Kubernetes only:** To enable using |SRIOV| network attachments for
      the above interfaces in Kubernetes hosted application containers:
@@ -978,44 +1011,6 @@ Unlock controller-1 in order to bring it into service:
 Controller-1 will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host
 machine.
-
-.. only:: openstack
-
-   *  **For OpenStack only:** Due to the additional openstack services’ containers
-      running on the controller host, the size of the docker filesystem needs to be
-      increased from the default size of 30G to 60G.
-
-      .. code-block:: bash
-
-         # check existing size of docker fs
-         system host-fs-list controller-1
-
-         # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
-         system host-lvg-list controller-1
-
-         # if existing docker fs size + cgts-vg available space is less than
-         # 60G, you will need to add a new disk partition to cgts-vg.
-
-                  # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
-                  # ( if not use another unused disk )
-
-                  # Get device path of ROOT DISK
-                  system host-show controller-1 | grep rootfs
-
-                  # Get UUID of ROOT DISK by listing disks
-                  system host-disk-list controller-1
-
-                  # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
-                  # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
-                  PARTITION_SIZE=30
-                  system host-disk-partition-add -t lvm_phys_vol controller-1 <root-disk-uuid> ${PARTITION_SIZE}
-
-                  # Add new partition to ‘cgts-vg’ local volume group
-                  system host-pv-add controller-1 cgts-vg <NEW_PARTITION_UUID>
-                  sleep 2    # wait for partition to be added
-
-         # Increase docker filesystem to 60G
-         system host-fs-modify controller-1 docker=60
 
 .. only:: starlingx
 
@@ -1109,3 +1104,4 @@ machine.
 .. only:: partner
 
    .. include:: /_includes/72hr-to-license.rest
+

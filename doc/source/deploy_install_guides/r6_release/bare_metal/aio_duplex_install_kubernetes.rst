@@ -280,7 +280,7 @@ Configure controller-0
             :start-after: ref1-begin
             :end-before: ref1-end
 
-   #. **For OpenStack only:** Due to the additional openstack services running
+   #. **For OpenStack only:** Due to the additional OpenStack services running
       on the |AIO| controller platform cores, a minimum of 4 platform cores are
       required, 6 platform cores are recommended.
 
@@ -290,6 +290,42 @@ Configure controller-0
 
          # assign 6 cores on processor/numa-node 0 on controller-0 to platform
          system host-cpu-modify -f platform -p0 6 controller-0
+
+   #. Due to the additional OpenStack services' containers running on the
+      controller host, the size of the Docker filesystem needs to be
+      increased from the default size of 30G to 60G.
+
+      .. code-block:: bash
+
+          # check existing size of docker fs
+          system host-fs-list controller-0
+          # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
+          system host-lvg-list controller-0
+          # if existing docker fs size + cgts-vg available space is less than
+          # 80G, you will need to add a new disk partition to cgts-vg.
+          # There must be at least 20GB of available space after the docker
+          # filesystem is increased.
+
+             # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
+             # ( if not use another unused disk )
+
+             # Get device path of ROOT DISK
+             system host-show controller-0 --nowrap | fgrep rootfs
+
+             # Get UUID of ROOT DISK by listing disks
+             system host-disk-list controller-0
+
+             # Create new PARTITION on ROOT DISK, and take note of new partition's 'uuid' in response
+             # Use a partition size such that you'll be able to increase docker fs size from 30G to 60G
+             PARTITION_SIZE=30
+             system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+
+             # Add new partition to 'cgts-vg' local volume group
+             system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
+             sleep 2    # wait for partition to be added
+
+             # Increase docker filesystem to 60G
+             system host-fs-modify controller-0 docker=60
 
 
    #. **For OpenStack only:** Configure the system setting for the vSwitch.
@@ -327,7 +363,7 @@ Configure controller-0
          system modify --vswitch_type |ovs-dpdk|
 
       Default recommendation for an |AIO|-controller is to use a single
-      core for |OVS-DPDK| vswitch.
+      core for |OVS-DPDK| vSwitch.
 
       .. code-block:: bash
 
@@ -461,15 +497,15 @@ Configure controller-0
 Optionally Configure PCI-SRIOV Interfaces
 *****************************************
 
-#. **Optionally**, configure pci-sriov interfaces for controller-0.
+#. **Optionally**, configure |PCI|-|SRIOV| interfaces for controller-0.
 
    This step is **optional** for Kubernetes. Do this step if using |SRIOV|
    network attachments in hosted application containers.
 
    .. only:: openstack
 
-      This step is **optional** for OpenStack.  Do this step if using |SRIOV|
-      vNICs in hosted application VMs.  Note that pci-sriov interfaces can
+      This step is **optional** for OpenStack. Do this step if using |SRIOV|
+      vNICs in hosted application VMs. Note that |PCI|-|SRIOV| interfaces can
       have the same Data Networks assigned to them as vswitch data interfaces.
 
 
@@ -594,8 +630,8 @@ Unlock controller-0
 
 .. only:: openstack
 
-   *  **For OpenStack Only** Due to the additional openstack services’
-      containers running on the controller host, the size of the docker
+   *  **For OpenStack Only** Due to the additional OpenStack services’
+      containers running on the controller host, the size of the Docker
       filesystem needs to be increased from the default size of 30G to 60G.
 
       .. code-block:: bash
@@ -606,8 +642,10 @@ Unlock controller-0
             # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
             system host-lvg-list controller-0
 
-            # if existing docker fs size + cgts-vg available space is less than
-            # 60G, you will need to add a new disk partition to cgts-vg.
+         # if existing docker fs size + cgts-vg available space is less than
+         # 80G, you will need to add a new disk partition to cgts-vg.
+         # There must be at least 20GB of available space after the docker
+         # filesystem is increased.
 
                      # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
                      # ( if not use another unused disk )
@@ -623,7 +661,7 @@ Unlock controller-0
                      PARTITION_SIZE=30
                      system host-disk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
 
-                     # Add new partition to ‘cgts-vg’ local volume group
+                     # Add new partition to 'cgts-vg' local volume group
                      system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
                      sleep 2    # wait for partition to be added
 
@@ -746,6 +784,41 @@ Configure controller-1
          # assign 6 cores on processor/numa-node 0 on controller-1 to platform
          system host-cpu-modify -f platform -p0 6 controller-1
 
+   #. Due to the additional openstack services' containers running on the
+      controller host, the size of the docker filesystem needs to be
+      increased from the default size of 30G to 60G.
+
+      .. code-block:: bash
+
+          # check existing size of docker fs
+          system host-fs-list controller-0
+          # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
+          system host-lvg-list controller-0
+          # if existing docker fs size + cgts-vg available space is less than
+          # 80G, you will need to add a new disk partition to cgts-vg.
+          # There must be at least 20GB of available space after the docker
+          # filesystem is increased.
+
+             # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
+             # ( if not use another unused disk )
+
+             # Get device path of ROOT DISK
+             system host-show controller-0 --nowrap | fgrep rootfs
+
+             # Get UUID of ROOT DISK by listing disks
+             system host-disk-list controller-0
+
+             # Create new PARTITION on ROOT DISK, and take note of new partition's 'uuid' in response
+             # Use a partition size such that you'll be able to increase docker fs size from 30G to 60G
+             PARTITION_SIZE=30
+             system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+
+             # Add new partition to 'cgts-vg' local volume group
+             system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
+             sleep 2    # wait for partition to be added
+
+             # Increase docker filesystem to 60G
+             system host-fs-modify controller-0 docker=60
 
    #. **For OpenStack only:** Configure the host settings for the vSwitch.
 
@@ -807,10 +880,10 @@ Configure controller-1
 
          export NODE=controller-1
 
-         # Create ‘nova-local’ local volume group
+         # Create 'nova-local' local volume group
          system host-lvg-add ${NODE} nova-local
 
-         # Get UUID of DISK to create PARTITION to be added to ‘nova-local’ local volume group
+         # Get UUID of DISK to create PARTITION to be added to 'nova-local' local volume group
          # CEPH OSD Disks can NOT be used
          # For best performance, do NOT use system/root disk, use a separate physical disk.
 
@@ -830,7 +903,7 @@ Configure controller-1
 
          system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
 
-         # Add new partition to ‘nova-local’ local volume group
+         # Add new partition to 'nova-local' local volume group
          system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
          sleep 2
 
@@ -849,7 +922,7 @@ Configure controller-1
 
            export NODE=controller-1
 
-           # List inventoried host’s ports and identify ports to be used as ‘data’ interfaces,
+           # List inventoried host's ports and identify ports to be used as 'data' interfaces,
            # based on displayed linux port name, pci address and device type.
            system host-port-list ${NODE}
 
@@ -859,7 +932,7 @@ Configure controller-1
            system host-if-list -a ${NODE}
 
            # Modify configuration for these interfaces
-           # Configuring them as ‘data’ class interfaces, MTU of 1500 and named data#
+           # Configuring them as 'data' class interfaces, MTU of 1500 and named data#
            system host-if-modify -m 1500 -n data0 -c data ${NODE} <data0-if-uuid>
            system host-if-modify -m 1500 -n data1 -c data ${NODE} <data1-if-uuid>
 
@@ -875,19 +948,19 @@ Configure controller-1
 Optionally Configure PCI-SRIOV Interfaces
 *****************************************
 
-#. **Optionally**, configure pci-sriov interfaces for controller-1.
+#. **Optionally**, configure |PCI|-|SRIOV| interfaces for controller-1.
 
    This step is **optional** for Kubernetes. Do this step if using |SRIOV|
    network attachments in hosted application containers.
 
    .. only:: openstack
 
-      This step is **optional** for OpenStack.  Do this step if using |SRIOV|
-      vNICs in hosted application VMs.  Note that pci-sriov interfaces can
+      This step is **optional** for OpenStack. Do this step if using |SRIOV|
+      vNICs in hosted application VMs. Note that |PCI|-|SRIOV| interfaces can
       have the same Data Networks assigned to them as vswitch data interfaces.
 
 
-   * Configure the pci-sriov interfaces for controller-1.
+   * Configure the |PCI|-|SRIOV| interfaces for controller-1.
 
      .. code-block:: bash
 
@@ -897,13 +970,13 @@ Optionally Configure PCI-SRIOV Interfaces
         # based on displayed linux port name, pci address and device type.
         system host-port-list ${NODE}
 
-        # List host’s auto-configured ‘ethernet’ interfaces,
+        # List host’s auto-configured 'ethernet' interfaces,
         # find the interfaces corresponding to the ports identified in previous step, and
         # take note of their UUID
         system host-if-list -a ${NODE}
 
         # Modify configuration for these interfaces
-        # Configuring them as ‘pci-sriov’ class interfaces, MTU of 1500 and named sriov#
+        # Configuring them as 'pci-sriov' class interfaces, MTU of 1500 and named sriov#
         system host-if-modify -m 1500 -n sriov0 -c pci-sriov ${NODE} <sriov0-if-uuid> -N <num_vfs>
         system host-if-modify -m 1500 -n sriov1 -c pci-sriov ${NODE} <sriov1-if-uuid> -N <num_vfs>
 
@@ -985,44 +1058,6 @@ Unlock controller-1 in order to bring it into service:
 Controller-1 will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host
 machine.
-
-.. only:: openstack
-
-   *  **For OpenStack only:** Due to the additional openstack services’ containers
-      running on the controller host, the size of the docker filesystem needs to be
-      increased from the default size of 30G to 60G.
-
-      .. code-block:: bash
-
-         # check existing size of docker fs
-         system host-fs-list controller-1
-
-         # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
-         system host-lvg-list controller-1
-
-         # if existing docker fs size + cgts-vg available space is less than 60G,
-         # you will need to add a new disk partition to cgts-vg.
-
-                  # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
-                  # ( if not use another unused disk )
-
-                  # Get device path of ROOT DISK
-                  system host-show controller-1 | grep rootfs
-
-                  # Get UUID of ROOT DISK by listing disks
-                  system host-disk-list controller-1
-
-                  # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
-                  # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
-                  PARTITION_SIZE=30
-                  system host-disk-partition-add -t lvm_phys_vol controller-1 <root-disk-uuid> ${PARTITION_SIZE}
-
-                  # Add new partition to ‘cgts-vg’ local volume group
-                  system host-pv-add controller-1 cgts-vg <NEW_PARTITION_UUID>
-                  sleep 2    # wait for partition to be added
-
-         # Increase docker filesystem to 60G
-         system host-fs-modify controller-1 docker=60
 
 .. only:: starlingx
 
