@@ -1,3 +1,5 @@
+.. _index-node-mgmt-cd0f9d8eaee6:
+
 ===============
 Node Management
 ===============
@@ -40,7 +42,7 @@ Complete instructions for adding a worker node are provided in the
 .. toctree::
    :maxdepth: 2
 
-   kubernetes/index
+   kubernetes/index-node-mgmt-kub-5ff5993b9c60
 
 ---------
 OpenStack
@@ -62,4 +64,5 @@ Add an OpenStack compute node
 .. toctree::
    :maxdepth: 2
 
-   openstack/index
+   openstack/index-node-mgmt-os-ccb47338adbc
+
