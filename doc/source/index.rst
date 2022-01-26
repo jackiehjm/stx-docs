@@ -191,7 +191,7 @@ Distributed Cloud
 .. toctree::
    :maxdepth: 2
 
-   dist_cloud/index
+   dist_cloud/index-dist-cloud-f5dbeb16b976
 
 ------------------------------
 Sample Application Deployments
