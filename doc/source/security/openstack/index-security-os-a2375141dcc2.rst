@@ -1,5 +1,4 @@
-
-.. _security-openstack-index:
+.. _index-security-os-a2375141dcc2:
 
 .. include:: /_includes/toc-title-security-os.rest
 
