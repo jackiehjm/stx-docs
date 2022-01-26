@@ -5,7 +5,7 @@ OpenStack Swift Configuration
 .. note::
 
    This guide was replaced by:
-   :ref:`Configure OpenStack Services Using Helm Chart Overrides <sysconf_openstack_index>`
+   :ref:`Configure OpenStack Services Using Helm Chart Overrides <index-sysconf-os-988a21c687cb>`
 
 This is a stub page for the topic: OpenStack Swift Configuration. You can help
 StarlingX by expanding the content.

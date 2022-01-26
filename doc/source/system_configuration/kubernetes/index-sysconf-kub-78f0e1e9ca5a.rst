@@ -1,10 +1,10 @@
-.. _sysconf_kubernetes_index:
+.. _index-sysconf-kub-78f0e1e9ca5a:
 
 .. include:: /_includes/toc-title-sys-conf-kub.rest
 
 .. only:: partner
 
-   .. include:: /system_configuration/index.rst
+   .. include:: /system_configuration/index-sysconf-d511820651f0.rst
       :start-after: kub-begin
       :end-before: kub-end
 
