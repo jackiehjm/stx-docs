@@ -1,10 +1,10 @@
-.. _storage-kubernetes-index:
+.. _index-storage-kub-e797132c87a8:
 
 .. include:: /_includes/toc-title-storage-kub.rest
 
 .. only:: partner
 
-   .. include:: /storage/index.rst
+   .. include:: /storage/index-storage-6cd708f1ada9.rst
       :start-after: kub-begin
       :end-before: kub-end
 

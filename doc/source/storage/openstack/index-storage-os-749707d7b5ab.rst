@@ -1,11 +1,11 @@
-.. _storage-openstack-index:
+.. _index-storage-os-749707d7b5ab:
 
 .. include:: /_includes/toc-title-storage-os.rest
 
 .. For future DS OpenStack reorg
 .. .. only:: partner
 ..
-..    .. include:: /storage/index.rst
+..    .. include:: /storage/index-storage-6cd708f1ada9.rst
 ..       :start-after: os-begin
 ..       :end-before: os-end
 
