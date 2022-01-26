@@ -1,3 +1,5 @@
+.. _index-install-r6-distcloud-46f4880ec78b:
+
 ===================================
 Distributed Cloud Installation R6.0
 ===================================
@@ -158,16 +160,19 @@ Install a subcloud
 
 At the subcloud location:
 
-1. Physically install and cable all subcloud servers.
-2. Physically install the top of rack switch and configure it for the
+#. Physically install and cable all subcloud servers.
+
+#. Physically install the top of rack switch and configure it for the
    required networks.
-3. Physically install the gateway routers which will provide IP routing
+
+#. Physically install the gateway routers which will provide IP routing
    between the subcloud OAM and Management subnets and the System Controller
    OAM and management subnets.
-4. On the server designated for controller-0, install the StarlingX
+
+#. On the server designated for controller-0, install the StarlingX
    Kubernetes software from USB or a PXE Boot server.
 
-5. Establish an L3 connection to the System Controller by enabling the OAM
+#. Establish an L3 connection to the System Controller by enabling the OAM
    interface (with OAM IP/subnet) on the subcloud controller using the
    ``config_management`` script. This step is for subcloud ansible bootstrap
    preparation.
@@ -217,7 +222,7 @@ At the subcloud location:
 
 At the System Controller:
 
-1. Create a ``bootstrap-values.yml`` override file for the subcloud. For
+#. Create a ``bootstrap-values.yml`` override file for the subcloud. For
    example:
 
    .. code:: yaml
@@ -246,7 +251,7 @@ At the System Controller:
    .. note:: The `systemcontroller_gateway_address` is the address of central
              cloud management network gateway.
 
-2. Add the subcloud using the CLI command below:
+#. Add the subcloud using the CLI command below:
 
    .. code:: sh
 
@@ -279,7 +284,7 @@ At the System Controller:
       | 1  | subcloud1 | unmanaged  | offline      | complete      | unknown |
       +----+-----------+------------+--------------+---------------+---------+
 
-4. Continue provisioning the subcloud system as required using the StarlingX
+#. Continue provisioning the subcloud system as required using the StarlingX
    R6.0 Installation procedures and starting from the 'Configure controller-0'
    step.
 
