@@ -1,4 +1,5 @@
-.. _admintasks-index:
+.. _index-admintasks-768a6e9aaeff:
+
 
 ===========
 Admin Tasks
@@ -18,7 +19,7 @@ of common administrative tasks.
 .. toctree::
     :maxdepth: 2
 
-    kubernetes/index
+    kubernetes/index-admintasks-kub-ebc55fefc368
 
 -------------------
 StarlingX OpenStack
@@ -34,4 +35,4 @@ openstack-compute host basis.
 .. toctree::
     :maxdepth: 2
 
-    openstack/index
+    openstack/index-admintasks-os-22bdf545d2f2

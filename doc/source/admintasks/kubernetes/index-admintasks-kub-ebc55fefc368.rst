@@ -1,11 +1,10 @@
-.. _admintasks-kubernetes-index:
-
+.. _index-admintasks-kub-ebc55fefc368:
 
 .. include:: /_includes/toc-title-admintasks-kub.rest
 
 .. only:: partner
 
-   .. include:: /admintasks/index.rst
+   .. include:: /admintasks/index-admintasks-768a6e9aaeff.rst
       :start-after: kub-begin
       :end-before: kub-end
 
