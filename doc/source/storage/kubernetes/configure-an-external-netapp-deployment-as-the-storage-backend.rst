@@ -3,11 +3,11 @@
 .. _configure-an-external-netapp-deployment-as-the-storage-backend:
 
 ==============================================================
-Configure an External Netapp Deployment as the Storage Backend
+Configure an External NetApp Deployment as the Storage Backend
 ==============================================================
 
-Configure an external Netapp Trident deployment as the storage backend, after
-system installation using a |prod|-provided ansible playbook.
+Configure an external NetApp deployment as the storage backend, after system
+installation using a |prod|-provided ansible playbook.
 
 .. rubric:: |prereq|
 
@@ -84,11 +84,11 @@ procedure.
 
     .. _configuring-an-external-netapp-deployment-as-the-storage-backend-mod-localhost:
 
-#.  Configure Netapps configurable parameters and run the provided
+#.  Configure NetApps configurable parameters and run the provided
     install_netapp_backend.yml ansible playbook to enable connectivity to
-    Netapp as a storage backend for |prod|.
+    NetApp as a storage backend for |prod|.
 
-#.  Provide Netapp backend configurable parameters in an overrides yaml
+#.  Provide NetApp backend configurable parameters in an overrides yaml
     file.
 
     You can make changes-in-place to your existing localhost.yml file
@@ -207,15 +207,15 @@ procedure.
     <https://netapp-trident.readthedocs.io/en/stable-v20.04/kubernetes/operations/tasks/backends/ontap.html>`__.
 
     .. note::
-        By default, Netapp is configured to have ``777`` as
+        By default, NetApp is configured to have ``777`` as
         unixPermissions. |prod| recommends changing these settings to
         make it more secure, for example, ``"unixPermissions": "755"``.
         Ensure that the right permissions are used, and there is no
         conflict with container security.
 
         Do NOT use ``777`` as ``unixPermissions`` to configure an external
-        Netapp deployment as the Storage backend. For more information,
-        contact Netapp, at `https://www.netapp.com/
+        NetApp deployment as the Storage backend. For more information,
+        contact NetApp, at `https://www.netapp.com/
         <https://www.netapp.com/>`__.
 
 #.  Run the playbook.
@@ -225,7 +225,7 @@ procedure.
 
     .. code-block:: none
 
-        # ansible-playbook /usr/share/ansible/stx-ansible/playbooks/install_netapp_backend.yml -e "override_files_dir=</home/sysadmin/mynetappconfig>"
+        ansible-playbook /usr/share/ansible/stx-ansible/playbooks/install_netapp_backend.yml -e "override_files_dir=</home/sysadmin/mynetappconfig>"
 
     Upon successful launch, there will be one Trident pod running on
     each node, plus an extra pod for the REST API running on one of the
@@ -245,7 +245,7 @@ procedure.
 
 .. rubric:: |postreq|
 
-To configure a persistent volume claim for the Netapp backend, add the
+To configure a persistent volume claim for the NetApp backend, add the
 appropriate storage-class name you set up in step :ref:`2
 <configure-an-external-netapp-deployment-as-the-storage-backend>`
 \(``netapp-nas-backend`` in this example\) to the persistent volume
@@ -256,7 +256,7 @@ claim's yaml configuration file. For more information about this file, see
 .. _configure-netapps-using-a-private-docker-registry:
 
 -------------------------------------------------
-Configure Netapps Using a Private Docker Registry
+Configure NetApps Using a Private Docker Registry
 -------------------------------------------------
 
 Use the ``docker_registries`` parameter to pull from the local registry rather
