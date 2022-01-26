@@ -1,3 +1,5 @@
+.. _index-updates-e3b970bb69ce:
+
 ====================
 Updates and Upgrades
 ====================
@@ -16,22 +18,22 @@ all hosts of an entire |prod-long| cloud to be updated with a single operation.
 .. toctree::
    :maxdepth: 2
 
-   kubernetes/index
+   kubernetes/index-updates-kub-03d4d10fa0be
 
 
 ---------
-Openstack
+OpenStack
 ---------
 
 .. os-begin
 
-The system application-update -n |prefix|-openstack -v <new-app-version>
-command is used for corrective content \(bug fixes\) -type updates to the
-running containerized openstack application.
+
+Use the |prod| Application Package Manager :command:`application-update`
+command to perform an |prod-os| update.
 
 .. os-end
 
 .. toctree::
    :maxdepth: 2
 
-   openstack/index
+   openstack/index-updates-os-5e0354d270cb
