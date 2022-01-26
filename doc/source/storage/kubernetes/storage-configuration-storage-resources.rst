@@ -106,13 +106,13 @@ Storage systems.
 .. _storage-configuration-storage-resources-section-N1015E-N10031-N1000F-N10001:
 
 -----------------------
-External Netapp Trident
+External NetApp Storage
 -----------------------
 
-|prod| can be configured to connect to and use an external Netapp Trident
+|prod| can be configured to connect to and use an external NetApp storage
 deployment as its storage backend.
 
-Netapp Trident supports:
+NetApp Trident supports:
 
 
 .. _storage-configuration-storage-resources-d201e23:

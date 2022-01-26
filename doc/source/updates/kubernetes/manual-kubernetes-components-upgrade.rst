@@ -43,9 +43,12 @@ and upgrade various systems.
 -   All updates required for the new Kubernetes version must be transferred to
     the active controller.
 
--   If you are using NetApp Trident, ensure that your NetApp version is
-    compatible with Trident 21.04 before upgrading Kubernetes to version 1.19
-    and after updating |prod| to version |prod-ver|.
+-   If you are using NetApp Trident in |prod| |prod-ver| and have upgraded from
+    the |prod| previous version, ensure that your NetApp backend version is
+    compatible with Trident 21.04 and follow the steps in :ref:`Upgrade the
+    NetApp Trident Software <upgrade-the-netapp-trident-software-c5ec64d213d3>`
+    to upgrade the Trident drivers to 21.04 before upgrading Kubernetes to
+    version 1.19.
 
 .. note::
     The default version on a fresh install will be Kubernetes 1.21.3, while
