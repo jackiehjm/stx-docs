@@ -12,7 +12,6 @@ device image updates, including |FPGA| updates.
 .. rubric:: |context|
 
 .. note::
-
     Due to limitations with the existing device image update mechanisms for the
     N3000 |FPGA| hardware, applying more than one image at a time to a given
     hardware device is currently not supported. If multiple device images are
@@ -22,6 +21,12 @@ device image updates, including |FPGA| updates.
     completed then the second device image should be applied and dcmanager
     should be used to create and apply a second update strategy for the second
     device image.
+
+.. note::
+    For |BMC| images on N3000 |FPGA| hardware, it is recommended that the
+    admin user uses the **md5sum** of the device image file as the bitstream
+    ID. This will ensure that different files get unique IDs, and the same
+    file gets the same ID.
 
 .. rubric:: |prereq|
 
