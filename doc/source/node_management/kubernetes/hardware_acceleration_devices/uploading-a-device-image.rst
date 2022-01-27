@@ -11,6 +11,12 @@ Upload a Device Image
 The device image must exist where the system command is executed, such as a
 remote CLI, before proceeding.
 
+.. note::
+    For |BMC| images on N3000 |FPGA| hardware, it is recommended that the
+    admin user uses the **md5sum** of the device image file as the bitstream
+    ID. This will ensure that different files get unique IDs, and the same
+    file gets the same ID.
+
 .. rubric:: |proc|
 
 -   Upload the device image.
@@ -48,13 +54,13 @@ remote CLI, before proceeding.
         this image applies to.
 
     **<key\_signature>**
-        A hexidecimal string identifying the root key device image.
+        A hexadecimal string identifying the root key device image.
 
     **<revoke\_key\_id>**
         A decimal key ID for the key revocation device image.
 
     **<bitstream\_id>**
-        A hexidecimal string of the functional device image.
+        A hexadecimal string of the functional device image.
 
     **<name>**
         The name of the device image \(optional\).
