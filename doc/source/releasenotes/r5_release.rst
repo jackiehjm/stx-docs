@@ -90,7 +90,7 @@ associated user guides (if applicable).
   integrated with cert-manager and works with external registries, with an
   associated Notary server for holding images’ trust data.
 
-  Guide:  :doc:`Portieris Overview </security/kubernetes/portieris-overview>`
+  Guide:  :ref:`Portieris Overview <portieris-overview>`
 
 * Edgeworker for industrial deployments
 
@@ -99,7 +99,7 @@ associated user guides (if applicable).
   They usually do not meet worker nodes' minimum requirements but now they can
   be managed by StarlingX.
 
-  Guide: :doc:`Deploy Edgeworker Nodes </deploy/kubernetes/deploy-edgeworker-nodes>`
+  Guide: :ref:`Deploy Edgeworker Nodes <deploy-edgeworker-nodes>`
 
 * SNMP v3 support
 
