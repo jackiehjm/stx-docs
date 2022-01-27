@@ -5,7 +5,7 @@ Welcome to the StarlingX Documentation
 StarlingX is a fully integrated edge cloud software stack that provides
 everything needed to deploy an edge cloud on one, two, or up to 100 servers.
 
-**The most recent supported release of StarlingX is StarlingX R5.0.**
+**This branch contains documentation for StarlingX R5.0.**
 
 * See the :ref:`release-notes`.
 * Download the `R5.0 StarlingX ISO image
