@@ -9,7 +9,7 @@ everything needed to deploy an edge cloud on one, two, or up to 100 servers.
 
 * See the :ref:`release-notes`.
 * Download the `R6.0 StarlingX ISO image
-  <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/6.0/centos/flock/outputs/>`_
+  <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/6.0.0/centos/flock/outputs/>`_
   from the CENGN StarlingX mirror.
 
 For more information about the StarlingX project, refer to the
