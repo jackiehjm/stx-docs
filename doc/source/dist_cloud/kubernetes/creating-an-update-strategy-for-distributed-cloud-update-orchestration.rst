@@ -10,6 +10,13 @@ To update Central Cloud's RegionOne and the subclouds with updates in the
 **Partial-Apply** state, you must create an update strategy for |prod-dc|
 Update Orchestration.
 
+After a patch (update) has been **applied/removed/committed** on the
+Central Cloud's RegionOne, the subclouds are audited and their patching sync
+status is updated. This can take up to 15 minutes.
+
+If the Subclouds are in a **Managed** state and if the patching sync status is
+"out-of-sync", it can be orchestrated.
+
 .. rubric:: |context|
 
 Only one update strategy can exist at a time. The strategy controls how the
@@ -41,28 +48,28 @@ You must be in **SystemController** mode. To change the mode, see
 
     In the Create Strategy dialog box, adjust the settings as needed.
 
-    **Strategy Type** 
+    **Strategy Type**
         Patch, Upgrade, Kubernetes, or Firmware.
 
     **Apply to**
         Subcloud or Subcloud Group.
 
-    **Subcloud** 
+    **Subcloud**
         Write the subcloud name.
 
-    **Subcloud Group**  
+    **Subcloud Group**
         Write the subcloud group name, only if you select the **Apply to: Subcloud Group** option.
 
     **Stop on Failure**
-        default true — determines whether update orchestration failure for a 
+        default true — determines whether update orchestration failure for a
         subcloud prevents application to subsequent subclouds.
 
     **Subcloud Apply Type**
-        Parallel or Serial, default Parallel — determines whether the subclouds 
+        Parallel or Serial, default Parallel — determines whether the subclouds
         are updated in parallel or serially.
 
     **Maximum Parallel Subclouds**
-        default 20 — If this is not specified using the |CLI|, the values for 
+        default 20 — If this is not specified using the |CLI|, the values for
         max_parallel_subclouds defined for each subcloud group will be used by
         default.
 
@@ -81,7 +88,7 @@ You must be in **SystemController** mode. To change the mode, see
 
 #.  Click **Create Strategy**.
 
-    Only subclouds in the Managed state and whose patching sync status is
+    Only subclouds in the **Managed** state and whose patching sync status is
     out-of-sync are added to the list. To change the update strategy settings,
     you must delete the update strategy and create a new one. Confirmation
     before applying strategy will be needed. If the created strategy is older
