@@ -72,6 +72,7 @@ Storage Backends
    configure-the-internal-ceph-storage-backend
    configure-an-external-netapp-deployment-as-the-storage-backend
    uninstall-the-netapp-backend
+   upgrade-the-netapp-trident-software-c5ec64d213d3
 
 ----------------
 Controller Hosts

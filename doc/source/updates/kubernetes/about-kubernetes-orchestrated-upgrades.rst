@@ -46,6 +46,13 @@ meets the following conditions:
     openstack-compute \(worker\) capacity to move instances off the
     openstack-compute \(worker\) host\(s\) being upgraded.
 
+-   If you are using NetApp Trident in |prod| |prod-ver| and have upgraded from
+    the |prod| previous version, ensure that your NetApp backend version is
+    compatible with Trident 21.04 and follow the steps in :ref:`Upgrade the
+    NetApp Trident Software <upgrade-the-netapp-trident-software-c5ec64d213d3>`
+    to upgrade the Trident drivers to 21.04 before upgrading Kubernetes to
+    version 1.19.
+
     .. note::
         Administrative controller ``swact`` operations should be avoided during
         Kubernetes version upgrade orchestration.

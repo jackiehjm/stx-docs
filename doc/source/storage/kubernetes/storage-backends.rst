@@ -7,7 +7,7 @@ Storage Backends
 ================
 
 |prod-long| supports an internal Ceph block storage backend and connecting
-to an external Netapp Trident block storage backend. Configuring a storage
+to an external NetApp block storage backend. Configuring a storage
 backend is optional, but it is required if the applications being hosted
 require persistent volume claims \(PVCs\).
 
@@ -82,13 +82,13 @@ For more information on Ceph storage backend provisioning, see
 .. _storage-backends-section-N10151-N10028-N10001:
 
 -----------------------
-External Netapp Trident
+External NetApp Storage
 -----------------------
 
-|prod| can be configured to connect to and use an external Netapp Trident
+|prod| can be configured to connect to and use an external NetApp storage
 deployment as its storage backend.
 
-Netapp Trident supports:
+NetApp Trident supports:
 
 
 .. _storage-backends-d201e23:
@@ -116,7 +116,7 @@ For more information about Trident, see
     -   :ref:`Configure the Internal Ceph Storage Backend
         <configure-the-internal-ceph-storage-backend>`
 
-    -   :ref:`Configure an External Netapp Deployment as the Storage Backend
+    -   :ref:`Configure an External NetApp Deployment as the Storage Backend
         <configure-an-external-netapp-deployment-as-the-storage-backend>`
 
-    -   :ref:`Uninstall the Netapp Backend <uninstall-the-netapp-backend>`
+    -   :ref:`Uninstall the NetApp Trident Software <uninstall-the-netapp-backend>`
