@@ -1,4 +1,4 @@
-.. _deployment-index:
+.. _index-deploy-da06a98b83b1:
 
 =========================
 Deployment Configurations
@@ -30,4 +30,4 @@ A variety of |prod-long| deployment configuration options are supported.
 .. toctree::
     :maxdepth: 2
 
-    kubernetes/index
+    kubernetes/index-deploy-kub-844a2a88f529

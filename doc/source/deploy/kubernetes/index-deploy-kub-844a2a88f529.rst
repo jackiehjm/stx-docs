@@ -1,4 +1,4 @@
-.. _deploy-kubernetes-index:
+.. _index-deploy-kub-844a2a88f529:
 
 
 .. only:: starlingx
@@ -7,7 +7,7 @@
 
 .. only:: partner
 
-   .. include:: /deploy/index.rst
+   .. include:: /deploy/index-deploy-da06a98b83b1.rst
       :start-after: kub-begin
       :end-before: kub-end
 
