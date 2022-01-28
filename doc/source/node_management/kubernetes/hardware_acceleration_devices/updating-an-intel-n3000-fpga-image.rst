@@ -14,6 +14,12 @@ N3000 |FPGA| user image on a |prod| host.
     |prod| does not support the |FPGA| prestart CRI-O hook. |FPGA|
     programming must be performed manually.
 
+.. note::
+    For |BMC| images on N3000 |FPGA| hardware, it is recommended that the
+    admin user uses the **md5sum** of the device image file as the bitstream
+    ID. This will ensure that different files get unique IDs, and the same
+    file gets the same ID.
+
 .. _updating-an-intel-n3000-fpga-image-section-obd-kky-1mb:
 
 ------------------
@@ -57,8 +63,9 @@ specialized equipment.
 
     `<https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/ug/ug-ias-n3000.pdf>`_
 
-    and particularly Chapter 8, *Configuring Ethernet Interfaces*, to
-    understand how to properly configure the N3000 |NICs|.
+    and particularly Chapter 8, **Node Interfaces**,
+    :ref:`Configuring Ethernet Interfaces <configuring-ethernet-interfaces-using-horizon>`,
+    to understand how to configure the N3000 |NICs|.
 
 -   If you are using your own load, you must have it compiled for the N3000
     |FPGA|.
@@ -109,13 +116,13 @@ specialized equipment.
         this image applies to.
 
     ``<key_signature>``
-        A hexidecimal string identifying the root key device image.
+        A hexadecimal string identifying the root key device image.
 
     ``<revoke_key_id>``
         A decimal key ID for the key revocation device image.
 
     ``<bitstream_id>``
-        A hexidecimal string of the functional device image.
+        A hexadecimal string of the functional device image.
 
     ``<name>``
         The name of the device image \(optional\).
