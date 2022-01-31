@@ -100,7 +100,7 @@ Configure OIDC Auth Applications
             ~(keystone_admin)]$ mkdir /home/sysadmin/ssl
             ~(keystone_admin)]$ kubectl get secret system-local-ca -n cert-manager -o=jsonpath='{.data.ca\.crt}' | base64 --decode > /home/sysadmin/ssl/dex-ca-cert.crt
 
-            ~(keystone_admin)]$ kubectl create secret generic dex-ca-cert --from-file=/home/sysadmin/ssl/dex-ca-cert.pem  -n kube-system
+            ~(keystone_admin)]$ kubectl create secret generic dex-ca-cert --from-file=/home/sysadmin/ssl/dex-ca-cert.crt  -n kube-system
 
             ~(keystone_admin)]$ cat <<EOF > stx-oidc-client.yaml
             tlsName: oidc-auth-apps-certificate
@@ -124,7 +124,7 @@ Configure OIDC Auth Applications
 
          .. code-block:: none
 
-             ~(keystone_admin)]$ kubectl create secret generic wad-ca-cert.crt --from-file=ssl/wad-ca-cert -n kube-system
+             ~(keystone_admin)]$ kubectl create secret generic wad-ca-cert --from-file=ssl/wad-ca-cert.crt -n kube-system
 
          Add the following sections to your dex helm overrides to configure the
          |OIDC| Client and Identity Server Certificate and the Windows Active
@@ -148,7 +148,7 @@ Configure OIDC Auth Applications
                  secretName: wad-ca-cert
              extraVolumeMounts:
              - name: certdir
-               mountPath: /etc/ssl/certs/wad-ca-cert.crt
+               mountPath: /etc/ssl/certs/adcert
 
 
       #. Apply the overrides configuration.
@@ -356,7 +356,7 @@ Configure OIDC Auth Applications
             secretName: wad-ca-cert
         extraVolumeMounts:
         - name: certdir
-          mountPath: /etc/ssl/certs/wad-ca-cert.crt
+          mountPath: /etc/ssl/certs/adcert
 
     .. end-connector-config
 
