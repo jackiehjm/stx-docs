@@ -139,6 +139,8 @@ of |prod| software.
         Required patches are applied: [OK]
         License valid for upgrade: [OK]
         No instances running on controller-1: [OK]
+        All kubernetes applications are in a valid state: [OK]
+        Active controller is controller-0: [OK]
 
     By default, the upgrade process cannot be run and is not recommended to be
     run with active alarms present. Use the command :command:`system upgrade-start --force`

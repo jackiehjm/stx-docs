@@ -108,9 +108,9 @@ FPGA device image update management
 
    device-image-update-orchestration
 
-----------------------------------------------------------
-Kubernetes Version Upgrade Distributed Cloud Orchestration
-----------------------------------------------------------
+--------------------------------------------------------------------
+Configure Kubernetes Version Upgrade Distributed Cloud Orchestration
+--------------------------------------------------------------------
 
 .. toctree::
     :maxdepth: 1
@@ -160,3 +160,4 @@ Appendix
 
     distributed-cloud-ports-reference
     certificate-management-for-admin-rest-api-endpoints
+

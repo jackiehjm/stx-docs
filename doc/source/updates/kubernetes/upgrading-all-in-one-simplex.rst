@@ -132,9 +132,9 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
 #.  Confirm that the system is healthy.
 
     Check the current system health status, resolve any alarms and other issues
-    reported by the :command:`health-query-upgrade` command, then recheck the
-    system health status to confirm that all **System Health** fields are set
-    to **OK**.
+    reported by the :command:`system health-query-upgrade` command, then
+    recheck the system health status to confirm that all **System Health**
+    fields are set to **OK**.
 
     .. code-block:: none
 
@@ -150,6 +150,9 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
         All kubernetes control plane pods are ready: [OK]
         Required patches are applied: [OK]
         License valid for upgrade: [OK]
+        No instances running on controller-1: [OK]
+        All kubernetes applications are in a valid state: [OK]
+        Active controller is controller-0: [OK]
 
     By default, the upgrade process cannot be run and is not recommended to be
     run with Active Alarms present. However, management affecting alarms can be

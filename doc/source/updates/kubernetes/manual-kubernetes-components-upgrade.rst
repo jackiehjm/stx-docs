@@ -48,9 +48,9 @@ and upgrade various systems.
     and after updating |prod| to version |prod-ver|.
 
 .. note::
-    The default version on a fresh install will be Kubernetes 1.21.3, while
+    The default version on a fresh install will be Kubernetes 1.21.8, while
     on an upgrade from |prod| |prod-ver| it will be 1.18.1. You will need to
-    upgrade Kubernetes to each version up to 1.21.3 in order to be ready to
+    upgrade Kubernetes to each version up to 1.21.8 in order to be ready to
     upgrade to the next version of |prod|.
 
 .. rubric:: |proc|
@@ -73,7 +73,7 @@ and upgrade various systems.
         | v1.18.1 | False  | unavailable |
         | v1.19.13| False  | unavailable |
         | v1.20.9 | False  | unavailable |
-        | v1.21.3 | True   | active      |
+        | v1.21.8 | True   | active      |
         +---------+--------+-------------+
 
     If |prod| was upgraded to |prod-ver|, the following appears:
@@ -87,7 +87,7 @@ and upgrade various systems.
         | v1.18.1 | True   | active      |
         | v1.19.13| False  | available   |
         | v1.20.9 | False  | unavailable |
-        | v1.21.3 | False  | unavailable |
+        | v1.21.8 | False  | unavailable |
         +---------+--------+-------------+
 
     The following meanings apply to the output shown:
@@ -112,6 +112,31 @@ and upgrade various systems.
             The version is not available for upgrading. Either it is a
             downgrade or it requires an intermediate upgrade first. Kubernetes
             can be only upgraded one version at a time.
+
+#.  Confirm that the system is healthy.
+
+    Check the current system health status, resolve any alarms and other issues
+    reported by the :command:`system health-query-kube-upgrade` command then
+    recheck the system health status to confirm that all **System Health**
+    fields are set to **OK**.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system health-query-kube-upgrade
+            System Health:
+            All hosts are provisioned: [OK]
+            All hosts are unlocked/enabled: [OK]
+            All hosts have current configurations: [OK]
+            All hosts are patch current: [OK]
+            Ceph Storage Healthy: [OK]
+            No alarms: [OK]
+            All kubernetes nodes are ready: [OK]
+            All kubernetes control plane pods are ready: [OK]
+            Required patches are applied: [OK]
+            License valid for upgrade: [OK]
+            No instances running on controller-1: [OK]
+            All kubernetes applications are in a valid state: [OK]
+            Active controller is controller-0: [OK]
 
 #.  Start the Kubernetes upgrade.
 
