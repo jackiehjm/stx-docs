@@ -330,7 +330,8 @@ Formatting checks
 
 .. begin-post-build-checks
 
-After every successful build several quality checks are performed against the
+You can build the HTML documentation locally using the ``tox -e docs`` command.
+After every successful build, several quality checks are performed against the
 build HTML output.
 
 .. code-block:: none
@@ -395,23 +396,24 @@ This sample shows three problems.
        https://docutils.sourceforge.io/docs/ref/rst/directives.html#include
    * - Substitution errors
      - Scans the output for potential unexpanded substitutions such as
-       ``|prod|`` and reports which files they were found in along with the
+       ``|prod|`` and reports which files they were found in, along with the
        offending lines of HTML.
 
        .. note::
            This check cannot distinguish between a substitution and an ascii
-           output table where cells are not properly padded. In either case the
+           output table where cells are not properly padded. In either case, the
            problem needs to be fixed.
+
      - As above, find the problem in the appropriate :file:`.rst` file by
        examining the :file:`.html` file reported. Look for ``|<text>|`` code
        exposed in the output. In the corresponding :file:`.rst`, find and
        correct the issue.
 
        .. hint::
-           Substitions are not allowed in code blocks, :ref:, :doc:,
+           Substitutions are not allowed in code blocks, :ref:, :doc:,
            or within |RST| markup such as ``**``, ``*```, `````, and so on.
 
-           Substitions cannot be used in ASCII "picture" style tables. If you
+           Substitutions cannot be used in ASCII "picture" style tables. If you
            need a substitution in a table, use the ``.. list-table::`` format
            instead.
 
@@ -456,12 +458,12 @@ not found* error. This indicates that the page may have moved or been deleted.
 **Logs**
 
 Non "OK" results such as *file not found* and *permanent redirect* are
-logged under :file:`doc/builds/linkcheck` in two files:
+logged under :file:`doc/build/linkcheck` in two files:
 
-* :file:`doc/builds/linkcheck/output.txt` provides a results log in plain-text
+* :file:`doc/build/linkcheck/output.txt` provides a results log in plain-text
   format.
 
-*  :file:`doc/builds/linkcheck/output.json` provides the same information in
+*  :file:`doc/build/linkcheck/output.json` provides the same information in
    ``JSON`` format.
 
 Investigate all issues and update the links as needed. In the case of permanent
@@ -559,8 +561,9 @@ RST conventions
 ---------------
 
 StarlingX documentation follows many (but not all!) of the RST conventions
-described in the `OpenStack documentation RST conventions guide <https://docs.openstack.org/doc-contrib-guide/rst-conv.html>`_. If RST markup is
-not listed in this section's quick reference, refer to the OpenStack guide.
+described in the `OpenStack documentation RST conventions guide
+<https://docs.openstack.org/doc-contrib-guide/rst-conv.html>`_. If RST markup
+is not listed in this section's quick reference, refer to the OpenStack guide.
 
 For detailed information about RST and Sphinx extensions, refer to the following
 documents:
@@ -836,5 +839,6 @@ Example RST:
    Subsection heading
    ******************
 
-   Integer sed tortor nisi. Vivamus feugiat, urna in posuere gravida, ligula nunc hendrerit magna, nec tristique ex tortor non lorem.
+   Integer sed tortor nisi. Vivamus feugiat, urna in posuere gravida, ligula
+   nunc hendrerit magna, nec tristique ex tortor non lorem.
 
