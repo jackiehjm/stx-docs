@@ -273,7 +273,7 @@ listing the directory will show a file similar to the following:
 
 .. code-block:: bash
 
-    ls
+    $ ls
 
 .. code-block:: none
 
@@ -312,6 +312,247 @@ title is preserved as typed. No label was added if you selected :kbd:`f`.
 When you reference this file in ``toctree`` and ``ref`` directives, use
 the file name/label string like this:  ``architectural-considerations--d9dd4c105700``
 
+------------------------
+Automated quality checks
+------------------------
+
+Several automated checks are available to help improve and maintain the quality
+of your documentation.
+
+Some of these checks are run every time you perform a build and are intended to
+catch errors before they are submitted for review. Others are invoked
+independently of regular builds and are intended to identify problems prior to
+a release.
+
+*****************
+Formatting checks
+*****************
+
+.. begin-post-build-checks
+
+After every successful build several quality checks are performed against the
+build HTML output.
+
+.. code-block:: none
+   :emphasize-lines: 3,4,10
+
+   Checking for "grey bar" formatting errors in output ...
+   Found 2 HTML file(s) with greybar formatting issues:
+   ./dist_cloud/kubernetes/reinstalling-a-subcloud-with-redfish-platform-management-service.html
+   ./dist_cloud/kubernetes/installing-a-subcloud-without-redfish-platform-management-service.html
+   Using a browser, locate vertical grey bars in the left margin of the above file(s), then correct the issue(s) in the corresponding rST file(s).
+   Checking for ".. include::" errors in output ...
+   Checking for unexpanded substitution errors in output ...
+   Found 1 HTML file(s) that may have unexpanded substitution(s):
+
+   ./node_management/kubernetes/hardware_acceleration_devices/enabling-mount-bryce-hw-accelerator-for-hosted-vram-containerized-workloads.html:| 1d02      | |SATA| controller               | Intel Corporation   |
+
+   Correct the issue(s) in the corresponding rST file(s).
+
+This sample shows three problems.
+
+.. list-table:: Post-check issues and remedies
+   :header-rows: 1
+   :stub-columns: 1
+   :widths: auto
+
+   * - Test
+     - Explanation
+     - Remedy
+   * - Grey bars
+     - Scans the output for evidence of |RST| vertical grey bars inserted into the
+       output next to formatting errors and reports which files they were found
+       in.​
+     - #. Open the file :file:`doc/build/html/index.html` in a browser and
+          navigate to the page reported in the output.
+
+       #. Locate the grey bars.
+
+          .. tip::
+             Grey bars can be hard to find in some locations, such as notes,
+             where they are obscured by a background fill. Look for other
+             evidence of a problem such as an oversized font, text that
+             appears to be randomly bolded, or senseless line breaks.
+
+       #. Open the corresponding :file:`.rst` file and find the location
+          matching the grey bars in the output.
+       #. Correct the issue.
+
+       .. hint::
+            Grey bars are often caused by indentation errors.
+   * - Include errors
+     - Scans the output for malformed ``.. include::`` statements that result
+       in |RST| code and unintended content being exposed and reports which
+       files they were found in.​
+     - As above, find the problem in the appropriate
+       :file:`.rst` file by examining the :file:`.html` file reported. Look for
+       code fragments associated with ``.. include::`` directives such as
+       ``:start-after:`` and ``:end-before:`` that have been exposed in the
+       final output.
+
+       Correct the issues by making the code comply with the documentation at:
+
+       https://docutils.sourceforge.io/docs/ref/rst/directives.html#include
+   * - Substitution errors
+     - Scans the output for potential unexpanded substitutions such as
+       ``|prod|`` and reports which files they were found in along with the
+       offending lines of HTML.
+
+       .. note::
+           This check cannot distinguish between a substitution and an ascii
+           output table where cells are not properly padded. In either case the
+           problem needs to be fixed.
+     - As above, find the problem in the appropriate :file:`.rst` file by
+       examining the :file:`.html` file reported. Look for ``|<text>|`` code
+       exposed in the output. In the corresponding :file:`.rst`, find and
+       correct the issue.
+
+       .. hint::
+           Substitions are not allowed in code blocks, :ref:, :doc:,
+           or within |RST| markup such as ``**``, ``*```, `````, and so on.
+
+           Substitions cannot be used in ASCII "picture" style tables. If you
+           need a substitution in a table, use the ``.. list-table::`` format
+           instead.
+
+.. end-post-build-checks
+
+***********
+Link checks
+***********
+
+Link checks are not performed as part of regular documentation builds. They are
+intended to be run periodically and prior to a release.
+
+You can invoke the Sphinx link checker with the following command:
+
+.. code-block:: bash
+
+    $ tox -e linkcheck
+
+Sphinx will perform a temporary build and then attempt to follow all external
+links from the output files. Results are reported on the console and
+logged for future use.
+
+.. note::
+
+   You may need to disconnect any corporate firewall or VPN to allow the link
+   checker to reach external sites.
+
+**Console output**
+
+The following two lines illustrate output for a valid and a bad link on lines 1
+and 2 respectively. In each case the name of the file being checked, the line
+number the link was found on, and the link itself are reported. In the case of
+a broken link, the server error code is also shown, in this case a 404 *file
+not found* error. This indicates that the page may have moved or been deleted.
+
+.. code-block:: none
+    :linenos:
+
+    (developer_resources/build_docker_image: line  120) ok        http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels/stx-centos-stable-wheels.tar
+    (developer_resources/build_docker_image: line  122) broken    http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels/stx-centos-dev-wheels.tar - 404 Client Error: Not Found for url: http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels/stx-centos-dev-wheels.tar
+
+**Logs**
+
+Non "OK" results such as *file not found* and *permanent redirect* are
+logged under :file:`doc/builds/linkcheck` in two files:
+
+* :file:`doc/builds/linkcheck/output.txt` provides a results log in plain-text
+  format.
+
+*  :file:`doc/builds/linkcheck/output.json` provides the same information in
+   ``JSON`` format.
+
+Investigate all issues and update the links as needed. In the case of permanent
+redirects, replace the existing URL with that of the redirect target.
+
+************
+Spell checks
+************
+
+Spell checks are not performed as part of regular documentation builds. They
+are intended to be run periodically and prior to a release.
+
+You can invoke the Sphinx link checker with the following command:
+
+.. code-block:: bash
+
+    $ tox -e spellcheck
+
+Sphinx will perform a temporary build and then check the output against a US
+English dictionary. Results are reported on the console and logged for future
+use.
+
+**Console output**
+
+Console output shows the path and name of the file an error was found in, the
+line number, the misspelled term and the full line to provide context.
+
+.. code-block:: none
+
+    doc/source/storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.rst:41: Spell check: aditional: used as aditional disk volumes for VMs booted from images.
+
+
+**Logs**
+
+Spell check logs are stored under :file:`doc/build/spelling` in
+:file:`*.spelling` files located and named for their :file:`rst` counterparts.
+
+For example, errors found in the file:
+
+:file:`doc/source/storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.rst`
+
+are logged in the file:
+
+:file:`doc/build/spelling/storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.spelling`
+
+Log files itemize one issue per line. For example:
+
+.. code-block:: none
+
+    storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.rst:41: (aditional)  used as aditional disk volumes for VMs booted from images
+    storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.rst:68: (num)  For more information on how placement group numbers, (pg_num) can be set
+    storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.rst:72: (num)  group numbers (pg_num) required based on pg_calc algorithm, estimates on
+    storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.rst:116: (num)  To list all the pools with their pg_num values, use the following command,
+    storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.rst:119: (num)  To get only the pg_num / pgp_num value, use the following command,
+    storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.rst:119: (num)  To get only the pg_num / pgp_num value, use the following command,
+    storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.rst:142: (num)  Increasing pg_num of a pool has to be done in increments of 64/
+    storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.rst:142: (num)  pg_num number, retry and wait for the cluster to be
+    storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.rst:149: (num)  pg_num of that pool, using the following commands:
+    storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.rst:162: (num)  pgp_num should be equal to pg_num.
+    storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.rst:162: (num)  pgp_num should be equal to pg_num.
+    storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.rst:203: (num)  pg_num, pgp_num, crush_rule.
+    storage/openstack/config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster.rst:203: (num)  pg_num, pgp_num, crush_rule
+
+Note that the spell check in this example matched on the substring ``num``
+several times in contexts such as ``pgp_num``. Cases such as this may call for
+additional spell check customization.
+
+Adding words
+************
+
+|org| documentation makes use of many technical terms that are not known to the
+default dictionary.
+
+You can add these to the file
+:file:`doc/source/spelling_wordlist.txt`.
+
+This file contains one term per line.
+
+.. note::
+
+    * Care should be taken when adding terms to a custom dictionary to avoid
+      errors not being reported. For example, "fs" may be correct in a code
+      block but a typo in some other context. As a general rule, it is better
+      to have the spell checker over-report than under-report.
+
+    * It is important that :file:`spelling_wordlist.txt` be kept in
+      alphabetical order.
+
+    * :file:`spelling_wordlist.txt` is under :program:`git` management and
+      changes must be submitted for review and merge via a :program:`gerrit`
+      review.
 
 ---------------
 RST conventions
@@ -402,9 +643,9 @@ on references, see
 
   .. _my_named_target:
 
-  ~~~~~~~~~~
+  **********
   My section
-  ~~~~~~~~~~
+  **********
 
   This is the section we want to reference.
 
@@ -416,9 +657,9 @@ on references, see
 
 .. _my_named_target:
 
-~~~~~~~~~~
+**********
 My section
-~~~~~~~~~~
+**********
 
 This is the section we want to reference.
 
