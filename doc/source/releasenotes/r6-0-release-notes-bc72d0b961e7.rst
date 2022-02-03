@@ -152,9 +152,9 @@ associated user guides (if applicable).
 
 *   Container Component Upversion
 
-    The default version of a fresh install for Kubernetes is 1.21.3, while for
-    an upgrade from |prod-ver|, it will be 1.18.1. You will need to upgrade
-    Kubernetes to each version up to 1.21.3 in order to be ready to upgrade to
+    The default version of a fresh install for Kubernetes is 1.21.8, while for
+    an upgrade from 5.0, it will be 1.18.1. You will need to upgrade
+    Kubernetes to each version up to 1.21.8 in order to be ready to upgrade to
     the next version of |prod|.
 
     Guide: :ref:`Manual Kubernetes Version Upgrade <manual-kubernetes-components-upgrade>`
