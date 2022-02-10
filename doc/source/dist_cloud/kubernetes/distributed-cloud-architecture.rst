@@ -1,4 +1,3 @@
-
 .. bwx1558617101415
 .. _distributed-cloud-architecture:
 
@@ -47,7 +46,6 @@ if using the CLI.
     The subclouds are |prod| instances used to host containerized applications.
     Any type of |prod| deployment configuration, i.e. simplex, duplex or
     standard with or without storage nodes, can be used for a subcloud.
-    Up to 500 |AIO-SX| subclouds can currently be supported.
 
     Alarms raised at the subclouds are sent to the System Controller for
     central reporting.
