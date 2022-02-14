@@ -1,3 +1,6 @@
 
 .. rehoming-begin
 .. rehoming-end
+
+.. rehoming-supportbegin
+.. rehoming-supportend

@@ -4,3 +4,6 @@
 
 .. upgradeDM-begin
 .. upgradeDM-end
+
+.. wrsbegin
+.. wrsend
