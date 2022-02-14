@@ -58,8 +58,11 @@ Follow the steps below to manually upgrade the System Controller:
     during the software upgrade procedure as the hosts are reset to load the
     new release of software.
 
-    To find and download applicable updates, visit the `Wind River Support
-    Network <https://docs.windriver.com>`__.
+    .. only:: partner
+
+    .. include:: /_includes/upgrading-the-systemcontroller-using-the-cli.rest
+       :start-after: wrsbegin
+       :end-before: wrsend
 
     For more information, see |updates-doc|: :ref:`Managing Software Updates <managing-software-updates>`.
 

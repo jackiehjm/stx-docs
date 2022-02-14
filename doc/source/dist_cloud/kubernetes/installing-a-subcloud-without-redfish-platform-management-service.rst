@@ -258,7 +258,7 @@ subcloud, the subcloud installation process has two phases:
     The deploy status field has the following values:
 
     **Bootstrapping**
-        This status indicates that the Ansible bootstrap of Wind River Cloud
+        This status indicates that the Ansible bootstrap of |prod-long|
         Platform software on the subcloud's controller-0 is in progress.
 
     **Complete**
