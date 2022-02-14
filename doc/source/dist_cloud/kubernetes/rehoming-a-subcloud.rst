@@ -247,12 +247,14 @@ the new System Controller and re-attempt rehoming using the following commands:
     ~(keystone_admin)]$ dcmanager subcloud delete <subcloud-name>
     ~(keystone_admin)]$ dcmanager subcloud add --migrate --bootstrap-address <subcloud-controller-0-oam-address> --bootstrap-values <bootstrap_values_file> [--install-values <install_values_file>]
 
-If the second attempt fails, it is recommended to contact Wind River Customer
-Support at https://www.windriver.com/support.
+.. only:: partner
+
+    .. include:: /_includes/rehoming-a-subcloud.rest
+       :start-after: rehoming-supportbegin
+       :end-before: rehoming-supportend
 
 If all attempts fail, restore the subcloud from backups, that will revert the
 subcloud to the original state prior to rehoming.
-
 
 .. only:: partner
 
