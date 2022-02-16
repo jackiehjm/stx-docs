@@ -26,3 +26,14 @@ Configure OpenStack Services Using Helm Chart Overrides
    adding-configuration-rpc-response-max-timeout-in-neutron-conf
    assigning-a-dedicated-vlan-id-to-a-target-project-network
    customize-openstack-horizon-and-login-banner-branding
+   enhanced-rbac-policies
+
+
+------
+Cinder
+------
+
+.. toctree::
+   :maxdepth: 1
+
+   export-and-import-cinder-backups-to-ceph-pool
