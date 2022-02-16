@@ -68,6 +68,7 @@
 .. |MOTD| replace:: :abbr:`MOTD (Message of the Day)`
 .. |MTU| replace:: :abbr:`MTU (Maximum Transmission Unit)`
 .. |NAT| replace:: :abbr:`NAT (Network Address Translation)`
+.. |NFS| replace:: :abbr:`NFS (Network File System)`
 .. |NIC| replace:: :abbr:`NIC (Network Interface Card)`
 .. |NICs| replace:: :abbr:`NICs (Network Interface Cards)`
 .. |NTP| replace:: :abbr:`NTP (Network Time Protocol)`
