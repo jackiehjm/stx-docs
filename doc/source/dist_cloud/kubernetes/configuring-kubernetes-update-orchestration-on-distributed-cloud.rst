@@ -3,7 +3,7 @@
 .. _configuring-kubernetes-update-orchestration-on-distributed-cloud:
 
 ====================================================================
-Kubernetes Version Upgrade Distributed Cloud Orchestration Procedure
+Configure Kubernetes Version Upgrade Distributed Cloud Orchestration
 ====================================================================
 
 You can configure a *Kubernetes Version Upgrade Distributed Cloud
@@ -130,6 +130,7 @@ controller for access by subclouds. For example:
                                                       [--max-parallel-subclouds MAX_PARALLEL_SUBCLOUDS]
                                                       [--stop-on-failure] [--force]
                                                       [--group GROUP]
+                                                      [--to-version TO_VERSION]
                                                       [cloud_name]
 
 
@@ -158,6 +159,16 @@ controller for access by subclouds. For example:
         strategy that is only applied to all subclouds in the specified group. If
         not specified, all subcloud groups are upgraded.
 
+    **--force**
+        Ignore the audit status of subclouds when selecting them for
+        orchestration. This allows subclouds that are in-sync to be orchestrated.
+
+    **to-version**
+        Specify a target version for Kubernetes orchestration. The subcloud
+        will orchestrate to its 'available' version if the 'to-version' is
+        greater or equal to the available version. The 'to-version' can be a
+        partial version. For example, if the available version is 1.20.5,
+        selecting 1.20 would upgrade to that version.
 
 #.  Optional: Display the strategy in summary, if required. The Kubernetes
     upgrade strategy :command:`show` command displays the strategy in a summary.
@@ -172,7 +183,7 @@ controller for access by subclouds. For example:
         | subcloud apply type    | None                       |
         | max parallel subclouds | None                       |
         | stop on failure        | False                      |
-        | state                  | complete                   |
+        | state                  | initial                    |
         | created_at             | 2020-11-09 23:00:07.210958 |
         | updated_at             | 2020-11-09 23:01:15.697763 |
         +------------------------+----------------------------+

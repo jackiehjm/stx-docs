@@ -108,9 +108,9 @@ FPGA device image update management
 
    device-image-update-orchestration
 
-----------------------------------------------------------
-Kubernetes Version Upgrade Distributed Cloud Orchestration
-----------------------------------------------------------
+--------------------------------------------------------------------
+Configure Kubernetes Version Upgrade Distributed Cloud Orchestration
+--------------------------------------------------------------------
 
 .. toctree::
     :maxdepth: 1

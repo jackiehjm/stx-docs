@@ -2,9 +2,9 @@
 .. noc1590162360081
 .. _configuring-kubernetes-update-orchestration:
 
-==============================================
-Kubernetes Version Upgrade Cloud Orchestration
-==============================================
+==============================================================
+Create Kubernetes Version Upgrade Cloud Orchestration Strategy
+==============================================================
 
 You can configure *Kubernetes Version Upgrade Orchestration Strategy* using the
 :command:`sw-manager` CLI.
@@ -76,7 +76,9 @@ For example:
 
 -   If you are using NetApp Trident, ensure that your NetApp version is
     compatible with Trident 21.04 before upgrading Kubernetes to version 1.19
-    and after updating |prod| to version |prod-ver|.
+    and after updating |prod| to version |prod-ver|. For more information,
+    see :ref:`Upgrade the NetApp Trident Software <upgrade-the-netapp-trident-software-c5ec64d213d3>`.
+
 
 .. only:: partner
 
@@ -90,13 +92,50 @@ For example:
    .. code-block:: none
 
       ~(keystone_admin)$ system kube-version-list
-      +-----------------+--------+-----------+
-      | version         | target | state     |
-      +-----------------+--------+-----------+
-      | v1.18.1         | True   | active    |
-      | v1.19.13        | False  | available |
-      +-----------------+--------+-----------+
+       +-----------------+--------+-------------+
+       | version         | target | state       |
+       +-----------------+--------+-------------+
+       | v1.18.1         | True   | active      |
+       | v1.19.13        | False  | available   |
+       | v1.20.9         | False  | unavailable |
+       | v1.21.8         | False  | unavailable |
+       +-----------------+--------+-------------+
 
+#.  Confirm that the system is healthy.
+
+    Check the current system health status, resolve any alarms and other issues
+    reported by the :command:`system health-query-kube-upgrade` command then
+    recheck the system health status to confirm that all **System Health**
+    fields are set to **OK**.
+
+    By default, the upgrade process cannot be run and is not recommended to be
+    run with active alarms present. Use the :command:`system kube-upgrade-start --force`
+    command to force the upgrade process to start and ignore non-management-affecting
+    alarms.
+
+    .. note::
+        It is strongly recommended that you clear your system of any and all
+        alarms before doing an upgrade. While the :command:`--force` option is
+        available to run the upgrade, it is a best practice to clear any
+        alarms.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system health-query-kube-upgrade
+            System Health:
+            All hosts are provisioned: [OK]
+            All hosts are unlocked/enabled: [OK]
+            All hosts have current configurations: [OK]
+            All hosts are patch current: [OK]
+            Ceph Storage Healthy: [OK]
+            No alarms: [OK]
+            All kubernetes nodes are ready: [OK]
+            All kubernetes control plane pods are ready: [OK]
+            Required patches are applied: [OK]
+            License valid for upgrade: [OK]
+            No instances running on controller-1: [OK]
+            All kubernetes applications are in a valid state: [OK]
+            Active controller is controller-0: [OK]
 
 #.  Create the strategy.
 
@@ -335,12 +374,14 @@ For example:
        +--------------+--------------------------------------+
 
        ~(keystone_admin)$ system kube-version-list
-       +-----------------+--------+-----------+
-       | version         | target | state     |
-       +-----------------+--------+-----------+
-       | v1.18.1         | False  | available |
-       | v1.19.13        | True   | active    |
-       +-----------------+--------+-----------+
+       +-----------------+--------+-------------+
+       | version         | target | state       |
+       +-----------------+--------+-------------+
+       | v1.18.1         | True   | unavailable |
+       | v1.19.13        | False  | active      |
+       | v1.20.9         | False  | available   |
+       | v1.21.8         | False  | unavailable |
+       +-----------------+--------+-------------+
 
 #.  Delete the strategy.
 
@@ -356,3 +397,4 @@ For example:
 
         ~(keystone_admin)$ sw-manager kube-upgrade-strategy delete
         Strategy deleted.
+
