@@ -81,8 +81,7 @@ networks, as shown in Figure 1.
   The subclouds are StarlingX Kubernetes edge systems/clusters used to host
   containerized applications. Any type of StarlingX Kubernetes configuration,
   (including simplex, duplex, or standard with or without storage nodes), can
-  be used for a subcloud. Up to 500 |AIO-SX| subclouds can currently be
-  supported.
+  be used for a subcloud. 
 
   The two edge clouds shown in Figure 1 are subclouds.
 
