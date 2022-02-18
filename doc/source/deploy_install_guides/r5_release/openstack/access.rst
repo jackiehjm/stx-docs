@@ -9,66 +9,6 @@ OpenStack and hosted virtualized applications.
    :local:
    :depth: 1
 
-------------------------------
-Configure helm endpoint domain
-------------------------------
-
-Containerized OpenStack services in StarlingX are deployed behind an ingress
-controller (nginx) that listens on either port 80 (HTTP) or port 443 (HTTPS).
-The ingress controller routes packets to the specific OpenStack service, such as
-the Cinder service, or the Neutron service, by parsing the FQDN in the packet.
-For example, `neutron.openstack.svc.cluster.local` is for the Neutron service,
-`cinder‐api.openstack.svc.cluster.local` is for the Cinder service.
-
-This routing requires that access to OpenStack REST APIs must be via a FQDN
-or by using a remote OpenStack CLI that uses the REST APIs. You cannot access
-OpenStack REST APIs using an IP address.
-
-FQDNs (such as `cinder‐api.openstack.svc.cluster.local`) must be in a DNS server
-that is publicly accessible.
-
-.. note::
-
-   There is a way to wild‐card a set of FQDNs to the same IP address in a DNS
-   server configuration so that you don’t need to update the DNS server every
-   time an OpenStack service is added. Check your particular DNS server for
-   details on how to wild-card a set of FQDNs.
-
-In a “real” deployment, that is, not a lab scenario, you can not use the default
-`openstack.svc.cluster.local` domain name externally. You must set a unique
-domain name for your StarlingX system. StarlingX provides the
-:command:`system service‐parameter-add` command to configure and set the
-OpenStack domain name:
-
-::
-
-  system service-parameter-add openstack helm endpoint_domain=<domain_name>
-
-`<domain_name>` should be a fully qualified domain name that you own, such that
-you can configure the DNS Server that owns `<domain_name>` with the OpenStack
-service names underneath the domain.
-
-For example:
-
-.. parsed-literal::
-
-  system service-parameter-add openstack helm endpoint_domain=my-starlingx-domain.my-company.com
-  system application-apply |prefix|-openstack
-
-This command updates the helm charts of all OpenStack services and restarts them.
-For example it would change `cinder‐api.openstack.svc.cluster.local` to
-`cinder‐api.my-starlingx-domain.my-company.com`, and so on for all OpenStack
-services.
-
-.. note::
-
-   This command also changes the containerized OpenStack Horizon to listen on
-   `horizon.my-starlingx-domain.my-company.com:80` instead of the initial
-   `<oam‐floating‐ip>:31000`.
-
-You must configure `{ ‘*.my-starlingx-domain.my-company.com’:  -->  oam‐floating‐ip‐address }`
-in the external DNS server that owns `my-company.com`.
-
 ---------
 Local CLI
 ---------
@@ -170,6 +110,94 @@ The image below shows a typical successful run.
    :scale: 50%
 
    *Figure 2: StarlingX OpenStack Commands*
+
+------------------------------
+Configure Helm endpoint domain
+------------------------------
+
+Containerized OpenStack services in StarlingX are deployed behind an ingress
+controller (nginx) that listens on either port 80 (HTTP) or port 443 (HTTPS).
+The ingress controller routes packets to the specific OpenStack service, such as
+the Cinder service, or the Neutron service, by parsing the FQDN in the packet.
+For example, `neutron.openstack.svc.cluster.local` is for the Neutron service,
+`cinder‐api.openstack.svc.cluster.local` is for the Cinder service.
+
+This routing requires that access to OpenStack REST APIs must be via a FQDN
+or by using a remote OpenStack CLI that uses the REST APIs. You cannot access
+OpenStack REST APIs using an IP address.
+
+FQDNs (such as `cinder‐api.openstack.svc.cluster.local`) must be in a DNS server
+that is publicly accessible.
+
+.. note::
+
+   There is a way to wild‐card a set of FQDNs to the same IP address in a DNS
+   server configuration so that you don’t need to update the DNS server every
+   time an OpenStack service is added. Check your particular DNS server for
+   details on how to wild-card a set of FQDNs.
+
+In a “real” deployment, that is, not a lab scenario, you can not use the default
+`openstack.svc.cluster.local` domain name externally. You must set a unique
+domain name for your StarlingX system. StarlingX provides the
+:command:`system service‐parameter-add` command to configure and set the
+OpenStack domain name:
+
+::
+
+  system service-parameter-add openstack helm endpoint_domain=<domain_name>
+
+`<domain_name>` should be a fully qualified domain name that you own, such that
+you can configure the DNS Server that owns `<domain_name>` with the OpenStack
+service names underneath the domain.
+
+For example:
+
+.. parsed-literal::
+
+  system service-parameter-add openstack helm endpoint_domain=my-starlingx-domain.my-company.com
+  system application-apply |prefix|-openstack
+
+This command updates the helm charts of all OpenStack services and restarts them.
+For example it would change `cinder‐api.openstack.svc.cluster.local` to
+`cinder‐api.my-starlingx-domain.my-company.com`, and so on for all OpenStack
+services.
+
+.. note::
+
+   This command also changes the containerized OpenStack Horizon to listen on
+   `horizon.my-starlingx-domain.my-company.com:80` instead of the initial
+   `<oam‐floating‐ip>:31000`.
+
+You must configure `{ ‘*.my-starlingx-domain.my-company.com’:  -->  oam‐floating‐ip‐address }`
+in the external DNS server that owns `my-company.com`.
+
+---------------------------
+Configure HTTPS Certificate
+---------------------------
+
+This certificate must be valid for the domain configured for |prod-os|.
+
+
+#.  Enable HTTPS for |prod|, see :ref:`Enable HTTPS Access for StarlingX REST
+    and Web Server Endpoints
+    <enable-https-access-for-starlingx-rest-and-web-server-endpoints>`.
+
+    .. note::
+
+        IF AND ONLY IF |prod-os| application is currently APPLIED when you do
+        this, a |prod-os| application (re-)apply is internally triggered and
+        fails because you have not setup the |prod-os| certificate yet.
+
+#.  Set the |prod-os| domain and configure your external DNS server, see
+    :ref:`Update the Domain Name <update-the-domain-name>`.
+
+#.  Configure the |prod-os| certificate and configure |prod-os| services to use
+    it, see :ref:`Install REST API and Horizon Certificate
+    <install-rest-api-and-horizon-certificate>`.
+
+#.  Open port 443 in |prod| firewall, see :ref:`Modify Firewall Options
+    <security-firewall-options>`.
+
 
 ----------
 Remote CLI
