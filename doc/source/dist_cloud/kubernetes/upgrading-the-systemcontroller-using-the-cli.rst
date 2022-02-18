@@ -60,9 +60,9 @@ Follow the steps below to manually upgrade the System Controller:
 
     .. only:: partner
 
-    .. include:: /_includes/upgrading-the-systemcontroller-using-the-cli.rest
-       :start-after: wrsbegin
-       :end-before: wrsend
+       .. include:: /_includes/upgrading-the-systemcontroller-using-the-cli.rest
+          :start-after: wrsbegin
+          :end-before: wrsend
 
     For more information, see |updates-doc|: :ref:`Managing Software Updates <managing-software-updates>`.
 
@@ -458,11 +458,13 @@ Follow the steps below to manually upgrade the System Controller:
             | to_release   | nn.nn                                |
             +--------------+--------------------------------------+
 
-            .. note::
-                This can take more than half an hour to complete.
+    .. note::
+
+        This can take more than half an hour to complete.
 
     .. note::
-        Alarms are generated as the subcloud load sync\_status is "out-of-sync".
+
+        Alarms are generated as the subcloud load sync_status is "out-of-sync".
 
 #.  Complete the upgrade.
 
