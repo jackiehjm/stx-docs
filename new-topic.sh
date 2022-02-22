@@ -116,6 +116,7 @@ filename="${title//[^[:alnum:]]/-}"
 filename=$(echo $filename | tr -s -)
 filename="${filename}-${myuuid}"
 filename=${filename,,}
+filename=`sed 's/--/-/g' <<< $filename`
 [ $input == "i" ] && filename="index-${filename}"
 
 CONTEXT_DIR="${BASH_SOURCE%/*}"
