@@ -1,6 +1,6 @@
 
 .. uqi1590003050708
-.. _apply-update-to-the-stx-openstack-application:
+.. _apply-update-to-the-openstack-application:
 
 =========================================
 Apply Update to the OpenStack Application
@@ -63,7 +63,7 @@ and the following is a positional argument which must come last:
 .. rubric:: |proc|
 
 
-.. _apply-update-to-the-stx-openstack-application-steps-inn-llt-kmb:
+.. _apply-update-to-the-openstack-application-steps-inn-llt-kmb:
 
 #.  Retrieve the latest |prod-os| application tarball,
     |prefix|-openstack-<major>.<minor>-patch.tgz, from |dnload-loc|.
