@@ -25,4 +25,5 @@ Access the System
    install-a-trusted-ca-certificate
    install-rest-api-and-horizon-certificate
    openstack-keystone-accounts
+   openstack-login-protection
    security-system-account-password-rules
