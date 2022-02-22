@@ -1,3 +1,5 @@
+.. _uninstall_delete-r5:
+
 =============================
 Uninstall StarlingX OpenStack
 =============================
