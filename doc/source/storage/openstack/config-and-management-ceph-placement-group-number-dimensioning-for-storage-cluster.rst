@@ -67,7 +67,7 @@ Recommendations
 
 For more information on how placement group numbers, \(pg\_num\) can be set
 based on how many |OSDs| are in the cluster, see, Ceph PGs per pool calculator:
-`https://ceph.com/pgcalc/ <https://ceph.com/pgcalc/>`__.
+`https://old.ceph.com/pgcalc/ <https://old.ceph.com/pgcalc/>`__.
 
 You must collect the current pool information \(replicated size, number of
 |OSDs| in the cluster\), and enter it into the calculator, calculate placement
