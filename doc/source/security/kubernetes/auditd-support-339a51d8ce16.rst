@@ -317,3 +317,4 @@ unlocked:
     ~(keystone_admin)]$ system host-lock controller-0
     ~(keystone_admin)]$ system host-unlock controller-0
 
+.. include:: /_includes/auditd-7a22d8553d31.rest
