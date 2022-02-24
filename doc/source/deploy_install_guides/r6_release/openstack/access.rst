@@ -102,14 +102,14 @@ The image below shows a typical successful run.
    :alt: starlingx-access-openstack-flavorlist
    :scale: 50%
 
-   *Figure 1: |prod-os| Flavorlist*
+   *Figure 1: OpenStack Flavorlist*
 
 
 .. figure:: /deploy_install_guides/r6_release/figures/starlingx-access-openstack-command.png
    :alt: starlingx-access-openstack-command
    :scale: 50%
 
-   *Figure 2: |prod-os| Commands*
+   *Figure 2: OpenStack Commands*
 
 ------------------------------
 Configure Helm endpoint domain
