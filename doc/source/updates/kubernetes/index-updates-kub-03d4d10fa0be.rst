@@ -1,11 +1,10 @@
-
-.. _updates_kubernetes_index:
+.. _index-updates-kub-03d4d10fa0be:
 
 .. include:: /_includes/toc-title-updates-kub.rest
 
 .. only:: partner
 
-   .. include:: /updates/index.rst
+   .. include:: /updates/index-updates-e3b970bb69ce.rst
       :start-after: kub-begin
       :end-before: kub-end
 
