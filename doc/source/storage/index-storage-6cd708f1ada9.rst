@@ -1,3 +1,5 @@
+.. _index-storage-6cd708f1ada9:
+
 =======
 Storage
 =======
@@ -18,7 +20,7 @@ and the requirements of the system.
 .. toctree::
    :maxdepth: 2
 
-   kubernetes/index
+   kubernetes/index-storage-kub-e797132c87a8
 
 ---------
 OpenStack
@@ -35,4 +37,4 @@ The storage management of hosts is not specific to |prod-os|.
 .. toctree::
    :maxdepth: 2
 
-   openstack/index
+   openstack/index-storage-os-749707d7b5ab
