@@ -1,4 +1,4 @@
-.. _sysconf_main_index:
+.. _index-sysconf-d511820651f0:
 
 ====================
 System Configuration
@@ -20,7 +20,7 @@ and to set additional system configuration data.
 .. toctree::
    :maxdepth: 2
 
-   kubernetes/index.rst
+   kubernetes/index-sysconf-kub-78f0e1e9ca5a
 
 -------------------
 StarlingX OpenStack
@@ -39,4 +39,4 @@ OpenStack service.
 .. toctree::
    :maxdepth: 3
 
-   openstack/index.rst
+   openstack/index-sysconf-os-988a21c687cb
