@@ -161,7 +161,7 @@ User tasks
 .. toctree::
    :maxdepth: 2
 
-   usertasks/index
+   usertasks/index-usertasks-b18b379ab832
 
 
 -----------------
