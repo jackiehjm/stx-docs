@@ -200,7 +200,7 @@ Sample Application Deployments
 .. toctree::
    :maxdepth: 2
 
-   sample_apps/index
+   sample_apps/index-sample-apps-15fce86ad4bf
 
 -----------------
 Deprecated guides
