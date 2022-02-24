@@ -1,10 +1,10 @@
-.. _fault-mgmt-kubernetes-index:
+.. _index-fault-kub-f45ef76b6f16:
 
 .. include:: /_includes/toc-title-fm-kub.rest
 
 .. only:: partner
 
-   .. include:: /fault-mgmt/index.rst
+   .. include:: /fault-mgmt/index-fault-98d5f50a9b8c.rst
       :start-after: kub-begin
       :end-before: kub-end
 

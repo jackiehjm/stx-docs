@@ -121,7 +121,7 @@ Fault management
 .. toctree::
    :maxdepth: 2
 
-   fault-mgmt/index
+   fault-mgmt/index-fault-98d5f50a9b8c
 
 
 ------------------

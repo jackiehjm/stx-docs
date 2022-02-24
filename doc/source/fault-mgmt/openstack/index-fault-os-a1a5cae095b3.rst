@@ -1,11 +1,11 @@
-.. _fault-mgmt-openstack-index:
+.. _index-fault-os-a1a5cae095b3:
 
 .. include:: /_includes/toc-title-fm-os.rest
 
 .. For future DS OpenStack reorg
 .. .. only:: partner
 ..
-..    .. include:: /fault-mgmt/index.rst
+..    .. include:: /fault-mgmt/index-fault-98d5f50a9b8c.rst
 ..       :start-after: os-begin
 ..       :end-before: os-end
 
