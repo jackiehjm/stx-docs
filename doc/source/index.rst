@@ -55,7 +55,7 @@ Planning
 .. toctree::
    :maxdepth: 2
 
-   planning/index
+   planning/index-planning-332af0718d15
 
 -------------------
 Installation guides
