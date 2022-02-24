@@ -37,7 +37,7 @@ Learn more about StarlingX:
 .. toctree::
    :maxdepth: 2
 
-   introduction/index
+   introduction/index-intro-27197f27ad41
 
 -------------------------
 Deployment configurations
