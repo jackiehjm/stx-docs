@@ -2,11 +2,11 @@
 
 .. include:: /_includes/toc-title-storage-os.rest
 
-.. only:: partner
+.. .. only:: partner
 
-   .. include:: /storage/index.rst
-      :start-after: os-begin
-      :end-before: os-end
+..   .. include:: /storage/index.rst
+..      :start-after: os-begin
+..      :end-before: os-end
 
 .. toctree::
    :maxdepth: 1

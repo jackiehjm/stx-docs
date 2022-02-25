@@ -2,11 +2,11 @@
 
 .. include:: /_includes/toc-title-security-os.rest
 
-.. only:: partner
+.. .. only:: partner
 
-   .. include:: /security/index.rst
-      :start-after: os-begin
-      :end-before: os-end
+..    .. include:: /security/index.rst
+..       :start-after: os-begin
+..       :end-before: os-end
 
 
 =================
