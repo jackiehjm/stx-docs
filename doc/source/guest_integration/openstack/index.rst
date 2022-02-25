@@ -8,7 +8,7 @@
       :start-after: os-begin
       :end-before: os-end
 
-.. only:: starlinx
+.. only:: starlingx
 
    ---------------------------
    Overview of VNF Integration
