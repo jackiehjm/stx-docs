@@ -35,9 +35,9 @@ device image updates, including |FPGA| updates.
 
 -   Only one type of dcmanager strategy can exist at a time. Run
     :command:`dcmanager fw-update-strategy delete` to delete any existing
-    strategies before creating a new update \(patch\) strategy. Similarly, after
-    using an update \(patch\) strategy you will need to delete it before creating a
-    fw-update strategy.
+    strategies before creating a new update (patch) strategy. Similarly, after
+    using an update (patch) strategy you will need to delete it before
+    creating a fw-update strategy.
 
 -   Before applying a new functional device image for the same |PCI|
     vendor/device and label as a functional image that has already been applied,
@@ -52,7 +52,6 @@ device image updates, including |FPGA| updates.
 
 #.  Assign labels to |PCI| devices in each subcloud.
 
-
     #.  List known devices on a host.
 
         To list devices from a subcloud, run:
@@ -61,7 +60,7 @@ device image updates, including |FPGA| updates.
 
             ~(keystone_admin)]$ system host-device-list <hostname_or_id>
 
-        To list devices from the central cloud, run:
+        To list devices from the Central cloud, run:
 
         .. code-block:: none
 
@@ -84,9 +83,8 @@ device image updates, including |FPGA| updates.
             Either use single label for each hardware device, or use caution to
             avoid this scenario if using multiple device labels per device.
 
-
-#.  From the central cloud, upload one or more device images in the SystemController region.
-
+#.  From the Central cloud, upload one or more device images in the System
+    Controller region.
 
     -   To upload a root-key device image:
 
@@ -110,9 +108,9 @@ device image updates, including |FPGA| updates.
     For more information about uploading images, see |node-doc|:
     :ref:`Uploading a Device Image <uploading-a-device-image>`.
 
-#.  Apply one or more device images in the SystemController region.
+#.  Apply one or more device images in the System Controller region.
 
-    you can apply multiple device images in the SystemController region
+    You can apply multiple device images in the System Controller region
     provided they are for different devices or different labels.
 
     .. note::
@@ -128,9 +126,11 @@ device image updates, including |FPGA| updates.
     For more information about applying images, see |node-doc|: :ref:`Updating
     an Intel N3000 FPGA Image <updating-an-intel-n3000-fpga-image>`.
 
-#.  Create an update strategy using the :command:`fw-update-strategy create` command.
+#.  Create an update strategy using the :command:`fw-update-strategy create`
+    command.
 
-    The update strategy controls how |FPGA| updates are applied to hosts on subclouds.
+    The update strategy controls how |FPGA| updates are applied to hosts on
+    subclouds.
 
     .. code-block:: none
 
@@ -208,7 +208,8 @@ device image updates, including |FPGA| updates.
 #.  Monitor progress as the strategy is applied.
 
 
-    -   To monitor the step currently being performed on all subclouds, do the following:
+    -   To monitor the step currently being performed on all subclouds, do the
+        following:
 
         .. code-block:: none
 
@@ -224,7 +225,8 @@ device image updates, including |FPGA| updates.
             +-----------+-------+----------+------------------------------+----------------------------+----------------------------+
 
 
-    -   To monitor the step currently being performed on a specific subcloud, do the following:
+    -   To monitor the step currently being performed on a specific subcloud,
+        do the following:
 
         .. code-block:: none
 
