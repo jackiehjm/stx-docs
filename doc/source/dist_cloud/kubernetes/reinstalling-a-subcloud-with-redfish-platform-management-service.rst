@@ -7,12 +7,17 @@ Reinstall a Subcloud with Redfish Platform Management Service
 =============================================================
 
 For subclouds with servers that support Redfish Virtual Media Service
-\(version 1.2 or higher\), you can use the Central Cloud's CLI to reinstall
-the ISO and bootstrap subclouds from the Central Cloud.
+\(version 1.2 or higher\), you can use the Central cloud's CLI to reinstall
+the ISO and bootstrap subclouds from the Central cloud.
 
 .. caution::
 
    All application and data on the subcloud will be lost after reinstallation.
+
+   Any records of |FPGA| device image updates on the subcloud will be lost.
+   You will need to reapply the |FPGA| device image update orchestration
+   procedure. For more information, see :ref:`Device Image Update Orchestration
+   <device-image-update-orchestration>`.
 
 .. rubric:: |context|
 
@@ -36,7 +41,7 @@ Executing the dcmanager subcloud reinstall command in the Central Cloud:
 - The install values are required for subcloud reinstallation. By default,
   install values are stored in database after a subcloud installation or
   upgrade, and the reinstallation will re-use these values. You can use the
-  following CLI command in the Central Cloud to update them if necessary:
+  following CLI command in the Central cloud to update them if necessary:
 
   .. code-block:: none
 
@@ -46,13 +51,13 @@ Executing the dcmanager subcloud reinstall command in the Central Cloud:
   Subcloud Using Redfish Platform Management Service
   <installing-a-subcloud-using-redfish-platform-management-service>`.
 
-  You can only reinstall the same software version with the Central Cloud on
-  the subcloud.  If the software version of the subcloud is not same as the
-  system controller, the reinstall command will update the software version of
+  You can only reinstall the same software version with the Central cloud on
+  the subcloud. If the software version of the subcloud is not same as the
+  System Controller, the reinstall command will update the software version of
   the subcloud and install the correct version afterwards.
 
 
-- Check the subcloud's availability in the Central Cloud.
+- Check the subcloud's availability in the Central cloud.
 
   For example:
 
@@ -110,11 +115,16 @@ Executing the dcmanager subcloud reinstall command in the Central Cloud:
        This will reinstall the subcloud. All applications and data on the
        subcloud will be lost.
 
+       Any records of |FPGA| device image updates on the subcloud will be lost.
+       You will need to reapply the |FPGA| device image update orchestration
+       procedure. For more information, see :ref:`Device Image Update Orchestration
+       <device-image-update-orchestration>`.
+
     Please type ``reinstall`` to confirm: reinstall
 
     Any other input will abort the reinstallation.
 
-#.  In the Central Cloud, monitor the progress of the subcloud installation
+#.  In the Central cloud, monitor the progress of the subcloud installation
     and bootstrapping by viewing the deploy status field of the dcmanager
     subcloud list command.
 
@@ -135,7 +145,7 @@ Executing the dcmanager subcloud reinstall command in the Central Cloud:
 
     You can also monitor detailed logging of the subcloud installation and
     bootstrapping by monitoring the following log file on the active
-    controller in the Central Cloud:
+    controller in the Central cloud:
 
     -   /var/log/dcmanager/ansible/subcloud1_playbook_output.log
 
