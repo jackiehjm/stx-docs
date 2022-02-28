@@ -9,6 +9,9 @@ OpenStack Verified Commercial Hardware
 Verified and approved hardware components for use with |prod-os| are listed
 here.
 
+For more information see `Self-Validated and Certified Servers
+<https://www.windriver.com/studio/operator/self-validated-and-certified-hosts>`__.
+
 .. _installation-and-resource-planning-verified-commercial-hardware-verified-components:
 
 .. table:: Table 1. Verified Components
@@ -192,5 +195,3 @@ To configure PCI-Passthrough Interface to NVIDIA GPU in a |VM|, see the :ref:`Co
 for more details.
 
 .. include:: /_includes/installation-and-resource-planning-verified-commercial-hardware.rest
-
-
