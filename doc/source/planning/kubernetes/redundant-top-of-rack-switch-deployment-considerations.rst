@@ -23,7 +23,7 @@ switches are normally active, providing full bandwidth to the |LAG|. If there
 are multiple failed links on both switches, at least one connection in each
 aggregate pair is still functional. If one switch fails, the other continues to
 provide connections for all |LAG| links that are operational on that switch.
-For more about configuring |VPC|, refer to your switch documentation.
+For more information about configuring |VPC|, refer to your switch documentation.
 
 You can use an active/standby failover model for the switches, but at a cost to
 overall reliability. If there are multiple failed links on both switches, then
