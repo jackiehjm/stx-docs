@@ -126,7 +126,6 @@ This certificate is configured to auto renew.
 .. toctree::
    :maxdepth: 1
 
-   kubernetes-root-ca-certificate
    update-renew-kubernetes-certificates-52b00bd0bdae
    manual-kubernetes-root-ca-certificate-update-8e9df2cd7fb9
    kubernetes-root-ca-certificate-update-cloud-orchestration-a627f9d02d6d
