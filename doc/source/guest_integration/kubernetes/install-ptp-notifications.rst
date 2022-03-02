@@ -69,7 +69,10 @@ Use the following steps to install the **ptp-notification** application.
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system application-upload /usr/local/share/applications/helm/ptp-notification-1.0-26.tgz
+        ~(keystone_admin)]$ system application-upload /usr/local/share/applications/helm/ptp-notification-<n.n-nn>.tgz
+
+    Where ``<n.n-nn>`` is the version of the .tgz file that you can download from
+    the |dnload-loc| relevant to your release.
 
 #.  Verify the |PTP| application has been uploaded.
 
