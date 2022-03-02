@@ -25,7 +25,7 @@ The life cycle of a host
 .. toctree::
    :maxdepth: 1
 
-   the-life-cycle-of-a-host
+   the-life-cycle-of-a-host-93640aa2b707
    host-status-and-alarms-during-system-configuration-changes
 
 --------------
