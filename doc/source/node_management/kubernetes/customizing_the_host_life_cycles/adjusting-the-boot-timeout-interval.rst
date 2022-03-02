@@ -10,7 +10,7 @@ You can adjust how long the controller waits for a host to boot before it
 moves the host into the **Failed** state.
 
 For more information about host states,
-see :ref:`The Life Cycle of a Host <the-life-cycle-of-a-host>`.
+see :ref:`The Life Cycle of a Host <the-life-cycle-of-a-host-93640aa2b707>`.
 
 .. rubric:: |proc|
 
