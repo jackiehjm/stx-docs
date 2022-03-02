@@ -1,6 +1,6 @@
 
 .. aze1553797641568
-.. _the-life-cycle-of-a-host:
+.. _the-life-cycle-of-a-host-93640aa2b707:
 
 ========================
 The Life Cycle of a Host
