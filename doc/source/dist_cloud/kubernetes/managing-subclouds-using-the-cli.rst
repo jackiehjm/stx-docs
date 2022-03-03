@@ -137,12 +137,12 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
 
 
     where ``--deploy-config`` must reference the deployment configuration file.
-    For more information, see either,
 
-.. xbooklink |inst-doc|: :ref:`The
-    Deployment Manager <the-deployment-manager>` or |inst-doc|:
-    :ref:`Deployment Manager Examples <deployment-manager-examples>` for more
-    information on how to generate the file.
+    .. only:: partner
+
+       .. include:: /_includes/managing-subclouds-using-the-cli.rest
+          :start-after: deploy-config-begin
+          :end-before: deploy-config-end
 
     .. note::
 
