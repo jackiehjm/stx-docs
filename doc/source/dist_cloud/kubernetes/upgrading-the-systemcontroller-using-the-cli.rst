@@ -69,24 +69,27 @@ Follow the steps below to manually upgrade the System Controller:
 #.  Confirm that the system is healthy.
 
     Check the current system health status, resolve any alarms and other issues
-    reported by the :command:`health-query-upgrade` command, then recheck the
-    system health status to confirm that all **System Health** fields are set
-    to **OK**.
+    reported by the :command:`system health-query-upgrade` command then recheck
+    the system health status to confirm that all **System Health** fields are
+    set to **OK**.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ system health-query-upgrade
-        System Health:
-        All hosts are provisioned: [OK]
-        All hosts are unlocked/enabled: [OK]
-        All hosts have current configurations: [OK]
-        All hosts are patch current: [OK]
-        Ceph Storage Healthy: [OK]
-        No alarms: [OK]
-        All kubernetes nodes are ready: [OK]
-        All kubernetes control plane pods are ready: [OK]
-        Required patches are applied: [OK]
-        License valid for upgrade: [OK]
+            System Health:
+            All hosts are provisioned: [OK]
+            All hosts are unlocked/enabled: [OK]
+            All hosts have current configurations: [OK]
+            All hosts are patch current: [OK]
+            Ceph Storage Healthy: [OK]
+            No alarms: [OK]
+            All kubernetes nodes are ready: [OK]
+            All kubernetes control plane pods are ready: [OK]
+            Required patches are applied: [OK]
+            License valid for upgrade: [OK]
+            No instances running on controller-1: [OK]
+            All kubernetes applications are in a valid state: [OK]
+            Active controller is controller-0: [OK]
 
     By default, the upgrade process cannot run and is not recommended to run
     with active alarms present. It is strongly recommended that you clear your
