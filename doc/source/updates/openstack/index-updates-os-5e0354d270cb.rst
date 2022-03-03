@@ -18,5 +18,5 @@ Software Update
    :maxdepth: 1
 
    software-updates-and-upgrades-overview
-   apply-update-to-the-stx-openstack-application
+   apply-update-to-the-openstack-application
 
