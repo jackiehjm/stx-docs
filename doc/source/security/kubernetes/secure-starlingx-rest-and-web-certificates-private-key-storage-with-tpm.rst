@@ -6,6 +6,13 @@
 Secure StarlingX REST and Web Certificate's Private Key Storage with TPM
 ========================================================================
 
+.. warning::
+
+   |TPM| support is deprecated and will be removed in an upcoming release
+   of |prod|. Users should instead use the procedure in
+   :ref:`starlingx-rest-api-applications-and-the-web-admin-server-cert-9196c5794834`.
+
+
 For increased security, the |prod| REST and Web Server's certificate can
 be installed such that the private key is stored in a |TPM| 2.0 device on
 the controller.
