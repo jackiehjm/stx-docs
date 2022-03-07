@@ -16,5 +16,5 @@ Software Update
 .. toctree::
    :maxdepth: 1
 
-   apply-update-to-the-stx-openstack-application
+   apply-update-to-the-openstack-application
    software-updates-and-upgrades-overview

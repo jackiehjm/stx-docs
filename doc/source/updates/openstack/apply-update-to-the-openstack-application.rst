@@ -1,6 +1,6 @@
 
 .. uqi1590003050708
-.. _apply-update-to-the-stx-openstack-application:
+.. _apply-update-to-the-openstack-application:
 
 =========================================
 Apply Update to the OpenStack Application
@@ -88,14 +88,14 @@ and the following is a positional argument which must come last:
 
     For example:
 
-    .. code-block:: none
+    .. parsed-literal::
 
         ~(keystone_admin)$ system application-update |prefix|-openstack-20.10-1.tgz
 
 #.  Monitor the status of the application-apply operation until it has
     completed successfully.
 
-    .. code-block:: none
+    .. parsed-literal::
 
         ~(keystone_admin)$ system application-show |prefix|-openstack
         +---------------+----------------------------------+
