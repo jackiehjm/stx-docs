@@ -81,6 +81,7 @@ Add and reinstall a host
    :maxdepth: 1
 
    bare_metal/adding-hosts-using-the-host-add-command
+   bare_metal/delete-hosts-using-the-host-delete-command-1729d2e3153b
 
 
 Add hosts in bulk

@@ -2,11 +2,11 @@
 .. pyp1552927946441
 .. _adding-hosts-using-the-host-add-command-r6:
 
-====================================
-Add Hosts Using the host-add Command
-====================================
+================================
+Add Hosts Using the Command Line
+================================
 
-You can add hosts to the system inventory using the command line.
+You can add hosts to the system inventory using the :command:`host-add` command.
 
 .. rubric:: |context|
 
@@ -150,9 +150,22 @@ scripting an initial setup.
 
         ~(keystone_admin)]$ system host-add -n compute-0 -p worker -I 10.10.10.100
 
+#.  Verify that the host has been added successfully.
+
+    Use the :command:`fm alarm-list` command to check if any alarms (major or
+    critical) events have occured. You can also type :command:`fm event-list`
+    to see a log of events. For more information on alarms, see :ref:`Fault
+    Management Overview <fault-management-overview>`.
+
 #.  With **controller-0** running, start the host.
 
     The host is booted and configured with a personality.
+
+#.  Verify that the host has started successfully.
+
+    The command :command:`system host-list` shows a list of hosts. The
+    added host should be available, enabled, and unlocked. You can also
+    check alarms and events again.
 
 .. rubric:: |postreq|
 
