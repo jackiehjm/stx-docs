@@ -282,14 +282,15 @@ listing the directory will show a file similar to the following:
 The following changes were made.
 
 * All alphabetical characters were converted to lower case.
-* All spaces and special characters, such as the ``!`` were replaced by
+* *Not shown* The characters ``+``, ``-``, ``@``, and ``&`` are replaced with
+  ``plus``, ``minus``, ``at``, and ``and`` respectively.
+* All spaces and other special characters, such as the ``!`` were replaced by
   dashes.
 * A final dash and 12 digit random string were appended to the file name.
 * The extension :file:`.rst` was added for all options except :kbd:`f`, in
   which case the extension :file:`.rest` was added.
 * If you chose to create an ``index`` file by selecting :kbd:`i` when prompted,
   :file:`index-` was prepended to the file name.
-
 
 Examining the file reveals that the label matches the file name, while the
 title is preserved as typed. No label was added if you selected :kbd:`f`.
