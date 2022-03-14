@@ -7,6 +7,15 @@ fi
 
 INCLUDEDIR="$2/doc/source/_includes"
 
+declare -A charReplacements
+
+charReplacements=(
+   ["-"]="minus"
+   ["+"]="plus"
+   ["\@"]="at"
+   ["\&"]="and"
+)
+
 ask_name () {
 
    echo -e "`cat <<EOF
@@ -112,11 +121,19 @@ done)
 
 ask_type
 
-filename="${title//[^[:alnum:]]/-}"
+filename=${title}
+
+for c in "${!charReplacements[@]}"
+do
+  filename=`sed "s/$c/${charReplacements[$c]}/g" <<< $filename`
+done
+
+filename="${filename//[^[:alnum:]]/-}"
 filename=$(echo $filename | tr -s -)
 filename="${filename}-${myuuid}"
 filename=${filename,,}
 filename=`sed 's/--/-/g' <<< $filename`
+
 [ $input == "i" ] && filename="index-${filename}"
 
 CONTEXT_DIR="${BASH_SOURCE%/*}"
