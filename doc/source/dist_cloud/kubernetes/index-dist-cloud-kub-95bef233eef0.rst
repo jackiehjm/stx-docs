@@ -148,8 +148,8 @@ Upgrade Orchestration for Distributed Cloud SubClouds using the CLI
     aborting-the-distributed-upgrade-orchestration
     configuration-for-specific-subclouds
     robust-error-handling-during-an-orchestrated-upgrade
-    failure-prior-to-the-installation-of-n+1-load-on-a-subcloud
-    failure-during-the-installation-or-data-migration-of-n+1-load-on-a-subcloud
+    failure-prior-to-the-installation-of-n-plus-1-load-on-a-subcloud
+    failure-during-the-installation-or-data-migration-of-n-plus-1-load-on-a-subcloud
 
 --------
 Appendix
