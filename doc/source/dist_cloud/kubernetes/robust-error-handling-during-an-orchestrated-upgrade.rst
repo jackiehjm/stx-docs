@@ -24,9 +24,8 @@ If a failure occurs, use the following general steps:
 #.  Check the output using the :command:`dcmanager strategy-step list` command
     for failures, if any.
 
-#.  Address the cause of the failure. For more information, see :ref:`Failure
-    During the Installation or Data Migration of N+1 Load on a Subcloud
-    <failure-during-the-installation-or-data-migration-of-n+1-load-on-a-subcloud>`.
+#.  Address the cause of the failure. For more information, see 
+    :ref:`failure-during-the-installation-or-data-migration-of-n-plus-1-load-on-a-subcloud`.
 
 #.  Retry the orchestrated upgrade. For more information, see :ref:`Distributed
     Upgrade Orchestration Process Using the CLI
@@ -40,8 +39,6 @@ If a failure occurs, use the following general steps:
 
 .. seealso::
 
-    :ref:`Failure Prior to the Installation of N+1 Load on a Subcloud
-    <failure-prior-to-the-installation-of-n+1-load-on-a-subcloud>`
+    * :ref:`failure-prior-to-the-installation-of-n-plus-1-load-on-a-subcloud`
 
-    :ref:`Failure During the Installation or Data Migration of N+1 Load on a
-    Subcloud <failure-during-the-installation-or-data-migration-of-n+1-load-on-a-subcloud>`
+    * :ref:`failure-during-the-installation-or-data-migration-of-n-plus-1-load-on-a-subcloud`

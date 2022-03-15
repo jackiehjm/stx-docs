@@ -1,6 +1,6 @@
 
 .. oeo1597292999568
-.. _failure-during-the-installation-or-data-migration-of-n+1-load-on-a-subcloud:
+.. _failure-during-the-installation-or-data-migration-of-n-plus-1-load-on-a-subcloud:
 
 ===========================================================================
 Failure During the Installation or Data Migration of N+1 Load on a Subcloud
@@ -82,12 +82,11 @@ and finalized. If failure occurs:
 
 .. rubric:: |proc|
 
-.. _failure-during-the-installation-or-data-migration-of-n+1-load-on-a-subcloud-ul-ogc-cp5-qmb:
+.. _failure-during-the-installation-or-data-migration-of-n-plus-1-load-on-a-subcloud-ul-ogc-cp5-qmb:
 
 -   Check specified log files
 
--   Follow the recovery procedure. See :ref:`Failure Prior to the Installation
-    of N+1 Load on a Subcloud <failure-prior-to-the-installation-of-n+1-load-on-a-subcloud>`
+-   Follow the recovery procedure. See :ref:`failure-prior-to-the-installation-of-n-plus-1-load-on-a-subcloud`
 
 .. only:: partner
 
