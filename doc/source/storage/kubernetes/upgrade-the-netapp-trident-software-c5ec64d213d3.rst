@@ -20,6 +20,16 @@ to |prod| |prod-ver|.
     | 20.04.0        | 21.04.1        |
     +----------------+----------------+
 
+.. note::
+
+    In the table above, the client version refers to the binary
+    (``tridentctl``) and the server version refers to the services installed in
+    Kubernetes.
+
+    This difference between versions only occurs during the upgrade, as the
+    client version will be upgraded, but the server version will be the current
+    version at this point.
+
 .. rubric:: |proc|
 
 Before upgrading Kubernetes to version 1.19, the running version of Trident
