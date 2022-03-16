@@ -303,20 +303,20 @@ subcloud, the subcloud installation has these phases:
     bootstrapping and deployment by monitoring the following log files on the
     active controller in the Central Cloud.
 
-    /var/log/dcmanager/<subcloud_name>_install_<date_stamp>.log.
+    ``/var/log/dcmanager/ansible/<subcloud_name>_install.log``
 
-    /var/log/dcmanager/<subcloud_name>_bootstrap_<date_stamp>.log.
+    ``/var/log/dcmanager/ansible/<subcloud_name>_bootstrap.log``
 
 
     For example:
 
     .. code-block:: none
 
-        controller-0:/home/sysadmin# tail /var/log/dcmanager/subcloud1_install_2019-09-23-19-19-42.log
+        controller-0:/home/sysadmin# tail /var/log/dcmanager/ansible/subcloud1_install.log
         TASK [wait_for] ****************************************************************
         ok: [subcloud1]
 
-        controller-0:/home/sysadmin# tail /var/log/dcmanager/subcloud1_bootstrap_2019-09-23-19-03-44.log
+        controller-0:/home/sysadmin# tail /var/log/dcmanager/ansible/subcloud1_bootstrap.log
         k8s.gcr.io: {password: secret, url: null}
         quay.io: {password: secret, url: null}
         )
