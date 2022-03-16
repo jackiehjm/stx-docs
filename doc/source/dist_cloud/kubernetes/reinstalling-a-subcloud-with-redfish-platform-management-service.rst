@@ -161,3 +161,24 @@ Executing the dcmanager subcloud reinstall command in the Central Cloud:
         :start-after: begin-ref-4
         :end-before: end-ref-4
 
+.. important::
+
+    **Limitation**: When you perform a touchless subcloud install with Redfish
+    using the :command:`dcmanager subcloud add` command for all servers with
+    iDRAC 9 firmware installed, the subcloud install fails due to an ISO image
+    insertion mount failure over an IPv6 network |prod-dc| system.
+
+    **Workaround**: For all Dell servers with iDRAC 9 firmware installed with
+    version 5.10.00.00 or below, System administrators must perform the
+    following steps:
+
+    .. rubric:: |proc|
+
+    #.  Log in to the iDRAC 9 web interface and select, **Configuration \>
+        Virtual Console** from the drop-down menu.
+
+    #.  Select **HTML5** (or any other option except eHTML5) from the
+        **Plug-in Type** drop-down menu.
+
+    #.  Click **Apply** to apply the change.
+
