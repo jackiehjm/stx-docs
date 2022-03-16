@@ -190,10 +190,10 @@ You can install reboot-required software updates using the CLI.
 
            Hostname      IP Address    Patch Current  Reboot Required  Release  State
         ============  ==============  =============  ===============  =======  =====
-        compute-0     192.168.204.95       Yes             No          nn.nn   idle
-        compute-1     192.168.204.63       Yes             No          nn.nn   idle
-        compute-2     192.168.204.99       Yes             No          nn.nn   idle
-        compute-3     192.168.204.49       Yes             No          nn.nn   idle
+        worker-0      192.168.204.95       Yes             No          nn.nn   idle
+        worker-1      192.168.204.63       Yes             No          nn.nn   idle
+        worker-2      192.168.204.99       Yes             No          nn.nn   idle
+        worker-3      192.168.204.49       Yes             No          nn.nn   idle
         controller-0  192.168.204.3        Yes             No          nn.nn   idle
         controller-1  192.168.204.4        Yes             No          nn.nn   idle
         storage-0     192.168.204.37       Yes             No          nn.nn   idle
@@ -215,10 +215,10 @@ You can install reboot-required software updates using the CLI.
 
            Hostname      IP Address    Patch Current  Reboot Required  Release  State
         ============  ==============  =============  ===============  =======  =====
-        compute-0     192.168.204.95       Yes             No          nn.nn   idle
-        compute-1     192.168.204.63       Yes             No          nn.nn   idle
-        compute-2     192.168.204.99       Yes             No          nn.nn   idle
-        compute-3     192.168.204.49       Yes             No          nn.nn   idle
+        worker-0      192.168.204.95       Yes             No          nn.nn   idle
+        worker-1      192.168.204.63       Yes             No          nn.nn   idle
+        worker-2      192.168.204.99       Yes             No          nn.nn   idle
+        worker-3      192.168.204.49       Yes             No          nn.nn   idle
         controller-0  192.168.204.3        Yes             No          nn.nn   idle
         controller-1  192.168.204.4        Yes             No          nn.nn   idle
         storage-0     192.168.204.37       Yes             No          nn.nn   idle

@@ -72,8 +72,8 @@ Horizon <installing-reboot-required-software-updates-using-horizon>`.
 
           Hostname      IP Address     Patch Current  Reboot Required  Release  State
         ============  ===============  =============  ===============  =======  =====
-        compute-0     192.168.204.179       Yes             No          nn.nn   idle
-        compute-1     192.168.204.173       Yes             No          nn.nn   idle
+        worker-0      192.168.204.179       Yes             No          nn.nn   idle
+        worker-1      192.168.204.173       Yes             No          nn.nn   idle
         controller-0  192.168.204.3         No              No          nn.nn   idle
         controller-1  192.168.204.4         No              No          nn.nn   idle
         storage-0     192.168.204.213       Yes             No          nn.nn   idle
