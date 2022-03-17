@@ -21,8 +21,7 @@ The default initial password is **sysadmin**.
 .. _the-sysadmin-account-ul-aqh-b41-pq:
 
 -   The initial password must be changed immediately when you log in to each
-    host for the first time. For details, see the `StarlingX Installation Guide
-    <https://docs.starlingx.io/deploy_install_guides/index.html>`__.
+    host for the first time. For details, see |_link-inst-book|.
 
 -   After five consecutive unsuccessful login attempts, further attempts are
     blocked for about five minutes. To clarify, the 5 minute block is not an
