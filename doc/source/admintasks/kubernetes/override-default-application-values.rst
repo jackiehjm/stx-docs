@@ -39,7 +39,7 @@ You can override default application values using the commands described in this
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system helm-override-update ptp-notification ptp-notification notification -–values <<override.yaml>>
+        ~(keystone_admin)]$ system helm-override-update ptp-notification ptp-notification notification -–values <override.yaml>
 
     .. code-block:: none
 
@@ -50,11 +50,11 @@ You can override default application values using the commands described in this
     **simulated**
         value must be 'false' for a normal operation \(used only for troubleshooting\).
 
-    **holdover\_seconds**
+    **holdover_seconds**
         value is the holdover time provided by the |NIC| specification. The default is 15 seconds.
 
-    **poll\_freq\_seconds**
-        is the frequency that the tracking function monitors the ptp4l to
+    **poll_freq_seconds**
+        is the frequency that the tracking function monitors the ``ptp4l`` to
         derive the |PTP| sync state. The default is 2 seconds.
 
 

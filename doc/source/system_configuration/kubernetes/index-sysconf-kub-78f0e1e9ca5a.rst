@@ -48,8 +48,27 @@ PTP Server Configuration
 .. toctree::
    :maxdepth: 2
 
-   configuring-ptp-service-using-horizon
+   ptp-introduction-d981dd710bda
+   ptp-limitations-64338c74b415
    configuring-ptp-service-using-the-cli
+   ptp-interfaces-df73e9b43677
+   instance-specific-considerations-d9d9509c79dd
+   remove-ptp-configurations-4885c027dfa5
+   advanced-ptp-configuration-334a08dc50fb
+   ptp-instance-examples-517dce312f56
+   ptp-instance-troubleshooting-7a7c576ee57a
+
+
+----------------------
+GNSS and SyncE Support
+----------------------
+
+
+.. toctree::
+   :maxdepth: 2
+
+   gnss-and-synce-support-62004dc97f3e
+
 
 --------------------
 OAM IP Configuration

@@ -8,38 +8,17 @@ Configure PTP Service Using the CLI
 
 You can use the CLI to configure |PTP| services.
 
-.. contents::
-   :local:
-   :depth: 1
-
-For information on configuring the |PTP| service for clock synchronization
-using the Horizon Web interface see
-:ref:`Configure PTP Service Using Horizon
-<configuring-ptp-service-using-horizon>`.
-
-You can also specify the |PTP| service for **clock_synchronization** using
-the |os-prod-hor| interface.
-
 .. xbooklink For more information, see |node-doc|: `Host Inventory <hosts-tab>`.
 
 **PTP Service**
 
-To view the existing |PTP| status, use the following command.
+To view the existing |PTP| status, use the following commands.
 
 .. code-block:: none
 
-    ~(keystone_admin)]$ system ptp-show
-    +--------------+--------------------------------------+
-    | Property     | Value                                |
-    +--------------+--------------------------------------+
-    | uuid         | 4844eca1-13bb-471e-9162-e5f2bb97d650 |
-    | mode         | hardware                             |
-    | transport    | l2                                   |
-    | mechanism    | e2e                                  |
-    | isystem_uuid | a16d7b07-1d42-41cf-b001-04bc25216a2b |
-    | created_at   | 2019-12-09T16:08:34.319374+00:00     |
-    | updated_at   | None                                 |
-    +--------------+--------------------------------------+
+    ~(keystone_admin)]$ system ptp-instance-list
+
+    ~(keystone_admin)]$ system host-ptp-instance-list <host>
 
 .. warning::
     |NTP| and |PTP| are mutually exclusive on a particular host; only one can be
@@ -149,133 +128,105 @@ To view the |PTP| service configuration, use the following command:
 
 .. _configuring-ptp-service-using-the-cli-ul-srp-rnn-3jb:
 
--   **PTP Time Stamping Mode**: |NTP| and |PTP| are configured per host.
-    Lock/unlock the host when Hardware time stamping is the default
-    option, and achieves best time synching. Use the following command:
+PTP Instance Configuration
+==========================
 
-    .. code-block:: none
+|PTP| instances are the top level configuration unit. The supported instance
+types are:
 
-        ~(keystone_admin)]$ system ptp-modify --mode=<hardware/software/legacy>
+``ptp4l``
+    Represents an instance of ``ptp4l``. A node may have several of these
+    instances.
 
--   **PTP Network Transport**: Switch between IEEE 802.3 network
-    transport \(L2\) or |UDP| IPv4/v6 network transport for |PTP|
-    messaging. Use the following command:
+``phc2sys``
+    Represents an instance of ``phc2sys``. A node will generally only have one
+    of these.
 
-    .. code-block:: none
+``ts2phc``
+    Represents an instance of ``ts2phc``.
 
-        ~(keystone_admin)]$ system ptp-modify --transport=<l2/UDP>
+``clock``
+    ``clock`` is not an daemon or service, but instead an abstract unit used to
+    hold the interfaces and configuration for setting Westport Channel NIC
+    control parameters (syncE and PPS transmission).
 
-    .. note::
-        L2 is the default option.
+Valid instance level parameters are found in the man pages for each service,
+under:
 
-        If you use |UDP| for |PTP| transport, each |PTP| interface must have an
-        IP assigned. This is enforced during host unlock, and when switching
-        |PTP| transport to |UDP|.
+* GLOBAL OPTIONS - ptp4l
 
--   **PTP Delay Mechanism**
+* OPTIONS - phc2sys
 
-    Set the |PTP| delay mechanism, the options are:
+* GLOBAL OPTIONS - ts2phc
 
-    -   E2E: default delay request-response
+* None for clock
 
-    -   P2P: peer delay
 
-    Use the following command:
+Set host to use |PTP|:
 
-    .. code-block:: none
+.. code-block::
 
-        ~(keystone_admin)]$ system ptp-modify --mechanism=<e2e/p2p>
+    ~(keystone_admin)]$ system host-update controller-0 clock_synchronization=ptp
 
--   **PTP Role**
+Create an instance and assigning parameters
+-------------------------------------------
 
-    |PTP| primary/secondary interfaces are not defined by default. They must be
-    specified by the administrator for each host.
+#. Create an instance by providing a name and type.
 
-    The **ptp\_role** option can be added to interfaces, and can be defined for
-    primary, secondary, and none. This option allows administrators to
-    configure interfaces that can be used for |PTP| services. The primary and
-    secondary roles are limited to |OAM|, platform or data interfaces. Any
-    number of primary and secondary interfaces can be specified per host.
+   .. code-block::
 
-    If a host has **clock_synchronization=ptp**, there must be at least one
-    host interface with a |PTP| role specified. This is enforced during host
-    unlock.
+      ~(keystone_admin)]$ system ptp-instance-add myptp1 ptp4l
 
-    For example, this service can be specified using the following commands:
+#. Add any required instance level parameters.
 
-    .. code-block:: none
+   .. code-block::
 
-        ~(keystone_admin)]$ system host-if-modify compute-3 ens803f0 -n sriovptp --ptp-role slave
+      ~(keystone_admin)]$ system ptp-instance-parameter-add myptp1 domainNumber=24 slaveOnly=0
 
-To apply changes to hosts, use the following command:
+Create an interface and assign to ports
+---------------------------------------
 
-.. code-block:: none
+#. Create an interface unit by providing a name and assigning it to an instance.
 
-    ~(keystone_admin)]$ system ptp-apply
+   .. code-block::
 
-|PTP| changes will be applied to all unlocked hosts configured with ptp
-clock\_synchronization.
+      ~(keystone_admin)]$ system ptp-interface-add ptpinterface myptp1
 
-.. _configuring-ptp-service-using-the-cli-section-qn1-p3d-vkb:
+#. Add ports to the interface.
 
-----------------------
-Advanced Configuration
-----------------------
+   .. code-block::
 
-Using service parameters, you can customize a wide range of linuxptp module
-settings to use the system in a much wider range of |PTP| configurations.
+      ~(keystone_admin)]$ system host-if-ptp-assign controller-0 oam0 ptpinterface
 
-.. caution::
-    These parameters are written to the ptp4l configuration file without error
-    checking. Caution must be taken to ensure that parameter names and
-    values are correct as errors will cause ptp4l launch failures.
+#. Add interface level parameters as required.
 
-The following service parameters are available:
+   .. code-block::
 
-**ptp global default_sync=0**
-    This service parameter disables the selection of a default port by phc2sys.
-    This option should be used when there are three or more |PTP| ports
-    configured in order to prevent phc2sys from synchronizing the time across
-    all ports before they have become synchronized with the primary clock.
+      ~(keystone_admin)]$ system ptp-interface-parameter-add ptpinterface masterOnly=1
 
-**ptp global <name>=<value>**
-    This service parameter allows you to write or overwrite values found
-    in the global section of the ptp4l configuration file. For example,
-    the command
+   .. note::
 
-    .. code-block:: none
+      Multiple ports may be assigned to an interface in order to simplify
+      parameter application.
 
-        ~(keystone_admin)]$ system service-parameter-add ptp global domainNumber=24
+   .. code-block::
 
-    results in the following being written to the configuration file:
+      ~(keystone_admin)]$ system host-if-ptp-assign controller-0 data0 ptpinterface
+      ~(keystone_admin)]$ system ptp-interface-show ptpinterface
 
-    .. code-block:: none
 
-        domainNumber 24
+#. Assign the instance to a host and apply the configuration.
 
-    |PTP| global service parameters take precedence over the system |PTP|
-    values. For example, if the system |PTP| delay mechanism is
-    **E2E**, and you subsequently run the command
+   #. Assign the |PTP| instance to a host so that the configuration can be
+      applied.
 
-    .. code-block:: none
+      .. code-block::
 
-        ~(keystone_admin)]$ system service-parameter-add ptp global delay_mechanism=P2P
+         ~(keystone_admin)]$ system host-ptp-instance-assign controller-0 myptp1
 
-    Then the **P2P** will be used instead.
+   #. Apply the configuration and verify that it completed.
 
-**ptp phc2sys update-rate=<value>**
-    This parameter controls the update-rate of the phc2sys service, in
-    seconds.
+      .. code-block::
 
-**ptp phc2sys summary-updates=<value>**
-    This parameter controls the number of clock updates to be included in
-    summary statistics.
-
-To apply service parameter changes to hosts, use the following command:
-
-.. code-block:: none
-
-    ~(keystone_admin)]$ system service-parameter-apply ptp
-
-|PTP| changes will be applied to all unlocked hosts configured with
-ptp clock\_synchronization.
+         ~(keystone_admin)]$ system ptp-instance-apply
+         ~(keystone_admin)]$ fm alarm-list

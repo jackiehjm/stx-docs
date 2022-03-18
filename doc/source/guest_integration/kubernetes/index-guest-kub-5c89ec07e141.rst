@@ -16,8 +16,5 @@ PTP Notification
     :maxdepth: 1
 
     ptp-notifications-overview
-    install-ptp-notifications
-    remove-ptp-notifications
-    override-default-application-values
     integrate-application-with-notification-client-sidecar
 
