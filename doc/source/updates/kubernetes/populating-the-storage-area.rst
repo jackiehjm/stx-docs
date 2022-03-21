@@ -46,6 +46,14 @@ before they can be applied.
     storage area. Further details about the updates can be retrieved as
     follows:
 
+    .. code-block:: none
+
+       $ sudo sw-patch show <patch_id>
+ 
+    The :command:`sudo sw-patch query` command returns a list of patch IDs.
+    The :command:`sudo sw-patch show` command provides further detail about
+    the specified <patch_id>.
+
 #.  Delete the update files from the root drive.
 
     After the updates are uploaded to the storage area, the original files are
