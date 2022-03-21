@@ -93,3 +93,9 @@
 .. |registry-url| replace:: https://hub.docker.com/layers
 
 .. |only-target| replace:: StarlingX
+
+
+.. Used in installing-a-subcloud-without-redfish-platform-management-service.rst
+   because target lable differs here/partner contexts.
+
+.. |_link-inst-book| replace:: :ref:`Installation guide <index-install-e083ca818006>`

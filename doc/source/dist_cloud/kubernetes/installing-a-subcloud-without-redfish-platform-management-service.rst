@@ -301,8 +301,7 @@ subcloud, the subcloud installation process has two phases:
 
 -   Provision the newly installed and bootstrapped subcloud.  For detailed
     |prod| deployment procedures for the desired deployment configuration of
-    the subcloud, see the post-bootstrap steps of :ref:`Installation Guides
-    <index-install-e083ca818006>`.
+    the subcloud, see the post-bootstrap steps of the |_link-inst-book|.
 
 -   Check and update docker registry credentials on the subcloud:
 
