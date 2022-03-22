@@ -49,6 +49,7 @@
 .. |FQDN| replace:: :abbr:`FQDN (Fully Qualified Domain Name)`
 .. |FQDNs| replace:: :abbr:`FQDNs (Fully Qualified Domain Names)`
 .. |GNP| replace:: :abbr:`GNP (Global Network Policy)`
+.. |GNSS| replace:: :abbr:`GNSS (Global Navigation Satellite System)`
 .. |GCC| replace:: :abbr:`GCC (GNU Compiler Collection)`
 .. |GPU| replace:: :abbr:`GPU (Graphics Processing Unit)`
 .. |ICA| replace:: :abbr:`ICA (Intermediate Certificate Authority)`
@@ -79,6 +80,7 @@
 .. |NUMA| replace:: :abbr:`NUMA (Non-Uniform Memory Access)`
 .. |NVMe| replace:: :abbr:`NVMe (Non-Volatile Memory express)`
 .. |OAM| replace:: :abbr:`OAM (Operations, administration and management)`
+.. |OC| replace:: :abbr:`OC (Ordinary Clock)`
 .. |OIDC| replace:: :abbr:`OIDC (OpenID Connect)`
 .. |ONAP| replace:: :abbr:`ONAP (Open Network Automation Program)`
 .. |OVS| replace:: :abbr:`OVS (Open Virtual Switch)`
@@ -127,8 +129,10 @@
 .. |SSL| replace:: :abbr:`SSL (Secure Socket Layer)`
 .. |STP| replace:: :abbr:`STP (Spanning Tree Protocol)`
 .. |SWACT| replace:: :abbr:`SWACT (SWitch ACTivity)`
+.. |T-BC| replace:: :abbr:`T-BC (Telecom Boundary Clock)`
 .. |TCP| replace:: :abbr:`TCP (Transition Control Protocol)`
 .. |TFTP| replace:: :abbr:`TFTP (Trivial File Transfer Protocol)`
+.. |T-GM| replace:: :abbr:`T-GM (Telecom Grand Primary)`
 .. |TLS| replace:: :abbr:`TLS (Transport Layer Security)`
 .. |ToR| replace:: :abbr:`ToR (Top-of-Rack)`
 .. |TPM| replace:: :abbr:`TPM (Trusted Platform Module)`
