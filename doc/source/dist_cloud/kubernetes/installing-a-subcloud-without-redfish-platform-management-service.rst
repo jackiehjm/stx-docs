@@ -77,7 +77,7 @@ subcloud, the subcloud installation process has two phases:
     For subclouds, the initial IP Interface should be the planned |OAM| IP
     Interface for the subcloud.
 
-    Use the update-iso.sh script from |dnload-loc|. The script is used as
+    Use the ``update-iso.sh`` script from |dnload-loc|. The script is used as
     follows:
 
     .. code-block:: none
@@ -154,7 +154,7 @@ subcloud, the subcloud installation process has two phases:
     |OAM| IP Address.
 
 #.  At the System Controller, create a
-    /home/sysadmin/subcloud1-bootstrap-values.yaml overrides file for the
+    ``/home/sysadmin/subcloud1-bootstrap-values.yaml`` overrides file for the
     subcloud.
 
     For example:
@@ -286,7 +286,7 @@ subcloud, the subcloud installation process has two phases:
     deployment by monitoring the following log files on the active controller
     in the Central Cloud.
 
-    /var/log/dcmanager/<subcloud\_name>\_bootstrap\_<date\_stamp>.log
+    ``/var/log/dcmanager/ansible/<subcloud\_name>\_bootstrap\_<date\_stamp>.log``
 
     For example:
 
@@ -309,8 +309,6 @@ subcloud, the subcloud installation process has two phases:
 .. _installing-a-subcloud-without-redfish-platform-management-service-ul-ixy-lpv-kmb:
 
 -   Provision the newly installed and bootstrapped subcloud.  For detailed
-    |prod| deployment procedures for the desired deployment
-    configuration of the subcloud, see the post-bootstrap steps of |inst-doc|.
     |prod| deployment procedures for the desired deployment configuration of
     the subcloud, see the post-bootstrap steps of the |_link-inst-book|.
 
@@ -326,9 +324,9 @@ subcloud, the subcloud installation process has two phases:
         {SECRET_UUID} | awk '{print $2}''
         openstack secret get ${SECRET_REF} --payload -f value
 
-    The secret payload should be, ":command:`username: sysinv`
-    password:<password>". If the secret payload is, "username: admin
-    password:<password>", see, :ref:`Updating Docker Registry Credentials on a
+    The secret payload should be :command:`username: sysinv password:<password>`.
+    If the secret payload is :command:`username: admin password:<password>`,
+    see, :ref:`Updating Docker Registry Credentials on a
     Subcloud <updating-docker-registry-credentials-on-a-subcloud>` for more
     information.
 
