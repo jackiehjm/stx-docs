@@ -19,13 +19,25 @@ The <admin_password> and <ansible_become_pass> need to be set  correctly
 using the ``-e`` option on the command line, or an override file, or in the
 Ansible secret file.
 
+An example of override file follows:
+
+.. code-block:: none
+
+   cat << EOF > localhost-backup.yaml
+   ---
+   ansible_become_pass: "<admin_password>"
+   admin_password: "<admin_password>"
+   backup_user_local_registry: "true"
+   ...
+   EOF
+
 The output files will be named:
 
 .. _running-ansible-backup-playbook-locally-on-the-controller-ul-wj1-vxh-pmb:
 
 -   inventory_hostname_platform_backup_timestamp.tgz
 
--   inventory_hostname_openstack_backup_timestamp.tgz
+-   inventory_hostname_wr-openstack_backup_timestamp.tgz
 
 -   inventory_hostname_docker_local_registry_backup_timestamp.tgz
 
@@ -43,6 +55,8 @@ line or by using an override file.
 -   docker_local_registry_backup_filename_prefix
 
 -   dc_vault_backup_filename_prefix
+
+-   openstack_app_name: "|prod-os|" (optional for |prod-os| application backup)
 
 The generated backup tar files will be displayed in the following format,
 for example:
