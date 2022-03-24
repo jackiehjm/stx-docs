@@ -9,6 +9,9 @@ Distributed Upgrade Orchestration Process Using the CLI
 Distributed upgrade orchestration can be initiated after the System Controller
 has been successfully upgraded.
 
+For more information Prestaging Subcloud Orchestration see,
+:ref:`prestage-subcloud-orchestration-eb516473582f`.
+
 .. rubric:: |context|
 
 The user first creates a distributed upgrade orchestration strategy, or plan,
