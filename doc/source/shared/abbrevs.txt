@@ -60,6 +60,7 @@
 .. |IoT| replace:: :abbr:`IoT (Internet of Things)`
 .. |IPMI| replace:: :abbr:`IPMI (Intelligent Platform Management Interface)`
 .. |IOPS| replace:: :abbr:`IOPS (I/O operations per second)`
+.. |IRQ| replace:: :abbr:`IRQ (Interrupt Request)`
 .. |KVM| replace:: :abbr:`KVM (Kernel-based Virtual Machine)`
 .. |LACP| replace:: :abbr:`LACP (Link Aggregation Control Protocol)`
 .. |LAG| replace:: :abbr:`LAG (Link Aggregation)`
