@@ -25,15 +25,15 @@ To list the storage backend types installed on a system:
 
 .. code-block:: none
 
-    ~(keystone_admin)$  system storage-backend-list
+    ~(keystone_admin)$ system storage-backend-list
 
-    +--------+---------------+--------+-----------+----+--------+------------+
-    | uuid   | name          |backend |state      |task|services|capabilities|
-    +--------+---------------+--------+-----------+----+--------+------------+
-    | 27e... |ceph-store     |ceph    |configured |None| None   |min_repli.:1|
-    |        |               |        |           |    |        |replicati.:1|
-    | 502... |shared_services|external|configured |None| glance |            |
-    +--------+---------------+--------+-----------+----+--------+------------+
+    +--------+-----------------+----------+------------+------+----------+--------------+
+    | uuid   |  name           | backend  | state      | task | services | capabilities |
+    +--------+-----------------+----------+------------+------+----------+--------------+
+    | 27e... | ceph-store      | ceph     | configured | None | None     | min_repli.:1 |
+    |        |                 |          |            |      |          | replicati.:1 |
+    | 502... | shared_services | external | configured | None | glance   |              |
+    +--------+-----------------+----------+------------+------+----------+--------------+
 
 
 
@@ -41,36 +41,36 @@ To show details for a storage backend:
 
 .. code-block:: none
 
-    ~(keystone_admin)$  system storage-backend-show <name>
+    ~(keystone_admin)$ system storage-backend-show <name>
 
 
 For example:
 
 .. code-block:: none
 
-    ~(keystone_admin)$  system storage-backend-show ceph-store
-    +--------------------+-------------------------------------+
-    |Property            | Value                               |
-    +--------------------+-------------------------------------+
-    |backend             | ceph                                |
-    |name                | ceph-store                          |
-    |state               | configured                          |
-    |task                | None                                |
-    |services            | None                                |
-    |capabilities        | min_replication: 1                  |
-    |                    | replication: 1                      |
-    |object_gateway      | False                               |
-    |ceph_total_space_gib| 198                                 |
-    |object_pool_gib     | None                                |
-    |cinder_pool_gib     | None                                |
-    |kube_pool_gib       | None                                |
-    |glance_pool_gib     | None                                |
-    |ephemeral_pool_gib  | None                                |
-    |tier_name           | storage                             |
-    |tier_uuid           | d3838363-a527-4110-9345-00e299e6a252|
-    |created_at          | 2019-08-12T21:08:50.166006+00:00    |
-    |updated_at          | None                                |
-    +--------------------+-------------------------------------+
+    ~(keystone_admin)$ system storage-backend-show ceph-store
+    +----------------------+--------------------------------------+
+    | Property             | Value                                |
+    +----------------------+--------------------------------------+
+    | backend              | ceph                                 |
+    | name                 | ceph-store                           |
+    | state                | configured                           |
+    | task                 | None                                 |
+    | services             | None                                 |
+    | capabilities         | min_replication: 1                   |
+    |                      | replication: 1                       |
+    | object_gateway       | False                                |
+    | ceph_total_space_gib | 198                                  |
+    | object_pool_gib      | None                                 |
+    | cinder_pool_gib      | None                                 |
+    | kube_pool_gib        | None                                 |
+    | glance_pool_gib      | None                                 |
+    | ephemeral_pool_gib   | None                                 |
+    | tier_name            | storage                              |
+    | tier_uuid            | d3838363-a527-4110-9345-00e299e6a252 |
+    | created_at           | 2019-08-12T21:08:50.166006+00:00     |
+    | updated_at           | None                                 |
+    +----------------------+--------------------------------------+
 
 
 .. _storage-configuring-and-management-storage-related-cli-commands-section-N10086-N1001C-N10001:
@@ -86,7 +86,7 @@ slightly to fit the page.\)
 .. code-block:: none
 
     ~(keystone_admin)$ OS_AUTH_URL=http://keystone.openstack.svc.cluster.local/v3
-    ~(keystone_admin)$  openstack image list
+    ~(keystone_admin)$ openstack image list
     +----+------+-------+--------+-----------+------+--------+------------+-----------+
     | ID | Name | Store | Disk   | Container | Size | Status | Cache Size | Raw Cache |
     |    |      |       | Format | Format    |      |        |            |           |
@@ -98,9 +98,9 @@ slightly to fit the page.\)
 
 .. _storage-configuring-and-management-storage-related-cli-commands-ul-jvc-dnx-jnb:
 
--   The value **rbd** indicates a Ceph backend.
+-   The value ``rbd`` indicates a Ceph backend.
 
--   You can use the –long option to show additional information.
+-   You can use the ``–long`` option to show additional information.
 
 
 
@@ -115,7 +115,7 @@ You can use this command to obtain information about a Glance image.
 .. code-block:: none
 
     ~(keystone_admin)$ OS_AUTH_URL=http://keystone.openstack.svc.cluster.local/v3
-    ~(keystone_admin)$  openstack image-show <<image-id>>
+    ~(keystone_admin)$ openstack image-show <<image-id>>
     +------------------+--------------------------------------+
     | Property         | Value                                |
     +------------------+--------------------------------------+
@@ -126,5 +126,5 @@ You can use this command to obtain information about a Glance image.
     +------------------+--------------------------------------+
 
 
-The Glance **store** value can be either file or rbd. The rbd value indicates a Ceph backend.
-
+The Glance ``store`` value can be either ``file`` or ``rbd``. The ``rbd`` value
+indicates a Ceph backend.
