@@ -317,9 +317,23 @@ health of the system.
    :header-rows: 0
 
    * - **Alarm ID: 100.119**
-     - Major: PTP configuration or out-of-tolerance time-stamping conditions.
+     - <hostname> does not support the provisioned PTP mode
 
-       Minor: PTP out-of-tolerance time-stamping condition.
+       OR
+
+       <hostname> PTP clocking is out-of-tolerance
+
+       OR
+
+       <hostname> is not locked to remote PTP Grand Master
+
+       OR
+
+       <hostname> GNSS signal loss state:<state>
+
+       OR
+
+       <hostname> 1PPS signal loss state:<state>
    * - Entity Instance
      - host=<hostname>.ptp OR host=<hostname>.ptp=no-lock
 
@@ -338,6 +352,14 @@ health of the system.
        OR
 
        host=<hostname>.ptp=out-of-tolerance
+
+       OR
+
+       host=<hostname>.instance=<instance>.ptp=out-of-tolerance
+
+       OR
+
+       host=<hostname>.interface=<interface>.ptp=signal-loss
    * - Degrade Affecting Severity:
      - None
    * - Severity:

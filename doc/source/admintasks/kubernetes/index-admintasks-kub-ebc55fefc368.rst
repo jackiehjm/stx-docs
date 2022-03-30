@@ -60,3 +60,14 @@ Metrics Server
 
    kubernetes-admin-tutorials-metrics-server
 
+-----------------
+PTP Notifications
+-----------------
+
+.. toctree::
+   :maxdepth: 1
+
+   install-ptp-notifications
+   remove-ptp-notifications
+   override-default-application-values
+
