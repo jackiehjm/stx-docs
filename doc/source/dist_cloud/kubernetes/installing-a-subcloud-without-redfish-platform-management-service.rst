@@ -211,8 +211,8 @@ subcloud, the subcloud installation process has two phases:
 
         docker_registries:
           defaults:
-           username: <your_wrs-aws.io_username>
-           password: <your_wrs-aws.io_password>
+           username: <your_default_registry_username>
+           password: <your_default_registry_password>
 
     .. note::
 
@@ -234,22 +234,11 @@ subcloud, the subcloud installation process has two phases:
 
         ~(keystone_admin)]$ system certificate-install -m docker_registry path_to_cert
 
-#.  Add the subcloud using :command:`dcmanager`.
+    .. only:: partner
 
-    When calling the :command:`subcloud add` command, specify the bootstrap
-    values and the subcloud's **sysadmin** password.
-
-    For example:
-
-    .. code-block:: none
-
-        ~(keystone_admin)]$ dcmanager subcloud add --bootstrap-address <oam ip address of subcloud's controller-0> \
-        --bootstrap-values /home/sysadmin/subcloud1-bootstrap-values.yaml \
-        --sysadmin-password <sysadmin_password>
-
-
-    You will be prompted for the Linux password of the subcloud. This command
-    will take five to ten minutes to complete.
+        .. include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
+            :start-after: begin-prepare-files-to-copy-deployment-config
+            :end-before: end-prepare-files-to-copy-deployment-config
 
 #.  At the Central Cloud / System Controller, monitor the progress of the
     subcloud bootstrapping and deployment by using the deploy status field of
@@ -330,9 +319,7 @@ subcloud, the subcloud installation process has two phases:
     Subcloud <updating-docker-registry-credentials-on-a-subcloud>` for more
     information.
 
--   For more information on bootstrapping and deploying see the following
-    StarlingX procedure `Install a subcloud
+-   For more information on bootstrapping and deploying, see the procedure
+    `Install a subcloud
     <https://docs.starlingx.io/deploy_install_guides/r5_release/distributed_cloud/index.html#install-a-subcloud>`__,
     step 4.
-
-
