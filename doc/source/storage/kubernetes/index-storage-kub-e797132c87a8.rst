@@ -123,7 +123,11 @@ Configure Ceph OSDs on a Host
    provision-storage-on-a-controller-or-storage-host-using-horizon
    provision-storage-on-a-storage-host-using-the-cli
    replace-osds-and-journal-disks
+   replace-osds-on-a-standard-system-f3b1e376304c
    replace-osds-on-an-aio-dx-system-319b0bc2f7e6
+   replace-osds-on-an-aio-sx-multi-disk-system-b4ddd1c1257c
+   replace-osds-on-an-aio-sx-single-disk-system-without-backup-951eefebd1f2
+   replace-osds-on-an-aio-sx-single-disk-system-with-backup-770c9324f372
 
 -------------------------
 Persistent Volume Support
