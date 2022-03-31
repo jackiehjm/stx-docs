@@ -9,6 +9,9 @@ For subclouds with servers that support Redfish Virtual Media Service
 (version 1.2 or higher), you can use the Central Cloud's CLI to restore the
 subcloud from data that was backed up previously.
 
+Before you start an |AIO-SX| subcloud upgrade or reinstall for the purpose of
+restoring the subcloud, see :ref:`prestage-a-subcloud-using-dcmanager-df756866163f`.
+
 .. rubric:: |context|
 
 The CLI command :command:`dcmanager subcloud restore` can be used to restore a

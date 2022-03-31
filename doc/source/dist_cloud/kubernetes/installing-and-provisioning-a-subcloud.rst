@@ -26,3 +26,6 @@ Platform Management Service.
     .. include:: /_includes/installing-and-provisioning-a-subcloud.rest
        :start-after: begin-shared-nic
        :end-before: end-shared-nic
+
+For more information on subcloud deployment with local installation see,
+:ref:`subcloud-deployment-with-local-installation-4982449058d5`

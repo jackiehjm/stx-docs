@@ -68,6 +68,29 @@ subcloud, the subcloud installation has these phases:
     files that are referenced in the **bootstrap.yml** file must exist on both
     controllers \(for example, /home/sysadmin/docker-registry-ca-cert.pem\).
 
+.. _increase-subcloud-platform-backup-size:
+
+----------------------------------------------------
+Increase Subcloud Platform Backup Size using the CLI
+----------------------------------------------------
+
+By default, 30GB is allocated for ``/opt/platform-backup``. If additional
+persistent disk space is required, the partition can be increased in the next
+subcloud reinstall using the following commands:
+
+-   To increase ``/opt/platform-backup`` to 40GB, add the **persistent_size: 40000**
+    parameter to the subcloud install-values.yaml file.
+
+-   Use the :command:`dcmanager subcloud update` command to save the
+    configuration change for the next subcloud reinstall.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ dcmanager subcloud update --install-values <install-values-yaml-file><subcloud-name>
+
+For a new subcloud deployment, use the :command:`dcmanager subcloud add`
+command with the install-values.yaml file containing the desired
+**persistent_size** value.
 
 .. rubric:: |proc|
 
@@ -162,6 +185,10 @@ subcloud, the subcloud installation has these phases:
         # rootfs_device: "/dev/disk/by-path/pci-0000:00:1f.2-ata-1.0"
         # boot_device: "/dev/disk/by-path/pci-0000:00:1f.2-ata-1.0"
 
+        # Set the value for persistent file system (/opt/platform-backup).
+        # The value must be whole number (in MB) that is greater than or equal
+        # to 30000.
+        persistent_size: 30000
 
 #.  At the System Controller, create a
     ``/home/sysadmin/subcloud1-bootstrap-values.yaml`` overrides file for the

@@ -54,6 +54,16 @@ Operation
     migrate-an-aiosx-subcloud-to-an-aiodx-subcloud
     restoring-subclouds-from-backupdata-using-dcmanager
     rehoming-a-subcloud
+    prestage-a-subcloud-using-dcmanager-df756866163f
+
+--------------------------------------------------------------------
+Prestage Orchestration for Distributed Cloud Subclouds using the CLI
+--------------------------------------------------------------------
+
+.. toctree::
+    :maxdepth: 1
+
+    prestage-subcloud-orchestration-eb516473582f
 
 ----------------------
 Manage Subcloud Groups
