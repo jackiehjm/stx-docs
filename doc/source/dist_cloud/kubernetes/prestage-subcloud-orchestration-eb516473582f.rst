@@ -13,10 +13,10 @@ For more information on prerequisites for prestage upgrade and reinstall, see
 :ref:`prestage-a-subcloud-using-dcmanager-df756866163f`.
 
 
-   ..note::
+.. note::
 
-      Any existing strategy must be deleted first as only one type
-      of strategy can exist at a time.
+   Any existing strategy must be deleted first as only one type
+   of strategy can exist at a time.
 
    .. only:: partner
 
@@ -130,7 +130,7 @@ For more information on prerequisites for prestage upgrade and reinstall, see
         | updated_at             | 2202-03-22T18:36:03.895542  |
         +------------------------+-----------------------------+
 
-#.	Monitor the progress of the strategy.
+#.  Monitor the progress of the strategy.
 
     .. code-block:: none
 
