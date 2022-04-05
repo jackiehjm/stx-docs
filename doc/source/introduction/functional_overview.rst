@@ -75,13 +75,13 @@ Where:
 
     -   OpenStack Horizon - dashboard
 
-    -   Telemetry \(OPTIONAL\)
+    ..  -   Telemetry \(OPTIONAL\)
 
-        -   Panko - Event storage
+            -   Panko - Event storage
 
-        -   Gnocchi - Time series database
+            -   Gnocchi - Time series database
 
-        -   Aodh - alarming
+            -   Aodh - alarming
 
     -   Heat - Orchestration
 

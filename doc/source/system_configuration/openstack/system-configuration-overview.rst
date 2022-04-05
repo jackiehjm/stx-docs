@@ -22,16 +22,13 @@ OpenStack service.
     +---------------------------+--------------------------------+
     | chart name                | overrides namespaces           |
     +---------------------------+--------------------------------+
-    | aodh                      | [u'openstack']                 |
     | barbican                  | [u'openstack']                 |
-    | ceilometer                | [u'openstack']                 |
     | ceph-rgw                  | [u'openstack']                 |
     | cinder                    | [u'openstack']                 |
     | dcdbsync                  | [u'openstack']                 |
     | fm-rest-api               | [u'openstack']                 |
     | garbd                     | [u'openstack']                 |
     | glance                    | [u'openstack']                 |
-    | gnocchi                   | [u'openstack']                 |
     | heat                      | [u'openstack']                 |
     | horizon                   | [u'openstack']                 |
     | ingress                   | [u'kube-system', u'openstack'] |
@@ -49,10 +46,16 @@ OpenStack service.
     | openstack-helm-toolkit    | []                             |
     | openstack-psp-rolebinding | [u'openstack']                 |
     | openvswitch               | [u'openstack']                 |
-    | panko                     | [u'openstack']                 |
     | placement                 | [u'openstack']                 |
     | rabbitmq                  | [u'openstack']                 |
     +---------------------------+--------------------------------+
+
+    ..  lines below will be temporarily removed from table:
+        | aodh                      | [u'openstack']                 |
+        | ceilometer                | [u'openstack']                 |
+        | gnocchi                   | [u'openstack']                 |
+        | panko                     | [u'openstack']                 |
+
 
 The attribute values of an OpenStack Service's Helm chart represents the
 configurable parameters of the OpenStack Service. The OpenStack Services' helm

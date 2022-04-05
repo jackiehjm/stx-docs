@@ -16,7 +16,6 @@ Configure OpenStack Services Using Helm Chart Overrides
    :maxdepth: 1
 
    system-configuration-overview
-   creating-optional-telemetry-services
    configuring-a-live-migration-completion-timeout-in-nova
    configuring-a-pci-alias-in-nova
    configuring-the-rpc-response-timeout-in-cinder
@@ -28,6 +27,8 @@ Configure OpenStack Services Using Helm Chart Overrides
    assigning-a-dedicated-vlan-id-to-a-target-project-network
    customize-openstack-horizon-and-login-banner-branding
    enhanced-rbac-policies
+
+..section creating-optional-telemetry-services should be added right after system-configuration-overview when necessary
 
 ------
 Cinder
