@@ -144,14 +144,11 @@ commands to manage containerized applications provided as part of |prod|.
         +---------------------+--------------------------------+---------------+
         | chart name          | overrides namespaces           | chart enabled |
         +---------------------+--------------------------------+---------------+
-        | aodh                | [u'openstack']                 | [False]       |
         | barbican            | [u'openstack']                 | [False]       |
-        | ceilometer          | [u'openstack']                 | [False]       |
         | ceph-rgw            | [u'openstack']                 | [False]       |
         | cinder              | [u'openstack']                 | [True]        |
         | garbd               | [u'openstack']                 | [True]        |
         | glance              | [u'openstack']                 | [True]        |
-        | gnocchi             | [u'openstack']                 | [False]       |
         | heat                | [u'openstack']                 | [True]        |
         | helm-toolkit        | []                             | []            |
         | horizon             | [u'openstack']                 | [True]        |
@@ -167,11 +164,16 @@ commands to manage containerized applications provided as part of |prod|.
         | nova                | [u'openstack']                 | [True]        |
         | nova-api-proxy      | [u'openstack']                 | [True]        |
         | openvswitch         | [u'openstack']                 | [True]        |
-        | panko               | [u'openstack']                 | [False]       |
         | placement           | [u'openstack']                 | [True]        |
         | rabbitmq            | [u'openstack']                 | [True]        |
         | version_check       | []                             | []            |
         +---------------------+--------------------------------+---------------+
+
+    ..  lines below will be temporarily removed from table:
+        | aodh                | [u'openstack']                 | [False]       |
+        | ceilometer          | [u'openstack']                 | [False]       |
+        | gnocchi             | [u'openstack']                 | [False]       |
+        | panko               | [u'openstack']                 | [False]       |
 
 -   To show the overrides for a particular chart, use the following command.
     System overrides are displayed in the **system\_overrides** section of
