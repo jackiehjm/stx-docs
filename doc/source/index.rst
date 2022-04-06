@@ -37,7 +37,7 @@ Learn more about StarlingX:
 .. toctree::
    :maxdepth: 2
 
-   introduction/index
+   introduction/index-intro-27197f27ad41
 
 -------------------------
 Deployment configurations
@@ -46,7 +46,7 @@ Deployment configurations
 .. toctree::
    :maxdepth: 2
 
-   deploy/index
+   deploy/index-deploy-da06a98b83b1
 
 --------
 Planning
@@ -55,7 +55,7 @@ Planning
 .. toctree::
    :maxdepth: 2
 
-   planning/index
+   planning/index-planning-332af0718d15
 
 -------------------
 Installation guides
@@ -64,7 +64,7 @@ Installation guides
 .. toctree::
    :maxdepth: 2
 
-   deploy_install_guides/index
+   deploy_install_guides/index-install-e083ca818006
 
 --------
 Security
@@ -73,7 +73,7 @@ Security
 .. toctree::
    :maxdepth: 2
 
-   security/index
+   security/index-security-84d0d8aa401b
 
 
 --------------------
@@ -83,7 +83,7 @@ System configuration
 .. toctree::
    :maxdepth: 2
 
-   system_configuration/index
+   system_configuration/index-sysconf-d511820651f0
 
 
 -------------
@@ -93,7 +93,7 @@ Data networks
 .. toctree::
    :maxdepth: 2
 
-   datanet/index
+   datanet/index-datanet-e316bf6c2f6a
 
 ---------------
 Node management
@@ -102,7 +102,7 @@ Node management
 .. toctree::
    :maxdepth: 2
 
-   node_management/index
+   node_management/index-node-mgmt-cd0f9d8eaee6
 
 -------
 Storage
@@ -111,7 +111,7 @@ Storage
 .. toctree::
    :maxdepth: 2
 
-   storage/index
+   storage/index-storage-6cd708f1ada9
 
 
 ----------------
@@ -121,7 +121,7 @@ Fault management
 .. toctree::
    :maxdepth: 2
 
-   fault-mgmt/index
+   fault-mgmt/index-fault-98d5f50a9b8c
 
 
 ------------------
@@ -131,7 +131,7 @@ Backup and restore
 .. toctree::
    :maxdepth: 2
 
-   backup/index
+   backup/index-backup-1b466179efc3
 
 
 -------
@@ -141,7 +141,7 @@ Updates
 .. toctree::
    :maxdepth: 2
 
-   updates/index
+   updates/index-updates-e3b970bb69ce
 
 
 -----------
@@ -151,7 +151,7 @@ Admin tasks
 .. toctree::
    :maxdepth: 2
 
-   admintasks/index
+   admintasks/index-admintasks-768a6e9aaeff
 
 
 ----------
@@ -161,7 +161,7 @@ User tasks
 .. toctree::
    :maxdepth: 2
 
-   usertasks/index
+   usertasks/index-usertasks-b18b379ab832
 
 
 -----------------
@@ -171,7 +171,7 @@ Guest integration
 .. toctree::
    :maxdepth: 2
 
-   guest_integration/index
+   guest_integration/index-guest-ef8c9a20bf6c
 
 
 ---------
@@ -191,7 +191,7 @@ Distributed Cloud
 .. toctree::
    :maxdepth: 2
 
-   dist_cloud/index
+   dist_cloud/index-dist-cloud-f5dbeb16b976
 
 -----------------
 Deprecated guides

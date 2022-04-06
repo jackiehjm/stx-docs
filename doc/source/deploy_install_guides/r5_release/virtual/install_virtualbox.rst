@@ -278,7 +278,7 @@ Console usage:
 For details on how to specify installation parameters such as rootfs device
 and console port, see :ref:`config_install_parms`.
 
-Follow the :doc:`StarlingX Installation and Deployment Guides </deploy_install_guides/index>`
+Follow the :ref:`index-install-e083ca818006`
 to continue.
 
 * Ensure that boot priority on all VMs is changed using the commands in the "Set
