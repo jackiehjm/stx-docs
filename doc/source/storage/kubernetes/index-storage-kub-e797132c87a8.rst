@@ -94,6 +94,7 @@ Worker Hosts
    :maxdepth: 1
 
    storage-configuration-storage-on-worker-hosts
+   increase-worker-filesystem-storage-allotments-using-the-cli-da92e5d15a69
 
 -------------
 Storage Hosts

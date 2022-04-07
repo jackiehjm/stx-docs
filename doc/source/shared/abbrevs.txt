@@ -68,6 +68,7 @@
 .. |LDAP| replace:: :abbr:`LDAP (Lightweight Directory Access Protocol)`
 .. |LDPC| replace:: :abbr:`LDPC (Low-Density Parity Check)`
 .. |LLDP| replace:: :abbr:`LLDP (Link Layer Discovery Protocol)`
+.. |LVG| replace:: :abbr:`LVG (Local Volume Groups)`
 .. |MAC| replace:: :abbr:`MAC (Media Access Control)`
 .. |MEC| replace:: :abbr:`MEC (Multi-access Edge Computing)`
 .. |MLD| replace:: :abbr:`MLD (Multicast Listener Discovery)`
