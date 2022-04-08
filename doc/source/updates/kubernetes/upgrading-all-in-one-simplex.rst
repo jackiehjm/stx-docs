@@ -35,6 +35,12 @@ software.
 -   Transfer the new release software load to controller-0 \(or onto a USB
     stick\); controller-0 must be active.
 
+    .. note::
+        Make sure that the ``/home/sysadmin`` directory has enough space
+        (at least 2GB of free space), otherwise the upgrade may fail once it
+        starts. If more space is needed, it is recommended to delete the
+        ``.iso bootimage`` previously imported after the `load-import` command.
+
 -   Transfer the new release software license file to controller-0 \(or onto a
     USB stick\).
 
@@ -99,6 +105,9 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
         The :command:`load-import` must be done on **controller-0** and accepts
         relative paths.
 
+        .. note::
+            This will take a few minutes to complete.
+
     #.  Check to ensure the load was successfully imported.
 
         .. code-block:: none
@@ -110,9 +119,6 @@ the system contains more than 5 GBytes of these images, the upgrade start will f
             | 1  | active   | nn.nn            |
             | 2  | imported | nn.nn            |
             +----+----------+------------------+
-
-    .. note::
-        This will take a few minutes.
 
 #.  Apply any required software updates.
 
