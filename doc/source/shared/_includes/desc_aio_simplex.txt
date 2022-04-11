@@ -10,8 +10,7 @@ following benefits:
 .. note::
 
    If you are behind a corporate firewall or proxy, you need to set proxy
-   settings. Refer to :ref:`docker_proxy_config` for
-   details.
+   settings. Refer to :ref:`docker_proxy_config` for details.
 
 .. figure:: /deploy_install_guides/r6_release/figures/starlingx-deployment-options-simplex.png
    :scale: 50%

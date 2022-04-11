@@ -54,3 +54,14 @@ Prepare bare metal servers
 --------------------------
 
 .. include:: prep_servers.txt
+
+* Cabled for networking
+
+  * Far-end switch ports should be properly configured to realize the networking
+    shown in the following diagram.
+
+    .. figure:: /deploy_install_guides/r6_release/figures/starlingx-deployment-options-controller-storage.png
+       :scale: 50%
+       :alt: Controller storage deployment configuration
+
+       *Controller storage deployment configuration*
