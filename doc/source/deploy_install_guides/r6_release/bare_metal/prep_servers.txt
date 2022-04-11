@@ -5,11 +5,6 @@ the following condition:
 
 * Cabled for power
 
-* Cabled for networking
-
-  * Far-end switch ports should be properly configured to realize the networking
-    shown in Figure 1.
-
 * All disks wiped
 
   * Ensures that servers will boot from either the network or USB storage (if present)
