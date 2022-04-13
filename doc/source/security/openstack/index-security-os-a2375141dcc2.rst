@@ -19,6 +19,7 @@ Keystone Accounts
    openstack-keystone-accounts
    security-system-account-password-rules
    openstack-login-protection
+   update-keystone-service-bb6a67e18d36
 
 -----------------
 Access the system
