@@ -6,3 +6,9 @@
 
 .. begin-ref-1
 .. end-ref-1
+
+.. begin-subcloud-1
+.. end-subcloud-1
+
+.. begin-prepare-files-to-copy-deployment-config
+.. end-prepare-files-to-copy-deployment-config

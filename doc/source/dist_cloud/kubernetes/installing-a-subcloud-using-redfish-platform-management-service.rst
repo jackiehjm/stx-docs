@@ -236,50 +236,18 @@ subcloud, the subcloud installation has these phases:
 
         docker_registries:
           defaults:
-           username: <your_wrs-aws.io_username>
-           password: <your_wrs-aws.io_password>
+           username: <your_default_registry_username>
+           password: <your_default_registry_password>
 
-#.  Add the subcloud using :command:`dcmanager`.
 
-    When calling the :command:`subcloud add` command, specify the install
-    values, the bootstrap values and the subcloud's **sysadmin** password.
+    .. include:: /_includes/installing-a-subcloud-using-redfish-platform-management-service.rest
+       :start-after: begin-subcloud-1
+       :end-before: end-subcloud-1
 
-    .. code-block:: none
 
-        ~(keystone_admin)]$ dcmanager subcloud add \
-        --bootstrap-address <oam_ip_address_of_subclouds_controller-0 >\
-        --bootstrap-values /home/sysadmin/subcloud1-bootstrap-values.yaml \
-        --sysadmin-password <sysadmin_password> \
-        --install-values /home/sysadmin/install-values.yaml \
-        --bmc-password <bmc_password>
-
-        If the ``--sysadmin-password`` is not specified, you are prompted to
-        enter it once the full command is invoked.  The password is masked
-        when it is entered.
-
-    .. code-block:: none
-
-        Enter the sysadmin password for the subcloud:
-
-    \(Optional\) The ``--bmc-password`` <password> is used for subcloud
-    installation, and only required if the ``--install-values`` parameter is
-    specified.
-
-    If the ``--bmc-password`` <password> is omitted and the
-    ``--install-values`` option is specified the system administrator will be
-    prompted to enter it, following the :command:`dcmanager subcloud add`
-    command. This option is ignored if the ``--install-values`` option is not
-    specified. The password is masked when it is entered.
-
-    .. code-block:: none
-
-        Enter the bmc password for the subcloud:
-
-    You will be prompted for the |BMC| password of the subcloud. This command
-    will take five to ten minutes to complete.
-
-    The :command:`dcmanager subcloud add` command can take up to ten minutes to
-    complete.
+    .. include:: /_includes/installing-a-subcloud-using-redfish-platform-management-service.rest
+       :start-after: begin-prepare-files-to-copy-deployment-config
+       :end-before: end-prepare-files-to-copy-deployment-config
 
 #.  At the Central Cloud / System Controller, monitor the progress of the
     subcloud install, bootstrapping, and deployment by using the deploy status
@@ -381,4 +349,7 @@ subcloud, the subcloud installation has these phases:
     :ref:`Updating Docker Registry Credentials on a Subcloud
     <updating-docker-registry-credentials-on-a-subcloud>` for more information.
 
--   For more information on bootstrapping and deploying |inst-doc|.
+-   For more information on bootstrapping and deploying, see the procedure
+    `Install a subcloud
+    <https://docs.starlingx.io/deploy_install_guides/r5_release/distributed_cloud/index.html#install-a-subcloud>`__,
+    step 4.
