@@ -135,6 +135,18 @@ command with the install-values.yaml file containing the desired
 
             rd.net.timeout.ipv6dad: 300
 
+    .. note::
+
+        The ``wait_for_timeout`` value must be chosen based on your network
+        performance (bandwidth, latency, and quality) and should be increased
+        if the network does not meet the minimum or timeout requirements.
+        The default value of 3600 seconds is based on a network bandwidth
+        of 100 Mbps with a 50 ms delay.
+
+        .. include:: /_includes/installing-a-subcloud-using-redfish-platform-management-service.rest
+           :start-after: begin-syslimit
+           :end-before: end-syslimit
+
     For example, :command:`--install-values /home/sysadmin/install-values.yaml`.
 
     .. parsed-literal::
