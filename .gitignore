@@ -65,6 +65,8 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+.pickOptions.sh
+
 
 # API Reference Guide
 api-ref/build/
