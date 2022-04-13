@@ -80,7 +80,7 @@ get_dates () {
 
       if [[ $date == "begin" ]]; then display_date=$default_start; else display_date=${today}; fi
 
-      read -p "Enter $date date or ENTER for $display_date (yyyy-mm-dd): " edate
+      read -e -p "Enter $date date or ENTER for $display_date (yyyy-mm-dd): " edate
 
       case $edate in
 
@@ -144,7 +144,7 @@ get_users () {
 
 get_pick () {
 
-  read -p 'Optional string to filter on in (pick list): ' str
+  read -e -p 'Optional string to filter on in (pick list): ' str
 
 }
 
