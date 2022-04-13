@@ -25,10 +25,11 @@ services are launched in containers:
 * stx-glance
 * stx-aodh
 * stx-ironic
-* stx-panko
 * stx-barbican
-* stx-ceilometer
 * stx-heat
+
+.. * stx-panko
+.. * stx-ceilometer
 
 Moving to a new OpenStack release in StarlingX applies updates to the already
 installed OpenStack services. The examples in this section show the upgrade from
