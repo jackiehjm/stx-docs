@@ -27,6 +27,12 @@ of |prod| software.
 -   Transfer the new release software load to controller-0 \(or onto a USB
     stick\); controller-0 must be active.
 
+    .. note::
+        Make sure that the ``/home/sysadmin`` directory has enough space
+        (at least 2GB of free space), otherwise the upgrade may fail once it
+        starts. If more space is needed, it is recommended to delete the
+        ``.iso bootimage`` previously imported after the `load-import` command.
+
 -   Transfer the new release software license file to controller-0, \(or onto a
     USB stick\).
 
@@ -87,7 +93,7 @@ of |prod| software.
         relative paths.
 
         .. note::
-            This can take a few minutes to complete.
+            This will take a few minutes to complete.
 
     #.  Check to ensure the load was successfully imported.
 
