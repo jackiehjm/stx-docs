@@ -511,8 +511,16 @@ OpenStack-specific host configuration
       for NODE in worker-0 worker-1; do
         system host-label-assign $NODE  openstack-compute-node=enabled
         system host-label-assign $NODE  openvswitch=enabled
-        system host-label-assign $NODE  sriov=enabled
       done
+
+   .. note::
+
+      If you have a |NIC| that supports |SRIOV|, then you can enable it by
+      using the following:
+
+      .. code-block:: none
+
+         system host-label-assign controller-0 sriov=enabled
 
 #. **For OpenStack only:** Set up disk partition for nova-local volume group,
    which is needed for |prefix|-openstack nova ephemeral disks:
