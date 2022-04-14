@@ -47,3 +47,12 @@ Use Host's PTP Clock
    :maxdepth: 1
 
    configure-kvm-virtual-ptp-driver
+
+----------------
+PCI IRQ Affinity
+----------------
+
+.. toctree::
+   :maxdepth: 1
+
+   pci-irq-affinity-4fed257d094b
