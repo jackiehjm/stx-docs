@@ -16,3 +16,14 @@ StarlingX is independent of deployment configuration.
    install
    access
    uninstall_delete
+
+--------------
+Hybrid Cluster
+--------------
+
+.. toctree::
+   :maxdepth: 1
+
+   hybrid-cluster-c7a3134b6f2a
+   add-taints-to-openstack-node-in-hybrid-cluster-e8b37e8d1b48
+   convert-worker-nodes-0007b1532308
