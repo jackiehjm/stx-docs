@@ -272,7 +272,15 @@ Configure controller-0
             system host-label-assign controller-0 openstack-control-plane=enabled
             system host-label-assign controller-0 openstack-compute-node=enabled
             system host-label-assign controller-0 |vswitch-label|
-            system host-label-assign controller-0 sriov=enabled
+
+         .. note::
+
+            If you have a |NIC| that supports |SRIOV|, then you can enable it by
+            using the following:
+
+            .. code-block:: none
+
+               system host-label-assign controller-0 sriov=enabled
 
       .. only:: partner
 
@@ -765,7 +773,15 @@ Configure controller-1
             system host-label-assign controller-1 openstack-control-plane=enabled
             system host-label-assign controller-1 openstack-compute-node=enabled
             system host-label-assign controller-1 |vswitch-label|
-            system host-label-assign controller-1 sriov=enabled
+
+         .. note::
+
+            If you have a |NIC| that supports |SRIOV|, then you can enable it by
+            using the following:
+
+            .. code-block:: none
+
+               system host-label-assign controller-0 sriov=enabled
 
       .. only:: partner
 
