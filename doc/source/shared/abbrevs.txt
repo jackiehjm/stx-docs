@@ -38,6 +38,7 @@
 .. |DOR| replace:: :abbr:`DOR (Dead Office Recovery)`
 .. |DHCP| replace:: :abbr:`DHCP (Dynamic Host Configuration Protocol)`
 .. |DMA| replace:: :abbr:`DMA (Direct Memory Access)`
+.. |DNAT| replace:: :abbr:`DNAT (Destination Network Address Translation)`
 .. |DNS| replace:: :abbr:`DNS (Domain Name System)`
 .. |DPDK| replace:: :abbr:`DPDK (Data Plane Development Kit)`
 .. |DRBD| replace:: :abbr:`DRBD (Distributed Replicated Block Device)`
