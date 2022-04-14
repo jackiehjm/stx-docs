@@ -6,7 +6,7 @@ Uninstall OpenStack
 ===================
 
 This section provides commands for uninstalling and deleting the
-|prod| OpenStack application.
+|prod-os| application.
 
 .. warning::
 
@@ -23,12 +23,14 @@ includes:
 -   Terminating/Deleting all servers/instances/|VMs|
 -   Removing all volumes, volume backups, volume snapshots
 -   Removing all Glance images
+-   Removing all network trunks, floating IP addresses, manual ports,
+    application ports, tenant routers, tenant networks, and shared networks.
 
 -----------------------------
 Bring down OpenStack services
 -----------------------------
 
-Use the system CLI to uninstall the OpenStack application:
+Use the system |CLI| to uninstall the OpenStack application:
 
 .. parsed-literal::
 
@@ -39,7 +41,7 @@ Use the system CLI to uninstall the OpenStack application:
 Delete OpenStack application definition
 ---------------------------------------
 
-Use the system CLI to delete the OpenStack application definition:
+Use the system |CLI| to delete the OpenStack application definition:
 
 .. parsed-literal::
 
