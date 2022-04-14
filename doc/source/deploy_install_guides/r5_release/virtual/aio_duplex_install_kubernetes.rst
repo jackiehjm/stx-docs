@@ -460,7 +460,15 @@ OpenStack-specific host configuration
     system host-label-assign controller-1 openstack-control-plane=enabled
     system host-label-assign controller-1 openstack-compute-node=enabled
     system host-label-assign controller-1 |vswitch-label|
-    system host-label-assign controller-1 sriov=enabled
+
+   .. note::
+
+      If you have a |NIC| that supports |SRIOV|, then you can enable it by
+      using the following:
+
+      .. code-block:: none
+
+         system host-label-assign controller-0 sriov=enabled
 
 #. **For OpenStack only:** Set up disk partition for nova-local volume group,
    which is needed for |prefix|-openstack nova ephemeral disks:
