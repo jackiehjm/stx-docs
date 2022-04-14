@@ -51,17 +51,20 @@ Restore only application system data
 
 Run the following command:
 
-.. parsed-literal::
+.. code-block:: none
 
-    ~(keystone_admin)$ ansible-playbook /usr/share/ansible/|prefix|-ansible/playbooks/ \
-    restore_openstack.yml \
-    -e 'initial_backup_dir=<location_of_backup_filename> \
-    ansible_become_pass=<admin_password> \
-    admin_password=<admin_password> \
-    backup_filename=<nnn>-openstack_backup.tgz'
+    ~(keystone_admin)$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/ restore_openstack.yml -e "@localhost-restore.yaml"
 
-Where ``<nnn>`` is a user-defined value, such as |prefix| or the backup
-date.
+.. code-block:: none
+
+    cat << EOF > localhost-restore.yaml
+    ---
+    ansible_become_pass: "<admin_password>"
+    admin_password: "<admin_password>"
+    initial_backup_dir: "<location_of_backup_filename>"
+    backup_filename: "<openstack_tgz_backup_filename>"
+    ...
+    EOF
 
 
 -----------------------------------------------------------------
@@ -70,18 +73,22 @@ Restore application system data, cinder volumes and glance images
 
 #.  Run the following command:
 
-    .. parsed-literal::
+    .. code-block:: none
 
-        ~(keystone_admin)$ ansible-playbook /usr/share/ansible/|prefix|-ansible/playbooks/ \
-        restore_openstack.yml \
-        -e 'restore_cinder_glance_data=true \
-        initial_backup_dir=<location_of_backup_filename> \
-        ansible_become_pass=<admin_password> \
-        admin_password=<admin_password> \
-        backup_filename=<nnn>-openstack_backup.tgz'
+        ~(keystone_admin)$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/ restore_openstack.yml -e "@localhost-restore.yaml"
 
-    Where ``<nnn>`` is a user-defined value, such as |prefix| or the backup
-    date.
+    .. code-block:: none
+
+        cat << EOF > localhost-restore.yaml
+        ---
+        ansible_become_pass: "<admin_password>"
+        admin_password: "<admin_password>"
+        initial_backup_dir: "<location_of_backup_filename>"
+        backup_filename: "<openstack_tgz_backup_filename>"
+        restore_cinder_glance_data="true"
+        ...
+        EOF
+
 
     When this step has completed, the Cinder, Glance and MariaDB services will
     be up, and Mariadb data restored.
@@ -97,7 +104,7 @@ Restore application system data, cinder volumes and glance images
             ~(keystone_admin)$ rbd import -p cinder-volumes /tmp/611157b9-78a4-4a26-af16-f9ff75a85e1b
 
         Where ``tmp/611157b9-78a4-4a26-af16-f9ff75a85e1b`` is a file saved
-        earlier at the backup procedure as described in [#]_ .
+        earlier at the backup procedure as described in :ref:`Back up OpenStack<back-up-openstack>`.
 
     #.  Restore Glance images using the :command:`image-backup` script.
 
@@ -123,17 +130,18 @@ Restore application system data, cinder volumes and glance images
 #.  Run the playbook again with the ``restore_openstack_continue`` flag set to
     ``true`` to bring up the remaining OpenStack services.
 
-    .. parsed-literal::
+    .. code-block:: none
 
-        ~(keystone_admin)$ ansible-playbook /usr/share/ansible/|prefix|-ansible/playbooks/ \
-        restore_openstack.yml \
-        -e 'restore_openstack_continue=true \
-        initial_backup_dir=<location_of_backup_filename>
-        ansible_become_pass=<admin_password> \
-        admin_password=<admin_password> \
-        backup_filename=<nnn>-openstack_backup.tgz'
+        ~(keystone_admin)$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/ restore_openstack.yml -e "@localhost-restore.yaml"
 
-    Where ``<nnn>`` is a user-defined value, such as |prefix| or the backup
-    date.
+    .. code-block:: none
 
-.. include:: /_includes/restore-openstack-from-a-backup.rest
+        cat << EOF > localhost-restore.yaml
+        ---
+        ansible_become_pass: "<admin_password>"
+        admin_password: "<admin_password>"
+        initial_backup_dir: "<location_of_backup_filename>"
+        backup_filename: "<openstack_tgz_backup_filename>"
+        restore_openstack_continue="true"
+        ...
+        EOF
