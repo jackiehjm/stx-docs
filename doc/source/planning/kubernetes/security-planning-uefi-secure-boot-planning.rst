@@ -26,10 +26,6 @@ a file containing a certificate to be loaded in the authorized database. This
 option may be hidden in the |UEFI| setup utility unless |UEFI| mode is enabled,
 and secure boot is enabled.
 
-The |UEFI| implementation may or may not require a |TPM| device to be present
-and enabled before providing for secure boot functionality. Refer to your
-server board's documentation.
-
 Many motherboards ship with Microsoft secure boot certificates pre-programmed
 in the |UEFI| certificate database. These certificates may be required to boot
 |UEFI| drivers for video cards, |RAID| controllers, or |NICs| \(for example,

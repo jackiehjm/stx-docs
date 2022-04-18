@@ -27,7 +27,9 @@ StarlingX Kubernetes provides a fully-managed solution that includes both Day-1
 and Day-2 operations with respect to managing a cloud native platform:
 
 * Installation
+
 * Configuration management
+
 * Operational and fault management of all components of the solution
 
   * Physical servers
@@ -35,8 +37,10 @@ and Day-2 operations with respect to managing a cloud native platform:
   * StarlingX software
   * Kubernetes software
   * Supporting open-source software such as Ceph, Apache, and Postgres.
+
 * Log and performance metrics are collected and reported for both hardware and
   software components.
+
 * Security is addressed across a variety of attack surfaces that includes TLS
   support, user authentication/authorization, and network firewalls on all
   external interfaces, with support for technologies such as UEFI Secure Boot,
@@ -61,7 +65,7 @@ Hardened Linux
 	security CVE patches.
 
 Variety of open-source software supporting StarlingX and/or Kubernetes
-	Includes packages such as Apache, Ceph, PostgreSql, Etcd, IPMI, and TPM, as
+	Includes packages such as Apache, Ceph, PostgreSql, Etcd, and |IPMI|, as
 	well as some services from OpenStack such as Horizon, Keystone, and Barbican.
 
 StarlingX
