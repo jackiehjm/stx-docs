@@ -373,7 +373,7 @@ machine.
                 # ( if not use another unused disk )
 
                 # Get device path of ROOT DISK
-                system host-show controller-0 --nowrap | fgrep rootfs
+                system host-show controller-0 | fgrep rootfs
 
                 # Get UUID of ROOT DISK by listing disks
                 system host-disk-list controller-0
@@ -554,7 +554,7 @@ machine.
                 # ( if not use another unused disk )
 
                 # Get device path of ROOT DISK
-                system host-show controller-1 --nowrap | fgrep rootfs
+                system host-show controller-1 | fgrep rootfs
 
                 # Get UUID of ROOT DISK by listing disks
                 system host-disk-list controller-1
@@ -562,7 +562,7 @@ machine.
                 # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
                 # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
                 PARTITION_SIZE=30
-                system hostdisk-partition-add -t lvm_phys_vol controller-1 <root-disk-uuid> ${PARTITION_SIZE}
+                system host disk-partition-add -t lvm_phys_vol controller-1 <root-disk-uuid> ${PARTITION_SIZE}
 
                 # Add new partition to ‘cgts-vg’ local volume group
                 system host-pv-add controller-1 cgts-vg <NEW_PARTITION_UUID>
@@ -733,7 +733,7 @@ Configure worker nodes
             # Additional PARTITION(s) from additional disks can be added later if required.
             PARTITION_SIZE=30
 
-            system hostdisk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+            system host disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
 
             # Add new partition to ‘nova-local’ local volume group
             system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
