@@ -631,8 +631,16 @@ Configure worker nodes
          for NODE in worker-0 worker-1; do
            system host-label-assign $NODE  openstack-compute-node=enabled
            system host-label-assign $NODE  |vswitch-label|
-           system host-label-assign $NODE  sriov=enabled
          done
+
+      .. note::
+
+         If you have a |NIC| that supports |SRIOV|, then you can enable it by
+         using the following:
+
+         .. code-block:: none
+
+            system host-label-assign controller-0 sriov=enabled
 
    #. **For OpenStack only:** Configure the host settings for the vSwitch.
 
