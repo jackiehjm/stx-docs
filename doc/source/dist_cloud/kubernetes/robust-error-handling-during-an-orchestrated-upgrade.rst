@@ -14,6 +14,8 @@ upgrade and the steps you can use to troubleshoot the errors.
 For a successful orchestrated upgrade, ensure the upgrade prerequisites,
 procedure, and postrequisites are met.
 
+.. rubric:: |proc|
+
 If a failure occurs, use the following general steps:
 
 
