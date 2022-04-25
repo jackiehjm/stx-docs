@@ -7,7 +7,7 @@ Change Hardware Components for a Controller Host
 ================================================
 
 You can replace controller hosts or hardware components while the system
-is running.
+is running, in a two controller (|AIO-DX|) system.
 
 .. xbooklink .. note::
     If you are replacing disks in order to increase the controller storage
@@ -25,12 +25,8 @@ re-added, record the current partitioning and volume group assignments for
 all disks so that you can reproduce them later.
 
 .. note::
-    If TPM has been enabled on your |prod|, and if a controller is replaced
-    or returned to service after a lapse during which a certificate has
-    expired, then TPM must be reconfigured on the |prod| using the command
-    :command:`system certificate-install`.
 
-.. xbooklink  For more information, see |sec-doc|: `Secure HTTPS Connectivity <starlingx-rest-api-applications-and-the-web-administration-server>`
+    All your data should be preserved across this procedure.
 
 .. rubric:: |proc|
 
