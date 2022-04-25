@@ -47,11 +47,11 @@ subcloud, the subcloud installation process has two phases:
        :start-after: prereq-begin
        :end-before:  prereq-end
 
--   You must have downloaded update-iso.sh from |dnload-loc|.
+-   You must have downloaded ``update-iso.sh`` from |dnload-loc|.
 
 -   In order to be able to deploy subclouds from either controller, all local
-    files that are referenced in the **bootstrap.yml** file must exist on both
-    controllers \(for example, /home/sysadmin/docker-registry-ca-cert.pem\).
+    files that are referenced in the ``bootstrap.yml`` file must exist on both
+    controllers \(for example, ``/home/sysadmin/docker-registry-ca-cert.pem``\).
 
 .. rubric:: |proc|
 
@@ -234,22 +234,13 @@ subcloud, the subcloud installation process has two phases:
 
         ~(keystone_admin)]$ system certificate-install -m docker_registry path_to_cert
 
-#.  Add the subcloud using :command:`dcmanager`.
 
-    When calling the :command:`subcloud add` command, specify the bootstrap
-    values and the subcloud's **sysadmin** password.
+    .. only:: partner
 
-    For example:
+        .. include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
+            :start-after: begin-prepare-files-to-copy-deployment-config
+            :end-before: end-prepare-files-to-copy-deployment-config
 
-    .. code-block:: none
-
-        ~(keystone_admin)]$ dcmanager subcloud add --bootstrap-address <oam ip address of subcloud's controller-0> \
-        --bootstrap-values /home/sysadmin/subcloud1-bootstrap-values.yaml \
-        --sysadmin-password <sysadmin_password>
-
-
-    You will be prompted for the Linux password of the subcloud. This command
-    will take five to ten minutes to complete.
 
 #.  At the Central Cloud / System Controller, monitor the progress of the
     subcloud bootstrapping and deployment by using the deploy status field of
@@ -330,9 +321,9 @@ subcloud, the subcloud installation process has two phases:
     Subcloud <updating-docker-registry-credentials-on-a-subcloud>` for more
     information.
 
--   For more information on bootstrapping and deploying see the following
-    StarlingX procedure `Install a subcloud
-    <https://docs.starlingx.io/deploy_install_guides/r5_release/distributed_cloud/index.html#install-a-subcloud>`__,
+-   For more information on bootstrapping and deploying see the procedure
+    `Install a subcloud
+    <https://docs.starlingx.io/deploy_install_guides/r6_release/distributed_cloud/index.html#install-a-subcloud>`__,
     step 4.
 
 

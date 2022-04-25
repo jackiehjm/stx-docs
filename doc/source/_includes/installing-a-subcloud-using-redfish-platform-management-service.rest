@@ -10,8 +10,6 @@
 .. begin-ref-1
 .. end-ref-1
 
-.. end-ref-1
-
 .. begin-prepare-files-to-copy-deployment-config
 .. end-prepare-files-to-copy-deployment-config
 
