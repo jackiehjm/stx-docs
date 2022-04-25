@@ -1,7 +1,8 @@
 .. shortdesc-begin
-
 .. shortdesc-end
 
 .. note-begin
-
 .. note-end
+
+.. prereq-begin
+.. prereq-end
