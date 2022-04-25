@@ -22,11 +22,11 @@ device image updates, including |FPGA| updates.
     should be used to create and apply a second update strategy for the second
     device image.
 
-.. note::
-    For |BMC| images on N3000 |FPGA| hardware, it is recommended that the
-    admin user uses the **md5sum** of the device image file as the bitstream
-    ID. This will ensure that different files get unique IDs, and the same
-    file gets the same ID.
+.. .. note::
+..  For |BMC| images on N3000 |FPGA| hardware, it is recommended that the
+..  admin user uses the **md5sum** of the device image file as the bitstream
+..  ID. This will ensure that different files get unique IDs, and the same
+..  file gets the same ID.
 
 .. rubric:: |prereq|
 

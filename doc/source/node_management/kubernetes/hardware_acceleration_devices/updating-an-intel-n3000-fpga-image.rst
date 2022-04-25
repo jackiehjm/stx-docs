@@ -14,11 +14,11 @@ N3000 |FPGA| user image on a |prod| host.
     |prod| does not support the |FPGA| prestart CRI-O hook. |FPGA|
     programming must be performed manually.
 
-.. note::
-    For |BMC| images on N3000 |FPGA| hardware, it is recommended that the
-    admin user uses the **md5sum** of the device image file as the bitstream
-    ID. This will ensure that different files get unique IDs, and the same
-    file gets the same ID.
+.. .. note::
+..  For |BMC| images on N3000 |FPGA| hardware, it is recommended that the
+..  admin user uses the **md5sum** of the device image file as the bitstream
+..  ID. This will ensure that different files get unique IDs, and the same
+..  file gets the same ID.
 
 .. _updating-an-intel-n3000-fpga-image-section-obd-kky-1mb:
 
