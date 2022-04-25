@@ -47,11 +47,11 @@ subcloud, the subcloud installation process has two phases:
        :start-after: prereq-begin
        :end-before:  prereq-end
 
--   You must have downloaded update-iso.sh from |dnload-loc|.
+-   You must have downloaded ``update-iso.sh`` from |dnload-loc|.
 
 -   In order to be able to deploy subclouds from either controller, all local
-    files that are referenced in the **bootstrap.yml** file must exist on both
-    controllers \(for example, /home/sysadmin/docker-registry-ca-cert.pem\).
+    files that are referenced in the ``bootstrap.yml`` file must exist on both
+    controllers \(for example, ``/home/sysadmin/docker-registry-ca-cert.pem``\).
 
 .. rubric:: |proc|
 
@@ -322,4 +322,4 @@ subcloud, the subcloud installation process has two phases:
 -   For more information on bootstrapping and deploying, see the procedure
     `Install a subcloud
     <https://docs.starlingx.io/deploy_install_guides/r5_release/distributed_cloud/index.html#install-a-subcloud>`__,
-    step 4.
+
