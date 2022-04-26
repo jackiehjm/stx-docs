@@ -27,11 +27,13 @@ application and the Sidecar communicate via a REST API. See the figure below.
 
 .. rubric:: |prereq|
 
-
 The following prerequisites are required before the integration:
 
+.. only:: partner
 
-.. _integrate-the-application-with-notification-client-sidecar-ul-iyd-mxf-t4b:
+   .. include:: /_includes/integrate-application-with-notification-client-sidecar.rest
+      :start-after: prereq-begin
+      :end-before: prereq-end
 
 -   The cloud is configured with a node that supports the Subordinate mode \(Secondary mode\).
 
@@ -44,3 +46,4 @@ The following prerequisites are required before the integration:
 
 .. image:: figures/cak1614112389132.png
     :width: 800
+
