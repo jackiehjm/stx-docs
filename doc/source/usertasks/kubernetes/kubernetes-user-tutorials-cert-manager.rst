@@ -113,7 +113,7 @@ service externally.  There are typically two options:
         -   specifies the details on ingress forwarding based on the URL
             (hostname, port and path), and
 
-        -   specifies ``|TLS|`` mode along with cert-manager -specific
+        -   specifies ``TLS`` mode along with cert-manager -specific
             annotations for details on creating the CERTIFICATE for this
             ingress connection with cert-manager; minimally the cert-manager
             ISSUER to use must be specified.
