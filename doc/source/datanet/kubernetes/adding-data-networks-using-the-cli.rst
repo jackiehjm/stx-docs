@@ -27,11 +27,18 @@ pci-passthrough interface.
         A description of the data network.
 
     **<mtu>**
-        The MTU of the data network.
+        The |MTU| of the data network.
 
         .. note::
+
             To attach to the data network, data interfaces must be configured
-            with an equal or larger MTU.
+            with an equal or larger |MTU|.
+
+            This is not used by the Kubernetes |SRIOV| plugin. In order to
+            address the |MTU| in Kubernetes, the network attached definiition
+            needs to use the tuning plugin. For more details, see the examples
+            in :ref:`Create Network Attachment Definitions
+            <creating-network-attachment-definitions>`.
 
     **<port>**
         The port of the data network.
