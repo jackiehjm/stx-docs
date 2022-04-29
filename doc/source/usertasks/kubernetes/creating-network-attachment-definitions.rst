@@ -7,7 +7,7 @@ Create Network Attachment Definitions
 =====================================
 
 Network attachment definition specifications must be created in order to
-reference / request an SR-IOV interface in a container specification.
+reference / request an |SRIOV| interface in a container specification.
 
 .. rubric:: |context|
 
@@ -20,13 +20,13 @@ container as shown in :ref:`Using Network Attachment Definitions in a Container
 
 .. rubric:: |prereq|
 
-You must have configured at least one SR-IOV interface on a host with the
+You must have configured at least one |SRIOV| interface on a host with the
 target datanetwork \(**datanet-a** or **datanet-b** in the example below\)
 assigned to it before creating a **NetworkAttachmentDefinition** referencing
 this data network.
 
 .. note::
-    The configuration for this SR-IOV interface with either a ``netdevice`` or
+    The configuration for this |SRIOV| interface with either a ``netdevice`` or
     ``vfio`` vf-driver determines whether the **NetworkAttachmentDefinition**
     will be a kernel network device or a DPDK network device.
 
@@ -34,7 +34,7 @@ this data network.
 
 .. _creating-network-attachment-definitions-steps-unordered-tbf-53z-hjb:
 
-#.  Create a simple SR-IOV network attachment definition file called net1.yaml
+#.  Create a simple |SRIOV| network attachment definition file called net1.yaml
     associated with the data network **datanet-a**.
 
     .. code-block:: yaml
@@ -58,9 +58,9 @@ this data network.
     This **NetworkAttachmentDefinition** is valid for both a kernel-based and
     a DPDK \(vfio\) based device.
 
-#.  Create an SR-IOV network attachment.
+#.  Create an |SRIOV| network attachment.
 
-    -   The following example creates an SR-IOV network attachment definition
+    -   The following example creates an |SRIOV| network attachment definition
         configured for a VLAN with an ID of 2000.
 
         .. code-block:: none
@@ -80,7 +80,7 @@ this data network.
                 }'
             EOF
 
-    -   The following example creates an SR-IOV network attachment definition
+    -   The following example creates an |SRIOV| network attachment definition
         configured with IP Address information.
 
         .. code-block:: none
@@ -117,10 +117,47 @@ this data network.
                 }'
             EOF
 
+
+    -   The following example creates an |SRIOV| network attachment definition
+        configured with a static IP address and |MTU| of 1950.
+
+        .. code-block:: none
+
+          ~(keystone_admin)]$ cat <<EOF > net4.yaml
+          apiVersion: k8s.cni.cncf.io/v1
+          kind: NetworkAttachmentDefinition
+          metadata:
+            name: net4
+            annotations:
+              k8s.v1.cni.cncf.io/resourceName: intel.com/pci_sriov_net_datanet_b
+          spec:
+            config: '{
+                 "cniVersion": "0.3.0",
+                 "plugins":
+                 [
+                    {
+                      "type": "sriov",
+                      "ipam": {
+                        "type": "static",
+                        "addresses": [
+                          {
+                            "address": "192.168.1.2/16"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                     "type": "tuning",
+                     "mtu": 1950
+                    }
+                ]
+            }'
+          EOF
+
 .. rubric:: |result|
 
-After SR-IOV interfaces have been provisioned and the hosts labeled and
-unlocked, available SR-IOV VF resources are automatically advertised.
+After |SRIOV| interfaces have been provisioned and the hosts labeled and
+unlocked, available |SRIOV| VF resources are automatically advertised.
 
 They can be referenced in subsequent |prod| operations using the appropriate
 **NetworkAttachmentDefinition** name and the following extended resource name:
@@ -145,8 +182,8 @@ would be:
 -   The extended resource name will convert all dashes \('-'\) in the data
     network name into underscores \('\_'\).
 
--   SR-IOV enabled interfaces using the netdevice VF driver must be
-    administratively and operationally up to be advertised by the SR-IOV
+-   |SRIOV| enabled interfaces using the netdevice VF driver must be
+    administratively and operationally up to be advertised by the |SRIOV|
     device plugin.
 
 -   If multiple data networks are assigned to an interface, the VFs
