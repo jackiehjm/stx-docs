@@ -335,8 +335,7 @@ You can build the HTML documentation locally using the ``tox -e docs`` command.
 After every successful build, several quality checks are performed against the
 build HTML output.
 
-.. code-block:: none
-   :emphasize-lines: 3,4,10
+.. parsed-literal::
 
    Checking for "grey bar" formatting errors in output ...
    Found 2 HTML file(s) with greybar formatting issues:
@@ -347,7 +346,7 @@ build HTML output.
    Checking for unexpanded substitution errors in output ...
    Found 1 HTML file(s) that may have unexpanded substitution(s):
 
-   ./node_management/kubernetes/hardware_acceleration_devices/enabling-mount-bryce-hw-accelerator-for-hosted-vram-containerized-workloads.html:| 1d02      | |SATA| controller               | Intel Corporation   |
+   ./node_management/kubernetes/hardware_acceleration_devices/enabling-mount-bryce-hw-accelerator-for-hosted-vram-containerized-workloads.html:| 1d02      | |html-pipe|\ SATA\ |html-pipe| controller               | Intel Corporation   |
 
    Correct the issue(s) in the corresponding rST file(s).
 
@@ -389,15 +388,15 @@ This sample shows three problems.
      - As above, find the problem in the appropriate
        :file:`.rst` file by examining the :file:`.html` file reported. Look for
        code fragments associated with ``.. include::`` directives such as
-       ``:start-after:`` and ``:end-before:`` that have been exposed in the
-       final output.
+       :start\ |html-comment|-after: and :end\ |html-comment|-before:
+       that have been exposed in the final output.
 
        Correct the issues by making the code comply with the documentation at:
 
        https://docutils.sourceforge.io/docs/ref/rst/directives.html#include
    * - Substitution errors
      - Scans the output for potential unexpanded substitutions such as
-       ``|prod|`` and reports which files they were found in, along with the
+       |html-pipe|\ prod\ |html-pipe| and reports which files they were found in, along with the
        offending lines of HTML.
 
        .. note::
@@ -406,7 +405,7 @@ This sample shows three problems.
            problem needs to be fixed.
 
      - As above, find the problem in the appropriate :file:`.rst` file by
-       examining the :file:`.html` file reported. Look for ``|<text>|`` code
+       examining the :file:`.html` file reported. Look for |html-pipe|\ <text>\ |html-pipe| code
        exposed in the output. In the corresponding :file:`.rst`, find and
        correct the issue.
 
