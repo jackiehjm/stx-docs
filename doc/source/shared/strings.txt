@@ -38,4 +38,12 @@
 
    <style>table.docutils tr.row-odd {background-color: #fff;}</style>
 
+.. |html-comment| raw:: html
+
+   <!---->
+
+.. |html-pipe| raw:: html
+
+   &#124;
+
 .. |optional| replace:: **Optional step:**
