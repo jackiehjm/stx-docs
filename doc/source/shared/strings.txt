@@ -25,6 +25,11 @@
 .. |result| replace:: Results
 .. |eg| replace:: Example
 
+.. Common version numbers
+
+.. |kube-ver| replace:: 1.23
+
+
 .. File-level minitoc label. Used with .. contents:: directive, as in
 .. .. contents:: |minitoc|
 ..    :depth: 1
