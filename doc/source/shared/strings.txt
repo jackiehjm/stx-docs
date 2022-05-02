@@ -27,7 +27,7 @@
 
 .. Common version numbers
 
-.. |kube-ver| replace:: 1.23
+.. |kube-ver| replace:: 1.23.1
 
 
 .. File-level minitoc label. Used with .. contents:: directive, as in
