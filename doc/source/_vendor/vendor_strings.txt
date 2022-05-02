@@ -89,3 +89,5 @@
 .. |vswitch-label| replace:: openvswitch=enabled
 
 .. |registry-url| replace:: https://hub.docker.com/layers
+
+.. |_link-inst-book| replace:: :ref:`Installation guide <index-install-e083ca818006>`
