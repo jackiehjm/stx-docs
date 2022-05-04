@@ -19,20 +19,21 @@ and Applying Updates to SystemController Using the CLI
 
 #.  Select the **SystemController** region.
 
-#.  Select **Platform** \> **Software Management**.
+#.  Select **Distributed Cloud Admin** \> **Software Management**.
 
-#.  On the Software Management page, select the **Patches** tab.
+#.  On the **Software Management** page, select the **Patches** tab.
 
     .. image:: figures/tmj1525095688715.png
-    
+        :width: 1000px
 
-#.  On the Patches tab, click **Upload Patches**.
 
-    In the Upload Patches dialog box, click **Browse** to select updates
+#.  On the **Patches** tab, click **Upload Patches**.
+
+    In the **Upload Patches** dialog box, click **Browse** to select updates
     \(patches\) for upload.
 
     .. image:: figures/cah1525101473925.png
-    
+
 #.  In the dialog, click **Upload Patches**.
 
     The update is added to the Patches list in the **Available** state.

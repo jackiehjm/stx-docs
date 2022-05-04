@@ -6,7 +6,7 @@ Delete Subcloud Groups Using the Horizon Web Interface
 
 .. rubric:: |prereq|
 
-You must be in **SystemController** mode. To change the mode, see
+You must be in **SystemController** region. To change the region, see
 :ref:`RegionOne and SystemController Modes
 <regionone-and-systemcontroller-modes>`.
 
@@ -14,15 +14,16 @@ You must be in **SystemController** mode. To change the mode, see
 
 #.  Select the **SystemController** region.
 
-#.  Select **Distributed Cloud Admin** \> **Software Management**.
+#.  Select **Distributed Cloud Admin** \> **Orchestration**.
 
-#.  On the Software Management page, select the **Subcloud Group Management**
+#.  On the **Orchestration** page, select the **Subcloud Group Management**
     tab.
 
 #.  Click on the **Edit Subcloud Group** dropdown and select **Delete Subcloud
     Group**:
 
     .. image:: figures/edit-subcloud-1.png
+        :width: 1000px
 
 #.  Confirm deletion:
 

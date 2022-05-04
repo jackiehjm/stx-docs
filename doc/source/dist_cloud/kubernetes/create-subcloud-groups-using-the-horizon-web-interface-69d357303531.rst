@@ -6,7 +6,7 @@ Create Subcloud Groups Using the Horizon Web Interface
 
 .. rubric:: |prereq|
 
-You must be in **SystemController** mode. To change the mode, see
+You must be in **SystemController** region. To change the region, see
 :ref:`RegionOne and SystemController Modes
 <regionone-and-systemcontroller-modes>`.
 
@@ -14,21 +14,22 @@ You must be in **SystemController** mode. To change the mode, see
 
 #.  Select the **SystemController** region.
 
-#.  Select **Distributed Cloud Admin** \> **Software Management**.
+#.  Select **Distributed Cloud Admin** > **Orchestration**.
 
-#.  On the Software Management page, select the **Subcloud Group Management**
-    tab.
+#.  On the **Orchestration** page, select the **Subcloud Group
+    Management** tab.
 
 #.  On the **Subcloud Group Management** tab, click **Add Subcloud Group**.
 
-    .. image:: figures/create-subcloud-1.png
+    .. image:: figures/create-subcloud-1.jpg
+        :width: 1000px
 
 #.  In the **Create New Subcloud Group** dialog box, adjust the settings as
     needed:
 
     -   Name
     -   Description
-    -   Update apply type: default Parallel
+    -   Update apply type: Parallel or Serial; default Parallel.
     -   Maximum parallel subclouds: default 2
 
     .. image:: figures/create-subcloud-2.png

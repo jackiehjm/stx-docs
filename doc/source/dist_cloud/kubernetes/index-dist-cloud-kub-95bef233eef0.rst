@@ -118,6 +118,9 @@ FPGA device image update management
    :maxdepth: 1
 
    device-image-update-orchestration
+   create-a-firmware-update-orchestration-strategy-using-horizon-cfecdb67cef2
+   apply-the-firmware-update-strategy-using-horizon-e78bf11c7189
+
 
 --------------------------------------------------------------------
 Configure Kubernetes Version Upgrade Distributed Cloud Orchestration
@@ -128,6 +131,8 @@ Configure Kubernetes Version Upgrade Distributed Cloud Orchestration
 
     the-kubernetes-distributed-cloud-update-orchestration-process
     configuring-kubernetes-update-orchestration-on-distributed-cloud
+    create-a-kubernetes-upgrade-orchestration-using-horizon-16742b62ffb2
+    apply-a-kubernetes-upgrade-strategy-using-horizon-2bb24c72e947
 
 ---------------------------------------------------------
 Kubernetes Root CA Update Distributed Cloud Orchestration
@@ -148,14 +153,16 @@ Upgrade management
     upgrade-management-overview
     upgrading-the-systemcontroller-using-the-cli
 
-*******************************************************************
-Upgrade Orchestration for Distributed Cloud SubClouds using the CLI
-*******************************************************************
+*****************************************************
+Upgrade Orchestration for Distributed Cloud SubClouds
+*****************************************************
 
 .. toctree::
     :maxdepth: 1
 
     distributed-upgrade-orchestration-process-using-the-cli
+    create-an-upgrade-orchestration-using-horizon-9f8c6c2f3706
+    apply-the-upgrade-strategy-using-horizon-d0aab18cc724
     aborting-the-distributed-upgrade-orchestration
     configuration-for-specific-subclouds
     robust-error-handling-during-an-orchestrated-upgrade

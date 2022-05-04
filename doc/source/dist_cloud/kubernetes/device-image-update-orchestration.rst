@@ -129,6 +129,14 @@ device image updates, including |FPGA| updates.
 #.  Create an update strategy using the :command:`fw-update-strategy create`
     command.
 
+    The update strategy controls how FPGA updates are applied to hosts on
+    subclouds. Creating, applying and monitoring the strategy can be done using
+    CLI or Horizon web interface.
+
+    If you want to use Horizon, see
+    :ref:`create-a-firmware-update-orchestration-strategy-using-horizon-cfecdb67cef2`
+
+
     The update strategy controls how |FPGA| updates are applied to hosts on
     subclouds.
 

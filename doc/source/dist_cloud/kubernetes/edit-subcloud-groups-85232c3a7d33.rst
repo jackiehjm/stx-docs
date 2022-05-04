@@ -14,14 +14,15 @@ You must be in **SystemController** mode. To change the mode, see
 
 #.  Select the **SystemController** region.
 
-#.  Select **Distributed Cloud Admin** \> **Software Management**.
+#.  Select **Distributed Cloud Admin** \> **Orchestration**.
 
-#.  On the Software Management page, select the **Subcloud Group Management**
+#.  On the **Orchestration** page, select the **Subcloud Group Management**
     tab.
 
 #.  Click **Edit Subcloud Group**.
 
-    .. image:: figures/edit-subcloud-1.png
+    .. image:: figures/2-529_1_editSubcGroup.jpg
+        :width: 1000px
 
 #.  Edit fields for the Subcloud Group:
 

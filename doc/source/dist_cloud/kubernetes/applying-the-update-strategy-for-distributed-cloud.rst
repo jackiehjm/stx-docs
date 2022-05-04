@@ -6,12 +6,12 @@
 Apply the Update Strategy for Distributed Cloud
 ===============================================
 
-You can update the software across the |prod-dc| system by applying the update
-strategy for |prod-dc| Update Orchestration.
+You can update the platform software across the |prod-dc| system by applying
+the update strategy for |prod-dc| Update Orchestration.
 
 .. rubric:: |context|
 
-You can apply the update strategy from the Horizon Web interface or the CLI .
+You can apply the update strategy from the Horizon Web interface or the CLI.
 To use the CLI, see :ref:`Update Management for Distributed Cloud
 <update-management-for-distributed-cloud>`.
 
@@ -29,22 +29,23 @@ Distributed Cloud <update-management-for-distributed-cloud>`.
 
 #.  Select the **SystemController** region.
 
-#.  Select **Platform** \> **Software Management**.
+#.  Select **Distributed Cloud Admin** \> **Orchestration**.
 
-#.  On the Software Management page, select the **Cloud Patching Orchestration**
+#.  On the **Orchestration** page, select the **Orchestration Strategy**
     tab.
 
     .. image:: figures/bqu1525123082913.png
-    
+        :width: 1000px
+
 
 #.  Click **Apply Strategy**.
 
-    To monitor the progress of the overall update orchestration, use the Cloud
-    Patching Orchestration tab.
+    To monitor the progress of the overall update orchestration, use the
+    **Orchestration Strategy** tab.
 
-    To monitor the progress of host updates on RegionOne or a subcloud, use the
-    Host Inventory page on the subcloud.
- 
+    To monitor the progress of host updates on RegionOne of System Controller
+    or a subcloud, use the **Host Inventory** page on the subcloud.
+
 
 .. seealso::
 
