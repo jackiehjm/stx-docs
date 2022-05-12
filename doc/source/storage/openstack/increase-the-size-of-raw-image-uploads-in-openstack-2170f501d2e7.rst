@@ -21,38 +21,44 @@ You can increase the size of raw image uploads for both **Kubelet** and/or
 
        # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
        system host-lvg-list controller-0
-
        # if existing docker fs size + cgts-vg available space is less than
-       # 60G, you will need to add a new disk partition to cgts-vg.
+       # 80G, you will need to add a new disk partition to cgts-vg.
+       # There must be at least 20GB of available space after the docker
+       # filesystem is increased.
 
-                  # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK
-                  # ( if not use another unused disk )
+          # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK
+          # ( if not use another unused disk )
 
-                  # Get device path of ROOT DISK
-                  system host-show controller-0 --nowrap | fgrep rootfs
+          # Get device path of ROOT DISK
+          system host-show controller-0 --nowrap | fgrep rootfs
 
-                  # Get UUID of ROOT DISK by listing disks
-                  system host-disk-list controller-0
+          # Get UUID of ROOT DISK by listing disks
+          system host-disk-list controller-0
 
-                  # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
+          # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
+          # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
+          PARTITION_SIZE=30
+          system hostdisk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
 
-                  # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
-                  PARTITION_SIZE=30
-                  system hostdisk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
+          # Add new partition to ‘cgts-vg’ local volume group
+          system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
+          sleep 2    # wait for partition to be added
 
-                  # Add new partition to ‘cgts-vg’ local volume group
-                  system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
-                  sleep 2    # wait for partition to be added
-
-        # Increase docker filesystem to 60G
-        system host-fs-modify controller-0 docker=60
+       # Increase docker filesystem to 60G
+       system host-fs-modify controller-0 docker=60
 
 -  Ensure you have configured the **Kubelet** filesystem with sufficient disk
    space for the size of images you want to upload.
 
-   The **Kubelet** filesystem size is at least 25% larger than the largest
-   image you need to upload. For example, to upload a 100 GB image, increase it
-   to 125 GB, using the following commands:
+   The **Kubelet** filesystem available size is at least 25% larger than the
+   largest image you need to upload. For example, to upload a 100 GB image,
+   increase it to 125 GB. This applies to systems with HTTPS disabled.
+   If you are using HTTPS enabled with |prod-long| earlier releases, you should
+   increase the **Docker** filesystem using the instructions below.
+
+   .. note::
+       For future releases of |prod-long|, you will need to use the **Kubelet**
+       filesystem.
 
    .. code-block:: none
 
