@@ -13,6 +13,16 @@ Available networks include the optional |PXE| boot network, the internal
 management network, the cluster host network, the |OAM| network, and other
 optional networks for external network connectivity.
 
+.. note::
+    If you have a small number of nodes, smaller IP subnets / address
+    ranges should be used to preserve IP addresses that make the network
+    more manageable. When planning the system architecture an (optional) PXE boot,
+    management and cluster-host address is required for each node.
+
+    PXE Boot network is not "required" in all scenarios; in some scenarios
+    (e.g. IPv4 and non-vlan-tagged management networks), the management network
+    can be used for PXE booting.
+
 The internal management network is required by all deployment configurations
 for internal communication.
 
