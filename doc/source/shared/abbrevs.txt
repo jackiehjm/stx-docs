@@ -9,6 +9,7 @@
 .. |AIO| replace:: :abbr:`AIO (All-In-One)`
 .. |AIO-DX| replace:: :abbr:`AIO-DX (All-In-One Duplex)`
 .. |AIO-SX| replace:: :abbr:`AIO-SX (All-In-One Simplex)`
+.. |ARP| replace:: :abbr:`ARP (Address Resolution Protocol)`
 .. |AVP| replace:: :abbr:`AVP (Accelerated Virtual Port)`
 .. |AVPs| replace:: :abbr:`AVPs (Accelerated Virtual Ports)`
 .. |AWS| replace:: :abbr:`AWS (Amazon Web Services)`
@@ -59,6 +60,7 @@
 .. |IEEE| replace:: :abbr:`IEEE (Institute of Electrical and Electronics Engineers)`
 .. |IGMP| replace:: :abbr:`IGMP (Internet Group Management Protocol)`
 .. |IoT| replace:: :abbr:`IoT (Internet of Things)`
+.. |IPAM| replace:: :abbr:`IPAM (IP Address Management)`
 .. |IPMI| replace:: :abbr:`IPMI (Intelligent Platform Management Interface)`
 .. |IOPS| replace:: :abbr:`IOPS (I/O operations per second)`
 .. |IRQ| replace:: :abbr:`IRQ (Interrupt Request)`

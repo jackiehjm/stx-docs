@@ -154,15 +154,28 @@ Optimize application performance
    using-kubernetes-cpu-manager-static-policy
    use-application-isolated-cores
 
-----------------------------------------
-Adding an SRIOV interface to a container
-----------------------------------------
+
+.. _add-sriov-interface-to-container:
+
+-------------------------------------
+Add an SRIOV interface to a container
+-------------------------------------
 
 .. toctree::
    :maxdepth: 1
 
    creating-network-attachment-definitions
    using-network-attachment-definitions-in-a-container
+
+
+-----------------------
+Use the Bond CNI Plugin
+-----------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   integrate-the-bond-cni-plugin-2c2f14733b46
 
 --------------
 Metrics Server
