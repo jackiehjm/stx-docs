@@ -123,6 +123,7 @@ Configure Ceph OSDs on a Host
    add-a-storage-tier-using-the-cli
    provision-storage-on-a-controller-or-storage-host-using-horizon
    provision-storage-on-a-storage-host-using-the-cli
+   optimization-with-a-large-number-of-osds-df2169096946
    replace-osds-and-journal-disks
    replace-osds-on-an-aio-dx-system-319b0bc2f7e6
 
