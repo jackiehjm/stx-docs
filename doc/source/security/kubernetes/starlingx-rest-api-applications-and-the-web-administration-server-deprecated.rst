@@ -49,4 +49,3 @@ For more details, refer to:
 
    enable-https-access-for-starlingx-rest-and-web-server-endpoints
    install-update-the-starlingx-rest-and-web-server-certificate
-   secure-starlingx-rest-and-web-certificates-private-key-storage-with-tpm

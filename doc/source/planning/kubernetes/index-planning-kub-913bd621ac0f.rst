@@ -97,7 +97,6 @@ Security planning
    :maxdepth: 1
 
    security-planning-uefi-secure-boot-planning
-   tpm-planning
 
 **********************************
 Installation and resource planning

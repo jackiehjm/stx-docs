@@ -22,8 +22,8 @@ Where:
 
 **Variety of open-source software supporting StarlingX and/or Kubernetes**
     This includes packages such as Apache, Ceph, PostgreSql, Etcd, |IPMI|,
-    |TPM|, etc., as well as some services from OpenStack such as the
-    OpenStack Horizon Web interface, Keystone and Barbican.
+    etc., as well as some services from OpenStack such as the OpenStack
+    Horizon Web interface, Keystone and Barbican.
 
 **StarlingX**
     Hardware and software infrastructure management.

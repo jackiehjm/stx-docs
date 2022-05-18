@@ -14,21 +14,6 @@ health of the system.
 
 .. _500-series-alarm-messages-table-zrd-tg5-v5:
 
-.. list-table::
-   :widths: 6 25
-   :header-rows: 0
-
-   * - **Alarm ID: 500.100**
-     - |TPM| initialization failed on host.
-   * - Entity Instance
-     - tenant=<tenant-uuid>
-   * - Degrade Affecting Severity:
-     - None
-   * - Severity:
-     - M
-   * - Proposed Repair Action
-     - Reinstall HTTPS certificate; if problem persists contact next level of
-       support.
 
 -----
 

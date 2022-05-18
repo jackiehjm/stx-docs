@@ -25,7 +25,6 @@ re-added, record the current partitioning and volume group assignments for
 all disks so that you can reproduce them later.
 
 .. note::
-
     All your data should be preserved across this procedure.
 
 .. rubric:: |proc|

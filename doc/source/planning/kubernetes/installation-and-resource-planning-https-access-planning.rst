@@ -59,10 +59,6 @@ create public certificate and private key pairs for HTTPS.
 You can update the certificate and key used by |prod| for the StarlingX REST
 and Web Server endpoints at any time after installation.
 
-For additional security, |prod| optionally supports storing the private key of
-the StarlingX Rest and Web Server certificate in a StarlingX |TPM| hardware
-device. |TPM| 2.0-compliant hardware must be available on the controller hosts.
-
 
 .. _installation-and-resource-planning-https-access-planning-d18e105:
 
