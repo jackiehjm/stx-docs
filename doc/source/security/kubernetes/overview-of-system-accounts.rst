@@ -27,7 +27,8 @@ A brief description of the system accounts available in a |prod| system.
     of the |prod|.
 
     See :ref:`Local LDAP Linux User Accounts <local-ldap-linux-user-accounts>`
-    for more details.
+    and :ref:`Manage Composite Local LDAP Accounts at Scale
+    <manage-local-ldap-39fe3a85a528>` for more details.
 
     .. note::
         For security reasons, it is recommended that ONLY admin level users be
@@ -48,3 +49,4 @@ For more information, refer to the following:
    establish-keystone-credentials-from-a-linux-account
    starlingx-openstack-kubernetes-from-stsadmin-account-login
    kubernetes-cli-from-local-ldap-linux-account-login
+   manage-local-ldap-39fe3a85a528
