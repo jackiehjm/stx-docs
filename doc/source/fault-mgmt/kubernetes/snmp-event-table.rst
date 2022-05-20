@@ -6,8 +6,7 @@
 SNMP Event Table
 ================
 
-|prod| supports the Event table from the Wind River Alarm MIB via :abbr:`SNMP
-(Simple Network Management Protocol)`.
+|prod| supports the Event table from the Wind River Alarm MIB via |SNMP|.
 
 The Event table contains a historic list of all alarm events (SETs and CLEARs)
 and customer log events.
@@ -16,31 +15,34 @@ Each entry in the table includes the following variables:
 
 .. _snmp-event-table-ul-y1w-4lk-qq:
 
--   <UUID>
+-   wrsEventUuid
 
--   <EventID>
+-   wrsEventEventId
 
--   <State>
+-   wrsEventState
 
--   <EntityInstanceID>
+-   wrsEventEntityInstanceId
 
--   <DateAndTime>
+-   wrsEventDateAndTime
 
--   <EventSeverity>
+-   wrsEventSeverity
 
--   <ReasonText>
+-   wrsEventReasonText
 
--   <EventType>
+-   wrsEventEventType
 
--   <ProbableCause>
+-   wrsEventProbableCause
 
--   <ProposedRepairAction>
+-   wrsEventProposedRepairAction
 
--   <ServiceAffecting>
+-   wrsEventServiceAffecting
 
--   <SuppressionAllowed>
+-   wrsEventSuppressionAllowed
 
-An external SNMP Manager can examine the Event table contents by doing an SNMP
+See https://opendev.org/starlingx/snmp-armada-app/src/branch/master/stx-snmp-helm/centos/docker/stx-snmp/mibs/wrsAlarmMib.mib.txt
+for alarm details.
+
+An external |SNMP| manager can examine the Event table contents by doing an |SNMP|
 Walk of the table.
 
 For example, below is the output for a simple :command:`snmpwalk` CLI tool.
