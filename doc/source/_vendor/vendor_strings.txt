@@ -68,6 +68,9 @@
 
 .. |prod-ver|  replace:: 6.0
 
+.. Version at which we cut over to Deb.
+.. |deb-release-ver| replace:: release 8.0
+
 .. StX OpenStack (|prod-os|)
 
 .. |prod-os-ver| replace:: |prod-ver|
