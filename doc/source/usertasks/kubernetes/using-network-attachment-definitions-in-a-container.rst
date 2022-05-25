@@ -180,9 +180,11 @@ devices as you have network annotations.
 
     The configuration of the SR-IOV host interface to which the datanetwork is
     assigned determines whether the network attachment in the container will be
-    kernel or dpdk-based. The SR-IOV host interface needs to be created with a
+    kernel or userspace-based. The |SRIOV| host interface needs to be created with a
     vfio **vf-driver** for the network attachment in the container to be
-    dpdk-based, otherwise it will be kernel-based.
+    userspace-based, otherwise it will be kernel-based (``netdevice``).
+
+    Only ``netdevice`` is supported for Mellanox NICs.
 
     #.  Populate the configuration file pod4.yaml with the following contents.
 

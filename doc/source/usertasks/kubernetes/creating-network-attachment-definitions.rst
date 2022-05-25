@@ -28,7 +28,9 @@ this data network.
 .. note::
     The configuration for this |SRIOV| interface with either a ``netdevice`` or
     ``vfio`` vf-driver determines whether the **NetworkAttachmentDefinition**
-    will be a kernel network device or a DPDK network device.
+    will be a kernel network device or a userspace network device.
+
+    Only ``netdevice`` is supported for Mellanox NICs.
 
 .. rubric:: |proc|
 
