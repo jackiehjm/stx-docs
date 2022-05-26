@@ -26,9 +26,10 @@ Create a bootable USB drive on Linux\*
       sudo -s
 
 #. Get the StarlingX ISO from the
-   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_. Alternately, you can use an ISO from a private StarlingX build.
+   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_.
+   Alternately, you can use an ISO from a private StarlingX build.
 
-#. Navigate to the directory with the ISO.
+#. Navigate to the directory with the `StarlingX ISO <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/latest_release/centos/flock/outputs/iso/>`_.
 
 #. Plug in the USB drive and get its identifier:
 
