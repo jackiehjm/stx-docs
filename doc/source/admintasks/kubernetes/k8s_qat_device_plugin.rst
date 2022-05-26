@@ -16,8 +16,7 @@ Prerequisites
 -------------
 
 - Install Intel QuickAssist device on host.
-- Install StarlingX on bare metal with DPDK enabled. Refer to the
-  `installation guide <https://docs.starlingx.io/deploy_install_guides/index.html>`_
+- Install StarlingX on bare metal with DPDK enabled. Refer to the  |_link-inst-book|
   for details.
 
 ------------------------------
