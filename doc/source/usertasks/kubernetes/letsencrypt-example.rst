@@ -45,7 +45,7 @@ This example requires that:
 
     .. code-block:: none
 
-        apiVersion: cert-manager.io/v1alpha2
+        apiVersion: cert-manager.io/v1
         kind: Issuer
         metadata:
           name: letsencrypt-prod
@@ -114,14 +114,14 @@ This example requires that:
           selector:
             app: kuard
         ---
-        apiVersion: extensions/v1beta1
+        apiVersion: networking.k8s.io/v1
         kind: Ingress
         metadata:
           annotations:
-            kubernetes.io/ingress.class: nginx
             cert-manager.io/issuer: "letsencrypt-prod"
           name: kuard
         spec:
+          ingressClassName: nginx
           tls:
           - hosts:
             - kuard.starlingx.mycompany.com
@@ -130,10 +130,13 @@ This example requires that:
             - host: kuard.starlingx.mycompany.com
               http:
                 paths:
-                  - backend:
-                      serviceName: kuard
-                      servicePort: 80
-                    path: /
+                - backend:
+                    service:
+                      name: kuard
+                      port:
+                        number: 80
+                  path: /
+                  pathType: Prefix
 
 #.  Access the kuard demo from your browser to inspect and verify that the
     certificate is signed by LetsEncrypt |CA|. For this example, the URL
