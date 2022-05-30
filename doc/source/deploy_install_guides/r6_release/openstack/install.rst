@@ -48,7 +48,7 @@ Install application manifest and helm-charts
       After you select a release, helm charts are located in ``centos/outputs/helm-charts``.
 
 #. Load the |prefix|-openstack application's package into StarlingX. The tarball
-   package contains |prefix|-openstack's Airship Armada manifest and
+   package contains |prefix|-openstack's FluxCD manifest and
    |prefix|-openstack's set of helm charts. For example:
 
    .. parsed-literal::
@@ -57,7 +57,7 @@ Install application manifest and helm-charts
 
    This will:
 
-   * Load the Armada manifest and helm charts.
+   * Load the FluxCD manifest and helm charts.
    * Internally manage helm chart override values for each chart.
    * Automatically generate system helm chart overrides for each chart based on
      the current state of the underlying StarlingX Kubernetes platform and the

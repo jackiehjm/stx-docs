@@ -12,7 +12,7 @@ procedure described in this section.
 .. rubric:: |context|
 
 Run the following commands to remove Vault. This will remove pods and other
-resources created by the Armada installation. For more information, see
+resources created by the application installation. For more information, see
 :ref:`Install Vault <install-vault>`.
 
 .. rubric:: |proc|
@@ -47,5 +47,3 @@ resources created by the Armada installation. For more information, see
 
         $ kubectl delete ns vault
         $ system application-delete vault
-
-

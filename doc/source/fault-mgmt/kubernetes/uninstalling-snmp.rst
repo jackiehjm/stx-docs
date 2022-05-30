@@ -12,22 +12,18 @@ Use the following procedure to uninstall |SNMP|:
     .. code-block:: none
 
        ~(keystone_admin)]$ system application-list
-       +--------------------------+-------------------------+-----------------------------------+------------------------+---------------+-----------+
-       | application              | version                 | manifest name                     | manifest file          | status        | progress  |
-       +--------------------------+-------------------------+-----------------------------------+------------------------+---------------+-----------+
-       | cert-manager             | 1.0-6                   | cert-manager-manifest             | certmanager-manifest.  | applied       | completed |
-       |                          |                         |                                   | yaml                   |               |           |
-       |                          |                         |                                   |                        |               |           |
-       | nginx-ingress-controller | 1.0-0                   | nginx-ingress-controller-manifest | nginx_ingress_controll | applied       | completed |
-       |                          |                         |                                   | er_manifest.yaml       |               |           |
-       |                          |                         |                                   |                        |               |           |
-       | oidc-auth-apps           | 1.0-29                  | oidc-auth-manifest                | manifest.yaml          | uploaded      | completed |
-       | platform-integ-apps      | 1.0-9                   | platform-integration-manifest     | manifest.yaml          | uploaded      | completed |
-       | rook-ceph-apps           | app-version-placeholder | manifest-placeholder              | tarfile-placeholder    | upload-failed | None      |
-       | snmp                     | 1.0-2                   | snmp-manifest                     | snmp_manifest.yaml     | applied       | completed |
-       +--------------------------+-------------------------+-----------------------------------+------------------------+---------------+-----------+
+       +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+
+       | application              | version | manifest name                             | manifest file    | status   | progress             |
+       +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+
+       | cert-manager             | 1.0-34  | cert-manager-fluxcd-manifests             | fluxcd-manifests | applied  | completed            |
+       | nginx-ingress-controller | 1.1-35  | nginx-ingress-controller-fluxcd-manifests | fluxcd-manifests | applied  | completed            |
+       | oidc-auth-apps           | 1.0-68  | oidc-auth-apps-fluxcd-manifests           | fluxcd-manifests | uploaded | completed            |
+       | platform-integ-apps      | 1.0-52  | platform-integ-apps-fluxcd-manifests      | fluxcd-manifests | applied  | completed            |
+       | rook-ceph-apps           | 1.0-17  | rook-ceph-manifest                        | manifest.yaml    | uploaded | completed            |
+       | snmp                     | 1.0-36  | snmp-fluxcd-manifests                     | fluxcd-manifests | applied  | completed            |
+       +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+
 
-#.  Uninstall SNMP.
+#.  Uninstall |SNMP|.
 
     .. code-block:: none
 
@@ -35,61 +31,53 @@ Use the following procedure to uninstall |SNMP|:
        +---------------+----------------------------------+
        | Property      | Value                            |
        +---------------+----------------------------------+
-       | active        | True                             |
-       | app_version   | 1.0-2                            |
-       | created_at    | 2020-11-12T06:26:21.526433+00:00 |
-       | manifest_file | snmp_manifest.yaml               |
-       | manifest_name | snmp-manifest                    |
+       | active        | False                            |
+       | app_version   | 1.0-36                           |
+       | created_at    | 2022-06-27T10:45:42.733267+00:00 |
+       | manifest_file | fluxcd-manifests                 |
+       | manifest_name | snmp-fluxcd-manifests            |
        | name          | snmp                             |
        | progress      | None                             |
        | status        | removing                         |
-       | updated_at    | 2020-11-12T06:51:34.987085+00:00 |
+       | updated_at    | 2022-06-27T10:45:51.253949+00:00 |
        +---------------+----------------------------------+
 
-    The SNMP application is removed, but still shows as "Uploaded".
+    The |SNMP| application is removed, but still shows as "Uploaded".
 
     .. code-block:: none
 
        ~(keystone_admin)]$ system application-list
-       +--------------------------+-------------------------+-----------------------------------+-------------------------+---------------+-----------+
-       | application              | version                 | manifest name                     | manifest file           | status        | progress  |
-       +--------------------------+-------------------------+-----------------------------------+-------------------------+---------------+-----------+
-       | cert-manager             | 1.0-6                   | cert-manager-manifest             | certmanager-manifest.   | applied       | completed |
-       |                          |                         |                                   | yaml                    |               |           |
-       |                          |                         |                                   |                         |               |           |
-       | nginx-ingress-controller | 1.0-0                   | nginx-ingress-controller-manifest | nginx_ingress_controlle | applied       | completed |
-       |                          |                         |                                   | r_manifest.yaml         |               |           |
-       |                          |                         |                                   |                         |               |           |
-       | oidc-auth-apps           | 1.0-29                  | oidc-auth-manifest                | manifest.yaml           | uploaded      | completed |
-       | platform-integ-apps      | 1.0-9                   | platform-integration-manifest     | manifest.yaml           | uploaded      | completed |
-       | rook-ceph-apps           | app-version-placeholder | manifest-placeholder              | tarfile-placeholder     | upload-failed | None      |
-       | snmp                     | 1.0-2                   | snmp-manifest                     | snmp_manifest.yaml      | uploaded      | completed |
-       +--------------------------+-------------------------+-----------------------------------+-------------------------+---------------+-----------+
+       +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+
+       | application              | version | manifest name                             | manifest file    | status   | progress             |
+       +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+
+       | cert-manager             | 1.0-34  | cert-manager-fluxcd-manifests             | fluxcd-manifests | applied  | completed            |
+       | nginx-ingress-controller | 1.1-35  | nginx-ingress-controller-fluxcd-manifests | fluxcd-manifests | applied  | completed            |
+       | oidc-auth-apps           | 1.0-68  | oidc-auth-apps-fluxcd-manifests           | fluxcd-manifests | uploaded | completed            |
+       | platform-integ-apps      | 1.0-52  | platform-integ-apps-fluxcd-manifests      | fluxcd-manifests | applied  | completed            |
+       | rook-ceph-apps           | 1.0-17  | rook-ceph-manifest                        | manifest.yaml    | uploaded | completed            |
+       | snmp                     | 1.0-36  | snmp-fluxcd-manifests                     | fluxcd-manifests | uploaded | completed            |
+       +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+
 
-#.  Delete the uninstalled SNMP application definitions from the system.
+#.  Delete the uninstalled |SNMP| application definitions from the system.
 
     .. code-block:: none
 
        ~(keystone_admin)]$ system application-delete snmp
 
-    The following message is displayed when the SNMP application is deleted
+    The following message is displayed when the |SNMP| application is deleted
     "Application SNMP deleted".
 
-#.  Run the following command to check if the SNMP application is deleted.
+#.  Run the following command to check if the |SNMP| application is deleted.
 
     .. code-block:: none
 
        ~(keystone_admin)]$ system application-list
-       +--------------------------+-------------------------+-----------------------------------+--------------------------+---------------+-----------+
-       | application              | version                 | manifest name                     | manifest file            | status        | progress  |
-       +--------------------------+-------------------------+-----------------------------------+--------------------------+---------------+-----------+
-       | cert-manager             | 1.0-6                   | cert-manager-manifest             | certmanager-manifest.    | applied       | completed |
-       |                          |                         |                                   | yaml                     |               |           |
-       |                          |                         |                                   |                          |               |           |
-       | nginx-ingress-controller | 1.0-0                   | nginx-ingress-controller-manifest | nginx_ingress_controller | applied       | completed |
-       |                          |                         |                                   | _manifest.yaml           |               |           |
-       |                          |                         |                                   |                          |               |           |
-       | oidc-auth-apps           | 1.0-29                  | oidc-auth-manifest                | manifest.yaml            | uploaded      | completed |
-       | platform-integ-apps      | 1.0-9                   | platform-integration-manifest     | manifest.yaml            | uploaded      | completed |
-       | rook-ceph-apps           | app-version-placeholder | manifest-placeholder              | tarfile-placeholder      | upload-failed | None      |
-       +--------------------------+-------------------------+-----------------------------------+--------------------------+---------------+-----------+
+       +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+
+       | application              | version | manifest name                             | manifest file    | status   | progress             |
+       +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+
+       | cert-manager             | 1.0-34  | cert-manager-fluxcd-manifests             | fluxcd-manifests | applied  | completed            |
+       | nginx-ingress-controller | 1.1-35  | nginx-ingress-controller-fluxcd-manifests | fluxcd-manifests | applied  | completed            |
+       | oidc-auth-apps           | 1.0-68  | oidc-auth-apps-fluxcd-manifests           | fluxcd-manifests | uploaded | completed            |
+       | platform-integ-apps      | 1.0-52  | platform-integ-apps-fluxcd-manifests      | fluxcd-manifests | applied  | completed            |
+       | rook-ceph-apps           | 1.0-17  | rook-ceph-manifest                        | manifest.yaml    | uploaded | completed            |
+       +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+

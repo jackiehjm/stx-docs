@@ -9,16 +9,15 @@ StarlingX Application Package Manager
 Use the |prod| system application commands to manage containerized
 applications provided as part of |prod|.
 
-StarlingX application management provides a wrapper around Airship Armada
-\(see `https://opendev.org/airship/armada.git <https://opendev.org/airship/armada.git>`__\)
-and Kubernetes Helm \(see `https://github.com/helm/helm <https://github.com/helm/helm>`__\)
-for managing containerized applications. Armada is a tool for managing
-multiple Helm charts with dependencies by centralizing all configurations
-in a single Armada YAML definition and providing life-cycle hooks for all
-Helm releases.
+StarlingX application management provides a wrapper around FluxCD and
+Kubernetes Helm \(see `https://github.com/helm/helm
+<https://github.com/helm/helm>`__\) for managing containerized applications.
+FluxCD is a tool for managing multiple Helm charts with dependencies by
+centralizing all configurations in a single FluxCD YAML definition and
+providing life-cycle hooks for all Helm releases.
 
 A StarlingX application package is a compressed tarball containing a
-metadata.yaml file, a manifest.yaml Armada manifest file, and a charts
+metadata.yaml file, a manifest.yaml FluxCD manifest file, and a charts
 directory containing helm charts and a checksum.md5 file. The metadata.yaml
 file contains the application name, version, and optional helm repository
 and disabled charts information.
@@ -41,7 +40,7 @@ managing overrides to the helm charts within the application.
     +----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     | :command:`application-upload`          | Upload a new application package.                                                                                                                                                                                                                           |
     |                                        |                                                                                                                                                                                                                                                             |
-    |                                        | This command loads the application's armada manifest and helm charts into an internal database and automatically applies system overrides for well-known helm charts, allowing the helm chart to be applied optimally to the current cluster configuration. |
+    |                                        | This command loads the application's FluxCD manifest and helm charts into an internal database and automatically applies system overrides for well-known helm charts, allowing the helm chart to be applied optimally to the current cluster configuration. |
     +----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     | :command:`helm-override-list`          | List system helm charts and the namespaces with helm chart overrides for each helm chart.                                                                                                                                                                   |
     +----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -57,7 +56,7 @@ managing overrides to the helm charts within the application.
     +----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     | :command:`application-apply`           | Apply or reapply the application manifest and helm charts.                                                                                                                                                                                                  |
     |                                        |                                                                                                                                                                                                                                                             |
-    |                                        | This command will install or update the existing installation of the application based on its armada manifest, helm charts and helm charts' combined system and user overrides.                                                                             |
+    |                                        | This command will install or update the existing installation of the application based on its FluxCD manifest, helm charts and helm charts' combined system and user overrides.                                                                             |
     +----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     | :command:`application-abort`           | Abort the current application operation.                                                                                                                                                                                                                    |
     +----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

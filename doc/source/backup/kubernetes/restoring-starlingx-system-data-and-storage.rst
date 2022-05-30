@@ -363,8 +363,8 @@ conditions are in place:
             $ system application-apply platform-integ-apps
 
    #.  Delete completely and reapply all the applications that have
-       persistent volumes (WRO or custom apps). For example for WRO, run the
-       following commands
+       persistent volumes (OpenStack or custom apps). For example for
+       OpenStack, run the following commands
 
        .. parsed-literal::
 

@@ -105,7 +105,7 @@ The backup contains details as listed below:
 
         -   item=/opt/dc-vault
 
-    -   Armada manifests:
+    -   FluxCD manifests:
 
         -   item=/opt/platform/armada/<|prefix|\_version>
 

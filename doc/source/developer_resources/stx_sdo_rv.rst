@@ -71,7 +71,7 @@ Integration Steps
      Skipping 'containers' build
      All builds were successful
 
-#. Create the Armada application using the command:
+#. Create the system application using the command:
 
    ::
 
@@ -86,7 +86,7 @@ Integration Steps
      Results:
      /localdisk/loadbuild/stx/flock/std/build-helm/stx/stx-sdo-1.0-2.tgz
 
-#. Exit from the container. The SDO-RV Armada application will be found in the
+#. Exit from the container. The SDO-RV system application will be found in the
    following location:
 
    ::
@@ -110,7 +110,7 @@ Integration Steps
      source /etc/platform/openrc
 
 #. Load the |prefix|-openstack application package into |prod|. The tarball
-   package contains the |prefix|-openstack Airship Armada manifest and
+   package contains the |prefix|-openstack FluxCD manifest and
    |prefix|-openstack set of Helm charts. For example:
 
    ::
