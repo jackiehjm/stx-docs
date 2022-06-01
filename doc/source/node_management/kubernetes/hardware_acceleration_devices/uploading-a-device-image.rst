@@ -11,11 +11,12 @@ Upload a Device Image
 The device image must exist where the system command is executed, such as a
 remote CLI, before proceeding.
 
-.. .. note::
-..  For |BMC| images on N3000 |FPGA| hardware, it is recommended that the
-..  admin user uses the **md5sum** of the device image file as the bitstream
-..  ID. This will ensure that different files get unique IDs, and the same
-..  file gets the same ID.
+.. note::
+
+    For |BMC| images on N3000 |FPGA| hardware, it is recommended that the
+    admin user uses the **md5sum** of the device image file as the bitstream
+    ID. This will ensure that different files get unique IDs, and the same
+    file gets the same ID.
 
 .. rubric:: |proc|
 
