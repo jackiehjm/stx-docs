@@ -6,36 +6,40 @@
 SNMP Active Alarms Table
 ========================
 
-|prod| supports the :abbr:`SNMP (Simple Network Management Protocol)` Active
-alarm table from the Wind River Alarm MIB via SNMP.
+|prod| supports the |SNMP| Active alarm table from the Wind River Alarm
+MIB via |SNMP|.
 
 The active alarm table contains a list of all active or set alarms in the
 system. Each entry in the table includes the following variables:
 
--   <UUID>
+- wrsAlarmActiveUuid                      
 
--   <AlarmID>
+- wrsAlarmActiveAlarmId                   
 
--   <EntityInstanceID>
+- wrsAlarmActiveEntityInstanceId          
 
--   <DateAndTime>
+- wrsAlarmActiveDateAndTime               
 
--   <AlarmSeverity>
+- wrsAlarmActiveAlarmSeverity             
 
--   <ReasonText>
+- wrsAlarmActiveReasonText                
 
--   <EventType>
+- wrsAlarmActiveEventType                 
 
--   <ProbableCause>
+- wrsAlarmActiveProbableCause             
 
--   <ProposedRepairAction>
+- wrsAlarmActiveProposedRepairAction     
 
--   <ServiceAffecting>
+- wrsAlarmActiveServiceAffecting          
 
--   <SuppressionAllowed>
+- wrsAlarmActiveSuppressionAllowed 
 
-An external SNMP Manager can examine the Active Alarm table contents by doing
-an SNMP Walk of the table.
+
+See https://opendev.org/starlingx/snmp-armada-app/src/branch/master/stx-snmp-helm/centos/docker/stx-snmp/mibs/wrsAlarmMib.mib.txt
+for alarm details.
+
+An external |SNMP| Manager can examine the Active Alarm table contents by doing
+an |SNMP| Walk of the table.
 
 For example, below is the output for a simple **snmpwalk** CLI tool showing a
 table with three rows (i.e. three active alarms).
