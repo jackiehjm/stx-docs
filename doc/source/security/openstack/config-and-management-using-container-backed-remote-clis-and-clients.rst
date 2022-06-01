@@ -14,6 +14,15 @@ variables and aliases for the remote |CLI| commands.
     For a Distributed Cloud system, navigate to **Project** \> **Central Cloud Regions** \> **RegionOne** \>
     and download the **Openstack RC file**.
 
+.. note::
+    If the |prod-os| system has HTTPS certificate enabled, another option
+    for running OpenStack commands is to add the ``--insecure`` parameter.
+
+    .. code-block::
+
+        $ openstack image list --insecure
+
+
 .. rubric:: |context|
 
 .. note::
