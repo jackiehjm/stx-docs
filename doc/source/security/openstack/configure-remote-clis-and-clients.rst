@@ -62,6 +62,21 @@ The following procedure shows how to configure the Container-backed Remote
 #.  Download the user/tenant **openrc** file from the |os-prod-hor-long| to the
     remote workstation.
 
+    .. note::
+
+        If the |prod-os| system has HTTPS certificate enabled, use the
+        following steps:
+
+        #.  Download the certificate file (**ca-bundle.trust.crt**) from the
+            /etc/pki/tls/certs/ directory on the |prod-os| system, and copy the
+            file to your remote workstation to the same directory as the
+            admin-openrc.sh file.
+
+        #.  Update the admin-openrc.sh file with the following:
+
+            .. code-block:: none
+
+                export OS_CACERT=ca-bundle.trust.crt
 
     #.  Log in to |os-prod-hor| interface as the user and tenant that you want
         to configure remote access for.
@@ -101,7 +116,7 @@ The following procedure shows how to configure the Container-backed Remote
 
            ::
 
-              $ ./configure_client.sh -t openstack -r admin-openrc.sh -w $HOME/remote_cli_wd
+              $ ./configure_client.sh -t openstack -r admin-openrc.sh -w  $HOME/remote_cli_wd -a <wind-river-registry-url>/docker.io/starlingx/wr-openstackclients:<tag>
 
         .. only:: partner
 
@@ -185,4 +200,3 @@ variables and aliases for the remote |CLI| commands.
 See :ref:`Use Container-backed Remote CLIs and Clients
 <config-and-management-using-container-backed-remote-clis-and-clients>` for
 details.
-
