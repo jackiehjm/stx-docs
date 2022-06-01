@@ -234,13 +234,12 @@ subcloud, the subcloud installation process has two phases:
 
         ~(keystone_admin)]$ system certificate-install -m docker_registry path_to_cert
 
-    .. only:: partner
 
-        .. include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
-            :start-after: begin-prepare-files-to-copy-deployment-config
-            :end-before: end-prepare-files-to-copy-deployment-config
+.. include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
+    :start-after: begin-prepare-files-to-copy-deployment-config
+    :end-before: end-prepare-files-to-copy-deployment-config
 
-#.  At the Central Cloud / System Controller, monitor the progress of the
+9.  At the Central Cloud / System Controller, monitor the progress of the
     subcloud bootstrapping and deployment by using the deploy status field of
     the :command:`dcmanager subcloud list` command.
 
@@ -271,7 +270,7 @@ subcloud, the subcloud installation process has two phases:
         a subcloud, see :ref:`Managing Subclouds Using the CLI
         <managing-subclouds-using-the-cli>`.
 
-#.  You can also monitor detailed logging of the subcloud bootstrapping and
+10. You can also monitor detailed logging of the subcloud bootstrapping and
     deployment by monitoring the following log files on the active controller
     in the Central Cloud.
 
