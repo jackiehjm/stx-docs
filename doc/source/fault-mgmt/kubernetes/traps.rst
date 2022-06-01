@@ -14,19 +14,19 @@ The following traps are defined.
 
 .. _traps-ul-p1j-tvn-c5:
 
--   **wrsAlarmCritical**
+-   wrsAlarmCritical
 
--   **wrsAlarmMajor**
+-   wrsAlarmMajor
 
--   **wrsAlarmMinor**
+-   wrsAlarmMinor
 
--   **wrsAlarmWarning**
+-   wrsAlarmWarning
 
--   **wrsAlarmMessage**
+-   wrsAlarmMessage
 
--   **wrsAlarmClear**
+-   wrsAlarmClear
 
--   **wrsAlarmHierarchicalClear**
+-   wrsAlarmHierarchicalClear
 
 |prod| alarms are mapped into one of the above traps based on severity, and
 customer logs are mapped into the 'Message' trap.
@@ -44,26 +44,29 @@ For the Clear trap, **varbinds** include only the following variables:
 
 .. _traps-ul-uks-byn-nkb:
 
--   <AlarmID>
+-   wrsAlarmActiveAlarmID
 
--   <EntityInstanceID>
+-   wrsAlarmActiveEntityInstanceID
 
--   <DateAndTime>
+-   wrsAlarmActiveDateAndTime
 
--   <ReasonText>
+-   wrsAlarmActiveReasonText
 
 For the HierarchicalClear trap, **varbinds** include only the following
 variables:
 
 .. _traps-ul-isn-fyn-nkb:
 
--   <EntityInstanceID>
+-   wrsAlarmActiveEntityInstanceID
 
--   <DateAndTime>
+-   wrsAlarmActiveDateAndTime
 
--   <ReasonText>
+-   wrsAlarmActiveReasonText
 
 For all alarms, the Notification Type is based on the severity of the trap or
 alarm. This is done to facilitate the interaction with most SNMP trap viewers
 which use the Notification Type to drive the coloring of traps, that is, red
 for critical, yellow for minor, and so on.
+
+See https://opendev.org/starlingx/snmp-armada-app/src/branch/master/stx-snmp-helm/centos/docker/stx-snmp/mibs/wrsAlarmMib.mib.txt
+for alarm details.
