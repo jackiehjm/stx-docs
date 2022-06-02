@@ -17,9 +17,14 @@ software.
 -   Perform a full backup to allow recovery.
 
     .. note::
-       Back up files in the /home/sysadmin and /root directories prior to doing
-       an upgrade. Home directories are not preserved during backup or restore
-       operations, blade replacement, or upgrades.
+
+       Back up files in the ``/root`` directory prior to doing an upgrade, the
+       ``/home`` size limit is 2000 MB. Although container image sizes are
+       preserved, ``/root`` directory is not preserved during backup or restore
+       operations, server replacement, or upgrades.
+
+       For more details on backup and what is included see :ref:`Back Up System
+       Data <backing-up-starlingx-system-data>`.
 
 -   Ensure that the following conditions are met:
 
@@ -52,8 +57,10 @@ software.
 
 End user container images in `registry.local` will be backed up during the
 upgrade process. This only includes images other than |prod| system and
-application images. These images are limited to 5 GBytes in total size. If
-the system contains more than 5 GBytes of these images, the upgrade start will fail.
+application images. These images are limited to 5 GB in total size. If the
+system contains more than 5 GB of these images, the upgrade start will fail.
+For more details, see :ref:`Detailed contents of a system backup
+<backing-up-starlingx-system-data-ul-s3t-bz4-kjb>`.
 
 .. rubric:: |proc|
 
