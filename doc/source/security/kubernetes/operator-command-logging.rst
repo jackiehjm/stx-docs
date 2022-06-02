@@ -6,59 +6,97 @@
 Operator Command Logging
 ========================
 
-|prod| logs all REST API operator commands and SNMP commands.
+|prod| logs all StarlingX REST API operator commands, except commands that use
+only GET requests. |prod| also logs all |SNMP| commands, including ``GET``
+requests.
+
+
+
+-------------------------------------------
+StarlingX REST API Operator Command Logging
+-------------------------------------------
 
 The logs include the timestamp, tenant name \(if applicable\), user name,
 command executed, and command status \(success or failure\).
 
-The files are located under the /var/log directory, and are named using the
-convention \*-api.log. Each component that generates its own API log files
-\(for example, Keystone, Barbican, and so forth\) and each |prod| /
-StarlingX -specific component, updating \(patching\) system, and SNMP agent
-follows, this convention.
-
-You can examine the log files locally on the controllers, or using a remote
-log server if the remote logging feature is configured. The one exception is
-patching-api.log. For updating robustness, the |prod| updating system uses
-minimal system facilities and does not use **syslog**. Therefore its logs
-are not available on a remote log server.
+The files are located under the ``/var/log`` directory and are named using the
+convention ``*api.log``. The list of log files is presented below.
 
 
-.. _operator-command-logging-section-N10047-N10023-N10001:
+- ``/var/log/sysinv-api.log``
 
--------
-Remarks
--------
+- ``/var/log/fm-api.log``
 
+- ``/var/log/dcmanager/dcmanager-api.log``
 
-.. _operator-command-logging-ul-plj-htv-1z:
+- ``/var/log/nfv-vim-api.log``
 
--   For the |prod| :command:`system` command, whenever a REST API call is
-    made that is either a POST, PATCH, PUT, or DELETE, |prod| logs these events
-    into a new log file called /var/log/sysinv-api.log
+- ``/var/log/patching-api.log``
 
+- ``/var/log/mtcAgent_api.log``
 
-    -   POST - means creating something
+- ``/var/log/hwmond_api.log``
 
-    -   PATCH - means partially updating \(modifying\) something
+- ``/var/log/barbican/barbican-api.log``
 
-    -   PUT - means fully updating \(modifying\) something
+.. only:: starlingx
 
-    -   DELETE - means deleting something
+   You can examine the log files locally on the controllers.
 
+.. only:: partner
 
-    :command:`system modify --description="A TEST"` is logged to sysinv-api.log because it issues a REST POST call
-
-    :command:`system snmp-comm-delete "TEST_COMMUNITY1"` - is logged to sysinv-api.log because it issues a REST DELETE call
-
--   If the :command:`sysinv` command only issues a REST GET call, it is not logged.
+   .. include:: /_includes/operator-command-logging.rest
+      :start-after: begin-remote-log-server-options
+      :end-before: end-remote-log-server-options
 
 
-    -   :command:`fm event-list` is not logged because this performs a sysinv REST GET call
+For example, if the following command is issued:
 
-    -   :command:`fm event-show<xx>` is not logged because this performs a sysinv REST GET call
+``system modify --description="TEST01 DESCRIPTION"``
+
+The following log is generated in ``/var/log/sysinv-api.log``:
+
+``sysinv 2022-03-09 11:03:46.238 108478 INFO sysinv.api.hooks.auditor [req-be0eb23d-c815-4bb7-938a-bfb8adba496b 76752e1b78b54f7b8409e2c54a6b6082 1ba4a349b9f941e0a5bd658df4e4d4f7] 192.168.204.2 "PATCH /v1/isystems/7b64c984-8b6e-42da-88e5-d9ee17c5178e HTTP/1.0" status: 200 len: 1151 time: 0.0395379066467 POST: [{u'path': u'/description', u'value': u'TEST01 DESCRIPTION', u'op': u'replace'}] host:192.168.204.1:6385 agent:Python-httplib2/0.9.2 (gzip) user: admin tenant: admin domain: Default``
+
+REST API request methods that will be logged include:
+
+``PATCH``
+   The resource is being partially updated.
+
+``POST``
+   The resource is being created or fully updated.
+
+``DELETE``
+   The resource is being deleted.
+
+``PUT``
+   Similar to ``POST`` with the difference that ``PUT`` requests are
+   idempotent, that is, multiple ``PUT`` calls produce the same result.
 
 
--   All SNMP Commands are logged, including GET, GETNEXT, GETBULK and SET commands. SNMP TRAPs are not logged.
+--------------------
+SNMP Request Logging
+--------------------
 
+As the |SNMP| application is containerized, the logs of its commands are found
+inside the container at file ``/var/log/snmpd.log``. Only basic information is
+present in this log file, like command type, |SNMP| version and request status.
+All |SNMP| requests are logged, including ``GET`` requests.
+
+For example, if the following command is issued:
+
+``SNMP GET OID .iso.3.6.1.2.1.1.1.0``
+
+It will return the value:
+
+``iso.3.6.1.2.1.1.1.0 = STRING: "22.02 5.10.74-200.1807.tis.el7.x86_64"``
+
+And the following log is generated in ``/var/log/snmpd.log`` inside the |SNMP|
+container:
+
+.. code-block:: none
+
+   snmp-auditor transport:udp remote:10.20.3.3 reqid:1367258771 msg-type:GET version:v3
+   snmp-auditor    reqid:1367258771 oid:SNMPv2-MIB::sysDescr.0
+   snmp-auditor    reqid:1367258771 oid:SNMPv2-MIB::sysDescr.0 status:pass
 
