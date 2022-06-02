@@ -23,13 +23,13 @@ this type of account as follows:
 
 .. code-block:: none
 
-    $ sudo passwd <user> <temp_password>
+    $ sudo passwd <user>
     $ sudo chage -d 0 <user>
 
-where <user> is the user name of the account to be reset \(for, example,
-**sysadmin**\) and <temp\_password> is a temporary password. The
-:command:`chage` command forces immediate expiration, so that the user must
-change the password at first login.
+where `<user>` is the user name of the account to be reset \(for, example,
+**sysadmin**\) and :command:`sudo passwd <user>` will prompt for the new
+password. The :command:`chage` command forces immediate expiration, so that
+the user must change the password at first login.
 
 If no other Linux system user accounts have been created, you can recover
 using the default LDAP **operator** or **admin** accounts. For more
