@@ -12,11 +12,11 @@ Example PTP Instance Configurations
 The following sections provide example configuration steps for two |PTP|
 configurations supported by |prod|.
 
-* The first is a Border Clock setup where an external |PTP| GM is providing
+* The first is a Border Clock setup where an external |PTP| |GM| is providing
   a time source for the system. Only ptp4l and phc2sys are used for this
   configuration.
 
-* The second shows how to setup a GM node when a time source is available
+* The second shows how to setup a |GM| node when a time source is available
   via a locally connected GNSS signal. The ``ptp4l``, ``phc2sys``,
   ``ts2phc`` and clock instance types are used for this configuration.
 
@@ -168,7 +168,8 @@ Alternate PTP configuration - T-GM
 ==================================
 
 
-Using the topology shown, the following examples provide configurations for each service type.
+Using the topology shown, the following examples provide configurations for
+each service type.
 
 .. figure:: figures/ptp-instance-dual-nic-deployment-gnss.PNG
     :scale: 50 %
@@ -231,7 +232,20 @@ phc2sys
 
    .. code-block::
 
-      ~(keystone_admin)]$ system ptp-instance-parameter-add phc-inst1 cmdline_opts='-s <port_name> -O -37'
+      ~(keystone_admin)]$ cmdline_opts='-w -s <port_name>'
+
+#. Add the required ``uds_address`` and ``domainNumber`` parameters to the
+   instance.
+
+   .. code-block:: none
+
+      $ system ptp-instance-parameter-add phc-inst1 uds_address=/var/run/ptp4l-ptp-inst1
+      $ system ptp-instance-parameter-add phc-inst1 domainNumber=24
+
+   .. note::
+
+      The path assigned to uds_address must use the name of the ptp4l instance
+      that phc2sys is tracking.
 
 #. Assign the instance to a host.
 
@@ -282,6 +296,16 @@ ptp4l
 
       ~(keystone_admin)]$ system ptp-instance-parameter-add ptp-inst1 domainNumber=24
 
+#. If configuring a |GM| node, set the special ``ptp4l`` parameter
+   ``currentUtcOffsetValid=1``.
+
+   This allows the local clock and all downstream clocks to use the announced
+   UTC offset.
+
+   .. code-block:: none
+
+      $ system ptp-instance-parameter-add ptp-inst1 currentUtcOffsetValid=1
+
 #. Assign the |PTP| instance to controller-0.
 
    .. code-block::
@@ -325,7 +349,7 @@ instance:
 
    .. code-block::
 
-      ~(keystone_admin)]$ system ptp-insterface-add clint1 cl1
+      ~(keystone_admin)]$ system ptp-interface-add clint1 cl1
       ~(keystone_admin)]$ system host-if-ptp-assign controller-0 oam0 clint1
 
    The parameters are ultimately applied to the whole NIC, so adding multiple
@@ -351,14 +375,14 @@ instance:
 
    .. code-block::
 
-      ~(keystone_admin)]$ system ptp-insterface-add clint2 cl1
+      ~(keystone_admin)]$ system ptp-interface-add clint2 cl1
       ~(keystone_admin)]$ system host-if-ptp-assign controller-0 data0 clint2
 
 #. Add interface parameters.
 
    .. code-block::
 
-      ~(keystone_admin)]$ system ptp-interface-parameter-add clint1 sma1=input synce_rclka=enabled
+      ~(keystone_admin)]$ system ptp-interface-parameter-add clint2 sma1=input synce_rclka=enabled
 
 
 #. Apply the configuration.

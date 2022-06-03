@@ -50,6 +50,8 @@
 .. |FPGA| replace:: :abbr:`FPGA (Field Programmable Gate Array)`
 .. |FQDN| replace:: :abbr:`FQDN (Fully Qualified Domain Name)`
 .. |FQDNs| replace:: :abbr:`FQDNs (Fully Qualified Domain Names)`
+.. Following abbrev expands M (Master) to Leader as inclusive lang.
+.. |GM| replace:: :abbr:`GM (Grand Leader)`
 .. |GNP| replace:: :abbr:`GNP (Global Network Policy)`
 .. |GNSS| replace:: :abbr:`GNSS (Global Navigation Satellite System)`
 .. |GCC| replace:: :abbr:`GCC (GNU Compiler Collection)`
