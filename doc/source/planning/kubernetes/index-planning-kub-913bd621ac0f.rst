@@ -8,9 +8,9 @@
       :start-after: kub-begin
       :end-before: kub-end
 
-************
+------------
 Introduction
-************
+------------
 
 .. toctree::
    :maxdepth: 1
@@ -96,7 +96,47 @@ Security planning
 .. toctree::
    :maxdepth: 1
 
-   security-planning-uefi-secure-boot-planning
+   infrastructure-security
+   container-security-df8a251ec03f
+
+Security hardening Guidelines
+*****************************
+
+.. toctree::
+   :maxdepth: 1
+
+   security-hardening-intro
+
+Recommended Security Features with a Minimal Performance Impact
+---------------------------------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   uefi-secure-boot
+
+Secure System Accounts
+----------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   local-linux-account-for-sysadmin
+   local-and-ldap-linux-user-accounts
+   starlingx-accounts
+   web-administration-login-timeout
+   ssh-and-console-login-timeout
+   system-account-password-rules
+
+Security Features
+-----------------
+
+.. toctree::
+   :maxdepth: 1
+
+   secure-https-external-connectivity
+   security-hardening-firewall-options
+   isolate-starlingx-internal-cloud-management-network
 
 **********************************
 Installation and resource planning
