@@ -79,6 +79,10 @@ and SNMP groups, as follows:
 Wind River Enterprise MIBs
 --------------------------
 
+.. note::
+    There are no product specific MIBs for ``wrsEnterpriseReg.mib`` and it will
+    be supported in a future release.
+
 |prod| supports the Wind River Enterprise Registration and Alarm MIBs.
 
 **Enterprise Registration MIB, wrsEnterpriseReg.mib**
@@ -109,3 +113,4 @@ Wind River Enterprise MIBs
 
     **Traps**
         See :ref:`Traps <traps>` for detailed descriptions.
+
