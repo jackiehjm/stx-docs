@@ -1,6 +1,6 @@
 
 .. jow1440534908675
-.. _configuring-a-pxe-boot-server:
+.. _configuring-a-pxe-boot-server-r5:
 
 ===========================
 Configure a PXE Boot Server

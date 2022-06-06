@@ -23,12 +23,39 @@ The default initial password is **sysadmin**.
 -   The initial password must be changed immediately when you log in to each
     host for the first time. For details, see |_link-inst-book|.
 
+-   After each unsuccessful login attempt, a 15 second delay is imposed before
+    making another attempt. If you attempt to login before 15 seconds the
+    system will display a message such as:
+
+    ``Account temporary locked (10 seconds left)``
+
+    .. note:: On Debian-based |prod| systems, this delay is 3 seconds.
+
 -   After five consecutive unsuccessful login attempts, further attempts are
-    blocked for about five minutes. To clarify, the 5 minute block is not an
+    blocked for about five minutes. On further attemps within 5 minutes, the
+    system will display a message such as:
+
+    ``Account locked due to 6 failed logins``
+
+    .. note::
+
+        On Debian-based |prod| systems, you are alerted on the 6th and
+        subsequent attempts:
+
+        ``Account locked due to 6 failed logins``
+
+        and an error message is displayed on subsequent attempts:
+
+        ``Maximum number of tries exceeded (5)``
+
+    To clarify, on CentOS-based |prod| systems, the 5 minute block is not an
     absolute window, but a sliding one. That is, if you keep attempting to log
-    in within those 5 minutes, the window keeps sliding and the user remains
+    in within those 5 minutes, the window keeps sliding and the you remain
     blocked. Therefore, you should not attempt any further login attempts for 5
     minutes after 5 unsuccessful login attempts.
+
+    On Debian-based |prod| systems, 5 mins after the account is locked, the
+    failed attempts will be reset and failed attempts re-counted.
 
 
 Subsequent password changes must be executed on the active controller in an
