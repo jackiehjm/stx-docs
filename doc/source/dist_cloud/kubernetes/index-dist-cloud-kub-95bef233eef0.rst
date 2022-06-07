@@ -55,6 +55,7 @@ Operation
     restoring-subclouds-from-backupdata-using-dcmanager
     rehoming-a-subcloud
     prestage-a-subcloud-using-dcmanager-df756866163f
+    add-a-horizon-keystone-user-to-distributed-cloud-29655b0f0eb9
 
 --------------------------------------------------------------------
 Prestage Orchestration for Distributed Cloud Subclouds using the CLI
