@@ -50,8 +50,6 @@
 .. |FPGA| replace:: :abbr:`FPGA (Field Programmable Gate Array)`
 .. |FQDN| replace:: :abbr:`FQDN (Fully Qualified Domain Name)`
 .. |FQDNs| replace:: :abbr:`FQDNs (Fully Qualified Domain Names)`
-.. Following abbrev expands M (Master) to Leader as inclusive lang.
-.. |GM| replace:: :abbr:`GM (Grand Leader)`
 .. |GNP| replace:: :abbr:`GNP (Global Network Policy)`
 .. |GNSS| replace:: :abbr:`GNSS (Global Navigation Satellite System)`
 .. |GCC| replace:: :abbr:`GCC (GNU Compiler Collection)`
@@ -106,6 +104,7 @@
 .. |PSP| replace:: :abbr:`PSP (Pod Security Policy)`
 .. |PSPs| replace:: :abbr:`PSPs (Pod Security Policies)`
 .. |PTP| replace:: :abbr:`PTP (Precision Time Protocol)`
+.. |PTS| replace:: :abbr:`PTS (Primary Time Source)`
 .. |PVC| replace:: :abbr:`PVC (Persistent Volume Claim)`
 .. |PVCs| replace:: :abbr:`PVCs (Persistent Volume Claims)`
 .. |PXE| replace:: :abbr:`PXE (Preboot Execution Environment)`
@@ -136,6 +135,7 @@
 .. |SSL| replace:: :abbr:`SSL (Secure Socket Layer)`
 .. |STP| replace:: :abbr:`STP (Spanning Tree Protocol)`
 .. |SWACT| replace:: :abbr:`SWACT (SWitch ACTivity)`
+.. |TAI| replace:: :abbr:`TAI (International Atomic Time)`
 .. |T-BC| replace:: :abbr:`T-BC (Telecom Boundary Clock)`
 .. |TCP| replace:: :abbr:`TCP (Transition Control Protocol)`
 .. |TFTP| replace:: :abbr:`TFTP (Trivial File Transfer Protocol)`

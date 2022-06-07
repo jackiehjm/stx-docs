@@ -72,7 +72,7 @@ Overview of the |prod| configuration units
     allow certain parameters to be set which do not have a long name option
     supported in the configuration file.
 
-  * A special ``ptp4l`` instance level parameter is provided to allow a |GM|
+  * A special ``ptp4l`` instance level parameter is provided to allow a |PTS|
     node to set the ``currentUtcOffsetValid`` flag in its announce messages and
     to correctly set the ``CLOCK_TAI`` on the system. Assign
     ``currentUtcOffsetValid=1`` at the the ``ptp4l`` instance level to set this

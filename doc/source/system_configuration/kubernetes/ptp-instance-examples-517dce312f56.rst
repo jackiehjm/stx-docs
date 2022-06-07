@@ -12,11 +12,11 @@ Example PTP Instance Configurations
 The following sections provide example configuration steps for two |PTP|
 configurations supported by |prod|.
 
-* The first is a Border Clock setup where an external |PTP| |GM| is providing
+* The first is a Border Clock setup where an external |PTP| |PTS| is providing
   a time source for the system. Only ptp4l and phc2sys are used for this
   configuration.
 
-* The second shows how to setup a |GM| node when a time source is available
+* The second shows how to setup a |PTS| node when a time source is available
   via a locally connected GNSS signal. The ``ptp4l``, ``phc2sys``,
   ``ts2phc`` and clock instance types are used for this configuration.
 
@@ -296,7 +296,7 @@ ptp4l
 
       ~(keystone_admin)]$ system ptp-instance-parameter-add ptp-inst1 domainNumber=24
 
-#. If configuring a |GM| node, set the special ``ptp4l`` parameter
+#. If configuring a |PTS| node, set the special ``ptp4l`` parameter
    ``currentUtcOffsetValid=1``.
 
    This allows the local clock and all downstream clocks to use the announced
