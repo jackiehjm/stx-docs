@@ -54,6 +54,7 @@ Operation
     migrate-an-aiosx-subcloud-to-an-aiodx-subcloud
     restoring-subclouds-from-backupdata-using-dcmanager
     rehoming-a-subcloud
+    add-a-horizon-keystone-user-to-distributed-cloud-29655b0f0eb9
 
 ----------------------
 Manage Subcloud Groups
