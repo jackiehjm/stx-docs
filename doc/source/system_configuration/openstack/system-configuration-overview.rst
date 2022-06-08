@@ -89,11 +89,11 @@ The optional arguments are:
 ``--reset-values``
     Replace any existing helm chart overrides with the ones specified.
 
-``--values <file\_name>``
+``--values <file_name>``
     Specify a YAML file containing helm chart override values. Can specify
     multiple times.
 
-``--set <commandline\_overrides>``
+``--set <commandline_overrides>``
     Set helm chart override values on the command line. Multiple override
     values can be specified with multiple ``--set`` arguments. These are
     processed after ``--values`` files.
