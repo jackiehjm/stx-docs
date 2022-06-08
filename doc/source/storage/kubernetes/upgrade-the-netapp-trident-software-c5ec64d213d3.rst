@@ -6,9 +6,9 @@ Upgrade the NetApp Trident Software
 
 .. rubric:: |context|
 
-|prod| |prod-ver| contains the installer for Trident 21.04, but installations
+|prod| |prod-ver| contains the installer for Trident 22.01, but installations
 that have been upgraded from the previous |prod| version and were configured
-to use a NetApp backend will still be running Trident 20.04 after the upgrade
+to use a NetApp backend will still be running Trident 21.04 after the upgrade
 to |prod| |prod-ver|.
 
 .. code-block:: none
@@ -32,8 +32,8 @@ to |prod| |prod-ver|.
 
 .. rubric:: |proc|
 
-Before upgrading Kubernetes to version 1.19, the running version of Trident
-must be updated to 21.04. This will not disrupt any containers that are already
+Before upgrading Kubernetes to version |kube-ver|, the running version of Trident
+must be updated to 22.01. This will not disrupt any containers that are already
 running, but will cause a brief outage to the NetApp Trident control plane.
 
 The steps are as follows:
@@ -58,5 +58,5 @@ The steps are as follows:
         +----------------+----------------+
         | SERVER VERSION | CLIENT VERSION |
         +----------------+----------------+
-        | 21.04.1        | 21.04.1        |
+        | 21.01          | 22.01          |
         +----------------+----------------+
