@@ -10,19 +10,6 @@ Remote openstack |CLIs| can be used in any shell after sourcing the generated
 remote |CLI|/client RC file. This RC file sets up the required environment
 variables and aliases for the remote |CLI| commands.
 
-.. note::
-    For a Distributed Cloud system, navigate to **Project** \> **Central Cloud Regions** \> **RegionOne** \>
-    and download the **Openstack RC file**.
-
-.. note::
-    If the |prod-os| system has HTTPS certificate enabled, another option
-    for running OpenStack commands is to add the ``--insecure`` parameter.
-
-    .. code-block::
-
-        $ openstack image list --insecure
-
-
 .. rubric:: |context|
 
 .. note::
@@ -84,6 +71,7 @@ variables and aliases for the remote |CLI| commands.
         | 77e886bc903a4484a25944c1e99bdf1f | RegionOne | nova         | compute         | True    | internal  | http://nova.openstack.svc.cluster.local/v2.1/%(tenant_id)s |
         | 7c3e0ce3b69d45878c1152473719107c | RegionOne | fm           | faultmanagement | True    | internal  | http://fm.openstack.svc.cluster.local/                     |
         +----------------------------------+-----------+--------------+-----------------+---------+-----------+------------------------------------------------------------+
+
         root@myclient:/home/user/remote_cli_wd# openstack volume list --all-projects
         +--------------------------------------+-----------+-----------+------+-------------+
         | ID                                   | Name      | Status    | Size | Attached to |
@@ -91,6 +79,29 @@ variables and aliases for the remote |CLI| commands.
         | f2421d88-69e8-4e2f-b8aa-abd7fb4de1c5 | my-volume | available |    8 |             |
         +--------------------------------------+-----------+-----------+------+-------------+
         root@myclient:/home/user/remote_cli_wd#
+
+    .. note::
+
+        If the |prod-os| system has a HTTPS certificate enabled, use the
+        following steps:
+
+        #.  Download the certificate file (**ca-bundle.trust.crt**) from the
+            /etc/pki/tls/certs/ directory on the |prod-os| system, and copy the
+            file to your remote workstation to the same directory as the
+            admin-openrc.sh file.
+
+        #.  Update the admin-openrc.sh file with the following:
+
+            .. code-block:: none
+
+                export OS_CACERT=ca-bundle.trust.crt
+
+        ``or`` use the ``--insecure`` parameter as follows (this is not recommended),
+        for example:
+
+        .. code-block::
+
+            ~(keystone_admin)$ openstack volume list --all-projects --insecure
 
     .. note::
         Some commands used by remote |CLI| are designed to leave you in a shell
