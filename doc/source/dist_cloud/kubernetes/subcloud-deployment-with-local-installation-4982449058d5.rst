@@ -386,49 +386,51 @@ Prestaging ISO.
         partitions. The ``--include-backup`` option will also wipe the
         "platform-backup" partition.
 
-#.  Subcloud Install
+----------------
+Subcloud Install
+----------------
 
-    With a successful subcloud prestage completed, the subcloud is ready to be
-    added and installed from the System Controller. See :ref:`Install a
-    Subcloud Using Redfish Platform Management Service
-    <installing-a-subcloud-using-redfish-platform-management-service>`.
+With a successful subcloud prestage completed, the subcloud is ready to be
+added and installed from the System Controller. See :ref:`Install a
+Subcloud Using Redfish Platform Management Service
+<installing-a-subcloud-using-redfish-platform-management-service>`.
 
-    #.  Subcloud ``Miniboot`` Installer
+#.  Subcloud ``Miniboot`` Installer
 
-        The Subcloud Local Install feature introduces a new kickstart
-        ``post_miniboot_controller.cfg`` in a new controller group’s
-        ``miniboot_controller_ks.cfg`` kickstart bundle. This new kickstart
-        bundle is passed to ``Miniboot`` on the subcloud during the subcloud
-        install.
+    The Subcloud Local Install feature introduces a new kickstart
+    ``post_miniboot_controller.cfg`` in a new controller group’s
+    ``miniboot_controller_ks.cfg`` kickstart bundle. This new kickstart
+    bundle is passed to ``Miniboot`` on the subcloud during the subcloud
+    install.
 
-        If there is a valid Prestaged Install Bundle then ``Miniboot`` will use
-        it to perform a Local Install.
+    If there is a valid Prestaged Install Bundle then ``Miniboot`` will use
+    it to perform a Local Install.
 
-        If there is no valid Prestaged Install Bundle then ``Miniboot`` will
-        default to the already supported Remote Install.
+    If there is no valid Prestaged Install Bundle then ``Miniboot`` will
+    default to the already supported Remote Install.
 
-    #.  ``Miniboot`` Algorithm
+#.  ``Miniboot`` Algorithm
 
-        ``Miniboot`` install algorithm is as follows:
+    ``Miniboot`` install algorithm is as follows:
 
-        -   Mounts the Platform Backup partition.
+    -   Mounts the Platform Backup partition.
 
-        -   Navigates to the specified sw_version directory.
+    -   Navigates to the specified sw_version directory.
 
-        -   Searches for a Prestaged Install Bundle.
+    -   Searches for a Prestaged Install Bundle.
 
-        -   Verifies the integrity of the Prestaged Install Bundle.
+    -   Verifies the integrity of the Prestaged Install Bundle.
 
-            -   Runs ``md5sum --check`` against all files with the .md5
-                extension.
+        -   Runs ``md5sum --check`` against all files with the .md5
+            extension.
 
-        -   If Install Bundle is present and valid then perform a Local Install.
+    -   If Install Bundle is present and valid then perform a Local Install.
 
-        -   If Install Bundle is missing or invalid perform a Remote Install.
+    -   If Install Bundle is missing or invalid perform a Remote Install.
 
------------------------------------
-Debug a failed prestaging operation
------------------------------------
+-----------------
+Local Install Log
+-----------------
 
 After install, login as ``sysadmin/sysadmin`` and remove the prestaging logs.
 
