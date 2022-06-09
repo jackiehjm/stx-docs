@@ -69,6 +69,19 @@ of Metrics API.
 
         ~(keystone_admin)]$ kubectl get pods -l app=metrics-server -n metrics-server
 
+.. important::
+
+    After a platform upgrade, the Metrics Server will NOT be automatically
+    updated.
+
+    To update the Metrics Server, run the following command after the upgrade
+    was completed with no alarms:
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system application-update --reuse-user-overrides true /usr/local/share/applications/helm/metrics-server-1.0-18.tgz
+
+
 For details on leveraging Metrics Server for horizontal autoscaling or for
 Metrics API, see :ref:`Kubernetes User Tasks <kubernetes-user-tutorials-metrics-server>`.
 After installing Metrics Server, the :command:`kubectl top` |CLI| command is available
