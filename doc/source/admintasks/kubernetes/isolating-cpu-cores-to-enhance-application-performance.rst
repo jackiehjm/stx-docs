@@ -76,3 +76,45 @@ running :command:`sched_getaffinity()` command, or by parsing
 Isolated CPUs can be identified in the container by looking for files such as
 ``/dev/cpu/<X>`` where ``<X>`` is a number, or by referencing
 ``/sys/devices/system/cpu/isolated`` against the CPUs associated with this container.
+
+
+-------------------------------------
+Isolating CPU Cores from Kernel Noise
+-------------------------------------
+
+For better performance of latency-sensitive applications, and to improve energy
+efficiency on idle CPUs, it is possible to isolate CPU cores from kernel noise
+with the ``nohz_full`` kernel parameter. This configuration is supported in both
+low-latency and standard kernel types. However, for standard kernels, it is
+possible to disable the CPU isolation by assigning a label to the target host
+with worker sub function.
+
+To summarize, the configuration is supported by default in workers of any
+kernel type, but for standard kernels, you can enable the ``disable-nohz-full``
+label to disable it.
+
+Use the procedure below to disable the ``nohz_full`` parameter on standard
+kernels:
+
+.. rubric:: |proc|
+
+#.  Lock the host.
+
+    .. code-block:: none
+
+        ~(keystone)admin)$ system host-lock <worker>
+
+#.  Assign the ``disable-nohz-full`` label.
+
+    .. code-block:: none
+
+        ~(keystone)admin)$ system host-label-assign <worker> disable-nohz-full=enabled
+
+#.  Unlock the host.
+
+    .. code-block:: none
+
+        ~(keystone)admin)$ system host-unlock <worker>
+
+.. note::
+    ``disable-nohz-full`` label can be also assigned via the GUI.
