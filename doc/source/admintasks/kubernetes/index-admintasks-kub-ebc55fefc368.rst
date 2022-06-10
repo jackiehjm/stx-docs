@@ -71,3 +71,12 @@ PTP Notifications
    remove-ptp-notifications
    override-default-application-values
 
+--------------------------------------
+Technology Preview - Istio Application
+--------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   istio-service-mesh-application-eee5ebb3d3c4
+
