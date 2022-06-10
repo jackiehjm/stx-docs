@@ -43,14 +43,14 @@ certificates.
 
       ~(keystone_admin)]$ cat <<EOF > cluster-issuer.yaml
       ---
-      apiVersion: cert-manager.io/v1alpha2
+      apiVersion: cert-manager.io/v1
       kind: ClusterIssuer
       metadata:
         name: system-selfsigning
       spec:
         selfSigned: {}
       ---
-      apiVersion: cert-manager.io/v1alpha2
+      apiVersion: cert-manager.io/v1
       kind: Certificate
       metadata:
         name: system-local-ca
@@ -68,7 +68,7 @@ certificates.
           name: system-selfsigning
           kind: ClusterIssuer
       ---
-      apiVersion: cert-manager.io/v1alpha2
+      apiVersion: cert-manager.io/v1
       kind: ClusterIssuer
       metadata:
         name: system-local-ca
@@ -78,7 +78,8 @@ certificates.
       EOF
 
    For more information on supported parameters, see
-   https://cert-manager.io/v0.14-docs/reference/api-docs/#acme.cert-manager.io%2fv1alpha2
+   `https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1
+   <https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1>`__.
 
 
 #. Apply the configuration.
@@ -122,7 +123,7 @@ certificates.
 #. Copy the |PEM| encoded certificate and key from the externally generated
    |CA| to the controller host.
 
-#. Create a |TLS| secret in ‘cert-manager’ namespace with the certificate/Key
+#. Create a |TLS| secret in ``cert-manager`` namespace with the certificate/Key
    files:
 
    .. code-block:: none
@@ -135,14 +136,13 @@ certificates.
 
        ~(keystone_admin)]$ cat <<EOF > cluster-issuer.yaml
        ---
-       apiVersion: cert-manager.io/v1alpha2
+       apiVersion: cert-manager.io/v1
        kind: ClusterIssuer
        metadata:
          name: system-local-ca
        spec:
          ca:
            secretName: system-local-ca
-
        EOF
 
 #. Apply the configuration.
