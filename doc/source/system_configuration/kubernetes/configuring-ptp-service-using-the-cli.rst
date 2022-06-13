@@ -147,8 +147,8 @@ types are:
 
 ``clock``
     ``clock`` is not an daemon or service, but instead an abstract unit used to
-    hold the interfaces and configuration for setting Westport Channel NIC
-    control parameters (syncE and PPS transmission).
+    hold the interfaces and configuration for setting Westport Channel
+    or Logan Beach NIC control parameters (syncE and PPS transmission).
 
 Valid instance level parameters are found in the man pages for each service,
 under:

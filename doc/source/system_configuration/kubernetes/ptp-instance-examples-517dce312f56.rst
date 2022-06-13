@@ -324,8 +324,8 @@ clock
 .. note::
 
    These parameters are used to enable the UFL/SMA ports, recovered clock
-   syncE, and so-on. Refer to the user's guide for the Westport Channel NIC for
-   additional details on how to operate these cards.
+   syncE, and so-on. Refer to the user's guide for the Westport Channel or Logan
+   Beach NIC for additional details on how to operate these cards.
 
 The following |PTP| parameters can be applied to the interface of a clock
 instance:
