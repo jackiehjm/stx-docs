@@ -168,3 +168,13 @@ Apply Registries' Auth-Secret Changes
    verify-the-registry-secret-changes-and-secret-key-in-system-database
    add-the-ca-certificate-for-new-registry
    check-new-registry-and-reapply-application
+
+--------------------
+Customize Core Dumps
+--------------------
+
+.. toctree::
+   :maxdepth: 1
+
+
+   change-the-default-coredump-configuration-51ff4ce0c9ae

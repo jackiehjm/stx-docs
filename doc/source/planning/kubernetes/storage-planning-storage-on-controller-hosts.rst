@@ -103,8 +103,8 @@ Host Filesystems
 ----------------
 
 The following host filesystem commands can be used to resize non-|DRBD|
-filesystems \(Backup, Docker, Kubelet and Scratch\) and do not apply to all
-hosts of a give personality type:
+filesystems \(Backup, Docker, Kubelet, Scratch, and Log\) and do not
+apply to all hosts of a given personality type:
 
 :command:`host-fs-list`, :command:`host-fs-modify`, and :command:`host-fs-show`
 
