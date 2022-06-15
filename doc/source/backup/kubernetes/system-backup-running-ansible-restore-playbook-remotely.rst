@@ -78,7 +78,7 @@ In this method you can run Ansible Restore playbook and point to controller-0.
 
         .. code-block:: none
 
-           -e backup\_filename= localhost_platform_backup_2019_07_15_14_46_37.tgz
+           -e backup_filename= localhost_platform_backup_2019_07_15_14_46_37.tgz
 
     -   The initial_backup_dir is the location on the Ansible control
         machine where the platform backup tar file is placed to restore the

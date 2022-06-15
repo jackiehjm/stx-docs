@@ -64,27 +64,27 @@ To review detailed information about a specific alarm instance, see
             |                                                     |                                                                            |
             |                                                     |             ~(keystone_admin)$ fm alarm-list --query uuid=4ab5698a-19cb... |
             +-----------------------------------------------------+----------------------------------------------------------------------------+
-            |     :command:`alarm\_id=<alarm id\>`                |     Query alarms by alarm ID, for example:                                 |
+            |     :command:`alarm_id=<alarm id\>`                 |     Query alarms by alarm ID, for example:                                 |
             |                                                     |                                                                            |
             |                                                     |     .. code-block:: none                                                   |
             |                                                     |                                                                            |
             |                                                     |             ~(keystone_admin)$ fm alarm-list --query alarm_id=100.104      |
             +-----------------------------------------------------+----------------------------------------------------------------------------+
-            |     :command:`alarm\_type=<type\>`                  |     Query alarms by type, for example:                                     |
+            |     :command:`alarm_type=<type\>`                   |     Query alarms by type, for example:                                     |
             |                                                     |                                                                            |
             |                                                     |     .. code-block:: none                                                   |
             |                                                     |                                                                            |
             |                                                     |             ~(keystone_admin)$ fm alarm-list --query \                     |
             |                                                     |             alarm_type=operational-violation                               |
             +-----------------------------------------------------+----------------------------------------------------------------------------+
-            |     :command:`entity\_type\_id=<type id\>`          |     Query alarms by entity type ID, for example:                           |
+            |     :command:`entity_type_id=<type id\>`            |     Query alarms by entity type ID, for example:                           |
             |                                                     |                                                                            |
             |                                                     |     .. code-block:: none                                                   |
             |                                                     |                                                                            |
             |                                                     |             ~(keystone_admin)$ fm alarm-list --query \                     |
             |                                                     |             entity_type_id=system.host                                     |
             +-----------------------------------------------------+----------------------------------------------------------------------------+
-            |     :command:`entity\_instance\_id=<instance id\>`  |     Query alarms by entity instance id, for example:                       |
+            |     :command:`entity_instance_id=<instance id\>`    |     Query alarms by entity instance id, for example:                       |
             |                                                     |                                                                            |
             |                                                     |     .. code-block:: none                                                   |
             |                                                     |                                                                            |
@@ -117,17 +117,17 @@ To review detailed information about a specific alarm instance, see
         UUID can be used in display alarm details with the
         :command:`fm alarm-show` <UUID> command.
 
-    **--include\_suppress**
+    **--include_suppress**
         Use this option to include suppressed alarms in the list.
 
-    **--mgmt\_affecting**
+    **--mgmt_affecting**
         Management affecting alarms prevent some critical administrative
         actions from being performed. For example, software upgrades. Using the
-        ``--mgmt\_affecting`` option will list an additional column in the output,
+        ``--mgmt_affecting`` option will list an additional column in the output,
         'Management Affecting', which indicates whether the alarm is management
         affecting or not.
 
-    **--degrade\_affecting**
+    **--degrade_affecting**
         Include degrade affecting status in output.
 
     The following example shows alarm UUIDs.
