@@ -2,9 +2,9 @@
 .. blo1552681488499
 .. _operator-command-logging:
 
-========================
-Operator Command Logging
-========================
+==================================
+StarlingX Operator Command Logging
+==================================
 
 |prod| logs all StarlingX REST API operator commands, except commands that use
 only GET requests. |prod| also logs all |SNMP| commands, including ``GET``
