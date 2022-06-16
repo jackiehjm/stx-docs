@@ -22,10 +22,11 @@ associated space from the file system. To do so, you must also run the
     .. code-block:: none
 
         ~(keystone_admin)]$ system registry-image-list
+
         +------------------------------------------------------+
         | Image Name                                           |
         +------------------------------------------------------+
-        | docker.io/starlingx/k8s-cni-sriov                    |
+        | ghcr.io/k8snetworkplumbingwg/sriov-cni               |
         | docker.io/starlingx/k8s-plugins-sriov-network-device |
         | docker.io/starlingx/multus                           |
         | gcr.io/kubernetes-helm/tiller                        |
