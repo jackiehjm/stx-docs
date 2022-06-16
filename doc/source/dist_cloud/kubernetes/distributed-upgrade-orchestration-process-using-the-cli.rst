@@ -163,6 +163,7 @@ following conditions:
         [–-max-parallel-subclouds <i>] \
         [–-stop-on-failure <level>] \
         [--group group] \
+        [--force] \
         [<subcloud>]
 
     where:
@@ -194,6 +195,10 @@ following conditions:
         strategy that is only applied to all subclouds in the specified group.
         The subcloud group values are used for subcloud apply type and max
         parallel subclouds parameters.
+
+    **force**
+        Upgrade both online and offline subclouds. Can be used for a single
+        subcloud, or a subcloud group.
 
     For example:
 
