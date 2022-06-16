@@ -128,7 +128,7 @@ enables the Mount Bryce device.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ system host-device-modify controller-0 pci_0000_85_00_0 -e true --driver igb_uio --vf-driver vfio -N 16
+        ~(keystone_admin)$ system host-device-modify controller-0 pci_0000_85_00_0 --driver igb_uio --vf-driver vfio -N 16
 
 #.  Unlock the host.
 

@@ -155,7 +155,7 @@ platform: **Wilson City** (housing ICX-SP).
        # get following error message.
        # Cannot configure device 73b13ddf-99be-44c8-8fbe-db85eb8d99ba until host
        # controller-0 is unlocked for the first time.
-       system host-device-modify controller-0 pci_0000_85_00_0 -e true --driver igb_uio --vf-driver vfio -N 1
+       system host-device-modify controller-0 pci_0000_85_00_0 --driver igb_uio --vf-driver vfio -N 1
 
        system host-unlock $NODE
 
