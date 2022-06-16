@@ -18,7 +18,7 @@ for use in a lab environment.
         .. code-block:: none
 
             $ echo "
-            apiVersion: cert-manager.io/v1alpha2
+            apiVersion: cert-manager.io/v1
             kind: Issuer
             metadata:
               name: my-selfsigning-issuer
@@ -32,7 +32,7 @@ for use in a lab environment.
         .. code-block:: none
 
             $ echo "
-            apiVersion: cert-manager.io/v1alpha2
+            apiVersion: cert-manager.io/v1
             kind: Certificate
             metadata:
               name: my-rootca-certificate
@@ -50,7 +50,7 @@ for use in a lab environment.
         .. code-block:: none
 
             $ echo "
-            apiVersion: cert-manager.io/v1alpha2
+            apiVersion: cert-manager.io/v1
             kind: Issuer
             metadata:
               name: my-rootca-issuer
@@ -73,7 +73,7 @@ for use in a lab environment.
         .. code-block:: none
 
             $ echo "
-            apiVersion: cert-manager.io/v1alpha2
+            apiVersion: cert-manager.io/v1
             kind: Certificate
             metadata:
               name: my-server-certificate
@@ -81,8 +81,6 @@ for use in a lab environment.
               secretName: my-server-certificate
               duration: 2160h # 90d
               renewBefore: 360h # 15d
-              organization:
-              - WindRiver
               commonName: 1.1.1.1
               dnsNames:
               - myserver.wrs.com

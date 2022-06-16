@@ -27,7 +27,7 @@ This example requires that:
 
         # Create a cluster-wide ISSUER for create self-signed certificates
         ---
-        apiVersion: cert-manager.io/v1alpha2
+        apiVersion: cert-manager.io/v1
         kind: ClusterIssuer
         metadata:
             name: system-selfsigning-issuer
@@ -37,7 +37,7 @@ This example requires that:
 
         # Create a Certificate (and key) for my RootCA
         ---
-        apiVersion: cert-manager.io/v1alpha2
+        apiVersion: cert-manager.io/v1
         kind: Certificate
         metadata:
             name: abccompany-starlingx-rootca-certificate
@@ -53,7 +53,7 @@ This example requires that:
 
         # Create the RootCA ISSUER
         ---
-        apiVersion: cert-manager.io/v1alpha2
+        apiVersion: cert-manager.io/v1
         kind: Issuer
         metadata:
             name: abccompany-starlingx-rootca-issuer
@@ -83,7 +83,7 @@ This example requires that:
 
     .. code-block:: none
 
-        apiVersion: cert-manager.io/v1alpha2
+        apiVersion: cert-manager.io/v1
         kind: Certificate
         metadata:
           name: abccompany-starlingx.mycompany.com-certificate
@@ -95,8 +95,6 @@ This example requires that:
             name: abccompany-starlingx-rootca-issuer
             kind: Issuer
           commonName: abccompany-starlingx.mycompany.com
-          organization:
-          - abccompany-starlingx
           dnsNames:
           - abccompany-starlingx.mycompany.com
           ipAddresses:

@@ -59,7 +59,7 @@ Update the following fields:
 
       ~(keystone_admin)]$ cat <<EOF > restapi-certificate.yaml
       ---
-      apiVersion: cert-manager.io/v1alpha2
+      apiVersion: cert-manager.io/v1
       kind: Certificate
       metadata:
         name: system-restapi-gui-certificate
