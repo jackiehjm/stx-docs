@@ -50,7 +50,7 @@ Update the following fields:
 
       ~(keystone_admin)]$ cat <<EOF > docker-certificate.yaml
       ---
-      apiVersion: cert-manager.io/v1alpha2
+      apiVersion: cert-manager.io/v1
       kind: Certificate
       metadata:
         name: system-registry-local-certificate
