@@ -109,7 +109,8 @@ NONE
 **Other requirements**
 
 The clock type instance is a special instance used for configuring the NIC
-control parameters of the Westport Channel NIC clock interface parameters.
+control parameters of the Westport Channel or Logan Beach NIC clock
+interface parameters.
 
 These parameters can be applied to the interface of a clock instance |PTP|
 parameters:

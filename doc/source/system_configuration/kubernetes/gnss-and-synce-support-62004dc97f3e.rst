@@ -4,17 +4,18 @@
 SyncE and Introduction
 ======================
 
-Intel's Westport Channel NICs support a built-in GNSS module and the ability to
-distribute clock via Synchronous Ethernet (SyncE). This feature allows a PPS
-signal to be taken in via the GNSS module and redistributed to additional NICs
-on the same host or on different hosts. This behavior is configured on |prod|
-using the ``clock`` instance type in the |PTP| configuration. Many of the
-configuration steps in this section are similar to those in the |PTP|
-Configuration section - reference this for additional details if required.
+Intel's Westport Channel and Logan Beach NICs support a built-in GNSS module
+and the ability to distribute clock via Synchronous Ethernet (SyncE). This
+feature allows a PPS signal to be taken in via the |GNSS| module and
+redistributed to additional NICs on the same host or on different hosts.
+This behavior is configured on |prod| using the ``clock`` instance type in
+the |PTP| configuration. Many of the configuration steps in this section are
+similar to those in the |PTP| Configuration section - reference this for
+additional details if required.
 
 .. important::
 
-   Users should reference the user guide for their Westport Channel NIC for
+   Reference the user guide for their Westport Channel or Logan Beach NIC for
    additional information on configuring these features. The intent of this
    section is to explain how these parameters can be set, rather than
    describing each possible configuration.
@@ -40,7 +41,7 @@ NONE
 **Other requirements**
 
 The clock type instance is a special instance used for configuring the NIC
-control parameters of the Westport Channel NIC.
+control parameters of the Westport Channel or Logan Beach NIC.
 
 Configure a 'clock' instance
 ----------------------------
