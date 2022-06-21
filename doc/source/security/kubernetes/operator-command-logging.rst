@@ -99,4 +99,3 @@ container:
    snmp-auditor transport:udp remote:10.20.3.3 reqid:1367258771 msg-type:GET version:v3
    snmp-auditor    reqid:1367258771 oid:SNMPv2-MIB::sysDescr.0
    snmp-auditor    reqid:1367258771 oid:SNMPv2-MIB::sysDescr.0 status:pass
-

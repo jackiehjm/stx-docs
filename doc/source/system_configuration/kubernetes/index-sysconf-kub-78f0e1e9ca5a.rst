@@ -151,6 +151,7 @@ Kubernetes Configuration
 .. toctree::
    :maxdepth: 2
 
+   kubernetes-custom-configuration-31c1fd41857d
    limit-number-of-processes-per-pod
    about-changing-external-registries-for-starlingx-installation
 
