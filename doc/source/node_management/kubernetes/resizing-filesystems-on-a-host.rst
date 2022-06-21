@@ -25,6 +25,8 @@ The following combinations of filesystem and host types are supported.
     +-------------+----------------+------------------+----------------+--------------+
     | **kubelet** | All node types | /var/lib/kubelet | kubelet-lv     | 10 GiB       |
     +-------------+----------------+------------------+----------------+--------------+
+    | **log**     | All node types | /var/log         | log-lv         | 7.5 GiB      |
+    +-------------+----------------+------------------+----------------+--------------+
     | **scratch** | All node types | /scratch         | scratch-lv     | variable     |
     +-------------+----------------+------------------+----------------+--------------+
 
@@ -44,6 +46,7 @@ sizes on a controller.
         | a4d83571-a555-4ba5-999f-af709206ae35 | backup  | 25          | backup-lv      |
         | d57652a1-af17-47b8-b941-9ebfeee4a56f | docker  | 30          | docker-lv      |
         | a84374c6-8917-4db5-bd34-2a8d244f2bf6 | kubelet | 10          | kubelet-lv     |
+        | f0c5a8a9-57c7-4072-932d-8f7aac519f8c | log     | 8           | log-lv         |
         | 2c026d6f-5c03-4135-abca-c0047aa7f5a6 | scratch | 8           | scratch-lv     |
         +--------------------------------------+---------+-------------+----------------+
 
