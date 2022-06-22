@@ -104,3 +104,10 @@ The following sections provide details on managing these certificates.
 -   :ref:`Local Registry Server Certificates <security-install-update-the-docker-registry-certificate>`
 
 -   :ref:`System Trusted CA Certificates <add-a-trusted-ca>`
+
+For further information about certificates expiration date or other certificates
+information, see :ref:`Display Certificates Installed on a System <utility-script-to-display-certificates>`.
+In addition, |prod| monitors the installed certificates on the system by raising
+alarms for expire-soon certificates and for expired certificates on the system,
+see :ref:`Expiring-Soon and Expired Certificate Alarms
+<alarm-expiring-soon-and-expired-certificates-baf5b8f73009>`.
