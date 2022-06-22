@@ -13,7 +13,7 @@ Create LDAP Linux Accounts
 .. note::
     For security reasons, it is recommended that ONLY admin level users be
     allowed to |SSH| to the nodes of the |prod|. Non-admin level users should
-    strictly use remote |CLIs| or remote web GUIs.
+    strictly use remote CLIs or remote web GUIs.
 
 The :command:`ldapusersetup` command provides an interactive method for setting
 up |LDAP| Linux user accounts.
@@ -57,11 +57,11 @@ For convenience, identify the user's Keystone account user name in |prod-long|.
 
         .. code-block:: none
 
-            Enter username to add to |LDAP|:
+            Enter username to add to LDAP:
 
         .. code-block:: none
 
-            Successfully added user user1 to |LDAP|
+            Successfully added user user1 to LDAP
             Successfully set password for user user1
 
 
@@ -79,7 +79,7 @@ For convenience, identify the user's Keystone account user name in |prod-long|.
 
         .. code-block:: none
 
-            Successfully modified user entry uid=ldapuser1, ou=People, dc=cgcs, dc=local in |LDAP|
+            Successfully modified user entry uid=ldapuser1, ou=People, dc=cgcs, dc=local in LDAP
             Updating password expiry to 90 days
 
     #.  Change the warning period before the password expires.
@@ -102,7 +102,11 @@ On completion of the script, the command prompt is displayed.
 
 .. rubric:: |result|
 
-The |LDAP| account is created. For information about the user login process,
-see :ref:`For StarlingX and Platform OpenStack CLIs from a Local LDAP Linux
-Account Login <establish-keystone-credentials-from-a-linux-account>`.
+The Local |LDAP| account is created. For information about the user login
+process, see :ref:`For StarlingX and Platform OpenStack CLIs from a Local LDAP
+Linux Account Login <establish-keystone-credentials-from-a-linux-account>`.
 
+For managing composite Local |LDAP| Accounts (i.e. with associated Keystone and
+Kubernetes accounts) for a standalone cloud or a distributed cloud, see
+:ref:`Manage Composite Local LDAP Accounts at Scale
+<manage-local-ldap-39fe3a85a528>`.

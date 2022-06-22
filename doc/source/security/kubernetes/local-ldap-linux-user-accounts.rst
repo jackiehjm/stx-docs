@@ -8,23 +8,25 @@ Local LDAP Linux User Accounts
 
 You can create regular Linux user accounts using the |prod| LDAP service.
 
-LDAP accounts are centrally managed; changes made on any host are propagated
-automatically to all hosts on the cluster.
+Local |LDAP| accounts are centrally managed on the active controller;  all
+hosts in the cloud/cluster use the Local |LDAP| server on the active controller
+for |SSH| and Console authentication.
 
 The intended use of these accounts is to provide additional admin level user
-accounts \(in addition to sysadmin\) that can SSH to the nodes of the |prod|.
+accounts \(in addition to sysadmin\) that can |SSH| to the nodes of the |prod|.
 
 .. note::
     For security reasons, it is recommended that ONLY admin level users be
-    allowed to SSH to the nodes of the |prod|. Non-admin level users should
-    strictly use remote CLIs or remote web GUIs.
+    allowed to |SSH| to the nodes of the |prod|. Non-admin level users should
+    strictly use remote |CLIs| or remote web GUIs.
 
-Apart from being centrally managed, LDAP user accounts behave as any local user
-account. They can be added to the sudoers list, and can acquire Keystone
-administration credentials, Kubernetes kubectl, and helm administrative
-commands as the Kubernetes admin user, when executing on the active controller.
+Apart from being centrally managed, Local |LDAP| user accounts behave as any
+local user account. They can be added to the sudoers list, and can acquire
+Keystone administration credentials, Kubernetes kubectl, and helm
+administrative commands as the Kubernetes admin user, when executing on the
+active controller.
 
-LDAP user accounts share the following set of attributes:
+Local |LDAP| user accounts share the following set of attributes:
 
 
 .. _local-ldap-linux-user-accounts-ul-d4q-g5c-5p:
@@ -47,8 +49,8 @@ LDAP user accounts share the following set of attributes:
 
 -   Home directories and passwords are backed up and restored by the system
     backup utilities. Note that only passwords are synced across hosts \(both
-    LDAP users and **sysadmin**\). Home directories are not automatically synced
-    and are local to that host.
+    |LDAP| users and **sysadmin**\). Home directories are not automatically
+    synced and are local to that host.
 
 
 .. _local-ldap-linux-user-accounts-section-kts-bvh-ynb:
@@ -57,8 +59,8 @@ LDAP user accounts share the following set of attributes:
 Default LDAP User Accounts
 --------------------------
 
-The following LDAP user accounts are available by default on newly deployed
-hosts, regardless of their personality:
+The following Local |LDAP| user accounts are available by default on newly
+deployed hosts, regardless of their personality:
 
 **operator**
     A cloud administrative account, comparable to the default **admin**
@@ -73,12 +75,12 @@ hosts, regardless of their personality:
     commands and is included in the sudoers list.
 
 For increased security, the **admin** and **operator** accounts must be used
-from the console ports of the hosts; no SSH access is allowed.
+from the console ports of the hosts; no |SSH| access is allowed.
 
 
 .. _local-ldap-linux-user-accounts-ul-h22-ql4-tz:
 
--   These accounts serve as system access redundancies in the event that SSH
+-   These accounts serve as system access redundancies in the event that |SSH|
     access is unavailable. In the event of any issues with connectivity, user
     lockout, or **sysadmin** passwords being forgotten or not getting propagated
     properly, the presence of these accounts can be essential in gaining access
@@ -89,4 +91,4 @@ from the console ports of the hosts; no SSH access is allowed.
 
 .. seealso::
 
-    :ref:`Creating LDAP Linux Accounts <create-ldap-linux-accounts>`
+    :ref:`Create LDAP Linux Accounts <create-ldap-linux-accounts>`
