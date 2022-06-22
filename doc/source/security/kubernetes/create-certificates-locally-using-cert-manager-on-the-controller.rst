@@ -81,8 +81,6 @@ for use in a lab environment.
               secretName: my-server-certificate
               duration: 2160h # 90d
               renewBefore: 360h # 15d
-              organization:
-              - WindRiver
               commonName: 1.1.1.1
               dnsNames:
               - myserver.wrs.com

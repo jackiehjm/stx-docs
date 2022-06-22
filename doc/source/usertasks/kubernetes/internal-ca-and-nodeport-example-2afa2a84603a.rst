@@ -95,8 +95,6 @@ This example requires that:
             name: abccompany-starlingx-rootca-issuer
             kind: Issuer
           commonName: abccompany-starlingx.mycompany.com
-          organization:
-          - abccompany-starlingx
           dnsNames:
           - abccompany-starlingx.mycompany.com
           ipAddresses:
