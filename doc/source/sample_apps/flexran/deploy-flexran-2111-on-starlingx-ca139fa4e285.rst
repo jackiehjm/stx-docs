@@ -161,7 +161,7 @@ platform: **Coyote Pass** (housing ICX-SP).
        # get following error message.
        # Cannot configure device 73b13ddf-99be-44c8-8fbe-db85eb8d99ba until host
        # controller-0 is unlocked for the first time.
-       system host-device-modify controller-0 pci_0000_85_00_0 -e true --driver igb_uio --vf-driver vfio -N 1
+       system host-device-modify controller-0 pci_0000_85_00_0 --driver igb_uio --vf-driver vfio -N 1
 
        system host-unlock $NODE
 
@@ -524,7 +524,7 @@ The following steps provide a quick-start procedure for developers.
        RUN yum install -y vim gcc-c++ libhugetlbfs* libstdc++* kernel-devel numa* gcc git mlocate \
                   cmake wget ncurses-devel hmaccalc zlib-devel binutils-devel elfutils-libelf-devel \
                   numactl-devel libhugetlbfs-devel bc patch git patch tar zip unzip python3 sudo docker
-       
+
        RUN yum install -y gtk3 mesa-libgbm at-spi2-core libdrm xdg-utils libxcb libnotify
 
        RUN yum install -y centos-release-scl
