@@ -119,6 +119,7 @@
 .. |SANs| replace:: :abbr:`SANs (Subject Alternative Names)`
 .. |SAS| replace:: :abbr:`SAS (Serial Attached SCSI)`
 .. |SATA| replace:: :abbr:`SATA (Serial AT Attachment)`
+.. |SBR| replace:: :abbr:`SBR (Source-Based Routing)`
 .. |SCTP| replace:: :abbr:`SCTP (Stream Control Transmission Protocol)`
 .. |SDO| replace:: :abbr:`SDO (Secure Device Onboard)`
 .. |SLA| replace:: :abbr:`SLA (Service Level Agreement)`
@@ -137,6 +138,7 @@
 .. |SWACT| replace:: :abbr:`SWACT (SWitch ACTivity)`
 .. |TAI| replace:: :abbr:`TAI (International Atomic Time)`
 .. |T-BC| replace:: :abbr:`T-BC (Telecom Boundary Clock)`
+.. |TBF| replace:: :abbr:`TBF (Token Bucket Filter)`
 .. |TCP| replace:: :abbr:`TCP (Transition Control Protocol)`
 .. |TFTP| replace:: :abbr:`TFTP (Trivial File Transfer Protocol)`
 .. |T-GM| replace:: :abbr:`T-GM (Telecom Grand Primary)`
@@ -166,6 +168,7 @@
 .. |VPC| replace:: :abbr:`VPC (Virtual Port Channel)`
 .. |vRAN| replace:: :abbr:`vRAN (virtualized Radio Access Network)`
 .. |VRF| replace:: :abbr:`VRF (Virtual Routing and Forwarding)`
+.. |VRFs| replace:: :abbr:`VRFs (Virtual Routing and Forwarding)`
 .. |VTEP| replace:: abbr:`VTEP (Virtual Tunnel End Point)`
 .. |VXLAN| replace:: :abbr:`VXLAN (Virtual eXtensible Local Area Network)`
 .. |VXLANs| replace:: :abbr:`VXLANs (Virtual eXtensible Local Area Networks)`

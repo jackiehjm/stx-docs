@@ -157,25 +157,27 @@ Optimize application performance
 
 .. _add-sriov-interface-to-container:
 
--------------------------------------
-Add an SRIOV interface to a container
--------------------------------------
+--------------------------------------------------
+Add an Additional Network Interface to a Container
+--------------------------------------------------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
-   creating-network-attachment-definitions
-   using-network-attachment-definitions-in-a-container
-
-
------------------------
-Use the Bond CNI Plugin
------------------------
-
-.. toctree::
-   :maxdepth: 1
-
+   add-an-additional-network-interface-to-a-container-616bc5c5a6dd
+   sriov-plugin-4229f81b27ce
+   host-device-plugin-714d4862a825
+   macvlan-plugin-e631cca21ffb
+   ipvlan-plugin-150be92d0538
+   bridge-plugin-7caa94024df4
+   ptp-plugin-bc6ed0498f4c
+   vlan-plugin-37938fe8578f
+   tuning-plugin-08f8cdbf1763
+   bandwidth-plugin-3b8966c3fe47
+   source-based-routing-plugin-51648f2ddff1
+   virtual-routing-and-forwarding-plugin-0e53f2c2de21
    integrate-the-bond-cni-plugin-2c2f14733b46
+
 
 --------------
 Metrics Server

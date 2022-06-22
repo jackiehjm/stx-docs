@@ -1,8 +1,8 @@
 .. _integrate-the-bond-cni-plugin-2c2f14733b46:
 
-=============================
-Integrate the Bond CNI Plugin
-=============================
+===========
+Bond Plugin
+===========
 
 The bond-cni plugin provides a method for aggregating multiple network
 interfaces into a single logical "bonded" interface.
@@ -70,9 +70,9 @@ see:
 
 https://www.kernel.org/doc/Documentation/networking/bonding.txt
 
-----------------------------------------------------------------------------
-Exampe: Launch a daemonset bonding two host interfaces in active-backup mode
-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+Example: Launch a daemonset bonding two host interfaces in active-backup mode
+-----------------------------------------------------------------------------
 
 The following example launches a daemonset bonding two host interfaces in
 active-backup mode.  Since the ``linksInContainer`` value is not set (default),
