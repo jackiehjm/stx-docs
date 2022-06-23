@@ -49,6 +49,7 @@ Manage Non-Admin Type Users
    disable-pod-security-policy-checking
    assign-pod-security-policies
    resource-management
+   pod-security-admission-controller-8e9e6994100f
 
 .. _user-authentication-using-windows-active-directory-security-index:
 

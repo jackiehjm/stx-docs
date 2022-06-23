@@ -101,6 +101,7 @@
 .. |PMD| replace:: :abbr:`PMD (Pole Mode Driver)`
 .. |PQDN| replace:: :abbr:`PDQN (Partially Qualified Domain Name)`
 .. |PQDNs| replace:: :abbr:`PQDNs (Partially Qualified Domain Names)`
+.. |PSA| replace:: :abbr:`PSA (Pod Security Admission)`
 .. |PSP| replace:: :abbr:`PSP (Pod Security Policy)`
 .. |PSPs| replace:: :abbr:`PSPs (Pod Security Policies)`
 .. |PTP| replace:: :abbr:`PTP (Precision Time Protocol)`

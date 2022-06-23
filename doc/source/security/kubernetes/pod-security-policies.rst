@@ -48,3 +48,17 @@ policy checking. Setting this parameter also creates:
  	kube-system, such that at least restricted Deployments/ReplicaSets/etc. can
  	be created by any authenticated user in any namespaces that user has access
  	to based on other [Cluster]RoleBindings.
+
+PodSecurityPolicy (PSP) is deprecated as of Kubernetes v1.21 and will be
+removed in v1.25. PSP will continue to be fully functional until being removed
+in v1.25.
+
+Since first introduced PSP has shown some serious usability problems.
+
+The way PSPs are applied to Pods has proven confusing especially when trying to
+use them. It is easy to accidentally grant broader permissions than intended,
+and difficult to inspect which PSPs apply in a certain situation.
+
+As a beta feature, Kubernetes offers a built-in Pod Security Admission (PSA)
+controller, the successor to PSP. See :ref:`Technology Preview - Pod Security
+Admission Controller <pod-security-admission-controller-8e9e6994100f>`.
