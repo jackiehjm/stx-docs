@@ -325,7 +325,7 @@ health of the system.
 
        OR
 
-       <hostname> is not locked to remote PTP Grand Master
+       <hostname> is not locked to remote PTP Grand Master (|PTS|)
 
        OR
 
