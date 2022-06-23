@@ -36,23 +36,6 @@ health of the system.
    :header-rows: 0
 
    * - **Alarm ID: 900.002**
-     - Obsolete patch in system.
-   * - Entity Instance
-     - host=controller
-   * - Degrade Affecting Severity:
-     - None
-   * - Severity:
-     - W\*
-   * - Proposed Repair Action
-     - Remove and delete obsolete patches.
-
------
-
-.. list-table::
-   :widths: 6 25
-   :header-rows: 0
-
-   * - **Alarm ID: 900.003**
      - Patch host install failure.
    * - Entity Instance
      - host=<hostname>
@@ -62,6 +45,23 @@ health of the system.
      - M\*
    * - Proposed Repair Action
      - Undo patching operation.
+
+-----
+
+.. list-table::
+   :widths: 6 25
+   :header-rows: 0
+
+   * - **Alarm ID: 900.003**
+     - Obsolete patch in system.
+   * - Entity Instance
+     - host=controller
+   * - Degrade Affecting Severity:
+     - None
+   * - Severity:
+     - W\*
+   * - Proposed Repair Action
+     - Remove and delete obsolete patches.
 
 -----
 
