@@ -6,6 +6,15 @@
 Portieris Overview
 ==================
 
+.. warning::
+
+    The Portieris application is not supported with k8s 1.22 and 1.23.
+    If you apply Portieris on a system running k8s 1.22 or 1.23 this will
+    result in failure of the **Apply** operation.
+
+    **Workaround**: It is recommended to only apply the Portieris application on
+    systems running k8s 1.21.8.
+
 You can enforce |prod| image security policies using the Portieris admission
 controller.
 
