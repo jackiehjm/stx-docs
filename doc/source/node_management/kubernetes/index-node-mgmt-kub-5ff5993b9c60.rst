@@ -88,15 +88,16 @@ Common host tasks using the CLI
    common_host_tasks/resetting-a-host-using-the-cli
    common_host_tasks/deleting-a-host-using-the-cli
 
---------------------------------
-Configuring CPU core assignments
---------------------------------
+------------------------------
+Configuring CPU core behaviour
+------------------------------
 
 .. toctree::
    :maxdepth: 1
 
    configuring_cpu_core_assignments/configuring-cpu-core-assignments
    configuring_cpu_core_assignments/changing-the-hyper-threading-status
+   host-cpu-mhz-parameters-configuration-d9ccf907ede0
 
 ------------------------
 Host memory provisioning
@@ -403,3 +404,4 @@ Provision BMC using the CLI
    provisioning_bmc/provisioning-bmc-when-adding-a-host
    provisioning_bmc/provisioning-bmc-after-adding-a-host
    provisioning_bmc/deprovisioning-board-management-control-from-the-cli
+

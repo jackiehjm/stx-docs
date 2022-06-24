@@ -139,7 +139,7 @@ A sample **Hosts** tab is illustrated below:
     The **Edit Host** button displays the Edit Host window, as illustrated
     below for a worker node:
 
-    .. figure:: /node_management/kubernetes/figures/gkb1569351598356.png
+    .. figure:: /node_management/kubernetes/figures/CPUFrequencyDefault.png
         :scale: 100%
 
     This is the same window you use to assign the host's personality when
@@ -153,6 +153,12 @@ A sample **Hosts** tab is illustrated below:
         -   **Personality**: Select the personality or type of host.
 
         -   **Host Name**: Hostname of the host.
+
+        -  **CPU Frequency Configuration**: Configure a host's CPU cores maximum
+           frequency. If you select the **Custom** option,  a dropbox to edit the
+           host's Max CPU Frequency will be opened or selecting the **Default**
+           option, the host's Max CPU Frequency will be restored to the
+           ``max_cpu_mhz_allowed`` value.
 
         -   **Location**: Type a physical location for the host to help
             identify the host.
