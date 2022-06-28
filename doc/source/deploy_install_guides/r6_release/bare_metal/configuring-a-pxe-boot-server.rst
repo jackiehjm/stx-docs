@@ -19,7 +19,7 @@ initialization.
 |prod| includes a setup script to simplify configuring a |PXE| boot server. If
 you prefer, you can manually apply a custom configuration; for more
 information, see :ref:`Access PXE Boot Server Files for a Custom Configuration
-<accessing-pxe-boot-server-files-for-a-custom-configuration>`.
+<accessing-pxe-boot-server-files-for-a-custom-configuration-r6>`.
 
 The |prod| setup script accepts a path to the root TFTP directory as a
 parameter, and copies all required files for BIOS and |UEFI| clients into this
