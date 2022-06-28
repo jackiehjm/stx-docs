@@ -195,6 +195,7 @@ Operator Command Logging
    :maxdepth: 1
 
    operator-command-logging
+   kubernetes-operator-command-logging-663fce5d74e7
 
 ****************
 UEFI Secure Boot
@@ -243,4 +244,3 @@ Appendix: Locally creating certificates
 
    create-certificates-locally-using-openssl
    create-certificates-locally-using-cert-manager-on-the-controller
-
