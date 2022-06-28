@@ -24,11 +24,13 @@ independently.
 
 #.  Select the **SystemController** region.
 
-#.  Select **Distributed Cloud Admin** \> **Software Management**.
+#.  Select **Distributed Cloud Admin** \> **Orchestration**.
 
-#.  On the Software Management page, select the **Cloud Patching Configuration** tab.
+#.  On the **Orchestration** page, select the **Cloud Patching Configuration**
+    tab.
 
     .. image:: figures/qfq1525194569886.png
+        :width: 1000px
 
     Take one of the following actions:
 
@@ -37,14 +39,14 @@ independently.
         default, click **Edit Configuration** in the **all clouds default** row.
 
         .. image:: figures/brk1525194697928.png
-        
+
         To save your changes, click **Edit Cloud Patching Configuration**.
 
     -   To create custom settings for an individual subcloud, click **Create
         New Cloud Patching Configuration**.
 
         .. image:: figures/vzc1525194338519.png
-        
+
         In the **Subcloud** field, select the subcloud for the custom settings.
 
         To save your configuration changes, click **Create Cloud Patching

@@ -6,8 +6,12 @@
 Configure Kubernetes Version Upgrade Distributed Cloud Orchestration
 ====================================================================
 
-You can configure a *Kubernetes Version Upgrade Distributed Cloud
-Orchestration Strategy* using the **dcmanager** CLI.
+You can configure a Kubernetes Version Upgrade Distributed Cloud Orchestration
+Strategy using the dcmanager CLI or the Horizon web interface.
+
+If you want to use the Horizon Web interface, see
+:ref:`create-a-kubernetes-upgrade-orchestration-using-horizon-16742b62ffb2`.
+
 
 .. note::
     Management-affecting alarms cannot be ignored using relaxed alarm rules

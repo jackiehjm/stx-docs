@@ -3,13 +3,13 @@
 .. _distributed-upgrade-orchestration-process-using-the-cli:
 
 =======================================================
-Distributed Upgrade Orchestration Process Using the CLI
+Distributed Upgrade Orchestration Process using the CLI
 =======================================================
 
 Distributed upgrade orchestration can be initiated after the System Controller
 has been successfully upgraded.
 
-For more information Prestaging Subcloud Orchestration see,
+For more information on Prestaging Subcloud Orchestration see,
 :ref:`prestage-subcloud-orchestration-eb516473582f`.
 
 .. rubric:: |context|
@@ -88,6 +88,11 @@ following conditions:
     data:
 
     :command:`sudo rm /opt/platform-backup/upgrade_data\*`
+
+You can configure an upgrade Distributed Cloud orchestration strategy using the
+dcmanager CLI or the Horizon web interface. If you prefer to use Horizon, see
+:ref:`create-an-upgrade-orchestration-using-horizon-9f8c6c2f3706`.
+
 
 .. rubric:: |proc|
 
@@ -321,6 +326,8 @@ following conditions:
         | created_at             | 2020-03-23T20:04:50.992444 |
         | updated_at             | 2020-03-23T20:05:14.157352 |
         +------------------------+----------------------------+
+
+
 
 .. rubric:: |postreq|
 

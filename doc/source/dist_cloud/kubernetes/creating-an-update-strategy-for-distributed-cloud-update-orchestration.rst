@@ -28,7 +28,7 @@ available on the Cloud Patching Configuration tab.
 
 .. rubric:: |prereq|
 
-You must be in **SystemController** mode. To change the mode, see
+You must be in **SystemController** region. To change the region, see
 :ref:`RegionOne and SystemController Modes
 <regionone-and-systemcontroller-modes>`.
 
@@ -36,29 +36,32 @@ You must be in **SystemController** mode. To change the mode, see
 
 #.  Select the **SystemController** region.
 
-#.  Select **Distributed Cloud Admin** \> **Software Management**.
+#.  Select **Distributed Cloud Admin** \> **Orchestration**.
 
-#.  On the Software Management page, select the **Cloud Strategy Orchestration**
+#.  On the **Orchestration** page, select the **Orchestration Strategy**
     tab.
 
-    .. image:: figures/update-strategy-1.png
+    .. image:: figures/create-strategy.png
+        :width: 1000px
 
 
-#.  On the Cloud Strategy Orchestration tab, click **Create Strategy**.
+#.  On the **Cloud Strategy Orchestration** tab, click **Create Strategy**.
 
-    In the Create Strategy dialog box, adjust the settings as needed.
+    In the **Create Strategy** dialog box, adjust the settings as needed.
 
     **Strategy Type**
-        Patch, Upgrade, Kubernetes, or Firmware.
+        Patch.
 
     **Apply to**
         Subcloud or Subcloud Group.
 
     **Subcloud**
-        Write the subcloud name.
+        Select the subcloud name, only if you have chosen the **Apply to:
+        Subcloud** option.
 
     **Subcloud Group**
-        Write the subcloud group name, only if you select the **Apply to: Subcloud Group** option.
+        Write the subcloud group name, only if you select the **Apply to:
+        Subcloud Group** option.
 
     **Stop on Failure**
         default true — determines whether update orchestration failure for a
@@ -68,13 +71,24 @@ You must be in **SystemController** mode. To change the mode, see
         Parallel or Serial, default Parallel — determines whether the subclouds
         are updated in parallel or serially.
 
+        This option is available when **Apply to** is set to "Subcloud" and
+        **Subcloud** is set to **All subclouds**.
+
     **Maximum Parallel Subclouds**
         default 20 — If this is not specified using the |CLI|, the values for
         max_parallel_subclouds defined for each subcloud group will be used by
         default.
 
+        This option is available when **Apply to** is set to "Subcloud" and
+        **Subcloud** is set to **All subclouds**.
+
     **Force**
         default False.
+
+        Offline subcloud is not skipped. Applicable only when the strategy is
+        created to a single subcloud.
+
+        This option is available when **Strategy Type** is set to "Upgrade".
 
     .. image:: figures/update-strategy-2.png
 

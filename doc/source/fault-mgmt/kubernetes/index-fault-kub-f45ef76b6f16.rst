@@ -99,6 +99,8 @@ Troubleshooting log collection
 
    troubleshooting-log-collection
 
+.. _fm-alarm-messages:
+
 **************
 Alarm messages
 **************
