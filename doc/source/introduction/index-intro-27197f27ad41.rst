@@ -33,6 +33,7 @@ Learn more about StarlingX:
    functional_overview
    deploy_config_overview
    deploy_options
+   fault-and-performance-management-940c6f6b3f6e
    terms
    consuming
    StarlingX Project Overview (PDF) <https://www.starlingx.io/collateral/StarlingX_Onboarding_Deck_for_Web.pdf>
