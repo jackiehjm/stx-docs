@@ -102,3 +102,14 @@
    because target lable differs here/partner contexts.
 
 .. |_link-inst-book| replace:: :ref:`Installation guide <index-install-e083ca818006>`
+
+
+.. Debian Tech Preview
+
+.. |deb-prev-prods| replace:: |prod|
+.. |deb-510-kernel-release| replace:: release 6.0
+.. |deb-eval-release| replace:: release 7.0
+.. |deb-production-release| replace:: release 8.0
+.. |deb-install-step-change| replace:: \
+.. |deb-dup-std-na| replace:: Duplex, and standard configurations are not available.
+.. |deb-update-iso| replace:: \

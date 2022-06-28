@@ -17,7 +17,7 @@ use the contents of the working directory to construct a |PXE| boot environment
 according to your own requirements or preferences.
 
 For more information about using a |PXE| boot server, see :ref:`Configure a
-PXE Boot Server <configuring-a-pxe-boot-server>`.
+PXE Boot Server <configuring-a-pxe-boot-server-r5>`.
 
 .. rubric:: |proc|
 

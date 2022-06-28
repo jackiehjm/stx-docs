@@ -6,7 +6,7 @@
 Local LDAP Linux User Accounts
 ==============================
 
-You can create regular Linux user accounts using the |prod| LDAP service.
+You can create regular Linux user accounts using the |prod| |LDAP| service.
 
 Local |LDAP| accounts are centrally managed on the active controller;  all
 hosts in the cloud/cluster use the Local |LDAP| server on the active controller
@@ -40,9 +40,39 @@ Local |LDAP| user accounts share the following set of attributes:
 -   Login sessions are logged out automatically after about 15 minutes of
     inactivity.
 
--   The accounts are blocked following five consecutive unsuccessful login
-    attempts. They are unblocked automatically after a period of about five
-    minutes.
+-   After each unsuccessful login attemt, a 15 second delay is imposed before
+    making another attempt. If you attempt to login before 15 seconds the
+    system will display a message such as:
+
+    ``Account temporary locked (10 seconds left)``
+
+    .. note:: On Debian-based |prod| systems, this delay is 3 seconds.
+
+    -   After five consecutive unsuccessful login attempts, further attempts are
+        blocked for about five minutes. On further attemps within 5 minutes, the
+        system will display a message such as:
+
+        ``Account locked due to 6 failed logins``
+
+        .. note::
+
+            On Debian-based |prod| systems, you are alerted on the 6th and
+            subsequent attempts:
+
+            ``Account locked due to 6 failed logins``
+
+            and an error message is displayed on subsequent attempts:
+
+            ``Maximum number of tries exceeded (5)``
+
+        To clarify, on CentOS-based |prod| systems, the 5 minute block is not an
+        absolute window, but a sliding one. That is, if you keep attempting to log
+        in within those 5 minutes, the window keeps sliding and the you remain
+        blocked. Therefore, you should not attempt any further login attempts for 5
+        minutes after 5 unsuccessful login attempts.
+
+        On Debian-based |prod| systems, 5 mins after the account is locked, the
+        failed attempts will be reset and failed attempts re-counted.
 
 -   All authentication attempts are recorded on the file /var/log/auth.log
     of the target host.
