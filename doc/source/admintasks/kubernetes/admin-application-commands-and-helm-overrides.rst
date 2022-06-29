@@ -33,15 +33,16 @@ commands to manage containerized applications provided as part of |prod|.
 
         ~(keystone_admin)]$ system application-list --nowrap
 
-        +--------------+---------+---------------+----------------+----------+-----------+
-        | application  | version | manifest name | manifest file  | status   | progress  |
-        +--------------+---------+---------------+----------------+----------+-----------+
-        | platform-    | 1.0-7   | platform-     | manifest.yaml  | applied  | completed |
-        | integ-apps   |         | integration-  |                |          |           |
-        |              |         | manifest      |                |          |           |
-        | |prefix|-|s|         | 1.0-18  | armada-       | |prefix|- |s|          | uploaded | completed |
-        | openstack    |         | manifest      | openstack.yaml |          |           |
-        +--------------+---------+---------------+----------------+----------+-----------+
+        +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
+        | application              | version | manifest name                             | manifest file    | status   | progress  |
+        +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
+        | cert-manager             | 1.0-34  | cert-manager-fluxcd-manifests             | fluxcd-manifests | applied  | completed |
+        | nginx-ingress-controller | 1.1-35  | nginx-ingress-controller-fluxcd-manifests | fluxcd-manifests | applied  | completed |
+        | oidc-auth-apps           | 1.0-68  | oidc-auth-apps-fluxcd-manifests           | fluxcd-manifests | uploaded | completed |
+        | platform-integ-apps      | 1.0-52  | platform-integ-apps-fluxcd-manifests      | fluxcd-manifests | applied  | completed |
+        | rook-ceph-apps           | 1.0-17  | rook-ceph-manifest                        | manifest.yaml    | uploaded | completed |
+        +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
+
 
 -   Use the following command to show details for |prod|.
 
@@ -58,20 +59,20 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. parsed-literal::
 
-        ~(keystone_admin)]$ system application-show |prefix|-openstack
+        ~(keystone_admin)]$ system application-show cert-manager
 
         +---------------+----------------------------------+
         | Property      | Value                            |
         +---------------+----------------------------------+
-        | active        | False                            |
-        | app_version   | 1.0-18                           |
-        | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | |prefix|-openstack.yaml   |s|            |
-        | manifest_name | armada-manifest                  |
-        | name          | |prefix|-openstack   |s|                 |
+        | active        | True                             |
+        | app_version   | 1.0-34                           |
+        | created_at    | 2022-06-21T02:21:24.218835+00:00 |
+        | manifest_file | fluxcd-manifests                 |
+        | manifest_name | cert-manager-fluxcd-manifests    |
+        | name          | cert-manager                     |
         | progress      | completed                        |
-        | status        | uploaded                         |
-        | updated_at    | 2019-09-06T15:34:46.995929+00:00 |
+        | status        | applied                          |
+        | updated_at    | 2022-06-21T03:13:01.051293+00:00 |
         +---------------+----------------------------------+
 
 -   Use the following command to upload application Helm chart\(s\) and
@@ -99,22 +100,21 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. parsed-literal::
 
-        ~(keystone_admin)]$ system application-upload |prefix|-openstack-1.0-18.tgz
+        ~(keystone_admin)]$ system application-upload metrics-server-1.0-17.tgz
         +---------------+----------------------------------+
         | Property      | Value                            |
         +---------------+----------------------------------+
         | active        | False                            |
-        | app_version   | 1.0-18                           |
-        | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | |prefix|-openstack.yaml  |s|             |
-        | manifest_name | armada-manifest                  |
-        | name          | |prefix|-openstack       |s|             |
+        | app_version   | 1.0-17                           |
+        | created_at    | 2022-06-21T15:40:36.152383+00:00 |
+        | manifest_file | fluxcd-manifests                 |
+        | manifest_name | metrics-server-fluxcd-manifests  |
+        | name          | metrics-server                   |
         | progress      | None                             |
         | status        | uploading                        |
         | updated_at    | None                             |
         +---------------+----------------------------------+
-        Please use 'system application-list' or 'system application-show |prefix|-openstack'
-        to view the current progress.
+        Please use 'system application-list' or 'system application-show metrics-server' to view the current progress.
 
 -   To list the Helm chart overrides for the |prod|, use the following
     command:
@@ -344,22 +344,21 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. parsed-literal::
 
-        ~(keystone_admin)]$ system application-apply |prefix|-openstack
+        ~(keystone_admin)]$ system application-apply metrics-server
         +---------------+----------------------------------+
         | Property      | Value                            |
         +---------------+----------------------------------+
         | active        | False                            |
-        | app_version   | 1.0-18                           |
-        | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | |prefix|-openstack.yaml  |s|             |
-        | manifest_name | armada-manifest                  |
-        | name          | |prefix|-openstack       |s|             |
+        | app_version   | 1.0-17                           |
+        | created_at    | 2022-06-21T15:40:36.152383+00:00 |
+        | manifest_file | fluxcd-manifests                 |
+        | manifest_name | metrics-server-fluxcd-manifests  |
+        | name          | metrics-server                   |
         | progress      | None                             |
         | status        | applying                         |
-        | updated_at    | 2019-09-06T15:34:46.995929+00:00 |
+        | updated_at    | 2022-06-21T15:40:42.727918+00:00 |
         +---------------+----------------------------------+
-        Please use 'system application-list' or 'system application-show |prefix|-openstack'
-        to view the current progress.
+        Please use 'system application-list' or 'system application-show metrics-server' to view the current progress.
 
 -   Use the following command to abort the current application.
 
@@ -409,7 +408,6 @@ commands to manage containerized applications provided as part of |prod|.
             |                          |          | -manifest                     | _manifest.yaml            |          |           |
             | oidc-auth-apps           | 20.06-26 | oidc-auth-manifest            | manifest.yaml             | uploaded | completed |
             | platform-integ-apps      | 20.06-9  | platform-integration-manifest | manifest.yaml             | applied  | completed |
-            | wr-analytics             | 20.06-2  | analytics-armada-manifest     | wr-analytics.yaml         | applied  | completed |
             +--------------------------+----------+-------------------------------+---------------------------+----------+-----------+
 
         The output indicates that the currently installed version of
@@ -441,22 +439,21 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. parsed-literal::
 
-        ~(keystone_admin)]$ system application-remove |prefix|-openstack
-        +---------------+----------------------------------+
-        | Property      | Value                            |
-        +---------------+----------------------------------+
-        | active        | False                            |
-        | app_version   | 1.0-18                           |
-        | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | |prefix|-openstack.yaml   |s|            |
-        | manifest_name | armada-manifest                  |
-        | name          | |prefix|-openstack       |s|             |
-        | progress      | None                             |
-        | status        | removing                         |
-        | updated_at    | 2019-09-06T17:39:19.813754+00:00 |
-        +---------------+----------------------------------+
-        Please use 'system application-list' or 'system application-show |prefix|-openstack'
-        to view the current progress.
+        ~(keystone_admin)]$ system application-remove metrics-server
+       +---------------+----------------------------------+
+       | Property      | Value                            |
+       +---------------+----------------------------------+
+       | active        | False                            |
+       | app_version   | 1.0-17                           |
+       | created_at    | 2022-06-21T15:40:36.152383+00:00 |
+       | manifest_file | fluxcd-manifests                 |
+       | manifest_name | metrics-server-fluxcd-manifests  |
+       | name          | metrics-server                   |
+       | progress      | None                             |
+       | status        | removing                         |
+       | updated_at    | 2022-06-21T15:45:55.204697+00:00 |
+       +---------------+----------------------------------+
+        Please use 'system application-list' or 'system application-show metrics-server' to view the current progress.
 
     This command places the application in the uploaded state.
 
@@ -478,5 +475,5 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. parsed-literal::
 
-        ~(keystone_admin)]$ system application-delete |prefix|-openstack
-        Application |prefix|-openstack deleted.
+        ~(keystone_admin)]$ system application-delete metrics-server
+        Application metrics-server deleted.

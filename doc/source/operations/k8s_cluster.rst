@@ -93,7 +93,7 @@ Kubernetes
 	* Persistent Volume Claims backed by Ceph
 	* Local Docker Registry
 	* Helm/Tiller – Kubernetes Package Manager
-	* Armada (Airship)
+	* FluxCD or Armada Airship (deprecated)
 
 ----------------------------
 Kubernetes cluster interface
@@ -152,15 +152,14 @@ StarlingX application package manager
 Use the StarlingX :command:`system application-*` commands to manage
 containerized application deployment from the commandline.
 
-StarlingX application management provides a wrapper around
-`Airship Armada <https:// opendev.org/airship/armada.git>`_ and
+StarlingX application management provides a wrapper around FluxCD and
 `Kubernetes Helm <https://github.com/helm/helm>`_ for managing containerized
-applications. Armada is a tool for managing multiple Helm charts with
-dependencies by centralizing all configurations in a single Armada YAML
+applications. FluxCD is a tool for managing multiple Helm charts with
+dependencies by centralizing all configurations in a single FluxCD YAML
 definition and providing life-cycle hooks for all Helm releases.
 
 A StarlingX application package is a compressed tarball containing a ``metadata.yaml``
-file, a ``manifest.yaml`` Armada manifest file, and a charts directory containing
+file, a ``manifest.yaml`` FluxCD manifest file, and a charts directory containing
 Helm charts and a ``checksum.md5`` file. The ``metadata.yaml`` file contains the
 application name, version, and optional Helm repository and disabled charts
 information.
@@ -178,7 +177,7 @@ Use the following commands with the StarlingX application manager:
 	Show application details such as name, status, and progress.
 
 ``application-upload``
-	Upload a new application package. This command loads the application’s Armada
+	Upload a new application package. This command loads the application’s FluxCD
 	manifest and Helm charts into an internal database and automatically applies
 	system overrides for well-known Helm charts, allowing the Helm chart to be
 	applied optimally to the current cluster configuration.
@@ -203,7 +202,7 @@ Use the following commands with the StarlingX application manager:
 ``application-apply``
 	Apply or reapply the application manifest and Helm charts. This command
 	installs or updates the existing installation of the application based on its
-	Armada manifest, Helm charts, and Helm charts’ combined system and user overrides.
+	FluxCD manifest, Helm charts, and Helm charts’ combined system and user overrides.
 
 ``application-abort``
 	Abort the current application operation.

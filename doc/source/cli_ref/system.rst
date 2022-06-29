@@ -276,8 +276,8 @@ The :command:`host-sensor*` commands provide the ability to:
 Application management
 **********************
 
-|prod| provides an application package management that combines Airship
-Armada and Kubernetes Helm. The |prod| application management provides:
+|prod| provides an application package management based on FluxCD and
+Kubernetes Helm. The |prod| application management provides:
 
 * System Helm overrides to automatically apply |prod| applications according
   to the particular |prod| configuration currently running.

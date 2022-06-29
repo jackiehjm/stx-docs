@@ -222,7 +222,7 @@ The backup contains the following:
 
     ok: [localhost] => (item=/opt/patch-vault)
 
-  * Armada manifests
+  * FluxCD manifests
 
     ok: [localhost] => (item=/opt/platform/armada/<SW_VERSION>)
 

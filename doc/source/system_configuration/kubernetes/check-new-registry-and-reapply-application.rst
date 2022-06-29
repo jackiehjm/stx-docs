@@ -15,17 +15,17 @@ to controller-1 and perform the same steps.
 
    .. code-block:: none
 
-       sudo docker login new-registry.domain.com:9001
+       $ sudo docker login new-registry.domain.com:9001
 
 #. Run this command to do a test pull of the image:
 
    .. code-block:: none
 
-       sudo docker image pull new-registry.domain.com:9001/product-abc/starlingx/docker.io/alpine:latest
-       crictl pull --creds docker:****** new-registry.domain.com:9001/product-abc/starlingx/docker.io/alpine:latest
+       $ sudo docker image pull new-registry.domain.com:9001/product-abc/starlingx/docker.io/alpine:latest
+       $ crictl pull --creds docker:****** new-registry.domain.com:9001/product-abc/starlingx/docker.io/alpine:latest
 
-       sudo docker image rm new-registry.domain.com:9001/product-abc/starlingx/docker.io/alpine:latest
-       crictl rmi new-registry.domain.com:9001/product-abc/starlingx/docker.io/alpine:latest
+       $ sudo docker image rm new-registry.domain.com:9001/product-abc/starlingx/docker.io/alpine:latest
+       $ crictl rmi new-registry.domain.com:9001/product-abc/starlingx/docker.io/alpine:latest
 
 #. Check if an application re-apply will now properly pull from the registries.
    First, remove the images for an application, such as
@@ -35,7 +35,7 @@ to controller-1 and perform the same steps.
 
    .. code-block:: none
 
-       system registry-image-tags quay.io/kubernetes-ingress-controller/nginx-ingress-controller
+       ~(keystone_admin)]$ system registry-image-tags quay.io/kubernetes-ingress-controller/nginx-ingress-controller
        +-----------+
        | Image Tag |
        +-----------+
@@ -57,7 +57,7 @@ to controller-1 and perform the same steps.
 
    .. code-block:: none
 
-       system application-apply nginx-ingress-controller
+       ~(keystone_admin)]$ system application-apply nginx-ingress-controller
 
 #. Then, debug tail ``-f /var/log/sysinv.log`` and look for the following information:
 
@@ -73,23 +73,22 @@ to controller-1 and perform the same steps.
 
    .. code-block:: none
 
-       system application-list
-        +--------------------------+----------+-----------------------------------+---------------------------------+----------+-----------+
-        | application              | version  | manifest name                     | manifest file                   | status   | progress  |
-        +--------------------------+----------+-----------------------------------+---------------------------------+----------+-----------+
-        | cert-manager             | 20.06-4  | cert-manager-manifest             | certmanager-manifest.yaml       | applied  | completed |
-    --> | nginx-ingress-controller | 20.06-0  | nginx-ingress-controller-manifest | nginx_ingress_controller_manife | applied  | completed |
-        |                          |          |                                   | st.yaml                         |          |           |
-        |                          |          |                                   |                                 |          |           |
-        | oidc-auth-apps           | 20.06-26 | oidc-auth-manifest                | manifest.yaml                   | uploaded | completed |
-        | platform-integ-apps      | 20.06-9  | platform-integration-manifest     | manifest.yaml                   | uploaded | completed |
-        +--------------------------+----------+-----------------------------------+---------------------------------+----------+-----------+
+       ~(keystone_admin)]$ system application-list
+       +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+
+       | application              | version | manifest name                             | manifest file    | status   | progress             |
+       +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+
+       | cert-manager             | 1.0-34  | cert-manager-fluxcd-manifests             | fluxcd-manifests | applied  | completed            |
+       | nginx-ingress-controller | 1.1-35  | nginx-ingress-controller-fluxcd-manifests | fluxcd-manifests | applied  | completed            |
+       | oidc-auth-apps           | 1.0-68  | oidc-auth-apps-fluxcd-manifests           | fluxcd-manifests | uploaded | completed            |
+       | platform-integ-apps      | 1.0-52  | platform-integ-apps-fluxcd-manifests      | fluxcd-manifests | applied  | completed            |
+       | rook-ceph-apps           | 1.0-17  | rook-ceph-manifest                        | manifest.yaml    | uploaded | completed            |
+       +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+
 
 #. Validate that the image is in the local registry:
 
    .. code-block:: none
 
-       system registry-image-tags quay.io/kubernetes-ingress-controller/nginx-ingress-controller
+       ~(keystone_admin)]$ system registry-image-tags quay.io/kubernetes-ingress-controller/nginx-ingress-controller
         +-----------+
         | Image Tag |
         +-----------+

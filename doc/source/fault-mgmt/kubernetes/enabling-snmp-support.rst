@@ -27,72 +27,73 @@ In order to enable and configure |SNMP|, complete the following steps.
        ~(keystone_admin)]$
 
 #.  Use the following command to list the system applications and check whether
-    SNMP is uploaded or applied. If SNMP is already "uploaded", go to
-    Step 5 to configure and enable SNMP. If SNMP is already "applied", SNMP is
-    already configured and enabled, see, :ref:`Change Configuration of the SNMP application <change-configuration-of-SNMP>`
-    to make configuration changes.
+    |SNMP| is uploaded or applied. If |SNMP| is already "uploaded", go to Step
+    5 to configure and enable |SNMP|. If |SNMP| is already "applied", |SNMP| is
+    already configured and enabled, see, :ref:`Change Configuration of the SNMP
+    application <change-configuration-of-SNMP>` to make configuration changes.
 
     .. code-block:: none
 
        ~(keystone)admin)$ system application-list
-        +--------------------------+-------------------------+-----------------------------------+----------------------------------------+---------------+-----------+
-        | application              | version                 | manifest name                     | manifest file                          | status        | progress  |
-        +--------------------------+-------------------------+-----------------------------------+----------------------------------------+---------------+-----------+
-        | cert-manager             | 1.0-6                   | cert-manager-manifest             | certmanager-manifest.yaml              | applied       | completed |
-        | nginx-ingress-controller | 1.0-0                   | nginx-ingress-controller-manifest | nginx_ingress_controller_manifest.yaml | applied       | completed |
-        | oidc-auth-apps           | 1.0-29                  | oidc-auth-manifest                | manifest.yaml                          | uploaded      | completed |
-        | platform-integ-apps      | 1.0-9                   | platform-integration-manifest     | manifest.yaml                          | applied       | completed |
-        | rook-ceph-apps           | app-version-placeholder | manifest-placeholder              | tarfile-placeholder                    | upload-failed | None      |
-        +--------------------------+-------------------------+-----------------------------------+----------------------------------------+---------------+-----------+
+       +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
+       | application              | version | manifest name                             | manifest file    | status   | progress  |
+       +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
+       | cert-manager             | 1.0-34  | cert-manager-fluxcd-manifests             | fluxcd-manifests | applied  | completed |
+       | nginx-ingress-controller | 1.1-35  | nginx-ingress-controller-fluxcd-manifests | fluxcd-manifests | applied  | completed |
+       | oidc-auth-apps           | 1.0-68  | oidc-auth-apps-fluxcd-manifests           | fluxcd-manifests | uploaded | completed |
+       | platform-integ-apps      | 1.0-52  | platform-integ-apps-fluxcd-manifests      | fluxcd-manifests | applied  | completed |
+       | rook-ceph-apps           | 1.0-17  | rook-ceph-manifest                        | manifest.yaml    | uploaded | completed |
+       +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
 
-#.  In order to load the SNMP application definitions (Armada manifest and Helm
-    charts), where **[snmp-<Major>.<Minor>-<Build>.tgz]**, for example,
-    **snmp-1.0-2.tgz** is the app filename, with version **1.0-2**,
-    available at the following path "/usr/local/share/applications/helm",
-    use the following command.
+#.  In order to load the |SNMP| application definitions (FluxCD manifest and
+    Helm charts), where **[snmp-<Major>.<Minor>-<Build>.tgz]**, for example,
+    **snmp-1.0-2.tgz** is the app filename, with version **1.0-2**, available
+    at the following path "/usr/local/share/applications/helm", use the
+    following command.
 
     .. code-block:: none
 
-        ~(keystone)admin)$ system application-upload <path>/snmp-1.0-2.tgz
+        ~(keystone)admin)$ system application-upload <path>/snmp-1.0-36.tgz
         +---------------+----------------------------------+
         | Property      | Value                            |
         +---------------+----------------------------------+
         | active        | False                            |
-        | app_version   | 1.0-2                            |
-        | created_at    | 2020-11-30T14:45:20.442133+00:00 |
-        | manifest_file | snmp_manifest.yaml               |
-        | manifest_name | snmp-manifest                    |
+        | app_version   | 1.0-36                           |
+        | created_at    | 2022-06-27T10:45:42.733267+00:00 |
+        | manifest_file | fluxcd-manifests                 |
+        | manifest_name | snmp-fluxcd-manifests            |
         | name          | snmp                             |
         | progress      | None                             |
         | status        | uploading                        |
         | updated_at    | None                             |
         +---------------+----------------------------------+
 
-#.  List the SNMP application using the following command to see the status
+#.  List the |SNMP| application using the following command to see the status
     of the upload and wait for the upload to complete.
 
     .. code-block:: none
 
         ~(keystone)admin)$ system application-list
-        +--------------------------+-------------------------+-----------------------------------+----------------------------------------+---------------+-----------+
-        | application              | version                 | manifest name                     | manifest file                          | status        | progress  |
-        +--------------------------+-------------------------+-----------------------------------+----------------------------------------+---------------+-----------+
-        | cert-manager             | 1.0-6                   | cert-manager-manifest             | certmanager-manifest.yaml              | applied       | completed |
-        | nginx-ingress-controller | 1.0-0                   | nginx-ingress-controller-manifest | nginx_ingress_controller_manifest.yaml | applied       | completed |
-        | oidc-auth-apps           | 1.0-29                  | oidc-auth-manifest                | manifest.yaml                          | uploaded      | completed |
-        | platform-integ-apps      | 1.0-9                   | platform-integration-manifest     | manifest.yaml                          | applied       | completed |
-        | rook-ceph-apps           | app-version-placeholder | manifest-placeholder              | tarfile-placeholder                    | upload-failed | None      |
-        | snmp                     | 1.0-2                   | snmp-manifest                     | snmp_manifest.yaml                     | uploaded      | completed |
-        +--------------------------+-------------------------+-----------------------------------+----------------------------------------+---------------+-----------+
+        +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
+        | application              | version | manifest name                             | manifest file    | status   | progress  |
+        +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
+        | cert-manager             | 1.0-34  | cert-manager-fluxcd-manifests             | fluxcd-manifests | applied  | completed |
+        | nginx-ingress-controller | 1.1-35  | nginx-ingress-controller-fluxcd-manifests | fluxcd-manifests | applied  | completed |
+        | oidc-auth-apps           | 1.0-68  | oidc-auth-apps-fluxcd-manifests           | fluxcd-manifests | uploaded | completed |
+        | platform-integ-apps      | 1.0-52  | platform-integ-apps-fluxcd-manifests      | fluxcd-manifests | applied  | completed |
+        | rook-ceph-apps           | 1.0-17  | rook-ceph-manifest                        | manifest.yaml    | uploaded | completed |
+        | snmp                     | 1.0-36  | snmp-fluxcd-manifests                     | fluxcd-manifests | uploaded | completed |
+        +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
 
-#.  Create a Helm chart values file (for example, user_conf.yaml) with the
-    definition of the **configmap:user_conf** attribute, defining your SNMP
+#.  Create a Helm chart values file (for example, ``user_conf.yaml``) with the
+    definition of the ``configmap:user_conf`` attribute, defining your |SNMP|
     configuration of V2 communities, V2 trap sinks, V3 users and/or V3 trap
-    sessions, as shown in the example below. The **configmap:user_conf**
-    variable in the SNMP Helm chart is a multi-line variable that follows the
-    syntax of Net-SNMP's snmpd.conf file for configuring the SNMP agent, see
-    `http://www.net-snmp.org/docs/man/snmpd.conf.html <http://www.net-snmp.org/docs/man/snmpd.conf.html>`__,
-    for a detailed description of the commands.
+    sessions, as shown in the example below. The ``configmap:user_conf``
+    variable in the |SNMP| Helm chart is a multi-line variable that follows the
+    syntax of Net-SNMP's ``snmpd.conf`` file for configuring the |SNMP| agent,
+    see `http://www.net-snmp.org/docs/man/snmpd.conf.html
+    <http://www.net-snmp.org/docs/man/snmpd.conf.html>`__, for a detailed
+    description of the commands.
 
     .. warning::
 
@@ -127,10 +128,10 @@ In order to enable and configure |SNMP|, complete the following steps.
        EOF
 
     **\(Optional\)** You can add your own EngineID value, instead of having it
-    auto-created. This keeps the EngineID value the same, even when the SNMP
-    application restarts. The EngineID is required if you are using an SNMP
-    trap viewer or SNMP monitoring tool. Add the 'engineID [STRING]' value in
-    the **configmap:user_conf** variable, as shown below.
+    auto-created. This keeps the EngineID value the same, even when the |SNMP|
+    application restarts. The EngineID is required if you are using an |SNMP|
+    trap viewer or |SNMP| monitoring tool. Add the 'engineID [STRING]' value in
+    the ``configmap:user_conf`` variable, as shown below.
 
     .. code-block:: none
 
@@ -142,7 +143,7 @@ In order to enable and configure |SNMP|, complete the following steps.
        ...
        EOF
 
-#.  Update the values of the **configmap:user_conf** attribute on the Helm
+#.  Update the values of the ``configmap:user_conf`` attribute on the Helm
     chart using the following command.
 
     .. code-block:: none
@@ -172,45 +173,45 @@ In order to enable and configure |SNMP|, complete the following steps.
         | Property      | Value                            |
         +---------------+----------------------------------+
         | active        | False                            |
-        | app_version   | 1.0-2                            |
-        | created_at    | 2020-11-30T14:45:20.442133+00:00 |
-        | manifest_file | snmp_manifest.yaml               |
-        | manifest_name | snmp-manifest                    |
+        | app_version   | 1.0-36                           |
+        | created_at    | 2022-06-27T10:45:42.733267+00:00 |
+        | manifest_file | fluxcd-manifests                 |
+        | manifest_name | snmp-fluxcd-manifests            |
         | name          | snmp                             |
         | progress      | None                             |
         | status        | applying                         |
-        | updated_at    | 2020-11-30T14:45:23.088575+00:00 |
+        | updated_at    | 2022-06-27T10:45:51.253949+00:00 |
         +---------------+----------------------------------+
 
-#.  List the SNMP application and check the status. Wait for the SNMP
+#.  List the |SNMP| application and check the status. Wait for the SNMP
     application to have fully started and is in the "applied" state.
 
     .. code-block:: none
 
         ~(keystone)admin)$ system application-list
-        +--------------------------+-------------------------+-----------------------------------+----------------------------------------+---------------+-----------+
-        | application              | version                 | manifest name                     | manifest file                          | status        | progress  |
-        +--------------------------+-------------------------+-----------------------------------+----------------------------------------+---------------+-----------+
-        | cert-manager             | 1.0-6                   | cert-manager-manifest             | certmanager-manifest.yaml              | applied       | completed |
-        | nginx-ingress-controller | 1.0-0                   | nginx-ingress-controller-manifest | nginx_ingress_controller_manifest.yaml | applied       | completed |
-        | oidc-auth-apps           | 1.0-29                  | oidc-auth-manifest                | manifest.yaml                          | uploaded      | completed |
-        | platform-integ-apps      | 1.0-9                   | platform-integration-manifest     | manifest.yaml                          | applied       | completed |
-        | rook-ceph-apps           | app-version-placeholder | manifest-placeholder              | tarfile-placeholder                    | upload-failed | None      |
-        | snmp                     | 1.0-2                   | snmp-manifest                     | snmp_manifest.yaml                     | applied       | completed |
-        +--------------------------+-------------------------+-----------------------------------+----------------------------------------+---------------+-----------+
+        +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+
+        | application              | version | manifest name                             | manifest file    | status   | progress             |
+        +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+
+        | cert-manager             | 1.0-34  | cert-manager-fluxcd-manifests             | fluxcd-manifests | applied  | completed            |
+        | nginx-ingress-controller | 1.1-35  | nginx-ingress-controller-fluxcd-manifests | fluxcd-manifests | applied  | completed            |
+        | oidc-auth-apps           | 1.0-68  | oidc-auth-apps-fluxcd-manifests           | fluxcd-manifests | uploaded | completed            |
+        | platform-integ-apps      | 1.0-52  | platform-integ-apps-fluxcd-manifests      | fluxcd-manifests | applied  | completed            |
+        | rook-ceph-apps           | 1.0-17  | rook-ceph-manifest                        | manifest.yaml    | uploaded | completed            |
+        | snmp                     | 1.0-36  | snmp-fluxcd-manifests                     | fluxcd-manifests | applied  | completed            |
+        +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+
 
-#.  Create a Helm chart values file (for example, snmp_port.yaml) with UDP and
-    TCP port mapping rules, for the nginx-ingress-controller application, to
-    expose the SNMP services on the required ports. Use external ports 161/UDP
-    and 162/TCP.
+#.  Create a Helm chart values file (for example, ``snmp_port.yaml``) with UDP
+    and TCP port mapping rules, for the nginx-ingress-controller application,
+    to expose the |SNMP| services on the required ports. Use external ports
+    161/UDP and 162/TCP.
 
-    **kube-system/snmpd-service:161** is the standard SNMP Agent's UDP port for
-    receiving SNMP requests. It should be configured as mapped to external UDP
-    port **161**, the default for SNMP Agents. This port can be modified, see,
-    :ref:`Modifying 161/UDP port <modifying-161udp-port>` procedure for details
-    on modifying this port.
+    **kube-system/snmpd-service:161** is the standard |SNMP| Agent's UDP port
+    for receiving |SNMP| requests. It should be configured as mapped to
+    external UDP port **161**, the default for |SNMP| Agents. This port can be
+    modified, see, :ref:`Modifying 161/UDP port <modifying-161udp-port>`
+    procedure for details on modifying this port.
 
-    **kube-system/snmpd-service:162** is used internally by the SNMP
+    **kube-system/snmpd-service:162** is used internally by the |SNMP|
     application to receive trap info from |prod|. It should be configured
     as mapped to external TCP port **162**. This port can be modified, see
     :ref:`Modifying 162/TCP port <modifying-162tcp-port>` procedure below for
@@ -225,7 +226,7 @@ In order to enable and configure |SNMP|, complete the following steps.
          162: "kube-system/snmpd-service:162"
        EOF
 
-#.  Update the values of the SNMP port mappings in the Helm Chart for the
+#.  Update the values of the |SNMP| port mappings in the Helm Chart for the
     nginx-ingress-controller application.
 
     .. code-block:: none
@@ -248,22 +249,22 @@ In order to enable and configure |SNMP|, complete the following steps.
     .. code-block:: none
 
       ~(keystone_admin)$ system application-apply nginx-ingress-controller
-      +---------------+----------------------------------------+
-      | Property      | Value                                  |
-      +---------------+----------------------------------------+
-      | active        | True                                   |
-      | app_version   | 1.0-0                                  |
-      | created_at    | 2020-10-19T04:59:40.505583+00:00       |
-      | manifest_file | nginx_ingress_controller_manifest.yaml |
-      | manifest_name | nginx-ingress-controller-manifest      |
-      | name          | nginx-ingress-controller               |
-      | progress      | None                                   |
-      | status        | applying                               |
-      | updated_at    | 2020-11-10T17:27:21.509548+00:00       |
-      +---------------+----------------------------------------+
+      +---------------+--------------------------------------+
+      | Property      | Value                                |
+      +---------------+--------------------------------------+
+      | active        | True                                 |
+      | app_version   | 1.0-52                               |
+      | created_at    | 2022-06-26T21:21:47.428225+00:00     |
+      | manifest_file | fluxcd-manifests                     |
+      | manifest_name | platform-integ-apps-fluxcd-manifests |
+      | name          | platform-integ-apps                  |
+      | progress      | none                                 |
+      | status        | applying                             |
+      | updated_at    | 2022-06-26T21:30:06.767995+00:00     |
+      +---------------+--------------------------------------+
 
-#.  Redirect the SNMP UDP traffic to port 161 by creating the next policies.yml
-    file and apply it as below.
+#.  Redirect the |SNMP| UDP traffic to port 161 by creating the next
+    ``policies.yml`` file and apply it as below.
 
     Change the ipVersion parameter value from 4 to 6 if you are using IPV6.
 
@@ -349,10 +350,10 @@ update its configuration.
        EOF
 
     **\(Optional\)** You can add your own EngineID value, instead of having it
-    auto-created. This keeps the EngineID value the same, even when the SNMP
-    application restarts. The EngineID is required if you are using an SNMP
-    trap viewer or SNMP monitoring tool. Add the 'engineID [STRING]' value in
-    the **configmap:user_conf** variable, as shown below.
+    auto-created. This keeps the EngineID value the same, even when the |SNMP|
+    application restarts. The EngineID is required if you are using an |SNMP|
+    trap viewer or |SNMP| monitoring tool. Add the 'engineID [STRING]' value in
+    the`` configmap:user_conf`` variable, as shown below.
 
     .. code-block:: none
 
@@ -364,7 +365,7 @@ update its configuration.
        ...
        EOF
 
-#.  Update the values of the **configmap:user_conf** attribute on the Helm
+#.  Update the values of the ``configmap:user_conf`` attribute on the Helm
     chart using the following command.
 
     .. code-block:: none
@@ -392,15 +393,15 @@ update its configuration.
        +---------------+----------------------------------+
        | Property      | Value                            |
        +---------------+----------------------------------+
-       | active        | True                             |
-       | app_version   | 1.0-2                            |
-       | created_at    | 2020-11-10T23:25:47.226453+00:00 |
-       | manifest_file | snmp_manifest.yaml               |
-       | manifest_name | snmp-manifest                    |
+       | active        | False                            |
+       | app_version   | 1.0-36                           |
+       | created_at    | 2022-06-27T10:45:42.733267+00:00 |
+       | manifest_file | fluxcd-manifests                 |
+       | manifest_name | snmp-fluxcd-manifests            |
        | name          | snmp                             |
        | progress      | None                             |
        | status        | applying                         |
-       | updated_at    | 2020-11-10T23:30:59.276031+00:00 |
+       | updated_at    | 2022-06-27T10:45:51.253949+00:00 |
        +---------------+----------------------------------+
 
 .. _modifying-161udp-port:
@@ -409,18 +410,18 @@ update its configuration.
 Modifying 161/UDP port
 **********************
 
-Modify the external UDP port used for receiving SNMP requests.
+Modify the external UDP port used for receiving |SNMP| requests.
 
 .. note::
 
-    After changing this external UDP port, any external SNMP managers being
-    used must be updated to send their SNMP requests to |prod| using this
+    After changing this external UDP port, any external |SNMP| managers being
+    used must be updated to send their |SNMP| requests to |prod| using this
     UDP port, instead of the default UDP port 161.
 
 .. rubric:: |proc|
 
 #.  Create a Helm chart values file (for example, snmp_port.yaml) with
-    external ports 161/UDP and 162/TCP port mapping definitions, for the SNMP
+    external ports 161/UDP and 162/TCP port mapping definitions, for the |SNMP|
     services for the nginx-ingress-controller's Helm chart, as shown in the
     example below.
 
@@ -460,19 +461,20 @@ Modify the external UDP port used for receiving SNMP requests.
     .. code-block:: none
 
       ~(keystone_admin)$ system application-apply nginx-ingress-controller
-      +---------------+----------------------------------------+
-      | Property      | Value                                  |
-      +---------------+----------------------------------------+
-      | active        | True                                   |
-      | app_version   | 1.0-0                                  |
-      | created_at    | 2020-10-19T04:59:40.505583+00:00       |
-      | manifest_file | nginx_ingress_controller_manifest.yaml |
-      | manifest_name | nginx-ingress-controller-manifest      |
-      | name          | nginx-ingress-controller               |
-      | progress      | None                                   |
-      | status        | applying                               |
-      | updated_at    | 2020-11-10T17:27:21.509548+00:00       |
-      +---------------+----------------------------------------+
+      +---------------+-------------------------------------------+
+      | Property      | Value                                     |
+      +---------------+-------------------------------------------+
+      | active        | True                                      |
+      | app_version   | 1.1-35                                    |
+      | created_at    | 2022-06-26T20:49:02.437688+00:00          |
+      | manifest_file | fluxcd-manifests                          |
+      | manifest_name | nginx-ingress-controller-fluxcd-manifests |
+      | name          | nginx-ingress-controller                  |
+      | progress      | None                                      |
+      | status        | applying                                  |
+      | updated_at    | 2022-06-26T20:50:10.730709+00:00          |
+      +---------------+-------------------------------------------+
+
 
 .. _modifying-162tcp-port:
 
@@ -480,18 +482,18 @@ Modify the external UDP port used for receiving SNMP requests.
 Modifying 162/TCP port
 **********************
 
-Modify the external port used by the SNMP application to receive trap
+Modify the external port used by the |SNMP| application to receive trap
 information from |prod|.
 
-To change the port 162/TCP, you need to modify both the SNMP application Helm
+To change the port 162/TCP, you need to modify both the |SNMP| application Helm
 chart, and the nginx-ingress-controller Helm chart. The new port must be set
-to the same port number in the two Helm charts, otherwise SNMP
+to the same port number in the two Helm charts, otherwise |SNMP|
 traps will not be generated.
 
 .. rubric:: |proc|
 
-#.  Modify your SNMP Helm chart values file (for example, user_conf.yaml) by
-    adding the line "trap-server-port: [new port]" as shown in the example
+#.  Modify your |SNMP| Helm chart values file (for example, ``user_conf.yaml``)
+    by adding the line "trap-server-port: [new port]" as shown in the example
     below \("30162" is the new port in this example\).
 
     .. code-block:: none
@@ -516,13 +518,13 @@ traps will not be generated.
 
 #.  Modify your nginx ingress controller Helm chart values file
     (for example, snmp_port.yaml). Update the external port in the TCP port
-    mapping for internal port **kube-system/snmpd-service:162**. The example
+    mapping for internal port ``kube-system/snmpd-service:162``. The example
     below shows the external port updated to **30162**.
 
-    - The new port number must match the port number specified in your SNMP
-      Helm chart values file (for example, user_conf.yaml).
+    - The new port number must match the port number specified in your |SNMP|
+      Helm chart values file (for example, ``user_conf.yaml``).
 
-    - Do not modify port number "162" in **kube-system/snmpd-service:162**.
+    - Do not modify port number "162" in ``kube-system/snmpd-service:162``.
 
       .. code-block:: none
 

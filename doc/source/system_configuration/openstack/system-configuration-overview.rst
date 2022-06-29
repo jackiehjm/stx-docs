@@ -6,13 +6,13 @@
 Overview of Configuring StarlingX OpenStack
 ===========================================
 
-|prod-os| is installed and managed as an Armada application.
+|prod-os| is installed and managed as a system application.
 
 See |prod| System Configuration: :ref:`Application Management
 <system-config-helm-package-manager>`, for a description of the application
-lifecycle commands for managing an Armada application.
+lifecycle commands for managing a system application.
 
-Armada Applications are a set of one or more interdependent Application Helm
+System Applications are a set of one or more interdependent Application Helm
 Charts. In the case of |prod|, there is generally a Helm Chart for every
 OpenStack service.
 

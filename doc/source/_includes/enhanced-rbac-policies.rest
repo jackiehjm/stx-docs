@@ -4,7 +4,7 @@
 .. r1_begin
 
 #.  Download the openstack-armada repo from |prod| in opendev
-    (`StarlingX OpenStack Armada App
+    (`StarlingX OpenStack FluxCD App
     <https://opendev.org/starlingx/openstack-armada-app/src/branch/master>`__)
     to a remote workstation.
 

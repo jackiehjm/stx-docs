@@ -6,7 +6,7 @@
 Install Vault
 =============
 
-Vault is packaged as an Armada system application and is managed using
+Vault is packaged as a system application and is managed using
 :command:`system application`, and :command:`system helm-override` commands.
 
 .. rubric:: |context|
@@ -18,15 +18,15 @@ To install Vault, use the following procedure:
 
 .. rubric:: |proc|
 
-#.  Locate the Vault tarball in /usr/local/share/applications/helm.
+#.  Locate the Vault tarball in ``/usr/local/share/applications/helm``.
 
-    For example, /usr/local/share/applications/helm/vault-20.06-9.tgz.
+    For example, ``/usr/local/share/applications/helm/vault-1.0-30.tgz``.
 
 #.  Upload Vault, using the following command:
 
     .. code-block:: none
 
-        $ system application-upload /usr/local/share/applications/helm/vault-20.06-9.tgz
+        $ system application-upload ``/usr/local/share/applications/helm/vault-1.0-30.tgz``
 
 #.  Verify the Vault tarball has been uploaded.
 

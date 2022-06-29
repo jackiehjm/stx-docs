@@ -18,7 +18,7 @@ container image\(s\).
 
 The system application-update -n |prefix|-openstack effectively performs a
 helm upgrade of one or more of the OpenStack Helm chart releases within the
-Armada Application. One or all of the containerized OpenStack deployments will
+FluxCD Application. One or all of the containerized OpenStack deployments will
 be updated according to their deployment specification.
 
 .. note::

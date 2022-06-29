@@ -6,8 +6,8 @@
 Remove PTP Notifications
 ========================
 
-You can remove all pods and Kubernetes resources created during the Armada
-application deployment.
+You can remove all pods and Kubernetes resources created during the application
+deployment.
 
 
 Use the following procedure to remove |PTP| notifications.
@@ -18,7 +18,7 @@ Use the following procedure to remove |PTP| notifications.
 
 .. _remove-ptp-notifications-steps-klx-gnf-t4b:
 
-#.  Remove all pods and other Kubernetes resources created during the Armada
+#.  Remove all pods and other Kubernetes resources created during the
     deployment, using the following command:
 
     .. code-block:: none

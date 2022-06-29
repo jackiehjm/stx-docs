@@ -78,7 +78,7 @@ the |prod| software:
     through this mechanism, for example, **platform-integ-apps**.
 
     For software updates for these applications, download the updated
-    application tarball, containing the updated Armada manifest, and updated
+    application tarball, containing the updated FluxCD manifest, and updated
     Helm charts for the application, and apply the updates using the
     :command:`system application-update` command.
 
