@@ -125,4 +125,4 @@ to:
 
 -   access trusted data in Notary server corresponding to the image
 
-For more information about Portieris, including installation instructions, see :ref:'portieris-overview'.
+For more information about Portieris, including installation instructions, see :ref:`portieris-overview`.
