@@ -44,6 +44,9 @@ Before starting the upgrades process:
 
 -   there must be no management-affecting alarms present on the system
 
+-   ensure any certificates managed by cert manager will not be renewed during
+    the upgrade process
+
 -   the new software load must be imported, and
 
 -   a valid license file for the new software release must be installed

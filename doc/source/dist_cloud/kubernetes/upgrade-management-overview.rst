@@ -75,6 +75,9 @@ The following prerequisites apply to a |prod-dc| upgrade management service.
 -   The subclouds must all be |AIO-SX|, and must use the Redfish
     platform management service.
 
+-   Ensure any certificates managed by cert manager will not be renewed during
+    the upgrade process.
+
 .. only:: partner
 
     .. include:: /_includes/upgrade-management-overview.rest
