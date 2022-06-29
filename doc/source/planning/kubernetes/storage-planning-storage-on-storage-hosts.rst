@@ -42,7 +42,7 @@ Space on the storage hosts must be configured at installation before you can
 unlock the hosts. You can change the configuration after installation by adding
 resources to existing storage hosts or adding more storage hosts. For more
 information, see the `StarlingX Installation and Deployment Guide
-<https://docs.starlingx.io/deploy_install_guides/index.html>`__.
+<https://docs.starlingx.io/deploy_install_guides/index-install-e083ca818006.html>`__.
 
 Storage hosts can achieve faster data access using |SSD|-backed transaction
 journals \(journal functions\). |NVMe|-compatible |SSDs| are supported.
