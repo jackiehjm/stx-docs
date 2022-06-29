@@ -76,6 +76,12 @@ The final step of the upgrade process is to activate and complete the upgrade.
 This involves disabling 'compatibility' modes on all hosts and clearing the
 Upgrade Alarm.
 
+.. only:: partner
+
+    .. include:: /_includes/software-upgrades.rest
+       :start-after: software-upgrade-begin
+       :end-before: software-upgrade-end
+
 .. _software-upgrades-section-N1002F-N1001F-N10001:
 
 ----------------------------------
