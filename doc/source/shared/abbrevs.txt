@@ -54,6 +54,7 @@
 .. |GNSS| replace:: :abbr:`GNSS (Global Navigation Satellite System)`
 .. |GCC| replace:: :abbr:`GCC (GNU Compiler Collection)`
 .. |GPU| replace:: :abbr:`GPU (Graphics Processing Unit)`
+.. |HA| replace:: :abbr:`HA (High Availability)`
 .. |ICA| replace:: :abbr:`ICA (Intermediate Certificate Authority)`
 .. |ICAs| replace:: :abbr:`ICAs (Intermediate Certificate Authorities)`
 .. |ICMP| replace:: :abbr:`ICMP (Internet Control Message Protocol)`
