@@ -19,9 +19,11 @@ worker nodes to/from ``openstack-compute-nodes``.
 
             system host-lock <host>
 
-    #.  Add the ``openstack-compute-node`` taint, see :ref:`Add Taints to
-        OpenStack Node in Hybrid Cluster
-        <add-taints-to-openstack-node-in-hybrid-cluster-e8b37e8d1b48-r6>`.
+    #.  Add the ``openstack-compute-node`` taint.
+
+        .. code-block:: none
+
+            kubectl taint nodes <kubernetes-node-name> openstack-compute-node:NoSchedule
 
     #.  Assign OpenStack labels:
 
