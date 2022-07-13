@@ -125,7 +125,7 @@ Example usage:
    kubelet_configurations:
      featureGates:
        MemoryManager: true
-       HugePageStorageMediumSize: true 
+       HugePageStorageMediumSize: true
 
 ---------------------------------------------------------------------------------
 apiserver_extra_volumes, controllermanager_extra_volumes, scheduler_extra_volumes
@@ -137,7 +137,7 @@ configuration file.  The contents of these files are configured in the
 bootstrap overrides (localhost.yml) with the apiserver_extra_volumes,
 controllermanager_extra_volumes and scheduler_extra_volumes definitions.
 
-For instance, if admission plugins are configured and need additinal
+For instance, if admission plugins are configured and need additional
 configuration, that configuration should be set in a specific file referenced
 by the **admission-control-config-file** parameter.
 
@@ -158,47 +158,47 @@ Example usage:
        mountPath: "/etc/kubernetes/admission-control-config-file.yaml"
        readOnly: true
        pathType: "File"
-   content: | 
-     apiVersion: apiserver.config.k8s.io/v1
-     kind: AdmissionConfiguration
-     plugins:
-     - name: PodSecurity
-       configuration:
-         apiVersion: pod-security.admission.config.k8s.io/v1beta1
-         kind: PodSecurityConfiguration
-         # Defaults applied when a mode label is not set.
-         #
-         # Level label values must be one of:
-         # - "privileged" (default)
-         # - "baseline"
-         # - "restricted"
-         #
-         # Version label values must be one of:
-         # - "latest" (default) 
-         # - specific version like "v1.24"
-         defaults:
-           enforce: "privileged"
-           enforce-version: "latest"
-           audit: "privileged"
-           audit-version: "latest"
-           warn: "privileged"
-           warn-version: "latest"
-         exemptions:
-           # Array of authenticated usernames to exempt.
-           usernames: []
-           # Array of runtime class names to exempt.
-           runtimeClasses: []
-           # Array of namespaces to exempt.
-           namespaces: []
-     - name: pod-node-selector
-       mountPath: "/etc/kubernetes/pod-node-selector.yaml"
-       readOnly: true
-       pathType: "File"
        content: |
-         podNodeSelectorPluginConfig:
-         clusterDefaultNodeSelector: name-of-node-selector
-         namespace1: name-of-node-selector
-         namespace2: name-of-node-selector
+         apiVersion: apiserver.config.k8s.io/v1
+         kind: AdmissionConfiguration
+         plugins:
+         - name: PodSecurity
+           configuration:
+             apiVersion: pod-security.admission.config.k8s.io/v1beta1
+             kind: PodSecurityConfiguration
+             # Defaults applied when a mode label is not set.
+             #
+             # Level label values must be one of:
+             # - "privileged" (default)
+             # - "baseline"
+             # - "restricted"
+             #
+             # Version label values must be one of:
+             # - "latest" (default)
+             # - specific version like "v1.24"
+             defaults:
+               enforce: "privileged"
+               enforce-version: "latest"
+               audit: "privileged"
+               audit-version: "latest"
+               warn: "privileged"
+               warn-version: "latest"
+             exemptions:
+               # Array of authenticated usernames to exempt.
+               usernames: []
+               # Array of runtime class names to exempt.
+               runtimeClasses: []
+               # Array of namespaces to exempt.
+               namespaces: []
+         - name: pod-node-selector
+           mountPath: "/etc/kubernetes/pod-node-selector.yaml"
+           readOnly: true
+           pathType: "File"
+           content: |
+             podNodeSelectorPluginConfig:
+             clusterDefaultNodeSelector: name-of-node-selector
+             namespace1: name-of-node-selector
+             namespace2: name-of-node-selector
 
 The example below enables kubernetes auditing which requires an
 audit-policy-file.yaml file to specify the details of what events should be
