@@ -15,7 +15,7 @@ image, ``docker.io/starlingx/stx-centos-tools-dev:stx.7.0-v1.0.1``:
 
 -   ``ethtool``
 
--   ``tcmpdump``
+-   ``tcpdump``
 
 -   ``turbostat``
 

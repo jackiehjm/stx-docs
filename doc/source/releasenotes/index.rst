@@ -12,6 +12,10 @@ You can find details about a release on the specific release page.
      - Release Date
      - Notes
      - Status
+   * - StarlingX R7.0
+     - 2022-07
+     - :doc:`r7-0-release-notes-85446867da2a`
+     - Maintained
    * - StarlingX R6.0
      - 2021-12
      - :doc:`r6-0-release-notes-bc72d0b961e7`
@@ -19,11 +23,11 @@ You can find details about a release on the specific release page.
    * - StarlingX R5.0.1
      - 2021-09
      - :doc:`r5_0_1_release`
-     - Maintained
+     - :abbr:`EOL (End of Life)`
    * - StarlingX R5.0
      - 2021-05
      - :doc:`r5_release`
-     - Maintained
+     - :abbr:`EOL (End of Life)`
    * - StarlingX R4.0
      - 2020-08
      - :doc:`r4_release`
@@ -64,4 +68,5 @@ project-team-guide/stable-branches.html#maintenance-phases>`_ definitions.
    r5_release
    r5_0_1_release
    r6-0-release-notes-bc72d0b961e7
+   r7-0-release-notes-85446867da2a
 
