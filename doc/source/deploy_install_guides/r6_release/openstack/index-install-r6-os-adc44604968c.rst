@@ -14,7 +14,6 @@ StarlingX is independent of deployment configuration.
    :maxdepth: 2
 
    install
-   access
    uninstall_delete
 
 --------------
