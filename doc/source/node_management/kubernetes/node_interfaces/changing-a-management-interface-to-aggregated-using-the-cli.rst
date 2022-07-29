@@ -76,4 +76,4 @@ The node must be locked to edit an interface.
     .. code-block:: none
 
         ~(keystone_admin)$ system host-if-add -c platform -a 802.3ad -x layer2 worker-0 bond0 ae enp0s8 enp0s9
-        ~(keystone_admin)$ system interface-network-assign worker-0 enp0s8  enp0s9 mgmt
+        ~(keystone_admin)$ system interface-network-assign worker-0 bond0 mgmt
