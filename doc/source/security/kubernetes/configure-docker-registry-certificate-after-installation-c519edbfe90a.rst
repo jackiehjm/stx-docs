@@ -91,6 +91,19 @@ Update the following fields:
    If configuration was successful, the certificate’s Ready status will be
    ``True``.
 
+#. Update the platform's trusted certificates (i.e. ``ssl_ca``) with the Root
+   |CA| associated with ``system-registry-local-certificate``.
+
+   See the example below where a Root |CA| ``system-local-ca`` was used to sign
+   the ``system-registry-local-certificate``, the ``ca.crt`` of the
+   ``system-local-ca`` SECRET is extracted and added as a trusted |CA| for
+   |prod| (i.e. ``system certificate-install -m ssl_ca``).
+
+   .. code-block:: none
+
+      ~(keystone_admin)]$ kubectl -n cert-manager get secret system-local-ca -o yaml | fgrep tls.crt | awk '{print $2}' | base64 --decode >> system-local-ca.pem
+      ~(keystone_admin)]$ system certificate-install -m ssl_ca system-local-ca.pem
+
 .. rubric:: |result|
 
 The Docker registry certificate installation is now complete, and Cert-Manager
