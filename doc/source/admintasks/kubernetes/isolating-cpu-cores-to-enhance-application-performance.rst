@@ -20,11 +20,11 @@ For example:
 
 .. code-block:: none
 
-    ~(keystone)admin)$ system host-lock worker-1
-    ~(keystone)admin)$ system host-cpu-modify  -f platform -p0 1 worker-1
-    ~(keystone)admin)$ system host-cpu-modify  -f application-isolated -p0 15 worker-1
-    ~(keystone)admin)$ system host-cpu-modify  -f application-isolated -p1 15 worker-1
-    ~(keystone)admin)$ system host-unlock worker-1
+    ~(keystone_admin)]$ system host-lock worker-1
+    ~(keystone_admin)]$ system host-cpu-modify  -f platform -p0 1 worker-1
+    ~(keystone_admin)]$ system host-cpu-modify  -f application-isolated -p0 15 worker-1
+    ~(keystone_admin)]$ system host-cpu-modify  -f application-isolated -p1 15 worker-1
+    ~(keystone_admin)]$ system host-unlock worker-1
 
 All |SMT| siblings (hyperthreads, if enabled) on a core will have the same
 assigned function. On host boot, any CPUs designated as isolated will be
@@ -102,19 +102,19 @@ kernels:
 
     .. code-block:: none
 
-        ~(keystone)admin)$ system host-lock <worker>
+        ~(keystone_admin)]$ system host-lock <worker>
 
 #.  Assign the ``disable-nohz-full`` label.
 
     .. code-block:: none
 
-        ~(keystone)admin)$ system host-label-assign <worker> disable-nohz-full=enabled
+        ~(keystone_admin)]$ system host-label-assign <worker> disable-nohz-full=enabled
 
 #.  Unlock the host.
 
     .. code-block:: none
 
-        ~(keystone)admin)$ system host-unlock <worker>
+        ~(keystone_admin)]$ system host-unlock <worker>
 
 .. note::
     ``disable-nohz-full`` label can be also assigned via the GUI.
