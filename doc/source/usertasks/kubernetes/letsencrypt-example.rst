@@ -45,10 +45,11 @@ This example requires that:
 
     .. code-block:: none
 
-        apiVersion: cert-manager.io/v1
-        kind: Issuer
+        apiVersion: cert-manager.io/v1alpha3
+        kind: ClusterIssuer
         metadata:
           name: letsencrypt-prod
+          namespace: default
         spec:
           acme:
             # The ACME server URL
