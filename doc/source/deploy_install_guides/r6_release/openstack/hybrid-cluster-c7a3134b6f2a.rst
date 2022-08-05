@@ -13,6 +13,12 @@ The host labels are used to define each worker function on the Hybrid Cluster
 setup. For example, a standard configuration (2 controllers and 2 computes) can
 be split into (2 controllers, 1 openstack-compute and 1 kubernetes-worker).
 
+.. only:: partner
+
+   .. include:: /_includes/hybrid-cluster.rest
+       :start-after: begin-prepare-cloud-platform
+       :end-before: end-prepare-cloud-platform
+
 -----------
 Limitations
 -----------
@@ -37,9 +43,7 @@ Limitations
 
 -   Taints must be added to OpenStack compute hosts (i.e. worker nodes or
     |AIO|-Controller nodes with the ``openstack-compute-node`` label) to
-    prevent
-    end users' hosted containerized workloads/pods from being scheduled on
-    OpenStack compute hosts. See :ref:`Add Taints to OpenStack Node in
-    Hybrid Cluster
-    <add-taints-to-openstack-node-in-hybrid-cluster-e8b37e8d1b48-r6>`.
+    prevent end users' hosted containerized workloads/pods from being scheduled on
+    OpenStack compute hosts.
+
 

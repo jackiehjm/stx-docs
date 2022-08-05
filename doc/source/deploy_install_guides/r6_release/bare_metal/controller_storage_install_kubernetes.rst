@@ -632,6 +632,7 @@ Configure worker nodes
 
          for NODE in worker-0 worker-1; do
            system host-label-assign $NODE  openstack-compute-node=enabled
+           kubectl taint nodes $NODE openstack-compute-node:NoSchedule
            system host-label-assign $NODE  |vswitch-label|
          done
 
