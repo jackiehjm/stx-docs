@@ -299,7 +299,7 @@ The newly installed controller needs to be configured.
             # ( if not use another unused disk )
 
             # Get device path of ROOT DISK
-            system host-show controller-0 --nowrap | fgrep rootfs
+            system host-show controller-0 | fgrep rootfs
 
             # Get UUID of ROOT DISK by listing disks
             system host-disk-list controller-0
