@@ -116,5 +116,3 @@ kernels:
 
         ~(keystone_admin)]$ system host-unlock <worker>
 
-.. note::
-    ``disable-nohz-full`` label can be also assigned via the GUI.
