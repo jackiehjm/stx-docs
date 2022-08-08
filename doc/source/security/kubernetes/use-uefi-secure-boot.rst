@@ -45,3 +45,105 @@ For example, a controller node may secure boot, while a worker node may not.
 Secure boot must be enabled in the |UEFI| firmware of each node for that node
 to be protected by secure boot.
 
+.. only:: starlingx
+
+    --------------------------------------------------------------
+    Build considerations for signing packages for UEFI Secure Boot
+    --------------------------------------------------------------
+
+    The |prod| build environment has provisions for calling out to a signing
+    server for purposes of creating a secure boot load.  At this time |prod|
+    does not include an implementation of the signing server.  The following
+    describes how the signing process is intended to work in the context of a
+    CentOS build. You may find it helpful in implementing your own signing
+    server.
+
+    The following environmental variables should be defined before attempting
+    to request a secure boot signing:
+
+    .. code-block:: none
+
+        export SIGNING_SERVER=<signing-host>
+        export SIGNING_USER=<signing-user>
+        export SIGNING_SERVER_SCRIPT=<path-to-signing-script>
+
+        'build-pkgs' further requires that "$USER" == "jenkins", and
+
+        export FORMAL_BUILD=1
+
+    If the above criteria is met, it calls into ``sign-secure-boot``.
+
+    This is an example of the call sequence:
+
+    .. code-block:: none
+
+        # Set up the server side directory for files transfers.
+        UPLOAD_PATH=`ssh $SIGNING_USER@$SIGNING_SERVER sudo $SIGNING_SCRIPT -r`
+
+        # upload the original package
+        scp -q $FILE $SIGNING_USER@$SIGNING_SERVER:$UPLOAD_PATH
+
+        # Request that the package be signed
+        ssh $SIGNING_USER@$SIGNING_SERVER sudo $SIGNING_SCRIPT -v -i $UPLOAD_PATH/$(basename $FILE) $UNSIGNED_OPTION -t $TYPE > $TMPFILE
+
+        # Download the file from the signing server
+        DOWNLOAD_FILENAME=$(basename $OUTPUT_FILE)
+        scp -q $SIGNING_USER@$SIGNING_SERVER:$OUTPUT_FILE $(dirname $FILE)
+
+
+        Within the signing server there are two keys used for signing, known as
+        the `boot` key and the `shim` key. The public half of the `boot` key
+        must be manually added to the secure boot keychain in the firmware. The
+        `boot` key signs the first executable loaded, contained in the `shim`
+        package. The first executable must then install the public half of the
+        `shim` key (automatically) before passing control to the grub, and
+        ultimately the kernel, both of which are signed by the private `shim`
+        key.
+
+        Three packages need to be passed to the signing server. The RPMs need
+        to be unpacked, the relevant binaries signed with the correct keys, and
+        the RPMs reassembled.
+
+    .. code-block:: none
+
+        package    key   files to sign
+        =========  ====  ===========================
+        shim       boot  BOOTX64, shim, shimx64
+                   shim  MokManager, fallback, mmx64, fbx64
+        grub       shim  grubx64.efi, gcdx64.efi
+        kernel     shim
+
+    .. note::
+
+        `shim` files that are required to be signed might might include a ``.efi``
+        or ``.EFI`` suffix.
+
+        Some files may be absent in newer packages.
+
+    Example:
+
+    .. code-block:: none
+
+        sbsign --key $KEYPATH/$KEYNAME.key --cert $KEYPATH/$KEYNAME.crt  --output $SIGNEDFILE $UNSIGNEDFILE
+
+    Keys and certificates:
+
+    .. code-block:: none
+
+        boot.crt - Certificate to boot (to be programmed in firmware)
+        boot.key - Private key with which to sign shim
+        shim.crt - Certificated embedded within shim used to validate kernel, grub
+        shim.key - Private key with which to sign kernel/grub
+
+    Key generation:
+
+    .. code-block:: none
+
+        openssl req -new -x509 -newkey rsa:2048 -keyout $KEY.key -out $KEY.pem -days 3650
+        openssl x509 -in $KEY.pem -out $KEY.crt -outform DER
+
+    .. note::
+
+        ``boot.crt`` should be copied to
+        ``cgcs-root/build-tools/certificates/TiBoot.crt`` for inclusion during the
+        ``build-iso`` step.
