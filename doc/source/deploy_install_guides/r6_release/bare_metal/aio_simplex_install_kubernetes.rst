@@ -307,7 +307,7 @@ The newly installed controller needs to be configured.
             # Create new PARTITION on ROOT DISK, and take note of new partition's 'uuid' in response
             # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
             PARTITION_SIZE=30
-            system hostdisk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
+            system host-disk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
 
             # Add new partition to ‘cgts-vg’ local volume group
             system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
