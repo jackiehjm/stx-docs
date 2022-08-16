@@ -22,12 +22,12 @@ PCI Device Access for VMs
 .. toctree::
    :maxdepth: 1
 
-   sr-iov-encryption-acceleration
-   configuring-pci-passthrough-ethernet-interfaces
    pci-passthrough-ethernet-interface-devices
-   configuring-a-flavor-to-use-a-generic-pci-device
+   configuring-pci-passthrough-ethernet-interfaces
    generic-pci-passthrough
-   pci-device-access-for-vms
    pci-sr-iov-ethernet-interface-devices
+   sr-iov-encryption-acceleration
+   pci-device-access-for-vms
+   configuring-a-flavor-to-use-a-generic-pci-device
    exposing-a-generic-pci-device-for-use-by-vms
    exposing-a-generic-pci-device-using-the-cli
