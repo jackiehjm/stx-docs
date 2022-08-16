@@ -35,12 +35,13 @@ Local |LDAP| user accounts share the following set of attributes:
 
 -   The initial password must be changed immediately upon first login.
 
--   For complete details on password rules, see :ref:`System Account Password Rules <starlingx-system-accounts-system-account-password-rules>`.
+-   For complete details on password rules, see :ref:`System Account
+    Password Rules <starlingx-system-accounts-system-account-password-rules>`.
 
 -   Login sessions are logged out automatically after about 15 minutes of
     inactivity.
 
--   After each unsuccessful login attemt, a 15 second delay is imposed before
+-   After each unsuccessful login attempt, a 15 second delay is imposed before
     making another attempt. If you attempt to login before 15 seconds the
     system will display a message such as:
 
@@ -49,7 +50,7 @@ Local |LDAP| user accounts share the following set of attributes:
     .. note:: On Debian-based |prod| systems, this delay is 3 seconds.
 
     -   After five consecutive unsuccessful login attempts, further attempts are
-        blocked for about five minutes. On further attemps within 5 minutes, the
+        blocked for about five minutes. On further attempts within 5 minutes, the
         system will display a message such as:
 
         ``Account locked due to 6 failed logins``

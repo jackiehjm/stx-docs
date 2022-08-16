@@ -86,7 +86,7 @@ and ``/etc/kubernetes/pki/ca.key``.
 
     ``--expiry-date``
 
-    Optional argment to specify the expiry date of the new certificate. It has
+    Optional argument to specify the expiry date of the new certificate. It has
     to be in the "YYYY-MM-DD" format. If not specified, the new certificate
     will have the same valid period as the existing one (normally 10 years).
 

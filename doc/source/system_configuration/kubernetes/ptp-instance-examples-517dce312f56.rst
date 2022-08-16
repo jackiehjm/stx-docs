@@ -40,7 +40,7 @@ ptp4l
 
       ~(keystone_admin)]$ system ptp-instance-add ptp-inst1 ptp4l
 
-#. Create a |PTP| inteface for the instance.
+#. Create a |PTP| interface for the instance.
 
    .. code-block::
 

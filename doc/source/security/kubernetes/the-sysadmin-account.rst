@@ -32,7 +32,7 @@ The default initial password is **sysadmin**.
     .. note:: On Debian-based |prod| systems, this delay is 3 seconds.
 
 -   After five consecutive unsuccessful login attempts, further attempts are
-    blocked for about five minutes. On further attemps within 5 minutes, the
+    blocked for about five minutes. On further attempts within 5 minutes, the
     system will display a message such as:
 
     ``Account locked due to 6 failed logins``

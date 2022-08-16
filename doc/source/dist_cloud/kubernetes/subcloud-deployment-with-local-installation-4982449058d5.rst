@@ -520,7 +520,7 @@ Look for 'No space left on device' logs on the console, in the
 
 **Debugging a Rejected Local Install**
 
-The followimg command is to query Local Install logs:
+The following command is to query Local Install logs:
 
 .. code-block::
 

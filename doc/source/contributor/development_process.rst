@@ -89,7 +89,7 @@ on. Both are good places to ask questions, raise issues, and discuss
 technical topics.
 
 Please be patient. StarlingX is a global project and the person with
-the knowledge to help you may be twelve timezones away from you.
+the knowledge to help you may be twelve time zones away from you.
 
 ****************************
 Development process overview
@@ -602,7 +602,7 @@ consult with your sub-project's PL and TL to see if release
 notes are needed, and follow the
 `Release Note
 <https://docs.starlingx.io/contributor/release_note_contribute_guide.html>`_
-to contibute your changes to the release notes.
+to contribute your changes to the release notes.
 
 The documentation changes needed for a code change should be
 included in the planning phase, working with project's docs team as

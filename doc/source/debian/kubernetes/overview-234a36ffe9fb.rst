@@ -44,7 +44,7 @@ See :ref:`technology-preview-reduced-scope-0008a139a4b9` for details.
 .. rubric:: Debian |prod| General Availability
 
 
-An upcoming release will make Debian |prod| genrally available for
+An upcoming release will make Debian |prod| generally available for
 production deployments.
 
 This upcoming release  will run Debian Bullseye 11.3 or later with

@@ -156,7 +156,8 @@ To assign a dedicated |VLAN| segment ID you must first enable the Neutron
         .. note::
 
             Thr name **test1-st-segement01-mx6fa5eonzrr** has been folded onto
-            two lines in the sample output above for display pruposes.
+            two lines in the sample output above for display purposes.
+
     #.  List subnets.
 
         .. code-block:: none

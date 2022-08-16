@@ -20,8 +20,8 @@ Ceph cluster will be containerized and managed by Rook, to improve operation
 and maintenance efficiency.
 
 This guide describes a method to migrate the host-based Ceph cluster deployed with
-StarlingX early releses to the newly containerized Ceph clusters using an upcoming
-StarlingX release, while maintaining user data in :abbr:`OSDs (Object Store Devices)`.
+StarlingX early releases to the newly containerized Ceph clusters using an upcoming
+StarlingX release, while maintaining user data in |OSDs|.
 
 The migration procedure maintains CEPH OSDs and data on OSDs.  Although the procedure
 does result in hosted applications experiencing several minutes of service outage due
@@ -556,7 +556,7 @@ Apply rook-ceph application
     deployment.apps "rook-ceph-mon-a" deleted
 
 
-#. Apply service rook-ceph-mon-a, and get cluster ip, for examplex, 10.104.152.151.
+#. Apply service rook-ceph-mon-a, and get cluster ip, for example, 10.104.152.151.
 
    ::
 

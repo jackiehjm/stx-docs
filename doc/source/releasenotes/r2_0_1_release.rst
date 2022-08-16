@@ -42,7 +42,7 @@ The StarlingX 2.0.1 release provides fixes for the following bugs:
 * `1817936 <https://bugs.launchpad.net/starlingx/+bug//1817936/>`_
   Periodic message loss seen between VIM and OpenStac REST APIs
 * `1827246 <https://bugs.launchpad.net/starlingx/+bug//1827246/>`_
-  Access to VM console not working as Horion redirects to
+  Access to VM console not working as Horizon redirects to
   novncproxy.openstack.svc.cluster.local
 * `1830736 <https://bugs.launchpad.net/starlingx/+bug//1830736/>`_
   Ceph osd process was not recovered after lock and unlock on storage

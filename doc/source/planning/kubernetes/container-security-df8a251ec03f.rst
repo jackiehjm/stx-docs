@@ -66,8 +66,8 @@ Kata Containers
 Kata containers are an optional capability on |prod| that provide a secure
 container runtime with lightweight virtual machines that feel and perform like
 containers, but provide stronger workload isolation. For improved performance
-wrt isolation, Kata containers leverages hardware-enforced isotation with
-virtualization VT extensions.   
+with relation to isolation, Kata containers leverages hardware-enforced isolation
+with virtualization VT extensions.   
 
 For more information, see :ref:`starlingx-kubernetes-user-tutorials-overview`.
 
@@ -89,7 +89,7 @@ The following considerations apply to PodSecurityPolicies (PSPs):
 
 -   are disabled by default  
 
--   can be enable by the System Administor via **system service-parameter-add
+-   can be enable by the System Administrator via **system service-parameter-add
     kubernetes kube_apiserver admission_plugins=PodSecurityPolicy**
 
 |prod| provides default PSP and RBAC definitions to simplify initial

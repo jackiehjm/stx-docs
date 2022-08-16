@@ -21,7 +21,7 @@ and maintenance efficiency.
 
 This guide describes a method to migrate the Ceph cluster deployed with StarlingX
 early releases to the newly containerized Ceph clusters using an upcoming StarlingX
-release, while maintaining user data in :abbr:`OSDs (Object Store Devices)`.
+release, while maintaining user data in |OSDs|.
 
 ---------------------
 Prepare for migration
@@ -664,7 +664,7 @@ Remove script ceph.sh on all hosts.
     sudo rm -rf /etc/services.d/worker/ceph.sh
     sudo rm -rf /etc/services.d/storage/ceph.sh
 
-Reboot controller-0 and controller-1. And after the controller reboot sucessfully,
+Reboot controller-0 and controller-1. And after the controller reboot successfully,
 lock and unlock storage-0 and storage-1, wait for node to be available.
 
 -----------------------------

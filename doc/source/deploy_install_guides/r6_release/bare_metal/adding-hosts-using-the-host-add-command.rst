@@ -153,7 +153,7 @@ scripting an initial setup.
 #.  Verify that the host has been added successfully.
 
     Use the :command:`fm alarm-list` command to check if any alarms (major or
-    critical) events have occured. You can also type :command:`fm event-list`
+    critical) events have occurred. You can also type :command:`fm event-list`
     to see a log of events. For more information on alarms, see :ref:`Fault
     Management Overview <fault-management-overview>`.
 

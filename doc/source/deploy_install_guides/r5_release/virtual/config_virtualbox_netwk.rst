@@ -29,7 +29,7 @@ configure the VM using Edit Settings as follows:
 
 #.  Go to Display and move the "Video memory" slider all the way to the right.
     Then tick the "Acceleration" checkbox "Enable 3D Acceleration".
-#.  Go to General/Advanced and set "Shared Clipboard" and "Drag'n Drop" to
+#.  Go to General/Advanced and set "Shared Clipboard" and drag-and-drop to
     Bidirectional.
 #.  Go to User Interface/Devices and select "Devices/Insert Guest Additions CD
     image" from the drop down. Restart your VM.

@@ -44,7 +44,7 @@ Each service can use different storage backends.
     |         |                                                               |                                                               |
     |         | -   used for VM boot disk volumes                             |                                                               |
     |         |                                                               |                                                               |
-    |         | -   used as aditional disk volumes for VMs booted from images |                                                               |
+    |         | -   used as additional disk volumes for VMs booted from images|                                                               |
     |         |                                                               |                                                               |
     |         | -   snapshots and persistent backups for volumes              |                                                               |
     +---------+---------------------------------------------------------------+---------------------------------------------------------------+

@@ -146,9 +146,9 @@ where, <UUID> is the UUID of the ssl\_ca certtype to be removed.
     followed by locking and unlocking all controller nodes for the change to
     take effect.
 
------------------------------------
-Update/Renew trusted CA certficates
------------------------------------
+------------------------------------
+Update/Renew trusted CA certificates
+------------------------------------
 
 .. warning::
 

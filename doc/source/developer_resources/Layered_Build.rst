@@ -73,7 +73,7 @@ you want to define ``STX_CONFIG_DIR``? Possibly when working on a major
 change in the lower layer, such as the cutover to a newer OS version. Or
 perhaps when redefining the set of layers, or the boundary between layers. In
 these cases it might be very painful to repo sync due to conflicts. It
-might be desireable to copy ``stx-tools/centos-mirror-tools/config`` outside
+might be desirable to copy ``stx-tools/centos-mirror-tools/config`` outside
 of git for a time, and make your changes there. More on the config
 directory below.
 
@@ -407,7 +407,7 @@ Using option 'b' (see below) would be safer.
 Option b) Use an alternative config directory.
 
 Copy the default config to an alternative directory outside of git,
-but still visible to the build.  In the copyied config, edit the config files,
+but still visible to the build.  In the copied config, edit the config files,
 replacing the existing 'distro' url's with ``file:///`` urls.  Finally
 instruct the build to use the alternate config.  I'll use the
 environment variable method in the example below.  It can also be done
@@ -479,7 +479,7 @@ Making packaging changes
 
 **In what layer should I place my new compiled package ?**
 
-If the package is original content, writen for the StarlingX project, it
+If the package is original content, written for the StarlingX project, it
 belongs in the 'flock' layer. Yes, envision a flock of starling, might
 be corny but that is what we named it. All other content is considered
 third party and goes in either the 'distro' or 'compiler' layer.

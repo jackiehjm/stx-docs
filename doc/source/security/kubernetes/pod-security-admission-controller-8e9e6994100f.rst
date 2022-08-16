@@ -204,7 +204,7 @@ namespaces:
 Pod Security Admission Controller - Usage Example
 -------------------------------------------------
 
-This page walks thru a usage example of |PSA| where you will:
+This page walks through a usage example of |PSA| where you will:
 
 -   Create a namespace for each of the 3 security policies levels: privileged,
     baseline and restricted.

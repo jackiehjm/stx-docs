@@ -75,7 +75,7 @@ StoryBoard entries for the features.
 
   `2006274 <https://storyboard.openstack.org/#!/story/2006274>`_
 
-* Support for OpenID connet authentication parameters for bootstrap
+* Support for OpenID connect authentication parameters for bootstrap
 
   `2006235 <https://storyboard.openstack.org/#!/story/2006235>`_
 
