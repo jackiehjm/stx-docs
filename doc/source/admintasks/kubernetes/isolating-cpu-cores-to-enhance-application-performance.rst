@@ -94,7 +94,12 @@ kernel type, but for standard kernels, you can enable the ``disable-nohz-full``
 label to disable it.
 
 Use the procedure below to disable the ``nohz_full`` parameter on standard
-kernels:
+kernels.
+
+.. note::
+
+    For VirtualBox environments, you must add the `disable-nohz-full=enabled`
+    label prior to host unlock.
 
 .. rubric:: |proc|
 
