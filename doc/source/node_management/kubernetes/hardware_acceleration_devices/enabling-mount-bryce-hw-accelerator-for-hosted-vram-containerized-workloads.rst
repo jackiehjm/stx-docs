@@ -137,6 +137,19 @@ enables the Mount Bryce device.
         ~(keystone_admin)$ system host-unlock controller-0
 
 
+.. note::
+    For Mount Bryce ACC100 device, the number of |VF| bundles (``num_vf_bundles``)
+    field is automatically changed in ``/usr/share/pf-bb-config/acc100/acc100_config_1vf_4g5g.cfg``
+    configuration file by updating the value of the ``-N`` parameter via the
+    :command:`system host-device-modify` command.
+
+    In addition to the automatic mode, if additional configuration is needed in
+    other parts of the configuration file, it is necessary to handle it manually
+    by the operator without any validation. This new configuration will not take
+    place on the device until a new :command:`system host-device-modify` command
+    for that device is run, or host is locked/unlocked.
+
+
 .. rubric:: |result|
 
 To set up pods using |SRIOV|, see :ref:`Setting Up Pods to Use SRIOV to Access
