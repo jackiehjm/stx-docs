@@ -34,19 +34,19 @@ modifications noted above and below.
 You will also need to make the following modifications:
 
 -  when creating the user configuration overrides for the Ansible bootstrap
-   playbook in /home/sysadmin/localhost.yml
+   playbook in ``/home/sysadmin/localhost.yml``
 
-   -   Add the parameters shown in bold below to your /home/sysadmin/localhost.yml
+   -   Add the parameters shown in bold below to your ``/home/sysadmin/localhost.yml``
        Ansible bootstrap override file to indicate that this cloud will play
        the role of the Central Cloud / System Controller.
 
 -  restrict the range of addresses for the management network (using
-   management_start_address and management_end_address, as shown below) to
+   ``management_start_address`` and ``management_end_address``, as shown below) to
    exclude the IP addresses reserved for gateway routers that provide routing
    to the subclouds' management subnets.
 
 -  Also, include the container images shown in bold below in
-   additional\_local\_registry\_images, required for support of subcloud
+   ``additional_local_registry_images``, required for support of subcloud
    installs with the Redfish Platform Management Service, and subcloud installs
    using a Ceph storage backend.
 

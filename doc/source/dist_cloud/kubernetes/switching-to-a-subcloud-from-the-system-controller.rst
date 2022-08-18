@@ -13,7 +13,7 @@ You can access the Horizon Web interface for individual subclouds from the Syste
 The System Controller page includes a menu for selecting subclouds or regions.
 When you select a subcloud from this menu, the view changes to show the Horizon
 interface for the subcloud. You can use this to provision and manage the
-subcloud hosts and networks, just as you would for any |prod| system
+subcloud hosts and networks, just as you would for any |prod| system.
 
 
 .. rubric:: |proc|

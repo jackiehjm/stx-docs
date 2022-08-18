@@ -13,20 +13,20 @@ This makes access to registry.central independent of changes to the Distributed
 Cloud's Keystone admin user password.
 
 Use the following procedure to update the install registry credentials on the
-subcloud to the sysinv service credentials of the System Controller.
+subcloud to the ``sysinv`` service credentials of the System Controller.
 
 .. rubric:: |proc|
 
 .. _updating-docker-registry-credentials-on-a-subcloud-steps-ywx-wyt-kmb:
 
-#.  On the System Controller, get the password for the sysinv services.
+#.  On the System Controller, get the password for the ``sysinv`` services.
 
     .. code-block:: none
 
         $ keyring get sysinv services
 
 #.  On each subcloud, run the following script to update the Docker registry
-    credentials to sysinv:
+    credentials to ``sysinv``:
 
     .. code-block:: none
 

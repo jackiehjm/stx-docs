@@ -31,8 +31,8 @@ subcloud, the subcloud installation has these phases:
 
     After a successful remote installation of a subcloud in a Distributed Cloud
     system, a subsequent remote reinstallation fails because of an existing ssh
-    key entry in the /root/.ssh/known_hosts on the System Controller. In this
-    case, delete the host key entry, if present, from /root/.ssh/known_hosts
+    key entry in the ``/root/.ssh/known_hosts`` on the System Controller. In this
+    case, delete the host key entry, if present, from ``/root/.ssh/known_hosts``
     on the System Controller before doing reinstallations.
 
 .. rubric:: |prereq|
@@ -40,14 +40,14 @@ subcloud, the subcloud installation has these phases:
 .. _installing-a-subcloud-using-redfish-platform-management-service-ul-g5j-3f3-qjb:
 
 -   The docker **rvmc** image needs to be added to the System Controller
-    bootstrap override file, docker.io/starlingx/rvmc:stx.5.0-v1.0.0.
+    bootstrap override file, ``docker.io/starlingx/rvmc:stx.5.0-v1.0.0``.
 
 -   A new system CLI option ``--active`` is added to the
     :command:`load-import` command to allow the import into the
-    System Controller /opt/dc-vault/loads. The purpose of this is to allow
+    System Controller ``/opt/dc-vault/loads``. The purpose of this is to allow
     Redfish install of subclouds referencing a single full copy of the
-    **bootimage.iso** at /opt/dc-vault/loads. \(Previously, the full
-    **bootimage.iso** was duplicated for each :command:`subcloud add`
+    ``bootimage.iso`` at ``/opt/dc-vault/loads``. \(Previously, the full
+    ``bootimage.iso`` was duplicated for each :command:`subcloud add`
     command\).
 
     .. note::
@@ -65,9 +65,8 @@ subcloud, the subcloud installation has these phases:
             ~(keystone_admin)]$ system --os-region-name SystemController load-import --active |installer-image-name|.iso |installer-image-name|.sig
 
     In order to be able to deploy subclouds from either controller, all local
-    files that are referenced in the **bootstrap.yml** file must exist on both
-    controllers \(for example, /home/sysadmin/docker-registry-ca-cert.pem\).
-
+    files that are referenced in the ``bootstrap.yml`` file must exist on both
+    controllers (for example, ``/home/sysadmin/docker-registry-ca-cert.pem``).
 
 .. rubric:: |proc|
 
@@ -93,7 +92,7 @@ subcloud, the subcloud installation has these phases:
        :start-after: begin-ref-1
        :end-before: end-ref-1
 
-#.  Create the install-values.yaml file and use the content to pass the file
+#.  Create the ``install-values.yaml`` file and use the content to pass the file
     into the :command:`dcmanager subcloud add` command, using the
     ``--install-values`` command option.
 
@@ -315,7 +314,7 @@ subcloud, the subcloud installation has these phases:
     **Pre-Install**
         This status indicates that the ISO for the subcloud is being updated by
         the Central Cloud with the boot menu parameters, and kickstart
-        configuration as specified in the install-values.yaml file.
+        configuration as specified in the ``install-values.yaml`` file.
 
     **Installing**
         This status indicates that the subcloud's ISO is being installed from
@@ -392,7 +391,7 @@ subcloud, the subcloud installation has these phases:
         {SECRET_UUID} | awk '{print $2}''
         openstack secret get ${SECRET_REF} --payload -f value
 
-    The secret payload should be, "username: sysinv password:<password>". If
+    The secret payload should be, ``username: sysinv password:<password>``. If
     the secret payload is, "username: admin password:<password>", see,
     :ref:`Updating Docker Registry Credentials on a Subcloud
     <updating-docker-registry-credentials-on-a-subcloud>` for more information.

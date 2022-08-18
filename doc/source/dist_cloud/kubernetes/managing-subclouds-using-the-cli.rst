@@ -128,12 +128,12 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
 -   To reconfigure a subcloud, if deployment fails, use the :command:`subcloud reconfig` command.
 
     .. note::
-        You can enter the sysadmin password to avoid being prompted for the password.
+        You can enter the ``sysadmin`` password to avoid being prompted for the password.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ dcmanager subcloud reconfig <subcloud-id/name> --deploy-config \
-        <<filepath>> --sysadmin-password <<password>>
+        <filepath> --sysadmin-password <<password>>
 
 
     where ``--deploy-config`` must reference the deployment configuration file.

@@ -38,7 +38,7 @@ phases:
     bootstrap or deployment.
 
 -   The platform backup tar file is already on the subcloud in
-    /opt/platform-backup directory or has been transferred to the
+    ``/opt/platform-backup`` directory or has been transferred to the
     SystemController.
 
 -   The subcloud install values have been saved in the **dcmanager** database
@@ -46,7 +46,7 @@ phases:
 
 .. rubric:: |proc|
 
-#.  Create the restore_values.yaml file which will be passed to the
+#.  Create the ``restore_values.yaml`` file which will be passed to the
     :command:`dcmanager subcloud restore` command using the ``--restore-values``
     option. This file contains parameters that will be used during the platform
     restore phase. Minimally, the **backup_filename** parameter, indicating the
@@ -92,7 +92,7 @@ phases:
         +----+-----------+------------+--------------+---------------+---------+
 
 #.  In case of a failure, check the Ansible log for the corresponding subcloud
-    under /var/log/dcmanager/ansible directory.
+    under ``/var/log/dcmanager/ansible`` directory.
 
 #.  When the subcloud deploy status changes to "complete", the controller-0
     is ready to be unlocked. Log into the controller-0 of the subcloud using
