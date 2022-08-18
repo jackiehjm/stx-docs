@@ -11,10 +11,10 @@ interface. The system type is also shown.
 
 .. rubric:: |proc|
 
-#.  In the |prod| Horizon, open the System Configuration page.
+#.  In the |prod| Horizon, open the **System Configuration** page.
 
-    The System Configuration page is available from **Admin** \> **Platform**
-    \> **System Configuration** in the left-hand pane.
+    The **System Configuration** page is available from **Admin** \>
+    **Platform** \> **System Configuration** in the left-hand pane.
 
 #.  Select the **Systems** tab to view the software version.
 
@@ -24,10 +24,10 @@ interface. The system type is also shown.
     shown in the **System Type** field. The mode \(**simplex**, **duplex**, or
     **standard**\) is shown in the **System Mode** field.
 
-#.  In the |prod| Horizon interface, open the Software Management page.
+#.  In the |prod| Horizon interface, open the **Software Management** page.
 
-    The Software Management page is available from **Admin** \> **Platform** \>
-    **Software Management** in the left-hand pane.
+    The **Software Management** page is available from **Admin** \> **Platform**
+    \> **Software Management** in the left-hand pane.
 
 #.  Select the **Patches** tab to view update information.
 

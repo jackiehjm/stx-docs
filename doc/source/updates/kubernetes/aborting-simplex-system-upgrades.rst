@@ -9,11 +9,11 @@ Abort Simplex System Upgrades
 You can abort a Simplex System upgrade before or after upgrading controller-0.
 The upgrade abort procedure can only be applied before the
 :command:`upgrade-complete` command is issued. Once this command is issued the
-upgrade can not be aborted. If the return to the previous release is required,
-then restore the system using the backup data taken prior to the upgrade.
+upgrade can not be aborted. If you must return to the previous release, then
+restore the system using the backup data taken prior to the upgrade.
 
-Before starting, verify the upgrade data under `/opt/platform-backup`. This data
-must be present to perform the abort process.
+Before starting, verify the upgrade data under ``/opt/platform-backup``. This
+data must be present to perform the abort process.
 
 .. _aborting-simplex-system-upgrades-section-N10025-N1001B-N10001:
 
@@ -31,20 +31,20 @@ Before upgrading controller-0
 
     .. code-block:: none
 
-        $ system upgrade-abort
+        ~(keystone_admin)$ system upgrade-abort
 
-    The upgrade state is set to aborting. Once this is executed, there is no
-    canceling; the upgrade must be completely aborted.
+    The upgrade state is set to ``aborting``. Once this is executed, it cannot
+    be cancelled; the upgrade must be completely aborted.
 
 #.  Complete the upgrade.
 
     .. code-block:: none
 
-        $ system upgrade-complete
+        ~(keystone_admin)$ system upgrade-complete
 
     At this time any upgrade data generated as part of the upgrade-start
     command will be deleted. This includes the upgrade data in
-    /opt/platform-backup.
+    ``/opt/platform-backup``.
 
 .. _aborting-simplex-system-upgrades-section-N10063-N1001B-N10001:
 
@@ -52,7 +52,7 @@ Before upgrading controller-0
 After upgrading controller-0
 ----------------------------
 
-After controller-0 has been upgraded it is possible to roll back the software
+After controller-0 has been upgraded, it is possible to roll back the software
 upgrade. This involves performing a system restore with the previous release.
 
 .. _aborting-simplex-system-upgrades-ol-jmw-kcp-xdb:
@@ -61,41 +61,42 @@ upgrade. This involves performing a system restore with the previous release.
     USB.
 
 #.  Verify and configure IP connectivity. External connectivity is required to
-    run the Ansible restore playbook. The |prod-long| boot image will DHCP out all
-    interfaces so the server may have obtained an IP address and have external IP
-    connectivity if a DHCP server is present in your environment. Verify this using
-    the :command:`ip addr` command. Otherwise, manually configure an IP address and default IP
-    route.
+    run the Ansible restore playbook. The |prod-long| boot image will |DHCP| out
+    all interfaces so the server may have obtained an IP address and have
+    external IP connectivity if a |DHCP| server is present in your environment.
+    Verify this using the :command:`ip addr` command. Otherwise, manually
+    configure an IP address and default IP route.
 
-#.  Restore the system data. The restore is preserved in /opt/platform-backup.
+#.  Restore the system data. The restore is preserved in ``/opt/platform-backup``.
 
     The system will be restored to the state when the :command:`upgrade-start`
-    command was issued. Follow the process in :ref:`Run Restore Playbook Locally on the
-    Controller <running-restore-playbook-locally-on-the-controller>`.
+    command was issued. Follow the process in :ref:`Run Restore Playbook Locally
+    on the Controller <running-restore-playbook-locally-on-the-controller>`.
 
-    Specify the upgrade data filename as `backup_filename` and the `initial_backup_dir`
-    as `/opt/platform-backup`.
+    Specify the upgrade data filename as `backup_filename` and the
+    `initial_backup_dir` as ``/opt/platform-backup``.
 
-    The user images will also need to be restored as described in the Postrequisites section.
+    The user images will also need to be restored as described in the
+    Postrequisites section.
 
 #.  Unlock controller-0
 
     .. code-block:: none
 
-        $ system host-unlock controller-0
+        ~(keystone_admin)$ system host-unlock controller-0
 
 
 #.  Abort the upgrade with the :command:`upgrade-abort` command.
 
     .. code-block:: none
 
-        $ system upgrade-abort
+        ~(keystone_admin)$ system upgrade-abort
 
-    The upgrade state is set to aborting. Once this is executed, there is no
-    canceling; the upgrade must be completely aborted.
+    The upgrade state is set to ``aborting``. Once this is executed, it cannot
+    be cancelled; the upgrade must be completely aborted.
 
 #.  Complete the upgrade.
 
     .. code-block:: none
 
-        $ system upgrade-complete
+        ~(keystone_admin)$ system upgrade-complete

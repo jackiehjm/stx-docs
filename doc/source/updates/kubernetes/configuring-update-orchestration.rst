@@ -156,14 +156,14 @@ status before creating a update strategy.
         -   Worker hosts with no hosted application pods are updated before
             worker hosts with hosted application pods.
 
-        -   The final step in each stage is "system-stabilize," which waits for
-            a period of time \(up to several minutes\) and ensures that the
+        -   The final step in each stage is ``system-stabilize``, which waits
+            for a period of time \(up to several minutes\) and ensures that the
             system is free of alarms. This ensures that the update orchestrator
-            does not continue to update more hosts if the update application
-            has caused an issue resulting in an alarm.
+            does not continue to update more hosts if the update application has
+            caused an issue resulting in an alarm.
 
 
-#.  Click the **Apply Strategy** button to apply the update- strategy. You can
+#.  Click the **Apply Strategy** button to apply the update strategy. You can
     optionally apply a single stage at a time by clicking the **Apply Stage**
     button.
 
@@ -181,7 +181,7 @@ status before creating a update strategy.
             attempt to unlock any hosts that were locked.
 
     .. note::
-        If a update-strategy is aborted after hosts were locked, but before
+        If a update strategy is aborted after hosts were locked, but before
         they were updated, the hosts will not be unlocked, as this would result
         in the updates being installed. You must either install the updates on
         the hosts or remove the updates before unlocking the hosts.

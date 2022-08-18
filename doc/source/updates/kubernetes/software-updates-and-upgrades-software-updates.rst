@@ -25,7 +25,7 @@ following items:
 
 -   feature enhancements
 
-Software updates can be installed manually or by the Update Orchestrator which
+Software updates can be installed manually or by the Update Orchestrator, which
 automates a rolling install of an update across all of the |prod-long| hosts.
 For more information on manual updates, see :ref:`Manage Software Updates
 <managing-software-updates>`. For more information on upgrade orchestration,
@@ -40,7 +40,7 @@ see :ref:`Orchestrated Software Update <update-orchestration-overview>`.
 .. xbooklink    For more information, see, |distcloud-doc|: :ref:`Update Management for
     Distributed Cloud <update-management-for-distributed-cloud>`.
 
-The |prod| handles multiple updates being applied and removed at once. Software
+|prod| handles multiple updates being applied and removed at once. Software
 updates can modify and update any area of |prod| software, including the kernel
 itself. For information on populating, installing and removing software
 updates, see :ref:`Manage Software Updates <managing-software-updates>`.
@@ -73,9 +73,9 @@ the |prod| software:
 #.  **Application Software Updates**
 
     These software updates apply to software being managed through the
-    StarlingX Application Package Manager, that is, ':command:`system
-    application-upload/apply/remove/delete`'. |prod| delivers some software
-    through this mechanism, for example, **platform-integ-apps**.
+    StarlingX Application Package Manager, that is, :command:`system
+    application-upload/apply/remove/delete`. |prod| delivers some software
+    through this mechanism, for example, ``platform-integ-apps``.
 
     For software updates for these applications, download the updated
     application tarball, containing the updated FluxCD manifest, and updated

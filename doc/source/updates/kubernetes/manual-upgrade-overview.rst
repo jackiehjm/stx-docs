@@ -15,7 +15,7 @@ Standard, |prod-dc|, and subcloud deployments.
 .. xbooklink    For information on updating |prod-dc|, see |distcloud-doc|: :ref:`Upgrade
     Management <upgrade-management-overview>`.
 
-An upgrade can be performed manually or by the Upgrade Orchestrator which
+An upgrade can be performed manually or using the Upgrade Orchestrator, which
 automates a rolling install of an update across all of the |prod-long| hosts.
 This section describes the manual upgrade procedures.
 
@@ -28,8 +28,8 @@ met:
 
 -   The system is patch current.
 
--   There are no management-affecting alarms and the "system
-    health-query-upgrade" check passes.
+-   There are no management-affecting alarms and the :command:`system
+    health-query-upgrade` check passes.
 
 -   The new software load has been imported.
 

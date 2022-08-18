@@ -35,35 +35,33 @@ operation for a host, the strategy offers **stop/start** or **migrate** options
 for managing instances over the **lock/unlock** \(reboot\) steps in the upgrade
 process.
 
-You must use the **sw-manager** CLI tool to **create**, and then **apply** the
-upgrade strategy. A created strategy can be monitored with the **show**
-command.
+You must use the :command:`sw-manager`` CLI tool to create, and then apply the
+upgrade strategy. A created strategy can be monitored with the **show** command.
 
 Kubernetes version upgrade orchestration automatically iterates through all
-**unlocked-enabled** hosts on the system looking for hosts with the worker
-function that need Kubernetes version upgrade and then proceeds to upgrade them
+*unlocked-enabled* hosts on the system looking for hosts with the worker
+function that need Kubernetes version upgrades and then proceeds to upgrade them
 on the strategy :command:`apply` action.
 
 .. note::
-    Controllers (including |AIO| controllers) are upgraded before worker only
-    hosts.  Storage hosts do not run Kubernetes so Kubernetes is not upgraded
-    on them, although they still may be patched.
+    Controllers (including |AIO| controllers) are upgraded before worker-only
+    hosts. Since storage hosts do not run Kubernetes, no upgrade is performed,
+    although they may still be patched.
 
 After creating the *Kubernetes Version Upgrade Orchestration Strategy*, you can
 either apply the entire strategy automatically, or manually apply individual
 stages to control and monitor the Kubernetes version upgrade progress one stage
 at a time.
 
-When the Kubernetes version upgrade strategy is **applied**, if the system is
+When the Kubernetes version upgrade strategy is applied, if the system is
 All-in-one, the controllers are upgraded first, one after the other with a
 swact in between, followed by the remaining worker hosts according to the
 selected worker apply concurrency \(**serial** or **parallel**\) method.
 
-The strategy creation default is to upgrade the worker hosts serially unless
-the **parallel** worker apply type option is specified which configures the
-Kubernetes version upgrade process for worker hosts to be in parallel \(up to a
-maximum parallel number\) to reduce the overall Kubernetes version upgrade
-installation time.
+By default, strategies upgrade the worker hosts serially unless the **parallel**
+worker apply type option is specified, which configures the Kubernetes version
+upgrade process for worker hosts to be in parallel \(up to a maximum parallel
+number\). This reduces the overall Kubernetes version upgrade installation time.
 
 The upgrade takes place in two phases.  The first phase upgrades the patches
 (controllers, storage and then workers), and the second  phase upgrades
@@ -113,25 +111,25 @@ Upgrade Operations Requiring Manual Migration
 
 On systems with |prefix|-openstack application, the *Kubernetes Version Upgrade
 Orchestration Strategy* considers any configured server groups and host
-aggregates when creating the stages to reduce the impact to running instances.
-The *Kubernetes Version Upgrade Orchestration Strategy* automatically manages
-the instances during the strategy application process. The instance management
-options include **start-stop** or **migrate**.
+aggregates when creating the stages in order to reduce the impact to running
+instances. The *Kubernetes Version Upgrade Orchestration Strategy* automatically
+manages the instances during the strategy application process. The instance
+management options include **start-stop** or **migrate**.
 
 
 .. _htb1590431033292-ul-vcp-dvs-tlb:
 
--   **start-stop**: where instances are stopped following the actual Kubernetes
+-   **start-stop**: Instances are stopped following the actual Kubernetes
     upgrade but before the lock operation and then automatically started again
-    after the unlock completes. This is typically used for instances that do
-    not support migration or for cases where migration takes too long. To
-    ensure this does not impact the high-level service being provided by the
-    instance, the instance\(s\) should be protected and grouped into an
-    anti-affinity server group\(s\) with its standby instance.
+    after the unlock completes. This is typically used for instances that do not
+    support migration or for cases where migration takes too long. To ensure
+    this does not impact the high-level service being provided by the instance,
+    the instance\(s\) should be protected and grouped into an anti-affinity
+    server group\(s\) with its standby instance.
 
--   **migrate**: where instances are moved off a host following the Kubernetes
-    upgrade but before the host is locked. Instances with **Live Migration**
-    support are **Live Migrated**. Otherwise, they are **Cold Migrated**.
+-   **migrate**: Instances are moved off a host following the Kubernetes upgrade
+    but before the host is locked. Instances with **Live Migration** support are
+    **Live Migrated**. Otherwise, they are **Cold Migrated**.
 
 
 .. _kubernetes-update-operations-requiring-manual-migration:
@@ -149,34 +147,33 @@ Do the following to manage the instance re-location manually:
 
 .. _rbp1590431075472-ul-mgr-kvs-tlb:
 
--   Manually perform Kubernetes version upgrade at least one openstack-compute worker host. This
-    assumes that at least one openstack-compute worker host does not have any
-    instances, or has instances that can be migrated. For more information on
-    manually updating a host, see :ref:`Manual Kubernetes Version Upgrade
+-   Manually perform a Kubernetes version upgrade of at least one
+    openstack-compute worker host. This assumes that at least one
+    openstack-compute worker host does not have any instances, or has instances
+    that can be migrated. For more information on manually updating a host, see
+    :ref:`Manual Kubernetes Version Upgrade
     <manual-kubernetes-components-upgrade>`.
 
 -   If the migration is prevented by limitations in the VNF or virtual
     application, perform the following:
 
 
-    -   Create new instances on an already upgraded openstack-compute worker
+    #.  Create new instances on an already upgraded openstack-compute worker
         host.
 
-    -   Manually migrate the data from the old instances to the new instances.
+    #.  Manually migrate the data from the old instances to the new instances.
 
         .. note::
             This is specific to your environment and depends on the virtual
             application running in the instance.
 
-    -   Terminate the old instances.
+    #.  Terminate the old instances.
 
 
--   If the migration is prevented by the size of the instances local disks:
-
-
-    -   For each openstack-compute worker host that has instances that cannot
-        be migrated, manually move the instances using the CLI.
+-   If the migration is prevented by the size of the instances local disks, then
+    for each openstack-compute worker host that has instances that cannot
+    be migrated, manually move the instances using the CLI.
 
 Once all openstack-compute worker hosts containing instances that cannot be
-migrated have been Kubernetes version upgraded, Kubernetes version upgrade
-orchestration can then be used to upgrade the remaining worker hosts.
+migrated have been Kubernetes-version upgraded, Kubernetes version upgrade
+orchestration can be used to upgrade the remaining worker hosts.

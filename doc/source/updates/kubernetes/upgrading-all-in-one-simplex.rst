@@ -30,8 +30,8 @@ software.
 
     -   The system is patch current.
 
-    -   There should be sufficient free space in /opt/platform-backup. Remove
-        any unused files if necessary.
+    -   There should be sufficient free space in ``/opt/platform-backup.``.
+        Remove any unused files if necessary.
 
     -   The new software load has been imported.
 
@@ -41,10 +41,12 @@ software.
     stick\); controller-0 must be active.
 
     .. note::
-        Make sure that the ``/home/sysadmin`` directory has enough space
-        (at least 2GB of free space), otherwise the upgrade may fail once it
-        starts. If more space is needed, it is recommended to delete the
-        ``.iso bootimage`` previously imported after the `load-import` command.
+
+        Make sure that the ``/home/sysadmin`` directory has enough space (at
+        least 2GB of free space), otherwise the upgrade may fail once it starts.
+        If more space is needed, it is recommended to delete the ``.iso``
+        bootimage previously imported after the :command:`load-import`
+        command.
 
 -   Transfer the new release software license file to controller-0 \(or onto a
     USB stick\).
@@ -55,7 +57,7 @@ software.
 .. note::
     The upgrade procedure includes steps to resolve system health issues.
 
-End user container images in `registry.local` will be backed up during the
+End user container images in ``registry.local`` will be backed up during the
 upgrade process. This only includes images other than |prod| system and
 application images. These images are limited to 5 GB in total size. If the
 system contains more than 5 GB of these images, the upgrade start will fail.
@@ -71,8 +73,7 @@ For more details, see :ref:`Detailed contents of a system backup
         $ source /etc/platform/openrc
         ~(keystone_admin)]$
 
-#.  Install the license file for the release you are upgrading to, for example,
-    nn.nn.
+#.  Install the license file for the release you are upgrading to.
 
     .. code-block:: none
 
@@ -86,13 +87,13 @@ For more details, see :ref:`Detailed contents of a system backup
 
 #.  Import the new release.
 
-    #.  Run the :command:`load-import` command on **controller-0** to import
+    #.  Run the :command:`load-import` command on controller-0 to import
         the new release.
 
-        First, source /etc/platform/openrc.
+        First, source ``/etc/platform/openrc``.
 
-        You must specify an exact path to the \*.iso bootimage file and to the
-        \*.sig bootimage signature file.
+        You must specify an exact path to the ``*.iso`` bootimage file and to the
+        ``*.sig`` bootimage signature file.
 
         .. code-block:: none
 
@@ -109,7 +110,7 @@ For more details, see :ref:`Detailed contents of a system backup
             | required_patches   |           |
             +--------------------+-----------+
 
-        The :command:`load-import` must be done on **controller-0** and accepts
+        The :command:`load-import` must be done on controller-0 and accepts
         relative paths.
 
         .. note::
@@ -130,9 +131,9 @@ For more details, see :ref:`Detailed contents of a system backup
 #.  Apply any required software updates.
 
     The system must be 'patch current'. All software updates related to your
-    current |prod| software release must be, uploaded, applied, and installed.
+    current |prod| software release must be uploaded, applied, and installed.
 
-    All software updates to the new |prod| release, only need to be uploaded
+    All software updates to the new |prod| release only need to be uploaded
     and applied. The install of these software updates will occur automatically
     during the software upgrade procedure as the hosts are reset to load the
     new release of software.
@@ -147,7 +148,7 @@ For more details, see :ref:`Detailed contents of a system backup
     Check the current system health status, resolve any alarms and other issues
     reported by the :command:`system health-query-upgrade` command, then
     recheck the system health status to confirm that all **System Health**
-    fields are set to **OK**.
+    fields are set to *OK*.
 
     .. code-block:: none
 
@@ -167,13 +168,13 @@ For more details, see :ref:`Detailed contents of a system backup
         All kubernetes applications are in a valid state: [OK]
         Active controller is controller-0: [OK]
 
-    By default, the upgrade process cannot be run and is not recommended to be
-    run with Active Alarms present. However, management affecting alarms can be
-    ignored with the :command:`--force` option with the :command:`system
-    upgrade-start` command to force the upgrade process to start.
+    By default, the upgrade process cannot be run with Active Alarms present.
+    However, management affecting alarms can be ignored with the
+    :command:`--force` option with the :command:`system upgrade-start` command
+    to force the upgrade process to start.
 
     .. note::
-        It is strongly recommended that you clear your system of any and all
+        It is strongly recommended that you clear your system of all
         alarms before doing an upgrade. While the :command:`--force` option is
         available to run the upgrade, it is a best practice to clear any
         alarms.
@@ -192,40 +193,41 @@ For more details, see :ref:`Detailed contents of a system backup
         | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
-    This will back up the system data and images to /opt/platform-backup.
-    /opt/platform-backup is preserved when the host is reinstalled. With the
-    platform backup, the size of /home/sysadmin must be less than 2GB.
+    This will back up the system data and images to ``/opt/platform-backup.``.
+    ``/opt/platform-backup.`` is preserved when the host is reinstalled. With the
+    platform backup, the size of ``/home/sysadmin`` must be less than 2GB.
 
     This process may take several minutes.
 
-    When the upgrade state is upgraded to **started** the process is complete.
+    When the upgrade state is upgraded to *started* the process is complete.
 
     Any changes made to the system after this point will be lost when the data
     is restored.
 
     The following upgrade state applies once this command is executed:
 
-    -   started:
+    -   ``started``:
 
         -   State entered after :command:`system upgrade-start` completes.
 
-        -   Release nn.nn system data \(for example, postgres databases\) has
+        -   Release <nn>.<nn> system data \(for example, postgres databases\) has
             been exported to be used in the upgrade.
 
         -   Configuration changes must not be made after this point, until the
             upgrade is completed.
 
-    As part of the upgrade, the upgrade process checks the health of the system
-    and validates that the system is ready for an upgrade.
+    The upgrade process checks the health of the system and validates that the
+    system is ready for an upgrade.
 
     The upgrade process checks that no alarms are active before starting an
     upgrade.
 
     .. note::
+
         Use the command :command:`system upgrade-start --force` to force the
         upgrades process to start and to ignore management affecting alarms.
-        This should ONLY be done if you feel these alarms will not be an issue
-        over the upgrades process.
+        This should **ONLY** be done if you have ascertained that these alarms
+        will not interfere with the upgrades process.
 
 #.  Check the upgrade state.
 
@@ -241,13 +243,13 @@ For more details, see :ref:`Detailed contents of a system backup
         | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
-    Ensure the upgrade state is **started**. It will take several minutes to
-    transition to the started state.
+    Ensure the upgrade state is *started*. It will take several minutes to
+    transition to the *started* state.
 
 #.  \(Optional\) Copy the upgrade data from the system to an alternate safe
     location \(such as a USB drive or remote server\).
 
-    The upgrade data is located under /opt/platform-backup. Example file names
+    The upgrade data is located under ``/opt/platform-backup``. Example file names
     are:
 
     **lost+found upgrade\_data\_2020-06-23T033950\_61e5fcd7-a38d-40b0-ab83-8be55b87fee2.tgz**
@@ -264,8 +266,8 @@ For more details, see :ref:`Detailed contents of a system backup
 
 #.  Upgrade controller-0.
 
-    This is the point of no return. All data except /opt/platform-backup/ will
-    be erased from the system. This will wipe the **rootfs** and reboot the
+    This is the point of no return. All data except ``/opt/platform-backup/``
+    will be erased from the system. This will wipe the ``rootfs`` and reboot the
     host. The new release must then be manually installed \(via network or
     USB\).
 
@@ -279,11 +281,11 @@ For more details, see :ref:`Detailed contents of a system backup
 #.  Install the new release of |prod-long| Simplex software via network or USB.
 
 #.  Verify and configure IP connectivity. External connectivity is required to
-    run the Ansible upgrade playbook. The |prod-long| boot image will DHCP out all
-    interfaces so the server may have obtained an IP address and have external IP
-    connectivity if a DHCP server is present in your environment. Verify this using
-    the :command:`ip addr` command. Otherwise, manually configure an IP address and default IP
-    route.
+    run the Ansible upgrade playbook. The |prod-long| boot image will |DHCP| out
+    all interfaces so the server may have obtained an IP address and have
+    external IP connectivity if a |DHCP| server is present in your environment.
+    Verify this using the :command:`ip addr` command. Otherwise, manually
+    configure an IP address and default IP route.
 
 #.  Restore the upgrade data.
 
@@ -298,14 +300,13 @@ For more details, see :ref:`Detailed contents of a system backup
     following parameter:
 
     ``ansible_become_pass``
-
-    The ansible playbook will check /home/sysadmin/<hostname\>.yml for these
-    user configuration override files for hosts. For example, if running
-    ansible locally, /home/sysadmin/localhost.yml.
+       The ansible playbook will check ``/home/sysadmin/<hostname\>.yml`` for
+       these user configuration override files for hosts. For example, if
+       running ansible locally, ``/home/sysadmin/localhost.yml``.
 
     By default the playbook will search for the upgrade data file under
-    /opt/platform-backup. If required, use the **upgrade\_data\_file**
-    parameter to specify the path to the **upgrade\_data**.
+    ``/opt/platform-backup``. If required, use the ``upgrade_data_file``
+    parameter to specify the path to the ``upgrade_data``.
 
     .. note::
         This playbook does not support replay.
@@ -314,7 +315,7 @@ For more details, see :ref:`Detailed contents of a system backup
         This can take more than one hour to complete.
 
     Once the data restoration is complete the upgrade state will be set to
-    **upgrading-hosts**.
+    *upgrading-hosts*.
 
 #.  Check the status of the upgrade.
 
@@ -342,9 +343,9 @@ For more details, see :ref:`Detailed contents of a system backup
 
     During the running of the :command:`upgrade-activate` command, new
     configurations are applied to the controller. 250.001 \(**hostname
-    Configuration is out-of-date**\) alarms are raised and are cleared as the
-    configuration is applied. The upgrade state goes from **activating** to
-    **activation-complete** once this is done.
+    Configuration is out-of-date**\) alarms are raised and then cleared as the
+    configuration is applied. The upgrade state goes from *activating* to
+    *activation-complete* once this is done.
 
     .. code-block:: none
 
@@ -360,23 +361,25 @@ For more details, see :ref:`Detailed contents of a system backup
 
     The following states apply when this command is executed.
 
-    **activation-requested**
+    ``activation-requested``
         State entered when :command:`system upgrade-activate` is executed.
 
-    **activating**
+    ``activating``
         State entered when we have started activating the upgrade by applying
         new configurations to the controller and compute hosts.
 
-    **activating-hosts**
+    ``activating-hosts``
         State entered when applying host-specific configurations. This state is
         entered only if needed.
 
-    **activation-complete**
+    ``activation-complete``
         State entered when new configurations have been applied to all
         controller and compute hosts.
 
+
     #.  Check the status of the upgrade again to see it has reached
-        **activation-complete**.
+        ``activation-complete``.
+
 
     .. code-block:: none
 

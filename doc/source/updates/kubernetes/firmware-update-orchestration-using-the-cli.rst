@@ -7,29 +7,30 @@ Firmware Update Orchestration Using the CLI
 ===========================================
 
 You can configure the *Firmware Update Orchestration Strategy* using the
-**sw-manager** |CLI|.
+:command:`sw-manager`` |CLI| commands.
 
 ---------------
 About this task
 ---------------
 
 .. note::
-    You require administrator privileges to use **sw-manager**. You must log in
-    to the active controller as **user sysadmin** and source the script by
-    using the command, source /etc/platform/openrc to obtain administrator
-    privileges. Do not use sudo.
+
+    You require administrator privileges to use :command:`sw-manager` commands.
+    You must log in to the active controller as **user sysadmin** and source the
+    script by using the command, source ``/etc/platform/openrc`` to obtain
+    administrator privileges. Do not use sudo.
 
 .. note::
     Management-affecting alarms cannot be ignored at the indicated severity
     level or higher by using relaxed alarm rules during an orchestrated
     firmware update operation. For a list of management-affecting alarms, see
-    |prod| Fault Management: :ref:`Alarm Messages
+    |fault-doc|: :ref:`Alarm Messages
     <100-series-alarm-messages>`. To display management-affecting active
     alarms, use the following command:
 
-.. code-block:: none
+    .. code-block:: none
 
-    ~(keystone_admin)$ fm alarm-list --mgmt_affecting
+       ~(keystone_admin)$ fm alarm-list --mgmt_affecting
 
 During an orchestrated firmware update operation, the following alarms are
 ignored even when strict restrictions are selected:
@@ -72,112 +73,108 @@ be created with override worker apply type concurrency with a max host
 parallelism, instance action, and alarm restrictions.
 
 ``--controller-apply-type`` and ``--storage-apply-type``
+   These options cannot be changed from ``ignore`` because firmware update is
+   only supported for worker hosts.
 
-These options cannot be changed from '**ignore**' because firmware update
-is only supported for worker hosts.
-
-.. note::
-    Firmware update is currently only supported for hosts with worker
-    function. Any attempt to modify the controller or storage apply type is
-    rejected.
+   .. note::
+       Firmware update is currently only supported for hosts with worker
+       function. Any attempt to modify the controller or storage apply type is
+       rejected.
 
 ``--worker-apply-type``
+   This option specifies the host concurrency of the firmware update strategy:
 
-This option specifies the host concurrency of the firmware update strategy:
+   -   ``serial`` \(default\): worker hosts will be patched one at a time
+   
+   -   ``parallel``: worker hosts will be updated in parallel
+   
+       -   At most, ``parallel`` will be updated at the same time
+   
+       -   At most, half of the hosts in a host aggregate will be updated at the
+           same time
+   
+   -   ``ignore``: worker hosts will not be updated; strategy create will fail
 
--   ``serial`` \(default\): worker hosts will be patched one at a time
-
--   ``parallel``: worker hosts will be updated in parallel
-
-    -   At most, ``parallel`` will be updated at the same time
-
-    -   At most, half of the hosts in a host aggregate will be updated at the
-        same time
-
--   ``ignore``: worker hosts will not be updated; strategy create will fail
-
-Worker hosts with no instances are updated before worker hosts with instances.
+   Worker hosts with no instances are updated before worker hosts with
+   instances.
 
 ``--max-parallel-worker-hosts``
-
-This option applies to the parallel worker apply type selection to specify
-the maximum worker hosts to update in parallel \(minimum: 2, maximum: 10\).
+   This option applies to the parallel worker apply type selection to specify
+   the maximum worker hosts to update in parallel \(minimum: 2, maximum: 10\).
 
 ``-–instance-action``
+   This option only has significance when the |prefix|-openstack application is
+   loaded and there are instances running on worker hosts. It specifies how the
+   strategy deals with worker host instances over the strategy execution.
 
-This option only has significance when the |prefix|-openstack application is
-loaded and there are instances running on worker hosts. It specifies how
-the strategy deals with worker host instances over the strategy execution.
-
--   ``stop-start`` (default)
-
-    Instances will be stopped before the host lock operation following the
-    update and then started again following the host unlock.
-
-    .. warning::
-        Using the ``stop-start`` option will result in an outage for each
-        instance, as it is stopped while the worker host is locked/unlocked. In
-        order to ensure this does not impact service, instances MUST be grouped
-        into anti-affinity \(or anti-affinity best effort\) server groups,
-        which will ensure that only a single instance in each server group is
-        stopped at a time.
-
--   ``migrate``
-
-    Instances will be migrated off a host before it is patched \(this applies
-    to reboot patching only\).
+   -   ``stop-start`` (default)
+   
+       Instances will be stopped before the host lock operation following the
+       update and then started again following the host unlock.
+   
+       .. warning::
+           Using the ``stop-start`` option will result in an outage for each
+           instance, as it is stopped while the worker host is locked/unlocked. In
+           order to ensure this does not impact service, instances MUST be grouped
+           into anti-affinity \(or anti-affinity best effort\) server groups,
+           which will ensure that only a single instance in each server group is
+           stopped at a time.
+   
+   -   ``migrate``
+   
+       Instances will be migrated off a host before it is patched \(this applies
+       to reboot patching only\).
 
 ``--alarm-restrictions``
+   This option sets how the how the firmware update orchestration behaves when
+   alarms are present.
 
-This option sets how the how the firmware update orchestration behaves when
-alarms are present.
+   To display management-affecting active alarms, use the following command:
+   
+   .. code-block:: none
+   
+       ~(keystone_admin)$ fm alarm-list --mgmt_affecting
+   
+   -   ``strict`` (default)
+   
+       The default strict option will result in patch orchestration failing if
+       there are any alarms present in the system \(except for a small list of
+       alarms\).
+   
+   -   ``relaxed``
+   
+       This option allows orchestration to proceed if alarms are present, as long
+       as none of these alarms are management affecting.
 
-To display management-affecting active alarms, use the following command:
-
-.. code-block:: none
-
-    ~(keystone_admin)$ fm alarm-list --mgmt_affecting
-
--   ``strict`` (default)
-
-    The default strict option will result in patch orchestration failing if
-    there are any alarms present in the system \(except for a small list of
-    alarms\).
-
--   ``relaxed``
-
-    This option allows orchestration to proceed if alarms are present, as long
-    as none of these alarms are management affecting.
-
-.. code-block:: none
-
-    ~(keystone_admin)]$ sw-manager fw-update-strategy create --help
-    usage:sw-manager fw-update-strategy create  [-h]
-                                                [--controller-apply-type {ignore}]
-                                                [--storage-apply-type {ignore}]
-                                                [--worker-apply-type
-                                                {serial,parallel,ignore}]
-                                                [--max-parallel-worker-hosts
-                                                {2,3,4,5,6,7,8,9,10}]
-                                                [--instance-action {migrate,stop-start}]
-                                                [--alarm-restrictions {strict,relaxed}]
-
-    optional arguments:
-    -h, --help            show this help message and exit
-    --controller-apply-type {ignore}
-                            defaults to ignore
-    --storage-apply-type {ignore}
-                            defaults to ignore
-    --worker-apply-type {serial,parallel,ignore}
-                            defaults to serial
-    --max-parallel-worker-hosts {2,3,4,5,6,7,8,9,10}
-                            maximum worker hosts to update in parallel
-    --instance-action {migrate,stop-start}
-                            defaults to stop-start
-    --alarm-restrictions {strict,relaxed}
-                            defaults to strict
-
-
+   .. code-block:: none
+   
+       ~(keystone_admin)]$ sw-manager fw-update-strategy create --help
+       usage:sw-manager fw-update-strategy create  [-h]
+                                                   [--controller-apply-type {ignore}]
+                                                   [--storage-apply-type {ignore}]
+                                                   [--worker-apply-type
+                                                   {serial,parallel,ignore}]
+                                                   [--max-parallel-worker-hosts
+                                                   {2,3,4,5,6,7,8,9,10}]
+                                                   [--instance-action {migrate,stop-start}]
+                                                   [--alarm-restrictions {strict,relaxed}]
+   
+       optional arguments:
+       -h, --help            show this help message and exit
+       --controller-apply-type {ignore}
+                               defaults to ignore
+       --storage-apply-type {ignore}
+                               defaults to ignore
+       --worker-apply-type {serial,parallel,ignore}
+                               defaults to serial
+       --max-parallel-worker-hosts {2,3,4,5,6,7,8,9,10}
+                               maximum worker hosts to update in parallel
+       --instance-action {migrate,stop-start}
+                               defaults to stop-start
+       --alarm-restrictions {strict,relaxed}
+                               defaults to strict
+   
+   
 .. _tsr1590164474201-section-l3x-wr5-tlb:
 
 -------------------------------------------
@@ -203,11 +200,10 @@ of the strategy. A complete view of the strategy can be shown using the
 Firmware update orchestration strategy apply
 --------------------------------------------
 
-The ``apply`` strategy subcommand with no options executes the firmware
-update strategy from current state to the end. The apply strategy operation can
-be called with the ``stage-id`` option to execute the next stage of the
-strategy. The ``stage-id`` option cannot be used to execute the strategy out of
-order.
+The ``apply`` strategy subcommand with no options executes the firmware update
+strategy from current state to the end. The apply strategy operation can be
+called with the ``stage-id`` option to execute the next stage of the strategy.
+The ``stage-id`` option cannot be used to execute the strategy out of order.
 
 .. code-block:: none
 
@@ -226,9 +222,9 @@ Firmware update orchestration strategy abort
 
 The ``abort`` strategy subcommand with no options sets the strategy to abort
 after the current applying stage is complete. The abort strategy operation can
-be called with the ``stage-id`` option to specify that the strategy abort
-before executing the next stage of the strategy. The ``stage-id`` option cannot
-be used to execute the strategy out of order.
+be called with the ``stage-id`` option to specify that the strategy abort before
+executing the next stage of the strategy. The ``stage-id`` option cannot be used
+to execute the strategy out of order.
 
 .. code-block:: none
 

@@ -18,9 +18,9 @@ before they can be applied.
     .. parsed-literal::
 
         $ sudo sw-patch upload /home/sysadmin/patches/|pn|-CONTROLLER_<nn.nn>_PATCH_0001.patch
-        Cloud_Platform__CONTROLLER_nn.nn_PATCH_0001 is now available
+        Cloud_Platform__CONTROLLER_<nn.nn>_PATCH_0001 is now available
 
-    where *nn.nn* in the update file name is the |prod| release number.
+    where <nn.nn> in the update file name is the |prod| release number.
 
     This example uploads a single update to the storage area. You can specify
     multiple update files on the same command separating their names with
@@ -42,7 +42,7 @@ before they can be applied.
 
         $ sudo sw-patch query
 
-    The update state is *Available* now, indicating that it is included in the
+    The update state displays *Available*, indicating that it is included in the
     storage area. Further details about the updates can be retrieved as
     follows:
 

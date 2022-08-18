@@ -12,18 +12,18 @@ This section describes installing software updates before you can commission
 .. rubric:: |context|
 
 This procedure assumes that the software updates to install are available on a
-USB flash drive, or from a server reachable by **controller-0**.
+USB flash drive, or from a server reachable by controller-0.
 
 .. rubric:: |prereq|
 
 When initially installing the |prod-long| software, it is required that you
-install the latest available updates on **controller-0** before running Ansible
+install the latest available updates on controller-0 before running Ansible
 Bootstrap Playbook, and before installing the software on other hosts. This
 ensures that:
 
 .. _installing-software-updates-before-initial-commissioning-ul-gsq-1ht-vp:
 
--   The software on **controller-0**, and all other hosts, is up to date when
+-   The software on controller-0, and all other hosts, is up to date when
     the cluster comes alive.
 
 -   You reduce installation time by avoiding updating the system right after an
@@ -31,12 +31,12 @@ ensures that:
 
 .. rubric:: |proc|
 
-#.  Install software on **controller-0**.
+#.  Install software on controller-0.
 
-    Use the |prod-long| bootable ISO image to initialize **controller-0**.
+    Use the |prod-long| bootable ISO image to initialize controller-0.
 
     This step takes you to the point where you use the console port to log in
-    to **controller-0** as user **sysadmin**.
+    to controller-0 as user **sysadmin**.
 
 #.  Populate the storage area.
 
@@ -68,9 +68,9 @@ ensures that:
         Patch installation is complete.
         Please reboot before continuing with configuration.
 
-    This command installs all applied updates on **controller-0**.
+    This command installs all applied updates on controller-0.
 
-#.  Reboot **controller-0**.
+#.  Reboot controller-0.
 
     You must reboot the controller to ensure that it is running with the
     software fully updated.

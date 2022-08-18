@@ -32,13 +32,14 @@ instances and since the firmware update is a reboot required operation for a
 host, the strategy offers **stop/start** or **migrate** options for managing
 instances over the **lock/unlock** \(reboot\) steps in the update process.
 
-You must use the **sw-manager** |CLI| tool to **create**, and then **apply** the
-update strategy. A created strategy can be monitored with the **show** command.
-For more information, see :ref:`Firmware Update Orchestration Using the CLI
+You must use the :command:`sw-manager` |CLI| commands to create, and then apply
+the update strategy. A created strategy can be monitored with the
+command:`sw-manager show` command. For more information, see :ref:`Firmware
+Update Orchestration Using the CLI
 <firmware-update-orchestration-using-the-cli>`.
 
 Firmware update orchestration automatically iterates through all
-**unlocked-enabled** hosts on the system looking for hosts with the worker
+*unlocked-enabled* hosts on the system looking for hosts with the worker
 function that need firmware update and then proceeds to update them on the
 strategy :command:`apply` action.
 
@@ -52,13 +53,13 @@ After creating the *Firmware Update Orchestration Strategy*, you can either
 apply the entire strategy automatically, or manually apply individual stages to
 control and monitor the firmware update progress one stage at a time.
 
-When the firmware update strategy is **applied**, if the system is All-in-one,
+When the firmware update strategy is applied, if the system is All-in-one,
 the controllers are updated first, one after the other with a swact in between,
 followed by the remaining worker hosts according to the selected worker apply
 concurrency \(**serial** or **parallel**\) method.
 
 The strategy creation default is to update the worker hosts serially unless the
-**parallel** worker apply type option is specified which configures the
+``parallel`` worker apply type option is specified which configures the
 firmware update process for worker hosts to be in parallel \(up to a maximum
 parallel number\) to reduce the overall firmware update installation time.
 
@@ -73,7 +74,8 @@ steps involved in a firmware update for a single or group of hosts include:
 
 #.  Alarm Query – is an update pre-check.
 
-#.  Firmware update – non-service affecting update that can take over 45 minutes.
+#.  Firmware update – is a non-service affecting update that can take over 45
+    minutes.
 
 #.  Lock Host.
 
@@ -89,11 +91,11 @@ Strategy* considers any configured server groups and host aggregates when
 creating the stages to reduce the impact to running instances. The *Firmware
 Update Orchestration Strategy* automatically manages the instances during the
 strategy application process. The instance management options include
-**start-stop** or **migrate**.
+``start-stop`` or ``migrate``.
 
 .. _htb1590431033292-ul-vcp-dvs-tlb:
 
--   **start-stop**: where instances are stopped following the actual firmware
+-   ``start-stop``: where instances are stopped following the actual firmware
     update but before the lock operation and then automatically started again
     after the unlock completes. This is typically used for instances that do
     not support migration or for cases where migration takes too long. To
@@ -101,6 +103,6 @@ strategy application process. The instance management options include
     instance, the instance\(s\) should be protected and grouped into an
     anti-affinity server group\(s\) with its standby instance.
 
--   **migrate**: where instances are moved off a host following the firmware
+-   ``migrate``: where instances are moved off a host following the firmware
     update but before the host is locked. Instances with **Live Migration**
     support are **Live Migrated**. Otherwise, they are **Cold Migrated**.

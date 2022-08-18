@@ -15,13 +15,13 @@ Do the following to manage the instance re-location manually:
 
 .. _rbp1590431075472-ul-mgr-kvs-tlb:
 
--   Manually firmware update at least one openstack-compute worker host. This
+-   Manually firmware-update at least one openstack-compute worker host. This
     assumes that at least one openstack-compute worker host does not have any
     instances, or has instances that can be migrated. For more information on
     manually updating a host, see the :ref:`Display Worker Host Information
     <displaying-worker-host-information>`.
 
--   If the migration is prevented by limitations in the VNF or virtual
+-   If the migration is prevented by limitations in the |VNF| or virtual
     application, perform the following:
 
 
@@ -35,7 +35,7 @@ Do the following to manage the instance re-location manually:
 
     -   Terminate the old instances.
 
--   If the migration is prevented by the size of the instances local disks:
+-   If the migration is prevented by the size of the instances' local disks:
 
     -   For each openstack-compute worker host that has instances that cannot
         be migrated, manually move the instances using the CLI. For more

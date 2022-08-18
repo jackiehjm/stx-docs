@@ -6,8 +6,8 @@
 Manual Kubernetes Version Upgrade
 =================================
 
-You can upgrade the Kubernetes version on a running system from one
-supported version to another.
+You can upgrade the Kubernetes version on a running system from one supported
+version to another.
 
 .. rubric:: |context|
 
@@ -106,26 +106,26 @@ and upgrade various systems.
     **State**
         Can be one of:
 
-        **active**
+        *active*
             The version is running everywhere.
 
-        **partial**
+        *partial*
             The version is running somewhere.
 
-        **available**
+        *available*
             The version can be upgraded to.
 
-        **unavailable**
-            The version is not available for upgrading. Either it is a
-            downgrade or it requires an intermediate upgrade first. Kubernetes
-            can be only upgraded one version at a time.
+        *unavailable*
+            The version is not available for upgrading. Either it is a downgrade
+            or it requires an intermediate upgrade first. Kubernetes can be only
+            upgraded one version at a time.
 
 #.  Confirm that the system is healthy.
 
     Check the current system health status, resolve any alarms and other issues
     reported by the :command:`system health-query-kube-upgrade` command then
     recheck the system health status to confirm that all **System Health**
-    fields are set to **OK**.
+    fields are set to *OK*.
 
     .. code-block:: none
 
@@ -160,8 +160,8 @@ and upgrade various systems.
         | state             | upgrade-started   |
         +-------------------+-------------------+
 
-    The upgrade process checks the applied/available updates, the upgrade path,
-    the health of the system, the installed applications compatibility and
+    The upgrade process checks the *applied*/*available* updates, the upgrade
+    path, the health of the system, the installed applications compatibility and
     validates the system is ready for an upgrade.
 
     .. warning::
@@ -222,7 +222,7 @@ and upgrade various systems.
         | updated_at   | 2022-10-26T10:02:27.512038+00:00     |
         +--------------+--------------------------------------+
 
-    The state **upgraded-networking** will be entered when the networking
+    The state *upgraded-networking* will be entered when the networking
     upgrade has completed.
 
 #.  Upgrade the control plane on the first controller.
@@ -245,7 +245,7 @@ and upgrade various systems.
 
     You can upgrade either controller first.
 
-    The state **upgraded-first-master** will be entered when the first control
+    The state *upgraded-first-master* will be entered when the first control
     plane upgrade has completed.
 
 #.  Upgrade the control plane on the second controller.
@@ -265,7 +265,7 @@ and upgrade various systems.
         | target_version        | v1.22.5                 |
         +-----------------------+-------------------------+
 
-    The state **upgraded-second-master** will be entered when the upgrade has
+    The state *upgraded-second-master* will be entered when the upgrade has
     completed.
 
 #.  Show the Kubernetes upgrade status for all hosts.
@@ -302,7 +302,7 @@ and upgrade various systems.
 
             ~(keystone_admin)]$ system host-lock controller-1
 
-        .. note::
+        .. warning::
             For All-In-One Simplex systems, the controller must **not** be
             locked.
 

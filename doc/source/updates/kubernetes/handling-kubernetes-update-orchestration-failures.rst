@@ -18,7 +18,7 @@ Strategy creation failure
 
 .. _jkf1590184623714-ul-fvs-vnq-5lb:
 
--   **Reason**: build failed with no reason.
+-   **Reason**: Build failed with no reason.
 
     -   **Action**:
 
@@ -27,7 +27,7 @@ Strategy creation failure
         -   Check recent logs added to /var/log/nfv-vim.log.
 
 
--   **Reason**: alarms from platform are present.
+-   **Reason**: Alarms from platform are present.
 
     -   **Action**:
 
@@ -43,7 +43,7 @@ Strategy creation failure
             the ``relaxed`` alarms restrictions option ``--alarm-restrictions
             relaxed``.
 
--   **Reason**: no Kubernetes version upgrade required.
+-   **Reason**: No Kubernetes version upgrade required.
 
     -   **Action**:
 
@@ -65,14 +65,14 @@ Strategy Apply Failure
 
 .. _jkf1590184623714-ul-rdf-4pq-5lb:
 
--   **Reason**: alarms from platform are present.
+-   **Reason**: Alarms from platform are present.
 
-    -   **Action**: suggests that an alarm has been raised since the creation
-        of the strategy. Address the cause of the new alarm, delete the
+    -   **Action**: This suggests that an alarm has been raised since the
+        creation of the strategy. Address the cause of the new alarm, delete the
         strategy and try creating and applying a new strategy.
 
 
--   **Reason**: unable to migrate instances.
+-   **Reason**: Unable to migrate instances.
 
     -   **Action**: See :ref:`Kubernetes Version Upgrade Operations Requiring
         Manual Migration
@@ -91,11 +91,11 @@ Strategy Apply Failure
 
         .. include:: /_includes/handling-kubernetes-update-orchestration-failures.rest
 
--   **Reason**: lock host failed.
+-   **Reason**: Lock host failed.
 
     -   **Action**:
 
-        -   Investigate the /var/log/sysinv.log, and /var/log/nfv-vim.log
+        -   Investigate the ``/var/log/sysinv.log``, and ``/var/log/nfv-vim.log``
             files.
 
         -   Address the underlying issue.
@@ -106,11 +106,11 @@ Strategy Apply Failure
             strategy to automatically finish the upgrade process.
 
 
--   **Reason**: unlock host failed.
+-   **Reason**: Unlock host failed.
 
     -   **Action**:
 
-        -   Investigate /var/log/mtcAgent.log file for cause logs files.
+        -   Investigate ``/var/log/mtcAgent.log`` file for cause logs files.
 
         -   Address the underlying issue.
 
