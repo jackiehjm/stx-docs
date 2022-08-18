@@ -22,7 +22,7 @@ subcloud, the subcloud installation process has two phases:
 .. _installing-a-subcloud-without-redfish-platform-management-service-ul-fmx-jpl-mkb:
 
 -   Installing the ISO on controller-0; this is done locally at the subcloud by
-    using either, a bootable USB device, or a local PXE boot server
+    using either, a bootable USB device, or a local |PXE| boot server
 
 -   Executing the :command:`dcmanager subcloud add` command in the Central
     Cloud that uses Ansible to bootstrap |prod-long| on controller-0 in
@@ -33,8 +33,8 @@ subcloud, the subcloud installation process has two phases:
 
     After a successful remote installation of a subcloud in a Distributed Cloud
     system, a subsequent remote reinstallation fails because of an existing ssh
-    key entry in the /root/.ssh/known\_hosts on the System Controller. In this
-    case, delete the host key entry, if present, from /root/.ssh/known\_hosts
+    key entry in the ``/root/.ssh/known_hosts`` on the System Controller. In this
+    case, delete the host key entry, if present, from ``/root/.ssh/known_hosts``
     on the System Controller before doing reinstallations.
 
 .. rubric:: |prereq|
@@ -50,7 +50,7 @@ subcloud, the subcloud installation process has two phases:
 -   You must have downloaded ``update-iso.sh`` from |dnload-loc|.
 
 -   In order to be able to deploy subclouds from either controller, all local
-    files that are referenced in the **bootstrap.yml** file must exist on both
+    files that are referenced in the ``bootstrap.yml`` file must exist on both
     controllers \(for example, ``/home/sysadmin/docker-registry-ca-cert.pem``\).
 
 .. rubric:: |proc|
@@ -62,7 +62,7 @@ subcloud, the subcloud installation process has two phases:
 
         The servers require connectivity to a gateway router that provides IP
         routing between the subcloud management subnet and the System
-        Controller management subnet, and between the subcloud OAM subnet and
+        Controller management subnet, and between the subcloud |OAM| subnet and
         the System Controller subnet.
 
     .. include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
@@ -110,9 +110,9 @@ subcloud, the subcloud installation process has two phases:
                         Specify boot menu timeout, in seconds
 
 
-    The following example ks-addon.cfg, used with the -a option, sets up an
-    initial IP interface at boot time by defining a |VLAN| on an Ethernet
-    interface and has it use DHCP to request an IP address:
+    The following example ``ks-addon.cfg`` file, used with the -a option,
+    sets up an initial IP interface at boot time by defining a |VLAN| on
+    an Ethernet interface and has it use |DHCP| to request an IP address:
 
     .. code-block:: none
 
@@ -197,7 +197,7 @@ subcloud, the subcloud installation process has two phases:
             type: docker
 
 
-    Where <sysinv\_password\> can be found by running the following command
+    Where <sysinv_password\> can be found by running the following command
     as 'sysadmin' on the Central Cloud:
 
     .. code-block:: none
@@ -206,8 +206,8 @@ subcloud, the subcloud installation process has two phases:
 
     This configuration uses the local registry on your central cloud. If you
     prefer to use the default external registries, make the following
-    substitutions for the **docker\_registries** and
-    **additional\_local\_registry\_images** sections of the file.
+    substitutions for the ``docker_registries`` and
+    ``additional_local_registry_images`` sections of the file.
 
     .. code-block:: none
 
@@ -223,10 +223,10 @@ subcloud, the subcloud installation process has two phases:
 
 #.  You can use the Central Cloud's local registry to pull images on subclouds.
     The Central Cloud's local registry's HTTPS certificate must have the
-    Central Cloud's |OAM| IP, **registry.local** and **registry.central** in the
+    Central Cloud's |OAM| IP, ``registry.local`` and ``registry.central`` in the
     certificate's |SAN| list. For example, a valid certificate contains a |SAN|
-    list **"DNS.1: registry.local DNS.2: registry.central IP.1: <floating
-    management\> IP.2: <floating OAM\>"**.
+    list ``"DNS.1: registry.local DNS.2: registry.central IP.1: <floating
+    management\> IP.2: <floating OAM\>"``.
 
     If required, run the following command on the Central Cloud prior to
     bootstrapping the subcloud to install the new certificate for the Central

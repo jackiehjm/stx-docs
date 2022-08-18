@@ -84,9 +84,9 @@ Container_image sets:
                                   cb1b51f019c612178f14df6f03131a18  container-image1.tar.gz
                                   db6c0ded6eb7bc2807edf8c345d4fe97  container-image2.tar.gz
 
-----------------------------------------------------
-Creating the Prestaged ISO with gen-prestaged-iso.sh
-----------------------------------------------------
+--------------------------------------------------
+Create the Prestaged ISO with gen-prestaged-iso.sh
+--------------------------------------------------
 
 You can prepare and manually prestage the Install Bundle or use the
 ``gen-prestaged-iso.sh`` tool to create a self-installing prestaging ISO image.
@@ -231,7 +231,7 @@ Use the ``--images`` option to specify the path/filename to a container image
 to be installed on the subcloud.
 
 Use the ``--param`` option to specify the rootfs device and boot device to
-install the prestaging image. The tool defaults to /dev/sda directory. Use this
+install the prestaging image. The tool defaults to ``/dev/sda directory``. Use this
 option to override the default storage device the prestaging image is to be
 installed.
 

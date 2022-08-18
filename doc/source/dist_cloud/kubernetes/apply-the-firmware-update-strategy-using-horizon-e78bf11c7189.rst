@@ -29,7 +29,3 @@ Update Orchestration.
      subcloud, use the **Host Inventory** page on the subcloud.
 
 
-.. rubric:: |result|
-
-.. procedure results here
-

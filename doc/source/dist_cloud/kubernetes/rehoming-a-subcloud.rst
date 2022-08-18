@@ -58,11 +58,11 @@ There are six phases for Rehoming a subcloud:
 -   Ensure that the subcloud has been backed up, in case something goes wrong
     and a subcloud system recovery is required.
 
--   Transfer the yaml file that was used to bootstrap the subcloud prior to
+-   Transfer the ``yaml`` file that was used to bootstrap the subcloud prior to
     rehoming, to the new System Controller. This data is required for rehoming.
 
 -   If the subcloud can be remotely installed via Redfish Virtual Media service,
-    transfer the yaml file that contains the install data for this subcloud,
+    transfer the ``yaml`` file that contains the install data for this subcloud,
     and use this install data in the new System Controller, via the
     ``--install-values`` option, when running the remote subcloud reinstall,
     upgrade or restore commands.
@@ -83,7 +83,7 @@ There are six phases for Rehoming a subcloud:
 
 #.  Ensure that the subcloud's bootstrap values file is available on the new
     System Controller. If required, in the subcloud's bootstrap values file
-    update the **systemcontroller_gateway_address** entry to point to the
+    update the ``systemcontroller_gateway_address`` entry to point to the
     appropriate network gateway for the new System Controller to communicate
     with the subcloud.
 

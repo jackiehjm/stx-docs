@@ -147,7 +147,7 @@ Executing the dcmanager subcloud reinstall command in the Central Cloud:
     bootstrapping by monitoring the following log file on the active
     controller in the Central cloud:
 
-    -   /var/log/dcmanager/ansible/subcloud1_playbook_output.log
+    -   ``/var/log/dcmanager/ansible/subcloud1_playbook_output.log``
 
 #.  After the subcloud is successfully reinstalled and bootstrapped, run the
     subcloud reconfig command to complete the process. The subcloud

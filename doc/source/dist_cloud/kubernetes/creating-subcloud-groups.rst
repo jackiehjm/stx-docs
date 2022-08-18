@@ -11,10 +11,10 @@ be added to the 'Default' group, unless a different subcloud group has been
 specified.
 
 A subcloud can be moved to a different subcloud group using the
-'dcmanager subcloud update' command for the group attribute. A subcloud group
-cannot be deleted if it contains any subclouds. Removing a subcloud from a
-subcloud group is done by moving the subcloud back to the 'Default' subcloud
-group.
+:command:`dcmanager subcloud update` command for the group attribute. A
+subcloud group cannot be deleted if it contains any subclouds. Removing a
+subcloud from a subcloud group is done by moving the subcloud back to the
+'Default' subcloud group.
 
 
 .. rubric:: |context|
