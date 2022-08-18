@@ -14,7 +14,7 @@ You can install reboot-required software updates using the CLI.
 .. _installing-reboot-required-software-updates-using-the-cli-steps-v1q-vlv-vw:
 
 #.  Log in as user **sysadmin** to the active controller and source the script
-    /etc/platform/openrc to obtain administrative privileges.
+    ``/etc/platform/openrc`` to obtain administrative privileges.
 
 #.  Verify that the updates are available using the :command:`sw-patch query`
     command.
@@ -49,10 +49,10 @@ You can install reboot-required software updates using the CLI.
 
     .. parsed-literal::
 
-        ~(keystone_admin)]$ sudo sw-patch apply |pn|-nn.nn_PATCH_0001
-        |pn|-nn.nn_PATCH_0001 is now in the repo
+        ~(keystone_admin)]$ sudo sw-patch apply |pn|-<nn>.<nn>_PATCH_0001
+        |pn|-<nn>.<nn>_PATCH_0001 is now in the repo
 
-    where nn.nn in the update filename is the |prod-long| release number.
+    where <nn>.<nn> in the update filename is the |prod-long| release number.
 
     The update is now in the Partial-Apply state, ready for installation from
     the software updates repository on the impacted hosts.
@@ -101,7 +101,7 @@ You can install reboot-required software updates using the CLI.
         host.
 
         The **Patch Current** field of the :command:`query-hosts` command will
-        briefly report “Pending” after you apply or remove an update, until
+        briefly report *Pending* after you apply or remove an update, until
         that host has checked against the repository to see if it is impacted
         by the patching operation.
 
@@ -124,7 +124,8 @@ You can install reboot-required software updates using the CLI.
 
         **install-failed**
            The operation failed, either due to an update error or something
-           killed the process. Check the patching.log on the node in question.
+           killed the process. Check the ``patching.log`` on the node in
+           question.
 
         **install-rejected**
            The node is unlocked, therefore the request to install has been
@@ -168,8 +169,8 @@ You can install reboot-required software updates using the CLI.
             ~(keystone_admin)]$ sudo sw-patch host-install <controller-0>
 
         .. note::
-            You can use the :command:`sudo sw-patch host-install-async`
-            <hostname> command if you are launching multiple installs in
+            You can use the :command:`sudo sw-patch host-install-async <hostname>`
+            command if you are launching multiple installs in
             parallel.
 
     #.  Unlock the host.
@@ -181,7 +182,7 @@ You can install reboot-required software updates using the CLI.
         Unlocking the host forces a reset of the host followed by a reboot.
         This ensures that the host is restarted in a known state.
 
-    All updates are now installed on **controller-0**. Querying the current
+    All updates are now installed on controller-0. Querying the current
     update status displays the following information:
 
     .. code-block:: none
@@ -199,14 +200,14 @@ You can install reboot-required software updates using the CLI.
         storage-0     192.168.204.37       Yes             No          nn.nn   idle
         storage-1     192.168.204.90       Yes             No          nn.nn   idle
 
-#.  Install all pending updates on **controller-1**.
+#.  Install all pending updates on controller-1.
 
     .. note::
         For |prod| Simplex systems, this step does not apply.
 
-    Repeat the previous step targeting **controller-1**.
+    Repeat the previous step targeting controller-1.
 
-    All updates are now installed on **controller-1** as well. Querying the
+    All updates are now installed on controller-1 as well. Querying the
     current updating status displays the following information:
 
     .. code-block:: none
@@ -227,12 +228,12 @@ You can install reboot-required software updates using the CLI.
 #.  Install any pending updates for the worker or storage hosts.
 
     .. note::
-        For |prod| Simplex or Duplex systems, this step does not apply.
+         This step does not apply for |prod| Simplex or Duplex systems.
 
     All hosted application pods currently running on a worker host are
     re-located to another host.
 
-    If the **Patch Current** status for a worker or storage host is **No**,
+    If the **Patch Current** status for a worker or storage host is *No*,
     apply the pending updates using the following commands:
 
     .. code-block:: none
@@ -247,32 +248,36 @@ You can install reboot-required software updates using the CLI.
 
         ~(keystone_admin)]$ system host-unlock <hostname>
 
-    where <hostname> is the name of the host \(for example, **worker-0**\).
+    where <hostname> is the name of the host \(for example, ``worker-0``\).
 
     .. note::
         Update installations can be triggered in parallel.
 
-        The :command:`sw-patch host-install-async` command \(**install
-        patches** on the Horizon Web interface\) can be run on all locked
-        nodes, without waiting for one node to complete the install before
-        triggering the install on the next. If you can lock the nodes at the
-        same time, without impacting hosted application services, you can
+        The :command:`sw-patch host-install-async` command \( cooresponding to
+        **install patches** on the Horizon Web interface\) can be run on all
+        locked nodes, without waiting for one node to complete the install
+        before triggering the install on the next. If you can lock the nodes at
+        the same time, without impacting hosted application services, you can
         update them at the same time.
 
         Likewise, you can install an update to the standby controller and a
         worker node at the same time. The only restrictions are those of the
-        lock: You cannot lock both controllers, and you cannot lock a worker
-        node if you do not have enough free resources to relocate the hosted
-        applications from it. Also, in a Ceph configuration \(with storage
-        nodes\), you cannot lock more than one of
-        controller-0/controller-1/storage-0 at the same time, as these nodes
-        are running Ceph monitors and you must have at least two in service at
-        all times.
+        lock: 
+        
+        * You cannot lock both controllers.
+        
+        * You cannot lock a worker node if you do not have enough free resources
+          to relocate the hosted applications from it. 
+          
+        Also, in a Ceph configuration \(with storage nodes\), you cannot lock
+        more than one of controller-0/controller-1/storage-0 at the same time,
+        as these nodes are running Ceph monitors and you must have at least two
+        in service at all times.
 
 #.  Confirm that all updates are installed and the |prod| is up-to-date.
 
     Use the :command:`sw-patch query` command to verify that all updates are
-    **Applied**.
+    *Applied*.
 
     .. parsed-literal::
 
@@ -280,13 +285,13 @@ You can install reboot-required software updates using the CLI.
 
         Patch ID                    Patch State
         =========================   ===========
-        |pn|-nn.nn_PATCH_0001       Applied
+        |pn|-<nn>.<nn>_PATCH_0001   Applied
 
-    where *nn.nn* in the update filename is the |prod| release number.
+    where <nn>.<nn> in the update filename is the |prod| release number.
 
-    If the **Patch State** for any update is still shown as **Available** or
-    **Partial-Apply**, use the **sw-patch query-hosts** command to identify
-    which hosts are not **Patch Current**, and then apply updates to them as
+    If the **Patch State** for any update is still shown as *Available* or
+    *Partial-Apply*, use the :command:`sw-patch query-hosts`` command to identify
+    which hosts are not *Patch Current*, and then apply updates to them as
     described in the preceding steps.
 
 

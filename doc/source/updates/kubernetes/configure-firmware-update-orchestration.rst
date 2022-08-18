@@ -7,12 +7,12 @@ Configure Firmware Update Orchestration
 =======================================
 
 You can configure *Firmware Update Orchestration Strategy* using the
-**sw-manager** |CLI|.
+:command:`sw-manager` |CLI|.
 
 .. note::
     Management-affecting alarms cannot be ignored using relaxed alarm rules
     during an orchestrated firmware update operation. For a list of
-    management-affecting alarms, see |prod| Fault Management:
+    management-affecting alarms, see |fault-doc|:
     :ref:`Alarm Messages <100-series-alarm-messages>`. To display
     management-affecting active alarms, use the following command:
 
@@ -37,9 +37,9 @@ ignored even when the default strict restrictions are selected:
 
 .. _noc1590162360081-ul-ls2-pxs-tlb:
 
--   Hosts that need to be updated must be in the **unlocked-enabled** state.
+-   Hosts that need to be updated must be in the ``unlocked-enabled`` state.
 
--   The firmware update image must be in the **applied** state. For more
+-   The firmware update image must be in the ``applied`` state. For more
     information, see :ref:`Managing Software Updates <managing-software-updates>`.
 
 .. rubric:: |proc|
@@ -69,7 +69,7 @@ ignored even when the default strict restrictions are selected:
           state:                                  building
           inprogress:                             true
 
-#.  Optional: Display the strategy in summary, if required. The firmware update
+#.  |Optional| Display the strategy in summary, if required. The firmware update
     strategy :command:`show` command displays the strategy in a summary.
 
     .. code-block:: none
@@ -87,7 +87,7 @@ ignored even when the default strict restrictions are selected:
           state:                                  ready-to-apply
           build-result:                           success
 
-    The strategy steps and stages are displayed using the **--details** option.
+    The strategy steps and stages are displayed using the ``--details`` option.
 
 #.  Apply the strategy.
 
@@ -96,7 +96,7 @@ ignored even when the default strict restrictions are selected:
     all the hosts in the strategy is complete.
 
 
-    -   Use the **-stage-id** option to specify a specific stage to apply; one
+    -   Use the ``-stage-id`` option to specify a specific stage to apply; one
         at a time.
 
         .. note::
@@ -106,7 +106,7 @@ ignored even when the default strict restrictions are selected:
 
     .. code-block:: none
 
-        ~(keystone_admin)$sw-manager fw-update-strategy apply
+        ~(keystone_admin)$ sw-manager fw-update-strategy apply
         Strategy Firmware Update Strategy:
           strategy-uuid:                          3e43c018-9c75-4ba8-a276-472c3bcbb268
           controller-apply-type:                  ignore
@@ -125,7 +125,7 @@ ignored even when the default strict restrictions are selected:
 
     .. code-block:: none
 
-        ~(keystone_admin)$sw-manager fw-update-strategy show
+        ~(keystone_admin)$ sw-manager fw-update-strategy show
         Strategy Firmware Update Strategy:
           strategy-uuid:                          3e43c018-9c75-4ba8-a276-472c3bcbb268
           controller-apply-type:                  ignore
@@ -138,7 +138,7 @@ ignored even when the default strict restrictions are selected:
           state:                                  applying
           inprogress:                             true
 
-#.  Optional: Abort the strategy, if required. This is only used to stop, and
+#.  |optional| Abort the strategy, if required. This is only used to stop, and
     abort the entire strategy.
 
     The firmware update strategy :command:`abort` command can be used to abort
@@ -157,7 +157,7 @@ ignored even when the default strict restrictions are selected:
 
     .. code-block:: none
 
-        ~(keystone_admin)$sw-manager fw-update-strategy delete
+        ~(keystone_admin)$ sw-manager fw-update-strategy delete
         Strategy deleted.
 
 For more information see :ref:`Firmware Update Orchestration Using the CLI

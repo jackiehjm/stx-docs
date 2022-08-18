@@ -18,7 +18,7 @@ hosts are upgraded one at time while continuing to provide its hosting services
 to its hosted applications. An upgrade can be performed manually or using
 Upgrade Orchestration, which automates much of the upgrade procedure, leaving a
 few manual steps to prevent operator oversight. For more information on manual
-upgrades, see :ref:`Manual PLatform Components Upgrade
+upgrades, see :ref:`Manual Platform Components Upgrade
 <manual-upgrade-overview>`. For more information on upgrade orchestration, see
 :ref:`Orchestrated Platform Component Upgrade
 <orchestration-upgrade-overview>`.
@@ -26,7 +26,7 @@ upgrades, see :ref:`Manual PLatform Components Upgrade
 .. warning::
     Do NOT use information in the |updates-doc| guide for |prod-dc|
     orchestrated software upgrades. If information in this document is used for
-    a |prod-dc| orchestrated upgrade, the upgrade will fail resulting
+    a |prod-dc| orchestrated upgrade, the upgrade will fail, resulting
     in an outage. The |prod-dc| Upgrade Orchestrator automates a
     recursive rolling upgrade of all subclouds and all hosts within the
     subclouds.
@@ -40,40 +40,41 @@ Before starting the upgrades process:
 
 .. _software-upgrades-ul-ant-vgq-gmb:
 
--   the system must be “patch current”
+-   The system must be 'patch current'.
 
--   there must be no management-affecting alarms present on the system
+-   There must be no management-affecting alarms present on the system.
 
--   ensure any certificates managed by cert manager will not be renewed during
-    the upgrade process
+-   Ensure that any certificates managed by cert manager will not be renewed
+    during the upgrade process.
 
--   the new software load must be imported, and
+-   The new software load must be imported.
 
--   a valid license file for the new software release must be installed
+-   A valid license file for the new software release must be installed.
 
 The upgrade process starts by upgrading the controllers. The standby controller
 is upgraded first and involves loading the standby controller with the new
-release of software and migrating all the controller services' databases for
-the new release of software. Activity is switched to the upgraded controller,
+release of software and migrating all the controller services' databases for the
+new release of software. Activity is switched to the upgraded controller,
 running in a 'compatibility' mode where all inter-node messages are using
-message formats from the old release of software. Before upgrading the second
-controller, is the "point-of-no-return for an in-service abort" of the upgrades
-process. The second controller is loaded with the new release of software and
-becomes the new Standby controller. For more information on manual upgrades,
-see :ref:`Manual Platform Components Upgrade <manual-upgrade-overview>` .
+message formats from the old release of software. Prior to upgrading the second
+controller, you reach a "point-of-no-return for an in-service abort" of the
+upgrades process. The second controller is loaded with the new release of
+software and becomes the new Standby controller. For more information on manual
+upgrades, see :ref:`Manual Platform Components Upgrade
+<manual-upgrade-overview>` .
 
 If present, storage nodes are locked, upgraded and unlocked one at a time in
 order to respect the redundancy model of |prod| storage nodes. Storage nodes
 can be upgraded in parallel if using upgrade orchestration.
 
-Upgrade of worker nodes is the next step in the process. When locking a worker
-node the node is tainted, such that Kubernetes shuts down any pods on this
-worker node and restarts the pods on another worker node. When upgrading the
-worker node, the worker node network boots/installs the new software from the
-active controller. After unlocking the worker node, the worker services are
-running in a 'compatibility' mode where all inter-node messages are using
-message formats from the old release of software. Note that the worker nodes
-can only be upgraded in parallel if using upgrade orchestration.
+Worker nodes are then upgraded. Worker nodes are tainted when locked, such that
+Kubernetes shuts down any pods on this worker node and restarts the pods on
+another worker node. When upgrading the worker node, the worker node network
+boots/installs the new software from the active controller. After unlocking the
+worker node, the worker services are running in a 'compatibility' mode where all
+inter-node messages are using message formats from the old release of software.
+Note that the worker nodes can only be upgraded in parallel if using upgrade
+orchestration.
 
 The final step of the upgrade process is to activate and complete the upgrade.
 This involves disabling 'compatibility' modes on all hosts and clearing the
@@ -97,9 +98,9 @@ resolved. Issues specific to a storage or worker host can be addressed by
 temporarily downgrading the host, addressing the issues and then upgrading the
 host again, or in some cases by replacing the node.
 
-In extremely rare cases, it may be necessary to abort an upgrade. This is a
-last resort and should only be done if there is no other way to address the
-issue within the context of the upgrade. There are two cases for doing such an
+In extremely rare cases, it may be necessary to abort an upgrade. This is a last
+resort and should only be done if there is no other way to address the issue
+within the context of the upgrade. There are two scenarios for doing such an
 abort:
 
 .. _software-upgrades-ul-dqp-brt-cx:

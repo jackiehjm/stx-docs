@@ -18,7 +18,7 @@ has upgraded successfully.
 
     .. code-block:: none
 
-        $ system upgrade-abort
+        ~(keystone_admin)]$ system upgrade-abort
 
     The upgrade state is set to aborting. Once this is executed, there is no
     canceling; the upgrade must be completely aborted.
@@ -36,7 +36,7 @@ has upgraded successfully.
 
     .. code-block:: none
 
-        $ system host-swact controller-1
+        ~(keystone_admin)]$ system host-swact controller-1
 
     If controller-1 was active with the new upgrade release, swacting back to
     controller-0 will switch back to using the previous release databases,
@@ -47,8 +47,8 @@ has upgraded successfully.
 
     .. code-block:: none
 
-        $ system host-lock controller-1
-        $ system host-downgrade controller-1
+        ~(keystone_admin)]$ system host-lock controller-1
+        ~(keystone_admin)]$ system host-downgrade controller-1
 
     The host is re-installed with the previous release load.
 
@@ -63,16 +63,16 @@ has upgraded successfully.
 
     .. code-block:: none
 
-        $ system host-unlock controller-1
+        ~(keystone_admin)]$ system host-unlock controller-1
 
 #.  Complete the upgrade.
 
     .. code-block:: none
 
-        $ system upgrade-complete
+        ~(keystone_admin)]$ system upgrade-complete
 
 #.  Delete the newer upgrade release that has been aborted.
 
     .. code-block:: none
 
-        $ system load-delete <loadID>
+        ~(keystone_admin)]$ system load-delete <loadID>

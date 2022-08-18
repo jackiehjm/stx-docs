@@ -6,9 +6,10 @@
 Perform an Orchestrated Upgrade
 ===============================
 
-You can perform a partially-Orchestrated Upgrade of a |prod| system using the CLI and Horizon
-Web interface. Upgrade and stability of the initial controller node must be done manually
-before using upgrade orchestration to orchestrate the remaining nodes of the |prod|.
+You can perform a partially orchestrated Upgrade of a |prod| system using the
+CLI and Horizon Web interface. Upgrade and stability of the initial controller
+node must be done manually before using upgrade orchestration to orchestrate the
+remaining nodes of the |prod|.
 
 .. rubric:: |context|
 
@@ -50,31 +51,31 @@ described below to upgrade the remaining nodes of the |prod| system.
 
 #.  Click the **Create Strategy** button.
 
-    The Create Strategy dialog appears.
+    The **Create Strategy** dialog appears.
 
 #.  Create an upgrade strategy by specifying settings for the parameters in the
-    Create Strategy dialog box.
+    **Create Strategy** dialog box.
 
     Create an upgrade strategy, specifying the following parameters:
 
     -   storage-apply-type:
 
-        **serial** \(default\)
+        ``serial`` \(default\)
            Storage hosts will be upgraded one at a time.
 
-        **parallel**
+        ``parallel``
            Storage hosts will be upgraded in parallel, ensuring that only one
            storage node in each replication group is upgraded at a time.
 
-        **ignore**
+        ``ignore``
            Storage hosts will not be upgraded.
 
     -   worker-apply-type:
 
-        **serial** \(default\):
+        ``serial`` \(default\):
            Worker hosts will be upgraded one at a time.
 
-        **parallel**
+        ``parallel``
            Worker hosts will be upgraded in parallel, ensuring that:
 
            -   At most max-parallel-worker-hosts \(see below\) worker hosts
@@ -86,10 +87,10 @@ described below to upgrade the remaining nodes of the |prod| system.
            -   Worker hosts with no application pods are upgraded before
                worker hosts with application pods.
 
-        **ignore**
+        ``ignore``
            Worker hosts will not be upgraded.
 
-        **max-parallel-worker-hosts**
+        ``max-parallel-worker-hosts``
            Specify the maximum worker hosts to upgrade in parallel \(minimum:
            2, maximum: 10\).
 
@@ -98,19 +99,19 @@ described below to upgrade the remaining nodes of the |prod| system.
                (50), the value shall be at the maximum 2, which represents the
                minimum value.
 
-        **alarm-restrictions**
+        ``alarm-restrictions``
             This option lets you specify how upgrade orchestration behaves when
             alarms are present.
 
             You can use the CLI command :command:`fm alarm-list
             --mgmt_affecting` to view the alarms that are management affecting.
 
-            **Strict**
+            ``Strict``
                The default strict option will result in upgrade orchestration
                failing if there are any alarms present in the system \(except
                for a small list of alarms\).
 
-            **Relaxed**
+            ``Relaxed``
                This option allows orchestration to proceed if alarms are
                present, as long as none of these alarms are management
                affecting.
@@ -157,10 +158,10 @@ described below to upgrade the remaining nodes of the |prod| system.
             NOT updated, but any additional pods on each worker host will be
             relocated before it is upgraded.
 
-#.  Apply the upgrade-strategy. You can optionally apply a single stage at a
+#.  Apply the upgrade strategy. You can optionally apply a single stage at a
     time.
 
-    While an upgrade-strategy is being applied, it can be aborted. This results
+    While an upgrade strategy is being applied, it can be aborted. This results
     in:
 
     -   The current step will be allowed to complete.
@@ -168,9 +169,9 @@ described below to upgrade the remaining nodes of the |prod| system.
     -   If necessary an abort phase will be created and applied, which will
         attempt to unlock any hosts that were locked.
 
-    After an upgrade-strategy has been applied \(or aborted\) it must be
-    deleted before another upgrade-strategy can be created. If an
-    upgrade-strategy application fails, you must address the issue that caused
+    After an upgrade strategy has been applied \(or aborted\) it must be
+    deleted before another upgrade strategy can be created. If an
+    upgrade strategy application fails, you must address the issue that caused
     the failure, then delete/re-create the strategy before attempting to apply
     it again.
 

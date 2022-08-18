@@ -12,7 +12,7 @@ You can configure *Kubernetes Version Upgrade Orchestration Strategy* using the
 .. note::
     You require administrator privileges to use :command:`sw-manager`. You must
     log in to the active controller as **user sysadmin** and source the script
-    by using the command, source /etc/platform/openrc to obtain administrator
+    by using the command, source ``/etc/platform/openrc`` to obtain administrator
     privileges. Do not use :command:`sudo`.
 
 .. note::
@@ -75,9 +75,10 @@ For example:
 -   Hosts that need to be upgraded must be in the ``unlocked-enabled`` state.
 
 -   If you are using NetApp Trident, ensure that your NetApp version is
-    compatible with Trident 22.01 before upgrading Kubernetes to version |kube-ver|
-    and after updating |prod| to version |prod-ver|. For more information,
-    see :ref:`Upgrade the NetApp Trident Software <upgrade-the-netapp-trident-software-c5ec64d213d3>`.
+    compatible with Trident 22.01 before upgrading Kubernetes to version
+    |kube-ver| and after updating |prod| to version |prod-ver|. For more
+    information, see :ref:`Upgrade the NetApp Trident Software
+    <upgrade-the-netapp-trident-software-c5ec64d213d3>`.
 
 
 .. only:: partner
@@ -104,7 +105,7 @@ For example:
 #.  Confirm that the system is healthy.
 
     Check the current system health status, resolve any alarms and other issues
-    reported by the :command:`system health-query-kube-upgrade` command then
+    reported by the :command:`system health-query-kube-upgrade` command, then
     recheck the system health status to confirm that all **System Health**
     fields are set to **OK**.
 
@@ -272,7 +273,7 @@ For example:
                             defaults to strict
 
 
-#.  Optional: Display the strategy in summary, if required. The Kubernetes
+#.  |optional| Display the strategy in summary, if required. The Kubernetes
     upgrade strategy :command:`show` command displays the strategy in a summary.
 
     .. code-block:: none
@@ -350,7 +351,7 @@ For example:
     ``downloading-images``, ``downloaded-images``, ``upgrading-first-master``,
     ``upgraded-first-master``, etc.
 
-#.  Optional: Abort the strategy, if required. This is only used to stop, and
+#.  |optional| Abort the strategy, if required. This is only used to stop, and
     abort the entire strategy.
 
     The Kubernetes version upgrade strategy :command:`abort` command can be

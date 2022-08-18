@@ -39,7 +39,7 @@ unlocked as part of applying the update.
         controller-0  192.168.204.3        Yes             No          nn.nn   idle
         controller-1  192.168.204.4        Yes             No          nn.nn   idle
 
-#.  Ensure the original update files have been deleted from the root drive.
+#.  Ensure that the original update files have been deleted from the root drive.
 
     After they are uploaded to the storage area, the original files are no
     longer required. You must use the command-line interface to delete them, in

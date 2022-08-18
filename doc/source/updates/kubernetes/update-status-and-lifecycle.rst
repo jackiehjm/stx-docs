@@ -27,19 +27,19 @@ To keep track of software update installation, you can use the
 .. parsed-literal::
 
     ~(keystone_admin)]$ sudo sw-patch query
-    Patch ID	            Patch State
-    ===========             ============
-    |pvr|-nn.nn_PATCH_0001  Applied
+    Patch ID	                Patch State
+    ===========                 ============
+    |pvr|-<nn>.<nn>_PATCH_0001  Applied
 
-where *nn.nn* in the update filename is the |prod| release number.
+where <nn>.<nn> in the update filename is the |prod| release number.
 
-This shows the **Patch State** for each of the updates in the storage area:
+This shows the 'Patch State' for each of the updates in the storage area:
 
-**Available**
+``Available``
     An update in the *Available* state has been added to the storage area, but
     is not currently in the repository or installed on the hosts.
 
-**Partial-Apply**
+``Partial-Apply``
     An update in the *Partial-Apply* state has been added to the software
     updates repository using the :command:`sw-patch apply` command, but has not
     been installed on all hosts that require it. It may have been installed on
@@ -51,12 +51,12 @@ This shows the **Patch State** for each of the updates in the storage area:
     node X, you cannot just install the non-reboot-required update to the
     unlocked node X.
 
-**Applied**
+``Applied``
     An update in the *Applied* state has been installed on all hosts that
     require it.
 
 You can use the :command:`sw-patch query-hosts` command to see which hosts are
-fully updated \(**Patch Current**\). This also shows which hosts require
+fully updated \(Patch Current\). This also shows which hosts require
 reboot, either because they are not fully updated, or because they are fully
 updated but not yet rebooted.
 

@@ -11,7 +11,7 @@ upgrade, however, the rollback will impact the hosting of applications.
 
 The upgrade abort procedure can only be applied before the
 :command:`upgrade-complete` command is issued. Once this command is issued
-the upgrade can not be aborted. If the return to the previous release is required,
+the upgrade cannot be aborted. If you must revert to the previous release,
 then restore the system using the backup data taken prior to the upgrade.
 
 In some scenarios additional actions will be required to complete the upgrade
@@ -23,7 +23,7 @@ abort. It may be necessary to restore the system from a backup.
 
     .. code-block:: none
 
-        $ system upgrade-abort
+        ~(keystone_admin)]$ system upgrade-abort
 
     Once this is done there is no going back; the upgrade must be completely
     aborted.
@@ -41,13 +41,13 @@ abort. It may be necessary to restore the system from a backup.
 
     .. code-block:: none
 
-        $ system host-swact controller-0
+        ~(keystone_admin)]$ system host-swact controller-0
 
 #.  Lock controller-0.
 
     .. code-block:: none
 
-        $ system host-lock controller-0
+        ~(keystone_admin)]$ system host-lock controller-0
 
 #.  Wipe the disk and power down all storage \(if applicable\) and worker hosts.
 
@@ -66,13 +66,13 @@ abort. It may be necessary to restore the system from a backup.
 
     .. code-block:: none
 
-        $ system host-lock <hostID>
+        ~(keystone_admin)]$ system host-lock <hostID>
 
 #.  Downgrade controller-0.
 
     .. code-block:: none
 
-        $ system host-downgrade controller-0
+        ~(keystone_admin)]$ system host-downgrade controller-0
 
     The host is re-installed with the previous release load.
 
@@ -80,7 +80,7 @@ abort. It may be necessary to restore the system from a backup.
 
     .. code-block:: none
 
-        $ system host-unlock controller-0
+        ~(keystone_admin)]$ system host-unlock controller-0
 
     .. note::
         Wait for controller-0 to become unlocked-enabled. Wait for the
@@ -90,7 +90,7 @@ abort. It may be necessary to restore the system from a backup.
 
     .. code-block:: none
 
-        $ system host-swact controller-1
+        ~(keystone_admin)]$ system host-swact controller-1
 
     Swacting back to controller-0 will switch back to using the previous
     release databases, which were frozen at the time of the swact to
@@ -100,11 +100,11 @@ abort. It may be necessary to restore the system from a backup.
 
     .. code-block:: none
 
-        $ system host-lock controller-1
+        ~(keystone_admin)]$ system host-lock controller-1
 
     .. code-block:: none
 
-        $ system host-downgrade controller-1
+        ~(keystone_admin)]$ system host-downgrade controller-1
 
     The host is re-installed with the previous release load.
 
@@ -112,7 +112,7 @@ abort. It may be necessary to restore the system from a backup.
 
     .. code-block:: none
 
-        $ system host-unlock controller-1
+        ~(keystone_admin)]$ system host-unlock controller-1
 
 
 #.  Power up and unlock the storage hosts one at a time \(if using a Ceph
@@ -134,7 +134,7 @@ abort. It may be necessary to restore the system from a backup.
 
     .. code-block:: none
 
-        $ system upgrade-complete
+        ~(keystone_admin)]$ system upgrade-complete
 
     This cleans up the upgrade release, configuration, databases, and so forth.
 
@@ -142,4 +142,4 @@ abort. It may be necessary to restore the system from a backup.
 
     .. code-block:: none
 
-        $ system load-delete
+        ~(keystone_admin)]$ system load-delete
