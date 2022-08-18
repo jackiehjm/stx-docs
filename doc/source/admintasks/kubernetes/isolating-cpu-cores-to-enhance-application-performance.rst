@@ -96,10 +96,11 @@ label to disable it.
 Use the procedure below to disable the ``nohz_full`` parameter on standard
 kernels.
 
-.. note::
+.. only:: starlingx
 
-    For VirtualBox environments, you must add the `disable-nohz-full=enabled`
-    label prior to host unlock.
+    .. note::
+        For VirtualBox environments, you must add the `disable-nohz-full=enabled`
+        label prior to host unlock.
 
 .. rubric:: |proc|
 
