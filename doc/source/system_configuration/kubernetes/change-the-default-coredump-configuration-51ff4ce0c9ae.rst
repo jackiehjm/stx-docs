@@ -117,6 +117,6 @@ The following example sets ``ExternalSizeMax`` to 3 gigabytes.
 .. note::
 
    Configuring a parameter raises the 250.001 *controller-0 Configuration
-   is out-of-date* adarm. A lock/unlock is required to clear it. For more
+   is out-of-date* alarm. A lock/unlock is required to clear it. For more
    information, see :ref:`locking-a-host-using-the-cli` and
    :ref:`unlocking-a-host-using-the-cli`.

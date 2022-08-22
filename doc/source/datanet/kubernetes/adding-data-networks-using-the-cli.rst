@@ -35,7 +35,7 @@ pci-passthrough interface.
             with an equal or larger |MTU|.
 
             This is not used by the Kubernetes |SRIOV| plugin. In order to
-            address the |MTU| in Kubernetes, the network attached definiition
+            address the |MTU| in Kubernetes, the network attached definition
             needs to use the tuning plugin. For more details, see the examples
             in :ref:`Create Network Attachment Definitions
             <creating-network-attachment-definitions>`.

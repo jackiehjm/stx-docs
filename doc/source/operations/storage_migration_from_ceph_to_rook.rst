@@ -36,7 +36,7 @@ the migration procedures.
 #.  Create configmap to save OSD disk mount path
 
     Because original ceph osd(s) are deployed with filestore, must create configmap
-    to save osd disk info. Rook will lookup configmap "rook-ceph-osd-<hostname>-config"
+    to save osd disk info. Rook will look up configmap "rook-ceph-osd-<hostname>-config"
     to get every host's osd info. In this configmap 'osd-dirs: '{"<path>":<osd-id>}''
     means, osd with this id, mount to this folder <path>/osd<id>.
 
@@ -74,11 +74,11 @@ the migration procedures.
 #.  Edit pv and pvc provisioner
 
     For already created pv and pvc in openstack, if |prefix|-openstack
-    application is applied before migration, change the provsioner to
+    application is applied before migration, change the provisioner to
     kube-system.rbd.csi.ceph.com from rbd/ceph.com, as csi pod will provide csi
     service to K8s.
 
-#.  Update keyring and conf file on controller-0, controler-1
+#.  Update keyring and conf file on controller-0, controller-1
 
     For k8s pv, it will use host /etc/ceph/keyring for ceph cluster access,
     update folder /etc/ceph/ with containerized ceph cluster.

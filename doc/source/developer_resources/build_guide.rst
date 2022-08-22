@@ -607,7 +607,7 @@ Reference build overview
 
 * A server in the regional office performs regular (e.g. daily) automated
   builds using existing methods. These builds are called *reference builds*.
-* The builds are timestamped and preserved for some time (i.e. a number of weeks).
+* The builds are time-stamped and preserved for some time (i.e. a number of weeks).
 * A build CONTEXT, which is a file produced by ``build-pkgs`` at location
   ``$MY_WORKSPACE/CONTEXT``, is captured. It is a bash script that can cd to
   each and every Git and check out the SHA that contributed to the build.

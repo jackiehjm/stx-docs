@@ -10,7 +10,7 @@ HTTPs where x509 certificates are required.
 
 Etcd certificates in |prod| includes:
 
--   Etcd Root |CA| certificiate
+-   Etcd Root |CA| certificate
 -   Etcd server certificate
 -   Etcd client certificate
 -   ``kube-apiserver``'s etcd client certificate

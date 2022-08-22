@@ -230,7 +230,7 @@ The life cycle of a patch consists of the following states:
   repository and installed on any host yet.
 
 * **Partial-Apply**: A patch in the Partial-Apply state means the patching
-  process has been trigged by the :command:`sw-patch apply` command, but the
+  process has been triggered by the :command:`sw-patch apply` command, but the
   patch has not been installed on all hosts that require it. It may have been
   installed on some hosts, but not all.
 
@@ -238,7 +238,7 @@ The life cycle of a patch consists of the following states:
   hosts that require it.
 
 * **Partial-Remove**: A patch in the Partial-Remove state means the removing
-  process has been trigged by the :command:`sw-patch remove` command, but the
+  process has been triggered by the :command:`sw-patch remove` command, but the
   patch has not been removed from all hosts that installed it. It may have been
   removed from some hosts, but not all.
 

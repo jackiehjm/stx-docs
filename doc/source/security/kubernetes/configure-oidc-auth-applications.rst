@@ -204,7 +204,7 @@ Configure OIDC Auth Applications
       |CA| which signed it, respectively. These secrets are created in this
       example.
 
-      In addition, one can indicate the |WAD| certificate for an ldap server
+      In addition, one can indicate the |WAD| certificate for an |LDAP| server
       that has https enabled by using the secret ``wad-ca-cert`` as in this
       example.
 

@@ -42,7 +42,7 @@ either an uploaded certificate or an auto generated certificate.
 .. rubric:: |proc|
 
 Before starting the update, it is highly recommended to backup the existing
-Kubernetes Root |CA| certficiate and key, i.e. ``/etc/kubernetes/pki/ca.crt``
+Kubernetes Root |CA| certficate and key, i.e. ``/etc/kubernetes/pki/ca.crt``
 and ``/etc/kubernetes/pki/ca.key``.
 
 #.  Create the strategy.
