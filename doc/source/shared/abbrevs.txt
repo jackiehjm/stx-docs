@@ -151,7 +151,7 @@
 .. |VNF| replace:: :abbr:`VNF (Virtual Network Function)`
 .. |VNFs| replace:: :abbr:`VNFs (Virtual Network Functions)`
 .. |VNI| replace:: :abbr:`VNI (VXLAN Network Interface)`
-.. |VNIC| replace:: :abbr `VNIC (Virtual Network Interface Card)`
+.. |VNIC| replace:: :abbr:`VNIC (Virtual Network Interface Card)`
 .. |VNIs| replace:: :abbr:`VNIs (VXLAN Network Interfaces)`
 .. |VPC| replace:: :abbr:`VPC (Virtual Port Channel)`
 .. |vRAN| replace:: :abbr:`vRAN (virtualized Radio Access Network)`
