@@ -11,54 +11,85 @@ Run Restore Playbook Locally on the Controller
 To run restore on the controller, you need to download the backup to the
 active controller.
 
-.. rubric:: |context|
-
 You can use an external storage device, for example, a USB drive. Use the
 following command to run the Ansible Restore playbook:
 
 .. code-block:: none
 
-    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_platform.yml -e "initial_backup_dir=<location_of_tarball ansible_become_pass=<admin_password> admin_password=<admin_password backup_filename=<backup_filename> wipe_ceph_osds=<true/false>"
+    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_platform.yml -e "initial_backup_dir=<location_of_tarball ansible_become_pass=<admin_password> admin_password=<admin_password backup_filename=<backup_filename> <optional-restore-mode>"
 
-The |prod| restore supports the following optional modes, keeping the Ceph
-cluster data intact or wiping the Ceph cluster.
 
 .. _running-restore-playbook-locally-on-the-controller-steps-usl-2c3-pmb:
 
--   To keep the Ceph cluster data intact \(false - default option\), use the
-    following parameter:
+-   **Optional**: You can select one of the following restore modes:
 
-    .. code-block:: none
+    -   To keep the Ceph cluster data intact \(false - default option\), use the
+        following parameter:
 
-       wipe_ceph_osds=false
+        :command:`wipe_ceph_osds=false`
 
--   To wipe the Ceph cluster entirely \(true\), where the Ceph cluster will
-    need to be recreated, use the following parameter:
+    -   To wipe the Ceph cluster entirely \(true\), where the Ceph cluster will
+        need to be recreated, use the following parameter:
 
-    .. code-block:: none
+        :command:`wipe_ceph_osds=true`
 
-       wipe_ceph_osds=true
+    -   To define a convinient place to store the backup files, defined by
+        ``initial-backup_dir``, on the system (such as the home folder for
+        sysadmin, or /tmp, or even a mounted USB device), use the following
+        parameter:
 
-    Example of a backup file in /home/sysadmin
+        :command:`on_box_data=true/false`
 
-    .. code-block:: none
+        If this parameter is set to true, Ansible Restore playbook will look
+        for the backup file provided on the target server. The parameter
+        ``initial_backup_dir`` can be ommited from the command line. In this
+        case, the backup file will be under ``/opt/platform-backup`` directory.
 
-        ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_platform.yml -e "initial_backup_dir=/home/sysadmin ansible_become_pass=St0rlingX* admin_password=St0rlingX* backup_filename=localhost_platform_backup_2020_07_27_07_48_48.tgz wipe_ceph_osds=true"
+        If this parameter is set to false, the Ansible Restore playbook will
+        look for backup file provided where is the Ansible controller. In this
+        case, both the ``initial_backup_dir`` and ``backup_filename`` must be
+        specified in the command.
 
-    .. note::
-        If the backup contains patches, Ansible Restore playbook will apply
-        the patches and prompt you to reboot the system. Then you will need to
-        re-run Ansible Restore playbook.
+        Example of a backup file in /home/sysadmin
 
--   To indicate that the backup data file is under /opt/platform-backup
-    directory on the local machine, use the following parameter:
+        .. code-block:: none
 
-    .. code-block:: none
+            ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_platform.yml -e "initial_backup_dir=/home/sysadmin ansible_become_pass=St0rlingX* admin_password=St0rlingX* backup_filename=localhost_platform_backup_2020_07_27_07_48_48.tgz wipe_ceph_osds=true"
 
-        on_box_data=true
+        .. note::
 
-    If this parameter is set to **false**, the Ansible Restore playbook expects
-    both the **initial_backup_dir** and **backup_filename** to be specified.
+            If the backup contains patches, Ansible Restore playbook will apply
+            the patches and prompt you to reboot the system. Then you will need
+            to re-run Ansible Restore playbook.
+
+
+    -   The ``ssl_ca_certificate_file`` defines the ssl_ca certificate that will be
+        installed during the restore. It will replace the ``ssl_ca`` certificate
+        from the backup tar file.
+
+        .. code-block:: none
+
+            ssl_ca_certificate_file=<complete path>/<ssl_ca certificate file>
+
+        This parameter depends on ``on_box_data`` value.
+
+        When ``on_box_data=true`` or not defined, the ``ssl_ca_certificate_file``
+        will be the location of ``ssl_ca`` certificate file in the target host.
+        This is the default case.
+
+        When ``on_box_data=false``, the ``ssl_ca_certificate_file`` will be the
+        location of ``ssl_ca`` certificate file where the Ansible controller is
+        running. This is useful for remote play.
+
+        .. note::
+
+            To use this option on local restore mode, you need to download the
+            ``ssl_ca`` certificate file to the active controller.
+
+.. note::
+
+    After restore is completed it is not possible to restart (or rerun) the
+    restore playbook.
 
 .. rubric:: |postreq|
 

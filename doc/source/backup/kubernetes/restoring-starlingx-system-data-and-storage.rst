@@ -7,26 +7,31 @@
 Restore Platform System Data and Storage
 ========================================
 
-You can perform a system restore \(controllers, workers, including or
-excluding storage nodes\) of a |prod| cluster from available system data and
-bring it back to the operational state it was when the backup procedure took
-place.
+You can perform a system restore \(controllers, workers, including or excluding
+storage nodes\) of a |prod| cluster from a previous system backup and bring it
+back to the operational state it was when the backup procedure took place.
 
 .. rubric:: |context|
 
-This procedure takes a snapshot of the etcd database at the time of backup,
-stores it in the system data backup, and then uses it to initialize the
-Kubernetes cluster during a restore. Kubernetes configuration will be
-restored and pods that are started from repositories accessible from the
-internet or from external repositories will start immediately. |prod|
-specific applications must be re-applied once a storage cluster is configured.
+Kubernetes configuration will be restored and pods that are started from
+repositories accessible from the internet or from external repositories will
+start immediately. |prod| specific applications must be re-applied once a
+storage cluster is configured.
+
+Everything is restored as it was when the backup was created, except for
+optional data if not defined.-
+
+See :ref:`Back Up System Data <backing-up-starlingx-system-data>` for more
+details on the backup.
+
 
 .. warning::
-    The system data backup file can only be used to restore the system from
-    which the backup was made. You cannot use this backup file to restore
-    the system to different hardware.
 
-    To restore the data, use the same version of the boot image \(ISO\) that
+    The system backup file can only be used to restore the system from which
+    the backup was made. You cannot use this backup file to restore the system
+    to different hardware.
+
+    To restore the backup, use the same version of the boot image \(ISO\) that
     was used at the time of the original installation.
 
 The |prod| restore supports the following optional modes:
@@ -42,21 +47,13 @@ The |prod| restore supports the following optional modes:
        wipe_ceph_osds=false
 
 -   To wipe the Ceph cluster entirely \(true\), where the Ceph cluster will
-    need to be recreated, use the following parameter:
+    need to be recreated, or if the Ceph partition was wiped somehow before or
+    during reinstall, use the following parameter:
 
     .. code-block:: none
 
         wipe_ceph_osds=true
 
--   To indicate that the backup data file is under /opt/platform-backup
-    directory on the local machine, use the following parameter:
-
-    .. code-block:: none
-
-        on_box_data=true
-
-    If this parameter is set to **false**, the Ansible Restore playbook expects
-    both the **initial_backup_dir** and **backup_filename** to be specified.
 
 Restoring a |prod| cluster from a backup file is done by re-installing the
 ISO on controller-0, running the Ansible Restore Playbook, applying updates
@@ -128,7 +125,7 @@ conditions are in place:
 
 #.  Install network connectivity required for the subcloud.
 
-#.  Ensure that the backup file are available on the controller. Run both
+#.  Ensure that the backup files are available on the controller. Run both
     Ansible Restore playbooks, restore_platform.yml and restore_user_images.yml.
     For more information on restoring the back up file, see :ref:`Run Restore
     Playbook Locally on the Controller
@@ -137,7 +134,11 @@ conditions are in place:
     <system-backup-running-ansible-restore-playbook-remotely>`.
 
     .. note::
+
         The backup files contain the system data and updates.
+
+        The restore operation will pull images from the Upstream registry, they
+        are not part of the backup.
 
 #.  If the backup file contains patches, Ansible Restore playbook
     restore_platform.yml will apply the patches and prompt you to reboot the
@@ -162,6 +163,11 @@ conditions are in place:
 
     Rerun the Ansible Playbook if there were patches applied and you were
     prompted to reboot the system.
+
+    .. note::
+
+        After restore is completed it is not possible to restart (or rerun) the
+        restore playbook.
 
 #.  Restore the local registry using the file restore_user_images.yml.
 

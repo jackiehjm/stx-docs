@@ -52,39 +52,49 @@ In this method you can run Ansible Restore playbook and point to controller-0.
 
         ~(keystone_admin)]$ ansible-playbook path-to-restore-platform-playbook-entry-file --limit host-name -i inventory-file -e optional-extra-vars
 
-    where optional-extra-vars can be:
+    where ``optional-extra-vars`` can be:
 
-    -   **Optional**: You can select one of the following restore modes:
+    -   To keep Ceph data intact \(false - default option\), use the
+        following parameter:
 
-        -   To keep Ceph data intact \(false - default option\), use the
-            following parameter:
+        :command:`wipe_ceph_osds=false`
 
-            :command:`wipe_ceph_osds=false`
+    -   To start with an empty Ceph cluster \(true\), where the Ceph
+        cluster will need to be recreated, use the following parameter:
 
-        -   To start with an empty Ceph cluster \(true\), where the Ceph
-            cluster will need to be recreated, use the following parameter:
+        :command:`wipe_ceph_osds=true`
 
-            :command:`wipe_ceph_osds=true`
+    -   To define a convinient place to store the backup files, defined by
+        ``initial-backup_dir``, on the system (such as the home folder for
+        sysadmin, or /tmp, or even a mounted USB device), use the following
+        parameter:
 
-        -   To indicate that the backup data file is under /opt/platform-backup
-            directory on the local machine, use the following parameter:
+        :command:`on_box_data=true/false`
 
-            :command:`on_box_data=true`
+        If this parameter is set to true, Ansible Restore playbook will look
+        for the backup file provided on the target server. The parameter
+        ``initial_backup_dir`` can be ommited from the command line. In this
+        case, the backup file will be under ``/opt/platform-backup`` directory.
 
-            If this parameter is set to **false**, the Ansible Restore playbook
-            expects both the **initial_backup_dir** and **backup_filename**
-            to be specified.
+        If this parameter is set to false, the Ansible Restore playbook will
+        look for backup file provided where is the Ansible controller. In this
+        case, both the ``initial_backup_dir`` and ``backup_filename`` must be
+        specified in the command.
 
-    -   The backup_filename is the platform backup tar file. It must be
+    -   The ``backup_filename`` is the platform backup tar file. It must be
         provided using the ``-e`` option on the command line, for example:
 
         .. code-block:: none
 
            -e backup_filename= localhost_platform_backup_2019_07_15_14_46_37.tgz
 
-    -   The initial_backup_dir is the location on the Ansible control
-        machine where the platform backup tar file is placed to restore the
-        platform. It must be provided using ``-e`` option on the command line.
+    -   The ``initial_backup_dir`` is the location where the platform backup
+        tar file is placed to restore the platform. It must be provided using
+        ``-e`` option on the command line.
+
+        .. note::
+
+            When ``on_box_data=false``, ``initial_backup_dir`` must be defined.
 
     -   The :command:`admin_password`, :command:`ansible_become_pass`,
         and :command:`ansible_ssh_pass` need to be set correctly using
@@ -97,19 +107,33 @@ In this method you can run Ansible Restore playbook and point to controller-0.
         /home/sysadmin on controller-0 using the ``-e`` option on the command
         line.
 
-    For example:
+        For example:
 
-    .. parsed-literal::
+        .. parsed-literal::
 
-        ~(keystone_admin)]$ ansible-playbook /localdisk/designer/jenkins/tis-stx-dev/cgcs-root/stx/ansible-playbooks/playbookconfig/src/playbooks/restore_platform.yml --limit |prefix|\_Cluster -i $HOME/br_test/hosts -e "ansible_become_pass=St0rlingX* admin_password=St0rlingX* ansible_ssh_pass=St0rlingX* initial_backup_dir=$HOME/br_test backup_filename= |prefix|\_Cluster_system_backup_2019_08_08_15_25_36.tgz ansible_remote_tmp=/home/sysadmin/ansible-restore"
+            ~(keystone_admin)]$ ansible-playbook /localdisk/designer/jenkins/tis-stx-dev/cgcs-root/stx/ansible-playbooks/playbookconfig/src/playbooks/restore_platform.yml --limit |prefix|\_Cluster -i $HOME/br_test/hosts -e "ansible_become_pass=St0rlingX* admin_password=St0rlingX* ansible_ssh_pass=St0rlingX* initial_backup_dir=$HOME/br_test backup_filename= |prefix|\_Cluster_system_backup_2019_08_08_15_25_36.tgz ansible_remote_tmp=/home/sysadmin/ansible-restore"
+
+    -   The :command:`ssl_ca_certificate_file` indicates that a ``ssl_ca``
+        certificate defined will replace the ``ssl_ca`` certificate from the
+        platform backup tar file.
+
+        .. code-block:: none
+
+            -e "ssl_ca_certificate_file=<complete path>/<ssl_ca certificate file>"
 
     .. note::
+
         If the backup contains patches, Ansible Restore playbook will apply
         the patches and prompt you to reboot the system. Then you will need to
         re-run Ansible Restore playbook.
 
-#.  After running the restore_platform.yml playbook, you can restore the local
-    registry images.
+    .. note::
+
+        After restore is completed it is not possible to restart (or rerun) the
+        restore playbook.
+
+#.  After running the ``restore_platform.yml`` playbook, you can restore the
+    local registry images.
 
     .. note::
         The backup file of the local registry may be large. Restore the
@@ -119,9 +143,9 @@ In this method you can run Ansible Restore playbook and point to controller-0.
 
         ~(keystone_admin)]$ ansible-playbook path-to-restore-user-images-playbook-entry-file --limit host-name -i inventory-file -e optional-extra-vars
 
-    where optional-extra-vars can be:
+    where ``optional-extra-vars`` can be:
 
-    -   The backup_filename is the local registry backup tar file. It
+    -   The ``backup_filename`` is the local registry backup tar file. It
         must be provided using the ``-e`` option on the command line, for
         example:
 
