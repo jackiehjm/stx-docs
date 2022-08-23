@@ -53,9 +53,6 @@ Update/Renew Portieris certificates
 
 Portieris server certificate is managed by cert-manager.
 
-It will be automatically renewed when the certificate is within one month of
-expiration.
-
 .. note::
 
     Currently notification of the renewal is not supported.
