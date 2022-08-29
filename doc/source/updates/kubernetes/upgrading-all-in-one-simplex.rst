@@ -375,14 +375,10 @@ For more details, see :ref:`Detailed contents of a system backup
         State entered when new configurations have been applied to all
         controller and compute hosts.
 
-    Check the status of the upgrade again to see it has reached
-    **activation-complete**
+    #.  Check the status of the upgrade again to see it has reached
+        **activation-complete**.
 
     .. code-block:: none
-
-    .. note::
-        This can take more than half an hour to complete.
-
 
         ~(keystone_admin)]$ system upgrade-show
         +--------------+--------------------------------------+
@@ -394,6 +390,11 @@ For more details, see :ref:`Detailed contents of a system backup
         | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
+    .. note::
+        This can take more than half an hour to complete.
+
+    **activation-failed**
+        Check ``/var/log/sysinv.log`` for further information.
 
 #.  Complete the upgrade.
 
