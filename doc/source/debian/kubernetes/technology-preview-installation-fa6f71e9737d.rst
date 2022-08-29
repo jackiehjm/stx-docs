@@ -61,7 +61,7 @@ one for servers with Legacy BIOS support and another for servers with |UEFI|
 firmware.
 
 During |PXE| boot configuration setup, as described in
-:ref:`configuring-a-pxe-boot-server-r6`, additional steps are required to
+:ref:`configuring-a-pxe-boot-server-r7`, additional steps are required to
 collect configuration information and create a grub menu to install |prod|
 |deb-eval-release| AIO controller-0 function on the target server.
 

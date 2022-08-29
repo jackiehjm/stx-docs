@@ -1,0 +1,12 @@
+Prior to starting the StarlingX installation, the bare metal servers must be in
+the following condition:
+
+* Physically installed
+
+* Cabled for power
+
+* All disks wiped
+
+  * Ensures that servers will boot from either the network or USB storage (if present)
+
+* Powered off

@@ -1,7 +1,7 @@
-.. _kubernetes_access_r6:
+.. _kubernetes_access_r7:
 
 ================================
-Access StarlingX Kubernetes R6.0
+Access StarlingX Kubernetes R7.0
 ================================
 
 This section describes how to use local/remote CLIs, GUIs, and/or REST APIs to

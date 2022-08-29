@@ -12,26 +12,34 @@ Each guide provides instruction on a specific StarlingX configuration
 Upcoming release (latest)
 -------------------------
 
-StarlingX R6.0 is under development.
+StarlingX R8.0 is under development.
 
 .. toctree::
    :maxdepth: 1
 
-   r6_release/index-install-r6-8966076f0e81
+   r7_release/index-install-r7-8966076f0e81
 
 
 -----------------
 Supported release
 -----------------
 
-StarlingX R5.0.1 is the most recent supported release of StarlingX.
+StarlingX R7.0 is the most recent supported release of StarlingX.
 
-Use the R5.0 Installation Guides to install R5.0.1.
+Use the R7.0 Installation Guides to install R7.0.
 
 .. toctree::
    :maxdepth: 1
 
-   r5_release/index-install-r5-ca4053cb3ab9
+   r7_release/index-install-r7-8966076f0e81
+
+
+Use the R6.0 Installation Guides to install R6.0.
+
+.. toctree::
+   :maxdepth: 1
+
+   r6_release/index-install-r6-8966076f0e81
 
 
 -----------------

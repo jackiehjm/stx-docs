@@ -28,7 +28,7 @@ Deployment
 A system install is required to deploy StarlingX release 5.0.1. There is no
 upgrade path from previous StarlingX releases.
 
-Use the :ref:`R5.0 Installation Guides <index-install-r5-ca4053cb3ab9>`
+Use the `R5.0 Installation Guides <https://docs.starlingx.io/r/stx.5.0/deploy_install_guides/r5_release/index-install-r5-ca4053cb3ab9.html>`
 to install R5.0.1.
 
 -----------------------------
