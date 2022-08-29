@@ -49,7 +49,6 @@ PTP Server Configuration
    :maxdepth: 2
 
    ptp-introduction-d981dd710bda
-   ptp-limitations-64338c74b415
    configuring-ptp-service-using-the-cli
    ptp-interfaces-df73e9b43677
    instance-specific-considerations-d9d9509c79dd
