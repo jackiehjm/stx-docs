@@ -132,7 +132,7 @@ Follow the steps below to manually upgrade the System Controller:
 
         -   State entered after :command:`system upgrade-start` completes.
 
-        -   Release nn.nn system data \(for example, postgres databases\) has
+        -   Release <nn.nn> system data \(for example, postgres databases\) has
             been exported to be used in the upgrade.
 
     As part of the upgrade, the upgrade process checks the health of the system
@@ -190,8 +190,8 @@ Follow the steps below to manually upgrade the System Controller:
 
             -   State entered when controller-1 upgrade is complete.
 
-            -   System data has been successfully migrated from release nn.nn
-                to release nn.nn.
+            -   System data has been successfully migrated from release <nn.nn>
+                to release <nn.nn>.
 
                 where *nn.nn* in the update file name is the |prod| release number.
 
@@ -250,8 +250,8 @@ Follow the steps below to manually upgrade the System Controller:
         If it transitions to **unlocked-disabled-failed**, check the issue
         before proceeding to the next step. The alarms may indicate a
         configuration error. Check the result of the configuration logs on
-        controller-1, \(for example, Error logs in
-        controller1:/var/log/puppet\).
+        controller-1, (for example, Error logs in
+        controller1:``/var/log/puppet``).
 
     #.  Run the :command:`system application-list`, and :command:`system
         host-upgrade-list` commands to view the current progress.
@@ -301,7 +301,7 @@ Follow the steps below to manually upgrade the System Controller:
 
         -   upgrading-hosts:
 
-            -   State entered when both controllers are running release nn.nn
+            -   State entered when both controllers are running release <nn.nn>
                 software.
 
 

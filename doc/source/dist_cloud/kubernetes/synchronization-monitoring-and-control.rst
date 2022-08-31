@@ -30,7 +30,7 @@ subcloud is synchronized immediately when it is changed to the **Managed**
 state.
 
 Configuration changes made from the System Controller, and i.e. by specifying
-the --os-region-name option as **SystemController** are synchronized
+the ``--os-region-name`` option as ``SystemController`` are synchronized
 immediately. For example, to add an |SNMP| trap destination and immediately
 synchronize this configuration change to all subclouds in the **Managed**
 state, use the following command:

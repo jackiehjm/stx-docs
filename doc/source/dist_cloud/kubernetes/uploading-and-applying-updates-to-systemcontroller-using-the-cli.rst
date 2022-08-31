@@ -2,9 +2,9 @@
 .. clv1558615616705
 .. _uploading-and-applying-updates-to-systemcontroller-using-the-cli:
 
-=============================================================
-Upload and Applying Updates to SystemController Using the CLI
-=============================================================
+==========================================================
+Upload and Apply Updates to SystemController Using the CLI
+==========================================================
 
 You can upload and apply updates to the SystemController in order to update the
 central update repository, from the CLI using the standard update procedures
@@ -18,9 +18,8 @@ If you prefer, you can use the Horizon Web interface. For more information, see
 the specific procedure for incrementally uploading and applying one or more
 patches for the SystemController is provided below.
 
-For standard |prod| updating procedures, see the
- 
-.. xbooklink :ref:`|updates-doc| <software-updates-and-upgrades-software-updates>` guide.
+For standard |prod| updating procedures, see the |updates-doc|:
+:ref:`software-updates-and-upgrades-software-updates` guide.
 
 For SystemController of |prod-dc| \(and the central update repository\), you
 must include the additional |CLI| parameter ``--os-region-name`` with the value
@@ -55,9 +54,9 @@ SystemController when using |CLI| :command:`sw-patch` commands.
   
 #.  Log in as the **sysadmin** user.
 
-#.  Copy all patches to be uploaded and applied to /home/sysadmin/patches/.
+#.  Copy all patches to be uploaded and applied to ``/home/sysadmin/patches/``.
 
-#.  Upload all patches placed in /home/sysadmin/patches/ to the storage area.
+#.  Upload all patches placed in ``/home/sysadmin/patches/`` to the storage area.
 
     .. code-block:: none
 
