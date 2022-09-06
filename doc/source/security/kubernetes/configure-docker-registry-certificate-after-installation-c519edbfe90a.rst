@@ -34,9 +34,9 @@ Update the following fields:
 * The ``subject`` fields to identify your particular system.
 
 * The ``ipAddresses`` with the |OAM| Floating IP Address and the MGMT Floating
-  IP address for this system. Use the :command:`system addrpool-list` command
-  to get the |OAM| floating IP Address and management floating IP Address for
-  your system.
+  IP address for this system which MUST be specified for this certificate. Use
+  the :command:`system addrpool-list` command to get the |OAM| floating IP
+  Address and MGMT floating IP Address for your system.
 
 * The ``dnsNames`` with ``registry.local``, ``registry.central`` and any |FQDN|
   names configured for this system's |OAM| Floating IP Address in an external
@@ -72,7 +72,6 @@ Update the following fields:
           - registry.local
           - registry.central
           - <external-FQDN-for-OAM-Floating-IP-Address, if applicable>
-
 
 #. Apply the configuration.
 
