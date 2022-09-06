@@ -49,7 +49,7 @@ use in a lab environment.
 
         .. code-block:: none
 
-            $ echo subjectAltName = IP:<WRCP-OAM-Floating-IP>,DNS:registry.local,DNS:registry.central > extfile.cnf
+            $ echo subjectAltName = IP:<WRCP-OAM-Floating-IP>,IP:<WRCP-MGMT-Floating-IP>,DNS:registry.local,DNS:registry.central > extfile.cnf
 
     #.  Use the my-root-ca to sign the server certificate.
 
