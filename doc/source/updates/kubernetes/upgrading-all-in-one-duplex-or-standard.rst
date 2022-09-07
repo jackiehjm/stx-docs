@@ -177,9 +177,9 @@ of |prod| software.
         | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
-    This will make a copy of the upgrade data onto a DRBD file system to be used
-     in the upgrade. Configuration changes are not allowed after this point
-     until the swact to controller-1 is completed.
+    This will make a copy of the upgrade data onto a DRBD file system to be
+    used in the upgrade. Configuration changes are not allowed after this point
+    until the swact to controller-1 is completed.
 
     The following upgrade state applies once this command is executed:
 
@@ -497,6 +497,9 @@ of |prod| software.
 
     .. note::
         This can take more than half an hour to complete.
+
+    **activation-failed**
+        Check ``/var/log/sysinv.log`` for further information.
 
 #.  Complete the upgrade.
 
