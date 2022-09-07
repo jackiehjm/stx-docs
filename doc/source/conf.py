@@ -103,10 +103,16 @@ html_theme_options = {
     # ...
 }
 
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-#html_static_path = ['_static']
+html_static_path = ['_static']
+
+# Edit supported HW table on load
+html_js_files = [
+#    'js/hw.js',
+]
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
@@ -185,4 +191,4 @@ starlingxdocs_plus_bug_project = 'starlingx'
 starlingxdocs_plus_bug_tag = 'stx.docs'
 starlingxdocs_plus_this_version = "latest"
 # starlingxdocs_plus_other_versions = [("even later","even-later"),("sooner","sooner")]
-starlingxdocs_plus_other_versions = [("Version 6.0","r/stx.6.0"),("Version 5.0","r/stx.5.0")]
+starlingxdocs_plus_other_versions = [("Version 7.0","r/stx.7.0"),("Version 6.0","r/stx.6.0"),("Version 5.0","r/stx.5.0")]
