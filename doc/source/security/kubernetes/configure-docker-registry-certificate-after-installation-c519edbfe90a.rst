@@ -63,8 +63,6 @@ Update the following fields:
         duration: 2160h    # 90d
         renewBefore: 360h  # 15d
         subject:
-          organizations:
-            - ABC-Company
           organizationalUnits:
             - StarlingX-system-registry-local
         ipAddresses:
