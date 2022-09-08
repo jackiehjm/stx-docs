@@ -1,111 +1,115 @@
-==========================================
-Kubernetes QAT Device Plugin Configuration
-==========================================
+.. _k8s_qat_device_plugin:
 
-Intel® QuickAssist Technology (Intel® QAT) accelerates cryptographic workloads
-by offloading the data to hardware capable of optimizing those functions. This
-guide describes how to enable and consume the Intel QAT device plugin in
-StarlingX.
+.. only:: starlingx
 
-.. contents::
-   :local:
-   :depth: 1
+   ==========================================
+   Kubernetes QAT Device Plugin Configuration
+   ==========================================
 
--------------
-Prerequisites
--------------
+   Intel® QuickAssist Technology (Intel® QAT) accelerates cryptographic workloads
+   by offloading the data to hardware capable of optimizing those functions. This
+   guide describes how to enable and consume the Intel QAT device plugin in
+   StarlingX.
 
-- Install Intel QuickAssist device on host.
-- Install StarlingX on bare metal with DPDK enabled. Refer to the  |_link-inst-book|
-  for details.
+   .. contents::
+      :local:
+      :depth: 1
 
-------------------------------
-Enable Intel QAT device plugin
-------------------------------
+   -------------
+   Prerequisites
+   -------------
 
-The Intel QAT device plugin daemonset is pre-installed in StarlingX. This
-section describes the steps to enable the Intel QAT device plugin for
-discovering and advertising QAT VF resources to Kubernetes host.
+   - Install Intel QuickAssist device on host.
+   - Install StarlingX on bare metal with DPDK enabled. Refer to the  |_link-inst-book|
+     for details.
 
-#. Verify QuickAssist SR-IOV virtual functions are configured on a specified
-   node after StarlingX is installed. This example uses the worker-0 node.
+   ------------------------------
+   Enable Intel QAT device plugin
+   ------------------------------
 
-   ::
+   The Intel QAT device plugin daemonset is pre-installed in StarlingX. This
+   section describes the steps to enable the Intel QAT device plugin for
+   discovering and advertising QAT VF resources to Kubernetes host.
 
-      $ ssh worker-0
-      $ for i in 0442 0443 37c9 19e3; do lspci -d 8086:$i; done
+   #. Verify QuickAssist SR-IOV virtual functions are configured on a specified
+      node after StarlingX is installed. This example uses the worker-0 node.
 
-   .. note::
+      ::
 
-    The Intel QAT device plugin only supports QAT VF resources in the current
-    release.
+         $ ssh worker-0
+         $ for i in 0442 0443 37c9 19e3; do lspci -d 8086:$i; done
 
-#. Assign the ``intelqat`` label to the node (worker-0 in this example).
+      .. note::
 
-   ::
+         The Intel QAT device plugin only supports QAT VF resources in the current
+         release.
 
-      $ NODE=worker-0
-      $ system host-lock $NODE
-      $ system host-label-assign $NODE intelqat=enabled
-      $ system host-unlock $NODE
+   #. Assign the ``intelqat`` label to the node (worker-0 in this example).
 
-#. After the node becomes available, verify the Intel QAT device plugin is
-   registered.
+      ::
 
-   ::
+         $ NODE=worker-0
+         $ system host-lock $NODE
+         $ system host-label-assign $NODE intelqat=enabled
+         $ system host-unlock $NODE
 
-      $ kubectl describe node $NODE | grep qat.intel.com/generic
-      qat.intel.com/generic: 10
-      qat.intel.com/generic: 10
+   #. After the node becomes available, verify the Intel QAT device plugin is
+      registered.
 
--------------------------------
-Consume Intel QAT device plugin
--------------------------------
+      ::
 
-#. Build the DPDK image.
+         $ kubectl describe node $NODE | grep qat.intel.com/generic
+         qat.intel.com/generic: 10
+         .intel.com/generic: 10
 
-   ::
+   -------------------------------
+   Consume Intel QAT device plugin
+   -------------------------------
 
-      $ git clone https://github.com/intel/intel-device-plugins-for-kubernetes.git
-      $ cd demo
-      $ ./build-image.sh crypto-perf
+   #. Build the DPDK image.
 
-   This command produces a Docker image named ``crypto-perf``.
+      ::
 
-#. Deploy a pod to run an example DPDK application named
-   ``dpdk-test-crypto-perf``.
+         $ git clone https://github.com/intel/intel-device-plugins-for-kubernetes.git
+         $ cd demo
+         $ ./build-image.sh crypto-perf
 
-   In the pod specification file, add the container resource request and
-   limit.
+      This command produces a Docker image named ``crypto-perf``.
 
-   For example, use ``qat.intel.com/generic: <number of devices>`` for a
-   container requesting Intel QAT devices.
+   #. Deploy a pod to run an example DPDK application named
+      ``dpdk-test-crypto-perf``.
 
+      In the pod specification file, add the container resource request and
+      limit.
 
-   For a DPDK-based workload, you may need to add a hugepage request and limit.
-
-   ::
-
-      $ kubectl apply -k deployments/qat_dpdk_app/base/
-      $ kubectl get pods
-        NAME                     READY     STATUS    RESTARTS   AGE
-        qat-dpdk                 1/1       Running   0          27m
-        intel-qat-plugin-5zgvb   1/1       Running   0          3h
-
-   .. Note::
-
-    The deployment example above uses kustomize, which is a tool supported by
-    kubectl since the Kubernetes v1.14 release.
+      For example, use ``qat.intel.com/generic: <number of devices>`` for a
+      container requesting Intel QAT devices.
 
 
-#. Manually execute the ``dpdk-test-crypto-perf`` application to review the
-   logs.
+      For a DPDK-based workload, you may need to add a hugepage request and limit.
 
-   ::
+      ::
 
-      $ kubectl exec -it qat-dpdk bash
+         $ kubectl apply -k deployments/qat_dpdk_app/base/
+         $ kubectl get pods
+           NAME                     READY     STATUS    RESTARTS   AGE
+           qat-dpdk                 1/1       Running   0          27m
+           intel-qat-plugin-5zgvb   1/1       Running   0          3h
 
-      $ ./dpdk-test-crypto-perf -l 6-7 -w $QAT1 -- --ptest throughput --\
-       devtype crypto_qat --optype cipher-only --cipher-algo aes-cbc --cipher-op \
-       encrypt --cipher-key-sz 16 --total-ops 10000000 --burst-sz 32 --buffer-sz 64
+      .. Note::
+
+         The deployment example above uses kustomize, which is a tool supported by
+         kubectl since the Kubernetes v1.14 release.
+
+
+   #. Manually execute the ``dpdk-test-crypto-perf`` application to review the
+      logs.
+
+      ::
+
+         $ kubectl exec -it qat-dpdk bash
+
+         $ ./dpdk-test-crypto-perf -l 6-7 -w $QAT1 -- --ptest throughput --\
+          devtype crypto_qat --optype cipher-only --cipher-algo aes-cbc --cipher-op \
+          encrypt --cipher-key-sz 16 --total-ops 10000000 --burst-sz 32 --buffer-sz 64
 
