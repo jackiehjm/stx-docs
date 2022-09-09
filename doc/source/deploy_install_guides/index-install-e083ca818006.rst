@@ -15,11 +15,11 @@ Upcoming release
 The next release will be R8.0. Use the documentation for the R7.0
 installation listed below.
 
--------------------------
-Current release (latest)
--------------------------
+---------------
+Current release
+---------------
 
-StarlingX R7.0 is the most recent supported release of StarlingX.
+R7.0 is the current release of StarlingX.
 
 Use the R7.0 Installation Guides to install R7.0.
 
@@ -29,26 +29,15 @@ Use the R7.0 Installation Guides to install R7.0.
    r7_release/index-install-r7-8966076f0e81
 
 
------------------
-Supported release
------------------
+------------------
+Supported releases
+------------------
 
 
 .. toctree::
    :maxdepth: 1
 
    r7_release/index-install-r7-8966076f0e81
-
---------------
-Older releases
---------------
-
-
-Use the R6.0 Installation Guides to install R6.0.
-
-.. toctree::
-   :maxdepth: 1
-
    r6_release/index-install-r6-8966076f0e81
 
 
