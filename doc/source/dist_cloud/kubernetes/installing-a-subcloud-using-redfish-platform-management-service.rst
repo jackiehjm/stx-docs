@@ -296,6 +296,48 @@ subcloud, the subcloud installation has these phases:
     The :command:`dcmanager subcloud add` command can take up to ten minutes to
     complete.
 
+.. only:: starlingx
+
+   4. Add the subcloud using dcmanager.
+
+      When calling the :command:`subcloud add` command, specify the install
+      values, the bootstrap values and the subcloud’s sysadmin password.
+
+      .. code-block:: none
+
+         ~(keystone_admin)]$ dcmanager subcloud add \
+         --bootstrap-address <oam_ip_address_of_subclouds_controller-0> \
+         --bootstrap-values /home/sysadmin/subcloud1-bootstrap-values.yaml \
+         --sysadmin-password <sysadmin_password> \
+         --install-values /home/sysadmin/install-values.yaml \
+         --bmc-password <bmc_password>
+
+      If the ``--sysadmin-password`` is not specified, you are prompted to
+      enter it once the full command is invoked. The password is masked
+      when it is entered.
+
+      .. code-block:: none
+
+         Enter the sysadmin password for the subcloud:
+
+      (Optional) The ``--bmc-password <password>`` is used for subcloud
+      installation, and only required if the ``--install- values`` parameter is
+      specified.
+
+      If the ``--bmc-password <password>`` is omitted and the
+      ``--install-values`` option is specified the system administrator will be
+      prompted to enter it, following the :command:`dcmanager subcloud add`
+      command. This option is ignored if the ``--install-values`` option is not
+      specified. The password is masked when it is entered.
+
+      .. code-block:: none
+
+         Enter the bmc password for the subcloud:
+
+      The :command:`dcmanager subcloud show` or :command:`dcmanager subcloud list`
+      command can be used to view subcloud add progress.
+
+
 #.  At the Central Cloud / System Controller, monitor the progress of the
     subcloud install, bootstrapping, and deployment by using the deploy status
     field of the :command:`dcmanager subcloud list` command.
