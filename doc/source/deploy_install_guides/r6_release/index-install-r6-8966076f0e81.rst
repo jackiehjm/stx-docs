@@ -127,6 +127,15 @@ Access Kubernetes
 
    kubernetes_access
 
+---------------------------
+Install StarlingX OpenStack
+---------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   openstack/index-install-r6-os-adc44604968c
+
 --------------------------
 Access StarlingX OpenStack
 --------------------------
@@ -134,5 +143,4 @@ Access StarlingX OpenStack
 .. toctree::
    :maxdepth: 1
 
-   openstack/index-install-r6-os-adc44604968c
-
+   openstack/access

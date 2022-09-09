@@ -48,7 +48,7 @@ Install application manifest and helm-charts
       After you select a release, helm charts are located in ``centos/outputs/helm-charts``.
 
 #. Load the |prefix|-openstack application's package into StarlingX. The tarball
-   package contains |prefix|-openstack's FluxCD manifest and
+   package contains |prefix|-openstack's manifest and
    |prefix|-openstack's set of helm charts. For example:
 
    .. parsed-literal::
@@ -57,11 +57,47 @@ Install application manifest and helm-charts
 
    This will:
 
-   * Load the FluxCD manifest and helm charts.
+   * Load the manifest and helm charts.
    * Internally manage helm chart override values for each chart.
    * Automatically generate system helm chart overrides for each chart based on
      the current state of the underlying StarlingX Kubernetes platform and the
      recommended StarlingX configuration of OpenStack services.
+
+
+#.  OPTIONAL: In order to enable secure HTTPS connectivity for OpenStack REST
+    APIs and OpenStack Horizon, install an HTTPS Certificate for OpenStack.
+
+    #.  Obtain an Intermediate or Root CA-signed certificate and key from a
+        trusted Intermediate or Root CA. The OpenStack certificate should be
+        created with a wildcard SAN, e.g.
+
+        .. code-block::
+
+            X509v3 extensions:
+            X509v3 Subject Alternative Name:
+            DNS:*.my-wro.my-company.com
+
+    #.  Put the PEM encoded versions of the openstack certificate and key in a
+        single file (e.g. ``openstack-cert-key.pem``), and put the certificate of
+        the Root CA in a separate file (e.g. ``openstack-ca-cert.pem``), and copy
+        the files to the controller host.
+
+    #.  Install/update this certificate as the OpenStack REST API / Horizon
+        certificate:
+
+        .. code-block::
+
+           ~(keystone_admin)]$ system certificate-install -m ssl_ca openstack-ca-cert.pem
+           ~(keystone_admin)]$ system certificate-install -m openstack_ca openstack-ca-cert.pem
+           ~(keystone_admin)]$ system certificate-install -m openstack openstack-cert-key.pem
+
+        The above command will make the appropriate overrides to the OpenStack
+        Helm Charts to enable HTTPS on the OpenStack Services REST API
+        endpoints.
+
+#. OPTIONAL: Configure the domain name.
+
+   For details, see :ref:`update-the-domain-name`.
 
 #. Apply the |prefix|-openstack application in order to bring StarlingX OpenStack into
    service. If your environment is preconfigured with a proxy server, then
