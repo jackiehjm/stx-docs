@@ -73,6 +73,11 @@ Update the following fields:
           - registry.central
           - <external-FQDN-for-OAM-Floating-IP-Address, if applicable>
 
+   .. note::
+
+      By default after deployment, all system configurations have both OAM and
+      MGMT floating IPs in the docker registry certificate.
+
 
 #. Apply the configuration.
 
