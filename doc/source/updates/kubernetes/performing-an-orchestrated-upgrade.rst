@@ -93,6 +93,10 @@ described below to upgrade the remaining nodes of the |prod| system.
            Specify the maximum worker hosts to upgrade in parallel \(minimum:
            2, maximum: 10\).
 
+           .. note::
+               For a maximum worker hosts condition in a Standard configuration
+               (50), the value shall be at the maximum 2, which represents the
+               minimum value.
 
         **alarm-restrictions**
             This option lets you specify how upgrade orchestration behaves when
