@@ -127,6 +127,23 @@ password will be prompted during runtime.
         execute commands with root privileges on the |DC|/Standalone system and
         associated |DC| Subclouds.
 
+-   ``user_role`` (optional):
+
+    ``admin``
+        Set the keystone role of the user to be created as ``admin``.
+        This role has permissions to execute all StarlingX CLI commands.
+        This is the default value when not specified.
+
+    ``member``
+        Set the keystone role of the user to be created as ``member``.
+        This role is for future use, currently it has the same permissions as
+        keystone ``reader`` role.
+
+    ``reader``
+        Set the keystone role of the user to be created as ``reader``.
+        This role has permissions to only execute passive display-type
+        (e.g. list, get) StarlingX CLI commands.
+
 -   ``password_change_period``:
 
     ``<int>``
