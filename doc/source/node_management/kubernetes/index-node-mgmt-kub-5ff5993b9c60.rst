@@ -334,6 +334,7 @@ vRAN Accelerator ACC100 Adapter \(Mount Bryce\)
    :maxdepth: 1
 
    hardware_acceleration_devices/enabling-mount-bryce-hw-accelerator-for-hosted-vram-containerized-workloads
+   hardware_acceleration_devices/configure-sriov-fec-operator-to-enable-hw-accelerators-for-hosted-vran-containarized-workloads.rst
    hardware_acceleration_devices/set-up-pods-to-use-sriov
 
 ****************************
