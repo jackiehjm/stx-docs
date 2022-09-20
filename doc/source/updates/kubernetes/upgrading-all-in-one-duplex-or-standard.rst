@@ -267,7 +267,6 @@ of |prod| software.
         .. code-block:: none
 
             ~(keystone_admin)]$ system upgrade-show
-
             +--------------+--------------------------------------+
             | Property     | Value                                |
             +--------------+--------------------------------------+
@@ -308,9 +307,13 @@ of |prod| software.
 
         ~(keystone_admin)]$ system host-swact controller-0
 
-    Wait until services have gone active on the new active controller-1 before
-    proceeding to the next step. When all services on controller-1 are
-    enabled-active, the swact is complete.
+    Wait until all services are enabled / active and the swact is complete
+    on controller-0 before proceeding to the next step.  Use the following
+    command below:
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system servicegroup-list
 
 #.  Upgrade **controller-0**.
 
