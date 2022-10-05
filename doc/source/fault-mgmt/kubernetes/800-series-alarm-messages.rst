@@ -31,23 +31,6 @@ health of the system.
    * - Proposed Repair Action
      - If problem persists, contact next level of support.
 
-.. -----
-..
-.. .. list-table::
-..    :widths: 6 25
-..    :header-rows: 0
-..
-..    * - **Alarm ID: 800.003**
-..      - Storage Alarm Condition: Quota/Space mismatch for the <tiername> tier.
-..        The sum of Ceph pool quotas does not match the tier size.
-..    * - Entity Instance
-..      - cluster=<dist-fs-uuid>.tier=<tiername>
-..    * - Degrade Affecting Severity:
-..      - None
-..    * - Severity:
-..      - m
-..    * - Proposed Repair Action
-..      - Update ceph storage pool quotas to use all available tier space.
 
 -----
 
@@ -87,25 +70,6 @@ health of the system.
        Check if OSDs of each storage host are up and running. If problem
        persists contact next level of support.
 
------
-
-.. list-table::
-   :widths: 6 25
-   :header-rows: 0
-
-   * - **Alarm ID: 800.102**
-     - Storage Alarm Condition:
-
-       PV configuration <error/failed to apply\> on <hostname>.
-       Reason: <detailed reason\>.
-   * - Entity Instance
-     - pv=<pv\_uuid>
-   * - Degrade Affecting Severity:
-     - None
-   * - Severity:
-     - C/M\*
-   * - Proposed Repair Action
-     - Remove failed PV and associated Storage Device then recreate them.
 
 -----
 
