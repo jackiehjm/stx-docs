@@ -44,6 +44,8 @@ For detailed installation instructions, see `R7.0 Installation Guides <https://d
 New features and enhancements
 -----------------------------
 
+.. start-new-features-r7
+
 The list below provides a detailed list of new features and links to the
 associated user guides (if applicable).
 
@@ -427,6 +429,8 @@ compatible with Trident 22.01.
     upgrading Kubernetes to 1.22.
 
 **See**: :ref:`upgrade-the-netapp-trident-software-c5ec64d213d3`
+
+.. end-new-features-r7
 
 ----------
 Bug status
