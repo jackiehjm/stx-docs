@@ -292,7 +292,7 @@ The remaining install steps are also completely unchanged:
 
    **Imperative mode**
 
-:ref:`aio_simplex_install_kubernetes_r6`
+:ref:`aio_simplex_install_kubernetes_r7`
 
 .. only:: partner
 
