@@ -35,14 +35,16 @@ The use of application-isolated cores is only applicable when using the static
 Kubernetes CPU Manager policy. For more information,
 see :ref:`Kubernetes CPU Manager Policies <kubernetes-cpu-manager-policies>`.
 
-**Limitation**: If Hyperthreading is enabled in the BIOS and
-application-isolated CPUs are configured, and these CPUs are allocated to more
-than one container, the |SMT| siblings may be allocated to different containers
-and that could adversely impact the performance of the application.
+.. note:: 
 
-**Workaround**: The suggested workaround is to allocate all
-application-isolated CPUs on a host to a single pod. For more information, see
-Node Management: :ref:`Changing the Hyper-threading Status <changing-the-hyper-threading-status>`.
+   |prod| isolcpus allocation is |SMT|-aware. If a container requests multiple
+   isolcpus it will provide |SMT| siblings to the extent possible. If an odd
+   number of isolcpus are requested it will provide as many |SMT| siblings as
+   are available, then allocate singletons whose sibling has already been
+   allocated, then allocate one sibling from a free |SMT| sibling pair. If
+   hyperthreading is enabled in the BIOS then containers should request isolcpus
+   in pairs. If all containers on a system do this then they will never have
+   different containers being allocated |SMT| siblings from the same core.
 
 When using the static CPU manager policy before increasing the number of
 platform CPUs or changing isolated CPUs to application CPUs on a host, ensure
