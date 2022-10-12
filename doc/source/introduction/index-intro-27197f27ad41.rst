@@ -67,3 +67,11 @@ Supporting projects and repositories:
 
 For additional information about project teams, refer to the
 `StarlingX wiki <https://wiki.openstack.org/wiki/StarlingX>`_.
+
+----------------------------
+New features in this version
+----------------------------
+
+.. include:: /releasenotes/r7-0-release-notes-85446867da2a.rst
+   :start-after: start-new-features-r7
+   :end-before: end-new-features-r7
