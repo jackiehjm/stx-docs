@@ -22,8 +22,7 @@ This example requires that:
 -   The LetsEncrypt |CA| in the public internet can send an http01 challenge to
     the |FQDN| of the |prod|'s floating |OAM| IP Address.
 
--   The |prod| has access to the kuard demo application at
-    `gcr.io/kuar-demo/kuard-amd64:blue <gcr.io/kuar-demo/kuard-amd64:blue>`__
+-   The |prod| has access to the kuard demo application at `gcr.io/kuar-demo/kuard-amd64:blue <https://console.cloud.google.com/gcr/images/kuar-demo/GLOBAL/kuard-amd64@sha256:1ecc9fb2c871302fdb57a25e0c076311b7b352b0a9246d442940ca8fb4efe229/details?tag=blue>`__.
 
 -   Ensure that your |prod| administrator has shared the local
     registry’s public repository’s credentials/secret with the namespace where
