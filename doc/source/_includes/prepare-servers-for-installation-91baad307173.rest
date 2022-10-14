@@ -1,0 +1,466 @@
+
+=====================
+Hardware Requirements
+=====================
+
+.. begin-min-hw-reqs-common-intro
+
+-----------------------------
+Minimum hardware requirements
+-----------------------------
+
+This section describes the hardware requirements and server preparation for a
+**StarlingX R7.0 bare metal All-in-one Simplex** deployment configuration.
+
+.. contents::
+   :local:
+   :depth: 1
+
+The recommended minimum hardware requirements for bare metal servers for various
+host types are:
+
+.. end-min-hw-reqs-common-intro
+
+.. 
+.. Simplex
+..
+
+.. begin-prepare-servers
+.. begin-min-hw-reqs-sx
+
+.. list-table::
+   :header-rows: 1
+
+   * - Minimum Requirements
+     - All-in-one Controller Node
+   * - Number of servers
+     - 1
+   * - Minimum processor class
+     - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket
+
+       or
+
+       Single-CPU Intel® Xeon® D-15xx family, 8 cores (low-power/low-cost option)
+
+       .. only:: starlingx
+
+          Platform: 2x physical cores (4x logical cores if hyper-threading), (by
+          default, configurable)
+
+          Application: Remaining cores
+          
+   * - Minimum memory
+     - 64 GB
+
+       .. only:: starlingx
+
+          * Platform:
+
+            - Socket 0: 7GB (by default, configurable)
+          
+            - Socket 1: 1GB (by default, configurable)
+          
+          * Application:
+          
+            - Socket 0: Remaining memory
+          
+            - Socket 1: Remaining memory
+   * - Primary disk
+     -  500 GB SSD or |NVMe| (see :ref:`nvme_config`) 
+   * - Additional disks
+     - * 1 or more 500 GB (min. 10K RPM) for Ceph |OSD|
+
+       * Recommended, but not required: 1 or more |SSDs| or |NVMe| drives for
+         Ceph journals (min. 1024 MiB per |OSD| journal)
+
+       .. only:: starlingx
+
+          * Recommended, but not required: 1 or more 500G HDs (min. 10K RPM),
+            SSDs or | drives for Container ephemeral disk storage
+
+       .. only:: openstack
+
+          * For OpenStack, recommend 1 or more 500 GB (min. 10K RPM) for |VM|
+            local ephemeral storage
+
+
+   * - Minimum network ports
+
+       .. only:: starlingx
+
+          * MGMT: 1x1GE ( Recommended: MGMT 2x10GE LAG ). Only required if
+            Subcloud in |prod-dc|.
+
+     - * |OAM|: 1x1GE |oam-hw-recommended|
+
+       * Data: 1 or more x 10GE |data-hw-recommended|
+
+   .. only:: starlingx
+
+      * - USB Interface
+        - 1 (Only required if used for initial installation of controller-0)
+   
+      * - Boot Order
+        - HD, PXE, USB
+
+      * - BIOS mode
+
+        - BIOS or |UEFI|
+
+          .. note:: 
+
+             |UEFI Secure Boot and |UEFI| |PXE| boot over IPv6 are not
+             supported. On systems with an IPv6 management network, you can use
+             a separate IPv4 network for PXE boot. For more information, see
+             :ref:`the-pxe-boot-network>`.
+
+   * - Bios settings
+     - * Hyper-Threading technology enabled
+
+       * Virtualization technology enabled
+
+       * VT for directed I/O enabled
+
+       * CPU power and performance policy set to performance
+ 
+       * |min-proc-idle-power| CPU C state control disabled
+
+       * Plug & play |BMC| detection disabled
+
+.. end-min-hw-reqs-sx
+
+--------------------------
+Prepare bare metal servers
+--------------------------
+
+.. include:: prep_servers.txt
+
+* Cabled for networking
+
+  * Far-end switch ports should be properly configured to realize the networking
+    shown in the following diagram.
+
+    .. figure:: /deploy_install_guides/r7_release/figures/starlingx-deployment-options-simplex.png
+       :scale: 50%
+       :alt: All-in-one Simplex deployment configuration
+
+       *All-in-one Simplex deployment configuration*
+
+.. end-prepare-servers
+
+
+.. 
+.. Duplex
+..
+
+.. begin-prepare-servers-dx
+.. begin-min-hw-reqs-dx
+
+
+This section describes the hardware requirements and server preparation for a
+**StarlingX R7.0 bare metal All-in-one Duplex** deployment configuration.
+
+.. contents::
+   :local:
+   :depth: 1
+
+-----------------------------
+Minimum hardware requirements
+-----------------------------
+
+The recommended minimum hardware requirements for bare metal servers for various
+host types are:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Minimum Requirements
+     - All-in-one Controller Node
+   * - Number of servers
+     - 2
+   * - Minimum processor class
+     - * Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket
+
+       or
+
+       * Single-CPU Intel® Xeon® D-15xx family, 8 cores (low-power/low-cost option)
+   * - Minimum memory
+     - 64 GB
+   * - Primary disk
+     - 500 GB SSD or |NVMe| (see :ref:`nvme_config`) 
+   * - Additional disks
+     - * 1 or more 500 GB (min. 10K RPM) for Ceph |OSD|
+
+       * Recommended, but not required: 1 or more |SSDs| or |NVMe| drives for
+         Ceph journals (min. 1024 MiB per |OSD| journal)
+
+       * For OpenStack, recommend 1 or more 500 GB (min. 10K RPM) for |VM| local
+         ephemeral storage
+   * - Minimum network ports
+     - * Mgmt/Cluster: 1x10GE
+
+       * |OAM|: 1x1GE
+
+       * Data: 1 or more x 10GE
+   * - Bios settings
+     - * Hyper-Threading technology enabled
+
+       * Virtualization technology enabled
+
+       * VT for directed I/O enabled
+
+       * CPU power and performance policy set to performance
+
+       * CPU C state control disabled
+
+       * Plug & play |BMC| detection disabled
+
+.. end-min-hw-reqs-dx
+
+--------------------------
+Prepare bare metal servers
+--------------------------
+
+.. include:: prep_servers.txt
+
+* Cabled for networking
+
+  * Far-end switch ports should be properly configured to realize the networking
+    shown in the diagram above.
+
+
+.. end-prepare-servers-dx
+
+.. 
+.. Standard with storage
+..
+
+.. begin-prepare-servers-std
+.. begin-min-hw-reqs-std
+
+
+=====================
+Hardware Requirements
+=====================
+
+This section describes the hardware requirements and server preparation for a
+**StarlingX R7.0 bare metal Standard with Controller Storage** deployment
+configuration.
+
+.. contents::
+   :local:
+   :depth: 1
+
+-----------------------------
+Minimum hardware requirements
+-----------------------------
+
+The recommended minimum hardware requirements for bare metal servers for various
+host types are:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Minimum Requirements
+     - Controller Node
+     - Worker Node
+   * - Number of servers
+     - 2
+     - 2-10
+   * - Minimum processor class
+     - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket
+     - (Same as controller node)
+   * - Minimum memory
+     - 64 GB
+     - 32 GB
+   * - Primary disk
+     - 500 GB SSD or |NVMe| (see Configure |NVMe| Drive as Primary Disk)
+     - 120 GB (Minimum 10k RPM)
+   * - Additional disks
+     - * 1 or more 500 GB (min. 10K RPM) for Ceph |OSD|
+
+       * Recommended, but not required: 1 or more |SSDs| or |NVMe| drives for
+         Ceph journals (min. 1024 MiB per |OSD| journal)
+     - For OpenStack, recommend 1 or more 500 GB (min. 10K RPM) for |VM| local
+       ephemeral storage
+   * - Minimum network ports
+     - * Mgmt/Cluster: 1x10GE
+
+       * |OAM|: 1x1GE
+     - * Mgmt/Cluster: 1x10GE
+
+       * Data: 1 or more x 10GE
+   * - Bios settings
+     - * Hyper-Threading technology enabled
+
+       * Virtualization technology enabled
+
+       * VT for directed I/O enabled
+
+       * CPU power and performance policy set to performance
+
+       * CPU C state control disabled
+
+       * Plug & play |BMC| detection disabled
+
+     - (Same as controller node)
+
+.. end-min-hw-reqs-std
+
+--------------------------
+Prepare bare metal servers
+--------------------------
+
+.. include:: prep_servers.txt
+
+* Cabled for networking
+
+  * Far-end switch ports should be properly configured to realize the networking
+    shown in the diagram above.
+
+
+.. end-prepare-servers-std
+
+
+.. 
+.. Dedicated storage
+..
+
+.. begin-prepare-servers-ded
+.. begin-min-hw-reqs-ded
+
+=====================
+Hardware Requirements
+=====================
+
+This section describes the hardware requirements and server preparation for a
+**StarlingX R7.0 bare metal Standard with Dedicated Storage** deployment
+configuration.
+
+.. contents::
+   :local:
+   :depth: 1
+
+-----------------------------
+Minimum hardware requirements
+-----------------------------
+
+The recommended minimum hardware requirements for bare metal servers for various
+host types are:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Minimum Requirements
+     - Controller Node
+     - Storage Node
+     - Worker Node
+   * - Number of servers
+     - 2
+     - 2-9
+     - 2-100
+   * - Minimum processor class
+     - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket 
+     - (Same as controller node)
+     - (Same as controller node)
+   * - Minimum memory
+     - 64 GB
+     - 64 GB
+     - 32 GB
+   * - Primary disk
+     - 500 GB SSD or |NVMe| (see :ref:`nvme_config`)
+     - 120 GB (min. 10k RPM)
+     - 120 GB (min. 10k RPM)
+   * - Additional disks
+     - None
+     - * 1 or more 500 GB (min. 10K RPM) for Ceph |OSD|
+
+       * Recommended, but not required: 1 or more |SSDs| or |NVMe| drives for
+         Ceph journals (min. 1024 MiB per |OSD| journal)
+     - For OpenStack, recommend 1 or more 500 GB (min. 10K RPM) for |VM| ephemeral
+       storage
+   * - Minimum network ports
+     - * Mgmt/Cluster: 1x10GE
+
+       * |OAM|: 1x1GE
+     - Mgmt/Cluster: 1x10GE
+     - * Mgmt/Cluster: 1x10GE
+
+       * Data: 1 or more x 10GE
+   * - Bios settings
+     - * Hyper-Threading technology enabled
+   
+       * Virtualization technology enabled
+   
+       * VT for directed I/O enabled
+   
+       * CPU power and performance policy set to performance
+   
+       * CPU C state control disabled
+   
+       * Plug & play |BMC| detection disabled
+     - (Same as controller node)
+     - (Same as controller node)
+
+.. end-min-hw-reqs-ded
+
+--------------------------
+Prepare bare metal servers
+--------------------------
+
+.. include:: prep_servers.txt
+
+* Cabled for networking
+
+  * Far-end switch ports should be properly configured to realize the networking
+    shown in the diagram above.
+
+
+.. end-prepare-servers-ded
+
+.. start-prepare-servers-common
+
+Preparing servers is the first step of the |prod| installation procedure.
+
+.. rubric:: |proc|
+
+-   Prior to starting the |prod| installation, ensure that the bare metal
+    servers are in the following state:
+
+    -   Physically installed.
+
+    -   Cabled for power.
+
+    -   Cabled for networking.
+
+        Far-end switch ports should be properly configured to realize the
+        networking shown in :ref:`deployment-options` for the particular
+        deployment configuration you are installing.
+
+    -   All disks are wiped.
+
+        This ensures that servers will boot from either the network or USB
+        storage, if present.
+
+        .. note::
+
+            The disks and disk partitions need to be wiped before the install.
+            Installing a Debian ISO may fail with a message that the system is
+            in emergency mode if the disks and disk partitions are not
+            completely wiped before the install, especially if the server was
+            previously running a CentOS ISO.
+
+        .. only:: partner
+
+           .. include:: /_includes/debian-rn-link-a90a7e432679.rest
+
+    -   BIOS configured with Intel Virtualization (VTD, VTX)
+
+        -  Disabled for controller-only servers and storage servers.
+
+        -  Enabled for controller+worker servers and worker servers.
+
+    -   The servers are powered off.
+
+
+.. end-prepare-servers-common

@@ -1,0 +1,3 @@
+* Refer to :ref:`stx_ipv6_deployment` for details on how to deploy a
+  NAT64/DNS64 gateway to use StarlingX with IPv6.
+

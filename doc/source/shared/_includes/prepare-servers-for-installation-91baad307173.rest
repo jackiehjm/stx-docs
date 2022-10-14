@@ -1,0 +1,700 @@
+
+=====================
+Hardware Requirements
+=====================
+
+.. begin-min-hw-reqs-common-intro
+
+.. ........
+.. Preamble common to all deployments
+.. ........
+
+-----------------------------
+Minimum hardware requirements
+-----------------------------
+
+This section describes the hardware requirements and server preparation for a
+|prod-long| |this-ver| |bare-metal| deployment.
+
+.. contents::
+   :local:
+   :depth: 1
+
+The recommended minimum hardware requirements for |bare-metal| servers for various
+host types are:
+
+.. end-min-hw-reqs-common-intro
+
+.. ........
+.. Simplex
+.. ........
+
+.. begin-prepare-servers
+.. begin-min-hw-reqs-sx
+
+
+The recommended minimum hardware requirements for |bare-metal| servers for various
+host types are:
+
+
+.. list-table::
+   :header-rows: 1
+
+   * - Minimum Requirements
+     - All-in-one Controller Node
+   * - Number of servers
+     - 1
+   * - Minimum processor class
+     - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket
+
+       or
+
+       Single-CPU Intel® Xeon® D-15xx family, 8 cores (low-power/low-cost option)
+
+       .. note::
+
+          * Platform: 2x physical cores (4x logical cores if hyper-threading), (by
+            default, configurable)
+          * Application: Remaining cores
+   * - Minimum memory
+     - 64 GB
+
+       * Platform:
+
+         - Socket 0: 7GB (by default, configurable)
+
+         - Socket 1: 1GB (by default, configurable)
+
+       * Application:
+
+         - Socket 0: Remaining memory
+
+         - Socket 1: Remaining memory
+
+   * - Primary disk
+     -  500 GB SSD or |NVMe| (see :ref:`nvme_config`)
+   * - Additional disks
+     - * 1 or more 500 GB (min. 10K RPM) for Ceph |OSD|
+
+       * Recommended, but not required: 1 or more |SSDs| or |NVMe| drives for
+         Ceph journals (min. 1024 MiB per |OSD| journal)
+
+       * Recommended, but not required: 1 or more 500G HDs (min. 10K RPM), |SSDs|
+         or |NVMe| drives for Container ephemeral disk storage.
+
+       .. only:: openstack
+
+          * For |prod-os|, we recommend 1 or more 500 GB (min. 10K RPM) for |VM| local
+            ephemeral storage
+
+   * - Minimum network ports
+     - * MGMT: 1x1GE ( Recommended: MGMT 2x10GE LAG ) *Only required if subcloud is
+         in Distributed Cloud*.
+       * |OAM|: 1x1GE (Recommended: |OAM|: 2x1GE LAG)
+
+       * Data: 1 or more x 10GE (Recommended: Data: 2x10GE |LAG|)
+
+   * - USB
+     - 1  (Only required if used for initial installation of controller-0).
+   * - Boot order
+     - HD, PXE, USB
+   * - BIOS mode
+     - BIOS or UEFI
+       
+       .. note::
+          
+          |UEFI| Secure Boot and |UEFI| |PXE| boot over IPv6 are not supported. On
+          systems with an IPv6 management network, you can use a separate IPv4
+          network for |PXE| boot. For more information, see
+          :ref:`configuring-a-pxe-boot-server-r7`.
+   * - BIOS settings
+     - * Hyper-Threading technology enabled
+
+       * Virtualization technology enabled
+
+       * VT for directed I/O enabled
+
+       * CPU power and performance policy set to performance
+
+       * Minimum Processor Idle Power; CPU C state control disabled
+
+       * Plug & play |BMC| detection disabled
+
+.. end-min-hw-reqs-sx
+
+--------------------------
+Prepare bare metal servers
+--------------------------
+
+.. include:: prep_servers.txt
+
+* Cabled for networking
+
+  * Far-end switch ports should be properly configured to realize the networking
+    shown in the diagram below.
+
+    .. figure:: /deploy_install_guides/r7_release/figures/starlingx-deployment-options-simplex.png
+       :scale: 50%
+       :alt: All-in-one Simplex deployment configuration
+
+       *All-in-one Simplex deployment configuration*
+
+
+.. end-prepare-servers
+
+
+.. ........
+.. Duplex
+.. ........
+
+.. begin-prepare-servers-dx
+.. begin-min-hw-reqs-dx
+
+
+This section describes the hardware requirements and server preparation for a
+|prod-long| |this-ver| |bare-metal| Duplex deployment configuration.
+
+The recommended minimum hardware requirements for |bare-metal| servers for various
+host types are:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Minimum Requirements
+     - All-in-one Controller Node
+     - Worker Node
+   * - Number of servers
+     - 2
+     - 2-|max-workers|
+   * - Minimum processor class
+     - * Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket
+
+       or
+
+       * Single-CPU Intel® Xeon® D-15xx family, 8 cores (low-power/low-cost option)
+
+       .. note::
+
+          * Platform: 2x physical cores (4x logical cores if hyper-threading), (by
+            default, configurable)
+          * Application: Remaining cores
+     - (Same as controller node)
+   * - Minimum memory
+     - 64 GB
+
+       * Platform:
+
+         - Socket 0: 7GB (by default, configurable)
+
+         - Socket 1: 1GB (by default, configurable)
+
+       * Application:
+
+         - Socket 0: Remaining memory
+
+         - Socket 1: Remaining memory
+     - 32 GB
+   * - Primary disk
+     - 500 GB SSD or |NVMe| (see :ref:`nvme_config`)
+     - 120 GB (Minimum 10k RPM)
+   * - Additional disks
+     - * 1 or more 500 GB (min. 10K RPM) for Ceph |OSD|
+
+       * Recommended, but not required: 1 or more |SSDs| or |NVMe| drives for
+         Ceph journals (min. 1024 MiB per |OSD| journal)
+
+       * Recommended, but not required: 1 or more 500G HDs (min. 10K RPM), |SSDs|
+         or |NVMe| drives for Container ephemeral disk storage.
+
+       * For |prod-os|, we recommend 1 or more 500 GB (min. 10K RPM) for |VM| local
+         ephemeral storage
+
+     - For |prod-os|, we recommend 1 or more 500 GB (min. 10K RPM) for |VM| local
+       ephemeral storage
+   * - Minimum network ports
+     - * MGMT: 1x1GE ( Recommended: MGMT 2x10GE LAG ).
+
+       * |OAM|: 1x1GE (Recommended: |OAM|: 2x1GE LAG)
+
+       * Data: 1 or more x 10GE (Recommended: Data: 2x10GE |LAG|)
+
+     - * Mgmt/Cluster: 1x10GE  (Recommended: MGMT 2x10GE LAG)
+
+       * Data: 1 or more x 10GE  (Recommended:  Data 2x10GE LAG)
+
+   * - USB
+     - 1  (Only required if used for initial installation of controller-0).
+     -
+   * - Board Management
+     - 
+     - 1 |BMC|
+   * - Boot order
+     - HD, PXE, USB
+     - HD, PXE
+   * - BIOS mode
+     - BIOS or UEFI
+       
+       .. note::
+          
+          |UEFI| Secure Boot and |UEFI| |PXE| boot over IPv6 are not supported. On
+          systems with an IPv6 management network, you can use a separate IPv4
+          network for |PXE| boot. For more information, see
+          :ref:`configuring-a-pxe-boot-server-r7`.
+     - BIOS or UEFI
+   * - Bios settings
+     - * Hyper-Threading technology enabled
+
+       * Virtualization technology enabled
+
+       * VT for directed I/O enabled
+
+       * CPU power and performance policy set to performance
+
+       * CPU C state control disabled
+
+       * Plug & play |BMC| detection disabled
+
+     - (Same as controller node)
+
+.. end-min-hw-reqs-dx
+
+--------------------------
+Prepare bare metal servers
+--------------------------
+
+.. include:: prep_servers.txt
+
+* Cabled for networking
+
+  * Far-end switch ports should be properly configured to realize the networking
+    shown in the diagram above.
+
+
+.. end-prepare-servers-dx
+
+.. ........
+.. Standard with storage
+.. ........
+
+.. begin-prepare-servers-std
+.. begin-min-hw-reqs-std
+
+This section describes the hardware requirements and server preparation for a
+|prod-long| |this-ver| |bare-metal| Standard with Controller Storage deployment
+configuration.
+
+The recommended minimum hardware requirements for |bare-metal| servers for various
+host types are:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Minimum Requirements
+     - Controller Node
+     - Worker Node
+   * - Number of servers
+     - 2
+     - 2-|max-workers|
+   * - Minimum processor class
+     - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket
+       
+       .. note:: All cores are used by the platform.
+     - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket
+       
+       .. note::
+          
+          * Platform: 1x physical cores (2x logical cores if hyper-threading),
+            (by default, configurable)
+          * Application: Remaining cores
+   * - Minimum memory
+     - 64 GB
+     - 32 GB
+   * - Primary disk
+     - 500 GB SSD or |NVMe| (see :ref:`nvme_config`)
+     - 120 GB (Minimum 10k RPM)
+   * - Additional disks
+     - * 1 or more 500 GB (min. 10K RPM) for Ceph |OSD|
+
+       * Recommended, but not required: 1 or more |SSDs| or |NVMe| drives for
+         Ceph journals (min. 1024 MiB per |OSD| journal)
+     - For |prod-os|, we recommend 1 or more 500 GB (min. 10K RPM) for |VM| local
+       ephemeral storage
+
+       Recommended but not required: 1 or more 500G HDs (min. 10K RPM), |SSDs| or
+       |NVMe| drives for Container ephemeral disk storage.
+   * - Minimum network ports
+     - * MGMT: 1x1GE (Recommended: MGMT 2x10GE LAG)
+       * |OAM|: 1x1GE (Recommended: |OAM|: 2x1GE LAG)
+       * Data: 1 or more x 10GE (Recommended: Data: 2x10GE |LAG|)
+     - * Mgmt/Cluster: 1x10GE (Recommended: MGMT 2x10GE LAG)
+
+       * Data: 1 or more x 10GE (Recommended: Data: 2x10GE |LAG|)
+   * - USB
+     - 1 (Only required if used for initial installation of controller-0).
+     -
+   * - Board Management
+     - 
+     - 1 |BMC|
+   * - Boot order
+     - HD, PXE, USB
+     - HD, PXE
+   * - BIOS mode
+     - BIOS or UEFI
+       
+       .. note::
+          
+          |UEFI| Secure Boot and |UEFI| |PXE| boot over IPv6 are not supported. On
+          systems with an IPv6 management network, you can use a separate IPv4
+          network for |PXE| boot. For more information, see
+          :ref:`configuring-a-pxe-boot-server-r7`.
+     - BIOS or UEFI
+   * - Bios settings
+     - * Hyper-Threading technology enabled
+
+       * Virtualization technology (VTD, VTX) enabled
+
+       * VT for directed I/O enabled
+
+       * CPU power and performance policy set to performance
+
+       * CPU C state control disabled
+
+       * Plug & play |BMC| detection disabled
+
+     - (Same as controller node)
+
+.. end-min-hw-reqs-std
+
+--------------------------
+Prepare bare metal servers
+--------------------------
+
+.. include:: prep_servers.txt
+
+* Cabled for networking
+
+  * Far-end switch ports should be properly configured to realize the networking
+    shown in the diagram above.
+
+
+.. end-prepare-servers-std
+
+
+.. ........
+.. Dedicated storage
+.. ........
+
+.. begin-prepare-servers-ded
+.. begin-min-hw-reqs-ded
+
+This section describes the hardware requirements and server preparation for a
+|prod-long| |this-ver| |bare-metal| Standard with Dedicated Storage deployment
+configuration.
+
+The recommended minimum hardware requirements for |bare-metal| servers for various
+host types are:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Minimum Requirements
+     - Controller Node
+     - Storage Node
+     - Worker Node
+   * - Number of servers
+     - 2
+     - 2-9
+     - 2-|max-workers|
+   * - Minimum processor class
+     - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket
+
+       .. note:: All cores are used by the platform.
+
+     - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket
+
+       .. note:: All cores are used for Ceph Storage Cluster.
+
+     - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket
+
+       .. note::
+
+          * Platform: 1x physical cores (2x logical cores if hyper-threading),
+            (by default, configurable)
+          * Application: Remaining cores
+
+   * - Minimum memory
+     - 64 GB
+     - 64 GB
+     - 32 GB
+   * - Primary disk
+     - 500 GB SSD or |NVMe| (see :ref:`nvme_config`)
+     - 120 GB (min. 10k RPM)
+     - 120 GB (min. 10k RPM)
+   * - Additional disks
+     - None
+     - * 1 or more 500 GB (min. 10K RPM) for Ceph |OSD|
+
+       * Recommended, but not required: 1 or more |SSDs| or |NVMe| drives for
+         Ceph journals (min. 1024 MiB per |OSD| journal)
+     - For |prod-os|, we recommend 1 or more 500 GB (min. 10K RPM) for |VM| ephemeral
+       storage
+
+       Recommended, but not required: 1 or more 500G HDs (min. 10K RPM), |SSDs|
+       or |NVMe| drives for Container ephemeral disk storage.
+  
+   * - Minimum network ports
+     - * MGMT: 1x1GE ( Recommended: MGMT 2x10GE LAG ).
+       * |OAM|: 1x1GE (Recommended: |OAM|: 2x1GE LAG)
+       * Data: 1 or more x 10GE (Recommended: Data: 2x10GE |LAG|)
+     - Mgmt: 1x10GE
+     - * Mgmt/Cluster: 1x10GE 1x10GE (Recommended: MGMT 2x10GE LAG)
+
+       * Data: 1 or more x 10GE (Recommended:  Data 2x10GE LAG)
+   * - USB
+     - 1  (Only required if used for initial installation of controller-0).
+     -
+     -
+   * - Board Management
+     -
+     -
+     - 1 |BMC|
+   * - Boot order
+     - HD, PXE, USB
+     - 
+     - HD, PXE
+   * - BIOS mode
+     - BIOS or UEFI
+       
+       .. note::
+          
+          |UEFI| Secure Boot and |UEFI| |PXE| boot over IPv6 are not supported. On
+          systems with an IPv6 management network, you can use a separate IPv4
+          network for |PXE| boot. For more information, see
+          :ref:`configuring-a-pxe-boot-server-r7`.
+     - BIOS or UEFI
+     - BIOS or UEFI
+   * - Bios settings
+     - * Hyper-Threading technology enabled
+
+       * Virtualization technology (VTD, VTX) enabled
+
+       * VT for directed I/O enabled
+
+       * CPU power and performance policy set to performance
+
+       * CPU C state control disabled
+
+       * Plug & play |BMC| detection disabled
+     - (Same as controller node)
+     - (Same as controller node)
+
+.. end-min-hw-reqs-ded
+
+--------------------------
+Prepare bare metal servers
+--------------------------
+
+.. include:: prep_servers.txt
+
+* Cabled for networking
+
+  * Far-end switch ports should be properly configured to realize the networking
+    shown in the diagram above.
+
+
+.. end-prepare-servers-ded
+
+.. start-prepare-servers-common
+
+Preparing servers is the first step of the |prod| installation procedure.
+
+
+Prior to starting the |prod| installation, ensure that the |bare-metal|
+servers are in the following state:
+
+-   Physically installed.
+
+-   Cabled for power.
+
+-   Cabled for networking.
+
+    Far-end switch ports should be properly configured to realize the
+    networking shown in the diagram earlier in this topic.
+
+-   All disks are wiped.
+
+    This ensures that servers will boot from either the network or USB
+    storage, if present.
+
+    .. note::
+
+       The disks and disk partitions need to be wiped before the install.
+       Installing a Debian ISO may fail with a message that the system is
+       in emergency mode if the disks and disk partitions are not
+       completely wiped before the install, especially if the server was
+       previously running a CentOS ISO.
+
+    .. only:: partner
+
+       .. include:: /_includes/debian-rn-link-a90a7e432679.rest
+
+-   BIOS configured with Intel Virtualization (VTD, VTX)
+
+    -  Disabled for controller-only servers and storage servers.
+
+    -  Enabled for :hideable:`controller+worker (All-in-one) servers and` worker servers.
+
+-   The servers are powered off.
+
+
+.. end-prepare-servers-common
+
+
+.. ........
+.. HW requirments for Worker nodes
+.. ........
+
+.. begin-worker-hw-reqs
+
+.. list-table:: Worker Hardware Requirements
+   :widths: 6 25
+   :header-rows: 0
+
+   * - Minimum number of workers
+     - 2
+   * - Maximum number of workers
+     - |max-workers|
+   * - Minimum processor class
+     - Same as for controllers
+   * - Minimum memory
+     - 32 GB
+   * - Minimum Primary Disk (two-disk hardware RAID suggested)
+     - 120 GB (min. 10K RPM)
+
+       .. note:: Installation on software RAID is not supported.
+   * - Additional disks
+     - 500 GB (min. 10K RPM) - 1 or more
+
+       .. note::
+
+          Single-disk hosts are supported, but must not be used for local
+          ephemeral storage.
+   * - Network ports
+
+       (Typical deployment)
+     - * Mgmt and Cluster Host: 2 x 10GE LAG (shared interface)
+       * **Optional** external network ports 2 x 10GE LAG
+   * - Board Management Controller (BMC)
+     - 1 (required)
+   * - Bios settings
+     - * Boot order: HD, PXE
+
+       * Bios mode: BIOS or UEFI
+
+         .. note::
+
+            |UEFI| Secure Boot and |UEFI| |PXE| boot over IPv6 are not
+            supported. On systems with an IPv6 management network, you can use a
+            separate IPv4 network for |PXE| boot.
+       * Hyperthreading: Same as for controllers
+       * Power profile: Same as for controllers
+       * Intel Virtualization (VTD, VTX): Enabled
+
+.. end-worker-hw-reqs
+
+
+.. ........
+.. HW requirments for Storage nodes
+.. ........
+
+.. begin-storage-hw-reqs
+
+.. list-table:: Storage Hardware Requirements
+   :widths: 6 25
+   :header-rows: 0
+
+   * - Minimum number of nodes
+
+       (If Ceph storage is used)
+     - * 2 - 8 (for replication factor 2)
+       * 3 - 9 (for replication factor 3)
+   * - Minimum processor class
+     - Same as for controllers
+   * - Minimum memory
+     - Same as for controllers
+   * - Minimum Primary Disk (two-disk hardware RAID suggested)
+     - 120 GB (min. 10K RPM)
+
+       .. note:: Installation on software RAID is not supported.
+   * - Additional disks
+     - * 500 GB (min. 10K RPM) for OSD storage
+       * One or more |SSDs| or |NVMe| drives (recommended for Ceph journals);
+         min. 1024 MiB per journal.
+   * - Network ports
+
+       (Typical deployment)
+     - * Mgmt and Cluster Host: 2 x 10GE LAG (shared interface)
+   * - Board Management Controller (BMC)
+     - 1 (required)
+   * - Bios settings
+     - * Boot order: HD, PXE
+       * Bios mode: BIOS or UEFI
+
+         .. note::
+
+            |UEFI| Secure Boot and |UEFI| |PXE| boot over IPv6 are not
+            supported. On systems with an IPv6 management network, you can use a
+            separate IPv4 network for |PXE| boot.
+       * Hyperthreading: Same as for controllers
+       * Power profile: Same as for controllers
+       * Intel Virtualization (VTD, VTX): Disabled
+
+.. end-storage-hw-reqs
+
+.. ........
+.. Prepare Servers for Installation
+.. ........
+
+.. begin-prep-servers-common
+.. begin-prepare-servers
+
+Prior to starting the |prod| installation, the servers must be in the following
+state:
+
+-   Physically installed.
+
+-   Cabled for power.
+
+-   Cabled for networking.
+
+Far-end switch ports should be properly configured to realize the networking
+shown in :ref:`deployment-options` for the particular deployment configuration
+you are installing.
+
+-   All disks are wiped.
+
+    This ensures that servers will boot from either the network or USB storage,
+    if present.
+
+    .. note::
+
+       The disks and disk partitions need to be wiped before the install.
+       Installing a Debian ISO may fail with a message that the system is in
+       emergency mode if the disks and disk partitions are not completely wiped
+       before the install, especially if the server was previously running a
+       CentOS ISO.
+
+       .. only:: partner
+
+          .. include:: /_includes/debian-rn-link-a90a7e432679.rest
+
+-   BIOS configured with Intel Virtualization (VTD, VTX)
+
+    -  Disabled for controller-only servers and storage servers.
+
+    -  Enabled for controller+worker (All-in-one) servers and worker servers.
+
+-   The servers are powered off.
+
+.. end-prepare-servers
+.. end-prep-servers-common

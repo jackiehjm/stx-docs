@@ -25,3 +25,6 @@ A Standard with Controller Storage configuration provides the following benefits
    :alt: Standard with Controller Storage deployment configuration
 
    *Figure 1: Standard with Controller Storage deployment configuration*
+
+.. include:: /shared/_includes/ipv6_note.txt
+

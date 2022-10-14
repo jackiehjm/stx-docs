@@ -5,34 +5,160 @@
 Install Kubernetes Platform on All-in-one Duplex
 ================================================
 
+
 .. only:: partner
 
    .. include:: /_includes/install-kubernetes-null-labels.rest
 
-.. only:: starlingx
+.. contents:: |minitoc|
+   :local:
+   :depth: 1
 
-   This section describes the steps to install the StarlingX Kubernetes
-   platform on a **StarlingX R7.0 All-in-one Duplex** deployment
-   configuration.
+--------
+Overview
+--------
 
-   .. contents::
-      :local:
-      :depth: 1
+.. _aiodx-installation-prereqs:
 
-   ---------------------
-   Create a bootable USB
-   ---------------------
+.. include:: /shared/_includes/desc_aio_duplex.txt
 
-   Refer to :ref:`Bootable USB <bootable_usb>` for instructions on how
-   to create a bootable USB with the StarlingX ISO on your system.
+.. _installation-prereqs-dx:
 
-   --------------------------------
-   Install software on controller-0
-   --------------------------------
+-----------------------------
+Minimum hardware requirements
+-----------------------------
 
-   .. include:: /shared/_includes/inc-install-software-on-controller.rest
-      :start-after: incl-install-software-controller-0-aio-start
-      :end-before: incl-install-software-controller-0-aio-end
+.. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+   :start-after: begin-min-hw-reqs-dx
+   :end-before: end-min-hw-reqs-dx
+
+--------------------------
+Installation Prerequisites
+--------------------------
+
+.. include:: /shared/_includes/installation-prereqs.rest
+   :start-after: begin-install-prereqs
+   :end-before: end-install-prereqs
+
+--------------------------------
+Prepare Servers for Installation
+--------------------------------
+
+.. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+   :start-after: start-prepare-servers-common
+   :end-before: end-prepare-servers-common
+
+--------------------------------
+Install Software on Controller-0
+--------------------------------
+
+.. include:: /shared/_includes/inc-install-software-on-controller.rest
+   :start-after: incl-install-software-controller-0-aio-start
+   :end-before: incl-install-software-controller-0-aio-end
+
+
+
+.. .. figure:: /shared/figures/deploy_install_guides/starlingx-deployment-options-duplex.png
+..    :width: 800
+ 
+..    All-in-one Duplex deployment configuration
+
+.. _installation-prereqs-duplex:
+
+.. --------------------------
+.. Installation Prerequisites
+.. --------------------------
+
+.. .. include:: /_includes/installation-prereqs.rest
+..    :start-after: begin-install-prereqs
+..    :end-before: end-install-prereqs
+
+..   --------------------------------
+..   Prepare Servers for Installation
+..   --------------------------------
+
+..   .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..      :start-after: begin-min-hw-reqs-common-intro
+..      :end-before: end-min-hw-reqs-common-intro
+
+..   .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..      :start-after: begin-min-hw-reqs-dx
+..      :end-before: end-min-hw-reqs-dx
+
+..   The following requirements must be met if :ref:`extending a Duplex
+..   installation <extend-dx-with-workers>`.
+
+..   .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..      :start-after: begin-worker-hw-reqs
+..      :end-before: end-worker-hw-reqs
+
+..   --------------------------------
+..   Install Software on Controller-0
+..   --------------------------------
+
+..   .. include:: /_includes/installing-software-on-controller-0.rest
+..      :start-after: begin-install-ctl-0
+..      :end-before: end-install-ctl-0
+
+.. .. only:: starlingx
+
+..    .. contents:: |minitoc|
+..       :local:
+..       :depth: 1
+
+..   .. --------
+..   .. Overview
+..   .. --------
+
+..   .. .. include:: /shared/_includes/installation-prereqs.rest
+..   ..    :start-after: begin-install-prereqs-dx
+..   ..    :end-before: end-install-prereqs-dx
+
+..   ---------------------
+..   Hardware Requirements
+..   ---------------------
+
+..   .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..      :start-after: begin-min-hw-reqs-common-intro
+..      :end-before: end-min-hw-reqs-common-intro
+
+..   .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..      :start-after: begin-min-hw-reqs-dx
+..      :end-before: end-min-hw-reqs-dx
+
+..   The following requirements must be met if :ref:`extending a Duplex
+..   installation <extend-dx-with-workers>`.
+
+..   .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..      :start-after: begin-worker-hw-reqs
+..      :end-before: end-worker-hw-reqs
+
+..   .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..      :start-after: start-prepare-servers-common
+..      :end-before: end-prepare-servers-common
+
+..   This section describes the steps to install the StarlingX Kubernetes
+..   platform on a **StarlingX R7.0 All-in-one Duplex** deployment
+..   configuration.
+
+..   .. contents::
+..      :local:
+..      :depth: 1
+
+..   ---------------------
+..   Create a bootable USB
+..   ---------------------
+
+..   Refer to :ref:`Bootable USB <bootable_usb>` for instructions on how
+..   to create a bootable USB with the StarlingX ISO on your system.
+
+..   --------------------------------
+..   Install software on controller-0
+..   --------------------------------
+
+..   .. include:: /shared/_includes/inc-install-software-on-controller.rest
+..      :start-after: incl-install-software-controller-0-aio-start
+..      :end-before: incl-install-software-controller-0-aio-end
 
 --------------------------------
 Bootstrap system on controller-0
@@ -91,7 +217,7 @@ Bootstrap system on controller-0
 
    .. only:: starlingx
 
-      .. include:: /_includes/ansible_install_time_only.txt
+      .. include:: /shared/_includes/ansible_install_time_only.txt
 
    Specify the user configuration override file for the Ansible bootstrap
    playbook using one of the following methods:
@@ -1155,6 +1281,16 @@ machine.
 
 .. include:: /_includes/bootstrapping-and-deploying-starlingx.rest
 
+.. _extend-dx-with-workers:
+
+--------------------------------------------
+Optionally Extend Capacity with Worker Nodes
+--------------------------------------------
+
+.. include:: /shared/_includes/aio_duplex_extend.rest
+   :start-after: start-aio-duplex-extend
+   :end-before: end-aio-duplex-extend
+
 .. only:: starlingx
 
    ----------
@@ -1167,3 +1303,9 @@ machine.
 .. only:: partner
 
    .. include:: /_includes/72hr-to-license.rest
+
+   Complete system configuration by reviewing procedures in:
+
+   - :ref:`index-security-84d0d8aa401b`
+   - :ref:`index-sysconf-d511820651f0`
+   - :ref:`index-admintasks-768a6e9aaeff`

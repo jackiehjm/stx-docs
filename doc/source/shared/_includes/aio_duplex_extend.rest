@@ -2,6 +2,8 @@
 Extend Capacity with Worker Nodes
 =================================
 
+.. start-aio-duplex-extend
+
 This section describes the steps to extend capacity with worker nodes on a
 |prod| All-in-one Duplex deployment configuration.
 
@@ -338,3 +340,5 @@ Unlock worker nodes in order to bring them into service:
 The worker nodes will reboot to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host
 machine.
+
+.. end-aio-duplex-extend

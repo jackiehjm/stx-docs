@@ -1,0 +1,139 @@
+.. _installation-prereqs:
+
+
+==========================
+Installation Prerequisites
+==========================
+
+.. begin-install-prereqs
+
+Several pre-requisites must be completed prior to starting the |prod|
+installation.
+
+Before attempting to install |prod|, ensure that you have the following:
+
+.. _installation-pre-requisites-ul-uzl-rny-q3b:
+
+
+-   The |prod-long| host installer ISO image file.
+
+-   The ``update-iso.sh`` script.
+
+    .. include:: /_includes/installation-prereqs.rest
+       :start-after: begin-vdr-additional-prereqs
+       :end-before: end-vdr-additional-prereqs
+
+-   *Optionally*, if required, update the ISO image to modify installation boot
+    parameters, automatically select boot menu options and/or add a kickstart
+    file to automatically perform configurations such as configuring the initial
+    IP Interface for bootstrapping.
+
+    Use the ``update-iso.sh`` script from |dnload-loc|. The script syntax and
+    options are:
+
+    .. code-block::
+
+        update-iso.sh -i <input bootimage.iso> -o <output bootimage.iso>
+            [ -a <ks-addon.cfg> ] [ -p param=value ]
+            [ -d <default menu option> ] [ -t <menu timeout> ]
+            -i <file>: Specify input ISO file
+            -o <file>: Specify output ISO file
+            -a <file>: Specify ks-addon.cfg file
+            -p <p=v>:  Specify boot parameter
+
+            Examples:
+                -p rootfs_device=nvme0n1
+                -p boot_device=nvme0n1
+                -p rootfs_device=/dev/disk/by-path/pci-0000:00:0d.0-ata-1.0
+                -p boot_device=/dev/disk/by-path/pci-0000:00:0d.0-ata-1.0
+
+            -d <default menu option>:
+                Specify default boot menu option:
+                0 - Standard Controller, Serial Console
+                1 - Standard Controller, Graphical Console
+                2 - AIO, Serial Console
+                3 - AIO, Graphical Console
+                4 - AIO Low-latency, Serial Console
+                5 - AIO Low-latency, Graphical Console
+                NULL - Clear default selection
+            -t <menu timeout>:
+                Specify boot menu timeout, in seconds
+
+    The following example ks-addon.cfg file, used with the -a option, sets up
+    an initial IP interface at boot time by defining a VLAN on an Ethernet
+    interface and has it use DHCP to request an IP address:
+
+    .. code-block::
+
+        #### start ks-addon.cfg
+        OAM_DEV=enp0s3
+        OAM_VLAN=1234
+
+        cat << EOF > /etc/sysconfig/network-scripts/ifcfg-$OAM_DEV
+        DEVICE=$OAM_DEV
+        BOOTPROTO=none
+        ONBOOT=yes
+        LINKDELAY=20
+        EOF
+
+        cat << EOF > /etc/sysconfig/network-scripts/ifcfg-$OAM_DEV.$OAM_VLAN
+        DEVICE=$OAM_DEV.$OAM_VLAN
+        BOOTPROTO=dhcp
+        ONBOOT=yes
+        VLAN=yes
+        LINKDELAY=20
+        EOF
+        #### end ks-addon.cfg
+
+    After updating the ISO image, create a bootable USB with the ISO or put the
+    ISO on a PXEBOOT server. See the next bullet for details.
+
+-   A mechanism for boot installation of the |prod-long| host installer ISO
+    downloaded from |dnload-loc|. This can be either:
+
+    -   a bootable USB drive with the |prod-long| host installer ISO.
+
+        Refer to :ref:`bootable_usb` for instructions on how to create a
+        bootable USB with the StarlingX ISO on your system.
+
+    -   the ISO image on a |PXE| boot server on the same network as the server
+        that will be used as the initial controller-0. See Appendix
+        :ref:`Installing Controller-0 from a PXE Boot Server
+        <configuring-a-pxe-boot-server-r7>` for details
+
+
+-   For all controller or AIO controller servers, |OAM| Network connectivity to:
+
+    -   the |BMC| ports of all nodes
+
+    -   An external DNS Server. This is required for accessing |org| Docker
+        Registry as discussed below.
+
+    -   A Docker Registry(s) containing the Docker images for the |prod| load
+        accessible via the |OAM| Network.
+
+    You can use one of the following options:
+
+    .. only:: partner
+
+       -   The |org| Docker Registry. This is the default option.
+
+    .. only:: starlingx
+
+       -   The public open source registries (i.e. docker.io, k8s.gcr.io,
+           ghcr.io, gcr.io, quay.io). This is the default option.
+
+    -   A private Docker Registry populated with the docker images from the
+        |reg-string|.
+
+        .. only:: partner
+
+           .. include:: /_includes/bootstrapping-from-a-private-docker-registry.rest
+
+
+-   A record of the IP addresses allocated for the public interfaces for your
+    deployment \(that is IP addresses for the |OAM| Network and |SRIOV| Data
+    Networks\).
+
+
+.. end-install-prereqs

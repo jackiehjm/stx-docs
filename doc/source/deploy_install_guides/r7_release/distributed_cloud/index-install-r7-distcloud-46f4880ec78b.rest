@@ -1,5 +1,7 @@
 .. _index-install-r7-distcloud-46f4880ec78b:
 
+.. 11/21/2022 - deprecated in favor of DC guide instructions.
+
 ===================================
 Distributed Cloud Installation R7.0
 ===================================

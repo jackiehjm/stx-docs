@@ -5,34 +5,56 @@
 Install Kubernetes Platform on All-in-one Simplex
 =================================================
 
+
 .. only:: partner
 
    .. include:: /_includes/install-kubernetes-null-labels.rest
 
-.. only:: starlingx
+.. contents:: |minitoc|
+   :local:
+   :depth: 1
 
-   This section describes the steps to install the StarlingX Kubernetes
-   platform on a **StarlingX R7.0 All-in-one Simplex** deployment
-   configuration.
+--------
+Overview
+--------
 
-   .. contents::
-      :local:
-      :depth: 1
+.. _aiosx-installation-prereqs:
 
-   ---------------------
-   Create a bootable USB
-   ---------------------
+.. include:: /shared/_includes/desc_aio_simplex.txt
 
-   Refer to :ref:`Bootable USB <bootable_usb>` for instructions on how
-   to create a bootable USB with the StarlingX ISO on your system.
+.. _installation-prereqs:
 
-   --------------------------------
-   Install software on controller-0
-   --------------------------------
+-----------------------------
+Minimum hardware requirements
+-----------------------------
+   
+.. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+   :start-after: begin-min-hw-reqs-sx
+   :end-before: end-min-hw-reqs-sx
 
-   .. include:: /shared/_includes/inc-install-software-on-controller.rest
-      :start-after: incl-install-software-controller-0-aio-start
-      :end-before: incl-install-software-controller-0-aio-end
+--------------------------
+Installation Prerequisites
+--------------------------
+
+.. include:: /shared/_includes/installation-prereqs.rest
+   :start-after: begin-install-prereqs
+   :end-before: end-install-prereqs
+
+--------------------------------
+Prepare Servers for Installation
+--------------------------------
+
+.. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+   :start-after: start-prepare-servers-common
+   :end-before: end-prepare-servers-common
+
+--------------------------------
+Install Software on Controller-0
+--------------------------------
+
+.. include:: /shared/_includes/inc-install-software-on-controller.rest
+   :start-after: incl-install-software-controller-0-aio-start
+   :end-before: incl-install-software-controller-0-aio-end
 
 --------------------------------
 Bootstrap system on controller-0
@@ -89,9 +111,8 @@ Bootstrap system on controller-0
       configuration override files for hosts. For example:
       ``$HOME/<hostname>.yml``.
 
-   .. only:: starlingx
 
-      .. include:: /_includes/ansible_install_time_only.txt
+   .. include:: /shared/_includes/ansible_install_time_only.txt
 
    Specify the user configuration override file for the Ansible bootstrap
    playbook using one of the following methods:
@@ -214,9 +235,9 @@ The newly installed controller needs to be configured.
 
    ::
 
-     OAM_IF=<OAM-PORT>
-     system host-if-modify controller-0 $OAM_IF -c platform
-     system interface-network-assign controller-0 $OAM_IF oam
+     ~(keystone_admin)$ OAM_IF=<OAM-PORT>
+     ~(keystone_admin)$ system host-if-modify controller-0 $OAM_IF -c platform
+     ~(keystone_admin)$ system interface-network-assign controller-0 $OAM_IF oam
 
    To configure a vlan or aggregated ethernet interface, see :ref:`Node
    Interfaces <node-interfaces-index>`.
@@ -225,7 +246,7 @@ The newly installed controller needs to be configured.
 
    ::
 
-      system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org
+      ~(keystone_admin)$ system ntp-modify ntpservers=0.pool.ntp.org,1.pool.ntp.org
 
    To configure |PTP| instead of |NTP|, see :ref:`PTP Server Configuration
    <ptp-server-config-index>`.
@@ -250,9 +271,9 @@ The newly installed controller needs to be configured.
 
          .. parsed-literal::
 
-            system host-label-assign controller-0 openstack-control-plane=enabled
-            system host-label-assign controller-0 openstack-compute-node=enabled
-            system host-label-assign controller-0 |vswitch-label|
+            ~(keystone_admin)$ system host-label-assign controller-0 openstack-control-plane=enabled
+            ~(keystone_admin)$ system host-label-assign controller-0 openstack-compute-node=enabled
+            ~(keystone_admin)$ system host-label-assign controller-0 |vswitch-label|
 
          .. note::
 
@@ -261,7 +282,7 @@ The newly installed controller needs to be configured.
 
             .. code-block:: none
 
-               system host-label-assign controller-0 sriov=enabled
+               ~(keystone_admin)$ system host-label-assign controller-0 sriov=enabled
 
       .. only:: partner
 
@@ -275,10 +296,10 @@ The newly installed controller needs to be configured.
 
       Increase the number of platform cores with the following commands:
 
-      .. code-block::
+      .. code-block:: bash
 
          # Assign 6 cores on processor/numa-node 0 on controller-0 to platform
-         system host-cpu-modify -f platform -p0 6 controller-0
+         ~(keystone_admin)$ system host-cpu-modify -f platform -p0 6 controller-0
 
    #. Due to the additional OpenStack services' containers running on the
       controller host, the size of the Docker filesystem needs to be
@@ -287,9 +308,9 @@ The newly installed controller needs to be configured.
       .. code-block:: bash
 
          # check existing size of docker fs
-         system host-fs-list controller-0
+         ~(keystone_admin)$ system host-fs-list controller-0
          # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
-         system host-lvg-list controller-0
+         ~(keystone_admin)$ system host-lvg-list controller-0
          # if existing docker fs size + cgts-vg available space is less than
          # 80G, you will need to add a new disk partition to cgts-vg.
          # There must be at least 20GB of available space after the docker
@@ -299,22 +320,22 @@ The newly installed controller needs to be configured.
             # ( if not use another unused disk )
 
             # Get device path of ROOT DISK
-            system host-show controller-0 | fgrep rootfs
+            ~(keystone_admin)$ system host-show controller-0 | fgrep rootfs
 
             # Get UUID of ROOT DISK by listing disks
-            system host-disk-list controller-0
+            ~(keystone_admin)$ system host-disk-list controller-0
 
             # Create new PARTITION on ROOT DISK, and take note of new partition's 'uuid' in response
             # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
-            PARTITION_SIZE=30
-            system host-disk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
+            ~(keystone_admin)$ PARTITION_SIZE=30
+            ~(keystone_admin)$ system host-disk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
 
             # Add new partition to ‘cgts-vg’ local volume group
-            system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
-            sleep 2    # wait for partition to be added
+            ~(keystone_admin)$ system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
+            ~(keystone_admin)$ sleep 2    # wait for partition to be added
 
             # Increase docker filesystem to 60G
-            system host-fs-modify controller-0 docker=60
+            ~(keystone_admin)$ system host-fs-modify controller-0 docker=60
 
    #. **For OpenStack only:** Configure the system setting for the vSwitch.
 
@@ -338,7 +359,7 @@ The newly installed controller needs to be configured.
 
          ::
 
-              system modify --vswitch_type none
+              ~(keystone_admin)$ system modify --vswitch_type none
 
          This does not run any vSwitch directly on the host, instead, it uses
          the containerized |OVS| defined in the helm charts of
@@ -348,7 +369,7 @@ The newly installed controller needs to be configured.
 
       .. parsed-literal::
 
-         system modify --vswitch_type |ovs-dpdk|
+         ~(keystone_admin)$ system modify --vswitch_type |ovs-dpdk|
 
       Default recommendation for an |AIO|-controller is to use a single core
       for |OVS-DPDK| vSwitch.
@@ -356,7 +377,7 @@ The newly installed controller needs to be configured.
       .. code-block:: bash
 
          # assign 1 core on processor/numa-node 0 on controller-0 to vswitch
-         system host-cpu-modify -f vswitch -p0 1 controller-0
+         ~(keystone_admin)$ system host-cpu-modify -f vswitch -p0 1 controller-0
 
       When using |OVS-DPDK|, configure 1G of huge pages for vSwitch memory on
       each |NUMA| node on the host. It is recommended
@@ -372,10 +393,10 @@ The newly installed controller needs to be configured.
       .. code-block::
 
          # Assign 1x 1G huge page on processor/numa-node 0 on controller-0 to vswitch
-         system host-memory-modify -f vswitch -1G 1 controller-0 0
+         ~(keystone_admin)$ system host-memory-modify -f vswitch -1G 1 controller-0 0
 
          # Assign 1x 1G huge page on processor/numa-node 1 on controller-0 to vswitch
-         system host-memory-modify -f vswitch -1G 1 controller-0 1
+         ~(keystone_admin)$ system host-memory-modify -f vswitch -1G 1 controller-0 1
 
       .. important::
 
@@ -390,10 +411,10 @@ The newly installed controller needs to be configured.
          .. code-block:: bash
 
             # assign 1x 1G huge page on processor/numa-node 0 on controller-0 to applications
-            system host-memory-modify -f application -1G 10 controller-0 0
+            ~(keystone_admin)$ system host-memory-modify -f application -1G 10 controller-0 0
 
             # assign 1x 1G huge page on processor/numa-node 1 on controller-0 to applications
-            system host-memory-modify -f application -1G 10 controller-0 1
+            ~(keystone_admin)$ system host-memory-modify -f application -1G 10 controller-0 1
 
       .. note::
 
@@ -405,19 +426,19 @@ The newly installed controller needs to be configured.
 
       .. code-block:: bash
 
-         export NODE=controller-0
+         ~(keystone_admin)$ export NODE=controller-0
 
          # Create ‘nova-local’ local volume group
-         system host-lvg-add ${NODE} nova-local
+         ~(keystone_admin)$ system host-lvg-add ${NODE} nova-local
 
          # Get UUID of DISK to create PARTITION to be added to ‘nova-local’ local volume group
          # CEPH OSD Disks can NOT be used
          # For best performance, do NOT use system/root disk, use a separate physical disk.
 
          # List host’s disks and take note of UUID of disk to be used
-         system host-disk-list ${NODE}
+         ~(keystone_admin)$ system host-disk-list ${NODE}
          # ( if using ROOT DISK, select disk with device_path of
-         #   ‘system host-show ${NODE} | fgrep rootfs’   )
+         # host-show ${NODE} | fgrep rootfs’   )
 
          # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
          # The size of the PARTITION needs to be large enough to hold the aggregate size of
@@ -426,13 +447,13 @@ The newly installed controller needs to be configured.
          # The following example uses a small PARTITION size such that you can fit it on the
          # root disk, if that is what you chose above.
          # Additional PARTITION(s) from additional disks can be added later if required.
-         PARTITION_SIZE=30
+         ~(keystone_admin)$ PARTITION_SIZE=30
 
-         system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+         ~(keystone_admin)$ system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
 
          # Add new partition to ‘nova-local’ local volume group
-         system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
-         sleep 2
+         ~(keystone_admin)$ system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
+         ~(keystone_admin)$ sleep 2
 
 
    #. **For OpenStack only:** Configure data interfaces for controller-0.
@@ -449,31 +470,31 @@ The newly installed controller needs to be configured.
 
         .. code-block:: bash
 
-           export NODE=controller-0
+           ~(keystone_admin)$  NODE=controller-0
 
            # List inventoried host’s ports and identify ports to be used as ‘data’ interfaces,
            # based on displayed linux port name, pci address and device type.
-           system host-port-list ${NODE}
+           ~(keystone_admin)$ system host-port-list ${NODE}
 
            # List host’s auto-configured ‘ethernet’ interfaces,
            # find the interfaces corresponding to the ports identified in previous step, and
            # take note of their UUID
-           system host-if-list -a ${NODE}
+           ~(keystone_admin)$ system host-if-list -a ${NODE}
 
            # Modify configuration for these interfaces
            # Configuring them as ‘data’ class interfaces, MTU of 1500 and named data#
-           system host-if-modify -m 1500 -n data0 -c data ${NODE} <data0-if-uuid>
-           system host-if-modify -m 1500 -n data1 -c data ${NODE} <data1-if-uuid>
+           ~(keystone_admin)$ system host-if-modify -m 1500 -n data0 -c data ${NODE} <data0-if-uuid>
+           ~(keystone_admin)$ system host-if-modify -m 1500 -n data1 -c data ${NODE} <data1-if-uuid>
 
            # Create Data Networks that vswitch 'data' interfaces will be connected to
-           DATANET0='datanet0'
-           DATANET1='datanet1'
-           system datanetwork-add ${DATANET0} vlan
-           system datanetwork-add ${DATANET1} vlan
+           ~(keystone_admin)$ DATANET0='datanet0'
+           ~(keystone_admin)$ DATANET1='datanet1'
+           ~(keystone_admin)$ system datanetwork-add ${DATANET0} vlan
+           ~(keystone_admin)$ system datanetwork-add ${DATANET1} vlan
 
            # Assign Data Networks to Data Interfaces
-           system interface-datanetwork-assign ${NODE} <data0-if-uuid> ${DATANET0}
-           system interface-datanetwork-assign ${NODE} <data1-if-uuid> ${DATANET1}
+           ~(keystone_admin)$ system interface-datanetwork-assign ${NODE} <data0-if-uuid> ${DATANET0}
+           ~(keystone_admin)$ system interface-datanetwork-assign ${NODE} <data1-if-uuid> ${DATANET1}
 
 
 *****************************************
@@ -496,32 +517,32 @@ Optionally Configure PCI-SRIOV Interfaces
 
      .. code-block:: bash
 
-        export NODE=controller-0
+        ~(keystone_admin)$ export NODE=controller-0
 
         # List inventoried host’s ports and identify ports to be used as ‘pci-sriov’ interfaces,
         # based on displayed linux port name, pci address and device type.
-        system host-port-list ${NODE}
+        ~(keystone_admin)$ system host-port-list ${NODE}
 
         # List host’s auto-configured ‘ethernet’ interfaces,
         # find the interfaces corresponding to the ports identified in previous step, and
         # take note of their UUID
-        system host-if-list -a ${NODE}
+        ~(keystone_admin)$ system host-if-list -a ${NODE}
 
         # Modify configuration for these interfaces
         # Configuring them as ‘pci-sriov’ class interfaces, MTU of 1500 and named sriov#
-        system host-if-modify -m 1500 -n sriov0 -c pci-sriov ${NODE} <sriov0-if-uuid> -N <num_vfs>
-        system host-if-modify -m 1500 -n sriov1 -c pci-sriov ${NODE} <sriov1-if-uuid> -N <num_vfs>
+        ~(keystone_admin)$ system host-if-modify -m 1500 -n sriov0 -c pci-sriov ${NODE} <sriov0-if-uuid> -N <num_vfs>
+        ~(keystone_admin)$ system host-if-modify -m 1500 -n sriov1 -c pci-sriov ${NODE} <sriov1-if-uuid> -N <num_vfs>
 
         # If not already created, create Data Networks that the 'pci-sriov' interfaces will
         # be connected to
-        DATANET0='datanet0'
-        DATANET1='datanet1'
-        system datanetwork-add ${DATANET0} vlan
-        system datanetwork-add ${DATANET1} vlan
+        ~(keystone_admin)$ DATANET0='datanet0'
+        ~(keystone_admin)$ DATANET1='datanet1'
+        ~(keystone_admin)$ system datanetwork-add ${DATANET0} vlan
+        ~(keystone_admin)$ system datanetwork-add ${DATANET1} vlan
 
         # Assign Data Networks to PCI-SRIOV Interfaces
-        system interface-datanetwork-assign ${NODE} <sriov0-if-uuid> ${DATANET0}
-        system interface-datanetwork-assign ${NODE} <sriov1-if-uuid> ${DATANET1}
+        ~(keystone_admin)$ system interface-datanetwork-assign ${NODE} <sriov0-if-uuid> ${DATANET0}
+        ~(keystone_admin)$ system interface-datanetwork-assign ${NODE} <sriov1-if-uuid> ${DATANET1}
 
 
    * **For Kubernetes Only:** To enable using |SRIOV| network attachments for
@@ -531,19 +552,19 @@ Optionally Configure PCI-SRIOV Interfaces
 
        ::
 
-          system host-label-assign controller-0 sriovdp=enabled
+          ~(keystone_admin)$ system host-label-assign controller-0 sriovdp=enabled
 
-     * If planning on running |DPDK| in Kubernetes hosted application
+     * If you are planning on running |DPDK| in Kubernetes hosted application
        containers on this host, configure the number of 1G Huge pages required
        on both |NUMA| nodes.
 
        .. code-block:: bash
 
           # assign 10x 1G huge page on processor/numa-node 0 on controller-0 to applications
-          system host-memory-modify -f application controller-0 0 -1G 10
+          ~(keystone_admin)$ system host-memory-modify -f application controller-0 0 -1G 10
 
           # assign 10x 1G huge page on processor/numa-node 1 on controller-0 to applications
-          system host-memory-modify -f application controller-0 1 -1G 10
+          ~(keystone_admin)$ system host-memory-modify -f application controller-0 1 -1G 10
 
 
 ***************************************************************
@@ -570,7 +591,7 @@ For host-based Ceph:
 
    ::
 
-      system storage-backend-add ceph --confirmed
+      ~(keystone_admin)$ system storage-backend-add ceph --confirmed
 
 #. Add an |OSD| on controller-0 for host-based Ceph:
 
@@ -578,13 +599,13 @@ For host-based Ceph:
 
       # List host’s disks and identify disks you want to use for CEPH OSDs, taking note of their UUID
       # By default, /dev/sda is being used as system disk and can not be used for OSD.
-      system host-disk-list controller-0
+      ~(keystone_admin)$ system host-disk-list controller-0
 
       # Add disk as an OSD storage
-      system host-stor-add controller-0 osd <disk-uuid>
+      ~(keystone_admin)$ system host-stor-add controller-0 osd <disk-uuid>
 
       # List OSD storage devices
-      system host-stor-list controller-0
+      ~(keystone_admin)$ system host-stor-list controller-0
 
 
 .. only:: starlingx
@@ -595,15 +616,15 @@ For host-based Ceph:
 
       ::
 
-         system storage-backend-add ceph-rook --confirmed
+         ~(keystone_admin)$ system storage-backend-add ceph-rook --confirmed
 
    #. Assign Rook host labels to controller-0 in support of installing the
       rook-ceph-apps manifest/helm-charts later:
 
       ::
 
-         system host-label-assign controller-0 ceph-mon-placement=enabled
-         system host-label-assign controller-0 ceph-mgr-placement=enabled
+         ~(keystone_admin)$ system host-label-assign controller-0 ceph-mon-placement=enabled
+         ~(keystone_admin)$ system host-label-assign controller-0 ceph-mgr-placement=enabled
 
 
    .. incl-config-controller-0-openstack-specific-aio-simplex-end:
@@ -619,7 +640,7 @@ Unlock controller-0 to bring it into service:
 
 ::
 
-  system host-unlock controller-0
+  ~(keystone_admin)$ system host-unlock controller-0
 
 Controller-0 will reboot in order to apply configuration changes and come into
 service. This can take 5-10 minutes, depending on the performance of the host
@@ -640,7 +661,7 @@ machine.
       ::
 
        $ source /etc/platform/openrc
-       $ system application-list
+       ~(keystone_admin)$  system application-list
        +---------------------+---------+-------------------------------+---------------+----------+-----------+
        | application         | version | manifest name                 | manifest file | status   | progress  |
        +---------------------+---------+-------------------------------+---------------+----------+-----------+
@@ -653,9 +674,9 @@ machine.
 
       ::
 
-       system host-disk-wipe -s --confirm controller-0 /dev/sdb
+       ~(keystone_admin)$ system host-disk-wipe -s --confirm controller-0 /dev/sdb
 
-      values.yaml for rook-ceph-apps.
+      ``values.yaml`` for rook-ceph-apps.
 
       .. code-block:: yaml
 
@@ -668,19 +689,19 @@ machine.
 
       ::
 
-       system helm-override-update rook-ceph-apps rook-ceph kube-system --values values.yaml
+       ~(keystone_admin)$ system helm-override-update rook-ceph-apps rook-ceph kube-system --values values.yaml
 
    #. Apply the rook-ceph-apps application.
 
       ::
 
-       system application-apply rook-ceph-apps
+       ~(keystone_admin)$ system application-apply rook-ceph-apps
 
    #. Wait for |OSDs| pod to be ready.
 
       ::
 
-       kubectl get pods -n kube-system
+       ~(keystone_admin)$ kubectl get pods -n kube-system
        rook--ceph-crashcollector-controller-0-764c7f9c8-bh5c7   1/1     Running     0          62m
        rook--ceph-mgr-a-69df96f57-9l28p                         1/1     Running     0          63m
        rook--ceph-mon-a-55fff49dcf-ljfnx                        1/1     Running     0          63m
@@ -702,3 +723,9 @@ machine.
 .. only:: partner
 
    .. include:: /_includes/72hr-to-license.rest
+
+Complete system configuration by reviewing procedures in:
+
+- :ref:`index-security-84d0d8aa401b`
+- :ref:`index-sysconf-d511820651f0`
+- :ref:`index-admintasks-768a6e9aaeff`

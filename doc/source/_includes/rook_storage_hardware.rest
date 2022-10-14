@@ -1,6 +1,6 @@
-=====================
-Hardware Requirements
-=====================
+---------------------
+Hardware requirements
+---------------------
 
 This section describes the hardware requirements and server preparation for a
 **StarlingX R7.0 bare metal Standard with Rook Storage** deployment
@@ -64,10 +64,4 @@ Prepare bare metal servers
 * Cabled for networking
 
   * Far-end switch ports should be properly configured to realize the networking
-    shown in the following diagram.
-
-    .. figure:: /deploy_install_guides/r7_release/figures/starlingx-deployment-options-controller-storage.png
-       :scale: 50%
-       :alt: Standard with Rook Storage deployment configuration
-
-       *Standard with Rook Storage deployment configuration*
+    shown in the diagram above.

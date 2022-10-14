@@ -1,22 +1,74 @@
 .. incl-install-software-controller-0-aio-start
 
+Installing software on controller-0 is the second step in the |prod|
+installation procedure.
+
+.. note::
+
+   The disks and disk partitions need to be wiped before the install. Installing
+   a Debian ISO may fail with a message that the system is in emergency mode if
+   the disks and disk partitions are not completely wiped before the install,
+   especially if the server was previously running a CentOS ISO.
+
+   .. only:: partner
+
+      .. include:: /_includes/debian-rn-link-a90a7e432679.rest
+
 #. Insert the bootable USB into a bootable USB port on the host you are
    configuring as controller-0.
+
+   .. note:: 
+
+      Refer to :ref:`bootable_usb` for instructions on how
+      to create a bootable USB with the |prod| ISO. 
+
+   .. note::
+
+      Alternatively one can PXEBOOT controller-0. See
+      :ref:`configuring-a-pxe-boot-server-r7` for details on how to setup a
+      PXEBOOT Server and pxe-boot the |prod| load on controller-0
 
 #. Power on the host.
 
 #. Attach to a console, ensure the host boots from the USB, and wait for the
-   StarlingX Installer Menus.
+   |prod| Installer Menus.
 
-#. Make the following menu selections in the installer:
+#. Wait for the Install menus, and when prompted, make the following menu
+   selections in the installer:
 
-   #. First menu: Select 'All-in-one Controller Configuration'
+   .. note::
+      
+      If you configured the default menu options into the ISO with the
+      ``update-iso.sh`` script (using the ``-d`` option) in 
+      :ref:`Installation Prerequisites <aiosx-installation-prereqs>`,
+      then the **Install** menu will not appear.
 
-   #. Second menu: Select 'Graphical Console' or 'Textual Console' depending on
-      your terminal access to the console port
+   #. Select the appropriate deployment option for your scenario.
 
-#. Wait for non-interactive install of software to complete and server to reboot.
-   This can take 5-10 minutes, depending on the performance of the server.
+      For All-in-one deployments, choose one of the All-in-One Configurations,
+      either standard kernel or real-time/low-latency kernel.
+
+      **Standard Controller Configuration**
+         For a standard configuration with controller or dedicated storage.
+
+      **All-in-one Controller Configuration**
+         For an |AIO| Simplex or Duplex configuration.
+
+      **All-in-one Controller Configuration (Low Latency)**
+         For an AIO Simplex or Duplex configuration with Low Latency Kernel.
+
+   #. Choose **Graphical Console** or **Serial Console** depending on your
+      terminal access to the console port.
+
+   Wait for non-interactive install of software to complete and server to
+   reboot. This can take 5-10 minutes, depending on the performance of the
+   server.
+
+   Wait for the non-interactive software installation to complete and for
+   the server to reboot. This can take 5-10 minutes, depending on the performance
+   of the server.
+
+.. include:: /_includes/install-patch-ctl-0.rest
 
 .. incl-install-software-controller-0-aio-end
 
@@ -28,14 +80,14 @@
 #. Power on the host.
 
 #. Attach to a console, ensure the host boots from the USB, and wait for the
-   StarlingX Installer Menus.
+   |prod| Installer Menus.
 
 #. Make the following menu selections in the installer:
 
-   #. First menu: Select 'Standard Controller Configuration'
+   #. First menu: Select **Standard Controller Configuration**.
 
-   #. Second menu: Select 'Graphical Console' or 'Textual Console' depending on
-      your terminal access to the console port.
+   #. Second menu: Select **Graphical Console** or **Textual Console** depending
+      on your terminal access to the console port.
 
 #. Wait for non-interactive install of software to complete and server to reboot.
    This can take 5-10 minutes, depending on the performance of the server.

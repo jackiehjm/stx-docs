@@ -84,7 +84,7 @@ On virtual controller-0:
       The default location where Ansible looks for and imports user
       configuration override files for hosts. For example: ``$HOME/<hostname>.yml``.
 
-   .. include:: /_includes/ansible_install_time_only.txt
+   .. include:: /shared/_includes/ansible_install_time_only.txt
 
    Specify the user configuration override file for the Ansible bootstrap
    playbook using one of the following methods:

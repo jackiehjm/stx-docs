@@ -1,3 +1,4 @@
+|hideable|
 
 .. _controller_storage_install_kubernetes_r7:
 
@@ -5,30 +6,116 @@
 Install Kubernetes Platform on Standard with Controller Storage
 ===============================================================
 
-.. contents::
+.. contents:: |minitoc|
    :local:
    :depth: 1
 
-.. only:: starlingx
+.. only:: partner
 
-   This section describes the steps to install the StarlingX Kubernetes
-   platform on a **StarlingX R7.0 Standard with Controller Storage**
-   deployment configuration.
+   .. include:: /_includes/install-kubernetes-null-labels.rest
 
-   -------------------
-   Create bootable USB
-   -------------------
+--------
+Overview
+--------
 
-   Refer to :ref:`Bootable USB <bootable_usb>` for instructions on how to
-   create a bootable USB with the StarlingX ISO on your system.
+.. _std-installation-prereqs:
 
-   --------------------------------
-   Install software on controller-0
-   --------------------------------
+.. include:: /shared/_includes/desc_controller_storage.txt
 
-   .. include:: /shared/_includes/inc-install-software-on-controller.rest
-      :start-after: incl-install-software-controller-0-standard-start
-      :end-before: incl-install-software-controller-0-standard-end
+.. _installation-prereqs-std:
+
+-----------------------------
+Minimum hardware requirements
+-----------------------------
+
+.. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+   :start-after: begin-min-hw-reqs-std
+   :end-before: end-min-hw-reqs-std
+
+..   .. figure:: /shared/figures/deploy_install_guides/starlingx-deployment-options-controller-storage.png
+..      :width: 800
+
+..      Controller storage deployment configuration
+
+.. _installation-prereqs-standard:
+
+--------------------------
+Installation Prerequisites
+--------------------------
+
+.. include:: /shared/_includes/installation-prereqs.rest
+   :start-after: begin-install-prereqs
+   :end-before: end-install-prereqs
+
+--------------------------------
+Prepare Servers for Installation
+--------------------------------
+
+.. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+   :start-after: start-prepare-servers-common
+   :end-before: end-prepare-servers-common
+
+
+--------------------------------
+Install Software on Controller-0
+--------------------------------
+
+.. include:: /shared/_includes/inc-install-software-on-controller.rest
+   :start-after: incl-install-software-controller-0-standard-start
+   :end-before: incl-install-software-controller-0-standard-end
+
+
+
+.. .. only:: starlingx
+.. 
+..    .. --------
+..    .. Overview
+..    .. --------
+..  
+..    .. .. include:: /shared/_includes/installation-prereqs.rest
+..    ..    :start-after: begin-install-prereqs-std
+..    ..    :end-before: end-install-prereqs-std
+.. 
+..    ---------------------
+..    Hardware Requirements
+..    ---------------------
+.. 
+..    .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..       :start-after: begin-min-hw-reqs-common-intro
+..       :end-before: end-min-hw-reqs-common-intro
+.. 
+..    .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..       :start-after: begin-min-hw-reqs-std
+..       :end-before: end-min-hw-reqs-std
+.. 
+..    The following requirements must be met for worker nodes.
+.. 
+..    .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..       :start-after: begin-worker-hw-reqs
+..       :end-before: end-worker-hw-reqs
+.. 
+..    .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..       :start-after: start-prepare-servers-common
+..       :end-before: end-prepare-servers-common
+.. 
+..    This section describes the steps to install the StarlingX Kubernetes
+..    platform on a **StarlingX R7.0 Standard with Controller Storage**
+..    deployment configuration.
+.. 
+..    -------------------
+..    Create bootable USB
+..    -------------------
+.. 
+..    Refer to :ref:`Bootable USB <bootable_usb>` for instructions on how to
+..    create a bootable USB with the StarlingX ISO on your system.
+.. 
+..    --------------------------------
+..    Install software on controller-0
+..    --------------------------------
+.. 
+..    .. include:: /shared/_includes/inc-install-software-on-controller.rest
+..       :start-after: incl-install-software-controller-0-standard-start
+..       :end-before: incl-install-software-controller-0-standard-end
 
 --------------------------------
 Bootstrap system on controller-0
@@ -90,7 +177,7 @@ Bootstrap system on controller-0
 
    .. only:: starlingx
 
-      .. include:: /_includes/ansible_install_time_only.txt
+      .. include:: /shared/_includes/ansible_install_time_only.txt
 
    Specify the user configuration override file for the Ansible bootstrap
    playbook using one of the following methods:
@@ -926,3 +1013,9 @@ If configuring Ceph Storage Backend, Add Ceph OSDs to controllers
 .. only:: partner
 
    .. include:: /_includes/72hr-to-license.rest
+
+   Complete system configuration by reviewing procedures in:
+
+   - :ref:`index-security-84d0d8aa401b`
+   - :ref:`index-sysconf-d511820651f0`
+   - :ref:`index-admintasks-768a6e9aaeff`

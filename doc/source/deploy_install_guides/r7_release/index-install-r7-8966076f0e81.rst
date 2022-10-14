@@ -6,8 +6,8 @@ Development StarlingX Installation
 
 .. note::
 
-   This Installation guide is for the upcoming release of
-   |prod|, and is not supported.
+   This installation guide is for the upcoming release of |prod|, and may not
+   work due to pre-release inconsistencies between documentation and code.
 
    To install the most recent released verion of |prod|, see:
    https://docs.starlingx.io/r/stx.7.0/deploy_install_guides/r7_release/index-install-r7-8966076f0e81.html
@@ -42,12 +42,40 @@ Install StarlingX Kubernetes on bare metal
 .. toctree::
    :maxdepth: 1
 
-   bare_metal/aio_simplex
-   bare_metal/aio_duplex
-   bare_metal/controller_storage
-   bare_metal/dedicated_storage
-   bare_metal/ironic
-   bare_metal/rook_storage
+   bare_metal/aio_simplex_install_kubernetes
+   bare_metal/aio_duplex_install_kubernetes
+   bare_metal/controller_storage_install_kubernetes
+   bare_metal/rook_storage_install_kubernetes
+   bare_metal/dedicated_storage_install_kubernetes
+   bare_metal/ironic_install
+
+-----------------
+Access Kubernetes
+-----------------
+
+.. toctree::
+   :maxdepth: 1
+
+   kubernetes_access
+
+--------------------------------------
+Install and Access StarlingX OpenStack
+--------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   openstack/index-install-r7-os-adc44604968c
+
+---------------------------------------
+Install Distributed Cloud on Bare metal
+---------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   /dist_cloud/index-dist-cloud-f5dbeb16b976
+
 
 **********
 Appendixes
@@ -101,7 +129,6 @@ Add hosts in bulk
    bare_metal/adding-hosts-in-bulk
    bare_metal/bulk-host-xml-file-format
 
-
 Reinstall a system or a host
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
@@ -116,31 +143,4 @@ Reinstall a system or a host
    :hidden:
 
    ansible_bootstrap_configs
-
--------------------------------------------------
-Install StarlingX Distributed Cloud on bare metal
--------------------------------------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   distributed_cloud/index-install-r7-distcloud-46f4880ec78b
-
------------------
-Access Kubernetes
------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   kubernetes_access
-
---------------------------
-Access StarlingX OpenStack
---------------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   openstack/index-install-r7-os-adc44604968c
 

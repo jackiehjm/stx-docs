@@ -1,38 +1,124 @@
-
+|hideable|
 
 .. _dedicated_storage_install_kubernetes_r7:
 
-.. only:: partner
-
-   .. include:: /_includes/install-kubernetes-null-labels.rest
 
 ==============================================================
 Install Kubernetes Platform on Standard with Dedicated Storage
 ==============================================================
 
-This section describes the steps to install the |prod| Kubernetes platform on a
-**Standard with Dedicated Storage** deployment configuration.
-
 .. contents::
    :local:
    :depth: 1
 
-.. only:: starlingx
+.. only:: partner
 
-   -------------------
-   Create bootable USB
-   -------------------
+   .. include:: /_includes/install-kubernetes-null-labels.rest
 
-   Refer to :ref:`Bootable USB <bootable_usb>` for instructions on how to
-   create a bootable USB with the StarlingX ISO on your system.
+--------
+Overview
+--------
 
-   --------------------------------
-   Install software on controller-0
-   --------------------------------
+.. _ded-installation-prereqs:
 
-   .. include:: /shared/_includes/inc-install-software-on-controller.rest
-      :start-after: incl-install-software-controller-0-standard-start
-      :end-before: incl-install-software-controller-0-standard-end
+.. include:: /shared/_includes/desc_dedicated_storage.txt
+
+-----------------------------
+Minimum hardware requirements
+-----------------------------
+
+.. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+   :start-after: begin-min-hw-reqs-ded
+   :end-before: end-min-hw-reqs-ded
+
+.. _installation-prereqs-dedicated:
+
+--------------------------
+Installation Prerequisites
+--------------------------
+
+.. include:: /shared/_includes/installation-prereqs.rest
+   :start-after: begin-install-prereqs
+   :end-before: end-install-prereqs
+
+
+--------------------------------
+Prepare Servers for Installation
+--------------------------------
+
+.. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+   :start-after: start-prepare-servers-common
+   :end-before: end-prepare-servers-common
+
+--------------------------------
+Install Software on Controller-0
+--------------------------------
+
+.. include:: /shared/_includes/inc-install-software-on-controller.rest
+   :start-after: incl-install-software-controller-0-standard-start
+   :end-before: incl-install-software-controller-0-standard-end
+
+..   --------------------------------
+..   Install Software on Controller-0
+..   --------------------------------
+
+..   .. include:: /_includes/installing-software-on-controller-0.rest
+..      :start-after: begin-install-ctl-0
+..      :end-before: end-install-ctl-0
+
+
+.. .. only:: starlingx
+.. 
+..    .. --------
+..    .. Overview
+..    .. --------
+.. 
+..    .. .. include:: /shared/_includes/installation-prereqs.rest
+..    ..    :start-after: begin-install-prereqs-ded
+..    ..    :end-before: end-install-prereqs-ded
+.. 
+..    ---------------------
+..    Hardware Requirements
+..    ---------------------
+.. 
+..    .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..       :start-after: begin-min-hw-reqs-common-intro
+..       :end-before: end-min-hw-reqs-common-intro
+.. 
+..    .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..       :start-after: begin-min-hw-reqs-sx
+..       :end-before: end-min-hw-reqs-sx
+.. 
+..    The following requirements must be met for worker nodes.
+.. 
+..    .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..       :start-after: begin-worker-hw-reqs
+..       :end-before: end-worker-hw-reqs
+.. 
+..    The following requirements must be met for storage nodes.
+.. 
+..    .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..       :start-after: begin-storage-hw-reqs
+..       :end-before: end-storage-hw-reqs
+.. 
+..    .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+..       :start-after: start-prepare-servers-common
+..       :end-before: end-prepare-servers-common
+.. 
+..    -------------------
+..    Create bootable USB
+..    -------------------
+.. 
+..    Refer to :ref:`Bootable USB <bootable_usb>` for instructions on how to
+..    create a bootable USB with the StarlingX ISO on your system.
+.. 
+..    --------------------------------
+..    Install software on controller-0
+..    --------------------------------
+.. 
+..    .. include:: /shared/_includes/inc-install-software-on-controller.rest
+..       :start-after: incl-install-software-controller-0-standard-start
+..       :end-before: incl-install-software-controller-0-standard-end
 
 --------------------------------
 Bootstrap system on controller-0
@@ -533,3 +619,9 @@ host machine.
 .. only:: partner
 
    .. include:: /_includes/72hr-to-license.rest
+
+   Complete system configuration by reviewing procedures in:
+
+   - :ref:`index-security-84d0d8aa401b`
+   - :ref:`index-sysconf-d511820651f0`
+   - :ref:`index-admintasks-768a6e9aaeff`

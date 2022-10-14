@@ -2,6 +2,10 @@
 Install Ironic on StarlingX R7.0
 ================================
 
+.. include:: /_includes/ironic.rest
+
+.. include:: /_includes/ironic_hardware.rest
+
 This section describes the steps to install Ironic on a standard configuration,
 either:
 

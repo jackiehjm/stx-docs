@@ -4,12 +4,15 @@ with independent controller, worker, and storage nodes.
 A Standard with Dedicated Storage configuration provides the following benefits:
 
 * A pool of up to 200 worker nodes
+
 * A 2x node high availability (HA) controller cluster with HA services running
   across the controller nodes in either active/active or active/standby mode
-* A storage back end solution using a two-to-9x node HA CEPH storage cluster
+
+* A storage back end solution using a two-to-9x node |HA| CEPH storage cluster
   that supports a replication factor of two or three
-* Up to four groups of 2x storage nodes, or up to three groups of 3x storage
-  nodes
+
+  * Up to four groups of 2x storage nodes, or up to three groups of 3x storage
+    nodes
 
 .. note::
 
@@ -21,3 +24,6 @@ A Standard with Dedicated Storage configuration provides the following benefits:
    :alt: Standard with Dedicated Storage deployment configuration
 
    *Figure 1: Standard with Dedicated Storage deployment configuration*
+
+.. include:: /shared/_includes/ipv6_note.txt
+

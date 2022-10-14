@@ -1,6 +1,6 @@
-=====================
+---------------------
 Hardware Requirements
-=====================
+---------------------
 
 This section describes the hardware requirements and server preparation for a
 **StarlingX R7.0 bare metal Ironic** deployment configuration.
@@ -9,9 +9,9 @@ This section describes the hardware requirements and server preparation for a
    :local:
    :depth: 1
 
------------------------------
+*****************************
 Minimum hardware requirements
------------------------------
+*****************************
 
 * One or more bare metal hosts as Ironic nodes as well as tenant instance node.
 
@@ -34,9 +34,9 @@ For worker nodes:
 * Additional switch ports / configuration for new ports on controller, worker,
   and Ironic nodes, for connectivity to the Ironic provisioning network.
 
------------------------------------
+***********************************
 BMC configuration of Ironic node(s)
------------------------------------
+***********************************
 
 Enable BMC and allocate a static IP, username, and password in the BIOS settings.
 For example, set:

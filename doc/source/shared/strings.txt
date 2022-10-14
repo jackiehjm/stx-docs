@@ -13,6 +13,8 @@
 .. Load scoped product information
 .. include:: /_this.txt
 
+.. Load custom roles
+.. include:: /shared/roles.txt
 
 .. Task-oriented headings that should not appear in TOC
 .. These are used with the .. rubric:: directive. For example:
@@ -50,5 +52,17 @@
 .. |html-pipe| raw:: html
 
    &#124;
+
+.. Supress substring on per-page basis. Use in conjuction with 
+.. :hideable:`don't show this` text.
+
+.. |hideable| raw:: html
+
+   <style>
+     .hideable {
+        display:none;
+     }
+   </style>
+
 
 .. |optional| replace:: **Optional step:**

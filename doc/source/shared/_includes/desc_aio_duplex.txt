@@ -13,8 +13,9 @@ An AIO-DX configuration provides the following benefits:
 * Containers or virtual machines scheduled on both worker functions
 * Protection against overall server hardware fault, where
 
-  * All controller HA services go active on the remaining healthy server
-  * All virtual machines are recovered on the remaining healthy server
+  * All controller |HA| services go active on the remaining healthy server
+  * All containers and/or virtual machines are recovered on the remaining healthy
+    server
 
 .. note::
 
@@ -27,3 +28,6 @@ An AIO-DX configuration provides the following benefits:
    :alt: All-in-one Duplex deployment configuration
 
    *Figure 1: All-in-one Duplex deployment configuration*
+
+.. include:: /shared/_includes/ipv6_note.txt
+

@@ -14,7 +14,7 @@ redundant pair of hosts.
    :local:
    :depth: 1
 
-.. image:: /deploy_install_guides/r6_release/figures/starlingx-deployment-options-duplex.png
+.. image:: /shared/figures/deploy_install_guides/starlingx-deployment-options-duplex.png
    :width: 800
 
 See :ref:`Common Components <common-components>` for a description of common

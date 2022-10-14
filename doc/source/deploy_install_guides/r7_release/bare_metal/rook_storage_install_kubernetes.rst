@@ -1,6 +1,14 @@
-=====================================================================
-Install StarlingX Kubernetes on Bare Metal Standard with Rook Storage
-=====================================================================
+.. _install-rook-storage-on-bare-metal:
+
+====================================================================
+Install Kubernetes Platform on Bare Metal Standard with Rook Storage
+====================================================================
+
+
+.. include:: /_includes/rook_storage.rest
+
+.. include:: /_includes/rook_storage_hardware.rest
+
 
 This section describes the steps to install the StarlingX Kubernetes platform
 on a **StarlingX R7.0 bare metal Standard with Rook Storage** deployment
@@ -98,7 +106,7 @@ Bootstrap system on controller-0
       The default location where Ansible looks for and imports user
       configuration override files for hosts. For example: ``$HOME/<hostname>.yml``.
 
-   .. include:: /_includes/ansible_install_time_only.txt
+   .. include:: /shared/_includes/ansible_install_time_only.txt
 
    Specify the user configuration override file for the Ansible bootstrap
    playbook using one of the following methods:
@@ -213,9 +221,9 @@ Configure controller-0
    #. Refer to :ref:`docker_proxy_config` for
       details about Docker proxy settings.
 
-*************************************
+
 OpenStack-specific host configuration
-*************************************
+-------------------------------------
 
 .. important::
 
@@ -303,9 +311,9 @@ OpenStack-specific host configuration
 
 .. incl-config-controller-0-storage-end:
 
-********************************
+
 Rook-specific host configuration
-********************************
+--------------------------------
 
 .. important::
 
@@ -443,9 +451,9 @@ install procedure.)
   system interface-network-assign controller-1 $OAM_IF oam
   system interface-network-assign controller-1 $MGMT_IF cluster-host
 
-*************************************
+
 OpenStack-specific host configuration
-*************************************
+-------------------------------------
 
 .. important::
 
@@ -461,9 +469,9 @@ of installing the |prefix|-openstack manifest and helm-charts later.
 
 .. incl-config-controller-1-end:
 
-********************************
+
 Rook-specific host configuration
-********************************
+--------------------------------
 
 .. important::
 
@@ -577,9 +585,9 @@ Configure worker nodes
         set +ex
       done
 
-*************************************
+
 OpenStack-specific host configuration
-*************************************
+-------------------------------------
 
 .. important::
 

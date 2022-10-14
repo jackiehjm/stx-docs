@@ -62,10 +62,10 @@ Prepare bare metal servers
 * Cabled for networking
 
   * Far-end switch ports should be properly configured to realize the networking
-    shown in the following diagram.
+    shown in the diagram above.
 
-    .. figure:: /deploy_install_guides/r7_release/figures/starlingx-deployment-options-simplex.png
-       :scale: 50%
-       :alt: All-in-one Simplex deployment configuration
+    .. .. figure:: /deploy_install_guides/r7_release/figures/starlingx-deployment-options-simplex.png
+    ..    :scale: 50%
+    ..    :alt: All-in-one Simplex deployment configuration
 
-       *All-in-one Simplex deployment configuration*
+    ..    *All-in-one Simplex deployment configuration*
