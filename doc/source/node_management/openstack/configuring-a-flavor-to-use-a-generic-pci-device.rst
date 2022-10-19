@@ -92,9 +92,6 @@ a Generic PCI Device for Use by VMs
                 AV-ICE02 VPN Acceleration Card \(qat-pf option\) is not
                 supported.
 
-        **gpu**
-            Exposes a graphical processing unit \(gpu\) with the |PCI|-SIG
-            defined class code for 'Display Controller' \(0x03\).
 
             .. note::
 
@@ -109,19 +106,6 @@ a Generic PCI Device for Use by VMs
     .. code-block:: none
 
         ~(keystone_admin)$ openstack flavor set <flavor_name> --property "pci_passthrough:alias"="qat-dh895xcc-vf:2"
-
-    To make a GPU device available to a guest:
-
-    .. code-block:: none
-
-        ~(keystone_admin)$ openstack flavor set flavor_name --property "pci_passthrough:alias"="gpu:1"
-
-
-    To make a GPU device from a specific vendor available to a guest:
-
-    .. code-block:: none
-
-        ~(keystone_admin)$ openstack flavor set flavor_name --property "pci_passthrough:alias"="nvidia-tesla-p40:1"
 
 
     To make multiple |PCI| devices available, use the following command:

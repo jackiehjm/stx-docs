@@ -91,7 +91,4 @@ For more information see `Self-Validated and Certified Servers
 
   :ref:`Kubernetes Verified Commercial Hardware <verified-commercial-hardware>`
 
-To configure PCI-Passthrough Interface to NVIDIA GPU in a |VM|, see the :ref:`Configure PCI-Passthrough Interface to NVIDIA GPU in a VM <configure-pci-passthrough-interface-to-nvidia-gpu>`
-for more details.
-
 .. include:: /_includes/installation-and-resource-planning-verified-commercial-hardware.rest
