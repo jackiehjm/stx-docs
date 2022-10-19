@@ -25,7 +25,6 @@ PCI Device Access for VMs
    sr-iov-encryption-acceleration
    configuring-pci-passthrough-ethernet-interfaces
    pci-passthrough-ethernet-interface-devices
-   configure-pci-passthrough-interface-to-nvidia-gpu
    configuring-a-flavor-to-use-a-generic-pci-device
    generic-pci-passthrough
    pci-device-access-for-vms
