@@ -346,16 +346,6 @@ N3000 and ACC100 replacement
    hardware_acceleration_devices/fec-replacement-with-different-vendor-or-device-id-b1ab1440e15f
    hardware_acceleration_devices/n3000-and-acc100-replacement-with-the-same-vendor-and-device-id-cccabcdc5d43
 
-*******************
-NVIDIA GPU Operator
-*******************
-
-.. toctree::
-   :maxdepth: 1
-
-   hardware_acceleration_devices/configure-nvidia-gpu-operator-for-pci-passthrough
-   hardware_acceleration_devices/delete-the-gpu-operator
-
 
 ------------------------
 Host hardware management
