@@ -12,6 +12,10 @@ You can find details about a release on the specific release page.
      - Release Date
      - Notes
      - Status
+   * - StarlingX R8.0
+     - 2023-01
+     - :doc:`r8-0-release-notes-6a6ef57f4d99`
+     - Maintained
    * - StarlingX R7.0
      - 2022-07
      - :doc:`r7-0-release-notes-85446867da2a`
@@ -69,4 +73,4 @@ project-team-guide/stable-branches.html#maintenance-phases>`_ definitions.
    r5_0_1_release
    r6-0-release-notes-bc72d0b961e7
    r7-0-release-notes-85446867da2a
-
+   r8-0-release-notes-6a6ef57f4d99
