@@ -66,12 +66,14 @@ Configure OIDC Auth Applications
                 name: system-local-ca
                 kind: ClusterIssuer
               commonName: <OAM_floating_IP_address>
-              organizations:
-                - ABC-Company
-              organizationalUnits:
-                - StarlingX-system-oidc-auth-apps
+              subject:
+                organizations:
+                  - ABC-Company
+                organizationalUnits:
+                  - StarlingX-system-oidc-auth-apps
               ipAddresses:
               - <OAM_floating_IP_address>
+
             EOF
 
       #. Apply the configuration.
