@@ -37,6 +37,7 @@ You can use the Horizon Web interface to check the alarm states:
 #. On the **Orchestration** page, select the **Orchestration Strategy** tab.
 
    .. figure:: figures/update-strategy-1.png
+       :scale: 55%
 
        Orchestration Strategy
 
@@ -48,11 +49,14 @@ You can use the Horizon Web interface to check the alarm states:
    **Strategy Type**
       Kubernetes
 
+   **To version**
+      Select a version to be applied for strategy.
+
    **Apply to**
-      Subcloud or Subcloud Group
+      Subcloud or Subcloud Group.
 
    **Subcloud**
-      Enter the subcloud name
+      Enter the subcloud name.
 
    **Subcloud Group**
       Enter the subcloud group name only if you select the **Apply to**:
@@ -82,12 +86,17 @@ You can use the Horizon Web interface to check the alarm states:
 
       Force kube upgrade to a subcloud which is in-sync with system controller.
 
-   **To version**
-      Not currently supported.
-
    .. figure:: figures/create-k8s-strategy.png
+       :width: 550
 
    .. figure:: figures/create-k8s-strategy-2.png
+       :width: 550
+
+   .. figure:: figures/create-k8s-strategy-3.png
+       :width: 550
+
+   .. figure:: figures/create-k8s-strategy-4.png
+       :width: 550
 
        Create a strategy
 
