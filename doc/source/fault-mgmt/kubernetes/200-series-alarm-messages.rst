@@ -221,6 +221,26 @@ health of the system.
    :widths: 6 25
    :header-rows: 0
 
+   * - **Alarm ID: 200.012**
+     - <hostname> controller function has in-service failure while compute
+       services remain healthy.
+   * - Entity Instance
+     - host=<hostname>
+   * - Degrade Affecting Severity:
+     - Major
+   * - Severity:
+     - C\*
+   * - Proposed Repair Action
+     - Lock and then Unlock host to recover. Avoid using 'Force Lock' action
+       as that will impact compute services running on this host. If lock action
+       fails then contact next level of support to investigate and recover.
+
+-----
+
+.. list-table::
+   :widths: 6 25
+   :header-rows: 0
+
    * - **Alarm ID: 200.013**
      - <hostname> compute service of the only available controller is not
        operational. Auto-recovery is disabled. Degrading host instead.
