@@ -4,6 +4,13 @@ REST API Reference
 
 .. Please keep this list alphabetical
 
+.. note::
+    Based on the |RBAC| policy, for every API listed below except for |PTP|
+    Status Notifications, the execution of ``GET`` requests requires a reader
+    role in either admin or services project; for ``non-GET`` requests (DELETE,
+    PATCH, POST and PUT), an admin role in either admin or services project is
+    required.
+
 StarlingX project REST API references:
 
 * `Bare Metal </api-ref/metal/index.html>`__
