@@ -28,9 +28,9 @@ StarlingX OpenStack
 
 .. os-begin
 
-|prod-os| is installed and managed as an Armada application.
+|prod-os| is installed and managed as an FluxCD application.
 
-Armada Applications are a set of one or more interdependent Application Helm
+FluxCD applications are a set of one or more interdependent Application Helm
 charts. In the case of |prod|, there is generally a Helm chart for every
 OpenStack service.
 
