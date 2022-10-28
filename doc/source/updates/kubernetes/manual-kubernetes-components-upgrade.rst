@@ -51,9 +51,9 @@ and upgrade various systems.
     version 1.19.
 
 .. note::
-    The default version on a fresh install will be Kubernetes 1.21.8, while
-    on an upgrade from |prod| |prod-ver| it will be 1.18.1. You will need to
-    upgrade Kubernetes to each version up to 1.21.8 in order to be ready to
+    The default version on a fresh install will be Kubernetes 1.23.1, while
+    on an upgrade from |prod| |prod-ver| it will be 1.21.8. You will need to
+    upgrade Kubernetes to each version up to 1.23.1 in order to be ready to
     upgrade to the next version of |prod|.
 
 .. rubric:: |proc|
@@ -76,7 +76,9 @@ and upgrade various systems.
         | v1.18.1 | False  | unavailable |
         | v1.19.13| False  | unavailable |
         | v1.20.9 | False  | unavailable |
-        | v1.21.8 | True   | active      |
+        | v1.21.8 | False  | unavailable |
+        | v1.22.5 | False  | unavailable |
+        | v1.23.1 | True   | active      |
         +---------+--------+-------------+
 
     If |prod| was upgraded to |prod-ver|, the following appears:
@@ -87,10 +89,12 @@ and upgrade various systems.
         +---------+--------+-------------+
         | Version | Target | State       |
         +---------+--------+-------------+
-        | v1.18.1 | True   | active      |
-        | v1.19.13| False  | available   |
+        | v1.18.1 | False  | unavailable |
+        | v1.19.13| False  | unavailable |
         | v1.20.9 | False  | unavailable |
-        | v1.21.8 | False  | unavailable |
+        | v1.21.8 | True   | Active      |
+        | v1.22.5 | False  | available   |
+        | v1.23.1 | False  | unavailable |
         +---------+--------+-------------+
 
     The following meanings apply to the output shown:
@@ -151,8 +155,8 @@ and upgrade various systems.
         +-------------------+-------------------+
         | Property          | Value             |
         +-------------------+-------------------+
-        | from_version      | v1.18.1           |
-        | to_version        | v1.19.13          |
+        | from_version      | v1.21.8           |
+        | to_version        | v1.22.5           |
         | state             | upgrade-started   |
         +-------------------+-------------------+
 
@@ -175,11 +179,11 @@ and upgrade various systems.
         +--------------+--------------------------------------+
         | Property     | Value                                |
         +--------------+--------------------------------------+
-        | uuid         | b5f7dada-2537-4416-9d2c-f9ca9fcd0e22 |
-        | from_version | v1.18.1                              |
-        | to_version   | v1.19.13                             |
+        | uuid         | 413d86a7-72a4-4df1-a760-9ec3520b31f6 |
+        | from_version | v1.21.8                              |
+        | to_version   | v1.22.5                              |
         | state        | downloading-images                   |
-        | created_at   | 2020-02-20T16:08:48.854869+00:00     |
+        | created_at   | 2022-10-26T09:50:41.968034+00:00     |
         | updated_at   | None                                 |
         +--------------+--------------------------------------+
 
@@ -191,12 +195,12 @@ and upgrade various systems.
         +--------------+--------------------------------------+
         | Property     | Value                                |
         +--------------+--------------------------------------+
-        | uuid         | b5f7dada-2537-4416-9d2c-f9ca9fcd0e22 |
-        | from_version | v1.18.1                              |
-        | to_version   | v1.19.13                             |
+        | uuid         | 413d86a7-72a4-4df1-a760-9ec3520b31f6 |
+        | from_version | v1.21.8                              |
+        | to_version   | v1.22.5                              |
         | state        | downloaded-images                    |
-        | created_at   | 2020-02-20T16:08:48.854869+00:00     |
-        | updated_at   | 2020-02-20T16:10:37.858661+00:00     |
+        | created_at   | 2022-10-26T09:50:41.968034+00:00     |
+        | updated_at   | 2022-10-26T09:54:53.714122+00:00     |
         +--------------+--------------------------------------+
 
 #.  Upgrade Kubernetes networking.
@@ -210,12 +214,12 @@ and upgrade various systems.
         +--------------+--------------------------------------+
         | Property     | Value                                |
         +--------------+--------------------------------------+
-        | uuid         | b5f7dada-2537-4416-9d2c-f9ca9fcd0e22 |
-        | from_version | v1.18.1                              |
-        | to_version   | v1.19.13                             |
+        | uuid         | 413d86a7-72a4-4df1-a760-9ec3520b31f6 |
+        | from_version | v1.21.8                              |
+        | to_version   | v1.22.5                              |
         | state        | upgrading-networking                 |
-        | created_at   | 2020-02-20T16:08:48.854869+00:00     |
-        | updated_at   | 2020-02-20T16:18:11.459736+00:00     |
+        | created_at   | 2022-10-26T09:50:41.968034+00:00     |
+        | updated_at   | 2022-10-26T10:02:27.512038+00:00     |
         +--------------+--------------------------------------+
 
     The state **upgraded-networking** will be entered when the networking
@@ -229,13 +233,13 @@ and upgrade various systems.
         +-----------------------+-------------------------+
         | Property              | Value                   |
         +-----------------------+-------------------------+
-        | control_plane_version | v1.18.1                 |
+        | control_plane_version | v1.21.8                 |
         | hostname              | controller-1            |
         | id                    | 2                       |
-        | kubelet_version       | v1.18.1                 |
+        | kubelet_version       | v1.21.8                 |
         | personality           | controller              |
         | status                | upgrading-control-plane |
-        | target_version        | v1.19.13                |
+        | target_version        | v1.22.5                 |
         +-----------------------+-------------------------+
 
 
@@ -252,13 +256,13 @@ and upgrade various systems.
         +-----------------------+-------------------------+
         | Property              | Value                   |
         +-----------------------+-------------------------+
-        | control_plane_version | v1.18.1                 |
+        | control_plane_version | v1.21.8                 |
         | hostname              | controller-0            |
         | id                    | 1                       |
-        | kubelet_version       | v1.18.1                 |
+        | kubelet_version       | v1.21.8                 |
         | personality           | controller              |
         | status                | upgrading-control-plane |
-        | target_version        | v1.19.13                |
+        | target_version        | v1.22.5                 |
         +-----------------------+-------------------------+
 
     The state **upgraded-second-master** will be entered when the upgrade has
@@ -272,13 +276,13 @@ and upgrade various systems.
         +----+--------------+-------------+----------------+-----------------------+-----------------+--------+
         | id | hostname     | personality | target_version | control_plane_version | kubelet_version | status |
         +----+--------------+-------------+----------------+-----------------------+-----------------+--------+
-        | 1  | controller-0 | controller  | v1.19.13       | v1.19.13              | v1.18.1         | None   |
-        | 2  | controller-1 | controller  | v1.19.13       | v1.19.13              | v1.18.1         | None   |
-        | 3  | worker-0     | worker      | v1.18.1        | N/A                   | v1.18.1         | None   |
-        | 4  | worker- 1    | worker      | v1.18.1        | N/A                   | v1.18.1         | None   |
+        | 1  | controller-0 | controller  | v1.22.5        | v1.22.5               | v1.21.8         | None   |
+        | 2  | controller-1 | controller  | v1.22.5        | v1.22.5               | v1.21.8         | None   |
+        | 3  | worker-0     | worker      | v1.21.8        | N/A                   | v1.21.8         | None   |
+        | 4  | worker- 1    | worker      | v1.21.8        | N/A                   | v1.21.8         | None   |
         +----+--------------+-------------+----------------+-----------------------+-----------------+--------+
 
-    The control planes of both controllers are now upgraded to v1.19.13.
+    The control planes of both controllers are now upgraded to v1.22.5.
 
 #.  Upgrade kubelet on both controllers.
 
@@ -312,13 +316,13 @@ and upgrade various systems.
             +-----------------------+-------------------+
             | Property              | Value             |
             +-----------------------+-------------------+
-            | control_plane_version | v1.19.13          |
+            | control_plane_version | v1.22.5           |
             | hostname              | controller-1      |
             | id                    | 2                 |
-            | kubelet_version       | v1.18.1           |
+            | kubelet_version       | v1.21.8           |
             | personality           | controller        |
             | status                | upgrading-kubelet |
-            | target_version        | v1.19.13          |
+            | target_version        | v1.22.5           |
             +-----------------------+-------------------+
 
     #.  For non |AIO-SX| systems, unlock the controller.
@@ -339,8 +343,8 @@ and upgrade various systems.
         | Property     | Value                                |
         +--------------+--------------------------------------+
         | uuid         | b5f7dada-2537-4416-9d2c-f9ca9fcd0e22 |
-        | from_version | v1.18.1                              |
-        | to_version   | v1.19.13                             |
+        | from_version | v1.21.8                              |
+        | to_version   | v1.22.5                              |
         | state        | upgrading-kubelets                   |
         | created_at   | 2020-02-20T16:08:48.854869+00:00     |
         | updated_at   | 2020-02-20T21:53:16.347406+00:00     |
@@ -372,13 +376,13 @@ and upgrade various systems.
             +-----------------------+-------------------+
             | Property              | Value             |
             +-----------------------+-------------------+
-            | control_plane_version | v1.19.13          |
+            | control_plane_version | v1.22.5           |
             | hostname              | worker-1          |
             | id                    | 3                 |
-            | kubelet_version       | v1.18.1           |
+            | kubelet_version       | v1.21.8           |
             | personality           | worker            |
             | status                | upgrading-kubelet |
-            | target_version        | v1.19.13          |
+            | target_version        | v1.22.5           |
             +-----------------------+-------------------+
 
     #.  Unlock the host.
@@ -399,8 +403,8 @@ and upgrade various systems.
         | Property     | Value                                |
         +--------------+--------------------------------------+
         | uuid         | 4e942297-465e-47d4-9e1b-9fb1630be33c |
-        | from_version | v1.18.1                              |
-        | to_version   | v1.19.13                             |
+        | from_version | v1.21.8                              |
+        | to_version   | v1.22.5                              |
         | state        | upgrade-complete                     |
         | created_at   | 2020-02-19T20:59:51.079966+00:00     |
         | updated_at   | 2020-02-24T15:03:34.572199+00:00     |
