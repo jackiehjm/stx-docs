@@ -21,7 +21,7 @@ installation planning.
 .. kub-end
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    kubernetes/index-planning-kub-913bd621ac0f
 
