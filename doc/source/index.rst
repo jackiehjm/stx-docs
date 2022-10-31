@@ -222,7 +222,7 @@ details.
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    archive/index-documentation-archive-900988dce206
 

@@ -12,8 +12,8 @@ Each guide provides instruction on a specific StarlingX configuration
 Upcoming release
 ----------------
 
-The next release will be R8.0. Use the documentation for the R7.0
-installation listed below.
+The next release will be R8.0. Use the installation procedures in
+:ref:`index-install-r7-8966076f0e81`.
 
 ---------------
 Current release
@@ -21,35 +21,32 @@ Current release
 
 R7.0 is the current release of StarlingX.
 
-Use the R7.0 Installation Guides to install R7.0.
-
-.. toctree::
-   :maxdepth: 1
-
-   r7_release/index-install-r7-8966076f0e81
+Use the `R7.0 Installation Guides
+<https://docs.starlingx.io/r/stx.7.0/deploy_install_guides/index-install-e083ca818006.html>`__
+to install R7.0.
 
 
 ------------------
 Supported releases
 ------------------
 
-
-.. toctree::
-   :maxdepth: 1
-
-   r7_release/index-install-r7-8966076f0e81
-   r6_release/index-install-r6-8966076f0e81
-
+.. include:: /_includes/version-menu-7dda26c5b75f.rest
 
 -----------------
 Archived releases
 -----------------
 
-To view the archived installation guides, see `Installation guides for R5.0 and
-older releases <https://docs.starlingx.io/r/stx.5.0/deploy_install_guides/r5_release/index-install-r5-ca4053cb3ab9.html>`_.
+To view the archived installation guides, see
+:ref:`index-documentation-archive-900988dce206`.
 
 
+.. Keep Sphinx happy until these directories are removed
 
+.. toctree::
+   :hidden:
+
+   r7_release/index-install-r7-8966076f0e81
+   r6_release/index-install-r6-8966076f0e81
 
 .. Add common files to toctree
 
