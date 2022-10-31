@@ -37,7 +37,7 @@ where the following are optional arguments:
         |                          |           | -manifest                     | _manifest.yaml            |          |           |
         | oidc-auth-apps           | 20.06-28  | oidc-auth-manifest            | manifest.yaml             | uploaded | completed |
         | platform-integ-apps      | 20.06-11  | platform-integration-manifest | manifest.yaml             | applied  | completed |
-        | |prefix|-openstack |s|           | 21.07-0-  | armada-manifest               | |prefix|-openstack.yaml |s|       | applied  | completed |
+        | |prefix|-openstack |s|           | 21.07-0-  | stx-openstack-fluxcd-manifests| |prefix|-openstack.yaml |s|       | applied  | completed |
         |                          | centos-   |                               |                           |          |           |
         |                          | stable-   |                               |                           |          |           |
         |                          | versioned |                               |                           |          |           |
@@ -104,7 +104,7 @@ and the following is a positional argument which must come last:
         | app_version   | 21.07-0                          |
         | created_at    | 2020-05-02T17:11:48.718963+00:00 |
         | manifest_file | |prefix|-openstack.yaml |s|              |
-        | manifest_name | openstack-armada-manifest        |
+        | manifest_name | stx-openstack-fluxcd-manifests   |
         | name          | |prefix|-openstack |s|                   |
         | progress      | completed                        |
         | status        | applied                          |

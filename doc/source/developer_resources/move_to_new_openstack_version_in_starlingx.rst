@@ -220,7 +220,6 @@ Here are some tips for testing and debugging your upgrade:
    .. parsed-literal::
 
           tail -f /var/log/sysinv.log
-          tail -f /var/log/armada/|prefix|-openstack-apply.log
           kubectl -n openstack get po
           kubectl -n openstack logs nova-compute-compute-0-75ea0372-nmtz2
           kubectl -n openstack exec -it nova-compute-compute-0-31b0f4b3-2rqgf -- bash

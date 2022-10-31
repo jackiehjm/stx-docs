@@ -60,7 +60,7 @@ Where:
 
     -   Helm / Tiller – Kubernetes Package Manager, and
 
-    -   FluxCd or Armada Airship (deprecated)
+    -   FluxCD
 
 **OpenStack**
     -   Keystone - Identity management

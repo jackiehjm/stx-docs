@@ -1114,9 +1114,9 @@ Apply application |prefix|-openstack again.
      +---------------+----------------------------------+
      | active        | True                             |
      | app_version   | 1.0-45                           |
-     | created_at    | 2020-07-08T05:47:24.019723+00:00 |
+     | created_at    | 2022-10-27T17:11:04.620160+00:00 |
      | manifest_file | |prefix|-openstack.yaml |s|              |
-     | manifest_name | armada-manifest                  |
+     | manifest_name | stx-openstack-fluxcd-manifests   |
      | name          | |prefix|-openstack     |s|               |
      | progress      | None                             |
      | status        | applying                         |
