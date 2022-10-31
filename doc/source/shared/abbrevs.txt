@@ -39,6 +39,7 @@
 .. |DOR| replace:: :abbr:`DOR (Dead Office Recovery)`
 .. |DHCP| replace:: :abbr:`DHCP (Dynamic Host Configuration Protocol)`
 .. |DMA| replace:: :abbr:`DMA (Direct Memory Access)`
+.. |DMS| replace:: :abbr:`DMS (O-Cloud Deployment Management Services)`
 .. |DNAT| replace:: :abbr:`DNAT (Destination Network Address Translation)`
 .. |DNS| replace:: :abbr:`DNS (Domain Name System)`
 .. |DPDK| replace:: :abbr:`DPDK (Data Plane Development Kit)`
@@ -60,6 +61,7 @@
 .. |ICMP| replace:: :abbr:`ICMP (Internet Control Message Protocol)`
 .. |IEEE| replace:: :abbr:`IEEE (Institute of Electrical and Electronics Engineers)`
 .. |IGMP| replace:: :abbr:`IGMP (Internet Group Management Protocol)`
+.. |IMS| replace:: :abbr:`IMS (O-Cloud Infrastructure Management Services)`
 .. |IoT| replace:: :abbr:`IoT (Internet of Things)`
 .. |IPAM| replace:: :abbr:`IPAM (IP Address Management)`
 .. |IPMI| replace:: :abbr:`IPMI (Intelligent Platform Management Interface)`
@@ -79,6 +81,8 @@
 .. |MOTD| replace:: :abbr:`MOTD (Message of the Day)`
 .. |MTU| replace:: :abbr:`MTU (Maximum Transmission Unit)`
 .. |NAT| replace:: :abbr:`NAT (Network Address Translation)`
+.. |NF| replace:: :abbr:`NF (Network Function)`
+.. |NFs| replace:: :abbr:`NFs (Network Functions)`
 .. |NFS| replace:: :abbr:`NFS (Network File System)`
 .. |NIC| replace:: :abbr:`NIC (Network Interface Card)`
 .. |NICs| replace:: :abbr:`NICs (Network Interface Cards)`
@@ -92,6 +96,7 @@
 .. |OVS| replace:: :abbr:`OVS (Open Virtual Switch)`
 .. |OSD| replace:: :abbr:`OSD (Object Storage Daemons)`
 .. |OSDs| replace:: :abbr:`OSDs (Object Storage Daemons)`
+.. |O-RAN| replace:: :abbr:`O-RAN (Open Radio Access Network)`
 .. |PAC| replace:: :abbr:`PAC (Programmable Acceleration Card)`
 .. |PCI| replace:: :abbr:`PCI (Peripheral Component Interconnect)`
 .. |PCIe| replace:: :abbr:`PCI (Peripheral Component Interconnect extended)`
@@ -113,6 +118,7 @@
 .. |PW| replace:: :abbr:`PW (Per Worker)`
 .. |QoS| replace:: :abbr:`QoS (Quality of Service)`
 .. |RAID| replace:: :abbr:`RAID (Redundant Array of Inexpensive Disks)`
+.. |RAN| replace:: :abbr:`RAN (Radio Access Network)`
 .. |RBAC| replace:: :abbr:`RBAC (Role-Based Access Control)`
 .. |RBD| replace:: :abbr:`RBD (RADOS Block Device)`
 .. |RPC| replace:: :abbr:`RPC (Remote Procedure Call)`
@@ -127,6 +133,7 @@
 .. |SLA| replace:: :abbr:`SLA (Service Level Agreement)`
 .. |SLAs| replace:: :abbr:`SLAs (Service Level Agreements)`
 .. |SM| replace:: :abbr:`SM (Service Manager)`
+.. |SMO| replace:: :abbr:`SMO (Service Management and Orchestration)`
 .. |SMT| replace:: :abbr:`SMT (Simultaneous Multithreading)`
 .. |SNAT| replace:: :abbr:`SNAT (Source Network Address Translation)`
 .. |SNMP| replace:: :abbr:`SNMP (Simple Network Management Protocol)`

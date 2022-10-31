@@ -81,6 +81,15 @@ PTP Notifications
    remove-ptp-notifications
    override-default-application-values
 
+------------------
+O-RAN O2 Interface
+------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   oran-o2-application-b50a0c899e66
+
 --------------------------------------
 Technology Preview - Istio Application
 --------------------------------------
@@ -89,4 +98,3 @@ Technology Preview - Istio Application
    :maxdepth: 1
 
    istio-service-mesh-application-eee5ebb3d3c4
-
