@@ -83,8 +83,8 @@
 .. |OIDC| replace:: :abbr:`OIDC (OpenID Connect)`
 .. |ONAP| replace:: :abbr:`ONAP (Open Network Automation Program)`
 .. |OVS| replace:: :abbr:`OVS (Open Virtual Switch)`
-.. |OSD| replace:: :abbr:`OSD (Object Storage Device)`
-.. |OSDs| replace:: :abbr:`OSDs (Object Storage Devices)`
+.. |OSD| replace:: :abbr:`OSD (Object Storage Daemons)`
+.. |OSDs| replace:: :abbr:`OSDs (Object Storage Daemons)`
 .. |PAC| replace:: :abbr:`PAC (Programmable Acceleration Card)`
 .. |PCI| replace:: :abbr:`PCI (Peripheral Component Interconnect)`
 .. |PCIe| replace:: :abbr:`PCI (Peripheral Component Interconnect extended)`
