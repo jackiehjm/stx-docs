@@ -28,7 +28,7 @@ OSD Replication Factor
     | 3                  | 3                           | 3                                    |
     +--------------------+-----------------------------+--------------------------------------+
 
-You can add up to 16 object storage devices \(OSDs\) per storage host for
+You can add up to 16 ceph disks \(OSD disks\) per storage host for
 data storage.
 
 Space on the storage hosts must be configured at installation before you

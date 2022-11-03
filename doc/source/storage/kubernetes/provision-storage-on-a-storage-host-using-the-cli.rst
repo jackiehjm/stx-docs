@@ -6,7 +6,7 @@
 Provision Storage on a Storage Host Using the CLI
 =================================================
 
-You can use the command line to configure the object storage devices \(|OSDs|\)
+You can use the command line to configure the ceph disks \(|OSDs| disk\)
 on storage hosts.
 
 .. rubric:: |context|
