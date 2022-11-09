@@ -1,11 +1,12 @@
 .. _index-deploy-kub-844a2a88f529:
 
 
+
+.. include:: /_includes/toc-title-deploy-kub.rest
+
+
 .. only:: starlingx
 
-   .. include:: /_includes/toc-title-deploy-kub.rest
-
-.. only:: partner
 
    .. include:: /deploy/index-deploy-da06a98b83b1.rst
       :start-after: kub-begin
