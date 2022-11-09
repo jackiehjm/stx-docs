@@ -13,8 +13,8 @@ The upgrade orchestration CLI is :command:`sw-manager`.
 .. note::
    To use upgrade orchestration commands, you need administrator privileges.
    You must log in to the active controller as user **sysadmin** and source the
-   /etc/platform/openrc script to obtain administrator privileges. Do not use
-   **sudo**.
+   ``/etc/platform/openrc`` script to obtain administrator privileges. Do not use
+   :command:`sudo`.
 
 The upgrade strategy options are shown in the following output:
 
@@ -34,9 +34,9 @@ The upgrade strategy options are shown in the following output:
         abort     Abort a strategy
         show      Show a strategy
 
-You can perform a partially orchestrated upgrade using the CLI. Upgrade and
-stability of the initial controller node must be done manually before using
-upgrade orchestration to orchestrate the remaining nodes of the |prod|.
+You can perform a partially orchestrated upgrade using the |CLI|. Upgrade
+orchestration of other |prod| nodes can be initiated after the initial
+controller host has been manually upgraded and returned to a stability state.
 
 .. note::
     Management-affecting alarms cannot be ignored at the indicated severity
@@ -65,9 +65,11 @@ See :ref:`Upgrading All-in-One Duplex / Standard
 upgrade the initial controller node before doing the upgrade orchestration
 described below to upgrade the remaining nodes of the |prod|.
 
-- The subclouds must use the Redfish platform management service if it is an All-in-one Simplex subcloud.
+- The subclouds must use the Redfish platform management service if it is an
+  All-in-one Simplex subcloud.
 
-- Duplex \(AIODX/Standard\) upgrades are supported, and they do not require remote install via Redfish.
+- Duplex \(AIODX/Standard\) upgrades are supported, and they do not require
+  remote install via Redfish.
 
 .. rubric:: |proc|
 
@@ -95,20 +97,20 @@ described below to upgrade the remaining nodes of the |prod|.
 
     -   storage-apply-type:
 
-        -   serial \(default\): storage hosts will be upgraded one at a time
+        -   ``serial`` \(default\): storage hosts will be upgraded one at a time
 
-        -   parallel: storage hosts will be upgraded in parallel, ensuring that
+        -   ``parallel``: storage hosts will be upgraded in parallel, ensuring that
             only one storage node in each replication group is patched at a
             time.
 
-        -   ignore: storage hosts will not be upgraded
+        -   ``ignore``: storage hosts will not be upgraded
 
     -   worker-apply-type:
 
-        **serial** \(default\)
+        ``serial`` \(default\)
            Worker hosts will be upgraded one at a time.
 
-        **ignore**
+        ``ignore``
            Worker hosts will not be upgraded.
 
     -   Alarm Restrictions
@@ -177,8 +179,8 @@ described below to upgrade the remaining nodes of the |prod|.
             relocated before it is upgraded.
 
 #.  Run :command:`sw-manager upgrade-strategy show` command, to display the
-    current-phase-completion displaying the field goes from 0% to 100% in
-    various increments. Once at 100%, it returns:
+    current-phase-completion percentage progress indicator in various
+    increments. Once at 100%, it returns:
 
     .. code-block:: none
 
@@ -196,7 +198,7 @@ described below to upgrade the remaining nodes of the |prod|.
         build-result:                           success
         build-reason:
 
-#.  Apply the upgrade-strategy. You can optionally apply a single stage at a
+#.  Apply the upgrade strategy. You can optionally apply a single stage at a
     time.
 
     .. code-block:: none
@@ -214,7 +216,7 @@ described below to upgrade the remaining nodes of the |prod|.
         state:                                  applying
         inprogress:                             true
 
-    While an upgrade-strategy is being applied, it can be aborted. This results
+    While an upgrade strategy is being applied, it can be aborted. This results
     in:
 
     -   The current step will be allowed to complete.
@@ -222,9 +224,9 @@ described below to upgrade the remaining nodes of the |prod|.
     -   If necessary an abort phase will be created and applied, which will
         attempt to unlock any hosts that were locked.
 
-    After an upgrade-strategy has been applied \(or aborted\) it must be
-    deleted before another upgrade-strategy can be created. If an
-    upgrade-strategy application fails, you must address the issue that caused
+    After an upgrade strategy has been applied \(or aborted\) it must be
+    deleted before another upgrade strategy can be created. If an
+    upgrade strategy application fails, you must address the issue that caused
     the failure, then delete/re-create the strategy before attempting to apply
     it again.
 

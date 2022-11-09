@@ -14,7 +14,7 @@ operation.
    :depth: 1
 
 You can configure and run update orchestration using the CLI, the Horizon Web
-interface, or the stx-nfv REST API.
+interface, or the ``stx-nfv`` REST API.
 
 .. note::
     Updating of |prod-dc| is distinct from updating of other |prod|
@@ -74,9 +74,9 @@ the same time. Update orchestration only locks and unlocks \(that is, reboots\)
 a host to install an update if at least one reboot-required update has been
 applied.
 
-The user first creates an update orchestration strategy, or plan, for the
-automated updating procedure. This customizes the update orchestration, using
-parameters to specify:
+You first create an update orchestration strategy, or plan, for the automated
+updating procedure. This customizes the update orchestration, using parameters
+to specify:
 
 .. _update-orchestration-overview-ul-eyw-fyr-31b:
 

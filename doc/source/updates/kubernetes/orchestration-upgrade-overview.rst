@@ -21,11 +21,12 @@ manual steps for operator oversight.
     :ref:`Upgrade Management <upgrade-management-overview>`.
 
 .. note::
-    The upgrade orchestration CLI is :command:`sw-manager`.To use upgrade
-    orchestration commands, you need administrator privileges. You must log in
-    to the active controller as user **sysadmin** and source the
-    /etc/platform/openrc script to obtain administrator privileges. Do not use
-    **sudo**.
+
+    The upgrade orchestration commands are prefixed with :command:`sw-manager`.
+    To use upgrade orchestration commands, you need administrator privileges.
+    You must log in to the active controller as user **sysadmin** and source the
+    ``/etc/platform/openrc`` script to obtain administrator privileges. Do not use
+    :command:`sudo`.
 
 .. code-block:: none
 
@@ -71,9 +72,9 @@ conditions:
     orchestrated while another orchestration is in progress.
 
 -   Sufficient free capacity or unused worker resources must be available
-    across the cluster. A rough calculation is: Required spare capacity \( %\)
-    = \(Number of hosts to upgrade in parallel divided by the total number of
-    hosts\) times 100.
+    across the cluster. A rough calculation is: 
+    
+    ``Required spare capacity ( %) = (<Number-of-hosts-to-upgrade-in-parallel> / <total-number-of-hosts>) * 100``
 
 .. _orchestration-upgrade-overview-section-N10081-N10026-N10001:
 
@@ -81,16 +82,16 @@ conditions:
 The Upgrade Orchestration Process
 ---------------------------------
 
-Upgrade orchestration can be initiated after the manual upgrade and stability
-of the initial controller host. Upgrade orchestration automatically iterates
-through the remaining hosts, installing the new software load on each one:
-first the other controller host, then the storage hosts, and finally the worker
-hosts. During worker host upgrades, pods are moved to alternate worker hosts
-automatically.
+Upgrade orchestration can be initiated after the initial controller host has
+been manual upgraded and returned to a stability state. Upgrade orchestration
+automatically iterates through the remaining hosts, installing the new software
+load on each one: first the other controller host, then the storage hosts, and
+finally the worker hosts. During worker host upgrades, pods are automatically
+moved to alternate worker hosts.
 
-The user first creates an upgrade orchestration strategy, or plan, for the
-automated upgrade procedure. This customizes the upgrade orchestration, using
-parameters to specify:
+You first create an upgrade orchestration strategy, or plan, for the automated
+upgrade procedure. This customizes the upgrade orchestration, using parameters
+to specify:
 
 .. _orchestration-upgrade-overview-ul-eyw-fyr-31b:
 
@@ -103,9 +104,9 @@ creates a number of stages for the overall upgrade strategy. Each stage
 generally consists of moving pods, locking hosts, installing upgrades, and
 unlocking hosts for a subset of the hosts on the system.
 
-After creating the upgrade orchestration strategy, the user can either apply
-the entire strategy automatically, or apply individual stages to control and
-monitor its progress manually.
+After creating the upgrade orchestration strategy, the you can either apply the
+entire strategy automatically, or apply individual stages to control and monitor
+their progress manually.
 
 Update and upgrade orchestration are mutually exclusive; they perform
 conflicting operations. Only a single strategy \(sw-patch or sw-upgrade\) is
@@ -115,7 +116,7 @@ strategy before going back to the upgrade.
 
 Some stages of the upgrade could take a significant amount of time \(hours\).
 For example, after upgrading a storage host, re-syncing the OSD data could take
-30m per TB \(assuming 500MB/s sync rate, which is about half of a 10G
+30 minutes per TB \(assuming 500MB/s sync rate, which is about half of a 10G
 infrastructure link\).
 
 .. _orchestration-upgrade-overview-section-N10101-N10026-N10001:

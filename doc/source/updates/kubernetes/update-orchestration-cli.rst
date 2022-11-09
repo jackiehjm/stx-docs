@@ -16,8 +16,8 @@ interface dialog, described in :ref:`Configuring Update Orchestration
 .. note::
     To use update orchestration commands, you need administrator privileges.
     You must log in to the active controller as user **sysadmin** and source
-    the /etc/platform/openrc script to obtain administrator privileges. Do not
-    use **sudo**.
+    the ``/etc/platform/openrc`` script to obtain administrator privileges. Do not
+    use :command:`sudo`.
 
 .. note::
     Management-affecting alarms cannot be ignored at the indicated severity

@@ -10,7 +10,7 @@ Firmware update orchestration allows the firmware on the hosts of an entire
 |prod-long| system to be updated with a single operation.
 
 You can configure and run firmware update orchestration using the |CLI|, or the
-stx-nfv VIM REST API.
+``stx-nfv`` VIM REST API.
 
 .. note::
     Firmware update is currently not supported on the Horizon Web interface.
@@ -28,7 +28,7 @@ following conditions:
 
     .. note::
         When configuring firmware update orchestration, you have the option to
-        ignore alarms that are not management-affecting severity. For more
+        ignore alarms that are not of management-affecting severity. For more
         information, see :ref:`Kubernetes Version Upgrade Cloud Orchestration
         <configuring-kubernetes-update-orchestration>`.
 
@@ -36,7 +36,7 @@ following conditions:
     requires firmware update. The *Firmware Update Orchestration Strategy*
     creation step will fail if there are no qualified hosts detected.
 
--   Firmware update is a reboot required operation. Therefore, in systems that
+-   Firmware update is a reboot-required operation. Therefore, in systems that
     have the |prefix|-openstack application applied with running instances, if
     the migrate option is selected there must be spare openstack-compute \
     (worker\) capacity to move instances off the openstack-compute \

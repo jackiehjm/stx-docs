@@ -16,11 +16,11 @@ of |prod| software.
 -   Perform a full backup to allow recovery.
 
     .. note::
-       Back up files in the /home/sysadmin and /root directories prior
+       Back up files in the ``/home/sysadmin`` and ``/root`` directories prior
        to doing an upgrade. Home directories are not preserved during backup or
        restore operations, blade replacement, or upgrades.
 
--   The system must be "patch current". All updates available for the current
+-   The system must be 'patch current'. All updates available for the current
     release running on the system must be applied, and all patches must be
     committed. To find and download applicable updates, visit the |dnload-loc|.
 
@@ -29,9 +29,9 @@ of |prod| software.
 
     .. note::
         Make sure that the ``/home/sysadmin`` directory has enough space
-        (at least 2GB of free space), otherwise the upgrade may fail once it
-        starts. If more space is needed, it is recommended to delete the
-        ``.iso bootimage`` previously imported after the `load-import` command.
+        (at least 2GB of free space), otherwise the upgrade may fail. 
+        If more space is needed, it is recommended to delete the
+        ``.iso bootimage`` previously imported after the :command:`load-import` command.
 
 -   Transfer the new release software license file to controller-0, \(or onto a
     USB stick\).
@@ -41,8 +41,8 @@ of |prod| software.
 
 -   Unlock all hosts.
 
-    -   All nodes must be unlocked. The upgrade cannot be started when there
-        are locked nodes \(the health check prevents it\).
+    -   All nodes must be unlocked as the health check prevents the upgrade
+        cannot if there are locked nodes.
 
 .. note::
     The upgrade procedure includes steps to resolve system health issues.
@@ -51,8 +51,7 @@ of |prod| software.
 
 #.  Ensure that controller-0 is the active controller.
 
-#.  Install the license file for the release you are upgrading to, for example,
-    nn.nn.
+#.  Install the license file for the release you are upgrading.
 
     .. code-block:: none
 
@@ -66,13 +65,12 @@ of |prod| software.
 
 #.  Import the new release.
 
-
-    #.  Run the :command:`load-import` command on **controller-0** to import
+    #.  Run the :command:`load-import` command on controller-0 to import
         the new release.
 
-        First, source /etc/platform/openrc. Also, you must specify an exact
-        path to the \*.iso bootimage file and to the \*.sig bootimage signature
-        file.
+        Source ``/etc/platform/openrc``. Also, you must specify an exact
+        path to the ``*.iso`` bootimage file and to the ``*.sig`` bootimage
+        signature file.
 
         .. code-block:: none
 
@@ -89,7 +87,7 @@ of |prod| software.
             | required_patches   |           |
             +--------------------+-----------+
 
-        The :command:`load-import` must be done on **controller-0** and accepts
+        The :command:`load-import` must be done on controller-0 and accepts
         relative paths.
 
         .. note::
@@ -112,7 +110,7 @@ of |prod| software.
     The system must be 'patch current'. All software updates related to your
     current |prod| software release must be uploaded, applied, and installed.
 
-    All software updates to the new |prod| release, only need to be uploaded
+    All software updates to the new |prod| release only need to be uploaded
     and applied. The install of these software updates will occur automatically
     during the software upgrade procedure as the hosts are reset to load the
     new release of software.
@@ -127,7 +125,7 @@ of |prod| software.
     Check the current system health status, resolve any alarms and other issues
     reported by the :command:`system health-query-upgrade` command, then
     recheck the system health status to confirm that all **System Health**
-    fields are set to **OK**. For example:
+    fields are set to *OK*. For example:
 
     .. code-block:: none
 
@@ -148,10 +146,9 @@ of |prod| software.
         All kubernetes applications are in a valid state: [OK]
         Active controller is controller-0: [OK]
 
-    By default, the upgrade process cannot be run and is not recommended to be
-    run with active alarms present. Use the command :command:`system upgrade-start --force`
-    to force the upgrade process to start and ignore non-management-affecting
-    alarms.
+    By default, the upgrade process cannot be run with active alarms present.
+    Use the command :command:`system upgrade-start --force` to force the upgrade
+    process to start and ignore non-management-affecting alarms.
 
     .. note::
         It is strongly recommended that you clear your system of any and all
@@ -177,17 +174,18 @@ of |prod| software.
         | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
-    This will make a copy of the upgrade data onto a DRBD file system to be
+
+    This will make a copy of the upgrade data onto a |DRBD| file system to be
     used in the upgrade. Configuration changes are not allowed after this point
     until the swact to controller-1 is completed.
 
     The following upgrade state applies once this command is executed:
 
-    -   started:
+    -   ``started``:
 
         -   State entered after :command:`system upgrade-start` completes.
 
-        -   Release nn.nn system data \(for example, postgres databases\) has
+        -   Release <nn>.<nn> system data \(for example, postgres databases\) has
             been exported to be used in the upgrade.
 
         -   Configuration changes must not be made after this point, until the
@@ -200,13 +198,14 @@ of |prod| software.
     upgrade.
 
     .. note::
+
         Use the command :command:`system upgrade-start --force` to force the
         upgrade process to start and ignore non-management-affecting alarms.
-        This should ONLY be done if you feel these alarms will not be an issue
-        over the upgrades process.
+        This should **ONLY** be done if you ascertain that these alarms will
+        interfere with the upgrades process.
 
-    On systems with Ceph storage, it also checks that the Ceph cluster is
-    healthy.
+    On systems with Ceph storage, the process also checks that the Ceph cluster
+    is healthy.
 
 #.  Upgrade controller-1.
 
@@ -231,7 +230,7 @@ of |prod| software.
         The following data migration states apply when this command is
         executed:
 
-        -   data-migration:
+        -   ``data-migration``:
 
             -   State entered when :command:`system host-upgrade controller-1`
                 is executed.
@@ -245,21 +244,21 @@ of |prod| software.
                 You can view the upgrade progress on controller-1 using the
                 serial console.
 
-        -   data-migration-complete or upgrading-controllers:
+        -   ``data-migration-complete or upgrading-controllers``:
 
             -   State entered when controller-1 upgrade is complete.
 
-            -   System data has been successfully migrated from release nn.nn
-                to release nn.nn.
+            -   System data has been successfully migrated from release <nn>.<nn>
+                to the newer Version.
 
-        -   data-migration-failed:
+        -   ``data-migration-failed``:
 
             -   State entered if data migration on controller-1 fails.
 
             -   Upgrade must be aborted.
 
             .. note::
-                Review the /var/log/sysinv.log on the active controller for
+                Review the ``/var/log/sysinv.log`` on the active controller for
                 more details on data migration failure.
 
     #.  Check the upgrade state.
@@ -277,7 +276,7 @@ of |prod| software.
             +--------------+--------------------------------------+
 
         If the :command:`upgrade-show` status indicates
-        'data-migration-failed', then there is an issue with the data
+        *data-migration-failed*, then there is an issue with the data
         migration. Check the issue before proceeding to the next step.
 
     #.  Unlock controller-1.
@@ -286,20 +285,22 @@ of |prod| software.
 
             ~(keystone_admin)]$ system host-unlock controller-1
 
-        Wait for controller-1 to become **unlocked-enabled**. Wait for the DRBD
-        sync **400.001** Services-related alarm is raised and then cleared.
+        Wait for controller-1 to enter the state *unlocked-enabled*. Wait for
+        the |DRBD| sync **400.001** Services-related alarm to be raised and then
+        cleared.
 
         The following states apply when this command is executed.
 
-        -   upgrading-controllers:
+        -   ``upgrading-controllers``:
 
             -   State entered when controller-1 has been unlocked and is
                 running release nn.nn software.
 
-        If it transitions to **unlocked-disabled-failed**, check the issue
-        before proceeding to the next step. The alarms may indicate a
+        If the controller transitions to **unlocked-disabled-failed**, check the
+        issue before proceeding to the next step. The alarms may indicate a
         configuration error. Check the result of the configuration logs on
-        controller-1, \(for example, Error logs in controller1:/var/log/puppet\).
+        controller-1, \(for example, Error logs in
+        controller1:``/var/log/puppet``\).
 
 #.  Set controller-1 as the active controller. Swact to controller-1.
 
@@ -307,36 +308,33 @@ of |prod| software.
 
         ~(keystone_admin)]$ system host-swact controller-0
 
-    Wait until all services are enabled / active and the swact is complete
-    on controller-0 before proceeding to the next step.  Use the following
-    command below:
+    Wait until services have become active on the new active controller-1 before
+    proceeding to the next step. The swact is complete when all services on
+    controller-1 are in the state ``enabled-active``. Use the command ``system
+    servicegroup-list`` to monitor progress.
 
-    .. code-block:: none
+#.  Upgrade controller-0.
 
-        ~(keystone_admin)]$ system servicegroup-list
-
-#.  Upgrade **controller-0**.
-
-    #.  Lock **controller-0**.
+    #.  Lock controller-0.
 
         .. code-block:: none
 
             ~(keystone_admin)]$ system host-lock controller-0
 
-    #.  Upgrade **controller-0**.
+    #.  Upgrade controller-0.
 
         .. code-block:: none
 
             ~(keystone_admin)]$ system host-upgrade controller-0
 
 
-    #.  Unlock **controller-0**.
+    #.  Unlock controller-0.
 
         .. code-block:: none
 
             ~(keystone_admin)]$ system host-unlock controller-0
 
-        Wait until the DRBD sync **400.001** Services-related alarm is raised
+        Wait until the |DRBD| sync **400.001** Services-related alarm is raised
         and then cleared before proceeding to the next step.
 
         -   upgrading-hosts:
@@ -356,7 +354,7 @@ of |prod| software.
 
     Clear all alarms unrelated to the upgrade process.
 
-#.  If using Ceph storage backend, upgrade the storage nodes one at a time.
+#.  If using Ceph a storage backend, upgrade the storage nodes one at a time.
 
     .. note::
         Proceed to step 13 if no storage/worker node is present.
@@ -370,10 +368,10 @@ of |prod| software.
 
             ~(keystone_admin)]$ system host-lock storage-0
 
-    #.  Verify that the OSDs are down after the storage node is locked.
+    #.  Verify that the |OSDs| are down after the storage node is locked.
 
         In the Horizon interface, navigate to **Admin** \> **Platform** \>
-        **Storage Overview** to view the status of the OSDs.
+        **Storage Overview** to view the status of the |OSDs|.
 
     #.  Upgrade storage-0.
 
@@ -381,7 +379,7 @@ of |prod| software.
 
             ~(keystone_admin)]$ system host-upgrade storage-0
 
-        The upgrade is complete when the node comes online, and at that point,
+        The upgrade is complete when the node comes online. At that point
         you can safely unlock the node.
 
         After upgrading a storage node, but before unlocking, there are Ceph
@@ -408,7 +406,7 @@ of |prod| software.
             **800.003**. The alarm is cleared after all storage nodes are
             upgraded.
 
-#.  Upgrade worker hosts, one at a time, if any.
+#.  Upgrade worker hosts, if any, one at a time.
 
     #.  Lock worker-0.
 
@@ -431,7 +429,7 @@ of |prod| software.
 
             ~(keystone_admin)]$ system host-unlock worker-0
 
-        Wait for all alarms to clear after the unlock before proceeding to the
+        After the unlock wait for all alarms to clear before proceeding to the
         next worker host.
 
     #.  Repeat the above steps for each worker host.
@@ -442,9 +440,9 @@ of |prod| software.
 
         ~(keystone_admin)]$ system host-swact controller-1
 
-    Wait until services have gone active on the active controller-0 before
-    proceeding to the next step. When all services on controller-0 are
-    enabled-active, the swact is complete.
+    Wait until services have become available on the active controller-0 before
+    proceeding to the next step. When all services on controller-0 are in the
+    ``enabled-active`` state, the swact is complete. 
 
 #.  Activate the upgrade.
 
@@ -460,31 +458,31 @@ of |prod| software.
         | to_release   | nn.nn                                |
         +--------------+--------------------------------------+
 
-    During the running of the :command:`upgrade-activate` command, new
+    When running the :command:`upgrade-activate` command, new
     configurations are applied to the controller. 250.001 \(**hostname
     Configuration is out-of-date**\) alarms are raised and are cleared as the
-    configuration is applied. The upgrade state goes from **activating** to
-    **activation-complete** once this is done.
+    configuration is applied. The upgrade state goes from ``activating`` to
+    ``activation-complete`` once this is done.
 
     The following states apply when this command is executed.
 
-    **activation-requested**
+    ``activation-requested``
         State entered when :command:`system upgrade-activate` is executed.
 
-    **activating**
-        State entered when we have started activating the upgrade by applying
+    ``activating``
+        State entered when the system has started activating the upgrade by applying
         new configurations to the controller and compute hosts.
 
-    **activating-hosts**
+    ``activating-hosts``
         State entered when applying host-specific configurations. This state is
         entered only if needed.
 
-    **activation-complete**
+    ``activation-complete``
         State entered when new configurations have been applied to all
         controller and compute hosts.
 
     #.  Check the status of the upgrade again to see it has reached
-        **activation-complete**.
+        ``activation-complete``.
 
         .. code-block:: none
 

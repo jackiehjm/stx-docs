@@ -7,9 +7,9 @@ Manage Software Updates
 =======================
 
 Updates \(also known as patches\) to the system software become available as
-needed to address issues associated with a current |prod-long| software
-release. Software updates must be uploaded to the active controller and applied
-to all required hosts in the cluster.
+needed to address issues associated with a current |prod-long| software release.
+Software updates must be uploaded to the active controller and applied to all
+required hosts in the cluster.
 
 .. note::
     Updating |prod-dc| is distinct from updating other |prod| configurations.
@@ -21,8 +21,8 @@ to all required hosts in the cluster.
 The following elements form part of the software update environment:
 
 **Reboot-Required Software Updates**
-    Reboot-required updates are typically major updates that require hosts to
-    be locked during the update process and rebooted to complete the process.
+    Reboot-required updates are typically major updates that require hosts to be
+    locked during the update process and rebooted to complete the process.
 
     .. note::
         When a |prod| host is locked and rebooted for updates, the hosted
@@ -30,26 +30,26 @@ The following elements form part of the software update environment:
         minimize the impact to the hosted application service.
 
 **In-Service Software Updates**
-    In-service \(reboot-not-required\), software updates are updates that do
-    not require the locking and rebooting of hosts. The required |prod|
-    software is updated and any required |prod| processes are re-started.
-    Hosted applications pods and services are completely unaffected.
+    In-service \(reboot-not-required\), software updates are updates that do not
+    require the locking and rebooting of hosts. The required |prod| software is
+    updated and any required |prod| processes are re-started. Hosted
+    applications pods and services are completely unaffected.
 
 **Software Update Commands**
     The :command:`sw-patch` command is available on both active controllers. It
-    must be run as root using :command:`sudo`. It provides the user interface
-    to process the updates, including querying the state of an update, listing
+    must be run as root using :command:`sudo`. It provides the user interface to
+    process the updates, including querying the state of an update, listing
     affected hosts, and applying, installing, and removing updates.
 
 **Software Update Storage Area**
-    A central storage area maintained by the update controller. Software
-    updates are initially uploaded to the storage area and remains there until
-    they are deleted.
+    A central storage area maintained by the update controller. Software updates
+    are initially uploaded to the storage area and remains there until they are
+    deleted.
 
 **Software Update Repository**
-    A central repository of software updates associated with any updates
-    applied to the system. This repository is used by all hosts in the cluster
-    to identify the software updates and rollbacks required on each host.
+    A central repository of software updates associated with any updates applied
+    to the system. This repository is used by all hosts in the cluster to
+    identify the software updates and rollbacks required on each host.
 
 **Software Update Logs**
     The following logs are used to record software update activity:
@@ -102,7 +102,7 @@ upload the software update directly from your workstation using a file browser
 window provided by the software update upload facility.
 
 A special case occurs during the initial provisioning of a cluster when you
-want to update **controller-0** before the system software is configured. This
+want to update controller-0 before the system software is configured. This
 can only be done from the command line interface. See :ref:`Install Software
 Updates Before Initial Commissioning
 <installing-software-updates-before-initial-commissioning>` for details.

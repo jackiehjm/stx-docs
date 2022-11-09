@@ -18,13 +18,13 @@ unlocked as part of applying the update.
 
 #.  In |prod| Horizon, open the Software Management page.
 
-    The Software Management page is available from **Admin** \> **Platform** \>
-    **Software Management** in the left-hand pane.
+    The **Software Management** page is available from **Admin** \> **Platform**
+    \> **Software Management** in the left-hand pane.
 
-#.  Select the Patches tab to see the current update status.
+#.  Select the **Patches** tab to see the current update status.
 
-    The Patches page shows the current status of all updates uploaded to the
-    system. If there are no updates, an empty Patch Table is displayed.
+    The **Patches** tab shows the current status of all updates uploaded to the
+    system. If there are no updates, an empty **Patch Table** is displayed.
 
 #.  Upload the update \(patch\) file to the update storage area.
 
@@ -34,7 +34,7 @@ unlocked as part of applying the update.
 
     The update file is transferred to the Active Controller and is copied to
     the update storage area, but it has yet to be applied to the cluster. This
-    is reflected in the Patches page.
+    is reflected in the **Patches** tab.
 
 #.  Apply the update.
 
@@ -43,29 +43,29 @@ unlocked as part of applying the update.
     click the **Apply Patches** button at the top. You can use this selection
     process to apply all updates, or a selected subset, in a single operation.
 
-    The Patches page is updated to report the update to be in the
+    The **Patches** tab is updated to report the update to be in the
     *Partial-Apply* state.
 
-#.  Install the update on **controller-0**.
+#.  Install the update on controller-0.
 
     #.  Select the **Hosts** tab.
 
-        The **Hosts** tab on the Host Inventory page reflects the new status of
-        the hosts with respect to the new update state. In this example, the
+        The **Hosts** tab on the **Host Inventory** page reflects the new status
+        of the hosts with respect to the new update state. In this example, the
         update only applies to controller software, as can be seen by the
         worker host's status field being empty, indicating that it is 'patch
         current'.
 
         .. image:: figures/ekn1453233538504.png
 
-    #.  Next, select the Install Patches option from the **Edit Host** button
-        associated with **controller-0** to install the update.
+    #.  Select the Install Patches option from the **Edit Host** button
+        associated with controller-0 to install the update.
 
         A confirmation window is presented giving you a last opportunity to
         cancel the operation before proceeding.
 
-#.  Repeat the steps 6 a,b, above with **controller-1** to install the update
-    on **controller-1**.
+#.  Repeat the steps 6 a,b, above with controller-1 to install the update
+    on controller-1.
 
 #.  Repeat the steps 6 a,b above for the worker and/or storage hosts \(if
     present\).
@@ -74,7 +74,7 @@ unlocked as part of applying the update.
 
 #.  Verify the state of the update.
 
-    Visit the Patches page again. The update is now in the *Applied* state.
+    Visit the **Patches** tab again. The update is now in the *Applied* state.
 
 .. rubric:: |result|
 

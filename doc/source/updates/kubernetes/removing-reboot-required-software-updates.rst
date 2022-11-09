@@ -23,20 +23,20 @@ following state transitions:
     Use the command :command:`sw-patch remove` to trigger this transition.
 
 **Partial-Remove to Available**
-    Use the command :command:`sudo sw-patch host-install-async` <hostname>
+    Use the command :command:`sudo sw-patch host-install-async <hostname>`
     repeatedly targeting each one of the applicable hosts in the cluster. The
     transition to the *Available* state is complete when the update is removed
     from all target hosts. The update remains in the update storage area as if
     it had just been uploaded.
 
     .. note::
-        The command :command:`sudo sw-patch host-install-async` <hostname> both
+        The command :command:`sudo sw-patch host-install-async <hostname>` both
         installs and removes updates as necessary.
 
 The following example describes removing an update that applies only to the
-controllers. Removing updates can be done using the Horizon Web interface,
-also, as discussed in :ref:`Install Reboot-Required Software Updates Using
-Horizon <installing-reboot-required-software-updates-using-horizon>`.
+controllers. Update removal can be done using the Horizon Web interface as
+discussed in :ref:`Install Reboot-Required Software Updates Using Horizon
+<installing-reboot-required-software-updates-using-horizon>`.
 
 .. rubric:: |proc|
 
@@ -52,7 +52,7 @@ Horizon <installing-reboot-required-software-updates-using-horizon>`.
         |pn|-|pvr|-PATCH_0001         Applied
 
     In this example the update is listed in the *Applied* state, but it could
-    be in the *Partial-Apply* state as well.
+    alo be in the *Partial-Apply* state.
 
 #.  Remove the update.
 
@@ -62,7 +62,7 @@ Horizon <installing-reboot-required-software-updates-using-horizon>`.
         |pn|-|pvr|-PATCH_0001 has been removed from the repo
 
     The update is now in the *Partial-Remove* state, ready to be removed from
-    the impacted hosts where it was already installed.
+    the impacted hosts where it was currently installed.
 
 #.  Query the updating status of all hosts in the cluster.
 
@@ -83,7 +83,7 @@ Horizon <installing-reboot-required-software-updates-using-horizon>`.
     In this example, the controllers have updates ready to be removed, and
     therefore must be rebooted.
 
-#.  Remove all pending-for-removal updates from **controller-0**.
+#.  Remove all pending-for-removal updates from controller-0.
 
     #.  Swact controller services away from controller-0.
 
@@ -93,7 +93,7 @@ Horizon <installing-reboot-required-software-updates-using-horizon>`.
 
         .. code-block:: none
 
-            ~(keystone_admin)]$ sudo sw-patch host-install-async <controller-0>
+            ~(keystone_admin)]$ sudo sw-patch host-install-async controller-0
 
     #.  Unlock controller-0.
 
@@ -109,7 +109,7 @@ Horizon <installing-reboot-required-software-updates-using-horizon>`.
 
         .. code-block:: none
 
-            ~(keystone_admin)]$ sudo sw-patch host-install-async <controller-1>
+            ~(keystone_admin)]$ sudo sw-patch host-install-async controller-1
 
 .. rubric:: |result|
 

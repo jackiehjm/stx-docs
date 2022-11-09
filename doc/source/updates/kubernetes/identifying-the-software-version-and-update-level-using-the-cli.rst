@@ -47,7 +47,7 @@ For more about working with software updates, see :ref:`Manage Software Updates
         +----------------------+----------------------------------------------------+
 
     .. note::
-        The **system\_mode** field is shown only for a |prod| Simplex or Duplex
+        The **system_mode** field is shown only for a |prod| Simplex or Duplex
         system.
 
 -   To list applied software updates from the CLI, use the :command:`sw-patch
