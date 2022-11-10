@@ -204,12 +204,6 @@ with read/write type access to a single private namespace
 
             ~(keystone_admin)$ system application-list
 
-    #.  Apply the secret to the new rbd-provisioner namespace.
-
-        .. code-block:: none
-
-            ~(keystone_admin)$ kubectl get secret ceph-pool-kube-rbd -n default -o yaml | grep -v '^\s*namespace:\s' | kubectl apply -n <namespace> -f -
-
 
 #.  If this user requires the ability to use helm, do the following.
 
