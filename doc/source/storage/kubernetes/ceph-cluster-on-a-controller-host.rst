@@ -6,7 +6,7 @@
 Ceph Cluster on a Controller Host
 =================================
 
-You can add one or more object storage devices \(OSDs\) per controller host
+You can add one or more ceph disks \(OSD disks\) per controller host
 for data storage.
 
 .. rubric:: |context|
