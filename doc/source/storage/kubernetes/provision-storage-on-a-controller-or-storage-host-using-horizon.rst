@@ -6,7 +6,7 @@
 Provision Storage on a Controller or Storage Host Using Horizon
 ===============================================================
 
-You must configure the ceph disks \(OSD disks\) on controllers or
+You must configure the Ceph disks \(OSD disks\) on controllers or
 storage hosts to provide container disk storage.
 
 .. rubric:: |context|
