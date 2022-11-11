@@ -30,24 +30,24 @@ you can do so at any time using service parameters.
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system service-parameter-add kubernetes kube_apiserver oidc_client_id=stx-oidc-client-app
+        ~(keystone_admin)]$ system service-parameter-add kubernetes kube_apiserver oidc-client-id=stx-oidc-client-app
 
 
-    -   oidc\_client\_id=<client>
+    -   oidc-client-id=<client>
 
         The value of this parameter may vary for different group
         configurations in your Windows Active Directory server.
 
-    -   oidc\_groups\_claim=<groups>
+    -   oidc-groups-claim=<groups>
 
-    -   oidc\_issuer\_url=https://<oam-floating-ip>:<oidc-auth-apps-dex-service-NodePort>/dex
+    -   oidc-issuer-url=https://<oam-floating-ip>:<oidc-auth-apps-dex-service-NodePort>/dex
 
         .. note::
             For IPv6 deployments, ensure that the IPv6 OAM floating address
             is, https://\[<oam-floating-ip>\]:30556/dex \(that is, in lower
             case, and wrapped in square brackets\).
 
-    -   oidc\_username\_claim=<email>
+    -   oidc-username-claim=<email>
 
         The values of this parameter may vary for different user
         configurations in your Windows Active Directory server.
@@ -58,10 +58,15 @@ you can do so at any time using service parameters.
 
     -   none of the parameters
 
-    -   oidc\_issuer\_url, oidc\_client\_id, and oidc\_username\_claim
+    -   oidc-issuer-url, oidc-client-id, and oidc-username-claim
 
-    -   oidc\_issuer\_url, oidc\_client\_id, oidc\_username\_claim, and oidc\_groups\_claim
+    -   oidc-issuer-url, oidc-client-id, oidc-username-claim, and oidc-groups-claim
 
+        .. note::
+            Historical service parameters for |OIDC| with underscores are still
+            accepted: oidc_client_id, oidc_issuer_url, oidc_username_claim and
+            oidc_groups_claim. These are equivalent to: oidc-client-id, oidc-issuer-url,
+            oidc-username-claim and oidc-groups-claim.
 
 #.  Apply the service parameters.
 

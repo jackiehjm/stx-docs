@@ -68,11 +68,11 @@ For a centralized |OIDC| authentication setup, use the following procedure:
     each subcloud during bootstrapping, or by using the **system
     service-parameter-add kubernetes kube\_apiserver** command after
     bootstrapping the system, using the System Controller's floating OAM IP
-    address as the oidc\_issuer\_url for all clouds.
-    address as the oidc\_issuer\_url for all clouds.
+    address as the oidc-issuer-url for all clouds.
+    address as the oidc-issuer-url for all clouds.
 
     For example,
-    oidc\_issuer\_url=https://<central-cloud-floating-ip>:<oidc-auth-apps-dex
+    oidc-issuer-url=https://<central-cloud-floating-ip>:<oidc-auth-apps-dex
     -service-NodePort>/dex on the subcloud.
 
     For more information, see:

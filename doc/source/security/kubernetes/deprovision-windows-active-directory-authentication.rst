@@ -16,8 +16,8 @@ You can remove Windows Active Directory authentication from |prod-long|.
 
     #.  Determine the UUIDs of parameters used in the kubernetes **kube-apiserver** group.
 
-        These include oidc\_client\_id, oidc\_groups\_claim,
-        oidc\_issuer\_url and oidc\_username\_claim.
+        These include oidc-client-id, oidc-groups-claim,
+        oidc-issuer-url and oidc-username-claim.
 
         .. code-block:: none
 
