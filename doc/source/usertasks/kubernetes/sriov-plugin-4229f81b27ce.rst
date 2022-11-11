@@ -291,7 +291,7 @@ devices as you have network annotations.
     each use one |SRIOV| |VF|, will appear in the associated container\(s\).
 
     After creating the container, the network device interfaces ``sriov0`` and
-    ``sriov0``, which uses one |SRIOV| |VF|, will appear in the associated
+    ``sriov1``, which uses one |SRIOV| |VF|, will appear in the associated
     container\(s\).
 
     At this point you can execute commands and review links on the container.
@@ -315,8 +315,8 @@ devices as you have network annotations.
                name: pod3
                annotations:
                   k8s.v1.cni.cncf.io/networks: '[
-                        { "name": "net2", "interface": "sriov0" }
-                        { "name": "net3", "interface": "sriov0" }
+                        { "name": "net2", "interface": "sriov0" },
+                        { "name": "net3", "interface": "sriov1" }
                      ]'
             spec:
               containers:
