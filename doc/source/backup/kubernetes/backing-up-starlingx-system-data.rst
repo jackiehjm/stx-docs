@@ -45,73 +45,25 @@ The backup contains details as listed below:
 
 .. _backing-up-starlingx-system-data-ul-s3t-bz4-kjb:
 
--   Postgresql backup databases
+-   Platform Configuration Data.
 
--   |LDAP| database
-
--   Ceph crushmap
-
--   DNS server list
-
--   System Inventory network configuration is required during a system
-    restore to set up the OS configuration.
-
--   Docker registries on controller
-
--   Docker no-proxy
+    All platform configuration data and files required to fully restore the
+    system to a working state following the platform restore procedure.
 
 -   \(Optional\) Any end user container images in **registry.local**; that
     is, any images other than |org| system and application images.
     |prod| system and application images are repulled from their
     original source, external registries during the restore procedure.
 
--   Backup up data:
+-   Home directory 'sysadmin' user, and all |LDAP| user accounts
+    \(item=/etc\)
 
-    -   OS configuration:
+-   Patching and package repositories:
 
-        -   \(item=/etc\)
+    -   item=/opt/patching
 
-        .. note::
-            Although everything is backed up, not all the content is restored.
+    -   item=/var/www/pages/updates
 
-    -   Home directory 'sysadmin' user, and all |LDAP| user accounts
-        \(item=/etc\)
-
-    -   Generated platform configuration:
-
-        -   item=/opt/platform/config/<|prefix|\_version>
-
-        -   item=/opt/platform/puppet/<|prefix|\_version>/hieradata:
-
-            All the hieradata under is backed-up. However, only the static
-            hieradata \(static.yaml and secure\_static.yaml\) will be
-            restored to the bootstrap controller-0.
-
-    -   Keyring:
-
-        -   item=/opt/platform/.keyring/<|prefix|\_version>
-
-    -   Patching and package repositories:
-
-        -   item=/opt/patching
-
-        -   item=/www/pages/updates
-
-    -   Extension filesystem:
-
-        -   item=/opt/extension
-
-    -   dc-vault filesystem for |prod-dc| system-controller:
-
-        -   item=/opt/dc-vault
-
-    -   Armada manifests:
-
-        -   item=/opt/platform/armada/<|prefix|\_version>
-
-    -   Helm charts:
-
-        -   item=/opt/platform/helm\_charts
 
 .. _backing-up-starlingx-system-data-section-N1021A-N1002B-N10001:
 
