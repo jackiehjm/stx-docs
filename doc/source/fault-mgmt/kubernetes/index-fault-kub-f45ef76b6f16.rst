@@ -108,14 +108,13 @@ Alarm messages
 .. toctree::
    :maxdepth: 1
 
-   100-series-alarm-messages
-   200-series-alarm-messages
-   300-series-alarm-messages
-   400-series-alarm-messages
-   500-series-alarm-messages
-   750-series-alarm-messages
-   800-series-alarm-messages
-   900-series-alarm-messages
+   alarm-messages-overview-19c242d3d151
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   *-series-alarm-messages
 
 ************
 Log messages
@@ -124,6 +123,10 @@ Log messages
 .. toctree::
    :maxdepth: 1
 
-   200-series-maintenance-customer-log-messages
-   400-series-customer-log-messages
-   900-series-orchestration-customer-log-messages
+   log-entries-overview-597c2c453680
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   *-series-log-messages

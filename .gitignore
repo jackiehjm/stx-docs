@@ -66,6 +66,10 @@ instance/
 # Sphinx documentation
 docs/_build/
 .pickOptions.sh
+tmp/
+# templates/events.yaml
+*-series-log-messages.rst
+*-series-alarm-messages.rst
 
 
 # API Reference Guide

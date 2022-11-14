@@ -1,5 +1,5 @@
 # If set, will be prepended to output paths
-common_target="doc/source/fault-mgmt/kubernetes/"
+common_target="tmp/"
 
 # The repo to download from
 remote_repo="opendev.org/starlingx/fault/raw/branch"
@@ -9,5 +9,5 @@ remote_repo="opendev.org/starlingx/fault/raw/branch"
 # value is path and name to be saved, relative to CWD and common_target if set
 
 remote_files=(
-    ["fm-doc/fm_doc/events.yaml"]="test-events.yaml"
+    ["fm-doc/fm_doc/events.yaml"]="events.yaml"
     )
