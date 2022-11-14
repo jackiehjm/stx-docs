@@ -145,7 +145,7 @@ and upgrade various systems.
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system-kube-upgrade-show
+        ~(keystone_admin)]$ system kube-upgrade-show
         +--------------+--------------------------------------+
         | Property     | Value                                |
         +--------------+--------------------------------------+
