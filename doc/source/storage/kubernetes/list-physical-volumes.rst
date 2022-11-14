@@ -6,7 +6,7 @@
 List Physical Volumes
 =====================
 
-You can list physical volumes using the :command:`system-host-pv-list` command.
+You can list physical volumes using the :command:`system host-pv-list` command.
 
 .. rubric:: |context|
 
