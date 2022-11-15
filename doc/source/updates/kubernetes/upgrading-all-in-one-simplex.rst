@@ -26,6 +26,11 @@ software.
        For more details on backup and what is included see :ref:`Back Up System
        Data <backing-up-starlingx-system-data>`.
 
+    .. note::
+
+       The backup and restore function of an upgrade is specific to an |AIO-SX|
+       deployment only.
+
 -   Ensure that the following conditions are met:
 
     -   The system is patch current.
