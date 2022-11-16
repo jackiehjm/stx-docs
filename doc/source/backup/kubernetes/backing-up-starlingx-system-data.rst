@@ -109,3 +109,25 @@ purposes.
 
    :ref:`Run Ansible Backup Playbook Remotely
    <running-ansible-backup-playbook-remotely>`
+
+.. important::
+
+    For |prod| |prod-ver|, the following backup and retention policies are
+    recommended:
+
+    -   All backups are done remotely and stored off the system.
+
+    -   All backups are done nightly (off-peak time).
+
+    -   Weekly backups should be the norm, i.e. under normal steady state
+        conditions.
+
+    -   Nightly backups are the exception and should only be done in periods of
+        high configuration changes to the system such as; during large/mass
+        rollout (addition of subclouds), upgrade cycle of multiple sites, or
+        disaster recovery rehoming of subclouds.
+
+    -   Retention period of backups should be approximately one (1) month.
+
+        -   Since Kubernetes is an intent-based system, the most recent backup
+            is what is the most important.
