@@ -231,7 +231,7 @@ In order to enable and configure |SNMP|, complete the following steps.
 
     .. code-block:: none
 
-       ~(keystone_admin)$ system helm-override-update --reuse-values --values snmp_port.yaml nginx-ingress-controller ingress-nginx kube-system
+       ~(keystone_admin)$ system helm-override-update --reuse-values --values snmp_port.yaml nginx-ingress-controller ks-ingress-nginx kube-system
        +----------------+------------------------------------------+
        | Property       | Value                                    |
        +----------------+------------------------------------------+
