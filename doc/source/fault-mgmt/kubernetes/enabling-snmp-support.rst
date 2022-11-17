@@ -29,7 +29,7 @@ In order to enable and configure |SNMP|, complete the following steps.
 #.  Use the following command to list the system applications and check whether
     |SNMP| is uploaded or applied. If |SNMP| is already "uploaded", go to Step
     5 to configure and enable |SNMP|. If |SNMP| is already "applied", |SNMP| is
-    already configured and enabled, see, :ref:`Change Configuration of the SNMP
+    already configured and enabled, see :ref:`Change Configuration of the SNMP
     application <change-configuration-of-SNMP>` to make configuration changes.
 
     .. code-block:: none
@@ -47,8 +47,8 @@ In order to enable and configure |SNMP|, complete the following steps.
 
 #.  In order to load the |SNMP| application definitions (FluxCD manifest and
     Helm charts), where **[snmp-<Major>.<Minor>-<Build>.tgz]**, for example,
-    **snmp-1.0-2.tgz** is the app filename, with version **1.0-2**, available
-    at the following path "/usr/local/share/applications/helm", use the
+    **snmp-1.0-2.tgz** is the app filename with version **1.0-2** available
+    at the following path ``/usr/local/share/applications/helm`` use the
     following command.
 
     .. code-block:: none
@@ -92,7 +92,7 @@ In order to enable and configure |SNMP|, complete the following steps.
     variable in the |SNMP| Helm chart is a multi-line variable that follows the
     syntax of Net-SNMP's ``snmpd.conf`` file for configuring the |SNMP| agent,
     see `http://www.net-snmp.org/docs/man/snmpd.conf.html
-    <http://www.net-snmp.org/docs/man/snmpd.conf.html>`__, for a detailed
+    <http://www.net-snmp.org/docs/man/snmpd.conf.html>`__, for detailed
     description of the commands.
 
     .. warning::
@@ -127,10 +127,10 @@ In order to enable and configure |SNMP|, complete the following steps.
            trapsess -v 3 -u testuser -a MD5 -A testpassword -l authPriv -x DES -X testpassword udp:10.10.10.1:162
        EOF
 
-    **\(Optional\)** You can add your own EngineID value, instead of having it
+    **(Optional)** You can add your own EngineID value, instead of having it
     auto-created. This keeps the EngineID value the same, even when the |SNMP|
     application restarts. The EngineID is required if you are using an |SNMP|
-    trap viewer or |SNMP| monitoring tool. Add the 'engineID [STRING]' value in
+    trap viewer or |SNMP| monitoring tool. Add the `engineID [STRING]` value in
     the ``configmap:user_conf`` variable, as shown below.
 
     .. code-block:: none
@@ -140,6 +140,24 @@ In order to enable and configure |SNMP|, complete the following steps.
          user_conf: |-
        ...
            engineID [STRING]
+       ...
+       EOF
+
+    .. note::
+
+        The EngineID value consists of a string of 10-64 characters in
+        hexadecimal numbers. In case you need to specify the
+        whole string (i.e., Net-SNMP will not add characters), you can use the
+        ``exactEngineID`` value instead. Add the `exactEngineID 0X[STRING]`
+        value in the ``configmap:user_conf`` variable, as shown below.
+
+    .. code-block:: none
+
+       cat <<EOF > user_conf.yaml
+       configmap:
+         user_conf: |-
+       ...
+           exactEngineID 0X[STRING]
        ...
        EOF
 
@@ -309,9 +327,9 @@ update its configuration.
 .. rubric:: |proc|
 
 #.  Create a Helm chart values file (for example, user_conf.yaml) with the
-    definition of the **configmap:user_conf** attribute defining your SNMP
+    definition of the ``configmap:user_conf`` attribute defining your SNMP
     configuration of V2 communities, V2 trap sinks, V3 users and/or V3 trap
-    sessions, as shown in the example below. The **configmap:user_conf**
+    sessions, as shown in the example below. The ``configmap:user_conf``
     variable in the SNMP Helm chart is a multi-line variable that follows the
     syntax of Net-SNMP's snmpd.conf file for configuring the SNMP agent, see
     `http://www.net-snmp.org/docs/man/snmpd.conf.html <http://www.net-snmp.org/docs/man/snmpd.conf.html>`__,
@@ -349,11 +367,11 @@ update its configuration.
            trapsess -v 3 -u testuser -a MD5 -A testpassword -l authPriv -x DES -X testpassword udp:10.10.10.1:162
        EOF
 
-    **\(Optional\)** You can add your own EngineID value, instead of having it
+    **(Optional)** You can add your own EngineID value, instead of having it
     auto-created. This keeps the EngineID value the same, even when the |SNMP|
     application restarts. The EngineID is required if you are using an |SNMP|
-    trap viewer or |SNMP| monitoring tool. Add the 'engineID [STRING]' value in
-    the`` configmap:user_conf`` variable, as shown below.
+    trap viewer or |SNMP| monitoring tool. Add the `engineID [STRING]` value in
+    the ``configmap:user_conf`` variable, as shown below.
 
     .. code-block:: none
 
@@ -362,6 +380,24 @@ update its configuration.
          user_conf: |-
        ...
            engineID [STRING]
+       ...
+       EOF
+
+    .. note::
+
+        The EngineID value consists of a string of 10-64 characters in
+        hexadecimal numbers. In this case you need to specify the
+        whole string (i.e., Net-SNMP will not add characters), you can use the
+        ``exactEngineID`` value instead. Add the `exactEngineID 0X[STRING]`
+        value in the ``configmap:user_conf`` variable, as shown below.
+
+    .. code-block:: none
+
+       cat <<EOF > user_conf.yaml
+       configmap:
+         user_conf: |-
+       ...
+           exactEngineID 0X[STRING]
        ...
        EOF
 
