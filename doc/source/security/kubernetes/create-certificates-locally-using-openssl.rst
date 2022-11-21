@@ -36,10 +36,9 @@ use in a lab environment.
 
             $ openssl genrsa -out my-server-key.pem 2048
 
-    #.  Create the Server certificate signing request \(csr\).
+    #.  Create the Server certificate signing request (csr).
 
-        Specify CN=<WRCP-OAM-Floating-IP> and do not specify a
-        challenge password.
+        Specify "CN=registry.local" and do not specify a challenge password.
 
         .. code-block:: none
 
@@ -64,4 +63,5 @@ use in a lab environment.
         .. code-block:: none
 
             $ cat my-server-cert.pem my-server-key.pem > my-server.pem
+
 
