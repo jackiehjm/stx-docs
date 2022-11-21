@@ -9,19 +9,17 @@ Fault Management Overview
 An admin user can view |prod-long| fault management alarms and logs in order
 to monitor and respond to fault conditions.
 
-See :ref:`Alarm Messages <100-series-alarm-messages>` for the list of
+See :ref:`Alarm Messages <100-series-alarm-messages-starlingx>` for the list of
 alarms and :ref:`Customer Log Messages
-<200-series-maintenance-customer-log-messages>`
+<200-series-log-messages-starlingx>`
 for the list of customer logs reported by |prod|.
 
 You can access active and historical alarms, and customer logs using the CLI,
 GUI, REST APIs and |SNMP|.
 
-To use the CLI, see
-:ref:`Viewing Active Alarms Using the CLI
-<viewing-active-alarms-using-the-cli>`
-and :ref:`Viewing the Event Log Using the CLI
-<viewing-the-event-log-using-the-cli>`.
+To use the CLI, see :ref:`Viewing Active Alarms Using the CLI
+<viewing-active-alarms-using-the-cli>` and :ref:`Viewing the Event Log Using the
+CLI <viewing-the-event-log-using-the-cli>`.
 
 Using the GUI, you can obtain fault management information in a number of
 places.
@@ -38,11 +36,9 @@ places.
 
     -   **Admin** \> **Fault Management** \> **Active Alarms**—Alarms that are
         currently set, and require user action to clear them. For more
-        information about active alarms, see
-        :ref:`Viewing Active Alarms Using the CLI
-        <viewing-active-alarms-using-the-cli>`
-        and :ref:`Deleting an Alarm Using the CLI
-        <deleting-an-alarm-using-the-cli>`.
+        information about active alarms, see :ref:`Viewing Active Alarms Using
+        the CLI <viewing-active-alarms-using-the-cli>` and :ref:`Deleting an
+        Alarm Using the CLI <deleting-an-alarm-using-the-cli>`.
 
     -   **Admin** \> **Fault Management** \> **Events**—The event log
         consolidates historical alarms that have occurred in the past, that
@@ -50,8 +46,7 @@ places.
         logs.
 
         For more about the event log, which includes historical alarms and
-        customer logs, see
-        :ref:`Viewing the Event Log Using Horizon
+        customer logs, see :ref:`Viewing the Event Log Using Horizon
         <viewing-the-event-log-using-horizon>`.
 
     -   **Admin** \> **Fault Management** \> **Events Suppression**—Individual

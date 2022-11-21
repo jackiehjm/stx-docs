@@ -17,7 +17,7 @@ remaining nodes of the |prod|.
     Management-affecting alarms cannot be ignored at the indicated severity
     level or higher by using relaxed alarm rules during an orchestrated upgrade
     operation. For a list of management-affecting alarms, see |fault-doc|:
-    :ref:`Alarm Messages <alarm-messages-overview>`. To display
+    :ref:`alarm-messages-overview-19c242d3d151`. To display
     management-affecting active alarms, use the following command:
 
     .. code-block:: none

@@ -1,0 +1,18 @@
+The system inventory and maintenance service reports system changes with
+different degrees of severity. Use the reported alarms to monitor the overall
+health of the system.
+
+Alarm messages are numerically coded by the type of alarm.
+
+A management-affecting alarm is one that cannot be ignored at the indicated
+severity level or higher by using relaxed alarm rules during an orchestrated
+patch or upgrade operation.
+
+For more information, see :ref:`fault-management-overview`.
+
+.. note::
+
+   **Degrade Affecting Severity**: Critical indicates a node will be degraded if
+   the alarm reaches a critical level.
+
+

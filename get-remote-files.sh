@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
-# Fetch arbitrary files from a remote repo for processing/
+# Fetch arbitrary files from a remote location for processing/
 # inclusion in local build.
 
 message () { echo -e "$@" 1>&2; }
 
 usage_error () {
-   message "\nUsage: $0 config-file -o <file|stdout> [-f -b]
-   <config-file> contains fetch and save locations for files
+   message "\nUsage: $0 -c config-file -o <file|stdout> [-f -b]
+   -c <config-file> contains fetch and save locations for files
    -o sets the output path to the save locations in <config-file> or to STDOUT
-      **Note** Do not set to \"stdout\" if you are downloading a binary file.
    -f optionally forces existing output files to be overwritten
    -b skips branch lookup. Use this if downloading from a non-git URL\n"
    exit 1
@@ -65,6 +64,7 @@ fetch_files () {
 
        "file")
          _outfile="$common_target${remote_files[$f]}"
+         if [ ! -d $(dirname $_outfile) ]; then mkdir -p `dirname $_outfile`; fi
          ;;
        "stdout") 
          _outfile="-"

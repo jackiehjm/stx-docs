@@ -17,7 +17,7 @@ If you want to use the Horizon Web interface, see
     Management-affecting alarms cannot be ignored using relaxed alarm rules
     during an orchestrated Kubernetes version upgrade operation. For a list of
     management-affecting alarms, see |fault-doc|:
-    :ref:`Alarm Messages <100-series-alarm-messages>`. To display
+    :ref:`Alarm Messages <100-series-alarm-messages-starlingx>`. To display
     management-affecting active alarms, use the following command:
 
 .. code-block:: none

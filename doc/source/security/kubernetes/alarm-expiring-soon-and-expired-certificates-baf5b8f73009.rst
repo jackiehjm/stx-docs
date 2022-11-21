@@ -147,4 +147,4 @@ issues with cert-manager auto-renewal of a certificate with :command:`kubectl
 
 .. seealso::
 
-  :ref:`500-series-alarm-messages`
+  :ref:`500-series-alarm-messages-starlingx`

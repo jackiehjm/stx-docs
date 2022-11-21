@@ -21,10 +21,14 @@ OpenStack alarm messages
 .. toctree::
    :maxdepth: 1
 
-   openstack-alarm-messages-300s
-   openstack-alarm-messages-400s
-   openstack-alarm-messages-700s
-   openstack-alarm-messages-800s
+   alarm-messages-overview-a250f214f65a
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   *-series-alarm-messages
+
 
 *******************************
 OpenStack customer log messages
@@ -33,6 +37,10 @@ OpenStack customer log messages
 .. toctree::
    :maxdepth: 1
 
-   openstack-customer-log-messages-270s-virtual-machines
-   openstack-customer-log-messages-401s-services
-   openstack-customer-log-messages-700s-virtual-machines
+   log-entries-overview-4f1dde7286c2
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   *-series-log-messages
