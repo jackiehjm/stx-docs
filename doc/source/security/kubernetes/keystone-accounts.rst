@@ -17,6 +17,7 @@ See :ref:`Keystone Accounts <about-keystone-accounts>` for more details.
 
     about-keystone-accounts
     keystone-account-authentication
+    keystone-account-roles-64098d1abdc1
     manage-keystone-accounts
     configure-the-keystone-token-expiration-time
     password-recovery
