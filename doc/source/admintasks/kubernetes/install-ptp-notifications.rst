@@ -7,7 +7,7 @@ Install PTP Notifications
 =========================
 
 |PTP| notification is packaged as a system application and is managed
-using the :command:`system application` and :command:`system-helm-override`
+using the :command:`system application` and :command:`system helm-override`
 commands.
 
 .. rubric:: |context|
