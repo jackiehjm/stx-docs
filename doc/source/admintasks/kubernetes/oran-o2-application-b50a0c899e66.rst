@@ -36,21 +36,23 @@ Install
 
 Configure the internal Ceph storage for the O2 application persistent storage,
 see |stor-doc|: :ref:`Configure the Internal Ceph Storage Backend
-<configure-the-internal-ceph-storage-backend>` and enable |PVC| support in
-``oran-o2`` namespace, see |stor-doc|: :ref:`Enable ReadWriteOnce PVC Support in
-Additional Namespaces <enable-readwriteonce-pvc-support-in-additional-namespaces>`.
+<configure-the-internal-ceph-storage-backend>`.
+
+Enable |PVC| support in ``oran-o2`` namespace, see |stor-doc|: :ref:`Enable
+ReadWriteOnce PVC Support in Additional Namespaces
+<enable-readwriteonce-pvc-support-in-additional-namespaces>`.
 
 .. rubric:: |proc|
 
 You can install |O-RAN| O2 application on |prod| from the command line.
 
-#. Locate the O2 application tarball in ``/usr/local/share/application/helm``.
+#. Locate the O2 application tarball in ``/usr/local/share/applications/helm``.
 
    For example:
 
    .. code-block:: bash
 
-       /usr/local/share/application/helm/oran-o2-<version>.tgz
+       /usr/local/share/applications/helm/oran-o2-<version>.tgz
 
 
 #. Download ``admin_openrc.sh`` from the |prod| admin dashboard.
@@ -71,20 +73,20 @@ You can install |O-RAN| O2 application on |prod| from the command line.
 
    .. code-block:: bash
 
-       ~(keystone_admin)]$ system application-upload /usr/local/share/application/helm/oran-o2-<version>.tgz
+       ~(keystone_admin)]$ system application-upload /usr/local/share/applications/helm/oran-o2-<version>.tgz
 
 #. Prepare the override ``yaml`` file.
 
-   #. Create a service account for |SMO| and obtain an access token.
+   #. Create a service account for |SMO| application.
 
-      Create a ServiceAccount which can be used to provide |SMO| with minimal
-      access permission credentials.
+      Create a `ServiceAccount` which can be used to provide |SMO| application with
+      minimal access permission credentials.
 
       .. code-block:: bash
 
           export SMO_SERVICEACCOUNT=smo1
 
-          cat <<EOF >smo-serviceaccount.yaml
+          cat <<EOF > smo-serviceaccount.yaml
           apiVersion: rbac.authorization.k8s.io/v1
           kind: Role
           metadata:
@@ -118,7 +120,27 @@ You can install |O-RAN| O2 application on |prod| from the command line.
 
           kubectl apply -f smo-serviceaccount.yaml
 
-          export SMO_SECRET=$(kubectl get serviceaccounts $SMO_SERVICEACCOUNT -o jsonpath='{.secrets[0].name}')
+   #. Create a secret for service account and obtain an access token.
+
+      Create a secret with the type `service-account-token` and pass the
+      `ServiceAccount` in the annotation section as shown below:
+
+      .. code-block:: bash
+
+          export SMO_SECRET=smo1-secret
+
+          cat <<EOF > smo-secret.yaml
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            name: ${SMO_SECRET}
+            annotations:
+              kubernetes.io/service-account.name: ${SMO_SERVICEACCOUNT}
+          type: kubernetes.io/service-account-token
+          EOF
+
+          kubectl apply -f smo-secret.yaml
+
           export SMO_TOKEN_DATA=$(kubectl get secrets $SMO_SECRET -o jsonpath='{.data.token}' | base64 -d -w 0)
 
    #. Create certificates for the O2 service.
@@ -212,8 +234,8 @@ You can install |O-RAN| O2 application on |prod| from the command line.
           EOF
 
       To deploy other versions of an image required for a quick solution, to
-      have early access to the features (eg. o-ran-sc/pti-o2imsdms:2.0.1), and to
-      authenticate images that are hosted by a private registry, follow the
+      have early access to the features (eg. oranscinf/pti-o2imsdms:2.0.1), and
+      to authenticate images that are hosted by a private registry, follow the
       steps below:
 
       #. Create a `docker-registry` secret in ``oran-o2`` namespace.
@@ -238,7 +260,7 @@ You can install |O-RAN| O2 application on |prod| from the command line.
                serviceaccountname: admin-oran-o2
                images:
                  tags:
-                   o2service: ${O2SERVICE_IMAGE_REG}/o-ran-sc/pti-o2imsdms:2.0.1
+                   o2service: ${O2SERVICE_IMAGE_REG}/docker.io/oranscinf/pti-o2imsdms:2.0.1
                    postgres: ${O2SERVICE_IMAGE_REG}/docker.io/library/postgres:9.6
                    redis: ${O2SERVICE_IMAGE_REG}/docker.io/library/redis:alpine
                  pullPolicy: IfNotPresent
@@ -278,9 +300,12 @@ You can install |O-RAN| O2 application on |prod| from the command line.
 
        ~(keystone_admin)]$ watch kubectl get all -n oran-o2
 
+.. rubric:: |result|
+
+You have launched services in the above namespace.
+
 .. rubric:: |postreq|
 
-At this point, you have launched services in the above namespace.
 You will need to integrate |prod| with an |SMO| application that performs
 management of O-Cloud infrastructure and the deployment life cycle management
 of O-RAN cloudified |NFs|. See the following API reference for details:
@@ -311,3 +336,7 @@ You can uninstall the |O-RAN| O2 application on |prod| from the command line.
    .. code-block:: bash
 
        ~(keystone_admin)]$ system application-delete oran-o2
+
+.. rubric:: |result|
+
+You have uninstalled the O2 application from the system.
