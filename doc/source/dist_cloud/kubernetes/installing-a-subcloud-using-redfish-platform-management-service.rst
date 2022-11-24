@@ -1,4 +1,5 @@
 
+
 .. vbb1579292724479
 .. _installing-a-subcloud-using-redfish-platform-management-service:
 
@@ -285,90 +286,62 @@ command with the ``install-values.yaml`` file containing the desired
        :start-after: begin-subcloud-1
        :end-before: end-subcloud-1
 
-    .. only:: partner
 
-        .. include:: /_includes/installing-a-subcloud-using-redfish-platform-management-service.rest
-            :start-after: begin-prepare-files-to-copy-deployment-config
-            :end-before: end-prepare-files-to-copy-deployment-config
 
-.. only:: starlingx
 
-   4. Add the subcloud using dcmanager.
 
-      When calling the :command:`subcloud add` command, specify the install
-      values, the bootstrap values and the subcloud’s sysadmin password.
 
-      .. code-block:: none
+#.  Add the subcloud using dcmanager.
 
-         ~(keystone_admin)]$ dcmanager subcloud add \
-         --bootstrap-address <oam_ip_address_of_subclouds_controller-0> \
-         --bootstrap-values /home/sysadmin/subcloud1-bootstrap-values.yaml \
-         --sysadmin-password <sysadmin_password> \
-         --install-values /home/sysadmin/install-values.yaml \
-         --bmc-password <bmc_password>
+    When calling the :command:`subcloud add` command, specify the install
+    values, the bootstrap values and the subcloud's sysadmin password.
 
-      If the ``--sysadmin-password`` is not specified, you are prompted to
-      enter it once the full command is invoked. The password is masked
-      when it is entered.
+    .. code-block:: none
 
-      .. code-block:: none
+       ~(keystone_admin)]$ dcmanager subcloud add \
+       --bootstrap-address <oam_ip_address_of_subclouds_controller-0> \
+       --bootstrap-values /home/sysadmin/subcloud1-bootstrap-values.yaml \
+       --sysadmin-password <sysadmin_password> \
+       --install-values /home/sysadmin/install-values.yaml \
+       --bmc-password <bmc_password>
 
-         Enter the sysadmin password for the subcloud:
+    If the ``--sysadmin-password`` is not specified, you are prompted to
+    enter it once the full command is invoked. The password is masked
+    when it is entered.
 
-      (Optional) The ``--bmc-password <password>`` is used for subcloud
-      installation, and only required if the ``--install- values`` parameter is
-      specified.
+    .. code-block:: none
 
-      If the ``--bmc-password <password>`` is omitted and the
-      ``--install-values`` option is specified the system administrator will be
-      prompted to enter it, following the :command:`dcmanager subcloud add`
-      command. This option is ignored if the ``--install-values`` option is not
-      specified. The password is masked when it is entered.
+       Enter the sysadmin password for the subcloud:
 
-      .. code-block:: none
+    (Optional) The ``--bmc-password <password>`` is used for subcloud
+    installation, and only required if the ``--install- values`` parameter is
+    specified.
 
-         Enter the bmc password for the subcloud:
+    If the ``--bmc-password <password>`` is omitted and the
+    ``--install-values`` option is specified the system administrator will be
+    prompted to enter it, following the :command:`dcmanager subcloud add`
+    command. This option is ignored if the ``--install-values`` option is not
+    specified. The password is masked when it is entered.
 
-      The :command:`dcmanager subcloud show` or :command:`dcmanager subcloud list`
-      command can be used to view subcloud add progress.
+    .. code-block:: none
+
+       Enter the bmc password for the subcloud:
+
+    The :command:`dcmanager subcloud show` or :command:`dcmanager subcloud list`
+    command can be used to view subcloud add progress.
+
 
 
 #.  At the Central Cloud / System Controller, monitor the progress of the
     subcloud install, bootstrapping, and deployment by using the deploy status
     field of the :command:`dcmanager subcloud list` command.
 
-    .. code-block:: none
-
-        ~(keystone_admin)]$ dcmanager subcloud list
-        +----+-----------+------------+--------------+---------------+---------+
-        | id | name      | management | availability | deploy status | sync    |
-        +----+-----------+------------+--------------+---------------+---------+
-        |  1 | subcloud1 | unmanaged  | online       | installing    | unknown |
-        +----+-----------+------------+--------------+---------------+---------+
-
-    The **deploy status** field has the following values:
-
-    **Pre-Install**
-        This status indicates that the ISO for the subcloud is being updated by
-        the Central Cloud with the boot menu parameters, and kickstart
-        configuration as specified in the ``install-values.yaml`` file.
-
-    **Installing**
-        This status indicates that the subcloud's ISO is being installed from
-        the Central Cloud to the subcloud using the Redfish Virtual Media
-        service on the subcloud's |BMC|.
-
-    **Bootstrapping**
-        This status indicates that the Ansible bootstrap of |prod-long|
-        software on the subcloud's controller-0 is in progress.
-
-    **Complete**
-        This status indicates that subcloud deployment is complete.
-
-    The subcloud install, bootstrapping and deployment can take up to 30
-    minutes.
+    .. include:: /shared/_includes/installing-a-subcloud.rest
+        :start-after: begin-monitor-progress
+        :end-before: end-monitor-progress
 
     .. caution::
+
         If there is an installation failure, or a failure during bootstrapping,
         you must delete the subcloud before re-adding it, using the
         :command:`dcmanager subcloud add` command. For more information on
@@ -380,24 +353,40 @@ command with the ``install-values.yaml`` file containing the desired
         more information, see :ref:`Managing Subclouds Using the CLI
         <managing-subclouds-using-the-cli>`.
 
-#.  You can also monitor detailed logging of the subcloud installation,
-    bootstrapping and deployment by monitoring the following log files on the
-    active controller in the Central Cloud.
 
-    ``/var/log/dcmanager/ansible/<subcloud_name>_install.log``
-
-    ``/var/log/dcmanager/ansible/<subcloud_name>_bootstrap.log``
-
+#.  If ``deploy_status`` shows an installation, bootstrap or deployment failure
+    state, you can use the ``dcmanager subcloud errors`` command in order to get
+    more detailed information about failure.
 
     For example:
 
     .. code-block:: none
 
-        controller-0:/home/sysadmin# tail /var/log/dcmanager/ansible/subcloud1_install.log
-        TASK [wait_for] ****************************************************************
-        ok: [subcloud1]
+        [sysadmin@controller-0 ~(keystone_admin)]$ dcmanager subcloud errors 1
+        FAILED bootstrapping playbook of (subcloud1).
+         detail: fatal: [subcloud1]: FAILED! => changed=true
+          failed_when_result: true
+          msg: non-zero return code
+            500 Server Error: Internal Server Error ("manifest unknown: manifest unknown")
+             Image download failed: admin-2.cumulus.mss.com: 30093/wind-river/cloud-platform-deployment-manager: WRCP_22.06 500 Server Error: Internal Server Error ("Get https://admin-2.cumulus .mss.com: 30093/v2/: dial tcp: lookup admin-2.cumulus.mss.com on 10.41.0.1:53: read udp 10.41.1.3:40251->10.41.0.1:53: i/o timeout")
+             Image download failed: gcd.io/kubebuilder/kube-rdac-proxy:v0.11.0 500 Server Error: Internal Server Error ("Get https://gcd.io/v2/: dial tcp: lookup gcd.io on 10.41.0.1:53: read udp 10.41.1.3:52485->10.41.0.1:53: i/o timeout")
+            raise Exception("Failed to download images %s" % failed_downloads)
+             Exception: Failed to download images ["admin-2.cumulus.mss.com: 30093/wind-river/cloud-platform-deployment-manager: WRCP_22.06", "gcd.io kubebuilder/kube-rdac-proxy:v0.11.0"]
+        FAILED TASK: TASK [common/push-docker-images Download images and push to local registry] Wednesday 12 October 2022 12:27:31 +0000 (0:00:00.042)
+        0:16:34.495
 
-        controller-0:/home/sysadmin# tail /var/log/dcmanager/ansible/subcloud1_bootstrap.log
+
+#.  You can also monitor detailed logging of the subcloud installation,
+    bootstrapping and deployment by monitoring the following log files on the
+    active controller in the Central Cloud.
+
+    ``/var/log/dcmanager/ansible/<subcloud_name>_playbook.output.log``
+
+    For example:
+
+    .. code-block:: none
+
+        controller-0:/home/sysadmin# tail /var/log/dcmanager/ansible/subcloud1_playbook.output.log
         k8s.gcr.io: {password: secret, url: null}
         quay.io: {password: secret, url: null}
         )

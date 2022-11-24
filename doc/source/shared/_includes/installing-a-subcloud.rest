@@ -1,0 +1,68 @@
+.. begin-monitor-progress
+
+For example:
+
+.. code-block:: none
+
+    ~(keystone_admin)]$ dcmanager subcloud list
+    +----+-----------+------------+--------------+---------------+---------+
+    | id | name      | management | availability | deploy status | sync    |
+    +----+-----------+------------+--------------+---------------+---------+
+    |  1 | subcloud1 | unmanaged  | online       | complete      | unknown |
+    +----+-----------+------------+--------------+---------------+---------+
+
+If deploy_status shows an installation, bootstrap or deployment failure state,
+you can use the :command:`dcmanager subcloud errors` command in order to get
+more detailed information about failure.
+
+For example:
+
+.. code-block:: none
+
+    sysadmin@controller-0 ~(keystone_admin)]$ dcmanager subcloud errors 1
+    FAILED bootstrapping playbook of (subcloud1).
+
+    detail: fatal: [subcloud1]: FAILED! => changed=true
+      failed_when_result: true
+      msg: non-zero return code
+        500 Server Error: Internal Server Error ("manifest unknown: manifest unknown")
+         Image download failed: admin-2.cumulus.mss.com: 30093/wind-river/cloud-platform-deployment-manager: WRCP_22.06 500 Server Error: Internal Server Error ("Get https://admin-2.cumulus .mss.com: 30093/v2/: dial tcp: lookup admin-2.cumulus.mss.com on 10.41.0.1:53: read udp 10.41.1.3:40251->10.41.0.1:53: i/o timeout")
+         Image download failed: gcd.io/kubebuilder/kube-rdac-proxy:v0.11.0 500 Server Error: Internal Server Error ("Get https://gcd.io/v2/: dial tcp: lookup gcd.io on 10.41.0.1:53: read udp 10.41.1.3:52485->10.41.0.1:53: i/o timeout")
+        raise Exception("Failed to download images %s" % failed_downloads)
+         Exception: Failed to download images ["admin-2.cumulus.mss.com: 30093/wind-river/cloud-platform-deployment-manager: WRCP_22.06", "gcd.io kubebuilder/kube-rdac-proxy:v0.11.0"]
+    FAILED TASK: TASK [common/push-docker-images Download images and push to local registry] Wednesday 12 October 2022 12:27:31 +0000 (0:00:00.042)
+    0:16:34.495
+
+
+The **deploy status** field has the following values:
+
+.. container:: hideable
+
+   ``Pre-Install``
+       This status indicates that the ISO for the subcloud is being updated by
+       the Central Cloud with the boot menu parameters, and kickstart
+       configuration as specified in the ``install-values.yaml`` file.
+
+   ``Installing``
+       This status indicates that the subcloud's ISO is being installed from
+       the Central Cloud to the subcloud using the Redfish Virtual Media
+       service on the subcloud's |BMC|.
+
+.. container::
+
+   ``Bootstrapping``
+       This status indicates that the Ansible bootstrap of |prod-long|
+       software on the subcloud's controller-0 is in progress.
+
+   ``Complete``
+       This status indicates that subcloud deployment is complete.
+
+   .. include:: /_includes/installing-a-subcloud-using-redfish-platform-management-service.rest
+      :start-after: begin-deploying-state
+      :end-before: end-deploying-state
+
+The subcloud bootstrapping and deployment can take up to 30 minutes.
+
+
+
+.. end-monitor-progress
