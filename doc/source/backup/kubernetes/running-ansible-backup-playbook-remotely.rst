@@ -1,5 +1,8 @@
 
+.. Greg updates required for -High Security Vulnerability Document Updates
+
 .. kpt1571265015137
+
 .. _running-ansible-backup-playbook-remotely:
 
 ====================================
@@ -59,7 +62,7 @@ and target it at controller-0.
 #.  Switch to the <overrides> directory created previously.
 
 #.  Create a new secret file encrypted with Ansible-Vault using the
-    :command:`ansible-vault create secrets.yml` command.
+    :command:`ansible-vault create $HOME/override_dir/secrets.yml` command.
 
     Set and confirm a new Ansible-Vault password. Ansible will open an editing
     window where you can enter your desired contents.
@@ -82,7 +85,7 @@ and target it at controller-0.
 
     Save your changes and quit the editor. If you need to make additional
     changes, you can use the command :command:`ansible-vault edit
-    override_dir/secrets.yml`.
+    $HOME/override_dir/secrets.yml`.
 
 #.  Run Ansible Backup playbook:
 

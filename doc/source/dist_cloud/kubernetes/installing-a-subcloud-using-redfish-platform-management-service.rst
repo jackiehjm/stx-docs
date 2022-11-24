@@ -69,6 +69,8 @@ subcloud, the subcloud installation has these phases:
     files that are referenced in the ``bootstrap.yml`` file must exist on both
     controllers (for example, ``/home/sysadmin/docker-registry-ca-cert.pem``).
 
+.. Greg updates required for -High Security Vulnerability Document Updates
+
 .. _increase-subcloud-platform-backup-size:
 
 ----------------------------------------------------

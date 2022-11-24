@@ -1,3 +1,4 @@
+.. Greg updates required for -High Security Vulnerability Document Updates
 
 .. rzp1584539804482
 .. _configure-an-external-netapp-deployment-as-the-storage-backend:
@@ -93,8 +94,10 @@ procedure.
 
     You can make changes-in-place to your existing localhost.yml file
     or create another in an alternative location. In either case, you
-    also have the option of using an ansible vault named secrets.yml
-    for sensitive data. The alternative must be named localhost.yaml.
+    also have the option of using an ansible vault to secure/encrypt the
+    localhost.yaml file containing sensitive data, i.e, using
+    :command:`ansible-vault create $HOME/localhost.yml` or :command:`ansible-vault edit $HOME/localhost.yml`
+    commands.
 
     The following parameters are mandatory:
 
@@ -225,7 +228,7 @@ procedure.
 
     .. code-block:: none
 
-        ansible-playbook /usr/share/ansible/stx-ansible/playbooks/install_netapp_backend.yml -e "override_files_dir=</home/sysadmin/mynetappconfig>"
+        ansible-playbook --ask-vault-pass /usr/share/ansible/stx-ansible/playbooks/install_netapp_backend.yml -e "override_files_dir=</home/sysadmin/mynetappconfig>"
 
     Upon successful launch, there will be one Trident pod running on
     each node, plus an extra pod for the REST API running on one of the
