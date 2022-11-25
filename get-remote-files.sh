@@ -3,6 +3,8 @@
 # Fetch arbitrary files from a remote location for processing/
 # inclusion in local build.
 
+declare -A stx_repo
+
 message () { echo -e "$@" 1>&2; }
 
 usage_error () {
@@ -42,28 +44,42 @@ get_remote () {
 
   if [[ $no_branch = "t" ]]; then message "Branch ignored"; return; fi
 
-  local regex_br="^defaultbranch\=(.*)\s*$"
+  local _regex_br="^defaultbranch\=(.*)\s*$"
   local _remote=$(grep defaultbranch $branch_file)
 
-  if [[ "${_remote}" =~ $regex_br ]]
+  if [[ "${_remote}" =~ $_regex_br ]]
   then
-     remote="${BASH_REMATCH[1]}/"
+     remote="${BASH_REMATCH[1]}"
   else
      message "Can't find remote branch"; exit 1
   fi
+
+  for b in "${!stx_repo[@]}"
+  do
+    if [[ ${remote} == ${b} ]]
+    then
+      remote="${stx_repo[$b]}"
+      break
+    fi
+  done
+
+  remote="$remote/"
   message "Remote is: $remote"
 }
 
 
 fetch_files () {
-  for f in "${!remote_files[@]}"; do
+
+  local _f
+
+  for _f in "${!remote_files[@]}"; do
 
     local _outfile
 
     case $out_method in
 
        "file")
-         _outfile="$common_target${remote_files[$f]}"
+         _outfile="$common_target${remote_files[$_f]}"
          if [ ! -d $(dirname $_outfile) ]; then mkdir -p `dirname $_outfile`; fi
          ;;
        "stdout") 
@@ -81,11 +97,11 @@ fetch_files () {
        exit 1
     fi
 
-    wget -q -O $_outfile http://$remote_repo/$remote$f
+    wget $addtional_flags -q -O $_outfile $prot://$remote_repo/$remote$_f
 
     if [ $? -ne 0 ]; then 
        if [ ! -s $_outfile ]; then rm -f $_outfile; fi
-       message "Could not download ${remote_files[$f]}. Quiting"
+       message "Could not download ${remote_files[$_f]}. Quiting"
        exit 1
     fi
 

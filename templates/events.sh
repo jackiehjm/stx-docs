@@ -1,5 +1,6 @@
 # If set, will be prepended to output paths
 common_target="tmp/"
+prot="http"
 
 # The repo to download from
 remote_repo="opendev.org/starlingx/fault/raw/branch"
