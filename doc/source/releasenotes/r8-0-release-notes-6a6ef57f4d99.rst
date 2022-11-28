@@ -66,12 +66,6 @@ for evaluation purposes.
 scope to the |AIO-SX| configuration, |deb-dup-std-na|. It is also limited in
 scope to Kubernetes apps and does not yet support running OpenStack on Debian.
 
-**See**:
-
--  :ref:`index-debian-introduction-8eb59cf0a062`
-
--  :ref:`operational-impacts-9cf2e610b5b3`
-
 
 ******************************
 Istio Service Mesh Application

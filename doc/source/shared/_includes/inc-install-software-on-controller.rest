@@ -25,7 +25,7 @@ installation procedure.
    .. note::
 
       Alternatively one can PXEBOOT controller-0. See
-      :ref:`configuring-a-pxe-boot-server-r7` for details on how to setup a
+      :ref:`pxe-boot-controller-0-d5da025c2524` for details on how to setup a
       PXEBOOT Server and pxe-boot the |prod| load on controller-0
 
 #. Power on the host.

@@ -59,7 +59,7 @@ Before attempting to install |prod|, ensure that you have the following:
             -t <menu timeout>:
                 Specify boot menu timeout, in seconds
 
-    The following example ks-addon.cfg file, used with the -a option, sets up
+    The following example ``ks-addon.cfg`` file, used with the ``-a`` option, sets up
     an initial IP interface at boot time by defining a VLAN on an Ethernet
     interface and has it use DHCP to request an IP address:
 
@@ -98,8 +98,7 @@ Before attempting to install |prod|, ensure that you have the following:
 
     -   the ISO image on a |PXE| boot server on the same network as the server
         that will be used as the initial controller-0. See Appendix
-        :ref:`Installing Controller-0 from a PXE Boot Server
-        <configuring-a-pxe-boot-server-r7>` for details
+        :ref:`pxe-boot-controller-0-d5da025c2524` for details.
 
 
 -   For all controller or AIO controller servers, |OAM| Network connectivity to:

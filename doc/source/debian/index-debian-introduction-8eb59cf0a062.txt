@@ -1,8 +1,8 @@
 .. _index-debian-introduction-8eb59cf0a062:
 
-==============
-Debian Preview
-==============
+===============
+Debian Overview
+===============
 
 --------------------
 StarlingX Kubernetes
