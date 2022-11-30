@@ -487,7 +487,7 @@ are:
     grpc:
       enabled: false
     nodeSelector:
-      node-role.kubernetes.io/master: ""
+      node-role.kubernetes.io/control-plane: ""
     volumeMounts:
     - mountPath: /etc/dex/tls/
       name: https-tls
@@ -498,6 +498,9 @@ are:
         secretName: local-dex.tls
     tolerations:
     - key: "node-role.kubernetes.io/master"
+      operator: "Exists"
+      effect: "NoSchedule"
+    - key: "node-role.kubernetes.io/control-plane"
       operator: "Exists"
       effect: "NoSchedule"
     affinity:
@@ -525,7 +528,7 @@ The default helm overrides for oidc-client are:
       tlsCert: /etc/dex/tls/https/server/tls.crt
       tlsKey: /etc/dex/tls/https/server/tls.key
     nodeSelector:
-      node-role.kubernetes.io/master: ""
+      node-role.kubernetes.io/control-plane: ""
     service:
       type: NodePort
       port: 5555
@@ -533,6 +536,9 @@ The default helm overrides for oidc-client are:
     replicas: <replicate count>
     tolerations:
     - key: "node-role.kubernetes.io/master"
+      operator: "Exists"
+      effect: "NoSchedule"
+    - key: "node-role.kubernetes.io/control-plane"
       operator: "Exists"
       effect: "NoSchedule"
     affinity:
@@ -564,5 +570,8 @@ The default helm overrides for secret-observer are:
         deploymentToRestart: "oidc-dex"
     tolerations:
       - key: "node-role.kubernetes.io/master"
+        operator: "Exists"
+        effect: "NoSchedule"
+      - key: "node-role.kubernetes.io/control-plane"
         operator: "Exists"
         effect: "NoSchedule"
