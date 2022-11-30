@@ -7,7 +7,7 @@ View details for a Physical Volume
 ==================================
 
 You can view details for a physical volume using the
-:command:`system-host-pv-show` command.
+:command:`system host-pv-show` command.
 
 .. rubric:: |context|
 

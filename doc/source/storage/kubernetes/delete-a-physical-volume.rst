@@ -6,7 +6,7 @@
 Delete a Physical Volume
 ========================
 
-You can delete a physical volume using the :command:`system-host-pv-delete`
+You can delete a physical volume using the :command:`system host-pv-delete`
 command.
 
 .. rubric:: |prereq|
