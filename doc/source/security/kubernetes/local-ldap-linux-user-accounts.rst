@@ -50,18 +50,30 @@ Local |LDAP| user accounts share the following set of attributes:
 
     .. note::
 
+        This delay is 3 seconds.
+
          You are alerted on the 6th and subsequent attempts:
 
          ``Account locked due to 6 failed logins``
 
          and an error message is displayed on subsequent attempts:
 
-         ``Maximum number of tries exceeded (5)``
+            When you login to the console you are alerted on the 6th, and
+            subsequent attempts:
 
-    To clarify, 5 mins after the account is locked, the failed attempts will
-    be reset and failed attempts re-counted.
+            ``The account is locked due to 5 failed logins (2 minutes left to unlock)``
 
--   All authentication attempts are recorded on the file ``/var/log/auth.log``
+            When you login remotely using SSH, you have 3 attempts to try
+            and login before an error ``Permission denied (publickey,password)``
+            is displayed, during an SSH login session. You can continue to login
+            by starting a new login session, until the user is locked
+            out after 5 consecutive failed attempts. For security reasons,
+            there is no reason or error displayed to the user.
+
+            5 mins after the account is locked, the failed attempts will be
+            reset and failed attempts re-counted.
+
+-   All authentication attempts are recorded on the file /var/log/auth.log
     of the target host.
 
 -   Home directories and passwords are backed up and restored by the system
