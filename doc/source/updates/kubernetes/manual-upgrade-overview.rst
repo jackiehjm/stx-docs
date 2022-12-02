@@ -23,7 +23,7 @@ This section describes the manual upgrade procedures.
    procedure, see |distcloud-doc|: :ref:`Orchestration Upgrade Overview
    <orchestration-upgrade-overview>`.
 
-Before starting the upgrade process, ensure that the following conditions are 
+Before starting the upgrade process, ensure that the following conditions are
 met:
 
 -   The system is patch current.
@@ -44,3 +44,4 @@ information, see:
 -   :ref:`Upgrading All-in-One Simplex <upgrading-all-in-one-simplex>`
 
 -   :ref:`Upgrading All-in-One Duplex / Standard <upgrading-all-in-one-duplex-or-standard>`
+

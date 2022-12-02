@@ -90,6 +90,31 @@ Follow the steps below to manually upgrade the System Controller:
             No instances running on controller-1: [OK]
             All kubernetes applications are in a valid state: [OK]
             Active controller is controller-0: [OK]
+            Disk space requirement: [OK]
+            Boot Device and Root file system Device: [Fail]
+            boot_device (/dev/sde) for controller-0 does not match root disk /dev/sda
+            rootfs_device (/dev/disk/by-path/pci-0000:00:1f.2-ata-1.0) for controller-0 does not match root disk /dev/sda
+
+    .. note::
+
+        In case "Disk space requirement: [Fail]"
+        Insufficient unallocated disk space on rootdisk for compute-0. Current
+        partitions have allocated disk space such that only 5GiB is available
+        but 23.5GiB unallocated disk space is needed. Insufficient total disk
+        space on rootdisk for controller-1, 220GiB needed, 180GiB available.
+
+        In case "Boot Device and Root file system Device: [Fail]";
+        boot_device (/dev/sdd) for controller-0 does not match any inventoried
+        disk rootfs_device for controller-1 is not assigned.
+
+    Use the following commands to correct the boot_device and/or rootfs_device
+    settings if you encounter an error:
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system host-lock <hostname_or_id>
+        ~(keystone_admin)]$ system host-update <hostname_or_id> boot_device=<boot_device> rootfs_device=<rootfs_device>
+        ~(keystone_admin)]$ system host-unlock <hostname_or_id>
 
     By default, the upgrade process cannot run and is not recommended to run
     with active alarms present. It is strongly recommended that you clear your

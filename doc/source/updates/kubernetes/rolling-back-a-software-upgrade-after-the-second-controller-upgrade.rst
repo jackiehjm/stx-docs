@@ -134,7 +134,7 @@ abort. It may be necessary to restore the system from a backup.
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system upgrade-complete
+        ~(keystone_admin)]$ system upgrade-abort-complete
 
     This cleans up the upgrade release, configuration, databases, and so forth.
 
