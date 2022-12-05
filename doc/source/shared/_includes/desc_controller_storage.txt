@@ -20,7 +20,7 @@ A Standard with Controller Storage configuration provides the following benefits
    If you are behind a corporate firewall or proxy, you need to set proxy
    settings. Refer to :ref:`docker_proxy_config` for details.
 
-.. figure:: /deploy_install_guides/r6_release/figures/starlingx-deployment-options-controller-storage.png
+.. figure:: /shared/figures/deploy_install_guides/starlingx-deployment-options-controller-storage.png
    :scale: 50%
    :alt: Standard with Controller Storage deployment configuration
 
