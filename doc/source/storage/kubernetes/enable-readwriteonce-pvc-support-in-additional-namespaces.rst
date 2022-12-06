@@ -207,4 +207,18 @@ application-specific namespaces to access the |RBD| provisioner's **general stor
     You can now create and mount PVCs from the default |RBD| provisioner's
     **general storage class**, from within these application-specific namespaces.
 
+#.  Apply the secret to the new rbd-provisioner namespace.
 
+    Check if the secret has been created in the new namespace by running the
+    following command:
+
+    .. code-block:: none
+
+        ~(keystone_admin)$ kubectl get secret ceph-pool-kube-rbd -n <namespace>
+
+    If the secret has not been created in the new namespace, create it by
+    running the following command:
+
+    .. code-block:: none
+
+        ~(keystone_admin)$ kubectl get secret ceph-pool-kube-rbd -n default -o yaml | grep -v '^\s*namespace:\s' | kubectl apply -n <namespace> -f -

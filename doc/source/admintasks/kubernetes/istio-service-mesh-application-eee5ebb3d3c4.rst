@@ -29,7 +29,7 @@ application:
 -   Istio-cni - Kubernetes |CNI| plugin
 
 The Kiali (`https://kiali.io/ <https://kiali.io/>`__) management console for
-Istio is also integrated with |prod|, in the Istio system application.
+Istio is also integrated with |prod| in the Istio system application.
 It provides management functions and visualizations to the service mesh
 operation. Metrics and tracing functionalities are not supported at this time.
 
@@ -37,19 +37,19 @@ operation. Metrics and tracing functionalities are not supported at this time.
 
 You can install Istio and Kiali on |prod| from the command line.
 
-#.  Locate the Istio tarball in ``/usr/local/share/application/helm``.
+#.  Locate the Istio tarball in ``/usr/local/share/applications/helm``.
 
     For example:
 
     .. code-block:: none
 
-        /usr/local/share/application/helm/istio-<version>.tgz
+        /usr/local/share/applications/helm/istio-<version>.tgz
 
 #.  Upload the application.
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system application-upload /usr/local/share/application/helm/istio-<version>.tgz
+        ~(keystone_admin)]$ system application-upload /usr/local/share/applications/helm/istio-<version>.tgz
 
 #.  Apply the application.
 
@@ -81,8 +81,8 @@ You can install Istio and Kiali on |prod| from the command line.
         EOF
         kubectl apply -f istio-cni-nad.yaml
 
-    |CNI| is managed by Multus. The NetworkAttachmentDefinition is required in
-    the application namespace in order to invoke the ``istio-cni`` plugin.
+    |CNI| is managed by Multus. The ``NetworkAttachmentDefinition`` is required
+    in the application namespace in order to invoke the ``istio-cni`` plugin.
 
 #.  Enable side car for a particular namespace.
 
@@ -95,28 +95,30 @@ You can install Istio and Kiali on |prod| from the command line.
     injection webhook is enabled, any new pods that are created in that
     namespace will automatically have a sidecar added to them.
 
-#.  At this point, you may launch services in the above namespace.
+.. rubric:: |result|
 
-    When the user application is deployed, the sidecar container
-    ``istio-proxy`` is injected into the user application pod:
+At this point, you may have launched services in the above namespace.
 
-    Events:
+When the user application is deployed, the sidecar container
+``istio-proxy`` is injected into the user application pod:
 
-    .. code-block:: none
+Events:
 
-        Type    Reason     Age   From               Message
-        ----    ------     ----  ----               -------
-        ...
-        Normal  Created    10s   kubelet            Created container <user app>
-        Normal  Started    10s   kubelet            Started container <user app>
-        ...
-        Normal  Created    9s    kubelet            Created container istio-proxy
-        Normal  Started    8s    kubelet            Started container istio-proxy
+.. code-block:: none
 
-    The ``istio-proxy`` sidecar extracts telemetry of all ingress and egress
-    traffic of the user application that can be monitored and available for
-    display in Kiali, and it mediates all ingress and egress traffic of the
-    user application by enforcing policy decisions.
+    Type    Reason     Age   From               Message
+    ----    ------     ----  ----               -------
+    ...
+    Normal  Created    10s   kubelet            Created container <user app>
+    Normal  Started    10s   kubelet            Started container <user app>
+    ...
+    Normal  Created    9s    kubelet            Created container istio-proxy
+    Normal  Started    8s    kubelet            Started container istio-proxy
+
+The ``istio-proxy`` sidecar extracts telemetry of all ingress and egress
+traffic of the user application that can be monitored and available for
+display in Kiali, and it mediates all ingress and egress traffic of the
+user application by enforcing policy decisions.
 
 ---------
 Use Kiali
