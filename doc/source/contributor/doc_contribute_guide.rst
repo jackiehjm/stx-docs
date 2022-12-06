@@ -146,6 +146,8 @@ and implemented specs.
 Writing style
 -------------
 
+.. begin-writing-style
+
 StarlingX documentation follows many (but not all!) of the writing style
 guidelines described in the `OpenStack documentation writing style guide
 <https://docs.openstack.org/doc-contrib-guide/writing-style.html>`_. Differences
@@ -168,11 +170,15 @@ between the StarlingX and OpenStack practices are highlighted below.
     Configure endpoint
     ------------------
 
+.. end-writing-style
+
 .. _create-rst-files:
 
 ----------------
 Create rST Files
 ----------------
+
+.. begin-create-rst-files
 
 Use the :command:`tox -e newfile` command to create new |RST| files.
 
@@ -313,9 +319,13 @@ title is preserved as typed. No label was added if you selected :kbd:`f`.
 When you reference this file in ``toctree`` and ``ref`` directives, use
 the file name/label string like this:  ``architectural-considerations--d9dd4c105700``
 
+.. end-create-rst-files
+
 ------------------------
 Automated quality checks
 ------------------------
+
+.. begin-automated-quality-checks
 
 Several automated checks are available to help improve and maintain the quality
 of your documentation.
@@ -556,6 +566,8 @@ This file contains one term per line.
       changes must be submitted for review and merge via a :program:`gerrit`
       review.
 
+.. end-automated-quality-checks
+
 ---------------
 RST conventions
 ---------------
@@ -570,6 +582,351 @@ documents:
 
 * `Sphinx documentation <http://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
 * `reStructuredText primer <http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_
+
+-------------
+Content reuse
+-------------
+
+.. _using-includes:
+
+Content can be reused in multiple places using the Sphinx ``.. include::``
+directive.
+
+For example:
+
+.. code-block::
+
+   .. include:: /_includes/my_reusable_content.rest
+
+"Include" files must not end in ``.rst``. The StarlingX convention is to use
+``.rest``.
+
+You can store multiple fragements of content in a single include file and use
+them in various places. To do this, use ``rst`` comments to deliniate where
+each begins and ends:
+
+.. code-block::
+
+   .. begin-fragement-1
+
+      This content will be inserted using ``.. include::`` example 1, below.
+
+   .. end-fragment-1
+
+   .. begin-fragement-2
+
+      This content will be inserted using ``.. include::`` example 2, below. 
+
+   .. end-fragment-2
+
+To use one or the other in an ``rst`` topic, use the *start after*
+and *end before* parameters as shown below:
+
+.. rubric:: **Example 1**
+
+.. parsed-literal::
+
+   ========
+   My Topic
+   ========
+
+   Integer sed tortor nisi. Vivamus feugiat, urna in posuere gravida, ligula
+   nunc hendrerit magna, nec tristique ex tortor non lorem.
+
+   ...
+
+   .. include:: /_includes/my_reusable_content.rest
+      :start\ |html-comment|-after: begin-fragement-1
+      :end\ |html-comment|-before: end-fragement-1
+
+.. rubric:: **Example 2**
+
+.. parsed-literal::
+
+   ==============
+   My Other Topic
+   ==============
+
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+   ...
+
+   .. include:: /_includes/my_reusable_content.rest
+      :start\ |html-comment|-after: begin-fragement-2
+      :end\ |html-comment|-before: end-fragement-2
+
+**********************
+Content reuse in steps
+**********************
+
+.. begin-content--in-steps
+
+Inserting reusable or conditional steps in a numbered list context causes the
+list to restart. For example:
+
+An include file, ``mysteps.rest``, containing:
+
+.. code-block:: rst
+
+   .. begin-step
+
+   #. Blue
+
+   .. end-step
+
+used in an ``rst`` file as follows:
+
+.. parsed-literal::
+
+   #. Orange
+
+   #. Red
+
+   .. include:: mysteps.rest
+      :start\ |html-comment|-after: begin-step
+      :end\ |html-comment|-before: end-step
+
+   #. Green
+
+Results in:
+
+1. Orange
+
+2. Red
+
+1. Blue
+
+2. Green
+
+To avoid this, use substitute .. pre\ |html-comment|-include:: for ``.. include::``
+
+.. parsed-literal::
+
+   #. Orange
+
+   #. Red
+
+   .. pre\ |html-comment|-include:: mysteps.rest
+      :start\ |html-comment|-after: begin-step
+      :end\ |html-comment|-before: end-step
+
+   #. Green
+
+This will result in the expected numbering sequence:
+
+1. Orange
+
+2. Red
+
+3. Blue
+
+4. Green
+
+.. note::
+
+   * Only the start\ |html-comment|-after and end\ |html-comment|-before paramters work with ..
+     pre\ |html-comment|-include::.
+
+   * Indentation within the ``rest`` file being referenced must match the calling context. 
+
+     * If the list is not indented, the additional step(s) to be inserted should
+       not be indented.
+
+     * If the list is indented (a sublist or in a nested block context), the
+       same indentation must be applied to the additional steps.
+
+.. end-content--in-steps
+
+--------------------------
+Content conditionalization
+--------------------------
+
+****************************
+Conditionalize across builds
+****************************
+
+.. begin-conditionalize-content-across-builds
+
+If you need to conditionalize some content to be used in a specific build
+context, such as StarlingX or a 3rd party build that reuses StarlingX content,
+you can use the ``.. only::`` directive.
+
+For example:
+
+.. code-block::
+
+   .. only:: starlingx
+
+      Integer sed tortor nisi. Vivamus feugiat, urna in posuere gravida, ligula
+      nunc hendrerit magna, nec tristique ex tortor non lorem.
+
+Three build contexts are available:
+
+``starlingx``
+   Content will be included in the standard StarlingX documentation build.
+
+``partner``
+   Content will be excluded from the StarlingX documentation build. To reuse
+   this content in a 3rd party build, ensure that the ``partner`` tag is based
+   to the builder.
+
+``openstack``
+   Content will be included in an OpenStack documentation context. This content
+   is included in the StarlingX documentation build.
+
+.. end-conditionalize-content-across-builds
+
+***************************
+Conditionalize across pages
+***************************
+
+.. begin-conditionalize-content-across-pages
+
+If you want to reuse a block of content in multiple ``rst`` files from the same
+build using ``.. include::`` directives, but need to exclude specific strings
+from one of those locations, you can use the ``hideable`` role and substitution.
+
+You can hide both strings and blocks (paragraphs etc.).
+
+Hiding strings
+**************
+
+To hide a string, use the ``hideable`` role. For example:
+
+.. code-block:: 
+
+   .. start-prepare-servers-common
+   
+   Prior to starting the |prod| installation, ensure that the |bare-metal|
+   servers are in the following state:
+   
+   ...
+   
+   -   BIOS configured with Intel Virtualization (VTD, VTX)
+   
+       -  Disabled for controller-only servers and storage servers.
+   
+       -  Enabled for :hideable:`controller+worker (All-in-one) servers and` worker servers.
+   
+   -   The servers are powered off.
+
+   .. end-prepare-servers-common
+
+In the ``rst`` file where you want to include the text marked up with the
+``:hideable:`` role, simply insert the content using the :ref:`include
+<using-includes>` directive:
+
+.. parsed-literal::
+
+   .. _aio_duplex_install_kubernetes_r7:
+
+   ================================================
+   Install Kubernetes Platform on All-in-one Duplex
+   ================================================
+
+   ... 
+
+   --------------------------------
+   Prepare Servers for Installation
+   --------------------------------
+   
+   .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+      :start\ |html-comment|-after: start-prepare-servers-common
+      :end\ |html-comment|-before: end-prepare-servers-common
+
+   ...
+
+The bullet:
+
+``-  Enabled for :hideable:`controller+worker (All-in-one) servers and` worker servers.``
+
+will render as:
+
+-  Enabled for controller+worker (All-in-one) servers and worker servers.
+
+
+In the ``rst`` file where you want to suppress the text marked up with the
+``:hideable:`` role, do the same, but add the ``|hideable|`` substitution at the
+top of the file:
+
+.. parsed-literal::
+
+   \|hideable\|
+
+   .. _aio_duplex_install_kubernetes_r7:
+
+   ================================================
+   Install Kubernetes Platform on All-in-one Duplex
+   ================================================
+
+   ... 
+
+   --------------------------------
+   Prepare Servers for Installation
+   --------------------------------
+   
+   .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
+      :start\ |html-comment|-after: start-prepare-servers-common
+      :end\ |html-comment|-before: end-prepare-servers-common
+
+   ...
+
+The bullet:
+
+``-  Enabled for :hideable:`controller+worker (All-in-one) servers and` worker servers.``
+
+will render as:
+
+-  Enabled for worker servers.
+
+Hiding blocks
+*************
+
+To hide a block, wrap it in a ``container`` directive with the argument ``hideable``
+
+For example, create an include file ``install-status.rest`` with the
+following contents:
+
+.. code-block::
+   
+   The **deploy status** field has the following values:
+   
+   .. container:: hideable
+   
+      ``Pre-Install``
+          This status indicates that the ISO for the subcloud is being updated by
+          the Central Cloud with the boot menu parameters, and kickstart
+          configuration as specified in the ``install-values.yaml`` file.
+   
+      ``Installing``
+          This status indicates that the subcloud's ISO is being installed from
+          the Central Cloud to the subcloud using the Redfish Virtual Media
+          service on the subcloud's |BMC|.
+   
+   .. container::
+   
+      ``Bootstrapping``
+          This status indicates that the Ansible bootstrap of |prod-long|
+          software on the subcloud's controller-0 is in progress.
+
+and load it in two different contexts:
+
+.. code-block::
+   :caption: a.rst
+
+   .. include:: install-status.rest
+
+.. code-block::
+   :caption: b.rst
+
+   |hideable|
+
+   .. include:: install-status.rest
+
+The output from ``a.rst`` will include all three definitions. The output from
+``b.rst`` will include only the ``bootstrap`` definition.
+
+.. end-conditionalize-content-across-pages
 
 -------------------
 RST quick reference
