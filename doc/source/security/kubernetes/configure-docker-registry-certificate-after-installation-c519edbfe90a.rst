@@ -63,6 +63,8 @@ Update the following fields:
         duration: 2160h    # 90d
         renewBefore: 360h  # 15d
         subject:
+          organizations:
+            - <Customer org>
           organizationalUnits:
             - StarlingX-system-registry-local
         ipAddresses:
@@ -72,6 +74,13 @@ Update the following fields:
           - registry.local
           - registry.central
           - <external-FQDN-for-OAM-Floating-IP-Address, if applicable>
+
+.. note::
+    IPv6 addresses ending with double-colon "::" must be included in quotes.
+    For example:
+
+    - "2607:f160:10:9249:ce:40a:0:f402::"
+    - "2607:f160:10:924c:ce:40a::"
 
 #. Apply the configuration.
 
