@@ -15,6 +15,11 @@ Controller using the rehoming playbook.
     The rehoming playbook does not work with freshly installed/bootstrapped
     subclouds.
 
+.. note::
+
+    The system time should be accurately configured on the System Controllers
+    and the subcloud's controllers before rehoming the subcloud.
+
 Use the following procedure to enable subcloud rehoming and to update the new
 subcloud configuration \(networking parameters, passwords, etc.\) to be
 compatible with the new System Controller.
@@ -28,7 +33,7 @@ There are six phases for Rehoming a subcloud:
 
     .. note::
 
-        You can skip this phase if the previous System Controller is no longer
+        You can skip this step if the previous System Controller is no longer
         running or is unable to connect to the subcloud.
 
 #.  Update the admin password on the subcloud to match the new System
@@ -38,12 +43,17 @@ There are six phases for Rehoming a subcloud:
     the new System Controller. This will update the System Controller and
     connect to the subcloud to update the appropriate configuration parameters.
 
-#.  On the subcloud, lock/unlock the subcloud controller(s) to enable the new
-    configuration.
-
 #.  Use the :command:`dcmanager subcloud list` command to check the status
     of the subcloud, ensure the subcloud is online and complete before managing
     the subcloud.
+
+#.  Delete the subcloud from the previous System Controller after the subcloud
+    is offline.
+
+    .. note::
+
+        You can skip this phase if the previous System Controller is no longer
+        running or is unable to connect to the subcloud.
 
 #.  On the new System Controller, set the subcloud to "managed" and wait for it
     to sync.
@@ -58,11 +68,29 @@ There are six phases for Rehoming a subcloud:
 -   Ensure that the subcloud has been backed up, in case something goes wrong
     and a subcloud system recovery is required.
 
--   Transfer the ``yaml`` file that was used to bootstrap the subcloud prior to
+-   Ensure that the system time between new system controllers and the subclouds
+    are accurately configured.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ date -u
+
+    If the time is not correct either on the system controllers or the subclouds,
+    check the system's ``clock_synchronization`` config on the system.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system show-show controller-0
+
+    Check the |NTP| server configuration or |PTP| server configuration sections
+    to correct the system time based on the system's ``clock_synchronization``
+    config (|NTP| or |PTP|).
+
+-   Transfer the yaml file that was used to bootstrap the subcloud prior to
     rehoming, to the new System Controller. This data is required for rehoming.
 
 -   If the subcloud can be remotely installed via Redfish Virtual Media service,
-    transfer the ``yaml`` file that contains the install data for this subcloud,
+    transfer the yaml file that contains the install data for this subcloud,
     and use this install data in the new System Controller, via the
     ``--install-values`` option, when running the remote subcloud reinstall,
     upgrade or restore commands.
@@ -107,12 +135,11 @@ There are six phases for Rehoming a subcloud:
 
         ~(keystone_admin)]$ system host-swact controller-1
 
-#.  Lock controller-1 of the subcloud.
-
-    .. code-block:: none
-
-        ~(keystone_admin)]$ system host-lock controller-1
-
+#.  Ensure that all the subcloud controllers are online and available by the
+    :command:`system host-list` command, and free of "250.001 config out-of-date"
+    alarm by the :command:`fm alarm-list` command. If there's "250.001 config
+    out-of-date" alarm, a lock/unlock is required to clear that alarm on the node
+    before the next step.
 
 #.  On the new System Controller, use the following command to start the
     rehoming process.
@@ -153,47 +180,6 @@ There are six phases for Rehoming a subcloud:
     .. code-block:: none
 
         ~(keystone_admin)]$ dcmanager subcloud delete <subcloud-name>
-
-#.  For an |AIO-SX| subcloud, use the following commands to lock/unlock the
-    controller \(wait for the lock to complete before unlocking the controller\).
-
-    .. code-block:: none
-
-        ~(keystone_admin)]$ system host-lock controller-0
-        ~(keystone_admin)]$ system host-unlock controller-0
-
-    For an |AIO-DX| subcloud, first, use the following command to unlock
-    controller-1.
-
-    .. code-block:: none
-
-        ~(keystone_admin)]$ system host-unlock controller-1
-
-    #.  Wait until controller-1 is unlocked/online/available, then use the
-        following command to switch activity to controller-1.
-
-        .. code-block:: none
-
-            ~(keystone_admin)]$ system host-swact controller-0
-
-    #.  After the swact is complete, use the following commands to lock/unlock
-        controller-0.
-
-        .. code-block:: none
-
-            ~(keystone_admin)]$ system host-lock controller-0
-            ~(keystone_admin)]$ system host-unlock controller-0
-
-    #.  Wait until controller-0 is unlocked/online/available, then switch
-        activity back to controller-0.
-
-    #.  Perform a swact on controller-1.
-
-        .. code-block:: none
-
-            ~(keystone_admin)]$ system host-swact controller-1
-
-        Wait until the swact is complete.
 
 #.  Use the :command:`dcmanager subcloud list` command to display the status of
     the subcloud, and ensure the subcloud is online and complete before
