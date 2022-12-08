@@ -44,7 +44,7 @@ You cannot successfully create an update \(patch\) strategy if any hosts show
 **Patch Current** = **Pending**, indicating that the update status of these
 hosts has not yet been updated. The creation attempt fails, and you must try
 again. You can use :command:`sw-patch query-hosts` to review the current update
-status before creating a update strategy.
+status before creating an update strategy.
 
 .. rubric:: |proc|
 
@@ -63,10 +63,10 @@ status before creating a update strategy.
        :height: 365px
        :width: 475px
 
-#.  Create a update strategy by specifying settings for the parameters in the
+#.  Create an update strategy by specifying settings for the parameters in the
     Create Strategy dialog box.
 
-    **Description** field
+    **Description**
         Provides information about current alarms, including whether an alarm
         is Management Affecting.
 
@@ -172,7 +172,7 @@ status before creating a update strategy.
 
 #.  To abort the update, click the **Abort Strategy** button.
 
-    -   While a update-strategy is being applied, it can be aborted. This
+    -   While an update-strategy is being applied, it can be aborted. This
         results in:
 
         -   The current step being allowed to complete.
@@ -181,14 +181,14 @@ status before creating a update strategy.
             attempt to unlock any hosts that were locked.
 
     .. note::
-        If a update strategy is aborted after hosts were locked, but before
+        If an update strategy is aborted after hosts were locked, but before
         they were updated, the hosts will not be unlocked, as this would result
         in the updates being installed. You must either install the updates on
         the hosts or remove the updates before unlocking the hosts.
 
 #.  Delete the update strategy.
 
-    After a update strategy has been applied \(or aborted\) it must be deleted
-    before another update strategy can be created. If a update strategy
+    After an update strategy has been applied \(or aborted\) it must be deleted
+    before another update strategy can be created. If an update strategy
     application fails, you must address the issue that caused the failure, then
     delete and re-create the strategy before attempting to apply it again.

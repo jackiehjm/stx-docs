@@ -50,10 +50,10 @@ the |prod| software:
 
 .. _software-updates-and-upgrades-software-updates-ol-kxm-wgv-njb:
 
-#.  **RPM Software Updates**
+#.  **Software Updates**
 
-    These software updates deliver |prod| software updates containing RPMs for
-    updating the |prod| software running directly on the hosts.
+    These software updates deliver |prod| software updates containing ostree
+    commits for updating the |prod| software running directly on the hosts.
 
     Software updates can be installed manually or by the Update Orchestrator
     which automates a rolling install of an update across all of the
