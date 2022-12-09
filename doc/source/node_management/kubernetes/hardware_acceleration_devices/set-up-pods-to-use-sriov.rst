@@ -2,17 +2,17 @@
 .. ggs1611608368857
 .. _set-up-pods-to-use-sriov:
 
-=============================================================
-Set Up Pods to Use SRIOV to Access Mount Bryce HW Accelerator
-=============================================================
+================================================================
+Set Up Pods to Use SRIOV to Access ACC100/ACC200 HW Accelerators
+================================================================
 
-You can configure pods with |SRIOV| access to a Mount Bryce device by adding the
+You can configure pods with |SRIOV| access to a ACC100/ACC200 devices by adding the
 appropriate 'resources' request in the pod specification.
 
 .. rubric:: |context|
 
 The following procedure shows an example of launching a container image with
-'resources' request for a |VF| to the Mount Bryce device.
+'resources' request for a |VF| to the ACC100/ACC200 devices.
 
 .. rubric:: |proc|
 
@@ -22,7 +22,7 @@ The following procedure shows an example of launching a container image with
 
         $ source /etc/platform/openrc ~(keystone_admin)$
 
-#.  Create a pod.yml file that requests 16 Mount Bryce VFs
+#.  Create a pod.yml file that requests 16 ACC100/ACC200 VFs
     \(i.e. intel.com/intel_acc100_fec: '16'\)
 
     .. code-block:: none

@@ -136,7 +136,7 @@ platform: **Wilson City** (housing ICX-SP).
        system host-unlock $NODE
 
 #. After the system has been unlocked and available for the first time,
-   configure ACC100 / Mount Bryce:
+   configure ACC100/ACC200:
 
    .. code:: bash
 

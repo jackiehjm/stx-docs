@@ -2,21 +2,21 @@
 .. zad1611611564761
 .. _enabling-mount-bryce-hw-accelerator-for-hosted-vram-containerized-workloads:
 
-===========================================================================
-Enable Mount Bryce HW Accelerator for Hosted vRAN Containerized Workloads
-===========================================================================
+==================================================================================
+Enable ACC100/ACC200 Hardware Accelerators for Hosted vRAN Containerized Workloads
+==================================================================================
 
-You can enable and access Mount Bryce ACC100 eASIC card from Intel® such that
-it can be used as a HW accelerator by hosted vRAN containerized workloads on
-|prod-long|.
+You can enable and access ACC100/ACC200 eASIC card from Intel® such
+that it can be used as a HW accelerator by hosted vRAN containerized workloads
+on |prod-long|.
 
 .. rubric:: |context|
 
 The following procedure shows an example of configuring an |AIO-SX| system such
 that it can support hosting a |DPDK| FlexRAN-reference-architecture container
-image that uses the Mount Bryce HW accelerator. The procedure enables the
+image that uses the ACC100/ACC200 HW accelerator. The procedure enables the
 required |SRIOV| drivers, CPU policies and memory of controller-0, and then
-enables the Mount Bryce device.
+enables the ACC100/ACC200 device.
 
 .. rubric:: |prereq|
 
@@ -68,8 +68,9 @@ enables the Mount Bryce device.
 
         ~(keystone_admin)$ system host-memory-modify controller-0 0 -1G 12
 
-#.  List all devices on controller-0 and identify the name of the Mount Bryce
-    Hardware Accelerator (i.e. device id = 0d5c).
+#.  List all devices on controller-0 and identify the name of the Hardware
+    Accelerator (i.e. ACC100 device id - 0d5c, ACC200 device id - 57c0). For
+    example:
 
     .. code-block:: none
 
@@ -89,6 +90,7 @@ enables the Mount Bryce device.
         | pci_0000_05_00_0 | 0000:05:00.0 | 30200    | 10de      |
         | pci_0000_0a_00_0 | 0000:0a:00.0 | 30000    | 102b      |
         | pci_0000_85_00_0 | 0000:85:00.0 | 120001   | 8086      |
+        | pci_0000_f7_00_0 | 0000:f7:00.0 | 120000   | 8086      |
         +------------------+--------------+----------+-----------+..
         +-----------+---------------------------------+---------------------+..
         | device id | class name                      | vendor name         |
@@ -105,6 +107,7 @@ enables the Mount Bryce device.
         | 1eb8      | 3D controller                   | NVIDIA Corporation  |
         | 0522      | VGA compatible controller       | Matrox Electronics..|
         | 0d5c      | Processing accelerators         | Intel Corporation   |
+        | 57c0      | Processing accelerators         | Intel Corporation   |
         +-----------+---------------------------------+---------------------+..
         +----------------------------------------------------------+-----------+---------+
         | device name                                              | numa_node | enabled |
@@ -121,14 +124,24 @@ enables the Mount Bryce device.
         | Device 1eb8                                              | 0         | False   |
         | MGA G200e [Pilot] ServerEngines (SEP1)                   | 0         | False   |
         | Device 0d5c                                              | 1         | True    |
+        | Device 57c0                                              | 1         | True    |
         +----------------------------------------------------------+-----------+---------+
 
-#.  Modify the Mount Bryce device to enable it, specify the base driver and
-    vf driver, and configure it for 16 |VFs|.
+#.  Modify the device to enable it, specify the base driver and vf driver and
+    configure it for 16 VFs.
 
     .. code-block:: none
 
+        For ACC100:
+
         ~(keystone_admin)$ system host-device-modify controller-0 pci_0000_85_00_0 --driver igb_uio --vf-driver vfio -N 16
+
+    #.  To modify the ACC200 device to enable it, specify the base driver and
+        vf driver and configure it for 16 VFs.
+
+        .. code-block:: none
+
+            ~(keystone_admin)$ system host-device-modify controller-0 pci_0000_f7_00_0 --driver vfio-pci --vf-driver vfio -N 16
 
 #.  Unlock the host.
 
@@ -138,9 +151,10 @@ enables the Mount Bryce device.
 
 
 .. note::
-    For Mount Bryce ACC100 device, the number of |VF| bundles (``num_vf_bundles``)
+    For ACC100/ACC200 device, the number of |VF| bundles (``num_vf_bundles``)
     field is automatically changed in ``/usr/share/pf-bb-config/acc100/acc100_config_1vf_4g5g.cfg``
-    configuration file by updating the value of the ``-N`` parameter via the
+    or ``/usr/share/pf-bb-config/acc200/acc200_config_16vf.cfg`` configuration
+    file by updating the value of the ``-N`` parameter via the
     :command:`system host-device-modify` command.
 
     In addition to the automatic mode, if additional configuration is needed in
@@ -152,6 +166,5 @@ enables the Mount Bryce device.
 
 .. rubric:: |result|
 
-To set up pods using |SRIOV|, see :ref:`Setting Up Pods to Use SRIOV to Access
-Mount Bryce HW Accelerator <set-up-pods-to-use-sriov>`.
+To set up pods using |SRIOV|, see :ref:`Set Up Pods to Use SRIOV to Access ACC100/ACC200 HW Accelerators <set-up-pods-to-use-sriov>`.
 
