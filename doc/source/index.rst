@@ -146,6 +146,16 @@ Updates
    updates/index-updates-e3b970bb69ce
 
 
+--------
+KubeVirt
+--------
+
+.. toctree::
+   :maxdepth: 2
+
+   kube-virt/index-kubevirt-f1bfd2a21152
+   
+
 -----------
 Admin tasks
 -----------
