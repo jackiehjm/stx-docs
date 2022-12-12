@@ -5,7 +5,7 @@ Container Security Planning
 ===========================
 
 The following container security best practices are recommended as part of your
-network security planning. 
+network security planning.
 
 Restrict Direct (SSH) Access to Kubernetes Nodes
 ------------------------------------------------
@@ -18,7 +18,7 @@ Use Role-based Access Control (RBAC)
 ------------------------------------
 
 Define RBAC policies to exercise strict control over permissions granted to
-non-admin users. Restrict non-admin users to the minimum level of privileges. 
+non-admin users. Restrict non-admin users to the minimum level of privileges.
 
 Use Namespaces
 --------------
@@ -51,7 +51,7 @@ Specify Minimal-Required Security Context for Pods
 --------------------------------------------------
 
 Explicitly specify the minimal-required security context for pods, containers
-and volumes through pod security policies, for example: 
+and volumes through pod security policies, for example:
 
 -   runAsNonRoot
 
@@ -63,11 +63,15 @@ and volumes through pod security policies, for example:
 Kata Containers
 ---------------
 
+.. note::
+
+    Kata Containers will not be supported in |prod-long| |prod-ver|.
+
 Kata containers are an optional capability on |prod| that provide a secure
 container runtime with lightweight virtual machines that feel and perform like
 containers, but provide stronger workload isolation. For improved performance
 with relation to isolation, Kata containers leverages hardware-enforced isolation
-with virtualization VT extensions.   
+with virtualization VT extensions.
 
 For more information, see :ref:`starlingx-kubernetes-user-tutorials-overview`.
 
@@ -80,14 +84,14 @@ of security-sensitive aspects of Pod security. PodSecurityPolicies (PSP) define
 different levels of access to security-sensitive aspects of the pod. RBAC
 [Cluster]Roles can then be created for these PSPs, with RBAC
 [Cluster]RoleBindings of these roles to a ‘subject’ (i.e. users, groups,
-serviceaccounts, etc.). 
+serviceaccounts, etc.).
 
-The following considerations apply to PodSecurityPolicies (PSPs): 
+The following considerations apply to PodSecurityPolicies (PSPs):
 
 -   includes enabling or disabling options such as running as root, access to
     host filesystem, access to host networking, etc.
 
--   are disabled by default  
+-   are disabled by default
 
 -   can be enable by the System Administrator via **system service-parameter-add
     kubernetes kube_apiserver admission_plugins=PodSecurityPolicy**
@@ -105,8 +109,8 @@ usage:
     -    authenticated users can only perform a restricted set of
          security-sensitive options on Pods and only in namespaces the user
          is allowed to access
-    
-Administrator can then: 
+
+Administrator can then:
 
 -    create other custom PodSecurityPolicies and associated RBAC Roles
 
@@ -114,7 +118,7 @@ Administrator can then:
 
 
 ------------------------------------
-Container Image Signature Validation 
+Container Image Signature Validation
 ------------------------------------
 
 The Portieris admission controller allows you to enforce image security polices

@@ -6,7 +6,9 @@
 Kata Containers Overview
 ========================
 
-|prod| supports Kata Containers.
+.. note::
+
+    Kata Containers will not be supported in |prod-long| |prod-ver|.
 
 |prod| uses a **containerd** :abbr:`CRI (Container Runtime Interface)` that supports
 both runc and Kata Container runtimes. The default runtime is runc. If you want

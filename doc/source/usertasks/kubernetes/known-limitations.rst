@@ -6,6 +6,10 @@
 Known Kata Container Limitations
 ================================
 
+.. note::
+
+    Kata Containers will not be supported in |prod-long| |prod-ver|.
+
 This section describes the known limitations when using Kata containers.
 
 .. _known-limitations-section-tsh-tl1-zlb:

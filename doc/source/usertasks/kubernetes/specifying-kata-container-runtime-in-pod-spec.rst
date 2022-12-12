@@ -6,6 +6,10 @@
 Specify Kata Container Runtime in Pod Spec
 ==========================================
 
+.. note::
+
+    Kata Containers will not be supported in |prod-long| |prod-ver|.
+
 You can specify the use of Kata Container runtime in your pod specification by
 runtime class or by annotation.
 
