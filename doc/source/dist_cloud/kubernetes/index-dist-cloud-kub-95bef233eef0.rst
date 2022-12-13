@@ -52,7 +52,9 @@ Operation
     changing-the-admin-password-on-distributed-cloud
     updating-docker-registry-credentials-on-a-subcloud
     migrate-an-aiosx-subcloud-to-an-aiodx-subcloud
-    restoring-subclouds-from-backupdata-using-dcmanager
+    backup-a-subcloud-group-of-subclouds-using-dcmanager-cli-f12020a8fc42
+    delete-subcloud-backup-data-using-dcmanager-cli-9cabe48bc4fd
+    restore-a-subcloud-group-of-subclouds-from-backup-data-using-dcmanager-cli-f10c1b63a95e
     rehoming-a-subcloud
     prestage-a-subcloud-using-dcmanager-df756866163f
     add-a-horizon-keystone-user-to-distributed-cloud-29655b0f0eb9
