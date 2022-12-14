@@ -1,12 +1,12 @@
 .. _pod-security-admission-controller-8e9e6994100f:
 
-======================================================
-Technology Preview - Pod Security Admission Controller
-======================================================
+=================================
+Pod Security Admission Controller
+=================================
 
 Pod Security Admission (PSA) Controller is the |PSP| replacement, and this
-document describes the technical preview of |PSA| functionality which is 'beta'
-quality in K8S v1.23 .
+document describes the |PSA| functionality, which is 'beta' quality in
+Kubernetes v1.24 .
 
 The |PSA| admission controller acts on creation and modification of the pod and
 determines if it should be admitted based on the requested security context and
@@ -54,7 +54,7 @@ enforce
 
 audit
     Policy violations will trigger the addition of an audit annotation to the
-    event recorded in the K8S audit log but are otherwise allowed.
+    event recorded in the Kubernetes audit log but are otherwise allowed.
 
 warn
     Policy violations will trigger a user-facing warning but are otherwise
@@ -73,7 +73,7 @@ This is a generic namespace configuration using labels.
     pod-security.kubernetes.io/<MODE>: <LEVEL>
 
     # Optional: per-mode version label can be used to pin the policy to the
-    # version that shipped with a given Kubernetes minor version (e.g. v1.23).
+    # version that shipped with a given Kubernetes minor version (e.g. v1.24).
     #
     # MODE must be one of `enforce`, `audit`, or `warn`.
     # VERSION must be a valid Kubernetes minor version, or `latest`.
@@ -87,12 +87,12 @@ For more information refer to
 Enable Pod Security Admission
 -----------------------------
 
-To enable |PSA|, PodSecurity feature gate must be enabled.
+To enable |PSA|, Pod Security feature gate must be enabled.
 
-Starting with Kubernetes 1.23 version, PodSecurity feature gate is enabled by
+Starting with Kubernetes 1.24 version, Pod Security feature gate is enabled by
 default.
 
-For Kubernetes version 1.22, PodSecurity feature gate can be enabled using
+For Kubernetes version 1.22, Pod Security feature gate can be enabled using
 option ``feature-gates`` in bootstrap overrides file, ``localhost.yml``. As the
 example shown below:
 
@@ -111,8 +111,8 @@ configuration, ``apiserver_extra_args`` and ``apiserver_extra_volumes``.
 Configure defaults for the Pod Security Admission Controller
 ------------------------------------------------------------
 
-For the technology preview of the |PSA| controller, the |PSA| controller can be
-configured with default security polices and exemptions at bootstrap time.
+The |PSA| controller can be configured with default security polices and
+exemptions at bootstrap time.
 
 The Default |PSA| controller configuration will apply to namespaces that are
 not configured with the ``pod-security.kubernetes.io`` labels to specify a
@@ -120,11 +120,11 @@ security level and mode. For example if you display the namespace description
 using ``kubectl describe namespace <namespace>`` and the
 ``pod-security.kubernetes.io`` labels are not displayed, then the behavior of
 the namespace will follow the default |PSA| labels' level, mode and version
-configuration set with PodSecurity plugin of the AdmissionConfiguration
+configuration set with Pod Security plugin of the AdmissionConfiguration
 resource.
 
 To configure ``cluster-wide`` default policies and/or exemptions, the
-PodSecurity plugin of the AdmissionConfiguration resource can be used. The
+Pod Security plugin of the AdmissionConfiguration resource can be used. The
 AdmissionConfiguration resource is configurable at bootstrap time with the
 ``api-server_extra_args`` and ``apiserver_extra_volumes`` overrides in the
 ``localhost.yml`` file.
@@ -224,11 +224,11 @@ This page walks through a usage example of |PSA| where you will:
      name: baseline-ns
      labels:
       pod-security.kubernetes.io/enforce: baseline
-      pod-security.kubernetes.io/enforce-version: v1.23
+      pod-security.kubernetes.io/enforce-version: v1.24
       pod-security.kubernetes.io/warn: baseline
-      pod-security.kubernetes.io/warn-version: v1.23
+      pod-security.kubernetes.io/warn-version: v1.24
       pod-security.kubernetes.io/audit: baseline
-      pod-security.kubernetes.io/audit-version: v1.23
+      pod-security.kubernetes.io/audit-version: v1.24
 
     controller-0:~$ kubectl apply -f baseline-ns.yaml
 
@@ -239,11 +239,11 @@ This page walks through a usage example of |PSA| where you will:
      name: privileged-ns
      labels:
       pod-security.kubernetes.io/enforce: privileged
-      pod-security.kubernetes.io/enforce-version: v1.23
+      pod-security.kubernetes.io/enforce-version: v1.24
       pod-security.kubernetes.io/warn: privileged
-      pod-security.kubernetes.io/warn-version: v1.23
+      pod-security.kubernetes.io/warn-version: v1.24
       pod-security.kubernetes.io/audit: privileged
-      pod-security.kubernetes.io/audit-version: v1.23
+      pod-security.kubernetes.io/audit-version: v1.24
 
     controller-0:~$ kubectl apply -f privileged-ns.yaml
 
@@ -254,11 +254,11 @@ This page walks through a usage example of |PSA| where you will:
      name: restricted-ns
      labels:
       pod-security.kubernetes.io/enforce: restricted
-      pod-security.kubernetes.io/enforce-version: v1.23
+      pod-security.kubernetes.io/enforce-version: v1.24
       pod-security.kubernetes.io/warn: restricted
-      pod-security.kubernetes.io/warn-version: v1.23
+      pod-security.kubernetes.io/warn-version: v1.24
       pod-security.kubernetes.io/audit: restricted
-      pod-security.kubernetes.io/audit-version: v1.23
+      pod-security.kubernetes.io/audit-version: v1.24
 
     controller-0:~$ kubectl apply -f restricted-ns.yaml
 
