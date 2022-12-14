@@ -77,11 +77,11 @@ and target it at controller-0.
             yes/no: 'yes'
             sysadmin*: 'sysadmin'
             (current) UNIX password: 'sysadmin'
-            New password: 'Li69nux*'
-            Retype new password: 'Li69nux*'
-        admin_password: Li69nux*
-        ansible_become_pass: Li69nux*
-        ansible_ssh_pass: Li69nux*
+            New password: 'St8rlingX*'
+            Retype new password: 'St8rlingX*'
+        admin_password: St8rlingX*
+        ansible_become_pass: St8rlingX*
+        ansible_ssh_pass: St8rlingX*
 
     Save your changes and quit the editor. If you need to make additional
     changes, you can use the command :command:`ansible-vault edit
