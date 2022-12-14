@@ -27,6 +27,12 @@ System Data Backups include:
 
 -   home directory for the **sysadmin** user and all |LDAP| user accounts.
 
+.. warning::
+
+    During a system backup, if the files contained in 'sysadmin' user's home
+    directory (``/home/sysadmin``) result in the overall size of the backup
+    being larger than 2 Gbytes, the backup operation may fail.
+
 .. xreflink See |sec-doc|: :ref:`Local LDAP Linux User Accounts
     <local-ldap-linux-user-accounts>` for additional information.
 
