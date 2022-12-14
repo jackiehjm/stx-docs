@@ -24,6 +24,7 @@
 .. |eBPF| replace:: :abbr:`eBPF (Extended Berkeley Packet Filter)`
 .. |CA| replace:: :abbr:`CA (Certificate Authority)`
 .. |CAs| replace:: :abbr:`CAs (Certificate Authorities)`
+.. |CDI| replace:: :abbr:`CDI (Containerized Data Importer)`
 .. |CLI| replace:: :abbr:`CLI (Command Line Interface)`
 .. |CLIs| replace:: :abbr:`CLIs (Command Line Interfaces)`
 .. |CNI| replace:: :abbr:`CNI (Container Networking Interface)`
@@ -67,6 +68,7 @@
 .. |IPMI| replace:: :abbr:`IPMI (Intelligent Platform Management Interface)`
 .. |IOPS| replace:: :abbr:`IOPS (I/O operations per second)`
 .. |IRQ| replace:: :abbr:`IRQ (Interrupt Request)`
+.. |ISA| replace:: :abbr:`ISA (Instruction Set Architecture)`
 .. |KVM| replace:: :abbr:`KVM (Kernel-based Virtual Machine)`
 .. |LACP| replace:: :abbr:`LACP (Link Aggregation Control Protocol)`
 .. |LAG| replace:: :abbr:`LAG (Link Aggregation)`
@@ -141,6 +143,7 @@
 .. |SRIOVs| replace:: :abbr:`SR-IOVs (Single Root I/O Virtualizations)`
 .. |SSD| replace:: :abbr:`SSD (Solid State Drive)`
 .. |SSDs| replace:: :abbr:`SSDs (Solid State Drives)`
+.. |SSSD| replace:: :abbr:`SSSD (System Security Services Daemon)`
 .. |SSH| replace:: :abbr:`SSH (Secure Shell)`
 .. |SSL| replace:: :abbr:`SSL (Secure Socket Layer)`
 .. |STP| replace:: :abbr:`STP (Spanning Tree Protocol)`
