@@ -6,19 +6,33 @@
 PTP Notifications Overview
 ==========================
 
-|prod-long| supports applications that rely on |PTP| for synchronization. These
-applications are able to receive |PTP| status notifications from
-|prod-long| hosting the application.
+|prod-long| provides ``ptp-notification`` to support applications that rely on
+|PTP| for time synchronization and require the ability to determine if the system
+time is out of sync. ``ptp-notification`` provides the ability for user applications
+to query the sync state of hosts as well as subscribe to push notifications for
+changes in the sync status.
 
 |prod-long| provides a Sidecar, which runs with the hosted application in the
 same pod and communicates with the application via a REST API.
 
-|prod-long| supports the following features:
+PTP-notification consists of two main components:
 
+-  The ``ptp-notification`` system application can be installed on nodes
+   using |PTP| clock synchronization. This monitors the various time services
+   and provides the v1 and v2 REST API for clients to query and subscribe to.
+
+-  The ``ptp-notification`` sidecar. This is a container image which can be
+   configured as a sidecar and deployed alongside user applications that wish
+   to use the ``ptp-notification`` API. User applications only need to be
+   aware of the sidecar, making queries and subscriptions via its API.
+   The sidecar handles locating the appropriate ``ptp-notification`` endpoints,
+   executing the query and returning the results to the user application.
 
 .. _ptp-notifications-overview-ul-ggf-x1f-t4b:
 
--   Provides the capability to enable application\(s\) subscribe to |PTP| status
+|prod-long| supports the following features:
+
+-   Provides the capability to enable application(s) subscribe to |PTP| status
     notifications and pull for the |PTP| state on demand.
 
 -   Uses a REST API to communicate |PTP| notifications to the application.
@@ -29,56 +43,57 @@ same pod and communicates with the application via a REST API.
     <https://docs.starlingx.io/api-ref/ptp-notification-armada-app/index.html>`__.
 
 -   Supports the **ptp4l** module and |PTP| port that is configured in
-    Subordinate mode \(Secondary mode\).
+    Subordinate mode (Secondary mode).
 
 -   The |PTP| notification Sidecar container can be configured with a Liveness
     Probe, if required. See, :ref:`Liveness Probe <liveness-probe>` for more
     information.
 
--   The |PTP| status notifications are derived based on the following conditions:
-
-
 .. _ptp-notifications-overview-simpletable-n1r-dcf-t4b:
 
+---------------------------------------
+Differences between v1 and v2 REST APIs
+---------------------------------------
 
-.. table::
-    :widths: auto
+Use of the v1 and v2 APIs is distinguished by the version identifier in the
+URI when interacting with the sidecar container. Both are always available.
+For example:
 
-    +---------------------+---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Clock Status        | Status                                            | Description                                                                                                                                                       |
-    +=====================+===================================================+===================================================================================================================================================================+
-    | Freerun             | Clock is out of sync state                        | -   If portState is not "SECONDARY" or ClockClass value is NOT "6, 7 or 135" or timeTraceable flag is FALSE.                                                      |
-    |                     |                                                   |                                                                                                                                                                   |
-    |                     |                                                   | -   If holdover time exceeds its provided value.                                                                                                                  |
-    |                     |                                                   |                                                                                                                                                                   |
-    |                     |                                                   | -   If PMC, ptp4l.conf, ptp4l or phc2sys are not accessible.                                                                                                      |
-    +---------------------+---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Locked              | Clock is in sync state                            | If portState is "SECONDARY" and ClockClass value is "6, 7 or 135" and timeTraceable flag is TRUE and PMC, ptp4l.conf, ptp4l or phc2sys are accessible.            |
-    +---------------------+---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | Holdover            | Clock is in holdover state                        | * For NICs using the Intel ice driver: If the state is transitioned from ``Locked`` to ``Holdover`` AND phc2sys is accessible, and holdover time does not expire. |
-    |                     |                                                   |                                                                                                                                                                   |
-    |                     |                                                   | * For other NIC types: If the state is transitioned from ``Locked`` to ``Freerun`` AND phc2sys is accessible, and holdover time does not expire.                  |
-    +---------------------+---------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+**v1 API**
+
+-  /ocloudNotifications/v1/subscriptions
+
+-  /ocloudNotifications/v2/subscriptions
+
+The v1 API is maintained for backward compatibility with existing deployments.
+New deployments should use the v2 API.
+
+**v1 Limitations**
+
+-  Support for monitoring a single ``ptp4l`` instance per host - no other services
+   can be queried/subscribed to.
+
+-  API does not conform to the O-RAN.WG6.O-Cloud Notification API-v02.01
+   standard.
+
+See the respective ``ptp-notification`` v1 and v2 document subsections for
+details on the behaviour.
 
 **Integrated Containerized Applications**
 
-.. _ptp-notifications-overview-ul-rn5-5w2-t4b:
-
 -   Applications that rely on |PTP| for synchronization have the ability to
-    retrieve the relevant data that indicates the status of the PHC clock related
-    to the worker node that the application is running on.
+    retrieve the relevant data for the status of the monitored service. User
+    applications may subscribe to notifications from multiple service types
+    and from multiple separate nodes.
 
 -   Once an application subscribes to |PTP| notifications it receives the initial
-    data that shows the PHC synchronization state, and receives notifications when
-    there is a state change to the sync status and/or per request for notification
-    \(pull\).
-
+    data that shows the service state, and receives notifications when there is
+    a state change to the sync status and/or per request for notification (pull).
 
 The figure below describes the subscription framework for |PTP| notifications.
 
 .. image:: figures/gvf1614702096862.png
    :width: 500
-
 
 **Liveness Probe**
 

@@ -79,7 +79,6 @@ PTP Notifications
 
    install-ptp-notifications
    remove-ptp-notifications
-   override-default-application-values
 
 ------------------
 O-RAN O2 Interface

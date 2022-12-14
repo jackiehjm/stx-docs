@@ -9,33 +9,32 @@ Remove PTP Notifications
 You can remove all pods and Kubernetes resources created during the application
 deployment.
 
-
 Use the following procedure to remove |PTP| notifications.
-
 
 .. rubric:: |proc|
 
-
-.. _remove-ptp-notifications-steps-klx-gnf-t4b:
-
-#.  Remove all pods and other Kubernetes resources created during the
-    deployment, using the following command:
+#.  Remove the ``ptp-notification`` application and verify the application
+    status move backs to "uploaded" using the following command:
 
     .. code-block:: none
 
         ~(keystone_admin)]$ system application-remove ptp-notification
+        ~(keystone_admin)]$ system application-list
 
-#.  Delete the ptp-notification from sysinv.
+#.  Delete the ``ptp-notification`` and verify the application is removed from
+    the application list.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ system application-delete ptp-notification
+        ~(keystone_admin)]$ system application-list
 
-#.  Remove labels applied to controller-0, using the following commands, for example:
+#.  Remove labels applied to controller-0, (repeat for each labelled host)
+    using the following commands, for example:
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system host-label-remove controller-0 ptp-notification
-        ~(keystone_admin)]$ system host-label-remove controller-0 ptp-registration
+        ~(keystone_admin)]$ system host-label-remove <host name> ptp-notification
+        ~(keystone_admin)]$ system host-label-remove <host name> ptp-registration
 
 
