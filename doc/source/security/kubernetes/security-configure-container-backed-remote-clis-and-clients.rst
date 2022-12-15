@@ -87,7 +87,7 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
         .. code-block:: none
 
             ~(keystone_admin)]$ USER="admin-user"
-            ~(keystone_admin)]$ OUTPUT_FILE="temp-kubeconfig"
+            ~(keystone_admin)]$ OUTPUT_FILE="admin-kubeconfig"
 
     #.  Create an account definition file.
 
@@ -209,14 +209,15 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
 
         OS_CACERT=<path_to_ca_>
 
-    where ``<path_to_ca>`` is the full filename of the PEM file for the CA
+    where ``<path_to_ca>`` is the full filename of the PEM file for the CA
     Certificate that signed the |prod| REST APIs Endpoint Certificate.
+    Copy the file ``admin-openrc.sh`` to the remote workstation. This example
+    assumes it is copied to the location of the extracted tarball.
 
 #.  Copy the admin-kubeconfig file to the remote workstation.
 
-    You can copy the file to any location on the remote workstation. For
-    convenience, this example assumes that it is copied to the location of
-    the extracted tarball.
+    You can copy the file to any location on the remote workstation. This
+    example assumes that it is copied to the location of the extracted tarball.
 
 #.  On the remote workstation, configure remote CLI/client access.
 
@@ -241,11 +242,11 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
             $ mkdir -p $HOME/remote_cli_wd
 
 
-    #.  Run the :command:`configure\_client.sh` script.
+    #.  Run the :command:`configure_client.sh` script.
 
         .. parsed-literal::
 
-            $ ./configure_client.sh -t platform -r admin_openrc.sh -k admin-kubeconfig -w HOME/remote_cli_wd -p |registry-url|/starlingx/stx-platformclients:stx.5.0-v1.4.3
+            $ ./configure_client.sh -t platform -r admin_openrc.sh -k admin-kubeconfig -w $HOME/remote_cli_wd -p <wind-river-registry-url>/docker.io/starlingx/stx-platformclients:stx.8.0-v1.5.9
 
         If you specify repositories that require authentication, as shown
         above, you must first perform a :command:`docker login` to that
@@ -300,7 +301,7 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
 
         .. parsed-literal::
 
-            $ ./configure_client.sh -t platform -r admin-openrc.sh -k admin-kubeconfig -w $HOME/remote_cli_wd -p |registry-url|/starlingx/stx-platformclients:stx.5.0-v1.4.3
+            $ ./configure_client.sh -t platform -r admin_openrc.sh -k admin-kubeconfig -w $HOME/remote_cli_wd -p <wind-river-registry-url>/docker.io/starlingx/stx-platformclients:stx.8.0-v1.5.9
 
         If you specify repositories that require authentication, you must first
         perform a :command:`docker login` to that repository before using
