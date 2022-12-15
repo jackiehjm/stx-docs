@@ -61,6 +61,10 @@ The following elements form part of the software update environment:
         This records user actions that involve software updates, performed
         using either the CLI or the REST API.
 
+    **patching-insvc.log**
+        This records the execution of patch scripts while in-service patches are
+        applied.
+
 The overall flow for installing a software update from the command line
 interface on a working |prod| cluster is the following:
 

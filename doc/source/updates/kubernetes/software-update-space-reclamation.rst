@@ -11,9 +11,8 @@ versions of software updates once newer versions have been committed.
 
 The :command:`sw-patch commit` command allows you to “commit” a set of software
 updates, which effectively locks down those updates and makes them unremovable.
-In doing so, |prod-long| is then able to delete package files with lower
-versions from the storage and repo, keeping only the highest version of each
-package in the committed software update set.
+In doing so, |prod-long| is able to free up the disk space in patch storage and
+the software repo.
 
 .. caution::
     This action is irreversible.
