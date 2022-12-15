@@ -41,7 +41,7 @@ subcloud, the subcloud installation has these phases:
 .. _installing-a-subcloud-using-redfish-platform-management-service-ul-g5j-3f3-qjb:
 
 -   The docker **rvmc** image needs to be added to the System Controller
-    bootstrap override file, ``docker.io/starlingx/rvmc:stx.5.0-v1.0.0``.
+    bootstrap override file, ``docker.io/starlingx/rvmc:stx.8.0-v1.0.1``.
 
 -   A new system CLI option ``--active`` is added to the
     :command:`load-import` command to allow the import into the

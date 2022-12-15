@@ -234,7 +234,7 @@ You can install |O-RAN| O2 application on |prod| from the command line.
           EOF
 
       To deploy other versions of an image required for a quick solution, to
-      have early access to the features (eg. oranscinf/pti-o2imsdms:2.0.1), and
+      have early access to the features (eg. oranscinf/pti-o2imsdms:2.0.0), and
       to authenticate images that are hosted by a private registry, follow the
       steps below:
 
@@ -260,7 +260,7 @@ You can install |O-RAN| O2 application on |prod| from the command line.
                serviceaccountname: admin-oran-o2
                images:
                  tags:
-                   o2service: ${O2SERVICE_IMAGE_REG}/docker.io/oranscinf/pti-o2imsdms:2.0.1
+                   o2service: ${O2SERVICE_IMAGE_REG}/docker.io/oranscinf/pti-o2imsdms:2.0.0
                    postgres: ${O2SERVICE_IMAGE_REG}/docker.io/library/postgres:9.6
                    redis: ${O2SERVICE_IMAGE_REG}/docker.io/library/redis:alpine
                  pullPolicy: IfNotPresent
