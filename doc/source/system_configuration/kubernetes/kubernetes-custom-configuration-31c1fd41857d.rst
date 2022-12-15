@@ -9,27 +9,23 @@ Introduction
 ------------
 
 Kubernetes configuration can be customized during deployment by specifying
-bootstrap overrides in the localhost.yml file during the Ansible bootstrap
-process.
+bootstrap overrides in the ``localhost.yml`` file during the Ansible bootstrap
+process or during runtime via ``sysinv service-parameters`` |CLI|.
 
-.. note::
-
-      Kubernetes custom configuration is only applicable to the bootstrap phase
-      and runtime support is not available.
 
 Custom configuration includes:
 
--   Configuring options on kube-apiserver such as feature gates and admission
+-   Configuring options on ``kube-apiserver`` such as feature gates and admission
     controllers,
 
--   Configuring options on kube-controller-manager such as node-monitor-period
-    and pod-eviction-timeout,
+-   Configuring options on ``kube-controller-manager`` such as
+-   ``node-monitor-period`` and ``pod-eviction-timeout``,
 
--   Configuring options on kube-scheduler such as feature gates
+-   Configuring options on ``kube-scheduler`` such as feature gates,
 
 -   Configuring options on kubelet such as maximum pods and enabling unsafe
     sysctls.
-    
+
 ----------------------------
 kube-apiserver configuration
 ----------------------------
@@ -39,23 +35,63 @@ which include pods, services, replicationcontrollers, and others. The API
 Server services REST operations and provides the frontend to the cluster's
 shared state through which all other components interact.
 
-For a list of all configurable options of kube-apiserver, see https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/ .
+For a list of all configurable options of kube-apiserver, see `kube-apiserver
+<https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/>`__.
 
-To set or override a kube-apiserver option, add the desired parameters to an
-apiserver_extra_args section in the localhost.yml.
+**Bootstrap configuration**
+
+To set or override a ``kube-apiserver`` option, add the desired parameters to an
+``apiserver_extra_args`` section in the ``localhost.yml``.
 
 Example usage:
 
 .. code-block::
 
    apiserver_extra_args:
-     admission-control-config-file: "/etc/kubernetes/admission-control-config-file.yml"
-     audit-policy-file: "/etc/kubernetes/audit-policy-file.yml"
-     default-not-ready-toleration-seconds: "35"
-     default-unreachable-toleration-seconds: "35"
-     feature-gates: "SCTPSupport=true,TTLAfterFinished=true,HugePageStorageMediumSize=true,RemoveSelfLink=false,MemoryManager=true"
-     enable-admission-plugins: "NodeRestriction,PodNodeSelector"
-     event-ttl: "20h"
+    admission-control-config-file: "/etc/kubernetes/admission-control-config-file.yml"
+    audit-policy-file: "/etc/kubernetes/audit-policy-file.yml"
+    default-not-ready-toleration-seconds: "35"
+    default-unreachable-toleration-seconds: "35"
+    enable-admission-plugins: "NodeRestriction,PodNodeSelector"
+    event-ttl: "20h"
+
+
+**Runtime configuration**
+
+To set, modify or delete a ``kube-apiserver`` parameter use the
+service-parameter add, modify or delete |CLI| command.
+
+Example usage:
+
+- Add new parameter
+
+  .. code-block:: none
+
+      system service-parameter-add kubernetes kube_apiserver default-not-ready-toleration-seconds=31
+
+      system service-parameter-apply kubernetes
+
+  .. note::
+
+    Parameter must not exists on service parameters, otherwise use :command:`modify`
+    command.
+
+- Modify existing parameter
+
+  .. code-block:: none
+
+      system service-parameter-modify kubernetes kube_apiserver default-not-ready-toleration-seconds=33
+
+      system service-parameter-apply kubernetes
+
+- Delete parameter
+
+  #.  system service-parameter-list
+
+  #.  copy parameter uuid to be deleted
+
+  #.  system service-parameter-delete <uuid>
+
 
 -------------------------------------
 kube-controller-manager configuration
@@ -67,11 +103,15 @@ shared state of the cluster through the apiserver and makes changes attempting
 to move the current state towards the desired state.
 
 For a list of all configurable options of kube-controller-manager, see
-https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/
-.
+`kube-controller-manager
+<https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/>`__.
 
-To set or override a kube-controller-manager option, add the desired parameters
-to an controllermanager_extra_args section in the localhost.yml .
+
+**Bootstrap configuration**
+
+To set or override a ``kube-controller-manager`` option, add the desired
+parameters to an ``controllermanager_extra_args`` section in the
+``localhost.yml`` .
 
 
 Example usage:
@@ -79,10 +119,48 @@ Example usage:
 .. code-block::
 
    controllermanager_extra_args:
-     node-monitor-period: "4s"
-     node-monitor-grace-period: "25s"
-     pod-eviction-timeout: '35s'
-     feature-gates: "TTLAfterFinished=true,MemoryManager=true"
+    node-monitor-period: "4s"
+    node-monitor-grace-period: "25s"
+    pod-eviction-timeout: '35s'
+    feature-gates: "TTLAfterFinished=true,MemoryManager=true"
+
+
+**Runtime configuration**
+
+To set, modify or delete a ``kube-controller-manager`` parameter use the
+service-parameter add, modify or delete |CLI| command.
+
+Example usage:
+
+- Add new parameter
+
+  .. code-block:: none
+
+      system service-parameter-add kubernetes kube_controller_manager node-monitor-period=5s
+
+      system service-parameter-apply kubernetes
+
+  .. note::
+
+    Parameter must not exists on service parameters, otherwise use :command:`modify`
+    command.
+
+- Modify existing parameter
+
+  .. code-block:: none
+
+      system service-parameter-modify kubernetes kube_controller_manager node-monitor-period=7s
+
+      system service-parameter-apply kubernetes
+
+- Delete parameter
+
+  #.  system service-parameter-list
+
+  #.  copy parameter uuid to be deleted
+
+  #.  system service-parameter-delete <uuid>
+
 
 ----------------------------
 kube-scheduler configuration
@@ -95,17 +173,57 @@ scheduler then ranks each valid Node and binds the Pod to a suitable Node.
 Multiple different schedulers may be used within a cluster; kube-scheduler is
 the reference implementation.
 
-For a list of all configurable options of kube-scheduler, see https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/> .
+For a list of all configurable options of ``kube-scheduler``, see `kube-scheduler
+<https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/>`__.
 
-To set or override a kube-scheduler option, add the desired parameters to an
-scheduler_extra_args section in the localhost.yml .
+**Bootstrap configuration**
+
+To set or override a ``kube-scheduler`` option, add the desired parameters to an
+``scheduler_extra_args`` section in the ``localhost.yml`` .
 
 Example usage:
 
 .. code-block::
-    
+
    scheduler_extra_args:
      feature-gates: "TTLAfterFinished=false"
+
+**Runtime configuration**
+
+To set, modify or delete a ``kube-controller-manager`` parameter use the
+service-parameter add, modify or delete |CLI| command.
+
+Example usage:
+
+- Add new parameter
+
+  .. code-block:: none
+
+      system service-parameter-add kubernetes kube_scheduler leader-elect-lease-duration=16s
+
+      system service-parameter-apply kubernetes
+
+  .. note::
+
+    Parameter must not exists on service parameters, otherwise use :command:`modify`
+    command.
+
+- Modify existing parameter
+
+  .. code-block:: none
+
+      system service-parameter-modify kubernetes kube_scheduler leader-elect-lease-duration=14s
+
+      system service-parameter-apply kubernetes
+
+- Delete parameter
+
+  #.  system service-parameter-list
+
+  #.  copy parameter uuid to be deleted
+
+  #.  system service-parameter-delete <uuid>
+
 
 ----------------------
 kubelet configurations
@@ -113,10 +231,16 @@ kubelet configurations
 
 The kubelet is the primary "node agent" that runs on each node.
 
-For a list of all configurable  options, see https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/ .
+For a list of all configurable  options, see `Kubelet Configuration (v1beta1)
+<https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/>`__.
 
 To set or override a kubelet option, add the desired parameters to an
-kubelet_configurations section in the localhost.yml .
+``kubelet_configurations`` section in the ``localhost.yml`` .
+
+.. important::
+
+    Custom Kubelet configuration is not supported during runtime. This feature
+    will be supported in the next release.
 
 Example usage:
 
@@ -131,28 +255,36 @@ Example usage:
 apiserver_extra_volumes, controllermanager_extra_volumes, scheduler_extra_volumes
 ---------------------------------------------------------------------------------
 
-Some options/parameters specified in **apiserver_extra_args**,
-**controllermanager_extra_args** and **scheduler_extra_volumes** refer to a
-configuration file.  The contents of these files are configured in the
-bootstrap overrides (localhost.yml) with the apiserver_extra_volumes,
-controllermanager_extra_volumes and scheduler_extra_volumes definitions.
+Some options/parameters specified in ``apiserver_extra_args``,
+``controllermanager_extra_args`` and ``scheduler_extra_volumes`` refer to a
+configuration file. The contents of these files are configured in the bootstrap
+overrides (``localhost.yml``) with the ``apiserver_extra_volumes``,
+``controllermanager_extra_volumes`` and ``scheduler_extra_volumes``
+definitions.
+
+.. important::
+
+    Kubernetes custom configuration of extra-volumes for ``kube-apiserver``,
+    ``kube-controller-manager`` and ``kube-scheduler`` are not supported during
+    runtime. This feature will be supported in the next release.
+
 
 For instance, if admission plugins are configured and need additional
 configuration, that configuration should be set in a specific file referenced
-by the **admission-control-config-file** parameter.
+by the ``admission-control-config-file`` parameter.
 
-See the example below where the 'admission-control-config-file' option and the
-'PodNodeSelector' admission plugin is specified for kube-apiserver.  Both of
-these options require the specification of a yaml file.
+See the example below where the ``admission-control-config-file`` option and
+the ``PodNodeSelector`` admission plugin is specified for ``kube-apiserver``.
+Both of these options require the specification of a yaml file.
 
 Example usage:
 
-.. code-block:: 
+.. code-block::
 
    apiserver_extra_args:
      admission-control-config-file: "/etc/kubernetes/admission-control-config-file.yaml"
      enable-admission-plugins: "PodNodeSelector"
- 
+
    apiserver_extra_volumes:
      - name: admission-control-config-file
        mountPath: "/etc/kubernetes/admission-control-config-file.yaml"
@@ -206,13 +338,12 @@ audited.
 
 Example usage:
 
-.. code-block:: 
+.. code-block::
 
-    
    apiserver_extra_args:
      audit-policy-file: /etc/kubernetes/audit-policy-file.yaml
      audit-log-path: /var/log/kubernetes/audit/audit.log
- 
+
    apiserver_extra_volumes:
      - name: audit-policy-file
        mountPath: "/etc/kubernetes/audit-policy-file.yaml"
@@ -233,7 +364,7 @@ Example usage:
 Complex Example configuration
 -----------------------------
 
-.. code-block:: 
+.. code-block::
 
    apiserver_extra_args:
      admission-control-config-file: "/etc/kubernetes/admission-control-config-file.yml"
@@ -247,21 +378,21 @@ Complex Example configuration
      audit-log-maxage: "1"
      audit-log-maxbackup: "2"
      audit-log-maxsize: "1"
- 
+
    scheduler_extra_args:
      feature-gates: "TTLAfterFinished=false"
- 
+
    controllermanager_extra_args:
      node-monitor-period: "4s"
      node-monitor-grace-period: "25s"
      pod-eviction-timeout: '35s'
      feature-gates: "TTLAfterFinished=true,MemoryManager=true"
-    
+
    kubelet_configurations:
      featureGates:
        MemoryManager: true
        HugePageStorageMediumSize: true
- 
+
    apiserver_extra_volumes:
      - name: admission-control-config-file
        mountPath: "/etc/kubernetes/admission-control-config-file.yml"
@@ -296,7 +427,7 @@ Complex Example configuration
        mountPath: "/var/log/kubernetes/audit/"
        readOnly: false
        pathType: 'DirectoryOrCreate'
- 
+
    scheduler_extra_volumes:
      - name: sch-admission-control-config-file
        mountPath: "/etc/kubernetes/admission-control-config-file.yml"
@@ -327,7 +458,7 @@ Complex Example configuration
          kind: Policy
          rules:
          - level: Metadata
- 
+
    controllermanager_extra_volumes:
       - name: cm-admission-control-config-file
         mountPath: "/etc/kubernetes/admission-control-config-file.yml"
