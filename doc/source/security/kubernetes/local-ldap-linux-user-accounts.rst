@@ -41,46 +41,32 @@ Local |LDAP| user accounts share the following set of attributes:
 -   Login sessions are logged out automatically after about 15 minutes of
     inactivity.
 
--   After each unsuccessful login attempt, a 15 second delay is imposed before
-    making another attempt. If you attempt to login before 15 seconds the
-    system will display a message such as:
+-   After each unsuccessful login attempt, a 3 second delay is imposed before
+    making another attempt. After five consecutive unsuccessful login attempts,
+    further attempts are blocked for about five minutes. On further attempts
+    within 5 minutes, the system will display a message such as:
 
-    ``Account temporary locked (10 seconds left)``
+    ``Account locked due to 6 failed logins``
 
-    .. note:: On Debian-based |prod| systems, this delay is 3 seconds.
+    .. note::
 
-    -   After five consecutive unsuccessful login attempts, further attempts are
-        blocked for about five minutes. On further attempts within 5 minutes, the
-        system will display a message such as:
+         You are alerted on the 6th and subsequent attempts:
 
-        ``Account locked due to 6 failed logins``
+         ``Account locked due to 6 failed logins``
 
-        .. note::
+         and an error message is displayed on subsequent attempts:
 
-            On Debian-based |prod| systems, you are alerted on the 6th and
-            subsequent attempts:
+         ``Maximum number of tries exceeded (5)``
 
-            ``Account locked due to 6 failed logins``
+    To clarify, 5 mins after the account is locked, the failed attempts will
+    be reset and failed attempts re-counted.
 
-            and an error message is displayed on subsequent attempts:
-
-            ``Maximum number of tries exceeded (5)``
-
-        To clarify, on CentOS-based |prod| systems, the 5 minute block is not an
-        absolute window, but a sliding one. That is, if you keep attempting to log
-        in within those 5 minutes, the window keeps sliding and the you remain
-        blocked. Therefore, you should not attempt any further login attempts for 5
-        minutes after 5 unsuccessful login attempts.
-
-        On Debian-based |prod| systems, 5 mins after the account is locked, the
-        failed attempts will be reset and failed attempts re-counted.
-
--   All authentication attempts are recorded on the file /var/log/auth.log
+-   All authentication attempts are recorded on the file ``/var/log/auth.log``
     of the target host.
 
 -   Home directories and passwords are backed up and restored by the system
-    backup utilities. Note that only passwords are synced across hosts \(both
-    |LDAP| users and **sysadmin**\). Home directories are not automatically
+    backup utilities. Note that only passwords are synced across hosts (both
+    |LDAP| users and **sysadmin**). Home directories are not automatically
     synced and are local to that host.
 
 

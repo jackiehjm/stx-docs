@@ -19,7 +19,8 @@ cluster using standard Linux commands.
 -   Password changes are not enforced automatically on the first login, and
     they are not propagated by the system \(only for 'sysadmin'\).
 
--   **If the administrator wants to provision additional access to the system, it is better to configure local LDAP Linux accounts.**
+-   **If the administrator wants to provision additional access to the system,
+    it is better to configure local |LDAP| Linux accounts.**
 
 -   |LDAP| accounts are centrally managed; changes made on any host are
     propagated automatically to all hosts on the cluster.
@@ -35,7 +36,7 @@ cluster using standard Linux commands.
 -   The accounts block following five consecutive unsuccessful login
     attempts. They unblock automatically after a period of about five minutes.
 
--   All authentication attempts are recorded on the file /var/log/auth.log
+-   All authentication attempts are recorded on the file ``/var/log/auth.log``
     of the target host.
 
 

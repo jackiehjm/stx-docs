@@ -39,7 +39,7 @@ Each entry in the table includes the following variables:
 
 -   wrsEventSuppressionAllowed
 
-See https://opendev.org/starlingx/snmp-armada-app/src/branch/master/stx-snmp-helm/centos/docker/stx-snmp/mibs/wrsAlarmMib.mib.txt
+See https://opendev.org/starlingx/snmp-armada-app/src/branch/master/stx-snmp-helm/docker/stx-snmp/mibs/wrsAlarmMib.mib.txt
 for alarm details.
 
 An external |SNMP| manager can examine the Event table contents by doing an |SNMP|
