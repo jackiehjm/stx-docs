@@ -91,6 +91,14 @@ collectd Configuration
    configure-collectd-to-store-host-performance-data-caf7802851bc
 
 
+---------------------------------
+Change Intel Multi-Driver Version
+---------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   intel-multi-driver-version-5e23e989daf5
 
 ----------------------
 Application Management
