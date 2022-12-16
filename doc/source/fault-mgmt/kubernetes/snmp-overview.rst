@@ -71,7 +71,7 @@ and SNMP groups, as follows:
 -   coldStart and warmStart Traps
 
 -   support for Enterprise Registration and Alarm MIBs, see
-    `https://opendev.org/starlingx/snmp-armada-app/src/branch/master/stx-snmp-helm/centos/docker/stx-snmp/mibs <https://opendev.org/starlingx/snmp-armada-app/src/branch/master/stx-snmp-helm/centos/docker/stx-snmp/mibs>`__
+    https://opendev.org/starlingx/snmp-armada-app/src/branch/master/stx-snmp-helm/docker/stx-snmp/mibs
 
 .. _snmp-overview-section-N100C9-N1001F-N10001:
 

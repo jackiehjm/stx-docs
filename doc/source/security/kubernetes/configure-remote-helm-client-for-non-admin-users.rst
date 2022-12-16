@@ -107,11 +107,11 @@ applications with a Helm v2 chart.
         .. code-block:: none
 
             % kubectl get nodes -o wide
-            NAME           STATUS   ROLES    AGE    VERSION   INTERNAL-IP       EXTERNAL-IP   OS-IMAGE ...
-            controller-0   Ready    master   15h    v1.12.3   192.168.204.3     <none>        CentOS L ...
-            controller-1   Ready    master   129m   v1.12.3   192.168.204.4     <none>        CentOS L ...
-            worker-0       Ready    <none>   99m    v1.12.3   192.168.204.201   <none>        CentOS L ...
-            worker-1       Ready    <none>   99m    v1.12.3   192.168.204.202   <none>        CentOS L ...
+            NAME           STATUS   ROLES                  AGE   VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION   CONTAINER-RUNTIME
+            compute-0      Ready    <none>                 9d    v1.24.4   192.168.204.69   <none>        Debian GNU/Linux 11 (bullseye)   5.10.0-6-amd64   containerd://1.4.12
+            compute-1      Ready    <none>                 9d    v1.24.4   192.168.204.7    <none>        Debian GNU/Linux 11 (bullseye)   5.10.0-6-amd64   containerd://1.4.12
+            controller-0   Ready    control-plane,master   9d    v1.24.4   192.168.204.3    <none>        Debian GNU/Linux 11 (bullseye)   5.10.0-6-amd64   containerd://1.4.12
+            controller-1   Ready    control-plane,master   9d    v1.24.4   192.168.204.4    <none>        Debian GNU/Linux 11 (bullseye)   5.10.0-6-amd64   containerd://1.4.12
             %
 
 #.  Install the Helm v2 client on remote workstation.

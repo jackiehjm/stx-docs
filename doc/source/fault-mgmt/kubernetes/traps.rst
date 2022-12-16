@@ -68,5 +68,5 @@ alarm. This is done to facilitate the interaction with most SNMP trap viewers
 which use the Notification Type to drive the coloring of traps, that is, red
 for critical, yellow for minor, and so on.
 
-See https://opendev.org/starlingx/snmp-armada-app/src/branch/master/stx-snmp-helm/centos/docker/stx-snmp/mibs/wrsAlarmMib.mib.txt
+See https://opendev.org/starlingx/snmp-armada-app/src/branch/master/stx-snmp-helm/docker/stx-snmp/mibs/wrsAlarmMib.mib.txt
 for alarm details.

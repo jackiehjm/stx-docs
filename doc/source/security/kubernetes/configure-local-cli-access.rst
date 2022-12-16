@@ -55,18 +55,6 @@ required system maintenance, administration and troubleshooting tasks.
             % echo "export KUBECONFIG=~/.kube/config" >> ~/.profile
             % exit
 
-        .. note::
-            The command
-
-            .. code-block:: none
-
-                echo "export KUBECONFIG=~/.kube/config" >> ~/.profile
-
-            shown above is specific to CentOS. Substitute the correct syntax for your operating system. The following alternative is for Ubuntu:
-
-            .. code-block:: none
-
-                echo "export KUBECONFIG=~/.kube/config" >> ~/.bashrc
 
     #.  Confirm that the <KUBECONFIG> environment variable is set correctly
         and that :command:`kubectl` commands are functioning properly.
