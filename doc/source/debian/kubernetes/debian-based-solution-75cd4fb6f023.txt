@@ -4,7 +4,7 @@
 Debian-based Solution
 =====================
 
-Major features of Debian-based |prod| will include:
+Major features of Debian-based |prod| include:
 
 *  Linux 5.10 Yocto-based kernel ( https://www.yoctoproject.org/ )
 
@@ -18,7 +18,7 @@ Major features of Debian-based |prod| will include:
 
    * provides predictable and searchable |CVE| handling.
 
-|org| will also leverage its existing relationships with the Yocto Project to
+|org| leverages its existing relationships with the Yocto Project to
 enhance development, bug fixes and other activities in the Yocto Project kernel
 to drive |prod| quality and feature content.
 

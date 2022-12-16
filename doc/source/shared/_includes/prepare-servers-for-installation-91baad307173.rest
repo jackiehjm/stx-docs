@@ -106,7 +106,7 @@ host types are:
           |UEFI| Secure Boot and |UEFI| |PXE| boot over IPv6 are not supported. On
           systems with an IPv6 management network, you can use a separate IPv4
           network for |PXE| boot. For more information, see
-          :ref:`configuring-a-pxe-boot-server-r7`.
+          :ref:`pxe-boot-controller-0-d5da025c2524`.
    * - BIOS settings
      - * Hyper-Threading technology enabled
 
@@ -239,7 +239,7 @@ host types are:
           |UEFI| Secure Boot and |UEFI| |PXE| boot over IPv6 are not supported. On
           systems with an IPv6 management network, you can use a separate IPv4
           network for |PXE| boot. For more information, see
-          :ref:`configuring-a-pxe-boot-server-r7`.
+          :ref:`pxe-boot-controller-0-d5da025c2524`.
      - BIOS or UEFI
    * - Bios settings
      - * Hyper-Threading technology enabled
@@ -346,7 +346,7 @@ host types are:
           |UEFI| Secure Boot and |UEFI| |PXE| boot over IPv6 are not supported. On
           systems with an IPv6 management network, you can use a separate IPv4
           network for |PXE| boot. For more information, see
-          :ref:`configuring-a-pxe-boot-server-r7`.
+          :ref:`pxe-boot-controller-0-d5da025c2524`.
      - BIOS or UEFI
    * - Bios settings
      - * Hyper-Threading technology enabled
@@ -470,7 +470,7 @@ host types are:
           |UEFI| Secure Boot and |UEFI| |PXE| boot over IPv6 are not supported. On
           systems with an IPv6 management network, you can use a separate IPv4
           network for |PXE| boot. For more information, see
-          :ref:`configuring-a-pxe-boot-server-r7`.
+          :ref:`pxe-boot-controller-0-d5da025c2524`.
      - BIOS or UEFI
      - BIOS or UEFI
    * - Bios settings

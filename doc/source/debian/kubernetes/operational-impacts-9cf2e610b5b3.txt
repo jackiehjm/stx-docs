@@ -12,8 +12,7 @@ The operational impact of Debian-based |prod| is small:
 
    *  |prod| on Debian will provide the same CLIs and APIs as |prod| on CentOS.
 
-   *  |prod| on Debian will run the same 5.10 kernel version as |prod| on
-      CentOS.
+   *  |prod| on Debian will run on a 5.10 based kernel.
 
    *  |prod| on Debian will support the same set of Kubernetes APIs used in
       |prod| on CentOS.
@@ -46,7 +45,8 @@ The operational impact of Debian-based |prod| is small:
 
    *  The URL to expose keystone service does not have the version appended.
 
-   *  On Debian, interface and static routes need to be handled using system-API.
+   *  On Debian, interface and static routes need to be handled using system-API
+      (host-route-\*, host-if-\* and host-addr-\*).
 
       *  Do not edit configuration files in ``/etc/network/`` as they are
          regenerated from sysinv database after a system reboot. Any changes
@@ -66,9 +66,6 @@ The operational impact of Debian-based |prod| is small:
 
        You can see which packages are updated by ostree using the :command:`dpkg
        -l` instead of :command:`rpm -qa` used on CentOS.
-
-   *   Patching is done via reboot required patches. In-service patching is not
-       supported in the Technology Preview release.
 
    *   The patching CLI commands and Horizon interactions are the same as for
        CentOS.

@@ -106,8 +106,7 @@ Install controller-0 from a PXE boot server
 .. toctree::
    :maxdepth: 1
 
-   bare_metal/configuring-a-pxe-boot-server
-   bare_metal/accessing-pxe-boot-server-files-for-a-custom-configuration
+   bare_metal/pxe-boot-controller-0-d5da025c2524
 
 
 Add and reinstall a host
