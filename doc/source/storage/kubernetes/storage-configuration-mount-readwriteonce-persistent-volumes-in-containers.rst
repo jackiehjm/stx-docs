@@ -35,7 +35,7 @@ You should refer to the Volume Claim examples. For more information, see,
 
         .. code-block:: none
 
-            % cat <<EOF > rwo-busybox.yaml
+            ~(keystone_admin)]$ cat <<EOF > rwo-busybox.yaml
             apiVersion: apps/v1
             kind: Deployment
             metadata:
@@ -80,8 +80,7 @@ You should refer to the Volume Claim examples. For more information, see,
 
         .. code-block:: none
 
-            % kubectl apply -f rwo-busybox.yaml
-            deployment.apps/rwo-busybox created
+            ~(keystone_admin)]$ kubectl apply -f rwo-busybox.yaml
 
 
 #.  Attach to the busybox and create files on the Persistent Volumes.
@@ -91,15 +90,15 @@ You should refer to the Volume Claim examples. For more information, see,
 
         .. code-block:: none
 
-            % kubectl get pods
-            NAME                        READY   STATUS    RESTARTS   AGE
-            rwo-busybox-5c4f877455-gkg2s 1/1     Running   0         19s
+            ~(keystone_admin)]$ kubectl get pods
+            NAME                           READY   STATUS    RESTARTS   AGE
+            rwo-busybox-5c84dd4dcd-xxb2b   1/1     Running   0          25s
 
     #.  Connect to the pod shell for CLI access.
 
         .. code-block:: none
 
-            % kubectl attach rwo-busybox-5c4f877455-gkg2s -c busybox -i -t
+            ~(keystone_admin)]$ kubectl attach rwo-busybox-5c84dd4dcd-xxb2b -c busybox -i -t
 
     #.  From the container's console, list the disks to verify that the
         Persistent Volumes are attached.
@@ -108,14 +107,16 @@ You should refer to the Volume Claim examples. For more information, see,
 
             # df
             Filesystem     1K-blocks  Used     Available Use% Mounted on
-            overlay        31441920   3239984  28201936  10%   /
-            tmpfs          65536         0     65536     0%    /dev
-            tmpfs          65900776      0     65900776  0%    /sys/fs/cgroup
-            /dev/rbd0      999320     2564     980372    0%    /mnt1
-            /dev/rbd1      999320     2564     980372    0%    /mnt2
-            /dev/sda4      20027216   4952208  14034624  26%
+            overlay        31441920   9694828  21747092  31% /
+            tmpfs          65536         0     65536     0% /dev
+            tmpfs          12295352      0     12295352  0% /sys/fs/cgroup
+            /dev/rbd1      996780        24    980372    0% /mnt1
+            /dev/rbd0      996780        24    980372    0% /mnt2
+
 
         The PVCs are mounted as /mnt1 and /mnt2.
+
+    #.
 
 #.  Create files in the mounted volumes.
 
@@ -136,15 +137,13 @@ You should refer to the Volume Claim examples. For more information, see,
     .. code-block:: none
 
         # exit
-        Session ended, resume using
-        'kubectl attach busybox-5c4f877455-gkg2s -c busybox -i -t' command when
-        the pod is running
+        Session ended, resume using 'kubectl attach rwo-busybox-5c84dd4dcd-xxb2b -c busybox -i -t' command when the pod is running
 
 #.  Terminate the busybox container.
 
     .. code-block:: none
 
-        % kubectl delete -f rwo-busybox.yaml
+        ~(keystone_admin)]$ kubectl delete -f rwo-busybox.yaml
 
 #.  Recreate the busybox container, again attached to persistent volumes.
 
@@ -152,22 +151,21 @@ You should refer to the Volume Claim examples. For more information, see,
 
         .. code-block:: none
 
-            % kubectl apply -f rwo-busybox.yaml
-            deployment.apps/rwo-busybox created
+            ~(keystone_admin)]$ kubectl apply -f rwo-busybox.yaml
 
     #.  List the available pods.
 
         .. code-block:: none
 
-            % kubectl get pods
-            NAME                        READY   STATUS    RESTARTS   AGE
-            rwo-busybox-5c4f877455-jgcc4  1/1   Running   0          19s
+            ~(keystone_admin)]$ kubectl get pods
+            NAME                           READY   STATUS    RESTARTS   AGE
+            rwo-busybox-5c84dd4dcd-pgcfw   1/1     Running   0          29s
 
     #.  Connect to the pod shell for CLI access.
 
         .. code-block:: none
 
-            % kubectl attach busybox-5c4f877455-jgcc4 -c busybox -i -t
+            ~(keystone_admin)]$ kubectl attach rwo-busybox-5c84dd4dcd-pgcfw -c busybox -i -t
 
     #.  From the container's console, list the disks to verify that the PVCs
         are attached.
@@ -176,13 +174,11 @@ You should refer to the Volume Claim examples. For more information, see,
 
             # df
             Filesystem           1K-blocks      Used Available Use% Mounted on
-            overlay               31441920   3239984  28201936  10% /
+            overlay               31441920   9694844  21747076  31% /
             tmpfs                    65536         0     65536   0% /dev
-            tmpfs                 65900776         0  65900776   0% /sys/fs/cgroup
-            /dev/rbd0               999320      2564    980372   0% /mnt1
-            /dev/rbd1               999320      2564    980372   0% /mnt2
-            /dev/sda4             20027216   4952208  14034624  26%
-            ...
+            tmpfs                 12295352         0  12295352   0% /sys/fs/cgroup
+            /dev/rbd0               996780        24    980372   0% /mnt1
+            /dev/rbd1               996780        24    980372   0% /mnt2
 
 
 #.  Verify that the files created during the earlier container session

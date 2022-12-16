@@ -32,10 +32,9 @@ application-specific namespaces to access the |RBD| provisioner's **general stor
         +--------------------+----------------------+
         | chart name         | overrides namespaces |
         +--------------------+----------------------+
-        | ceph-pools-audit   | [u'kube-system']     |
-        | cephfs-provisioner | [u'kube-system']     |
-        | helm-toolkit       | []                   |
-        | rbd-provisioner    | [u'kube-system']     |
+        | ceph-pools-audit   | ['kube-system']      |
+        | cephfs-provisioner | ['kube-system']      |
+        | rbd-provisioner    | ['kube-system']      |
         +--------------------+----------------------+
 
 #.  Review existing overrides for the rbd-provisioner chart. You will refer
@@ -44,71 +43,86 @@ application-specific namespaces to access the |RBD| provisioner's **general stor
     .. code-block:: none
 
         ~(keystone_admin)$ system helm-override-show platform-integ-apps rbd-provisioner kube-system
-        +--------------------+--------------------------------------------------+
-        | Property           | Value                                            |
-        +--------------------+--------------------------------------------------+
-        | combined_overrides | classdefaults:                                   |
-        |                    |   adminId: admin                                 |
-        |                    |   adminSecretName: ceph-admin                    |
-        |                    |   monitors:                                      |
-        |                    |   - 192.168.204.4:6789                           |
-        |                    |   - 192.168.204.2:6789                           |
-        |                    |   - 192.168.204.3:6789                           |
-        |                    |   - 192.168.204.60:6789                          |
-        |                    | classes:                                         |
-        |                    | - additionalNamespaces:                          |
-        |                    |   - default                                      |
-        |                    |   - kube-public                                  |
-        |                    |   chunk_size: 64                                 |
-        |                    |   crush_rule_name: storage_tier_ruleset          |
-        |                    |   name: general                                  |
-        |                    |   pool_name: kube-rbd                            |
-        |                    |   replication: 2                                 |
-        |                    |   userId: ceph-pool-kube-rbd                     |
-        |                    |   userSecretName: ceph-pool-kube-rbd             |
-        |                    | global:                                          |
-        |                    |   defaultStorageClass: general                   |
-        |                    |   replicas: 2                                    |
-        |                    |                                                  |
-        | name               | rbd-provisioner                                  |
-        | namespace          | kube-system                                      |
-        | system_overrides   | classdefaults:                                   |
-        |                    |   adminId: admin                                 |
-        |                    |   adminSecretName: ceph-admin                    |
-        |                    |   monitors: ['192.168.204.4:6789',               |
-        |                    |'192.168.204.2:6789', '192.168.204.3:6789',       |
-        |                    | '192.168.204.60:6789']                           |
-        |                    | classes:                                         |
-        |                    | - additionalNamespaces: [default, kube-public]   |
-        |                    |   chunk_size: 64                                 |
-        |                    |   crush_rule_name: storage_tier_ruleset          |
-        |                    |   name: general                                  |
-        |                    |   pool_name: kube-rbd                            |
-        |                    |   replication: 2                                 |
-        |                    |   userId: ceph-pool-kube-rbd                     |
-        |                    |   userSecretName: ceph-pool-kube-rbd             |
-        |                    | global: {defaultStorageClass: general, replicas: |
-        |                    | 2}                                               |
-        |                    |                                                  |
-        | user_overrides     | None                                             |
-        +--------------------+--------------------------------------------------+
+        +--------------------+------------------------------------------------------+
+        | Property           | Value                                                |
+        +--------------------+------------------------------------------------------+
+        | attributes         | enabled: true                                        |
+        |                    |                                                      |
+        | combined_overrides | classdefaults:                                       |
+        |                    |   adminId: admin                                     |
+        |                    |   adminSecretName: ceph-admin                        |
+        |                    |   monitors:                                          |
+        |                    |   - 192.168.204.2:6789                               |
+        |                    |   storageClass: general                              |
+        |                    | classes:                                             |
+        |                    | - additionalNamespaces:                              |
+        |                    |   - default                                          |
+        |                    |   - kube-public                                      |
+        |                    |   chunk_size: 64                                     |
+        |                    |   clusterID: 6d273112-f2a6-4aec-8727-76b690274c60    |
+        |                    |   controllerExpandSecret: ceph-pool-kube-rbd         |
+        |                    |   crush_rule_name: storage_tier_ruleset              |
+        |                    |   name: general                                      |
+        |                    |   nodeStageSecret: ceph-pool-kube-rbd                |
+        |                    |   pool_name: kube-rbd                                |
+        |                    |   provisionerSecret: ceph-pool-kube-rbd              |
+        |                    |   replication: 1                                     |
+        |                    |   userId: ceph-pool-kube-rbd                         |
+        |                    |   userSecretName: ceph-pool-kube-rbd                 |
+        |                    | csiConfig:                                           |
+        |                    | - clusterID: 6d273112-f2a6-4aec-8727-76b690274c60    |
+        |                    |   monitors:                                          |
+        |                    |   - 192.168.204.2:6789                               |
+        |                    | provisioner:                                         |
+        |                    |   replicaCount: 1                                    |
+        |                    |                                                      |
+        | name               | rbd-provisioner                                      |
+        | namespace          | kube-system                                          |
+        | system_overrides   | classdefaults:                                       |
+        |                    |   adminId: admin                                     |
+        |                    |   adminSecretName: ceph-admin                        |
+        |                    |   monitors: ['192.168.204.2:6789']                   |
+        |                    |   storageClass: general                              |
+        |                    | classes:                                             |
+        |                    | - additionalNamespaces: [default, kube-public]       |
+        |                    |   chunk_size: 64                                     |
+        |                    |   clusterID: !!binary |                              |
+        |                    |     NmQyNzMxMTItZjJhNi00YWVjLTg3MjctNzZiNjkwMjc0YzYw |
+        |                    |   controllerExpandSecret: ceph-pool-kube-rbd         |
+        |                    |   crush_rule_name: storage_tier_ruleset              |
+        |                    |   name: general                                      |
+        |                    |   nodeStageSecret: ceph-pool-kube-rbd                |
+        |                    |   pool_name: kube-rbd                                |
+        |                    |   provisionerSecret: ceph-pool-kube-rbd              |
+        |                    |   replication: 1                                     |
+        |                    |   userId: ceph-pool-kube-rbd                         |
+        |                    |   userSecretName: ceph-pool-kube-rbd                 |
+        |                    | csiConfig:                                           |
+        |                    | - clusterID: !!binary |                              |
+        |                    |     NmQyNzMxMTItZjJhNi00YWVjLTg3MjctNzZiNjkwMjc0YzYw |
+        |                    |   monitors: ['192.168.204.2:6789']                   |
+        |                    | provisioner: {replicaCount: 1}                       |
+        |                    |                                                      |
+        | user_overrides     | None                                                 |
+        +--------------------+------------------------------------------------------+
 
 
-#.  Create an overrides yaml file defining the new namespaces. In this example we will create the file /home/sysadmin/update-namespaces.yaml with the following content:
+#.  Create an overrides yaml file defining the new namespaces. In this example
+    we will create the file ``/home/sysadmin/update-namespaces.yaml`` with the
+    following content:
 
     .. code-block:: none
 
 		~(keystone_admin)]$ cat <<EOF > ~/update-namespaces.yaml
-
         classes:
-        - additionalNamespaces: [default, kube-public, new-app, new-app2, new-app3]
-          chunk_size: 64
-          crush_rule_name: storage_tier_ruleset
-          name: general
-          pool_name: kube-rbd
-          replication: 2
-          userId: ceph-pool-kube-rbd
-          userSecretName: ceph-pool-kube-rbd
+		- additionalNamespaces: [default, kube-public, new-app, new-app2, new-app3]
+		  chunk_size: 64
+		  crush_rule_name: storage_tier_ruleset
+		  name: general
+		  pool_name: kube-rbd
+		  replication: 2
+		  userId: ceph-pool-kube-rbd
+		  userSecretName: ceph-pool-kube-rbd
 		EOF
 
 #.  Apply the overrides file to the chart.
@@ -177,32 +191,31 @@ application-specific namespaces to access the |RBD| provisioner's **general stor
         .. code-block:: none
 
             ~(keystone_admin)$ system application-apply platform-integ-apps
-            +---------------+----------------------------------+
-            | Property      | Value                            |
-            +---------------+----------------------------------+
-            | active        | True                             |
-            | app_version   | 1.0-24                            |
-            | created_at    | 2019-05-26T06:22:20.711732+00:00 |
-            | manifest_file | manifest.yaml                    |
-            | manifest_name | platform-integration-manifest    |
-            | name          | platform-integ-apps              |
-            | progress      | None                             |
-            | status        | applying                         |
-            | updated_at    | 2019-05-26T22:27:26.547181+00:00 |
-            +---------------+----------------------------------+
+            +---------------+--------------------------------------+
+            | Property      | Value                                |
+            +---------------+--------------------------------------+
+            | active        | True                                 |
+            | app_version   | 1.0-62                               |
+            | created_at    | 2022-12-14T04:14:08.878186+00:00     |
+            | manifest_file | fluxcd-manifests                     |
+            | manifest_name | platform-integ-apps-fluxcd-manifests |
+            | name          | platform-integ-apps                  |
+            | progress      | None                                 |
+            | status        | applying                             |
+            | updated_at    | 2022-12-14T04:16:33.197301+00:00     |
+            +---------------+--------------------------------------+
+
 
     #.  Monitor progress using the :command:`application-list` command.
 
         .. code-block:: none
 
             ~(keystone_admin)$ system application-list
-            +-------------+---------+---------------+---------------+---------+-----------+
-            | application | version | manifest name | manifest file | status  | progress  |
-            +-------------+---------+---------------+---------------+---------+-----------+
-            | platform-   | 1.0-24  | platform      | manifest.yaml | applied | completed |
-            | integ-apps  |         | -integration  |               |         |           |
-            |             |         | -manifest     |               |         |           |
-            +-------------+---------+---------------+---------------+---------+-----------+
+            +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
+            | application              | version | manifest name                             | manifest file    | status   | progress  |
+            +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
+            | platform-integ-apps      | 1.0-62  | platform-integ-apps-fluxcd-manifests      | fluxcd-manifests | applied  | completed |
+            +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
 
     You can now create and mount PVCs from the default |RBD| provisioner's
     **general storage class**, from within these application-specific namespaces.

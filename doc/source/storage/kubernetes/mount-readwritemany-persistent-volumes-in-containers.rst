@@ -30,7 +30,7 @@ configurations created in |prod| |stor-doc|: :ref:`Create ReadWriteMany Persiste
 
         .. code-block:: none
 
-            % cat <<EOF > wrx-busybox.yaml
+            ~(keystone_admin)]$ cat <<EOF > wrx-busybox.yaml
             apiVersion: apps/v1
             kind: Deployment
             metadata:
@@ -69,7 +69,7 @@ configurations created in |prod| |stor-doc|: :ref:`Create ReadWriteMany Persiste
 
         .. code-block:: none
 
-            % kubectl apply -f wrx-busybox.yaml
+            ~(keystone_admin)]$ kubectl apply -f wrx-busybox.yaml
             deployment.apps/wrx-busybox created
 
 #.  Attach to the busybox and create files on the Persistent Volumes.
@@ -79,16 +79,16 @@ configurations created in |prod| |stor-doc|: :ref:`Create ReadWriteMany Persiste
 
         .. code-block:: none
 
-            % kubectl get pods
+            ~(keystone_admin)]$ kubectl get pods
             NAME                           READY   STATUS    RESTARTS   AGE
-            wrx-busybox-6455997c76-4kg8v   1/1     Running   0          108s
-            wrx-busybox-6455997c76-crmw6   1/1     Running   0          108s
+            wrx-busybox-767564b9cf-g8ln8   1/1     Running   0          49s
+            wrx-busybox-767564b9cf-jrk5z   1/1     Running   0          49s
 
     #.  Connect to the pod shell for CLI access.
 
         .. code-block:: none
 
-            % kubectl attach wrx-busybox-6455997c76-4kg8v -c busybox -i -t
+            kubectl attach wrx-busybox-767564b9cf-g8ln8 -c busybox -i -t
 
     #.  From the container's console, list the disks to verify that the Persistent Volume is attached.
 
@@ -96,10 +96,11 @@ configurations created in |prod| |stor-doc|: :ref:`Create ReadWriteMany Persiste
 
             % df
             Filesystem           1K-blocks      Used Available Use% Mounted on
-            overlay               31441920   1783748  29658172   6% /
+            overlay               31441920   9695488  21746432  31% /
             tmpfs                    65536         0     65536   0% /dev
-            tmpfs                  5033188         0   5033188   0% /sys/fs/cgroup
-            ceph-fuse            516542464    643072 515899392   0% /mnt1
+            tmpfs                 12295352         0  12295352   0% /sys/fs/cgroup
+            192.168.204.2:6789:/volumes/csi/pvc-volumes-565a1160-7b6c-11ed-84b8-0e99d59ed96d/cf39026c-06fc-413a-bce9-b13fb66254a3
+                                   1048576         0   1048576   0% /mnt1
 
         The PVC is mounted as /mnt1.
 
@@ -111,20 +112,20 @@ configurations created in |prod| |stor-doc|: :ref:`Create ReadWriteMany Persiste
         # cd /mnt1
         # touch i-was-here-${HOSTNAME}
         # ls /mnt1
-        i-was-here-wrx-busybox-6455997c76-4kg8vi
+        i-was-here-wrx-busybox-767564b9cf-g8ln8
 
 #.  End the container session.
 
     .. code-block:: none
 
         % exit
-        wrx-busybox-6455997c76-4kg8v -c busybox -i -t' command when the pod is running
+        Session ended, resume using 'kubectl attach wrx-busybox-767564b9cf-g8ln8 -c busybox -i -t' command when the pod is running
 
 #.  Connect to the other busybox container
 
     .. code-block:: none
 
-        % kubectl attach wrx-busybox-6455997c76-crmw6 -c busybox -i -t
+        ~(keystone_admin)]$ kubectl attach wrx-busybox-767564b9cf-jrk5z -i -t
 
 #.  Optional: From the container's console list the disks to verify that the PVC is attached.
 
@@ -132,10 +133,11 @@ configurations created in |prod| |stor-doc|: :ref:`Create ReadWriteMany Persiste
 
         % df
         Filesystem           1K-blocks      Used Available Use% Mounted on
-        overlay               31441920   1783888  29658032   6% /
+        overlay               31441920   9695512  21746408  31% /
         tmpfs                    65536         0     65536   0% /dev
-        tmpfs                  5033188         0   5033188   0% /sys/fs/cgroup
-        ceph-fuse            516542464    643072 515899392   0% /mnt1
+        tmpfs                 12295352         0  12295352   0% /sys/fs/cgroup
+        192.168.204.2:6789:/volumes/csi/pvc-volumes-565a1160-7b6c-11ed-84b8-0e99d59ed96d/cf39026c-06fc-413a-bce9-b13fb66254a3
+                               1048576         0   1048576   0% /mnt1
 
 
 #.  Verify that the file created from the other container exists and that this container can also write to the Persistent Volume.
@@ -143,27 +145,25 @@ configurations created in |prod| |stor-doc|: :ref:`Create ReadWriteMany Persiste
     .. code-block:: none
 
         # cd /mnt1
-        # ls /mnt1
-        i-was-here-wrx-busybox-6455997c76-4kg8v
+        # ls
+        i-was-here-wrx-busybox-767564b9cf-g8ln8
         # echo ${HOSTNAME}
-        wrx-busybox-6455997c76-crmw6
+        wrx-busybox-767564b9cf-jrk5z
         # touch i-was-here-${HOSTNAME}
-        # ls /mnt1
-        i-was-here-wrx-busybox-6455997c76-4kg8v i-was-here-wrx-busybox-6455997c76-crmw6
+        # ls
+        i-was-here-wrx-busybox-767564b9cf-g8ln8  i-was-here-wrx-busybox-767564b9cf-jrk5z
 
 #.  End the container session.
 
     .. code-block:: none
 
         % exit
-        Session ended, resume using 'kubectl attach wrx-busybox-6455997c76-crmw6 -c busybox -i -t' command when the pod is running
+        Session ended, resume using 'kubectl attach wrx-busybox-767564b9cf-jrk5z -c busybox -i -t' command when the pod is running
 
 #.  Terminate the busybox container.
 
     .. code-block:: none
 
-        % kubectl delete -f wrx-busybox.yaml
+        ~(keystone_admin)]$ kubectl delete -f wrx-busybox.yaml
 
     For more information on Persistent Volume Support, see, :ref:`About Persistent Volume Support <about-persistent-volume-support>`.
-
-
