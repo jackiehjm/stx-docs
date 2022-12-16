@@ -1,5 +1,8 @@
 
 .. pja1558616715987
+
+|hideable|
+
 .. _installing-a-subcloud-without-redfish-platform-management-service:
 
 ==============================================================
@@ -236,53 +239,30 @@ subcloud, the subcloud installation process has two phases:
 
         ~(keystone_admin)]$ system certificate-install -m docker_registry path_to_cert
 
+    .. include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
+       :start-after: begin-prepare-files-to-copy-deployment-config
+       :end-before: end-prepare-files-to-copy-deployment-config
 
-.. include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
-    :start-after: begin-prepare-files-to-copy-deployment-config
-    :end-before: end-prepare-files-to-copy-deployment-config
-
-9.  At the Central Cloud / System Controller, monitor the progress of the
+#.  At the Central Cloud / System Controller, monitor the progress of the
     subcloud bootstrapping and deployment by using the deploy status field of
     the :command:`dcmanager subcloud list` command.
 
-    .. code-block:: none
+    .. include:: /shared/_includes/installing-a-subcloud.rest
+        :start-after: begin-monitor-progress
+        :end-before: end-monitor-progress
 
-        ~(keystone_admin)]$ dcmanager subcloud list
-        +----+-----------+------------+--------------+---------------+---------+
-        | id | name      | management | availability | deploy status | sync    |
-        +----+-----------+------------+--------------+---------------+---------+
-        |  1 | subcloud1 | unmanaged  | online       | complete      | unknown |
-        +----+-----------+------------+--------------+---------------+---------+
 
-    The deploy status field has the following values:
-
-    **Bootstrapping**
-        This status indicates that the Ansible bootstrap of |prod-long|
-        Platform software on the subcloud's controller-0 is in progress.
-
-    **Complete**
-        This status indicates that subcloud deployment is complete.
-
-    The subcloud bootstrapping and deployment can take up to 30 minutes.
-
-    .. caution::
-        If there is a failure during bootstrapping, you must delete the
-        subcloud before re-adding it, using the :command:`dcmanager subcloud
-        add` command. For more information on deleting, managing or unmanaging
-        a subcloud, see :ref:`Managing Subclouds Using the CLI
-        <managing-subclouds-using-the-cli>`.
-
-10. You can also monitor detailed logging of the subcloud bootstrapping and
+#.  You can also monitor detailed logging of the subcloud bootstrapping and
     deployment by monitoring the following log files on the active controller
     in the Central Cloud.
 
-    ``/var/log/dcmanager/ansible/<subcloud\_name>\_bootstrap.log``
+    /var/log/dcmanager/ansible/<subcloud\_name>\_playbook.output.log
 
     For example:
 
     .. code-block:: none
 
-        controller-0:/home/sysadmin# tail /var/log/dcmanager/ansible/subcloud1_bootstrap.log
+        controller-0:/home/sysadmin# tail /var/log/dcmanager/ansible/subcloud1_playbook.output.log
         k8s.gcr.io: {password: secret, url: null}
         quay.io: {password: secret, url: null}
         )
@@ -321,7 +301,5 @@ subcloud, the subcloud installation process has two phases:
 
 -   For more information on bootstrapping and deploying, see the procedure
     `Install a subcloud
-    <https://docs.starlingx.io/deploy_install_guides/r5_release/distributed_cloud/index.html#install-a-subcloud>`__,
+    <https://docs.starlingx.io/deploy_install_guides/r7_release/distributed_cloud/index.html#install-a-subcloud>`__,
     step 4.
-
-

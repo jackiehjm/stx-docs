@@ -166,4 +166,22 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
 
         You must reinstall a deleted subcloud before re-adding it.
 
+-   To show detailed information about subcloud ``install/bootstrap/deploy``
+    failures, use the :command:`subcloud errors <subcloud-name>` command.
 
+    For example:
+
+    .. code-block:: none
+
+        [sysadmin@controller-0 ~(keystone_admin)]$ dcmanager subcloud errors 1
+        FAILED bootstrapping playbook of (subcloud1).
+         detail: fatal: [subcloud1]: FAILED! => changed=true
+          failed_when_result: true
+          msg: non-zero return code
+            500 Server Error: Internal Server Error ("manifest unknown: manifest unknown")
+             Image download failed: admin-2.cumulus.mss.com: 30093/wind-river/cloud-platform-deployment-manager: WRCP_22.06 500 Server Error: Internal Server Error ("Get https://admin-2.cumulus .mss.com: 30093/v2/: dial tcp: lookup admin-2.cumulus.mss.com on 10.41.0.1:53: read udp 10.41.1.3:40251->10.41.0.1:53: i/o timeout")
+             Image download failed: gcd.io/kubebuilder/kube-rdac-proxy:v0.11.0 500 Server Error: Internal Server Error ("Get https://gcd.io/v2/: dial tcp: lookup gcd.io on 10.41.0.1:53: read udp 10.41.1.3:52485->10.41.0.1:53: i/o timeout")
+            raise Exception("Failed to download images %s" % failed_downloads)
+             Exception: Failed to download images ["admin-2.cumulus.mss.com: 30093/wind-river/cloud-platform-deployment-manager: WRCP_22.06", "gcd.io kubebuilder/kube-rdac-proxy:v0.11.0"]
+        FAILED TASK: TASK [common/push-docker-images Download images and push to local registry] Wednesday 12 October 2022 12:27:31 +0000 (0:00:00.042)
+        0:16:34.495

@@ -14,6 +14,7 @@ subclouds from the System Controller.
 -   To list subclouds, select **Distributed Cloud Admin** \> **Cloud Overview**.
 
     .. image:: figures/cloud-overview.png
+        :width: 800
 
 
     You can perform full-text searches or filter by column using the search-bar
@@ -30,6 +31,7 @@ subclouds from the System Controller.
     Group name.
 
     .. image:: figures/cloud-overview-edit-subcloud.png
+        :width: 800
 
 -   Confirm changes and check the new assignment in the Subcloud summary.
 
@@ -44,3 +46,12 @@ subclouds from the System Controller.
     Web interface for that subcloud. To switch back to the System Controller,
     use the subcloud or region selection menu at the top left of the Horizon
     window.
+
+-   To show detailed information about subcloud ``install/bootstrap/deploy``
+    failures, you select Distributed **Cloud Admin** > **Cloud Overview**.
+
+    Then click on dropdown arrow. At the end you can get the subcloud error
+    information.
+
+    .. figure:: ./figures/bootrap_failed_regis_horiz.png
+        :width: 800
