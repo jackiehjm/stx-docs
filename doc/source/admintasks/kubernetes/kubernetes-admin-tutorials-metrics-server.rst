@@ -79,7 +79,7 @@ of Metrics API.
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system application-update --reuse-user-overrides true /usr/local/share/applications/helm/metrics-server-1.0-18.tgz
+        ~(keystone_admin)]$ system application-update /usr/local/share/applications/helm/metrics-server-1.0-18.tgz
 
 
 For details on leveraging Metrics Server for horizontal autoscaling or for
@@ -92,4 +92,5 @@ within the Kubernetes Dashboard.
 For more information see:
 `https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#top
 <https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#top>`__
+
 
