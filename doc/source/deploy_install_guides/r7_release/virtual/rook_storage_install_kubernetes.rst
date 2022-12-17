@@ -440,21 +440,15 @@ OpenStack-specific host configuration
         system host-label-assign $NODE  sriov=enabled
       done
 
-#. **For OpenStack only:** Set up disk partition for nova-local volume group,
-   which is needed for |prefix|-openstack nova ephemeral disks:
+#. **For OpenStack only:** Set up a 'instances' filesystem,
+   which is needed for |prefix|-openstack nova ephemeral disks.
 
    ::
 
-      for NODE in worker-0 worker-1; do
-        echo "Configuring Nova local for: $NODE"
-        ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
-        ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
-        PARTITION_SIZE=10
-        NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${PARTITION_SIZE})
-        NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
-        system host-lvg-add ${NODE} nova-local
-        system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
-      done
+     for NODE in worker-0 worker-1; do
+       echo "Configuring 'instances' for Nova ephemeral storage: $NODE"
+       system host-fs-add ${NODE} instances=10
+     done
 
 -------------------
 Unlock worker nodes

@@ -62,7 +62,7 @@ Install Software on Controller-0
 
 .. .. figure:: /shared/figures/deploy_install_guides/starlingx-deployment-options-duplex.png
 ..    :width: 800
- 
+
 ..    All-in-one Duplex deployment configuration
 
 .. _installation-prereqs-duplex:
@@ -449,30 +449,24 @@ Configure controller-0
           # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
           system host-lvg-list controller-0
           # if existing docker fs size + cgts-vg available space is less than
-          # 80G, you will need to add a new disk partition to cgts-vg.
-          # There must be at least 20GB of available space after the docker
-          # filesystem is increased.
+          # 80G, you will need to add a new disk to cgts-vg.
 
-             # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
-             # ( if not use another unused disk )
-
-             # Get device path of ROOT DISK
-             system host-show controller-0 --nowrap | fgrep rootfs
+             # Get device path of BOOT DISK
+             system host-show controller-0 | fgrep rootfs
 
              # Get UUID of ROOT DISK by listing disks
              system host-disk-list controller-0
 
-             # Create new PARTITION on ROOT DISK, and take note of new partition's 'uuid' in response
-             # Use a partition size such that you'll be able to increase docker fs size from 30G to 60G
-             PARTITION_SIZE=30
-             system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+             # Add new disk to 'cgts-vg' local volume group
+             system host-pv-add controller-0 cgts-vg <DISK_UUID>
+             sleep 10    # wait for disk to be added
 
-             # Add new partition to 'cgts-vg' local volume group
-             system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
-             sleep 2    # wait for partition to be added
+             # Confirm the available space and increased number of physical
+             # volumes added to the cgts-vg colume group
+             system host-lvg-list controller-0
 
-             # Increase docker filesystem to 60G
-             system host-fs-modify controller-0 docker=60
+          # Increase docker filesystem to 60G
+          system host-fs-modify controller-0 docker=60
 
 
    #. **For OpenStack only:** Configure the system setting for the vSwitch.
@@ -568,8 +562,24 @@ Configure controller-0
          locking and unlocking controller-0 to apply the change.
 
 
-   #. **For OpenStack only:** Set up disk partition for nova-local volume
-      group, which is needed for |prefix|-openstack nova ephemeral disks.
+   #. **For OpenStack only:** Add an instances filesystem OR Set up a disk
+      based nova-local volume group, which is needed for |prefix|-openstack
+      nova ephemeral disks.
+
+      .. note::
+
+         Both cannot exist at the same time.
+
+      Add an 'instances' filesystem
+
+      .. code-block:: bash
+
+         export NODE=controller-0
+
+         # Create ‘instances’ filesystem
+         system host-fs-add ${NODE} instances=<size>
+
+      OR add a 'nova-local' volume group
 
       .. code-block:: bash
 
@@ -578,29 +588,13 @@ Configure controller-0
          # Create ‘nova-local’ local volume group
          system host-lvg-add ${NODE} nova-local
 
-         # Get UUID of DISK to create PARTITION to be added to ‘nova-local’ local volume group
-         # CEPH OSD Disks can NOT be used
-         # For best performance, do NOT use system/root disk, use a separate physical disk.
+         # Get UUID of an unused DISK to to be added to the ‘nova-local’ volume
+         # group. CEPH OSD Disks can NOT be used
 
          # List host’s disks and take note of UUID of disk to be used
          system host-disk-list ${NODE}
-         # ( if using ROOT DISK, select disk with device_path of
-         #   ‘system host-show ${NODE} | grep rootfs’   )
-
-         # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
-         # The size of the PARTITION needs to be large enough to hold the aggregate size of
-         # all nova ephemeral disks of all VMs that you want to be able to host on this host,
-         # but is limited by the size and space available on the physical disk you chose above.
-         # The following example uses a small PARTITION size such that you can fit it on the
-         # root disk, if that is what you chose above.
-         # Additional PARTITION(s) from additional disks can be added later if required.
-         PARTITION_SIZE=30
-
-         system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
-
-         # Add new partition to ‘nova-local’ local volume group
-         system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
-         sleep 2
+         # Add the unused disk to the ‘nova-local’ volume group
+         system host-pv-add ${NODE} nova-local <DISK_UUID>
 
    #. **For OpenStack only:** Configure data interfaces for controller-0.
       Data class interfaces are vswitch interfaces used by vswitch to provide
@@ -783,37 +777,29 @@ Unlock controller-0
 
       .. code-block:: bash
 
-         # check existing size of docker fs
-         system host-fs-list controller-0
+          # check existing size of docker fs
+          system host-fs-list controller-0
+          # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
+          system host-lvg-list controller-0
+          # if existing docker fs size + cgts-vg available space is less than
+          # 80G, you will need to add a new disk to cgts-vg.
 
-            # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
-            system host-lvg-list controller-0
+             # Get device path of BOOT DISK
+             system host-show controller-0 | fgrep rootfs
 
-         # if existing docker fs size + cgts-vg available space is less than
-         # 80G, you will need to add a new disk partition to cgts-vg.
-         # There must be at least 20GB of available space after the docker
-         # filesystem is increased.
+             # Get UUID of ROOT DISK by listing disks
+             system host-disk-list controller-0
 
-                     # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
-                     # ( if not use another unused disk )
+             # Add new disk to 'cgts-vg' local volume group
+             system host-pv-add controller-0 cgts-vg <DISK_UUID>
+             sleep 10    # wait for disk to be added
 
-                     # Get device path of ROOT DISK
-                     system host-show controller-0 | grep rootfs
+             # Confirm the available space and increased number of physical
+             # volumes added to the cgts-vg colume group
+             system host-lvg-list controller-0
 
-                     # Get UUID of ROOT DISK by listing disks
-                     system host-disk-list controller-0
-
-                     # Create new PARTITION on ROOT DISK, and take note of new partition’s ‘uuid’ in response
-                     # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
-                     PARTITION_SIZE=30
-                     system host-disk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
-
-                     # Add new partition to 'cgts-vg' local volume group
-                     system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
-                     sleep 2    # wait for partition to be added
-
-            # Increase docker filesystem to 60G
-            system host-fs-modify controller-0 docker=60
+             # Increase docker filesystem to 60G
+             system host-fs-modify controller-0 docker=60
 
 -------------------------------------
 Install software on controller-1 node
@@ -946,34 +932,28 @@ Configure controller-1
       .. code-block:: bash
 
           # check existing size of docker fs
-          system host-fs-list controller-0
+          system host-fs-list controller-1
           # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
-          system host-lvg-list controller-0
+          system host-lvg-list controller-1
           # if existing docker fs size + cgts-vg available space is less than
-          # 80G, you will need to add a new disk partition to cgts-vg.
-          # There must be at least 20GB of available space after the docker
-          # filesystem is increased.
+          # 80G, you will need to add a new disk to cgts-vg.
 
-             # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
-             # ( if not use another unused disk )
-
-             # Get device path of ROOT DISK
-             system host-show controller-0 --nowrap | fgrep rootfs
+             # Get device path of BOOT DISK
+             system host-show controller-1 | fgrep rootfs
 
              # Get UUID of ROOT DISK by listing disks
-             system host-disk-list controller-0
+             system host-disk-list controller-1
 
-             # Create new PARTITION on ROOT DISK, and take note of new partition's 'uuid' in response
-             # Use a partition size such that you'll be able to increase docker fs size from 30G to 60G
-             PARTITION_SIZE=30
-             system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
+             # Add new disk to 'cgts-vg' local volume group
+             system host-pv-add controller-1 cgts-vg <DISK_UUID>
+             sleep 10    # wait for disk to be added
 
-             # Add new partition to 'cgts-vg' local volume group
-             system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
-             sleep 2    # wait for partition to be added
+             # Confirm the available space and increased number of physical
+             # volumes added to the cgts-vg colume group
+             system host-lvg-list controller-1
 
              # Increase docker filesystem to 60G
-             system host-fs-modify controller-0 docker=60
+             system host-fs-modify controller-1 docker=60
 
    #. **For OpenStack only:** Configure the host settings for the vSwitch.
 
@@ -1028,39 +1008,40 @@ Configure controller-1
             system host-memory-modify -f application -1G 10 controller-1 1
 
 
-   #. **For OpenStack only:** Set up disk partition for nova-local volume group,
-      which is needed for |prefix|-openstack nova ephemeral disks.
+   #. **For OpenStack only:** Add an instances filesystem OR Set up a disk
+      based nova-local volume group, which is needed for |prefix|-openstack
+      nova ephemeral disks.
+
+      .. note::
+
+         Both cannot exist at the same time.
+
+      Add an 'instances' filesystem
 
       .. code-block:: bash
 
          export NODE=controller-1
 
-         # Create 'nova-local' local volume group
+         # Create ‘instances’ filesystem
+         system host-fs-add ${NODE} instances=<size>
+
+      OR add a 'nova-local' volume group
+
+      .. code-block:: bash
+
+         export NODE=controller-1
+
+         # Create ‘nova-local’ local volume group
          system host-lvg-add ${NODE} nova-local
 
-         # Get UUID of DISK to create PARTITION to be added to 'nova-local' local volume group
-         # CEPH OSD Disks can NOT be used
-         # For best performance, do NOT use system/root disk, use a separate physical disk.
+         # Get UUID of an unused DISK to to be added to the ‘nova-local’ volume
+         # group. CEPH OSD Disks can NOT be used
 
          # List host’s disks and take note of UUID of disk to be used
          system host-disk-list ${NODE}
-         # ( if using ROOT DISK, select disk with device_path of
-         #   ‘system host-show ${NODE} | grep rootfs’   )
 
-         # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
-         # The size of the PARTITION needs to be large enough to hold the aggregate size of
-         # all nova ephemeral disks of all VMs that you want to be able to host on this host,
-         # but is limited by the size and space available on the physical disk you chose above.
-         # The following example uses a small PARTITION size such that you can fit it on the
-         # root disk, if that is what you chose above.
-         # Additional PARTITION(s) from additional disks can be added later if required.
-         PARTITION_SIZE=30
-
-         system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
-
-         # Add new partition to 'nova-local' local volume group
-         system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
-         sleep 2
+         # Add the unused disk to the ‘nova-local’ volume group
+         system host-pv-add ${NODE} nova-local <DISK_UUID>
 
    #. **For OpenStack only:** Configure data interfaces for controller-1.
       Data class interfaces are vswitch interfaces used by vswitch to provide

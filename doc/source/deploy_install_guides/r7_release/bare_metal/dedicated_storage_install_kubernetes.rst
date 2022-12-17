@@ -436,37 +436,34 @@ Configure worker nodes
 
             done
 
-   #. **For OpenStack only:** Setup disk partition for nova-local volume group,
-      needed for |prefix|-openstack nova ephemeral disks.
+   #. **For OpenStack only:** Add an instances filesystem OR Set up a disk
+      based nova-local volume group, which is needed for |prefix|-openstack
+      nova ephemeral disks. NOTE: both cannot exist ast the same time
+
+      Add an 'instances' filesystem
+
+      .. code-block:: bash
+
+         # Create ‘instances’ filesystem
+         for NODE in worker-0 worker-1; do
+            system host-fs-add ${NODE} instances=<size>
+         done
+
+      OR add a 'nova-local' volume group
 
       .. code-block:: bash
 
          for NODE in worker-0 worker-1; do
-            system host-lvg-add ${NODE} nova-local
+             # Create ‘nova-local’ local volume group
+             system host-lvg-add ${NODE} nova-local
 
-            # Get UUID of DISK to create PARTITION to be added to ‘nova-local’ local volume group
-            # CEPH OSD Disks can NOT be used
-            # For best performance, do NOT use system/root disk, use a separate physical disk.
+             # Get UUID of an unused DISK to to be added to the ‘nova-local’ volume
+             # group. CEPH OSD Disks can NOT be used. Assume /dev/sdb is unused
+             # on all workers
+             DISK_UUID=$(system host-disk-list ${NODE} | awk '/sdb/{print $2}')
 
-            # List host’s disks and take note of UUID of disk to be used
-            system host-disk-list ${NODE}
-            # ( if using ROOT DISK, select disk with device_path of
-            #   ‘system host-show ${NODE} | fgrep rootfs’   )
-
-            # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
-            # The size of the PARTITION needs to be large enough to hold the aggregate size of
-            # all nova ephemeral disks of all VMs that you want to be able to host on this host,
-            # but is limited by the size and space available on the physical disk you chose above.
-            # The following example uses a small PARTITION size such that you can fit it on the
-            # root disk, if that is what you chose above.
-            # Additional PARTITION(s) from additional disks can be added later if required.
-            PARTITION_SIZE=30
-
-            system hostdisk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
-
-            # Add new partition to ‘nova-local’ local volume group
-            system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
-            sleep 2
+             # Add the unused disk to the ‘nova-local’ volume group
+            system host-pv-add ${NODE} nova-local ${DISK_UUID}
          done
 
    #. **For OpenStack only:** Configure data interfaces for worker nodes.

@@ -302,9 +302,8 @@ installation:
   supports using a different disk for the boot partition. This is specified with
   the ``boot_device`` option.
 
-* Rootfs device: This is the device that is to be used for the rootfs and
-  various platform partitions. The default is ``sda``. This is specified with
-  the ``rootfs_device`` option.
+* Rootfs device: The root filesystem is now a logical volume ``cgts-vg/root-lv``.
+  This value should be the same as the boot_device.
 
 * Install output: Text mode vs graphical. The default is ``text``. This is
   specified with the ``install_output`` option.
