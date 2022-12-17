@@ -7,16 +7,20 @@ Subcloud Deployment with Local Installation
 .. rubric:: |context|
 
 Subcloud install is enhanced to support a local install option for Redfish
-supported servers that are ‘Prestaged’ with a valid Install Bundle. A
+supported servers that are 'Prestaged' with a valid Install Bundle. A
 prestaging ISO can be built and downloaded outside of the maintenance window,
 i.e. to reduce the subcloud install time required during the maintenance
 window.
+
+Where Install Bundle refers to a valid OSTree repo, that will be available at
+/opt/platform-backup on the subcloud, and any container images and patches
+as required.
 
 Prestaging can be done manually or it can be automated by building a
 self-installing Prestaging ISO image using ``gen-prestaged-iso.sh``.
 
 The ``gen-prestaged-iso.sh`` accepts parameters that include Install Bundle
-components and produces a ‘Prestaging ISO’.
+components and produces a 'Prestaging ISO'.
 
 .. rubric:: |proc|
 
@@ -31,7 +35,7 @@ components and produces a ‘Prestaging ISO’.
 
 #.  Run the :command:`dcmanger subcloud add` command against a Prestaged
     subcloud. The ``add`` operation creates and injects a small boot loader ISO
-    into the subcloud’s BMC’s Redfish Virtual Media device and powers on the
+    into the subcloud's BMC's Redfish Virtual Media device and powers on the
     server.
 
     .. note::
@@ -58,21 +62,17 @@ components and produces a ‘Prestaging ISO’.
 Local Install Bundle
 --------------------
 
-The ‘Local Install Bundle’ consists of the following files stored in the
-``/opt/platform-backup/<sw_version>`` release directory on the subcloud
-server.
+The 'Local Install Bundle' consists of the following files stored in the
+``/opt/platform-backup/`` directory on the subcloud server.
 
 Install Image: (only one permitted)
 
 .. code-block::
 
-    bootimage.iso - the image to install locally on the subcloud.
-    bootimage.md5 - a text file containing output of the following command
-                    'md5sum bootimage.iso',
-                    e.g.
-                    fcaacda02ae4fdf1ead71850321ca89e  bootimage.iso
+    ostree_repo /opt/platform-backup
 
-Container_image sets:
+Container_image sets are available in the ``/opt/platform-backup/<release_id>``
+release directory
 
 .. code-block::
 
@@ -131,7 +131,6 @@ functions. You will find it in the same software distribution location as
     - mkisofs
     - isohybrid
     - implantisomd5
-    - rpm2cpio
     - cpio
 
 -   These additional tools are required if you choose to run
@@ -155,9 +154,7 @@ functions. You will find it in the same software distribution location as
 
     .. code-block::
 
-        $ sudo apt-get install coreutils cpio debianutils findutils gawk genisoimage \
-                     grep initscripts isomd5sum libguestfs-tools mount \
-                     rpm2cpio rsync sed syslinux tar udisks2
+        $ sudo apt-get install coreutils cpio debianutils findutils gawk genisoimage grep initscripts isomd5sum libguestfs-tools mount rsync sed syslinux tar udisks2
 
 -   You will also need approximately 30 GB of disk space on the customer build
     machine.
@@ -236,7 +233,7 @@ option to override the default storage device the prestaging image is to be
 installed.
 
 Use the ``--output`` directive to specify the path/filename of the created
-‘Prestaging ISO’ image.
+'Prestaging ISO' image.
 
 .. code-block::
 
@@ -272,8 +269,9 @@ Use the ``--output`` directive to specify the path/filename of the created
                           or provide a comma separated list.
 
             --kickstart-patch <kickstart-enabler.patch>:
-                          A patch to replace the prestaged installer kickstart.
-                          Not to be included in the runtime patches.
+                          A modified kickstart.cfg to replace the prestaged
+                          installer kickstart. This will only be used during
+                          installation using the prestaged ISO.
 
             --addon  <file>: Specify ks-addon.cfg file.
 
@@ -321,30 +319,39 @@ Prestaging ISO.
 #.  The Prestaging Install
 
     The Prestaging image install automatically Prestages the subcloud with the
-    Install Bundle contents based on the :command:`gen-prestaged-iso.sh`
+    OSTree repo and other contents based on the :command:`gen-prestaged-iso.sh`
     command.
 
-    A new post_prestaging.cfg kickstart implements the prestaging function. It
-    is added to a new `controller` packaging group to create
-    ``prestaged_installer_ks.cfg`` kickstart bundle. The packaging group is
-    sized to decrease installation time.
+    The kickstart.cfg kickstart implements the prestaging function.
 
     The current version of the Prestaging ISO does not support network login
     but Graphical or Serial console login only.
 
-    You can verify if the Prestaged Install Bundle is present after the
-    Prestaging Install is complete by logging in as `sysadmin/sysadmin` and
-    listing the contents of the ``/opt/platform-backup/<sw_release>``
-    directory.
+    You can verify if the Prestaged OSTree repo and other contents are present
+    after the Prestaging install is complete by:
+
+    #. Login using the login credentials; sysadmin/sysadmin. You will be
+       prompted to change the password at the first login.
+
+    #. Check the contents of /opt/platform-backup and /opt/platform-backup/<release_id>
+       directories.
+
+       -  You will see the directory named ostree-repo. You can use the
+          ``fsck`` function of OSTree to validate the OSTree repo.
+          You will see another directory named <release_id>. It contains the
+          container images and patches, if any.
+
+       -  The contents of /opt/platform-backup/<release-id> will not include
+          bootimage.iso or the sig file.
+
+          where <release-id> is the Release number.
 
     .. rubric:: |eg|
 
     .. code-block::
 
-        controller-0:~# ls -lrt /opt/platform-backup/<sw_release>/
-        total 7082736
-        -rw-r--r--. 1 root 751 2338324480 Nov  4 23:52 bootimage.iso
-        -rw-r--r--. 1 root 751         48 Nov  4 23:52 bootimage.md5
+        controller-0:~# ls -lrt /opt/platform-backup/<release_id>/
+        total 4914374130
         -rw-r--r--. 1 root 751 2489551974 Nov  4 23:52 container-image1.tar.gz
         -rw-r--r--. 1 root 751 2424822040 Nov  4 23:52 container-image2.tar.gz
         -rw-r--r--. 1 root 751        116 Nov  4 23:52 container-image.tar.gz.md5
@@ -353,7 +360,7 @@ Prestaging ISO.
 
     The prestaging kickstart implements the following algorithm:
 
-    -   Verifies installation repo contains Prestaging Install Bundle
+    -   Verifies that the installation repo contains the OSTree repo.
 
     -   Creates the Platform Backup partition on the rootfs device if it does
         not already exist.
@@ -365,20 +372,13 @@ Prestaging ISO.
 
     -   Wipes the ``/opt/platform-backup/<sw_release>`` directory if it exists.
 
-    -   Copies the Install Bundle from the installer repo to the subcloud’s
-        Prestaging directory.
-
-    -   Verifies the integrity of the Install Bundle on the subcloud.
-
-        -   Runs ``md5sum --check`` against all files with the .md5 extension.
-
-        -   Any ``md5sum --check`` failure results in a Prestaging Failure
+    -   Copies the OSTree repo from the installer to the subcloud's
+        /opt/platform-backup.
 
     .. note::
 
-        Failure to create/mount the Platform Backup Prestaging partition or
-        validate the ISO image or any of the container image sets will result
-        in a Prestaging Installation Failure at the Anaconda Installer level.
+        Failure to create/mount the Platform backup prestaging partition
+        will result in a prestaging installation failure at the kickstart level.
 
     .. note::
 
@@ -397,17 +397,15 @@ Subcloud Using Redfish Platform Management Service
 
 #.  Subcloud ``Miniboot`` Installer
 
-    The Subcloud Local Install feature introduces a new kickstart
-    ``post_miniboot_controller.cfg`` in a new controller group’s
-    ``miniboot_controller_ks.cfg`` kickstart bundle. This new kickstart
-    bundle is passed to ``Miniboot`` on the subcloud during the subcloud
-    install.
+    The subcloud Local install feature uses a new kickstart ``miniboot.cfg`` .
+    This kickstart is passed to ``Miniboot`` on the subcloud during the subcloud
+    install via the miniboot iso.
 
-    If there is a valid Prestaged Install Bundle then ``Miniboot`` will use
-    it to perform a Local Install.
+    If there is a valid Prestaged OSTree repo then ``Miniboot`` will use
+    it to perform a Local install.
 
-    If there is no valid Prestaged Install Bundle then ``Miniboot`` will
-    default to the already supported Remote Install.
+    If there is no valid Prestaged OSTree repo then ``Miniboot`` will
+    default to the already supported Remote install.
 
 #.  ``Miniboot`` Algorithm
 
@@ -417,49 +415,28 @@ Subcloud Using Redfish Platform Management Service
 
     -   Navigates to the specified sw_version directory.
 
-    -   Searches for a Prestaged Install Bundle.
+    -   Searches for a Prestaged install bundle.
 
-    -   Verifies the integrity of the Prestaged Install Bundle.
+    -   If the OSTree repo is present and valid then perform a Local install.
 
-        -   Runs ``md5sum --check`` against all files with the .md5
-            extension.
-
-    -   If Install Bundle is present and valid then perform a Local Install.
-
-    -   If Install Bundle is missing or invalid perform a Remote Install.
+    -   If OSTree repo is missing or invalid perform a Remote install.
 
 -----------------
 Local Install Log
 -----------------
 
-After install, login as ``sysadmin/sysadmin`` and remove the prestaging logs.
+After install, login as ``sysadmin/sysadmin``. You will be prompted to change
+the password the first time you login. Then remove the prestaging logs.
 
 **Example of a successful Local install log stream**
 
 .. code-block::
 
-    localhost:~$ sudo cat /var/log/anaconda/ks*.log | grep Prestaging | sort
-
-    2021-11-05 19:45:56.422 - Prestaging post: applying label to backup partition
-    2021-11-05 19:45:57.556 - Prestaging post: cmdLine: rootwait inst.text inst.gpt boot_device=/dev/sda rootfs_device=/dev/sda biosdevname=0 usbcore.autosuspend=-1 security_profile=standard user_namespace.enable=1 inst.stage2=hd:LABEL=oe_prestaged_iso_boot inst.ks=hd:LABEL=oe_prestaged_iso_boot:/prestaged_installer_ks.cfg console=ttyS0,115200 serial initrd=initrd.img BOOT_IMAGE=vmlinuz
-
-    2021-11-05 19:45:57.557 - Prestaging post: install source : /run/install/repo
-    2021-11-05 19:45:57.558 - Prestaging post: SW_VERSION           : nn.nn
-    2021-11-05 19:45:57.559 - Prestaging post: IMAGE_MOUNT          : /run/install/repo
-    2021-11-05 19:45:57.560 - Prestaging post: PRESTAGING_REPO_DIR  : /run/install/repo/opt/platform-backup
-    2021-11-05 19:45:57.561 - Prestaging post: PRESTAGING_LOCAL_DIR : /mnt/platform-backup
-    2021-11-05 19:45:57.565 - Prestaging post: mounting /mnt/platform-backup
-    2021-11-05 19:45:59.598 - Prestaging post: copy prestaging files
-    2021-11-05 19:46:37.820 - Prestaging post: prestaging files copy done
-    2021-11-05 19:46:37.821 - Prestaging post: prestaged file : bootimage.iso
-    2021-11-05 19:46:37.822 - Prestaging post: prestaged file : bootimage.md5
-    2021-11-05 19:46:41.800 - Prestaging post: bootimage check passed
-    2021-11-05 19:46:41.801 - Prestaging post: prestaged file : container-image.tar.gz.md5
-    2021-11-05 19:46:49.876 - Prestaging post: container-image.tar.gz check passed
-    2021-11-05 19:46:49.878 - Prestaging post: prestaged file : container-image1.tar.gz
-    2021-11-05 19:46:49.879 - Prestaging post: prestaged file : container-image2.tar.gz
-    2021-11-05 19:46:49.880 - Prestaging post: prestaging integrity checks passed
-    2021-11-05 19:46:49.881 - Prestaging post: prestaging complete
+    sysadmin@localhost:/var/log/lat$ cat kickstart.log | grep -i prestag
+    2022-12-13 21:12:44.448 kickstart ks-early  info: controller /proc/cmdline:net.naming-scheme=vSTX7_0 BOOT_IMAGE=/bzImage-std ini0
+    2022-12-13 21:12:44.544 kickstart ks-early  info: controller Prestaging for Local Install
+    2022-12-13 21:12:44.614 kickstart ks-early  warn: controller Prestage: Force Installing Prestaged content. All existing installa.
+    2022-12-13 21:16:30.756 kickstart post_nochroot  info: controller Prestage operation: copying repo to /opt/platform-backup
 
 -------------
 Debug options
@@ -472,117 +449,13 @@ There are 2 categories of failure:
 -   Installation Failure
 -   Prestaging Failure
 
-When the Anaconda installer is running you will see the reverse video banner
-at the bottom of the screen:
-
-.. code-block::
-
-    [anaconda] 1:main- 2:shell* 3:log  4:storage-log  5:> Switch: Alt+Tab or Ctrl-o
-
-First ``Ctrl-o`` gets you into Linux console shell as Anaconda root.
-
-Subsequent ``Ctrl-o`` toggles through each of 4 additional less helpful views.
-
-Log files are in ``/tmp``. It is recommended to look at the ``program.log`` for
-a failure reason log.
-
-If there are Prestaging logs they will also be in ``/tmp/program.log`` or be in
-one of the individual randomly named kickstart logs.
-
-.. code-block::
-
-    cat /tmp/ks*.log | grep Prestaging | sort
-
-**Anaconda reports “Installation Failed” – Reason: Specified boot device is invalid**
-
-Look for 'device is invalid' logs on the console, in the ``/tmp/program.log``
-or in the individual kickstart logs (``/tmp/ks*.log``).
-
-Example from the console:
-
-.. code-block::
-
-    There was an error running the kickstart script at line 611. This is a fatal error and installation will be aborted.  The details of this error are:
-
-    2021-11-05 23:03:44.105 - Found rootfs /dev/disk/by-path/pci-0000:c3:00.0-nvme-1 on: ->.
-
-    2021-11-05 23:03:44.119 - Found boot /dev/disk/by-path/pci-0000:c3:00.0-nvme-1 on: ->.
-
-
-    Installation failed.
-
-    ERROR: Specified installation (/dev/disk/by-path/pci-0000:c3:00.0-nvme-1) or boot (/dev/disk/by-path/pci-0000:c3:00.0-nvme-1) device is invalid.
-
-**Prestaging Failure: Server Install Device Too Small**
-
-Look for 'No space left on device' logs on the console, in the
-``/tmp/program.log`` or in the individual kickstart logs (``/tmp/ks*.log``).
+You can monitor the progress and installation failures on the boot screen.
 
 **Debugging a Rejected Local Install**
 
-The following command is to query Local Install logs:
-
-.. code-block::
-
-    $ sudo cat /var/log/anaconda/ks* | grep Miniboot | sort
-
-**Example of a typically successful Local Install log stream**
-
-.. code-block::
-
-    2021-11-05 05:03:10.044 - Miniboot  pre: local install check
-
-    2021-11-05 05:03:12.059 - Miniboot  pre: prestaged file : bootimage.iso
-
-    2021-11-05 05:03:12.060 - Miniboot  pre: found prestaged iso image /mnt/platform-backup/nn.nn/bootimage.iso
-
-    2021-11-05 05:03:12.060 - Miniboot  pre: prestaged file : bootimage.md5
-
-    2021-11-05 05:03:17.339 - Miniboot  pre: bootimage check passed
-
-    2021-11-05 05:03:17.340 - Miniboot  pre: prestaged file : container-image.tar.gz.md5
-
-    2021-11-05 05:03:28.432 - Miniboot  pre: container-image.tar.gz check passed
-
-    2021-11-05 05:03:28.432 - Miniboot  pre: prestaged file : container-image1.tar.gz
-
-    2021-11-05 05:03:28.433 - Miniboot  pre: prestaged file : container-image2.tar.gz
-
-    2021-11-05 05:03:28.434 - Miniboot  pre: local iso found : /mnt/platform-backup/nn.nn/bootimage.iso
-
-    2021-11-05 05:03:28.438 - Miniboot  pre: local iso mounted for local install
-
-    2021-11-05 05:10:25.372 - Miniboot post: mount for eject
-
-    2021-11-05 05:10:25.382 - Miniboot post: /mnt/sysimage files : total 82
-
-    2021-11-05 05:10:25.384 - Miniboot post: /mnt/sysimage/www/pages/feed/rel-nn.nn files : total 23
-
-    2021-11-05 05:10:25.385 - Miniboot post: /mnt/sysimage/www/pages/updates/rel-nn.nn does not exist
-
-    2021-11-05 05:10:25.386 - Miniboot post: /mnt/sysimage/opt/patching does not exist
-
-    2021-11-05 05:10:25.387 - Miniboot post: copying software repository /mnt/bootimage/Packages
-
-    2021-11-05 05:10:25.387 - Miniboot post: /mnt/sysimage/opt/patching/packages/nn.nn/ does not exist
-
-    2021-11-05 05:10:26.465 - Miniboot post: updating platform.conf with install uuid : e1beb1c8-db83-4d0e-b2c5-8623b322a2a7
-
-    2021-11-05 05:10:26.467 - Miniboot post: Local Install
-
-    2021-11-05 05:10:26.472 - Miniboot post: downloading patch repository http://[2620:10a:a001:a103::167]:8080/iso/nn.nn/nodes/subcloud1/patches
-
-    2021-11-05 05:10:26.474 - Miniboot post: fetch packages
-
-    2021-11-05 05:10:26.478 - Miniboot post: fetch package repodata
-
-    2021-11-05 05:10:27.284 - Miniboot post: fetch patch metadata
-
-    2021-11-05 05:10:27.390 - Miniboot post: save a copy of all patch packages, preserve attributes
-
-Specifically look for the “Local Install” log.
-
--   ``<date> - Miniboot post: Local Install``
+The logs for a failed prestaging are found in /var/log/lat. ``miniboot.cfg`` is
+used for prestaging from the System Controller. You can find the log files
+at /var/log/lat/miniboot.log.
 
 **Rejected Local Install**
 
