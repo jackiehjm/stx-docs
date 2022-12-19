@@ -1,0 +1,32 @@
+
+.. rubric:: Alarm Severities
+
+One or more of the following severity levels is associated with each alarm.
+
+``Critical``
+  Indicates that a platform service affecting condition has occurred and
+  immediate corrective action is required. (A mandatory platform service
+  has become totally out of service and its capability must be restored.)
+
+``Major``
+  Indicates that a platform service affecting condition has developed and
+  urgent corrective action is required. (A mandatory platform service has
+  developed a severe degradation and its full capability must be restored.)
+
+  \- or \-
+
+  An optional platform service has become totally out of service and its
+  capability should be restored.
+
+``Minor``
+  Indicates that a platform non-service affecting fault condition has developed
+  and corrective action should be taken in order to prevent a more serious fault.
+  (The fault condition is not currently impacting / degrading the capability of
+  the platform service.)
+
+``Warning``
+  Indicates the detection of a potential or impending service affecting fault.
+  Action should be taken to further diagnose and correct the problem in order
+  to prevent it from becoming a more serious service affecting fault.
+
+-----

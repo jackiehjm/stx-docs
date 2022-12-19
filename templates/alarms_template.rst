@@ -6,6 +6,8 @@ head_format="
 <series_number> Series Alarm Messages
 <under_score>
 
+.. include:: /shared/_includes/alarm-severities.rest
+
 "
 
 record_format="
