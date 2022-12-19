@@ -143,9 +143,9 @@
 .. |SRIOVs| replace:: :abbr:`SR-IOVs (Single Root I/O Virtualizations)`
 .. |SSD| replace:: :abbr:`SSD (Solid State Drive)`
 .. |SSDs| replace:: :abbr:`SSDs (Solid State Drives)`
-.. |SSSD| replace:: :abbr:`SSSD (System Security Services Daemon)`
 .. |SSH| replace:: :abbr:`SSH (Secure Shell)`
 .. |SSL| replace:: :abbr:`SSL (Secure Socket Layer)`
+.. |SSSD| replace:: :abbr:`SSSD (System Security Services Daemon)`
 .. |STP| replace:: :abbr:`STP (Spanning Tree Protocol)`
 .. |SWACT| replace:: :abbr:`SWACT (SWitch ACTivity)`
 .. |TAI| replace:: :abbr:`TAI (International Atomic Time)`

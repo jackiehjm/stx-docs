@@ -53,9 +53,20 @@ Manage Non-Admin Type Users
 
 .. _user-authentication-using-windows-active-directory-security-index:
 
-**************************************************
-User Authentication Using Windows Active Directory
-**************************************************
+
+******************************************************
+SSH User Authentication Using Windows Active Directory
+******************************************************
+
+.. toctree::
+   :maxdepth: 1
+
+   sssd-support-5fb6c4b0320b
+
+
+**********************************************************
+K8S API User Authentication Using Windows Active Directory
+**********************************************************
 
 .. toctree::
    :maxdepth: 1
@@ -235,6 +246,7 @@ Deprecated Functionality
 
    starlingx-rest-api-applications-and-the-web-administration-server-deprecated
    security-install-update-the-docker-registry-certificate-deprecated
+
 
 ***************************************
 Appendix: Locally creating certificates
