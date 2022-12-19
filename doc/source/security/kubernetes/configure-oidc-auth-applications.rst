@@ -43,6 +43,19 @@ Configure OIDC Auth Applications
       :ref:`starlingx-rest-api-applications-and-the-web-admin-server-cert-9196c5794834`)
       will be used to issue this certificate.
 
+      .. note::
+          If a signing |CA| is not a well-known trusted |CA|, you must ensure the
+          system trusts the |CA| by specifying it either during the bootstrap
+          phase of system installation, by specifying ``ssl_ca_cert: <certificate_file>``
+          in the ansible bootstrap overrides localhost.yml file, or by using the
+          :command:`system certificate-install -m ssl_ca <certificate_file>`
+          command.
+
+      Also refer to :ref:`Add a Trusted CA <add-a-trusted-ca>`
+      for installing a root |CA|, which includes instruction to `lock/unlock`
+      controller nodes when using :command:`system certificate-install`
+      command.
+
       .. important::
           The namespace for ``oidc-auth-apps`` must be ``kube-system``.
 
@@ -244,6 +257,10 @@ Configure OIDC Auth Applications
           overrides ``localhost.yml`` file, or by using the :command:`system
           certificate-install -m ssl_ca dex-ca.pem` command.
 
+          Also refer to :ref:`Add a Trusted CA <add-a-trusted-ca>`
+          for installing a root |CA|, which includes instruction to `lock/unlock`
+          controller nodes when using :command:`system certificate-install`
+          command.
 
       #.  Create the secret, ``local-dex.tls``, with the certificate and key,
           to be used by the **oidc-auth-apps**, as well as the secret,
