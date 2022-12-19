@@ -180,7 +180,7 @@ and clients for a non-admin user.
             passed as arguments to the remote |CLI| commands need to be in this
             directory in order for the container to access the files. The
             default value is the directory from which the
-            :command:`configure\_client.sh` command was run.
+            :command:`configure_client.sh` command was run.
 
         **-p**
             Override the container image for the platform |CLI| and clients.
@@ -192,7 +192,7 @@ and clients for a non-admin user.
 
             .. parsed-literal::
 
-                $ ./configure_client.sh -t platform -r my-openrc.sh -k user-kubeconfig -w $HOME/remote_cli_wd -p |registry-url|/starlingx/stx-platformclients:stx.5.0-v1.4.3
+                $ ./configure_client.sh -t platform -r my-openrc.sh -k user-kubeconfig -w $HOME/remote_cli_wd -p |registry-url|/starlingx/stx-platformclients:stx.8.0-v1.5.9
 
             If you specify repositories that require authentication, you must
             perform a :command:`docker login` to that repository before using
