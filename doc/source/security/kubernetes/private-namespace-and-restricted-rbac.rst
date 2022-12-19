@@ -109,6 +109,15 @@ with read/write type access to a single private namespace
               name: dave-user
               namespace: kube-system
             ---
+            apiVersion: v1
+            kind: Secret
+            type: kubernetes.io/service-account-token
+            metadata:
+              name: dave-user-sa-token
+              namespace: kube-system
+              annotations:
+                kubernetes.io/service-account.name: dave-user
+            ---
             apiVersion: rbac.authorization.k8s.io/v1
             kind: RoleBinding
             metadata:
