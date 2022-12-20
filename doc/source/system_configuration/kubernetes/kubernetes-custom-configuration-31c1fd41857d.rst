@@ -10,7 +10,7 @@ Introduction
 
 Kubernetes configuration can be customized during deployment by specifying
 bootstrap overrides in the ``localhost.yml`` file during the Ansible bootstrap
-process or during runtime via ``sysinv service-parameters`` |CLI|.
+process.
 
 
 Custom configuration includes:
@@ -38,7 +38,7 @@ shared state through which all other components interact.
 For a list of all configurable options of kube-apiserver, see `kube-apiserver
 <https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/>`__.
 
-**Bootstrap configuration**
+.. **Bootstrap configuration**
 
 To set or override a ``kube-apiserver`` option, add the desired parameters to an
 ``apiserver_extra_args`` section in the ``localhost.yml``.
@@ -56,41 +56,41 @@ Example usage:
     event-ttl: "20h"
 
 
-**Runtime configuration**
+.. **Runtime configuration**
 
-To set, modify or delete a ``kube-apiserver`` parameter use the
-service-parameter add, modify or delete |CLI| command.
+   To set, modify or delete a ``kube-apiserver`` parameter use the
+   service-parameter add, modify or delete |CLI| command.
 
-Example usage:
+   Example usage:
 
-- Add new parameter
+   - Add new parameter
 
-  .. code-block:: none
+     .. code-block:: none
 
-      system service-parameter-add kubernetes kube_apiserver default-not-ready-toleration-seconds=31
+        system service-parameter-add kubernetes kube_apiserver default-not-ready-toleration-seconds=31
 
-      system service-parameter-apply kubernetes
+        system service-parameter-apply kubernetes
 
-  .. note::
+    .. note::
 
-    Parameter must not exists on service parameters, otherwise use :command:`modify`
-    command.
+      Parameter must not exists on service parameters, otherwise use :command:`modify`
+      command.
 
-- Modify existing parameter
+    - Modify existing parameter
 
-  .. code-block:: none
+    .. code-block:: none
 
-      system service-parameter-modify kubernetes kube_apiserver default-not-ready-toleration-seconds=33
+        system service-parameter-modify kubernetes kube_apiserver default-not-ready-toleration-seconds=33
 
-      system service-parameter-apply kubernetes
+        system service-parameter-apply kubernetes
 
-- Delete parameter
+    - Delete parameter
 
-  #.  system service-parameter-list
+    #.  system service-parameter-list
 
-  #.  copy parameter uuid to be deleted
+    #.  copy parameter uuid to be deleted
 
-  #.  system service-parameter-delete <uuid>
+    #.  system service-parameter-delete <uuid>
 
 
 -------------------------------------
@@ -107,7 +107,7 @@ For a list of all configurable options of kube-controller-manager, see
 <https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/>`__.
 
 
-**Bootstrap configuration**
+.. **Bootstrap configuration**
 
 To set or override a ``kube-controller-manager`` option, add the desired
 parameters to an ``controllermanager_extra_args`` section in the
@@ -125,41 +125,41 @@ Example usage:
     feature-gates: "TTLAfterFinished=true,MemoryManager=true"
 
 
-**Runtime configuration**
+.. **Runtime configuration**
 
-To set, modify or delete a ``kube-controller-manager`` parameter use the
-service-parameter add, modify or delete |CLI| command.
+    To set, modify or delete a ``kube-controller-manager`` parameter use the
+    service-parameter add, modify or delete |CLI| command.
 
-Example usage:
+    Example usage:
 
-- Add new parameter
+    - Add new parameter
 
-  .. code-block:: none
+    .. code-block:: none
 
-      system service-parameter-add kubernetes kube_controller_manager node-monitor-period=5s
+        system service-parameter-add kubernetes kube_controller_manager node-monitor-period=5s
 
-      system service-parameter-apply kubernetes
+        system service-parameter-apply kubernetes
 
-  .. note::
+    .. note::
 
-    Parameter must not exists on service parameters, otherwise use :command:`modify`
-    command.
+      Parameter must not exists on service parameters, otherwise use :command:`modify`
+      command.
 
-- Modify existing parameter
+    - Modify existing parameter
 
-  .. code-block:: none
+    .. code-block:: none
 
-      system service-parameter-modify kubernetes kube_controller_manager node-monitor-period=7s
+        system service-parameter-modify kubernetes kube_controller_manager node-monitor-period=7s
 
-      system service-parameter-apply kubernetes
+        system service-parameter-apply kubernetes
 
-- Delete parameter
+    - Delete parameter
 
-  #.  system service-parameter-list
+    #.  system service-parameter-list
 
-  #.  copy parameter uuid to be deleted
+    #.  copy parameter uuid to be deleted
 
-  #.  system service-parameter-delete <uuid>
+    #.  system service-parameter-delete <uuid>
 
 
 ----------------------------
@@ -176,7 +176,7 @@ the reference implementation.
 For a list of all configurable options of ``kube-scheduler``, see `kube-scheduler
 <https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/>`__.
 
-**Bootstrap configuration**
+.. **Bootstrap configuration**
 
 To set or override a ``kube-scheduler`` option, add the desired parameters to an
 ``scheduler_extra_args`` section in the ``localhost.yml`` .
@@ -188,41 +188,41 @@ Example usage:
    scheduler_extra_args:
      feature-gates: "TTLAfterFinished=false"
 
-**Runtime configuration**
+.. **Runtime configuration**
 
 To set, modify or delete a ``kube-controller-manager`` parameter use the
 service-parameter add, modify or delete |CLI| command.
 
-Example usage:
+.. Example usage:
 
-- Add new parameter
+  - Add new parameter
 
-  .. code-block:: none
+    .. code-block:: none
 
-      system service-parameter-add kubernetes kube_scheduler leader-elect-lease-duration=16s
+        system service-parameter-add kubernetes kube_scheduler leader-elect-lease-duration=16s
 
-      system service-parameter-apply kubernetes
+        system service-parameter-apply kubernetes
 
-  .. note::
+    .. note::
 
-    Parameter must not exists on service parameters, otherwise use :command:`modify`
-    command.
+      Parameter must not exists on service parameters, otherwise use :command:`modify`
+      command.
 
-- Modify existing parameter
+  - Modify existing parameter
 
-  .. code-block:: none
+    .. code-block:: none
 
-      system service-parameter-modify kubernetes kube_scheduler leader-elect-lease-duration=14s
+        system service-parameter-modify kubernetes kube_scheduler leader-elect-lease-duration=14s
 
-      system service-parameter-apply kubernetes
+        system service-parameter-apply kubernetes
 
-- Delete parameter
+  - Delete parameter
 
-  #.  system service-parameter-list
+    #.  system service-parameter-list
 
-  #.  copy parameter uuid to be deleted
+    #.  copy parameter uuid to be deleted
 
-  #.  system service-parameter-delete <uuid>
+    #.  system service-parameter-delete <uuid>
 
 
 ----------------------
@@ -237,9 +237,9 @@ For a list of all configurable  options, see `Kubelet Configuration (v1beta1)
 To set or override a kubelet option, add the desired parameters to an
 ``kubelet_configurations`` section in the ``localhost.yml`` .
 
-.. important::
 
-    Custom Kubelet configuration is not supported during runtime. This feature
+
+..    Custom Kubelet configuration is not supported during runtime. This feature
     will be supported in the next release.
 
 Example usage:
@@ -262,9 +262,9 @@ overrides (``localhost.yml``) with the ``apiserver_extra_volumes``,
 ``controllermanager_extra_volumes`` and ``scheduler_extra_volumes``
 definitions.
 
-.. important::
 
-    Kubernetes custom configuration of extra-volumes for ``kube-apiserver``,
+
+..    Kubernetes custom configuration of extra-volumes for ``kube-apiserver``,
     ``kube-controller-manager`` and ``kube-scheduler`` are not supported during
     runtime. This feature will be supported in the next release.
 
