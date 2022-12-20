@@ -186,3 +186,4 @@ Customize Core Dumps
 
 
    change-the-default-coredump-configuration-51ff4ce0c9ae
+   kubernetes-pod-coredump-handler-54d27a0fd2ec
