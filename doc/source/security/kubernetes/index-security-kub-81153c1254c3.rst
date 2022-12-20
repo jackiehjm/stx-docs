@@ -228,6 +228,16 @@ Authentication of Software Delivery
 
    authentication-of-software-delivery
 
+***************
+CVE Maintenance
+***************
+
+.. toctree::
+   :maxdepth: 1
+
+   cve-maintenance-723cd9dd54b3
+
+
 *******************************************************
 Security Feature Configuration for Spectre and Meltdown
 *******************************************************

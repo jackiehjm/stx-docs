@@ -35,6 +35,7 @@
 .. |CSK| replace:: :abbr:`CSK (Code Signing Key)`
 .. |CSKs| replace:: :abbr:`CSKs (Code Signing Keys)`
 .. |CVE| replace:: :abbr:`CVE (Common Vulnerabilities and Exposures)`
+.. |CVSS| replace:: :abbr:`CVSS (Common Vulnerability Scoring System)`
 .. |DAD| replace:: :abbr:`DAD (Duplicate Address Detection)`
 .. |DC| replace:: :abbr:`DC (Distributed Cloud)`
 .. |DOR| replace:: :abbr:`DOR (Dead Office Recovery)`
@@ -187,3 +188,4 @@
 .. |WAD| replace:: :abbr:`WAD (Windows Active Directory)`
 .. |XML| replace:: :abbr:`XML (eXtensible Markup Language)`
 .. |YAML| replace:: :abbr:`YAML (YAML Ain't Markup Language)`
+
