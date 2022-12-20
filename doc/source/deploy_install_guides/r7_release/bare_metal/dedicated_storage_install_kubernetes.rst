@@ -68,54 +68,54 @@ Install Software on Controller-0
 
 
 .. .. only:: starlingx
-.. 
+..
 ..    .. --------
 ..    .. Overview
 ..    .. --------
-.. 
+..
 ..    .. .. include:: /shared/_includes/installation-prereqs.rest
 ..    ..    :start-after: begin-install-prereqs-ded
 ..    ..    :end-before: end-install-prereqs-ded
-.. 
+..
 ..    ---------------------
 ..    Hardware Requirements
 ..    ---------------------
-.. 
+..
 ..    .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
 ..       :start-after: begin-min-hw-reqs-common-intro
 ..       :end-before: end-min-hw-reqs-common-intro
-.. 
+..
 ..    .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
 ..       :start-after: begin-min-hw-reqs-sx
 ..       :end-before: end-min-hw-reqs-sx
-.. 
+..
 ..    The following requirements must be met for worker nodes.
-.. 
+..
 ..    .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
 ..       :start-after: begin-worker-hw-reqs
 ..       :end-before: end-worker-hw-reqs
-.. 
+..
 ..    The following requirements must be met for storage nodes.
-.. 
+..
 ..    .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
 ..       :start-after: begin-storage-hw-reqs
 ..       :end-before: end-storage-hw-reqs
-.. 
+..
 ..    .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
 ..       :start-after: start-prepare-servers-common
 ..       :end-before: end-prepare-servers-common
-.. 
+..
 ..    -------------------
 ..    Create bootable USB
 ..    -------------------
-.. 
+..
 ..    Refer to :ref:`Bootable USB <bootable_usb>` for instructions on how to
 ..    create a bootable USB with the StarlingX ISO on your system.
-.. 
+..
 ..    --------------------------------
 ..    Install software on controller-0
 ..    --------------------------------
-.. 
+..
 ..    .. include:: /shared/_includes/inc-install-software-on-controller.rest
 ..       :start-after: incl-install-software-controller-0-standard-start
 ..       :end-before: incl-install-software-controller-0-standard-end

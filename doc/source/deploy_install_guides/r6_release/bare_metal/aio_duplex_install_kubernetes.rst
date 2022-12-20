@@ -1,4 +1,6 @@
 
+.. Greg updates required for -High Security Vulnerability Document Updates
+
 .. _aio_duplex_install_kubernetes_r6:
 
 ================================================
@@ -96,19 +98,30 @@ Bootstrap system on controller-0
    Specify the user configuration override file for the Ansible bootstrap
    playbook using one of the following methods:
 
+   .. note::
+
+      This Ansible Overrides file for the Bootstrap Playbook ($HOME/localhost.yml)
+      contains security sensitive information, use the
+      :command:`ansible-vault create $HOME/localhost.yml` command to create it.
+      You will be prompted for a password to protect/encrypt the file.
+      Use the :command:`ansible-vault edit $HOME/localhost.yml` command if the
+      file needs to be edited after it is created.
+
    #. Use a copy of the default.yml file listed above to provide your overrides.
 
       The default.yml file lists all available parameters for bootstrap
       configuration with a brief description for each parameter in the file
       comments.
 
-      To use this method, copy the default.yml file listed above to
-      ``$HOME/localhost.yml`` and edit the configurable values as desired.
+      To use this method, run the :command:`ansible-vault create $HOME/localhost.yml`
+      command and copy the contents of the ``default.yml`` file into the
+      ansible-vault editor, and edit the configurable values as required.
 
    #. Create a minimal user configuration override file.
 
-      To use this method, create your override file at ``$HOME/localhost.yml``
-      and provide the minimum required parameters for the deployment
+      To use this method, create your override file with
+      the :command:`ansible-vault create $HOME/localhost.yml`
+      command and provide the minimum required parameters for the deployment
       configuration as shown in the example below. Use the OAM IP SUBNET and IP
       ADDRESSing applicable to your deployment environment.
 
@@ -189,7 +202,7 @@ Bootstrap system on controller-0
 
    ::
 
-      ansible-playbook /usr/share/ansible/stx-ansible/playbooks/bootstrap.yml
+      ansible-playbook --ask-vault-pass /usr/share/ansible/stx-ansible/playbooks/bootstrap.yml
 
    Wait for Ansible bootstrap playbook to complete. This can take 5-10 minutes,
    depending on the performance of the host machine.
