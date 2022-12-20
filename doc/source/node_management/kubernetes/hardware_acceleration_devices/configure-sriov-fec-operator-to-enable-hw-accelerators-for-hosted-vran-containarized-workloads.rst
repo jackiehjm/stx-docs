@@ -214,220 +214,220 @@ following |vRAN| |FEC| accelerators:
 
     #.  ACC100 device configuration.
 
-        -   The maximum number of |VFs| that can be configured for ACC100 is
-            16 |VFs|.
+        - The maximum number of |VFs| that can be configured for ACC100 is
+          16 |VFs|.
 
-        -   There are 8 queue groups available which can be allocated to any
-            available operation (4GUL/4GDL/5GUL/5GDL) based on the
-            ``numQueueGroups`` parameter.
+        - There are 8 queue groups available which can be allocated to any
+          available operation (4GUL/4GDL/5GUL/5GDL) based on the
+          ``numQueueGroups`` parameter.
 
-        -   The product of ``numQueueGroups`` x ``numAqsPerGroups`` x
-            ``aqDepthLog2`` x ``numVfBundles`` must be less than 32K.
+        - The product of ``numQueueGroups`` x ``numAqsPerGroups`` x
+          ``aqDepthLog2`` x ``numVfBundles`` must be less than 32K.
 
-        -   The following example creates 1 |VF|, configures ACC100's 8 queue
-            groups; allocating 4 queue groups for 5G Uplink and another 4
-            queue groups for 5G Downlink.
+        - The following example creates 1 |VF|, configures ACC100's 8 queue
+          groups; allocating 4 queue groups for 5G Uplink and another 4
+          queue groups for 5G Downlink.
 
-            .. code-block:: none
+          .. code-block:: none
 
-                apiVersion: sriovfec.intel.com/v2
-                kind: SriovFecClusterConfig
-                metadata:
-                  name: config
-                  namespace: sriov-fec-system
-                spec:
-                  priority: 1
-                  nodeSelector:
-                    kubernetes.io/hostname: controller-0
-                  acceleratorSelector:
-                    pciAddress: 0000:17:00.0
-                  physicalFunction:
-                    pfDriver: "pci-pf-stub"
-                    vfDriver: "vfio-pci"
-                    vfAmount: 1
-                    bbDevConfig:
-                      acc100:
-                        # pfMode: false = VF Programming, true = PF Programming
-                        pfMode: false
-                        numVfBundles: 1
-                        maxQueueSize: 1024
-                        uplink4G:
-                          numQueueGroups: 0
-                          numAqsPerGroups: 16
-                          aqDepthLog2: 4
-                        downlink4G:
-                          numQueueGroups: 0
-                          numAqsPerGroups: 16
-                          aqDepthLog2: 4
-                        uplink5G:
-                          numQueueGroups: 4
-                          numAqsPerGroups: 16
-                          aqDepthLog2: 4
-                        downlink5G:
-                          numQueueGroups: 4
-                          numAqsPerGroups: 16
-                          aqDepthLog2: 4
-                  drainSkip: true
+              apiVersion: sriovfec.intel.com/v2
+              kind: SriovFecClusterConfig
+              metadata:
+                name: config
+                namespace: sriov-fec-system
+              spec:
+                priority: 1
+                nodeSelector:
+                  kubernetes.io/hostname: controller-0
+                acceleratorSelector:
+                  pciAddress: 0000:17:00.0
+                physicalFunction:
+                  pfDriver: "pci-pf-stub"
+                  vfDriver: "vfio-pci"
+                  vfAmount: 1
+                  bbDevConfig:
+                    acc100:
+                      # pfMode: false = VF Programming, true = PF Programming
+                      pfMode: false
+                      numVfBundles: 1
+                      maxQueueSize: 1024
+                      uplink4G:
+                        numQueueGroups: 0
+                        numAqsPerGroups: 16
+                        aqDepthLog2: 4
+                      downlink4G:
+                        numQueueGroups: 0
+                        numAqsPerGroups: 16
+                        aqDepthLog2: 4
+                      uplink5G:
+                        numQueueGroups: 4
+                        numAqsPerGroups: 16
+                        aqDepthLog2: 4
+                      downlink5G:
+                        numQueueGroups: 4
+                        numAqsPerGroups: 16
+                        aqDepthLog2: 4
+                drainSkip: true
 
-        -   The following example creates 2 |VFs|, configures ACC100's 8 queue
-            groups; allocating 2 queue groups each for 4G Uplink, 4G downlink,
-            5G Uplink and 5G downlink.
+        - The following example creates 2 |VFs|, configures ACC100's 8 queue
+          groups; allocating 2 queue groups each for 4G Uplink, 4G downlink,
+          5G Uplink and 5G downlink.
 
-            .. code-block:: none
+          .. code-block:: none
 
-                apiVersion: sriovfec.intel.com/v2
-                kind: SriovFecClusterConfig
-                metadata:
-                  name: config
-                  namespace: sriov-fec-system
-                spec:
-                  priority: 1
-                  nodeSelector:
-                    kubernetes.io/hostname: controller-0
-                  acceleratorSelector:
-                    pciAddress: 0000:17:00.0
-                  physicalFunction:
-                    pfDriver: "pci-pf-stub"
-                    vfDriver: "vfio-pci"
-                    vfAmount: 2
-                    bbDevConfig:
-                      acc100:
-                        # pfMode: false = VF Programming, true = PF Programming
-                        pfMode: false
-                        numVfBundles: 2
-                        maxQueueSize: 1024
-                        uplink4G:
-                          numQueueGroups: 2
-                          numAqsPerGroups: 16
-                          aqDepthLog2: 4
-                        downlink4G:
-                          numQueueGroups: 2
-                          numAqsPerGroups: 16
-                          aqDepthLog2: 4
-                        uplink5G:
-                          numQueueGroups: 2
-                          numAqsPerGroups: 16
-                          aqDepthLog2: 4
-                        downlink5G:
-                          numQueueGroups: 2
-                          numAqsPerGroups: 16
-                          aqDepthLog2: 4
-                  drainSkip: true
+              apiVersion: sriovfec.intel.com/v2
+              kind: SriovFecClusterConfig
+              metadata:
+                name: config
+                namespace: sriov-fec-system
+              spec:
+                priority: 1
+                nodeSelector:
+                  kubernetes.io/hostname: controller-0
+                acceleratorSelector:
+                  pciAddress: 0000:17:00.0
+                physicalFunction:
+                  pfDriver: "pci-pf-stub"
+                  vfDriver: "vfio-pci"
+                  vfAmount: 2
+                  bbDevConfig:
+                    acc100:
+                      # pfMode: false = VF Programming, true = PF Programming
+                      pfMode: false
+                      numVfBundles: 2
+                      maxQueueSize: 1024
+                      uplink4G:
+                        numQueueGroups: 2
+                        numAqsPerGroups: 16
+                        aqDepthLog2: 4
+                      downlink4G:
+                        numQueueGroups: 2
+                        numAqsPerGroups: 16
+                        aqDepthLog2: 4
+                      uplink5G:
+                        numQueueGroups: 2
+                        numAqsPerGroups: 16
+                        aqDepthLog2: 4
+                      downlink5G:
+                        numQueueGroups: 2
+                        numAqsPerGroups: 16
+                        aqDepthLog2: 4
+                drainSkip: true
 
     #.  N3000 device configuration.
 
-        -   The maximum number of |VFs| that can be configured for N3000 is 8
-            |VFs|.
+        - The maximum number of |VFs| that can be configured for N3000 is 8
+          |VFs|.
 
-        -   The maximum number of queues that can be mapped to each VF for uplink
-            or downlink is 32.
+        - The maximum number of queues that can be mapped to each VF for uplink
+          or downlink is 32.
 
-        -   The following configuration for N3000 creates 1 |VF| with 32
-            queues each for 5G uplink and 5G downlink.
+        - The following configuration for N3000 creates 1 |VF| with 32
+          queues each for 5G uplink and 5G downlink.
 
-            .. code-block:: none
+          .. code-block:: none
 
-                apiVersion: sriovfec.intel.com/v2
-                kind: SriovFecClusterConfig
-                metadata:
-                  name: config
-                  namespace: sriov-fec-system
-                spec:
-                  priority: 1
-                  nodeSelector:
-                    kubernetes.io/hostname: controller-0
-                  acceleratorSelector:
-                    pciAddress: 0000:1c:00.0
-                  physicalFunction:
-                    pfDriver: pci-pf-stub
-                    vfDriver: vfio-pci
-                    vfAmount: 1
-                    bbDevConfig:
-                      n3000:
-                        # Network Type: either "FPGA_5GNR" or "FPGA_LTE"
-                        networkType: "FPGA_5GNR"
-                        # Pf mode: false = VF Programming, true = PF Programming
-                        pfMode: false
-                        flrTimeout: 610
-                        downlink:
-                          bandwidth: 3
-                          loadBalance: 128
-                          queues:
-                            vf0: 32
-                            vf1: 0
-                            vf2: 0
-                            vf3: 0
-                            vf4: 0
-                            vf5: 0
-                            vf6: 0
-                            vf7: 0
-                        uplink:
-                          bandwidth: 3
-                          loadBalance: 128
-                          queues:
-                            vf0: 32
-                            vf1: 0
-                            vf2: 0
-                            vf3: 0
-                            vf4: 0
-                            vf5: 0
-                            vf6: 0
-                            vf7: 0
-                  drainSkip: true
+              apiVersion: sriovfec.intel.com/v2
+              kind: SriovFecClusterConfig
+              metadata:
+                name: config
+                namespace: sriov-fec-system
+              spec:
+                priority: 1
+                nodeSelector:
+                  kubernetes.io/hostname: controller-0
+                acceleratorSelector:
+                  pciAddress: 0000:1c:00.0
+                physicalFunction:
+                  pfDriver: pci-pf-stub
+                  vfDriver: vfio-pci
+                  vfAmount: 1
+                  bbDevConfig:
+                    n3000:
+                      # Network Type: either "FPGA_5GNR" or "FPGA_LTE"
+                      networkType: "FPGA_5GNR"
+                      # Pf mode: false = VF Programming, true = PF Programming
+                      pfMode: false
+                      flrTimeout: 610
+                      downlink:
+                        bandwidth: 3
+                        loadBalance: 128
+                        queues:
+                          vf0: 32
+                          vf1: 0
+                          vf2: 0
+                          vf3: 0
+                          vf4: 0
+                          vf5: 0
+                          vf6: 0
+                          vf7: 0
+                      uplink:
+                        bandwidth: 3
+                        loadBalance: 128
+                        queues:
+                          vf0: 32
+                          vf1: 0
+                          vf2: 0
+                          vf3: 0
+                          vf4: 0
+                          vf5: 0
+                          vf6: 0
+                          vf7: 0
+                drainSkip: true
 
-        -   The following configuration for N3000 creates 2 |VFs| with 16
-            queues each, mapping 32 queues with 2 |VFs| for 5G uplink and
-            another 32 queues with 2 |VFs| for 5G downlink.
+        - The following configuration for N3000 creates 2 |VFs| with 16
+          queues each, mapping 32 queues with 2 |VFs| for 5G uplink and
+          another 32 queues with 2 |VFs| for 5G downlink.
 
-            .. code-block:: none
+          .. code-block:: none
 
-                apiVersion: sriovfec.intel.com/v2
-                kind: SriovFecClusterConfig
-                metadata:
-                  name: config
-                  namespace: sriov-fec-system
-                spec:
-                  priority: 1
-                  nodeSelector:
-                    kubernetes.io/hostname: controller-0
-                  acceleratorSelector:
-                    pciAddress: 0000:1c:00.0
-                  physicalFunction:
-                    pfDriver: pci-pf-stub
-                    vfDriver: vfio-pci
-                    vfAmount: 2
-                    bbDevConfig:
-                      n3000:
-                        # Network Type: either "FPGA_5GNR" or "FPGA_LTE"
-                        networkType: "FPGA_5GNR"
-                        # Pf mode: false = VF Programming, true = PF Programming
-                        pfMode: false
-                        flrTimeout: 610
-                        downlink:
-                          bandwidth: 3
-                          loadBalance: 128
-                          queues:
-                            vf0: 16
-                            vf1: 16
-                            vf2: 0
-                            vf3: 0
-                            vf4: 0
-                            vf5: 0
-                            vf6: 0
-                            vf7: 0
-                        uplink:
-                          bandwidth: 3
-                          loadBalance: 128
-                          queues:
-                            vf0: 16
-                            vf1: 16
-                            vf2: 0
-                            vf3: 0
-                            vf4: 0
-                            vf5: 0
-                            vf6: 0
-                            vf7: 0
-                  drainSkip: true
+              apiVersion: sriovfec.intel.com/v2
+              kind: SriovFecClusterConfig
+              metadata:
+                name: config
+                namespace: sriov-fec-system
+              spec:
+                priority: 1
+                nodeSelector:
+                  kubernetes.io/hostname: controller-0
+                acceleratorSelector:
+                  pciAddress: 0000:1c:00.0
+                physicalFunction:
+                  pfDriver: pci-pf-stub
+                  vfDriver: vfio-pci
+                  vfAmount: 2
+                  bbDevConfig:
+                    n3000:
+                      # Network Type: either "FPGA_5GNR" or "FPGA_LTE"
+                      networkType: "FPGA_5GNR"
+                      # Pf mode: false = VF Programming, true = PF Programming
+                      pfMode: false
+                      flrTimeout: 610
+                      downlink:
+                        bandwidth: 3
+                        loadBalance: 128
+                        queues:
+                          vf0: 16
+                          vf1: 16
+                          vf2: 0
+                          vf3: 0
+                          vf4: 0
+                          vf5: 0
+                          vf6: 0
+                          vf7: 0
+                      uplink:
+                        bandwidth: 3
+                        loadBalance: 128
+                        queues:
+                          vf0: 16
+                          vf1: 16
+                          vf2: 0
+                          vf3: 0
+                          vf4: 0
+                          vf5: 0
+                          vf6: 0
+                          vf7: 0
+                drainSkip: true
 
     #.  ACC200 device configuration.
 
@@ -539,6 +539,25 @@ following |vRAN| |FEC| accelerators:
                           aqDepthLog2: 4
                   drainSkip: true
 
+        #. Lock the host.
+
+           .. code-block:: none
+
+               $ system host-lock controller-0
+
+        #.  Enable the ACC200 device to use the vfio-pci base driver.
+
+            .. code-block:: none
+
+                $ system host-device-modify controller-0 pci_0000_f7_00_0 --driver vfio-pci
+
+        #.  Unlock the host.
+
+            .. code-block:: none
+
+                $ system host-unlock controller-0
+
+
     #.  If you need to run the operator on a |prod-long| (|AIO-SX|), then you
         should provide ``SriovFecClusterConfig`` with ``spec.drainSkip: True``
         to avoid node draining, because it is impossible to drain a node if
@@ -558,7 +577,7 @@ following |vRAN| |FEC| accelerators:
         .. note::
 
             The ``vfAmount`` and ``numVfBundles`` in ``SriovFecClusterConfig``
-            must be always equal for ACC100 and ACC200.
+            must be always equal for ACC100/ACC200.
 
 #.  Verify that the |FEC| configuration is applied.
 
@@ -819,12 +838,11 @@ following |vRAN| |FEC| accelerators:
         :command:`system application-remove`.
 
     #.  Apply the configuration using :command:`system host-device-modify`,
-        see :ref:`Enable Mount Bryce HW Accelerator for Hosted vRAN
-        Containerized Workloads <enabling-mount-bryce-hw-accelerator-for-hosted-vram-containerized-workloads>`.
+        see :ref:`Enable ACC100/ACC200 Hardware Accelerators for Hosted vRAN Containerized Workloads <enabling-mount-bryce-hw-accelerator-for-hosted-vram-containerized-workloads>`.
 
 .. rubric:: |postreq|
 
--   See :ref:`Set Up Pods to Use SRIOV to Access Mount Bryce HW Accelerator
+-   See :ref:`Set Up Pods to Use SRIOV to Access ACC100/ACC200 HW Accelerators
     <set-up-pods-to-use-sriov>`.
 
 -   The resource name for |FEC| |VFs| configured with |SRIOV| |FEC| operator
@@ -832,7 +850,7 @@ following |vRAN| |FEC| accelerators:
     ``intel.com/intel_fec_5g`` for N3000 and ``intel.com/intel_fec_acc200``
     for ACC200 when requested in a pod spec.
 
-    -   ACC100.
+    -   ACC100
 
         .. code-block:: none
 

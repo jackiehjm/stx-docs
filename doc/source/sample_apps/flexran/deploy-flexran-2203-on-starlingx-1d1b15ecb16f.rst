@@ -142,7 +142,7 @@ platform: **Coyote Pass** (housing ICX-SP).
        system host-unlock $NODE
 
 #. After the system has been unlocked and available for the first time,
-   configure ACC100 / Mount Bryce:
+   configure ACC100/ACC200 :
 
    .. code:: bash
 
@@ -768,7 +768,7 @@ FlexRAN execution pod from the host.
 
       .. note::
 
-          ``phycfg_timer.xml`` has been modified by the entry script 
+          ``phycfg_timer.xml`` has been modified by the entry script
           ``/root/res-setup.sh`` to use the FEC accelerator:
           ``<dpdkBasebandFecMode>1</dpdkBasebandFecMode>``
           ``<dpdkBasebandDevice>0000:8b:00.0</dpdkBasebandDevice>``

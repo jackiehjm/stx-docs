@@ -327,7 +327,7 @@ Common device management tasks
    cli-commands-for-managing-pci-devices
 
 ***********************************************
-vRAN Accelerator ACC100 Adapter \(Mount Bryce\)
+vRAN Accelerator Adapters (ACC100/ACC200/N3000)
 ***********************************************
 
 .. toctree::
