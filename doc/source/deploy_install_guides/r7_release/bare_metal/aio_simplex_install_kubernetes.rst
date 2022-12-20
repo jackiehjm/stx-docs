@@ -739,6 +739,6 @@ machine.
 
 Complete system configuration by reviewing procedures in:
 
-- :ref:`index-security-84d0d8aa401b`
-- :ref:`index-sysconf-d511820651f0`
-- :ref:`index-admintasks-768a6e9aaeff`
+- :ref:`index-security-kub-81153c1254c3`
+- :ref:`index-sysconf-kub-78f0e1e9ca5a`
+- :ref:`index-admintasks-kub-ebc55fefc368`
