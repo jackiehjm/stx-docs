@@ -53,15 +53,22 @@ host types are:
 
        .. note::
 
-          * Platform: 2x physical cores (4x logical cores if hyper-threading), (by
-            default, configurable)
+          * Platform: 1 physical core with HT enabled or 2 physical cores with HT
+            disabled, (by default, configurable)
+
+            The use of single physical core for platform function is only suitable for
+            Intel® 4th Generation Xeon® Scalable Processors or above and should not be
+            configured for previous Intel® Xeon® CPU families. For All-In-One systems
+            with older generation processors, two physical cores (or more) must be
+            configured.
+
           * Application: Remaining cores
    * - Minimum memory
      - 64 GB
 
        * Platform:
 
-         - Socket 0: 7GB (by default, configurable)
+         - Socket 0: 10GB (by default, configurable)
 
          - Socket 1: 1GB (by default, configurable)
 
@@ -96,6 +103,9 @@ host types are:
 
    * - USB
      - 1  (Only required if used for initial installation of controller-0).
+   * - Power profile
+     - C-states (up to C6) may be configured for some use cases where application
+       workloads can tolerate additional scheduling/timer latency.
    * - Boot order
      - HD, PXE, USB
    * - BIOS mode
@@ -175,8 +185,15 @@ host types are:
 
        .. note::
 
-          * Platform: 2x physical cores (4x logical cores if hyper-threading), (by
-            default, configurable)
+          * Platform: 1 physical core with HT enabled or 2 physical cores with HT
+            disabled, (by default, configurable)
+
+            The use of single physical core for platform function is only suitable for
+            Intel® 4th Generation Xeon® Scalable Processors or above and should not be
+            configured for previous Intel® Xeon® CPU families. For All-In-One systems
+            with older generation processors, two physical cores (or more) must be
+            configured.
+
           * Application: Remaining cores
      - (Same as controller node)
    * - Minimum memory
@@ -184,7 +201,7 @@ host types are:
 
        * Platform:
 
-         - Socket 0: 7GB (by default, configurable)
+         - Socket 0: 10GB (by default, configurable)
 
          - Socket 1: 1GB (by default, configurable)
 
@@ -223,11 +240,15 @@ host types are:
        * Data: 1 or more x 10GE  (Recommended:  Data 2x10GE LAG)
 
    * - USB
-     - 1  (Only required if used for initial installation of controller-0).
+     - 1 (Only required if used for initial installation of controller-0).
      -
    * - Board Management
      - 
      - 1 |BMC|
+   * - Power profile
+     -
+     - C-states (up to C6) may be configured for some use cases where application
+       workloads can tolerate additional scheduling/timer latency.
    * - Boot order
      - HD, PXE, USB
      - HD, PXE
