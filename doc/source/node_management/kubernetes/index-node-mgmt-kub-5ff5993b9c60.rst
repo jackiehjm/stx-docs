@@ -98,6 +98,7 @@ Configuring CPU core behaviour
    configuring_cpu_core_assignments/configuring-cpu-core-assignments
    configuring_cpu_core_assignments/changing-the-hyper-threading-status
    host-cpu-mhz-parameters-configuration-d9ccf907ede0
+   single-physical-core-for-platform-function-in-all-in-one-deployments-bec61d5a13f4
 
 ------------------------
 Host memory provisioning
