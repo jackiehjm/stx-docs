@@ -56,6 +56,6 @@ System API:
 .. only:: partner
 
     .. include:: /_includes/single-physical-core-for-platform-function-in-all-in-one-deployments-bec61d5a13f4.rest
-    :start-after: deploy-begin
-    :end-before: deploy-end
+       :start-after: deploy-begin
+       :end-before: deploy-end
 
