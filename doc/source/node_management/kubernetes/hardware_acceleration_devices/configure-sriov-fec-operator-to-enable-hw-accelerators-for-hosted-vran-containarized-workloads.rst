@@ -1,4 +1,4 @@
-.. _configure-sriov-fec-operator-to-enable-hw-accelerators-for-hosted-vran-containarized-workloads.rst:
+.. _configure-sriov-fec-operator-to-enable-hw-accelerators-for-hosted-vran-containarized-workloads:
 
 ===================================================================
 Configure Intel Wireless FEC Accelerators using SR-IOV FEC operator
