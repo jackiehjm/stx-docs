@@ -95,16 +95,15 @@ For more details, see :ref:`Detailed contents of a system backup
     #.  Run the :command:`load-import` command on controller-0 to import
         the new release.
 
-        First, source ``/etc/platform/openrc``.
-
-        You must specify an exact path to the ``*.iso`` bootimage file and to the
-        ``*.sig`` bootimage signature file.
+        Source ``/etc/platform/openrc``. Also, you can specify either the
+        full file path or relative paths to the ``*.iso`` bootimage file and to
+        the ``*.sig`` bootimage signature file.
 
         .. code-block:: none
 
             $ source /etc/platform/openrc
-            ~(keystone_admin)]$ system load-import /home/sysadmin/<bootimage>.iso \
-            <bootimage>.sig
+            ~(keystone_admin)]$ system load-import [--local] /home/sysadmin/<bootimage>.iso <bootimage>.sig
+
             +--------------------+-----------+
             | Property           | Value     |
             +--------------------+-----------+
@@ -115,8 +114,18 @@ For more details, see :ref:`Detailed contents of a system backup
             | required_patches   |           |
             +--------------------+-----------+
 
-        The :command:`load-import` must be done on controller-0 and accepts
-        relative paths.
+        The :command:`load-import` must be done on controller-0.
+
+        (Optional) If ``--local`` is specified, the ISO and sig files are
+        uploaded directly from the active controller, where `<local_iso_file_path>`
+        and `<local_sig_file_path>` are paths on the active controller to load
+        ISO files and sig files respectively.
+
+        .. note::
+
+            If ``--local`` is specified, the ISO and sig files are transferred
+            directly from the active controller filesystem to the load directory,
+            if it is not specified, the files are transferred via the API.
 
         .. note::
             This will take a few minutes to complete.
@@ -172,6 +181,29 @@ For more details, see :ref:`Detailed contents of a system backup
         No instances running on controller-1: [OK]
         All kubernetes applications are in a valid state: [OK]
         Active controller is controller-0: [OK]
+        Disk space requirement: [OK]
+        Boot Device and Root file system Device: [OK]
+
+    .. note::
+
+        In case of "Disk space requirement: [Fail]"
+        Insufficient unallocated disk space on rootdisk for compute-0. Current
+        partitions have allocated disk space such that only 5GiB is available
+        but 23.5GiB unallocated disk space is needed. Insufficient total disk
+        space on rootdisk for controller-1, 220GiB needed, 180GiB available.
+
+        In case "Boot Device and Root file system Device: [Fail]";
+        boot_device (/dev/sdd) for controller-0 does not match any inventoried disk
+        rootfs_device for controller-1 is not assigned.
+
+    Use the following commands to correct the boot_device and/or rootfs_device
+    settings if you encounter an error:
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system host-lock <hostname_or_id>
+        ~(keystone_admin)]$ system host-update <hostname_or_id> boot_device=<boot_device> rootfs_device=<rootfs_device>
+        ~(keystone_admin)]$ system host-unlock <hostname_or_id>
 
     By default, the upgrade process cannot be run with Active Alarms present.
     However, management affecting alarms can be ignored with the
