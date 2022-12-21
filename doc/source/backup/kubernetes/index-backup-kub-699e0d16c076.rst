@@ -23,5 +23,7 @@ System and storage restore
    restoring-starlingx-system-data-and-storage
    running-restore-playbook-locally-on-the-controller
    system-backup-running-ansible-restore-playbook-remotely
+   node-replacement-for-aiominussx-using-optimized-backup-and-restore-6603c650c80d
+
 
 

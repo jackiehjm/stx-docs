@@ -16,7 +16,32 @@ following command to run the Ansible Restore playbook:
 
 .. code-block:: none
 
-    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_platform.yml -e "initial_backup_dir=<location_of_tarball ansible_become_pass=<admin_password> admin_password=<admin_password backup_filename=<backup_filename> <optional-restore-mode>"
+    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_platform.yml -e "initial_backup_dir=<location_of_tarball ansible_become_pass=<admin_password> admin_password=<admin_password backup_filename=<backup_filename> wipe_ceph_osds=<true/false>" -e "restore_registry_filesystem=true"
+
+
+Other ``-e`` command line options:
+
+``-e restore_mode=optimized``
+    Enable optimized restore mode
+
+``-e "initial_backup_dir=/home/sysadmin"``
+    Where the backup tgz files are located on box.
+
+``-e backup_filename=localhost_platform_backup.tgz``
+    The basename of the platform backup tgz.  The full path will be a
+    combination ``{initial_backup_dir}/{backup_filename}``
+
+``-e restore_registry_filesystem=true``
+    Restores the registry images created during backup when
+    ``backup_registry_filesystem`` was true.  If the registry filesystem is not
+    restored the images must be pulled from upstream or registry.central.
+
+``-e registry_backup_filename=custom_name_registry_filesystem_backup.tgz``
+    By default this override is not required.  When
+    ``restore_registry_filesystem`` is true and a custom name was used during
+    backup, ``registry_backup_filename`` needs to be set to match. The full
+    path will be a combination
+    ``{initial_backup_dir}/{registry_backup_filename}``
 
 
 .. _running-restore-playbook-locally-on-the-controller-steps-usl-2c3-pmb:
@@ -54,13 +79,18 @@ following command to run the Ansible Restore playbook:
 
         .. code-block:: none
 
-            ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_platform.yml -e "initial_backup_dir=/home/sysadmin ansible_become_pass=St0rlingX* admin_password=St0rlingX* backup_filename=localhost_platform_backup_2020_07_27_07_48_48.tgz wipe_ceph_osds=true"
+            ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_platform.yml -e "initial_backup_dir=/home/sysadmin ansible_become_pass=St8rlingX* admin_password=St8rlingX* backup_filename=localhost_platform_backup_2020_07_27_07_48_48.tgz wipe_ceph_osds=true"
 
         .. note::
 
             If the backup contains patches, Ansible Restore playbook will apply
             the patches and prompt you to reboot the system. Then you will need
             to re-run Ansible Restore playbook.
+
+            The flag ``wipe_ceph_osds=true`` is required for a restore in a new
+            hardware, for more details see :ref:`AIO-SX - Restore on new
+            hardware
+            <node-replacement-for-aiominussx-using-optimized-backup-and-restore-6603c650c80d>`.
 
 
     -   The ``ssl_ca_certificate_file`` defines the ssl_ca certificate that will be
@@ -105,4 +135,4 @@ For example:
 
 .. code-block:: none
 
-    ~(keystone_admin)]$  ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_user_images.yml -e "initial_backup_dir=/home/sysadmin backup_filename=localhost_docker_local_registry_backup_2020_07_15_21_24_22.tgz ansible_become_pass=St0rlingX*"
+    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_user_images.yml -e "initial_backup_dir=/home/sysadmin backup_filename=localhost_docker_local_registry_backup_2020_07_15_21_24_22.tgz ansible_become_pass=St8rlingX*"

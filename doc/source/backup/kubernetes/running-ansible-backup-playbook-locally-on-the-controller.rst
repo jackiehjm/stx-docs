@@ -10,13 +10,25 @@ Run Ansible Backup Playbook Locally on the Controller
 
 In this method the Ansible Backup playbook is run on the active controller.
 
-Use one of the following commands to run the Ansible Backup playbook and back up the
-|prod| configuration, data, and user container images in registry.local data:
+Use the following command to run the Ansible Backup playbook and back up the
+|prod| configuration, data, and user container images in registry.local:
 
 .. code-block:: none
 
-    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml -e "ansible_become_pass=<sysadmin password> admin_password=<sysadmin password>" -e "backup_user_local_registry=true"
+    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml -e "ansible_become_pass=<sysadmin password> admin_password=<sysadmin password>" -e "backup_registry_filesystem=true"
     ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml --ask-vault-pass -e "override_files_dir=$HOME/override_dir"
+
+
+To exclude a directory and all the files in it like ``/var/home*`` you can use
+the optional parameter:
+
+:command:`-e "exclude_dirs=/var/home/**,/var/home"`
+
+.. note::
+
+    A 'glob' pattern is required to use ``-e "exclude_dirs=/var/home/**,/var/home"``,
+    in order to ensure there is sufficient free space in the required
+    directories in any event.
 
 The <admin_password> and <ansible_become_pass> need to be set  correctly
 using the ``-e`` option on the command line, with an override file secured with
@@ -31,9 +43,26 @@ command if the file needs to be edited after it is created.
 
    ansible_become_pass: "<admin_password>"
    admin_password: "<admin_password>"
-   backup_user_local_registry: "true"
+   backup_registry_filesystem: "true"
+   exclude_dirs: /var/home/**,/var/home"
+   ...
+   EOF
 
-The output files will be named:
+The extra var ``backup_registry_filesystem`` is an optional parameter and it is
+used to backup all images on the registry backup, generating a file named
+``{inventory_hostname}_image_registry_backup_YYYY_MM_DD_HH_mm_ss.tgz``. When
+not specified, the restore will download images from the upstream docker
+registry.
+
+For example:
+
+.. code-block:: none
+
+    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml -e "backup_registry_filesystem=true"
+
+
+A list of possible output files, files created depend on backup options and
+system configuration.
 
 .. _running-ansible-backup-playbook-locally-on-the-controller-ul-wj1-vxh-pmb:
 
@@ -41,9 +70,11 @@ The output files will be named:
 
 -   inventory_hostname_wr-openstack_backup_timestamp.tgz
 
--   inventory_hostname_docker_local_registry_backup_timestamp.tgz
+-   inventory_hostname_user_images_backup_timestamp.tgz
 
 -   inventory_hostname_dc_vault_backup_timestamp.tgz
+
+-   inventory_hostname_image_registry_backup_timestamp.tgz
 
 The output files' prefixes can be overridden with the following variables
 using the ``-e`` option on the command line or by using an override file.
