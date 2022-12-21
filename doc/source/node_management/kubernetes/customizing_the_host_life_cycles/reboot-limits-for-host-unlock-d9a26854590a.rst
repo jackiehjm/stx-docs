@@ -1,6 +1,4 @@
-
-.. hbd1546889192480
-.. _reboot-limits-for-host-unlock:
+.. _reboot-limits-for-host-unlock-d9a26854590a:
 
 =============================
 Reboot Limits for Host Unlock
@@ -35,3 +33,5 @@ reported on the Host Inventory page of the Horizon Web interface, in the
 After the designated number of reboots, |prod| leaves the host in an
 **Unlocked**, **Disabled**, and **Failed** state to allow troubleshooting.
 You can lock the host manually and then unlock it to attempt recovery.
+
+

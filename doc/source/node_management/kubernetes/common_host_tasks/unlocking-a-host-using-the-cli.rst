@@ -20,7 +20,7 @@ components for the host are already in place.
 During the unlock operation, the host is rebooted. If the boot process
 fails, a second reboot is attempted. For some types of boot failure, the
 number of successive reboot attempts is limited; for more information,
-see :ref:`Reboot Limits for Host Unlock <reboot-limits-for-host-unlock>`.
+see :ref:`reboot-limits-for-host-unlock-d9a26854590a`.
 
 .. note::
     On a |prod| Simplex system, any containers \(hosted applications\)

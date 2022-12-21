@@ -274,7 +274,7 @@ Customize host life cycles
    :maxdepth: 1
 
    customizing_the_host_life_cycles/adjusting-the-boot-timeout-interval
-   customizing_the_host_life_cycles/reboot-limits-for-host-unlock
+   customizing_the_host_life_cycles/reboot-limits-for-host-unlock-d9a26854590a
    customizing_the_host_life_cycles/adjusting-the-host-heartbeat-interval-and-heartbeat-response-thresholds
    customizing_the_host_life_cycles/configuring-heartbeat-failure-action
    customizing_the_host_life_cycles/configuring-multi-node-failure-avoidance
