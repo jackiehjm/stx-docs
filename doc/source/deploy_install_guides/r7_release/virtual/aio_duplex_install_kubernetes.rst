@@ -475,24 +475,13 @@ OpenStack-specific host configuration
 
          system host-label-assign controller-0 sriov=enabled
 
-#. **For OpenStack only:** Set up disk partition for nova-local volume group,
-   which is needed for |prefix|-openstack nova ephemeral disks:
+#. **For OpenStack only:** Set up a 'instances' filesystem,
+   which is needed for |prefix|-openstack nova ephemeral disks.
 
    ::
 
       export NODE=controller-1
-
-      echo ">>> Getting root disk info"
-      ROOT_DISK=$(system host-show ${NODE} | grep rootfs | awk '{print $4}')
-      ROOT_DISK_UUID=$(system host-disk-list ${NODE} --nowrap | grep ${ROOT_DISK} | awk '{print $2}')
-      echo "Root disk: $ROOT_DISK, UUID: $ROOT_DISK_UUID"
-
-      echo ">>>> Configuring nova-local"
-      NOVA_SIZE=34
-      NOVA_PARTITION=$(system host-disk-partition-add -t lvm_phys_vol ${NODE} ${ROOT_DISK_UUID} ${NOVA_SIZE})
-      NOVA_PARTITION_UUID=$(echo ${NOVA_PARTITION} | grep -ow "| uuid | [a-z0-9\-]* |" | awk '{print $4}')
-      system host-lvg-add ${NODE} nova-local
-      system host-pv-add ${NODE} nova-local ${NOVA_PARTITION_UUID}
+      system host-fs-add ${NODE} instances=34
 
 -------------------
 Unlock controller-1

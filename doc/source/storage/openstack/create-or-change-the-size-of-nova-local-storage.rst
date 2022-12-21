@@ -14,12 +14,15 @@ you prefer, you can use the |CLI|.
 You can use entire disks or disk partitions on compute hosts for use as
 **nova-local** storage. You can add multiple disks or disk partitions. Once a
 disk is added and configuration is persisted through a lock/unlock, the disk
-can no longer be removed.
+can no longer be removed. For single-disk computes you can add the 'instances'
+filesystem via the :command:`host-fs-add` command. The 'instances' filesystem OR a
+'nova-local' volume group can be added. Both cannot exist at the same time as
+they share a common mountpoint.
 
 .. caution::
 
-    If a root-disk partition on *any* compute host is used for local storage,
-    then for performance reasons, *all* VMs on the system must be booted from
+    If an 'instances' filesystem is used  on *any* compute host then for
+    performance reasons, *all* VMs on the system must be booted from
     Cinder volumes, and must not use ephemeral or swap disks. For more
     information, see :ref:`Storage on Compute Hosts
     <storage-on-compute-hosts>`.

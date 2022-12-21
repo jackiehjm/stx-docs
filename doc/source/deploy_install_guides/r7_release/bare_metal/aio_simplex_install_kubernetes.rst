@@ -29,7 +29,7 @@ Overview
 -----------------------------
 Minimum hardware requirements
 -----------------------------
-   
+
 .. include:: /shared/_includes/prepare-servers-for-installation-91baad307173.rest
    :start-after: begin-min-hw-reqs-sx
    :end-before: end-min-hw-reqs-sx
@@ -320,35 +320,29 @@ The newly installed controller needs to be configured.
 
       .. code-block:: bash
 
-         # check existing size of docker fs
-         ~(keystone_admin)$ system host-fs-list controller-0
-         # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
-         ~(keystone_admin)$ system host-lvg-list controller-0
-         # if existing docker fs size + cgts-vg available space is less than
-         # 80G, you will need to add a new disk partition to cgts-vg.
-         # There must be at least 20GB of available space after the docker
-         # filesystem is increased.
+          # check existing size of docker fs
+          system host-fs-list controller-0
+          # check available space (Avail Size (GiB)) in cgts-vg LVG where docker fs is located
+          system host-lvg-list controller-0
+          # if existing docker fs size + cgts-vg available space is less than
+          # 60G, you will need to add a new disk to cgts-vg.
 
-            # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
-            # ( if not use another unused disk )
+             # Get device path of BOOT DISK
+             system host-show controller-0 | fgrep rootfs
 
-            # Get device path of ROOT DISK
-            ~(keystone_admin)$ system host-show controller-0 | fgrep rootfs
+             # Get UUID of ROOT DISK by listing disks
+             system host-disk-list controller-0
 
-            # Get UUID of ROOT DISK by listing disks
-            ~(keystone_admin)$ system host-disk-list controller-0
+             # Add new disk to 'cgts-vg' local volume group
+             system host-pv-add controller-0 cgts-vg <DISK_UUID>
+             sleep 10    # wait for disk to be added
 
-            # Create new PARTITION on ROOT DISK, and take note of new partition's 'uuid' in response
-            # Use a partition size such that you’ll be able to increase docker fs size from 30G to 60G
-            ~(keystone_admin)$ PARTITION_SIZE=30
-            ~(keystone_admin)$ system host-disk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
+             # Confirm the available space and increased number of physical
+             # volumes added to the cgts-vg colume group
+             system host-lvg-list controller-0
 
-            # Add new partition to ‘cgts-vg’ local volume group
-            ~(keystone_admin)$ system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
-            ~(keystone_admin)$ sleep 2    # wait for partition to be added
-
-            # Increase docker filesystem to 60G
-            ~(keystone_admin)$ system host-fs-modify controller-0 docker=60
+          # Increase docker filesystem to 60G
+          system host-fs-modify controller-0 docker=60
 
    #. **For OpenStack only:** Configure the system setting for the vSwitch.
 
@@ -434,40 +428,40 @@ The newly installed controller needs to be configured.
          After controller-0 is unlocked, changing vswitch_type requires
          locking and unlocking controller-0 to apply the change.
 
-   #. **For OpenStack only:** Set up disk partition for nova-local volume
-      group, which is needed for |prefix|-openstack nova ephemeral disks.
+   #. **For OpenStack only:** Add an instances filesystem OR Set up a disk
+      based nova-local volume group, which is needed for |prefix|-openstack
+      nova ephemeral disks.
+
+      .. note::
+
+         Both cannot exist at the same time.
+
+      Add an 'instances' filesystem
 
       .. code-block:: bash
 
-         ~(keystone_admin)$ export NODE=controller-0
+        export NODE=controller-0
+
+         # Create ‘instances’ filesystem
+         system host-fs-add ${NODE} instances=<size>
+
+         OR add a 'nova-local' volume group
+
+      .. code-block:: bash
+
+         export NODE=controller-0
 
          # Create ‘nova-local’ local volume group
-         ~(keystone_admin)$ system host-lvg-add ${NODE} nova-local
+         system host-lvg-add ${NODE} nova-local
 
-         # Get UUID of DISK to create PARTITION to be added to ‘nova-local’ local volume group
-         # CEPH OSD Disks can NOT be used
-         # For best performance, do NOT use system/root disk, use a separate physical disk.
+         # Get UUID of an unused DISK to to be added to the ‘nova-local’ volume
+         # group. CEPH OSD Disks can NOT be used
 
          # List host’s disks and take note of UUID of disk to be used
-         ~(keystone_admin)$ system host-disk-list ${NODE}
-         # ( if using ROOT DISK, select disk with device_path of
-         # host-show ${NODE} | fgrep rootfs’   )
+         system host-disk-list ${NODE}
 
-         # Create new PARTITION on selected disk, and take note of new partition’s ‘uuid’ in response
-         # The size of the PARTITION needs to be large enough to hold the aggregate size of
-         # all nova ephemeral disks of all VMs that you want to be able to host on this host,
-         # but is limited by the size and space available on the physical disk you chose above.
-         # The following example uses a small PARTITION size such that you can fit it on the
-         # root disk, if that is what you chose above.
-         # Additional PARTITION(s) from additional disks can be added later if required.
-         ~(keystone_admin)$ PARTITION_SIZE=30
-
-         ~(keystone_admin)$ system host-disk-partition-add -t lvm_phys_vol ${NODE} <disk-uuid> ${PARTITION_SIZE}
-
-         # Add new partition to ‘nova-local’ local volume group
-         ~(keystone_admin)$ system host-pv-add ${NODE} nova-local <NEW_PARTITION_UUID>
-         ~(keystone_admin)$ sleep 2
-
+         # Add the unused disk to the ‘nova-local’ volume group
+         system host-pv-add ${NODE} nova-local <DISK_UUID>
 
    #. **For OpenStack only:** Configure data interfaces for controller-0.
       Data class interfaces are vSwitch interfaces used by vSwitch to provide

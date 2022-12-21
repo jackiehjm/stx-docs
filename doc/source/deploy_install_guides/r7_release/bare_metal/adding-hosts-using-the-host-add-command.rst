@@ -111,8 +111,8 @@ scripting an initial setup.
         sda.
 
     **<rootfs\_device>**
-        is the host device for rootfs partition, relative to/dev. The default
-        is sda.
+        is a logical volume cgts-vg/root-lv. The default is sda, it should be
+        the same value as specified for the boot_device.
 
     **<mgmt\_mac>**
         is the |MAC| address of the port connected to the internal management
