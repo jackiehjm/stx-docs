@@ -301,7 +301,5 @@ subcloud, the subcloud installation process has two phases:
     Subcloud <updating-docker-registry-credentials-on-a-subcloud>` for more
     information.
 
--   For more information on bootstrapping and deploying, see the procedure
-    `Install a subcloud
-    <https://docs.starlingx.io/deploy_install_guides/r7_release/distributed_cloud/index.html#install-a-subcloud>`__,
-    step 4.
+-   For more information on bootstrapping and deploying, see the procedures
+    listed under :ref:`install-a-subcloud`.
