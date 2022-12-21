@@ -116,7 +116,8 @@ network. Finally, RDP to the |VM| from a remote workstation.
              - name: myrootdisk
                dataVolume:
                  name: stx-lab-winserv-test-disk
-      
+      EOF
+
 #. Apply the configuration.
 
    .. code-block::

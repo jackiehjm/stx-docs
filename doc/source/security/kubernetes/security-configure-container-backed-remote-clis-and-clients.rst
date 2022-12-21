@@ -100,6 +100,15 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
               name: ${USER}
               namespace: kube-system
             ---
+            apiVersion: v1
+            kind: Secret
+            type: kubernetes.io/service-account-token
+            metadata:
+              name: ${USER}-sa-token
+              namespace: kube-system
+              annotations:
+                kubernetes.io/service-account.name: ${USER}
+            ---
             apiVersion: rbac.authorization.k8s.io/v1
             kind: ClusterRoleBinding
             metadata:

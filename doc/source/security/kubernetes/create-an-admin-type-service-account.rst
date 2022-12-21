@@ -34,6 +34,15 @@ an admin service account with cluster-admin role, use the following procedure:
           name: admin-user
           namespace: kube-system
         ---
+        apiVersion: v1
+        kind: Secret
+        type: kubernetes.io/service-account-token
+        metadata:
+          name: admin-user-sa-token
+          namespace: kube-system
+          annotations:
+            kubernetes.io/service-account.name: admin-user
+        ---
         apiVersion: rbac.authorization.k8s.io/v1
         kind: ClusterRoleBinding
         metadata:
