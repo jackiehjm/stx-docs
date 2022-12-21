@@ -424,8 +424,6 @@ command with the ``install-values.yaml`` file containing the desired
     :ref:`Updating Docker Registry Credentials on a Subcloud
     <updating-docker-registry-credentials-on-a-subcloud>` for more information.
 
--   For more information on bootstrapping and deploying, see the procedure
-    `Install a subcloud
-    <https://docs.starlingx.io/deploy_install_guides/r5_release/distributed_cloud/index.html#install-a-subcloud>`__,
-    step 4.
-
+-   For more information on bootstrapping and deploying, see the procedures
+    listed under :ref:`install-a-subcloud`.
+  

@@ -22,6 +22,8 @@ Introduction
     regionone-and-systemcontroller-modes
     alarms-management-for-distributed-cloud
 
+.. _install-a-subcloud:
+
 ------------
 Installation
 ------------
