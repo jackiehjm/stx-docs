@@ -93,13 +93,23 @@ Other ``-e`` command line options:
             <node-replacement-for-aiominussx-using-optimized-backup-and-restore-6603c650c80d>`.
 
 
-    -   The ``ssl_ca_certificate_file`` defines the ssl_ca certificate that will be
-        installed during the restore. It will replace the ``ssl_ca`` certificate
-        from the backup tar file.
+    -   The ``ssl_ca_certificate_file`` defines a single certificate that
+        contains all the ssl_ca certificates that will be installed during the
+        restore. It will replace the
+        ``/opt/platform/config/<software-version>/ca-cert.pem``, which is a
+        single certificate containing all the ssl_ca certificates installed in
+        the host when backup was done. So, the certificate assigned to this
+        parameter must follow this same pattern.
+
+        For example:
 
         .. code-block:: none
 
-            ssl_ca_certificate_file=<complete path>/<ssl_ca certificate file>
+            ssl_ca_certificate_file=<complete path>/<ssl_ca certificates file>
+
+            E.g.:
+
+            -e "ssl_ca_certificate_file=/home/sysadmin/new_ca-cert.pem"
 
         This parameter depends on ``on_box_data`` value.
 

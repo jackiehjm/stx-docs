@@ -113,13 +113,23 @@ In this method you can run Ansible Restore playbook and point to controller-0.
 
             ~(keystone_admin)]$ ansible-playbook /localdisk/designer/jenkins/tis-stx-dev/cgcs-root/stx/ansible-playbooks/playbookconfig/src/playbooks/restore_platform.yml --limit |prefix|\_Cluster -i $HOME/br_test/hosts -e "ansible_become_pass=St0rlingX* admin_password=St0rlingX* ansible_ssh_pass=St0rlingX* initial_backup_dir=$HOME/br_test backup_filename= |prefix|\_Cluster_system_backup_2019_08_08_15_25_36.tgz ansible_remote_tmp=/home/sysadmin/ansible-restore"
 
-    -   The :command:`ssl_ca_certificate_file` indicates that a ``ssl_ca``
-        certificate defined will replace the ``ssl_ca`` certificate from the
-        platform backup tar file.
+    -   The ``ssl_ca_certificate_file`` defines a single certificate that
+        contains all the ssl_ca certificates that will be installed during the
+        restore. It will replace the
+        ``/opt/platform/config/<software-version>/ca-cert.pem``, which is a
+        single certificate containing all the ssl_ca certificates installed in
+        the host when backup was done. So, the certificate assigned to this
+        parameter must follow this same pattern.
+
+        For example:
 
         .. code-block:: none
 
-            -e "ssl_ca_certificate_file=<complete path>/<ssl_ca certificate file>"
+            ssl_ca_certificate_file=<complete path>/<ssl_ca certificates file>
+
+            E.g.:
+
+            -e "ssl_ca_certificate_file=/home/sysadmin/new_ca-cert.pem"
 
     .. note::
 
