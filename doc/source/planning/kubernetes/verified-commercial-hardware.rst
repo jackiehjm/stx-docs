@@ -6,18 +6,19 @@
 Kubernetes Verified Commercial Hardware
 =======================================
 
-Verified and approved hardware components for use with |prod| are listed here.
+Supported hardware components for use with |prod| are listed here.
 
 .. .. only:: starlingx
-.. 
+..
 ..    For more information on the supported hardware platforms and server
 ..    configurations validated for |prod-long|, please refer to
 ..    :ref:`Self-Validated and Certified Servers <cert-hw-details>`.
 
 .. only:: partner
 
-   For more information on the supported hardware platforms and server
-   configurations validated for |prod-long|, please refer to
+   For more information on the verified and certified hardware components for
+   hardware platforms and server configurations validated for |prod-long|,
+   please refer to
    https://www.windriver.com/studio/operator/self-validated-and-certified-hosts
 
 .. _verified-commercial-hardware-verified-components:
@@ -120,21 +121,38 @@ Verified and approved hardware components for use with |prod| are listed here.
     |                                                                                |                                                                                                                                                                                    |
     +--------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+.. only:: partner
+
+   **FlexRAN 22.07: Verified CPU / NICs / Accelerators**
+
+   -  Maclaren Summit Intel® vRAN Accelerator ACC100
+
+   -  3rd Generation Intel® Xeon® Scalable Processor; Intel E810-XXVDA4T
+      (Columbiaville Salem Channel; Westport Channel)
+
+   -  4th Generation Intel® Xeon® Scalable Processor; Intel E810-XXVDA4
+      (Columbiaville Salem Channel)
+
+   .. note::                                                                                                                                                                   |
+
+       FlexRAN 22.07 has been validated and tested with |prod-long| for lab usage
+       only.
+
 .. _cert-hw-details:
 
 .. .. only:: starlingx
-.. 
+..
 ..    The following table provides additional information about currently tested
 ..    and supported hardware. Click the icon in the **Certified** column to see
 ..    additional details.
-.. 
+..
 ..    **Table 2. Self-Validated and Certified Servers**
-.. 
+..
 ..    .. raw:: html
 ..        :url: https://support2.windriver.com/self-validated-and-certified-hosts/?q
-.. 
+..
 ..    .. raw:: html
-.. 
+..
 ..       <script>
 ..             document.getElementById("body").style.margin-left = -50px;
 ..       </script>
