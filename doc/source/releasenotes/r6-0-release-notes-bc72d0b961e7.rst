@@ -29,7 +29,9 @@ Deployment
 
 A system install is required to deploy StarlingX release 6.0. There is no
 upgrade path from previous StarlingX releases. For detailed instructions, see
-the :ref:`R6.0 Installation Guides <index-install-r6-8966076f0e81>`.
+the Installation guide:
+
+https://docs.starlingx.io/r/stx.6.0/deploy_install_guides/index-install-e083ca818006.html
 
 -----------------------------
 New features and enhancements

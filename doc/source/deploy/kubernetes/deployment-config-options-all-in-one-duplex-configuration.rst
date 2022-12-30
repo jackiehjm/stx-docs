@@ -97,7 +97,7 @@ Up to fifty worker/compute nodes can be added to the  All-in-one Duplex
 deployment, allowing a capacity growth path if starting with an AIO-Duplex
 deployment.
 
-.. image:: /deploy_install_guides/r6_release/figures/starlingx-deployment-options-duplex-extended.png
+.. image:: /deploy_install_guides/release/figures/starlingx-deployment-options-duplex-extended.png
    :width: 800
 
 The extended capacity is limited up to fifty worker/compute nodes as the
