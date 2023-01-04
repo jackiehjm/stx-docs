@@ -45,8 +45,7 @@ To view the archived installation guides, see
 .. toctree::
    :hidden:
 
-   r7_release/index-install-r7-8966076f0e81
-   r6_release/index-install-r6-8966076f0e81
+   release/index-install-r7-8966076f0e81
 
 .. Add common files to toctree
 

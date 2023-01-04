@@ -15,7 +15,7 @@ A Standard with Rook Storage configuration provides the following benefits:
    settings. Refer to :ref:`docker_proxy_config` for
    details.
 
-.. figure:: /deploy_install_guides/r6_release/figures/starlingx-deployment-options-controller-storage.png
+.. figure:: /deploy_install_guides/release/figures/starlingx-deployment-options-controller-storage.png
    :scale: 50%
    :alt: Standard with Rook Storage deployment configuration
 
