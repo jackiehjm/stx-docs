@@ -3,6 +3,11 @@
 .. For more information, see
 .. https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html#substitutions
 
+
+.. Load container versions
+.. include:: /_vendor/container-subs-stx.txt
+
+
 .. Organization name
 .. |org| replace:: StarlingX
 

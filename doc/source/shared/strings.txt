@@ -16,9 +16,6 @@
 .. Load custom roles
 .. include:: /shared/roles.txt
 
-.. Load container versions
-.. include:: /_vendor/container-subs-stx.txt
-
 
 .. Task-oriented headings that should not appear in TOC
 .. These are used with the .. rubric:: directive. For example:
