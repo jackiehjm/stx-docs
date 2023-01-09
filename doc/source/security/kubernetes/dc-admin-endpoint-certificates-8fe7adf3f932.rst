@@ -79,6 +79,15 @@ certificates:
     to the subcloud using a Rest API. Therefore, a subcloud needs to be online
     to receive the renewed certificate.
 
+    .. warning::
+
+        If the subcloud is offline for an extended period of time and the
+        Intermediate |CA| certificate expires while the subcloud is offline,
+        the renewal will not occur automatically and manual recovery will be
+        required.
+
+        For manual recovery, please contact |org| support.
+
     If the subcloud is offline at the time when the subcloud Intermediate |CA|
     certificate is renewed, the subcloud status **dc-cert** displays
     "out-of-sync". Certificate renewal continues once the subcloud is online.
