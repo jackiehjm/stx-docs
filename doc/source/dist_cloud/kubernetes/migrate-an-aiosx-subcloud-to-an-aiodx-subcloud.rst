@@ -80,10 +80,10 @@ using the ansible playbook.
 
 .. rubric:: |proc|
 
-#.  Create a configuration file and specify the |OAM| unit IP addresses and
-    the ansible ssh password in the **migrate-subcloud1-overrides-EXAMPLE.yml**
-    file. The existing |OAM| IP address of the |AIO-SX| system will be used as
-    the |OAM| floating IP address of the new |AIO-DX| system.
+#.  Use the :command:`ansible-vault create migrate-subcloud1-overrides-EXAMPLE.yml`
+    command to securely specify the |OAM| unit IP addresses and the ansible
+    ssh password. The existing |OAM| IP address of the |AIO-SX| system will be
+    used as the |OAM| floating IP address of the new |AIO-DX| system.
 
     In the following example, 10.10.10.13 and 10.10.10.14 are the new |OAM| unit
     IP addresses for controller-0 and controller-1 respectively.
@@ -96,6 +96,9 @@ using the ansible playbook.
           "external_oam_node_1_address": "10.10.10.14",
           }
 
+    Use the :command:`ansible-vault edit migrate-subcloud1-overrides-EXAMPLE.yml`
+    command if the file needs to be edited after it is created.
+
 #.  On the system controller, run the ansible playbook to migrate the |AIO-SX|
     subcloud to an |AIO-DX|.
 
@@ -103,7 +106,7 @@ using the ansible playbook.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/migrate_sx_to_dx.yml -e @migrate-subcloud1-overrides-EXAMPLE.yml -i subcloud1, -v
+        ~(keystone_admin)$ ansible-playbook --ask-vault-pass /usr/share/ansible/stx-ansible/playbooks/migrate_sx_to_dx.yml -e @migrate-subcloud1-overrides-EXAMPLE.yml -i subcloud1, -v
 
     The ansible playbook will lock the subcloud's controller-0, if it not
     already locked, apply the configuration changes to convert the subcloud to
