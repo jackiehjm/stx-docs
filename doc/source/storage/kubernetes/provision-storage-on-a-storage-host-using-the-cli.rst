@@ -136,7 +136,5 @@ Unlock the host to make the changes take effect. Wait for the host to be
 reported as unlocked, online, and available in the hosts list.
 
 You can re-use the same settings with other storage nodes by creating and
-applying a storage profile. For more information, see the `StarlingX
-Containers Installation Guide
-<https://docs.starlingx.io/deploy_install_guides/index.html>`__.
+applying a storage profile. For more information, see |_link-inst-book|.
 
