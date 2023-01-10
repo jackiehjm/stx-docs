@@ -166,6 +166,7 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
 
         .. code-block:: none
 
+            ~(keystone_admin)]$ touch ${OUTPUT_FILE}
             ~(keystone_admin)]$ sudo chown sysadmin:sys_protected ${OUTPUT_FILE}
                 sudo chmod 644 ${OUTPUT_FILE}
 
@@ -255,7 +256,7 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
 
         .. parsed-literal::
 
-            $ ./configure_client.sh -t platform -r admin_openrc.sh -k admin-kubeconfig -w HOME/remote_cli_wd -p |registry-url|/starlingx/stx-platformclients:stx.8.0-v1.5.9
+            $ ./configure_client.sh -t platform -r admin-openrc.sh -k admin-kubeconfig -w HOME/remote_cli_wd -p |registry-url|/starlingx/stx-platformclients:stx.8.0-v1.5.9
 
         If you specify repositories that require authentication, as shown
         above, you must first perform a :command:`docker login` to that
