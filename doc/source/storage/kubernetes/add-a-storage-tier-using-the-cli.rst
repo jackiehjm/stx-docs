@@ -36,7 +36,7 @@ Storage Hosts <storage-hosts-storage-on-storage-hosts>`.
 
     .. code-block:: none
 
-        ~(keystone)admin)$ system storage-tier-show ceph_cluster storage
+        ~(keystone_admin)]$ system storage-tier-show ceph_cluster storage
         +--------------+--------------------------------------+
         | Property     | Value                                |
         +--------------+--------------------------------------+
@@ -58,7 +58,7 @@ Storage Hosts <storage-hosts-storage-on-storage-hosts>`.
 
     .. code-block:: none
 
-        ~(keystone)admin)$ system storage-tier-list ceph_cluster
+        ~(keystone_admin)]$ system storage-tier-list ceph_cluster
         +---------+---------+--------+--------------------------------------+
         | uuid    | name    | status | backend_using                        |
         +---------+---------+--------+--------------------------------------+
@@ -71,7 +71,7 @@ Storage Hosts <storage-hosts-storage-on-storage-hosts>`.
 
     .. code-block:: none
 
-        ~(keystone)admin)$ system storage-tier-add ceph_cluster gold
+        ~(keystone_admin)]$ system storage-tier-add ceph_cluster gold
 
         +--------------+--------------------------------------+
         | Property     | Value                                |
@@ -92,7 +92,7 @@ Storage Hosts <storage-hosts-storage-on-storage-hosts>`.
 
     .. code-block:: none
 
-        ~(keystone)admin)$ system storage-backend-add -n <name> -t <tier_uuid> ceph
+        ~(keystone_admin)]$ system storage-backend-add -n <name> -t <tier_uuid> ceph
 
 
     For example, to add a storage backend named **gold-store** using the
@@ -100,7 +100,7 @@ Storage Hosts <storage-hosts-storage-on-storage-hosts>`.
 
     .. code-block:: none
 
-        ~(keystone)admin)$ system storage-backend-add -n gold-store -t 220f17e2-8564-4f4d-8665-681f73d13dfb ceph
+        ~(keystone_admin)]$ system storage-backend-add -n gold-store -t 220f17e2-8564-4f4d-8665-681f73d13dfb ceph
         System configuration has changed.
         Please follow the administrator guide to complete configuring the system.
 
@@ -126,7 +126,7 @@ Storage Hosts <storage-hosts-storage-on-storage-hosts>`.
 
     .. code-block:: none
 
-        ~(keystone)admin)$ system storage-backend-modify gold-store
+        ~(keystone_admin)]$ system storage-backend-modify gold-store
         +----------------------+-----------------------------------------+
         | Property             | Value                                   |
         +----------------------+-----------------------------------------+
@@ -168,14 +168,14 @@ OSDs assigned to it, use the command:
 
 .. code-block:: none
 
-    ~(keystone)admin)$ system storage-tier-delete
+    ~(keystone_admin)]$ system storage-tier-delete
     usage: system storage-tier-delete <cluster name or uuid> <storage tier name or uuid>
 
 For example:
 
 .. code-block:: none
 
-    ~(keystone)admin)$ system storage-tier-delete ceph_cluster 268c967b-207e-4641-bd5a-6c05cc8706ef
+    ~(keystone_admin)]$ system storage-tier-delete ceph_cluster 268c967b-207e-4641-bd5a-6c05cc8706ef
 
 To use the tier for a container volume, include the ``--volume-type`` parameter
 when creating the Cinder volume, and supply the name of the cinder type.
@@ -183,7 +183,7 @@ For example:
 
 .. code-block:: none
 
-    ~(keystone)admin)$ cinder create --volume-type ceph-gold --name centos-guest 2
+    ~(keystone_admin)]$ cinder create --volume-type ceph-gold --name debian-guest 2
     +---------+-----------+-------------+-----------+
     | ID      | Name      | Description | Is_Public |
     +---------+-----------+-------------+-----------+

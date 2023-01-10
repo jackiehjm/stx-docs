@@ -18,8 +18,8 @@ security and compliance issues.
 The security features listed below are available with |prod| and should be
 included in your infrastructure security planning.
 
--    Regular CVE scanning and fixing of |prod| Platform’s CentOS Kernel and RPM
-     Packages
+-   Regular CVE scanning and fixing of |prod| Platform’s DEB Kernel and RPM
+    Packages
          
 -   UEFI Secure Boot on |prod| Hosts
 
