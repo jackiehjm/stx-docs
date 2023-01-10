@@ -117,8 +117,9 @@ included in your infrastructure security planning.
 
     -    StarlingX REST APIs / CLIs
 
-    -    All logs can be sent to external Log Server using Wind River Analytics
-         application
+    .. include:: /_includes/infrastructure-security.rest
+       :start-after: begin-wra-note
+       :end-before: end-wra-note
 
 -   Linux Auditd support for running on all hosts with configurable rules
 
