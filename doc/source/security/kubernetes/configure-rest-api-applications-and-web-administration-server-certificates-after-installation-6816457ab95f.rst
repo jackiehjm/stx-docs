@@ -73,8 +73,6 @@ Update the following fields:
         renewBefore: 360h  # 15 days
         commonName:  < oam floating IP Address or FQDN >
         subject:
-          organizations:
-            - ABC-Company
           organizationalUnits:
             - StarlingX-system-restapi-gui
         ipAddresses:
