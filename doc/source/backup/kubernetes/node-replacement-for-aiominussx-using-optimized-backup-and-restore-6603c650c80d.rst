@@ -10,6 +10,11 @@ possible to restore ceph data, since OSD disks will not be present to recover.
 The flag ``wipe_ceph_osds=true`` should be set in this case when running the
 optimized restore playbook.
 
+.. note::
+
+    The Node replacement can only be performed with equivalent hardware that
+    has the same physical attributes and configuration.
+
 The improved backup and restore supports |AIO-SX| Node Replacement, by the
 following method.
 
