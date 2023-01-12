@@ -41,10 +41,8 @@ The value must be between 21 and 40 GiB.
     | e39970e-4f4d-8665-681f73d13dfb | 21    | controller-0 | configured | None |
     +--------------------------------+-------+--------------+------------+------+
 
-    NOTE: ceph_mon_gib for both controllers are changed.
-
     System configuration has changed.
-    please follow the System Configuration guide to complete configuring system.
+    Lock and unlock the impacted hosts to complete system configuration.
 
 
 The configuration is out of date after running this command. To update it,
