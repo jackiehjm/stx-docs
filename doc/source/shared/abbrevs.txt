@@ -83,6 +83,7 @@
 .. |MNFA| replace:: :abbr:`MNFA (Multi-Node Failure Avoidance)`
 .. |MOTD| replace:: :abbr:`MOTD (Message of the Day)`
 .. |MTU| replace:: :abbr:`MTU (Maximum Transmission Unit)`
+.. |NA| replace:: :abbr:`NA (Not Applicable)`
 .. |NAT| replace:: :abbr:`NAT (Network Address Translation)`
 .. |NF| replace:: :abbr:`NF (Network Function)`
 .. |NFs| replace:: :abbr:`NFs (Network Functions)`
