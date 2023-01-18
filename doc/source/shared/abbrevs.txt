@@ -80,6 +80,7 @@
 .. |MAC| replace:: :abbr:`MAC (Media Access Control)`
 .. |MEC| replace:: :abbr:`MEC (Multi-access Edge Computing)`
 .. |MLD| replace:: :abbr:`MLD (Multicast Listener Discovery)`
+.. |ML| replace:: :abbr:`ML (Machine Learning)`
 .. |MNFA| replace:: :abbr:`MNFA (Multi-Node Failure Avoidance)`
 .. |MOTD| replace:: :abbr:`MOTD (Message of the Day)`
 .. |MTU| replace:: :abbr:`MTU (Maximum Transmission Unit)`
