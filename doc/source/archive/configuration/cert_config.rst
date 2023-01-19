@@ -113,7 +113,7 @@ Certificate Authority.
 
 Currently the Kubernetes root CA certificate and key can only be updated at
 Ansible bootstrap time. For details, see
-:ref:`Kubernetes root CA certificate and key <k8s-root-ca-cert-key-r6>`.
+:ref:`Kubernetes root CA certificate and key <k8s-root-ca-cert-key-r7>`.
 
 ---------------------
 Local Docker registry

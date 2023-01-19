@@ -1,7 +1,9 @@
 .. important::
 
-      Some Ansible bootstrap parameters cannot be changed or are very difficult to change after installation is complete.
+      Some Ansible bootstrap parameters cannot be changed or are very difficult to
+      change after installation is complete.
 
-      Review the set of install-time-only parameters before installation and confirm that your values for these parameters are correct for the desired installation.
+      Review the set of install-time-only parameters before installation and confirm
+      that your values for these parameters are correct for the desired installation.
 
-      Refer to :ref:`Ansible install-time-only parameters <install-time-only-params-r6>` for details.
+      Refer to :ref:`Ansible install-time-only parameters <install-time-only-params-r7>` for details.
