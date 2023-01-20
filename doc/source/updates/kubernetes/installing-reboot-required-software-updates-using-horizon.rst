@@ -30,7 +30,7 @@ update. The main steps of the procedure are:
 
 .. _installing-reboot-required-software-updates-using-horizon-steps-lnt-14y-hjb:
 
-#.  Log in to the Horizon Web interface interface as the **admin** user.
+#.  Log in to the Horizon Web interface as the **admin** user.
 
 #.  In Horizon, open the **Software Management** page.
 
