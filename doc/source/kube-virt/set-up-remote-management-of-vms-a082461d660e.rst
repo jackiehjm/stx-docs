@@ -30,8 +30,8 @@ On the remote workstation, install virtctl client tool.
 .. code-block::
 
     $ export VERSION=v0.53.1
-    $ wget https://github.com/kubevirt/kubevirt/releases/download/
-    $ ${VERSION}/virtctl-${VERSION}-linux-amd64 chmod a+x ./virtctl-${VERSION}-linux-amd64
+    $ wget https://github.com/kubevirt/kubevirt/releases/download/${VERSION}/virtctl-${VERSION}-linux-amd64
+    $ chmod a+x ./virtctl-${VERSION}-linux-amd64
     $ sudo cp ./virtctl-${VERSION}-linux-amd64 /usr/bin/virtctl
 
 
@@ -44,5 +44,4 @@ graphical console.
 .. code-block::
 
     $ sudo apt -y install virt-viewer
-
 

@@ -11,12 +11,19 @@ Complete the following steps to install KubeVirt.
 #. Upload the KubeVirt system application tarball and check the KubeVirt
    application status:
 
-   .. code-block:: none
+   .. only:: starlingx
 
-       ~(keystone_admin)$ system application-upload /usr/local/share/application/helm/kubevirt-app-1.0-1.tgz
+      .. code-block:: none
 
-       ~(keystone_admin)$ system application-list
+          ~(keystone_admin)$ system application-upload /usr/local/share/applications/helm/kubevirt-app-1.0-1.tgz
 
+          ~(keystone_admin)$ system application-list
+
+   .. only:: partner
+
+      .. include:: /_includes/installation-66477d7646db.rest
+         :start-after: kubevirt-app-version
+         :end-before: kubevirt-app-version
 
 #. Apply the KubeVirt system application and check the KubeVirt and |CDI|
    status:
@@ -30,10 +37,10 @@ Complete the following steps to install KubeVirt.
    .. code-block:: bash
 
       $ watch -n 5 system application-list
-       
+
       # Wait for all pods in kubevirt namespace to be Running
       $ watch -n 5 kubectl get pods -n kubevirt
-      
+
       # Wait for all pods in cdi namespace to be Running
       $ watch -n 5 kubectl get pods -n cdi
 
@@ -43,17 +50,17 @@ Complete the following steps to install KubeVirt.
 
       # Create /home/sysadmin/bin directory, if it doesn't exist already
       $ mkdir -p /home/sysadmin/bin
-      
+
       # Create symbolic link in /home/sysadmin/bin to virtctl client executable installed on host in step 2)
       $ cd /home/sysadmin/bin
       $ ln -s /var/opt/kubevirt/virtctl-v0.53.1-linux-amd64 virtctl
-      
+
       # Logout and log back in to ensure that /home/sysadmin/bin gets added to your PATH variable.
       $ exit
-      
+
       login: sysadmin
       password:
-      
+
       $ which virtctl
       /home/sysadmin/bin/virtctl
 
