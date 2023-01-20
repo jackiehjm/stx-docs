@@ -18,6 +18,12 @@ asynchronous |PTP| status notifications and pull for the |PTP| state on demand.
 .. xbooklink :ref:`|prod-long| System Configuration
     <system-configuration-management-overview>`:
 
+.. only:: partner
+
+   .. include:: /_includes/install-ptp-notifications.rest
+      :start-after: steps-for-upgrading-ptp-notification
+      :end-before: steps-for-upgrading-ptp-notification
+
 .. rubric:: |proc|
 
 You must provide Helm override values indicating the ``ptp4l`` and ``phc2sys``
