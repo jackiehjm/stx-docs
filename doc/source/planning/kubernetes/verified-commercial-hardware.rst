@@ -8,6 +8,12 @@ Kubernetes Verified Commercial Hardware
 
 Verified and approved hardware components for use with |prod| are listed here.
 
+.. only:: partner
+
+   For more information on the verified and certified hardware components for hardware
+   platforms and server configurations validated for |prod|, please refer to
+   https://www.windriver.com/studio/operator/self-validated-and-certified-hosts
+
 .. _verified-commercial-hardware-verified-components:
 
 .. table:: Table 1. Verified Components
@@ -195,3 +201,4 @@ Verified and approved hardware components for use with |prod| are listed here.
     +--------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. include:: /_includes/release-notes-overview-footnote.rest
+
