@@ -14,23 +14,23 @@ You can find details about a release on the specific release page.
      - Status
    * - StarlingX R6.0
      - 2021-12
-     - :doc:`r6-0-release-notes-bc72d0b961e7`
+     - :ref:`r6-0-release-notes-bc72d0b961e7`
      - Maintained
    * - StarlingX R5.0.1
      - 2021-09
-     - :doc:`r5_0_1_release`
+     - :ref:`r5.0.1_release_rns`
      - Maintained
    * - StarlingX R5.0
      - 2021-05
-     - :doc:`r5_release`
+     - :ref:`r5_release_rns`
      - Maintained
    * - StarlingX R4.0
      - 2020-08
-     - :doc:`r4_release`
+     - :ref:`r4_release_rns`
      - :abbr:`EOL (End of Life)`
    * - StarlingX R3.0
      - 2019-12
-     - :doc:`r3_release`
+     - :ref:`r3_release_rns`
      - :abbr:`EOL (End of Life)`
    * - StarlingX R2.0.1
      - 2019-10

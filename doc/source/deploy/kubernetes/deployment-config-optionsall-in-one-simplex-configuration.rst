@@ -10,7 +10,7 @@ The AIO Simplex deployment configuration provides a scaled-down |prod| that
 combines controller, storage, and worker functionality on a single
 non-redundant host.
 
-.. image:: /deploy_install_guides/r6_release/figures/starlingx-deployment-options-simplex.png
+.. image:: /deploy_install_guides/release/figures/starlingx-deployment-options-simplex.png
    :width: 800
 
 .. note::

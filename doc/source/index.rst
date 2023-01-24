@@ -29,7 +29,7 @@ Introduction
 
 To get started fast with StarlingX, try the
 :doc:`Virtual All-in-one Simplex installation
-</deploy_install_guides/r6_release/virtual/aio_simplex>`, which requires a
+</deploy_install_guides/release/virtual/aio_simplex>`, which requires a
 minimum of hardware and configuration.
 
 Learn more about StarlingX:

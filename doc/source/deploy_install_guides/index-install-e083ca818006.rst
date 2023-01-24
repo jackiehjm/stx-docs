@@ -17,7 +17,7 @@ StarlingX R6.0 is under development.
 .. toctree::
    :maxdepth: 1
 
-   r6_release/index-install-r6-8966076f0e81
+   release/index-install-r6-8966076f0e81
 
 
 -----------------
@@ -26,12 +26,9 @@ Supported release
 
 StarlingX R5.0.1 is the most recent supported release of StarlingX.
 
-Use the R5.0 Installation Guides to install R5.0.1.
+Use the `R5.0 Installation Guides <https://docs.starlingx.io/r/stx.6.0/deploy_install_guides/index-install-e083ca818006.html>`_ 
+to install R5.0.1.
 
-.. toctree::
-   :maxdepth: 1
-
-   r5_release/index-install-r5-ca4053cb3ab9
 
 
 -----------------
