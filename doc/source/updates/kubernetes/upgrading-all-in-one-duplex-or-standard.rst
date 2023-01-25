@@ -46,7 +46,13 @@ of |prod| software.
         cannot if there are locked nodes.
 
 .. note::
+
     The upgrade procedure includes steps to resolve system health issues.
+
+.. note::
+
+    Upgrading hosts should be completed within 24 hours to avoid a kubeadm token
+    timeout.
 
 .. rubric:: |proc|
 
