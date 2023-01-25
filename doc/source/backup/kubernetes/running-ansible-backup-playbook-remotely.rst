@@ -45,9 +45,11 @@ and target it at controller-0.
        in the previous step.
 
     #. Make the following modifications. You must specify the floating |OAM| IP
-       of the controller host. For example, if the host name is
-       |prefix|\_Cluster, the inventory file should have an entry
-       |prefix|\_Cluster, for example:
+       of the controller host and the ``ansible_ssh_user`` information. If the
+       host name is |prefix|\_Cluster, the inventory file should have an entry
+       |prefix|\_Cluster.
+
+       For example:
 
        .. parsed-literal::
 
@@ -58,6 +60,11 @@ and target it at controller-0.
                  ansible_host: 128.222.100.02
                |prefix|\_Cluster:
                  ansible_host: 128.224.141.74
+
+              vars:
+                ansible_ssh_user: sysadmin
+                ansible_ssh_pass: <sysadmin-passwd>
+                ansible_become_pass: <sysadmin-passwd>
 
 #.  Switch to the <overrides> directory created previously.
 
