@@ -62,7 +62,7 @@ Follow the installation guide
 *****************************
 
 
-In addition to the :ref:`aio_simplex_hardware_r6` for |prod|, you will need the
+In addition to the :ref:`aio_simplex_hardware_r7` for |prod|, you will need the
 following hardware for FlexRAN applications.
 
 +---------------------------+--------------------------------------------------------------------------------+
@@ -104,7 +104,7 @@ platform: **Coyote Pass** (housing ICX-SP).
     certain optimizations for low-latency and power savings mode by the
     platform vendors.
 
-:ref:`aio_simplex_install_kubernetes_r6`:
+:ref:`aio_simplex_install_kubernetes_r7`:
 
 #. In addition to required |prod| configuration, you must set up the Ceph
    backend for Kubernetes |PVC|, isolcpus and hugepages:

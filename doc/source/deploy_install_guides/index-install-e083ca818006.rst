@@ -26,19 +26,15 @@ Use the R7.0 Installation Guides to install R7.0.
 .. toctree::
    :maxdepth: 1
 
-   r7_release/index-install-r7-8966076f0e81
+   release/index-install-r7-8966076f0e81
 
 
 ------------------
 Supported releases
 ------------------
 
-
-.. toctree::
-   :maxdepth: 1
-
-   r7_release/index-install-r7-8966076f0e81
-   r6_release/index-install-r6-8966076f0e81
+* `Starlingx 7.0 <https://docs.starlingx.io/r/stx.7.0/>`_
+* `Starlingx 6.0 <https://docs.starlingx.io/r/stx.6.0/>`_
 
 
 -----------------
@@ -81,7 +77,7 @@ older releases <https://docs.starlingx.io/r/stx.5.0/deploy_install_guides/index.
 .. 1. Make sure the most recent release versioned docs are complete for that
       release.
 .. 2. Make a copy of the most recent release folder e.g. 'r6_release.' Rename
-      the folder for the new release e.g. 'r7_release'.
+      the folder for the new release e.g. 'release'.
 .. 3. Search and replace all references to previous release number with the new
       release number. For example replace all 'R6.0' with 'R7.0.' Also search
       and replace any links that may have a specific release number in the path.
