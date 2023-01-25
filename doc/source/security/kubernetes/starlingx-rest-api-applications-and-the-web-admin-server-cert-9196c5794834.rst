@@ -99,7 +99,7 @@ certificates.
 
    .. code-block::
 
-       ~(keystone_admin)]$ kubectl get secret <secretname> -n <namespacename> -o=jsonpath='{.data.ca\.crt}' | base64 --decode > <pemfilename>
+       ~(keystone_admin)]$ kubectl get secret <secretname> -n <namespacename> -o=jsonpath='\{.data.tls\.crt}' | base64 --decode > <pemfilename>
 
 Create a local Intermediate CA
 ------------------------------
