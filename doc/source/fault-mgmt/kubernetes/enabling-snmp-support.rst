@@ -234,7 +234,7 @@ In order to enable and configure |SNMP|, complete the following steps.
        +----------------+------------------------------------------+
        | Property       | Value                                    |
        +----------------+------------------------------------------+
-       | name           | nginx-ingress                            |
+       | name           | ingress-nginx                            |
        | namespace      | kube-system                              |
        | user_overrides | tcp:                                     |
        |                |   "162": kube-system/snmpd-service:162   |
@@ -442,11 +442,11 @@ Modify the external UDP port used for receiving SNMP requests.
 
     .. code-block:: none
 
-       ~(keystone_admin)$ system helm-override-update --reuse-values --values snmp_port.yaml nginx-ingress-controller nginx-ingress kube-system
+       ~(keystone_admin)$ system helm-override-update --reuse-values --values snmp_port.yaml nginx-ingress-controller ingress-nginx kube-system
        +----------------+------------------------------------------+
        | Property       | Value                                    |
        +----------------+------------------------------------------+
-       | name           | nginx-ingress                            |
+       | name           | ingress-nginx                            |
        | namespace      | kube-system                              |
        | user_overrides | tcp:                                     |
        |                |   "162": kube-system/snmpd-service:162   |
@@ -537,5 +537,5 @@ traps will not be generated.
 
     .. code-block:: none
 
-       ~(keystone_admin)$ system helm-override-update --reuse-values --values snmp_port.yaml nginx-ingress-controller nginx-ingress kube-system
+       ~(keystone_admin)$ system helm-override-update --reuse-values --values snmp_port.yaml nginx-ingress-controller ingress-nginx kube-system
        ~(keystone_admin)$ system application-apply nginx-ingress-controller
