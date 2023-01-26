@@ -20,7 +20,7 @@ asynchronous |PTP| status notifications and pull for the |PTP| state on demand.
 
 .. only:: partner
 
-   .. include:: /_includes/install-ptp-notifications.rest
+   .. include:: /_includes/install-ptp-notifications-3a94b1ea1ae3.rest
       :start-after: steps-for-upgrading-ptp-notification
       :end-before: steps-for-upgrading-ptp-notification
 
