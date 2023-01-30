@@ -16,11 +16,11 @@ http01 challenge from the external CA.
 As part of the application-apply of cert-manager at bootstrap time, the
 cert-manager-acmesolver image has been pulled from an external registry and
 pushed to
-registry.local:9001:/quay.io/jetstack/cert-manager-acmesolver:<tag>.
+registry.local:9001:/quay.io/jetstack/cert-manager-acmesolver:|v_jetstack-cert-manager-acmesolver|.
 However, this repository within registry.local is secured such that only
 **admin** can access these images.
 
-The registry.local:9001:/quay.io/jetstack/cert-manager-acmesolver:<tag>
+The registry.local:9001:/quay.io/jetstack/cert-manager-acmesolver:|v_jetstack-cert-manager-acmesolver|
 image needs to be copied by **admin** into a public repository,
 registry.local:9001:/public. If you have not yet set up a public
 repository, see |admintasks-doc|: :ref:`Set up a Public Repository in Local Docker Registry
@@ -34,18 +34,17 @@ repository, see |admintasks-doc|: :ref:`Set up a Public Repository in Local Dock
 
         ~(keystone_admin)]$ system registry-image-tags quay.io/jetstack/cert-manager-acmesolver
 
-#.  Copy the cert-manager-acmesolver image, and replace <TAG> with the tag
-    you want to copy from previous step.
+#.  Copy the cert-manager-acmesolver image.
 
-    .. code-block:: none
+    .. parsed-literal::
 
         $ sudo docker login registry.local:9001
         username: admin
         password: <admin-password>
         $
-        $ sudo docker pull registry.local:9001/quay.io/jetstack/cert-manager-acmesolver:<TAG>
-        $ sudo docker tag registry.local:9001/quay.io/jetstack/cert-manager-acmesolver:<TAG>  registry.local:9001/public/cert-manager-acmesolver:<TAG>
-        $ sudo docker push registry.local:9001/public/cert-manager-acmesolver:<TAG>
+        $ sudo docker pull registry.local:9001/quay.io/jetstack/cert-manager-acmesolver:|v_jetstack-cert-manager-acmesolver|
+        $ sudo docker tag registry.local:9001/quay.io/jetstack/cert-manager-acmesolver:|v_jetstack-cert-manager-acmesolver| registry.local:9001/public/cert-manager-acmesolver:|v_jetstack-cert-manager-acmesolver|
+        $ sudo docker push registry.local:9001/public/cert-manager-acmesolver:|v_jetstack-cert-manager-acmesolver|
 
 #.  Update the cert-manager application to use this public image.
 

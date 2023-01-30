@@ -192,7 +192,7 @@ and clients for a non-admin user.
 
             .. parsed-literal::
 
-                $ ./configure_client.sh -t platform -r my-openrc.sh -k user-kubeconfig -w $HOME/remote_cli_wd -p |registry-url|/starlingx/stx-platformclients:stx.8.0-v1.5.9
+                $ ./configure_client.sh -t platform -r my-openrc.sh -k user-kubeconfig -w $HOME/remote_cli_wd -p |registry-url|/starlingx/stx-platformclients:|v_starlingx-stx-platformclients|
 
             If you specify repositories that require authentication, you must
             perform a :command:`docker login` to that repository before using

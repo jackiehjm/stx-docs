@@ -2,7 +2,7 @@
 .. deployment-scenario-begin
 .. deployment-scenario-end
 
-.. code-block:: none
+.. parsed-literal::
 
     system_mode: duplex
     distributed_cloud_role: systemcontroller
@@ -14,5 +14,5 @@
 
 
     additional_local_registry_images:
-        - quay.io/external_storage/rbd-provisioner:v2.1.1-k8s1.11
-        - docker.io/starlingx/ceph-config-helper:ubuntu_bionic-20220802
+        - quay.io/external_storage/rbd-provisioner:|v_external_storage-rbd-provisioner|
+        - docker.io/starlingx/ceph-config-helper:|v_openstackhelm-ceph-config-helper|

@@ -61,10 +61,10 @@ to controller-1 and perform the same steps.
 
 #. Then, debug tail ``-f /var/log/sysinv.log`` and look for the following information:
 
-   .. code-block:: none
+   .. parsed-literal::
 
        sysinv 2020-09-09 23:42:23.476 14930 INFO sysinv.conductor.kube_app [-] Image registry.local:9001/quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.23.0 is not available in local registry, download started from public/private registry
-       sysinv 2020-09-09 23:42:23.526 14930 INFO sysinv.conductor.kube_app [-] Image registry.local:9001/k8s.gcr.io/defaultbackend:1.4 download succeeded in 0 seconds
+       sysinv 2020-09-09 23:42:23.526 14930 INFO sysinv.conductor.kube_app [-] Image registry.local:9001/k8s.gcr.io/defaultbackend:|v_defaultbackend| download succeeded in 0 seconds
        sysinv 2020-09-09 23:43:10.226 14930 INFO sysinv.conductor.kube_app [-] Remove image <hostname>:5001/<quay.io path>/quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.23.0 after push to local registry.
        sysinv 2020-09-09 23:43:10.595 14930 INFO sysinv.conductor.kube_app [-] Image registry.local:9001/quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.23.0 download succeeded in 47 seconds
        sysinv 2020-09-09 23:43:10.596 14930 INFO sysinv.conductor.kube_app [-] All docker images for application nginx-ingress-controller were successfully downloaded in 50 seconds

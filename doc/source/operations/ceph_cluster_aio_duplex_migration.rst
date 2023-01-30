@@ -598,7 +598,7 @@ Apply rook-ceph application
 
 #. Apply deployment mon-data-edit
 
-   ::
+   .. parsed-literal::
 
     mon-data-edit.yaml
     apiVersion: apps/v1
@@ -621,7 +621,7 @@ Apply rook-ceph application
           dnsPolicy: ClusterFirstWithHostNet
           containers:
           - name: mon-data-edit
-            image:  registry.local:9001/docker.io/rook/ceph:v1.2.7
+            image:  registry.local:9001/docker.io/rook/ceph:|v_rook-ceph|
             command: ["/tini"]
             args: ["-g", "--", "/usr/local/bin/toolbox.sh"]
             imagePullPolicy: IfNotPresent

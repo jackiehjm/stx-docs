@@ -14,7 +14,7 @@ challenge from the external CA.
 .. rubric:: |context|
 
 In order to pull the
-registry.local:9001:/public/cert-manager-acmesolver:<tag> image from the
+registry.local:9001:/public/cert-manager-acmesolver:|v_jetstack-cert-manager-acmesolver| image from the
 local registry, the credentials for the public repository must be in a
 secret and referenced in an ImagePullSecret in the **default**
 serviceAccount of that user-specified namespace.

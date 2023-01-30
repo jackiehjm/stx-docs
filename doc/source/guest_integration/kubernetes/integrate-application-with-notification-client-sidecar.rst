@@ -62,7 +62,7 @@ The config provided below is for illustrative purposes and is not validated.
 A suitable user-supplied container would have to be run in the same pod and
 configured to make API calls to the notificationclient-base container.
 
-.. code-block:: none
+.. parsed-literal::
 
     apiVersion: apps/v1
     kind: Deployment
@@ -92,7 +92,7 @@ configured to make API calls to the notificationclient-base container.
                     - "true"
            containers:
              - name: ptp-notification-demo-sidecar
-               image: "starlingx/notificationclient-base:stx.8.0-v2.0.2"
+               image: "starlingx/notificationclient-base:|v_starlingx-notificationclient-base|"
                imagePullPolicy: IfNotPresent
                tty: true
                stdin: true

@@ -5,7 +5,7 @@ vRAN Tools
 ==========
 
 The |vRAN| tools consist of the following open-source packages that are delivered
-in the container image ``starlingx/stx-debian-tools-dev:stx.8.0-v1.0.3``. For more
+in the container image starlingx/stx-debian-tools-dev:|v_starlingx-stx-debian-tools-dev|. For more
 detailed information on the tools packages, click the hyperlink on the
 package names, which will lead you to the Debian Bullseye package information
 web page https://packages.debian.org/bullseye/<package name>.
@@ -52,7 +52,7 @@ on resources in the host context.
 The suggested yaml manifest to launch the ``stx-debian-tools-dev`` container is
 as follows:
 
-.. code-block:: none
+.. parsed-literal::
 
     # Creating the Kubernetes Deployment
     cat << EOF > stx-debian-tools-dev.yaml
@@ -72,7 +72,7 @@ as follows:
         spec:
           containers:
           - name: stx-debian-tools-dev
-            image: docker.io/starlingx/stx-debian-tools-dev:stx.8.0-v1.0.3
+            image: docker.io/starlingx/stx-debian-tools-dev:|v_starlingx-stx-debian-tools-dev|
             imagePullPolicy: Always
             stdin: true
             tty: true
@@ -126,7 +126,7 @@ Then ``exec`` into shell in container:
 Build, deploy and run non-open-source tools
 -------------------------------------------
 
-The ``starlingx/stx-debian-tools-dev:stx.8.0-v1.0.3`` container image also
+The starlingx/stx-debian-tools-dev:|v_starlingx-stx-debian-tools-dev| container image also
 contains development tools.
 
 Using this container image as a Dockerfile base image enables |prod| users to
@@ -143,11 +143,11 @@ you need access.
 You can create and build a container to run Quartzville tools on Kubernetes as
 follows:
 
-.. code-block:: none
+.. parsed-literal::
 
     # Creating the Dockerfile
     cat << EOF > Dockerfile
-    FROM docker.io/starlingx/stx-debian-tools-dev:stx.8.0-v1.0.3
+    FROM docker.io/starlingx/stx-debian-tools-dev:|v_starlingx-stx-debian-tools-dev|
 
     USER root
     WORKDIR /root
