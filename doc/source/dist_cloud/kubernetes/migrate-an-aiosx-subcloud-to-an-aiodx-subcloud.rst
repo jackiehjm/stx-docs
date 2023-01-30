@@ -35,15 +35,6 @@ procedure to reconfigure the cluster-host interface on to a physical interface.
 
         ~(keystone_admin)$ system host-lock controller-0
 
-    .. note::
-
-        Run the following command on an |AIO-SX| system before changing to |AIO-DX|, as this
-        does not apply to |AIO-DX| systems.
-
-    .. code-block:: none
-
-        ~(keystone_admin)$ system storage-backend-modify ceph-store replication=2
-
 #.  Change the class attribute to 'none' for the loopback interface.
 
     .. code-block:: none
@@ -110,6 +101,15 @@ using the ansible playbook.
 #.  On the system controller, run the ansible playbook to migrate the |AIO-SX|
     subcloud to an |AIO-DX|.
 
+    .. note::
+
+        Run the following command on an |AIO-SX| system before changing to |AIO-DX|, as this
+        does not apply to |AIO-DX| systems.
+
+    .. code-block:: none
+
+        ~(keystone_admin)$ system storage-backend-modify ceph-store replication=2
+
     For example, if the subcloud name is 'subcloud1', enter:
 
     .. code-block:: none
@@ -165,6 +165,16 @@ commands on the |AIO-SX| subcloud.
     .. code-block:: none
 
         ~(keystone_admin)$ system host-lock controller-0
+
+    .. note::
+
+        Run the following command on an |AIO-SX| system before changing to |AIO-DX|, as this
+        does not apply to |AIO-DX| systems.
+
+    .. code-block:: none
+
+        ~(keystone_admin)$ system storage-backend-modify ceph-store replication=2
+
 
 #.  Change the system mode to 'duplex'.
 
