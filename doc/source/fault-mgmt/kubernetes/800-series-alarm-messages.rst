@@ -29,7 +29,14 @@ health of the system.
    * - Severity:
      - C/M\*
    * - Proposed Repair Action
-     - If problem persists, contact next level of support.
+     - If problem persists, contact next level of support and provide the
+       output of the following commands:
+
+       -  ceph status
+       -  ceph fs status
+       -  system host-list
+       -  system cluster-list
+       -  system cluster-show <cluster-name>
 
 -----
 
@@ -47,7 +54,13 @@ health of the system.
    * - Severity:
      - m
    * - Proposed Repair Action
-     - Update ceph storage pool quotas to use all available tier space.
+     - Update ceph storage pool quotas to use all available tier space and provide the output of the
+       following commands:
+
+       -  ceph status
+       -  ceph fs status
+       -  system host-fs-list <hostname>
+       -  system controllerfs-list
 
 -----
 
@@ -66,7 +79,14 @@ health of the system.
    * - Proposed Repair Action
      - Ensure storage hosts from replication group are unlocked and available.
        Check if OSDs of each storage host are up and running. If problem
-       persists contact next level of support.
+       persists contact next level of support and provide the output of the
+       following commands:
+
+       -  ceph status
+       -  ceph fs status
+       -  system host-list
+       -  system cluster-list
+       -  system cluster-show <cluster-name>
 
 -----
 
@@ -85,7 +105,14 @@ health of the system.
    * - Proposed Repair Action
      - Ensure storage hosts from replication group are unlocked and available.
        Check if OSDs of each storage host are up and running. If problem
-       persists contact next level of support.
+       persists contact next level of support and provide the output of the
+       following commands:
+
+       -  ceph status
+       -  ceph fs status
+       -  system host-list
+       -  system cluster-list
+       -  system cluster-show <cluster-name>
 
 -----
 
@@ -105,7 +132,16 @@ health of the system.
    * - Severity:
      - C/M\*
    * - Proposed Repair Action
-     - Remove failed PV and associated Storage Device then recreate them.
+     - Remove failed PV and associated Storage Device then recreate them and
+       provide the output of the following commands:
+
+       -  ceph status
+       -  ceph fs status
+       -  system helm-override-show platform-integ-apps rbd-provisioner kube-system
+
+          AND/OR
+
+       -  system helm-override-show platform-integ-apps cephfs-provisioner kube-system
 
 -----
 
@@ -130,7 +166,13 @@ health of the system.
    * - Proposed Repair Action
      - Increase Storage Space Allotment for Cinder on the 'lvm' backend.
        Consult the user documentation for more details. If problem persists,
-       contact next level of support.
+       contact next level of support and provide the output of the
+       following commands:
+
+       -  ceph status
+       -  ceph fs status
+       -  system host-fs-list <hostname>
+       -  system controllerfs-list
 
 -----
 
@@ -149,4 +191,10 @@ health of the system.
    * - Proposed Repair Action
      - Update backend setting to reapply configuration. Consult the user
        documentation for more details. If problem persists, contact next level
-       of support.
+       of support and provide the output of the
+       following commands:
+
+       -  ceph status
+       -  ceph fs status
+       -  system storage-backend-list
+       -  system storage-backend-show <storage-backend name>
