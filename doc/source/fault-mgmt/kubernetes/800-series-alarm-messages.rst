@@ -29,8 +29,14 @@ health of the system.
    * - Severity:
      - C/M\*
    * - Proposed Repair Action
-     - If problem persists, contact next level of support.
+     - If problem persists, contact next level of support and provide the
+       output of the following commands:
 
+       -  ceph status
+       -  ceph fs status
+       -  system host-list
+       -  system cluster-list
+       -  system cluster-show <cluster-name>
 
 -----
 
@@ -49,7 +55,14 @@ health of the system.
    * - Proposed Repair Action
      - Ensure storage hosts from replication group are unlocked and available.
        Check if OSDs of each storage host are up and running. If problem
-       persists contact next level of support.
+       persists contact next level of support and provide the output of the
+       following commands:
+
+       -  ceph status
+       -  ceph fs status
+       -  system host-list
+       -  system cluster-list
+       -  system cluster-show <cluster-name>
 
 -----
 
@@ -68,7 +81,14 @@ health of the system.
    * - Proposed Repair Action
      - Ensure storage hosts from replication group are unlocked and available.
        Check if OSDs of each storage host are up and running. If problem
-       persists contact next level of support.
+       persists contact next level of support and provide the output of the
+       following commands:
+
+       -  ceph status
+       -  ceph fs status
+       -  system host-list
+       -  system cluster-list
+       -  system cluster-show <cluster-name>
 
 
 -----
@@ -94,7 +114,13 @@ health of the system.
    * - Proposed Repair Action
      - Increase Storage Space Allotment for Cinder on the 'lvm' backend.
        Consult the user documentation for more details. If problem persists,
-       contact next level of support.
+       contact next level of support and provide the output of the
+       following commands:
+
+       -  ceph status
+       -  ceph fs status
+       -  system host-fs-list <hostname>
+       -  system controllerfs-list
 
 -----
 
@@ -113,4 +139,10 @@ health of the system.
    * - Proposed Repair Action
      - Update backend setting to reapply configuration. Consult the user
        documentation for more details. If problem persists, contact next level
-       of support.
+       of support and provide the output of the
+       following commands:
+
+       -  ceph status
+       -  ceph fs status
+       -  system storage-backend-list
+       -  system storage-backend-show <storage-backend name>
