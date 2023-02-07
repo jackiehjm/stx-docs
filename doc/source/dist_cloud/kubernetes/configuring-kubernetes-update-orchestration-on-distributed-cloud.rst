@@ -149,7 +149,7 @@ controller for access by subclouds. For example:
         default.
 
     **--stop-on-failure**
-        **true** \(default\) or **false** — determines whether upgrade
+        **false** \(default\) or **true** — determines whether upgrade
         orchestration failure for a subcloud prevents application to subsequent
         subclouds.
 
