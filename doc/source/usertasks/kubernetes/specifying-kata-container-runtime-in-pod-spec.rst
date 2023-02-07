@@ -28,7 +28,7 @@ runtime class or by annotation.
         |                                                                                            |     .. code-block:: none                                                                   |
         |                                                                                            |                                                                                            |
         |                                                                                            |         kind: RuntimeClass                                                                 |
-        |                                                                                            |         apiVersion: node.k8s.io/v1beta1                                                    |
+        |                                                                                            |         apiVersion: node.k8s.io/v1                                                         |
         |                                                                                            |         metadata:                                                                          |
         |                                                                                            |           name: kata-containers                                                            |
         |                                                                                            |         handler: kata                                                                      |
