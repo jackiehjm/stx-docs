@@ -13,7 +13,7 @@ You can find details about a release on the specific release page.
      - Notes
      - Status
    * - StarlingX R8.0
-     - 2023-01
+     - 2023-02
      - :doc:`r8-0-release-notes-6a6ef57f4d99`
      - Maintained
    * - StarlingX R7.0

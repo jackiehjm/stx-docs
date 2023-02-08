@@ -72,6 +72,15 @@ For additional information about project teams, refer to the
 New features in this version
 ----------------------------
 
+.. include:: /releasenotes/r8-0-release-notes-6a6ef57f4d99.rst
+   :start-after: start-new-features-r8
+   :end-before: end-new-features-r8
+
+-----------------------------
+New features in StarlingX 7.0
+-----------------------------
+
 .. include:: /releasenotes/r7-0-release-notes-85446867da2a.rst
    :start-after: start-new-features-r7
    :end-before: end-new-features-r7
+
