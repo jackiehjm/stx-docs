@@ -21,7 +21,7 @@ Currently there are 2 CVL versions available:
 
 -   ``cvl-2.54`` (legacy)
       - ice: 1.5.8.1 / Required NVM/firmware: 2.54
-      - i40e: 2.14.13 / Required NVM/firmware: 8.21
+      - i40e: 2.14.13 / Required NVM/firmware: 8.21 or 8.24
       - iavf: 4.0.1
 
 Change Intel Multi-driver Version
