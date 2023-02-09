@@ -10,8 +10,6 @@ Overview
 
 .. include:: /shared/_includes/desc_aio_simplex.txt
 
-.. include:: /shared/_includes/ipv6_note.txt
-
 ------------
 Installation
 ------------
