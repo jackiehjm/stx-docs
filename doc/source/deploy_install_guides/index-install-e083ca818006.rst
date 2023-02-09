@@ -8,26 +8,37 @@ Installation and deployment guides for StarlingX are release-specific.
 Each guide provides instruction on a specific StarlingX configuration
 (e.g. All-in-one Simplex).
 
--------------------------
-Upcoming release (latest)
--------------------------
+----------------
+Upcoming release
+----------------
 
-StarlingX R6.0 is under development.
+The next release will be R9.0. Use the installation procedures in the `Installation Guide
+<https://docs.starlingx.io/deploy_install_guides/index-install-e083ca818006.html>`_
+
+---------------
+Current release
+---------------
+
+R8.0 is the current release of StarlingX.
+
+Use the `R8 Installation Guide
+<https://docs.starlingx.io/r/stx.8.0/deploy_install_guides/index-install-e083ca818006.html>`_
+
+
+------------
+R6.0 release
+------------
 
 .. toctree::
-   :maxdepth: 1
 
    release/index-install-r6-8966076f0e81
 
 
------------------
-Supported release
------------------
+------------------
+Supported releases
+------------------
 
-StarlingX R5.0.1 is the most recent supported release of StarlingX.
-
-Use the `R5.0 Installation Guides <https://docs.starlingx.io/r/stx.6.0/deploy_install_guides/index-install-e083ca818006.html>`_ 
-to install R5.0.1.
+.. include:: /_includes/version-menu-7dda26c5b75f.rest
 
 
 
