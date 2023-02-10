@@ -26,6 +26,7 @@ created:
 
 **flat**
     A data network mapped entirely over the physical network.
+
 **VLAN**
     A data network implemented on a physical network using a VLAN identifier.
     This allows multiple data networks over the same physical network.
