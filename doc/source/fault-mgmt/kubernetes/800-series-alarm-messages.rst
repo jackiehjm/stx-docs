@@ -21,7 +21,8 @@ health of the system.
    * - **Alarm ID: 800.001**
      - Storage Alarm Condition:
 
-       1 mons down, quorum 1,2 controller-1,storage-0
+       Possible data loss. Any mds, mon or osd is unavailable in storage
+       replication group.
    * - Entity Instance
      - cluster=<dist-fs-uuid>
    * - Degrade Affecting Severity:
@@ -29,14 +30,8 @@ health of the system.
    * - Severity:
      - C/M\*
    * - Proposed Repair Action
-     - If problem persists, contact next level of support and provide the
-       output of the following commands:
-
-       -  ceph status
-       -  ceph fs status
-       -  system host-list
-       -  system cluster-list
-       -  system cluster-show <cluster-name>
+     - Check the state of the Ceph cluster with :command:`ceph -s`. If problem
+       persists, contact next level of support.
 
 -----
 
@@ -54,13 +49,7 @@ health of the system.
    * - Severity:
      - m
    * - Proposed Repair Action
-     - Update ceph storage pool quotas to use all available tier space and provide the output of the
-       following commands:
-
-       -  ceph status
-       -  ceph fs status
-       -  system host-fs-list <hostname>
-       -  system controllerfs-list
+     - Update Ceph storage pool quotas to use all available tier space.
 
 -----
 
@@ -78,15 +67,10 @@ health of the system.
      - C\*
    * - Proposed Repair Action
      - Ensure storage hosts from replication group are unlocked and available.
-       Check if OSDs of each storage host are up and running. If problem
-       persists contact next level of support and provide the output of the
-       following commands:
-
-       -  ceph status
-       -  ceph fs status
-       -  system host-list
-       -  system cluster-list
-       -  system cluster-show <cluster-name>
+       Check replication group state with :command:`system host-list`. Check if
+       OSDs of each storage host are up and running. Check the state of the
+       Ceph OSDs with :command:`ceph osd stat` OR :command:`ceph osd tree`. If
+       problem persists, contact next level of support.
 
 -----
 
@@ -104,15 +88,10 @@ health of the system.
      - M\*
    * - Proposed Repair Action
      - Ensure storage hosts from replication group are unlocked and available.
-       Check if OSDs of each storage host are up and running. If problem
-       persists contact next level of support and provide the output of the
-       following commands:
-
-       -  ceph status
-       -  ceph fs status
-       -  system host-list
-       -  system cluster-list
-       -  system cluster-show <cluster-name>
+       Check replication group state with :command:`system host-list`. Check if
+       OSDs of each storage host are up and running. Check the state of the
+       Ceph OSDs with :command:`ceph osd stat` AND/OR :command:`ceph osd tree`.
+       If problem persists, contact next level of support.
 
 -----
 
@@ -132,16 +111,7 @@ health of the system.
    * - Severity:
      - C/M\*
    * - Proposed Repair Action
-     - Remove failed PV and associated Storage Device then recreate them and
-       provide the output of the following commands:
-
-       -  ceph status
-       -  ceph fs status
-       -  system helm-override-show platform-integ-apps rbd-provisioner kube-system
-
-          AND/OR
-
-       -  system helm-override-show platform-integ-apps cephfs-provisioner kube-system
+     - Remove failed PV and associated Storage Device then recreate them.
 
 -----
 
@@ -164,15 +134,11 @@ health of the system.
    * - Severity:
      - C\*
    * - Proposed Repair Action
-     - Increase Storage Space Allotment for Cinder on the 'lvm' backend.
-       Consult the user documentation for more details. If problem persists,
-       contact next level of support and provide the output of the
-       following commands:
-
-       -  ceph status
-       -  ceph fs status
-       -  system host-fs-list <hostname>
-       -  system controllerfs-list
+     - Increase Storage Space Allotment for Cinder on the 'lvm' backend. Try
+       the following commands: :command:`vgextend <VG name> <PV name>` or
+       :command:`vgextend -L +<size extension> <PV name>`. Check status with
+       :command:`vgdisplay`. Consult the System Administration Manual for more
+       details. If problem persists, contact next level of support.
 
 -----
 
@@ -189,12 +155,9 @@ health of the system.
    * - Severity:
      - C\*
    * - Proposed Repair Action
-     - Update backend setting to reapply configuration. Consult the user
-       documentation for more details. If problem persists, contact next level
-       of support and provide the output of the
-       following commands:
-
-       -  ceph status
-       -  ceph fs status
-       -  system storage-backend-list
-       -  system storage-backend-show <storage-backend name>
+     - Update backend setting to reapply configuration. Use the following
+       commands to try again:
+       :command:`system storage-backend-delete <storage-backend-name>` AND
+       :command:`system storage-backend-add <storage-backend-name>`.
+       Consult the user documentation for more details. If problem persists,
+       contact next level of support.
