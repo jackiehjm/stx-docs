@@ -86,27 +86,6 @@ health of the system.
    * - Proposed Repair Action
      - Reduce usage or resize filesystem.
 
------
-
-.. list-table::
-   :widths: 6 25
-   :header-rows: 0
-
-   * - **Alarm ID: 100.105**
-     - <fs\_name\> filesystem is not added on both controllers and/or does not
-       have the same size: <hostname\>.
-   * - Entity Instance
-     - fs\_name=<image-conversion>
-   * - Degrade Affecting Severity:
-     - None
-   * - Severity:
-     - C/M\*
-   * - Proposed Repair Action
-     - Add image-conversion filesystem on both controllers.
-
-       Consult the System Administration Manual for more details.
-
-       If problem persists, contact next level of support.
 
 -----
 
@@ -228,45 +207,6 @@ health of the system.
      - Check cabling and far-end port configuration and status on adjacent
        equipment.
 
------
-
-.. list-table::
-   :widths: 6 25
-   :header-rows: 0
-
-   * - **Alarm ID: 100.112**
-     - 'DATA-VRS' Port down.
-   * - Entity Instance
-     - host=<hostname>.port=<port-name>
-   * - Degrade Affecting Severity:
-     - Major
-   * - Severity:
-     - M
-   * - Proposed Repair Action
-     - Check cabling and far-end port configuration and status on adjacent
-       equipment.
-
------
-
-.. list-table::
-   :widths: 6 25
-   :header-rows: 0
-
-   * - **Alarm ID: 100.113**
-     - 'DATA-VRS' Interface degraded.
-
-       or
-
-       'DATA-VRS' Interface down.
-   * - Entity Instance
-     - host=<hostname>.interface=<if-name>
-   * - Degrade Affecting Severity:
-     - Major
-   * - Severity:
-     - C or M\*
-   * - Proposed Repair Action
-     - Check cabling and far-end port configuration and status on adjacent
-       equipment.
 
 -----
 
