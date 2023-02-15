@@ -103,6 +103,23 @@ health of the system.
    :widths: 6 25
    :header-rows: 0
 
+   * - **Alarm ID: 900.006**
+     - Device image update operation in progress.
+   * - Entity Instance
+     - host=controller
+   * - Degrade Affecting Severity:
+     - None
+   * - Severity:
+     - m\*
+   * - Proposed Repair Action
+     - Complete reboots of affected hosts.
+
+-----
+
+.. list-table::
+   :widths: 6 25
+   :header-rows: 0
+
    * - **Alarm ID: 900.008**
      - Kubernetes rootca update in progress.
    * - Entity Instance
