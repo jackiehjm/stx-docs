@@ -107,7 +107,6 @@ Alarm messages
 
    100-series-alarm-messages
    200-series-alarm-messages
-   300-series-alarm-messages
    400-series-alarm-messages
    500-series-alarm-messages
    750-series-alarm-messages

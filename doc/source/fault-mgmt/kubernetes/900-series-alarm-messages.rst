@@ -103,6 +103,59 @@ health of the system.
    :widths: 6 25
    :header-rows: 0
 
+   * - **Alarm ID: 900.006**
+     - Device image update operation in progress.
+   * - Entity Instance
+     - host=controller
+   * - Degrade Affecting Severity:
+     - None
+   * - Severity:
+     - m\*
+   * - Proposed Repair Action
+     - Complete reboots of affected hosts.
+
+-----
+
+.. list-table::
+   :widths: 6 25
+   :header-rows: 0
+
+   * - **Alarm ID: 900.008**
+     - Kubernetes rootca update in progress.
+   * - Entity Instance
+     - host=controller
+   * - Degrade Affecting Severity:
+     - None
+   * - Severity:
+     - m
+   * - Proposed Repair Action
+     - Wait for kubernetes rootca procedure to complete.
+
+-----
+
+.. list-table::
+   :widths: 6 25
+   :header-rows: 0
+
+   * - **Alarm ID: 900.009**
+     - Kubernetes root CA update aborted, certificates may not be fully updated.
+   * - Entity Instance
+     - host=controller
+   * - Degrade Affecting Severity:
+     - None
+   * - Severity:
+     - m
+   * - Management Affecting Severity:
+     - w
+   * - Proposed Repair Action
+     - Fully update certificates by a new root CA update.
+
+-----
+
+.. list-table::
+   :widths: 6 25
+   :header-rows: 0
+
    * - **Alarm ID: 900.101**
      - Software patch auto-apply inprogress.
    * - Entity Instance
