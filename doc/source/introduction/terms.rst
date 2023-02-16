@@ -159,8 +159,8 @@ commonly used in the |org| community and in this documentation.
 
        - You must configure separate, per-region PXEBoot networks.
 
-   |prod|
-     |prod| is an open source, complete cloud infrastructure software stack for
+   StarlingX
+     StarlingX is an open source, complete cloud infrastructure software stack for
      the edge used by the most demanding applications in industrial |IoT|,
      telecom, and other use cases. The platform creates a fusion between
      OpenStack and Kubernetes to provide a robust and flexible environment for
