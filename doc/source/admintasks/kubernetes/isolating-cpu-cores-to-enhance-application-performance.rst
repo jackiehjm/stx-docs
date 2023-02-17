@@ -2,9 +2,9 @@
 .. bew1572888575258
 .. _isolating-cpu-cores-to-enhance-application-performance:
 
-========================================================
-Isolate the CPU Cores to Enhance Application Performance
-========================================================
+====================================================
+Isolate CPU Cores to Enhance Application Performance
+====================================================
 
 |prod| supports running the most critical low-latency applications on host CPUs
 which are completely isolated from the host process scheduler.
@@ -21,10 +21,21 @@ For example:
 .. code-block:: none
 
     ~(keystone_admin)]$ system host-lock worker-1
-    ~(keystone_admin)]$ system host-cpu-modify  -f platform -p0 1 worker-1
-    ~(keystone_admin)]$ system host-cpu-modify  -f application-isolated -p0 15 worker-1
-    ~(keystone_admin)]$ system host-cpu-modify  -f application-isolated -p1 15 worker-1
+    ~(keystone_admin)]$ system host-cpu-modify -f platform -p0 1 worker-1
+    ~(keystone_admin)]$ system host-cpu-modify -f application-isolated -p0 15 worker-1
+    ~(keystone_admin)]$ system host-cpu-modify -f application-isolated -p1 15 worker-1
     ~(keystone_admin)]$ system host-unlock worker-1
+
+.. note::
+
+    It is possible to explicitly specify 1 or more cores or a range of cores to
+    be application-isolated:
+
+    .. code-block::
+
+        ~(keystone_admin)]$ system host-cpu-modify -f application-isolated -c 3 controller-0
+        ~(keystone_admin)]$ system host-cpu-modify -f application-isolated -c 3,4 controller-0
+        ~(keystone_admin)]$ system host-cpu-modify -f application-isolated -c 3-5 controller-0
 
 All |SMT| siblings (hyperthreads, if enabled) on a core will have the same
 assigned function. On host boot, any CPUs designated as isolated will be
@@ -35,7 +46,7 @@ The use of application-isolated cores is only applicable when using the static
 Kubernetes CPU Manager policy. For more information,
 see :ref:`Kubernetes CPU Manager Policies <kubernetes-cpu-manager-policies>`.
 
-.. note:: 
+.. note::
 
    |prod| isolcpus allocation is |SMT|-aware. If a container requests multiple
    isolcpus it will provide |SMT| siblings to the extent possible. If an odd
