@@ -67,6 +67,11 @@ There are six phases for Rehoming a subcloud:
     ``--install-values`` option, when running the remote subcloud reinstall,
     upgrade or restore commands.
 
+.. warning::
+
+    Do not rehome a subcloud if the RECONCILED status on the system host
+    or any host resource of the subcloud is FALSE.
+
 .. note::
 
     These prerequisites apply if the old System Controller is still available.
@@ -252,3 +257,4 @@ subcloud to the original state prior to rehoming.
 .. only:: partner
 
     .. include:: /_includes/dm-credentials-on-keystone-pwds.rest
+
