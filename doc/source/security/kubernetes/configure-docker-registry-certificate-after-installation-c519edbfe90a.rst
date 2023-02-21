@@ -62,9 +62,9 @@ Update the following fields:
           kind: ClusterIssuer
         duration: 2160h    # 90d
         renewBefore: 360h  # 15d
+        organization:
+          - <Customer org>
         subject:
-          organizations:
-            - <Customer org>
           organizationalUnits:
             - StarlingX-system-registry-local
         ipAddresses:

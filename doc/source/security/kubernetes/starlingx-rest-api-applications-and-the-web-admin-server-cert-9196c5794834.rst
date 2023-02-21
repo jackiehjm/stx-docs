@@ -56,6 +56,8 @@ certificates.
         name: system-local-ca
         namespace: cert-manager
       spec:
+        organization:
+          - ABC-Company
         subject:
           organizationalUnits:
             - StarlingX-system-local-ca
@@ -77,8 +79,8 @@ certificates.
           secretName: system-local-ca
       EOF
 
-   For more information on supported parameters, see
-   https://cert-manager.io/v0.14-docs/reference/api-docs/#acme.cert-manager.io%2fv1alpha2
+   For more information on supported parameters, see cert-manager.io/v1alpha2:
+   https://cert-manager.io/v1.0-docs/reference/api-docs/#cert-manager.io%2fv1alpha2
 
 
 #. Apply the configuration.

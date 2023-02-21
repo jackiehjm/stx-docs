@@ -72,9 +72,9 @@ Update the following fields:
         duration: 2160h    # 90 days
         renewBefore: 360h  # 15 days
         commonName:  < oam floating IP Address or FQDN >
+        organization:
+          - <Customer org>
         subject:
-          organizations:
-            - <Customer org>
           organizationalUnits:
             - StarlingX-system-restapi-gui
         ipAddresses:
