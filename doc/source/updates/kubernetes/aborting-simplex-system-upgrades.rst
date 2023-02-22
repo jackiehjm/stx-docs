@@ -58,7 +58,7 @@ upgrade. This involves performing a system restore with the previous release.
 .. _aborting-simplex-system-upgrades-ol-jmw-kcp-xdb:
 
 #.  Install the previous release of |prod-long| Simplex software via network or
-    USB.
+    USB manually.
 
 #.  Verify and configure IP connectivity. External connectivity is required to
     run the Ansible restore playbook. The |prod-long| boot image will DHCP out all
@@ -67,7 +67,15 @@ upgrade. This involves performing a system restore with the previous release.
     the :command:`ip addr` command. Otherwise, manually configure an IP address and default IP
     route.
 
-#.  Restore the system data. The restore is preserved in /opt/platform-backup.
+    .. note::
+
+        If there are patches on the |AIO-SX| system prior to the upgrade,
+        Ansible restore playbook will install the patches and cause a reboot
+        of the system. The reboot will lead to the loss of IP connectivity
+        configuration. Verify and re-configure IP connectivity and
+        re-run the Ansible restore playbook to complete the platform restore.
+
+#.  Restore the system data. The restore is preserved in ``/opt/platform-backup``.
 
     The system will be restored to the state when the :command:`upgrade-start`
     command was issued. Follow the process in :ref:`Run Restore Playbook Locally on the
