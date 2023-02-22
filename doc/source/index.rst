@@ -5,14 +5,13 @@ Welcome to the StarlingX Documentation
 StarlingX is a fully integrated edge cloud software stack that provides
 everything needed to deploy an edge cloud on one, two, or up to 100 servers.
 
-**The most recent supported release is StarlingX R7.0.**
+**The most recent supported release is StarlingX R8.0.**
 
 * See the :ref:`release-notes`.
 * Download the pre-built ISO (CentOS and Debian) and Docker images for
-  StarlingX release 7.0 that are located at the ``CENGN StarlingX mirror`` repos:
+  StarlingX release 8.0 that are located at the ``CENGN StarlingX mirror`` repos:
 
-  -  http://mirror.starlingx.cengn.ca/mirror/starlingx/release/7.0.0/centos/flock/outputs/
-  -  http://mirror.starlingx.cengn.ca/mirror/starlingx/release/7.0.0/debian/monolithic/outputs/
+  -  https://mirror.starlingx.cengn.ca/mirror/starlingx/release/8.0.0/debian/monolithic/outputs/iso/
 
 For more information about the StarlingX project, refer to the
 `StarlingX wiki <https://wiki.openstack.org/wiki/StarlingX>`_.
