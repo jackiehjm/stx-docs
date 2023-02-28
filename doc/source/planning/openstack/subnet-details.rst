@@ -23,7 +23,7 @@ following attributes:
 
 **Enable DHCP**
     When this attribute is enabled, a virtual |DHCP| server becomes available
-    when the subnet is created. It uses the \(MAC address, IP address\) pairs
+    when the subnet is created. It uses the (MAC address, IP address) pairs
     registered in the Neutron database to offer IP addresses in response to
     |DHCP| discovery requests broadcast on the subnet. |DHCP| discovery
     requests from unknown |MAC| addresses are ignored.

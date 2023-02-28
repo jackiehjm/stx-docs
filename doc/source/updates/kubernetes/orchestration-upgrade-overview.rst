@@ -55,14 +55,14 @@ conditions:
 
 .. _orchestration-upgrade-overview-ul-blp-gcx-ry:
 
--   The system is clear of alarms \(with the exception of the alarm upgrade in
-    progress\).
+-   The system is clear of alarms (with the exception of the alarm upgrade in
+    progress).
 
 -   All hosts must be unlocked, enabled, and available.
 
--   The system is fully redundant \(two controller nodes available, at least
+-   The system is fully redundant (two controller nodes available, at least
     one complete storage replication group available for systems with Ceph
-    backend\).
+    backend).
 
 -   An upgrade has been started, and controller-1 has been upgraded and is
     active.
@@ -109,15 +109,15 @@ entire strategy automatically, or apply individual stages to control and monitor
 their progress manually.
 
 Update and upgrade orchestration are mutually exclusive; they perform
-conflicting operations. Only a single strategy \(sw-patch or sw-upgrade\) is
+conflicting operations. Only a single strategy (sw-patch or sw-upgrade) is
 allowed to exist at a time. If you need to update during an upgrade, you can
 abort/delete the sw-upgrade strategy, and then create and apply a sw-patch
 strategy before going back to the upgrade.
 
-Some stages of the upgrade could take a significant amount of time \(hours\).
+Some stages of the upgrade could take a significant amount of time (hours).
 For example, after upgrading a storage host, re-syncing the OSD data could take
-30 minutes per TB \(assuming 500MB/s sync rate, which is about half of a 10G
-infrastructure link\).
+30 minutes per TB (assuming 500MB/s sync rate, which is about half of a 10G
+infrastructure link).
 
 .. _orchestration-upgrade-overview-section-N10101-N10026-N10001:
 

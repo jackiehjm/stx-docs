@@ -6,7 +6,7 @@
 Software Updates
 ================
 
-|prod-long| software updates \(also known as patches\) must be applied to the
+|prod-long| software updates (also known as patches) must be applied to the
 system in order to keep your system updated with feature enhancements, free of
 known bugs, and security vulnerabilities.
 

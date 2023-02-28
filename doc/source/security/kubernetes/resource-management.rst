@@ -22,7 +22,7 @@ LimitRange
 By default, containers run with unbounded resources on a Kubernetes cluster.
 Obviously this is bad as a single Pod could monopolize all available
 resources on a worker node. A **LimitRange** is a policy to constrain
-resource allocations \(for Pods or Containers\) in a particular namespace.
+resource allocations (for Pods or Containers) in a particular namespace.
 
 Specifically a **LimitRange** policy provides constraints that can:
 

@@ -35,8 +35,8 @@ conditions:
 
 .. _update-orchestration-overview-ul-e1y-t4c-nx:
 
--   The system is clear of alarms \(with the exception of alarms for locked
-    hosts, and update applications in progress\).
+-   The system is clear of alarms (with the exception of alarms for locked
+    hosts, and update applications in progress).
 
     .. note::
         When configuring update orchestration, you have the option to ignore
@@ -51,7 +51,7 @@ conditions:
 -   All storage hosts must be available.
 
 -   When installing reboot required updates, there must be spare worker
-    capacity to move hosted application pods off the worker host\(s\) being
+    capacity to move hosted application pods off the worker host\(s) being
     updated such that hosted application services are not impacted.
 
 .. _update-orchestration-overview-section-N1009D-N10023-N10001:
@@ -70,7 +70,7 @@ installation time.
 
 Update orchestration can install one or more applied updates at the same time.
 It can also install reboot-required updates or in-service updates or both at
-the same time. Update orchestration only locks and unlocks \(that is, reboots\)
+the same time. Update orchestration only locks and unlocks (that is, reboots)
 a host to install an update if at least one reboot-required update has been
 applied.
 

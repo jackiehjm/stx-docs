@@ -7,7 +7,7 @@ Storage on Compute Hosts
 ========================
 
 Compute-labelled worker hosts can provide ephemeral storage for Virtual Machine
-\(VM\) disks.
+\(VM) disks.
 
 .. note::
 

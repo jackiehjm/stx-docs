@@ -33,12 +33,12 @@ subclouds.
 
         The Patch State indicates whether the patch is available,
         partially-applied or applied. Applied indicates that the update has
-        been installed on all hosts of the cloud \(SystemController in this
-        case\).
+        been installed on all hosts of the cloud (SystemController in this
+        case).
 
 #.  Check the Update Sync Status of the subclouds.
 
-    Update \(or Patch\) Sync Status is part of the overall Sync status of a
+    Update (or Patch) Sync Status is part of the overall Sync status of a
     subcloud. To review the synchronization status of subclouds, see
     :ref:`Monitoring Subclouds Using Horizon
     <monitoring-subclouds-using-horizon>`.

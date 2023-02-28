@@ -19,10 +19,10 @@ The host states in |prod| are based on the *ITU X.731 State Management Function
 Specification for Open Systems*.
 
 As shown in the diagram above, there are two possible administrative states
-for a host \(**Locked** and **Unlocked**\) and two operational states
-\(**Disabled** and **Enabled**\). Within this functional matrix, the host can
+for a host (**Locked** and **Unlocked**) and two operational states
+\(**Disabled** and **Enabled**). Within this functional matrix, the host can
 be in several availability states. All of these states are reported in the
-host inventory \(see :ref:`Hosts Tab <hosts-tab>`.\)
+host inventory (see :ref:`Hosts Tab <hosts-tab>`.)
 
 A new host is reported as **Offline** when it is first added to the host
 inventory. As an exception, the first controller, **controller-0**, is
@@ -35,8 +35,8 @@ reference.
 #. **Offline to Online**
 
    This transition takes place when a host establishes maintenance
-   connectivity with the controller over the management network \(for
-   example, after it is powered up and initialized with |prod| software\)
+   connectivity with the controller over the management network (for
+   example, after it is powered up and initialized with |prod| software)
 
    If the controller fails to establish maintenance and inventory
    connectivity within a boot timeout interval, the node is moved to
@@ -81,7 +81,7 @@ reference.
    cloud, updates the node state based on this monitoring, and reports state
    changes to upper layers for impact analysis and recovery. Monitored
    indicators include host heartbeats over all network interfaces, platform
-   resource usage \(CPU, memory and disk\), and platform critical processes,
+   resource usage (CPU, memory and disk), and platform critical processes,
    as well as |BMC| hardware sensors if enabled.
 
    Some of the maintenance monitoring parameters are configurable. For

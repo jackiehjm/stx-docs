@@ -16,8 +16,8 @@ the Sensors tab for the host. At initial provisioning, this can take about five
 minutes.
 
 You may need to update the information on the Sensors tab manually if the
-sensor model changes for any reason \(for example, because the |BMC| firmware
-is upgraded\). An out-of-date sensor model can cause false alarms or errors.
+sensor model changes for any reason (for example, because the |BMC| firmware
+is upgraded). An out-of-date sensor model can cause false alarms or errors.
 
 You can update sensor information from the Horizon Web interface using the
 **Relearn Sensor Model** button. To use the command-line interface, see

@@ -81,7 +81,7 @@ scripting an initial setup.
         -   storage
 
     **<subfunctions>**
-        are the host personality subfunctions \(used only for a worker host\).
+        are the host personality subfunctions (used only for a worker host).
 
         For a worker host, the only valid value is worker,lowlatency to enable
         a low-latency performance profile. For a standard performance profile,
@@ -95,53 +95,53 @@ scripting an initial setup.
         is a string describing the location of the host
 
     **<console>**
-        is the output device to use for message display on the host \(for
-        example, tty0\). The default is ttys0, 115200.
+        is the output device to use for message display on the host (for
+        example, tty0). The default is ttys0, 115200.
 
-    **<install\_output>**
-        is the format for console output on the host \(text or graphical\). The
+    **<install_output>**
+        is the format for console output on the host (text or graphical). The
         default is text.
 
         .. note::
             The graphical option currently has no effect. Text-based
             installation is used regardless of this setting.
 
-    **<boot\_device>**
+    **<boot_device>**
         is the host device for boot partition, relative to /dev. The default is
         sda.
 
-    **<rootfs\_device>**
+    **<rootfs_device>**
         is a logical volume cgts-vg/root-lv. The default is sda, it should be
         the same value as specified for the boot_device.
 
-    **<mgmt\_mac>**
+    **<mgmt_mac>**
         is the |MAC| address of the port connected to the internal management
         or |PXE| boot network.
 
-    **<mgmt\_ip>**
+    **<mgmt_ip>**
         is the IP address of the port connected to the internal management or
         |PXE| boot network, if static IP address allocation is used.
 
         .. note::
-            The <mgmt\_ip> option is not used for a controller node.
+            The <mgmt_ip> option is not used for a controller node.
 
-    **<ttys\_dcd>**
+    **<ttys_dcd>**
         is set to **True** to have any active console session automatically
         logged out when the serial console cable is disconnected, or **False**
         to disable this behavior. The server must support data carrier detect
         on the serial console port.
 
-    **<bm\_type>**
+    **<bm_type>**
         is the board management controller type. Use bmc.
 
-    **<bm\_ip>**
-        is the board management controller IP address \(used for external
-        access to board management controllers over the |OAM| network\)
+    **<bm_ip>**
+        is the board management controller IP address (used for external
+        access to board management controllers over the |OAM| network)
 
-    **<bm\_username>**
+    **<bm_username>**
         is the username for board management controller access
 
-    **<bm\_password>**
+    **<bm_password>**
         is the password for board management controller access
 
     For example:

@@ -38,7 +38,7 @@ Collect Tool Caveats and Usage
 -   For |prod| Standard systems, use the following commands:
 
 
-    -   For a small deployment \(less than two worker nodes\):
+    -   For a small deployment (less than two worker nodes):
 
         .. code-block:: none
 

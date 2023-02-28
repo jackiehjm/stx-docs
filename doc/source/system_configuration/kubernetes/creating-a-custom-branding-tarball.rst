@@ -26,7 +26,7 @@ steps below:
     **static/img/** folder, and template overrides can be placed in the
     **templates** folder. This theme can be found in the Horizon repository,
     at `GitHub <https://github.com/openstack/horizon/tree/master/openstack_dashboard/themes/default>`__
-    or on a controller host, at /usr/share/openstack-dashboard/openstack\_dashboard/themes/default/.
+    or on a controller host, at /usr/share/openstack-dashboard/openstack_dashboard/themes/default/.
 
 #.  Copy the theme and modify it to fit your requirements.
 
@@ -41,7 +41,7 @@ steps below:
 
         -   The name of the custom theme is **custom** and must be used in the
             source paths of new images or javascript, for example,
-            **/static/themes/custom/img/extra\_img.png**.
+            **/static/themes/custom/img/extra_img.png**.
 
         -   If a static folder is used, the **\_styles.scss**, and
             **\_variables.scss** files must be located in the static folder
@@ -63,7 +63,7 @@ steps below:
         # HORIZON_CONFIG["help_url"] = "https://www.openstack.org/"
 
     where
-        the **help\_url** is the help link for users.
+        the **help_url** is the help link for users.
 
     The theme directory should have the following files, depending on how
     extensive the theme is. Use the following command to find the files:

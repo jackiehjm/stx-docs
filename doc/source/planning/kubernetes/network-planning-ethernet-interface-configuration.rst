@@ -21,7 +21,7 @@ following networks:
 .. _network-planning-ethernet-interface-configuration-ul-lk1-b4j-zq:
 
 -   the internal management network, with the cluster host network sharing this
-    interface \(default configuration\)
+    interface (default configuration)
 
 -   the external |OAM| network
 

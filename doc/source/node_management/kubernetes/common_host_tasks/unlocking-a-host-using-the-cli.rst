@@ -23,7 +23,7 @@ number of successive reboot attempts is limited; for more information,
 see :ref:`reboot-limits-for-host-unlock-d9a26854590a`.
 
 .. note::
-    On a |prod| Simplex system, any containers \(hosted applications\)
+    On a |prod| Simplex system, any containers (hosted applications)
     that were stopped by the preceding :command:`host-lock` operation are
     started automatically.
 

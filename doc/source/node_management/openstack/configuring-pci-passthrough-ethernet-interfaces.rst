@@ -105,7 +105,7 @@ already, and that |VLAN| ID 10 is a valid segmentation ID assigned to
     Select **Admin** \> **Network** \> **Networks**, select the Networks tab, and then click **Create Network**. Fill in the Create Network dialog box as illustrated below. You must ensure that:
 
     -   **project1** has access to the project network, either assigning it as
-        the owner, as in the illustration \(using **Project**\), or by enabling
+        the owner, as in the illustration (using **Project**), or by enabling
         the shared flag.
 
     -   The segmentation ID is set to 10.

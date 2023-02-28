@@ -81,7 +81,7 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
     #.  Set environment variables.
 
         You can customize the service account name and the output
-        configuration file by changing the <USER> and <OUTPUT\_FILE>
+        configuration file by changing the <USER> and <OUTPUT_FILE>
         variables shown in the following examples.
 
         .. code-block:: none
@@ -142,8 +142,8 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
 
 			~(keystone_admin)]$ OAM_IP=$(system oam-show |grep oam_floating_ip| awk '{print $4}')
 
-        #.  |AIO-SX| uses <oam\_ip> instead of <oam\_floating\_ip>. The
-            following shell code ensures that <OAM\_IP> is assigned the correct
+        #.  |AIO-SX| uses <oam_ip> instead of <oam_floating_ip>. The
+            following shell code ensures that <OAM_IP> is assigned the correct
             IP address.
 
             .. code-block:: none
@@ -242,7 +242,7 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
     #.  Create a working directory that will be mounted by the container
         implementing the remote |CLIs|.
 
-        See the description of the :command:`configure\_client.sh` -w option
+        See the description of the :command:`configure_client.sh` -w option
         :ref:`below
         <security-configure-container-backed-remote-clis-and-clients>`
         for more details.
@@ -263,12 +263,12 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
         repository before using remote |CLIs|. WRS |AWS| ECR credentials or a
         |CA| certificate is required.
 
-        The options for configure\_client.sh are:
+        The options for configure_client.sh are:
 
     ``-t``
-        The type of client configuration. The options are platform \(for
-        |prod-long| |CLI| and clients\) and openstack \(for |prod-os| application
-        |CLI| and clients\).
+        The type of client configuration. The options are platform (for
+        |prod-long| |CLI| and clients) and openstack (for |prod-os| application
+        |CLI| and clients).
 
         The default value is platform.
 
@@ -290,15 +290,15 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
         commands.
 
         For the platform client setup, the default is
-        remote\_client\_platform.sh. For the openstack application client
-        setup, the default is remote\_client\_app.sh.
+        remote_client_platform.sh. For the openstack application client
+        setup, the default is remote_client_app.sh.
 
     ``-w``
         The working directory that will be mounted by the container
         implementing the remote |CLIs|. When using the remote |CLIs|, any files
         passed as arguments to the remote |CLI| commands need to be in this
         directory in order for the container to access the files. The default
-        value is the directory from which the :command:`configure\_client.sh`
+        value is the directory from which the :command:`configure_client.sh`
         command was run.
 
     ``-p``
@@ -323,9 +323,12 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
         By default, the OpenStack |CLIs| and clients container image is pulled
         from docker.io/starlingx/stx-openstackclients.
 
-    The :command:`configure-client.sh` command will generate a remote\_client\_platform.sh RC file. This RC file needs to be sourced in the shell to set up required environment variables and aliases before any remote CLI commands can be run.
+    The :command:`configure-client.sh` command will generate a
+    ``remote_client_platform.sh`` RC file. This RC file needs to be sourced in
+    the shell to set up required environment variables and aliases before any
+    remote CLI commands can be run.
 
-#.  Copy the file remote\_client\_platform.sh to $HOME/remote\_cli\_wd
+#.  Copy the file ``remote_client_platform.sh`` to ``$HOME/remote_cli_wd``
 
 .. rubric:: |postreq|
 

@@ -149,7 +149,7 @@ ignored even when the default strict restrictions are selected:
 
     .. note::
         After the *Firmware Update Orchestration Strategy* has been applied
-        \(or aborted\) it must be deleted before another firmware update
+        (or aborted) it must be deleted before another firmware update
         strategy can be created. If a firmware update strategy application
         fails, you must address the issue that caused the failure, then
         delete and re-create the strategy before attempting to apply it

@@ -25,9 +25,9 @@ meets the following conditions:
 
 .. _xkr1590157116928-ul-frz-yls-tlb:
 
--   The system is clear of alarms \(with the exception of alarms for locked
+-   The system is clear of alarms (with the exception of alarms for locked
     hosts, stopped instances, and Kubernetes version upgrade cloud
-    orchestration in progress\).
+    orchestration in progress).
 
     .. note::
         When configuring Kubernetes version upgrade cloud orchestration, you
@@ -43,8 +43,8 @@ meets the following conditions:
     A Kubernetes version upgrade is a reboot required operation. Therefore, in
     systems that have the |prefix|-openstack application applied with running
     instances, if the migrate option is selected there must be spare
-    openstack-compute \(worker\) capacity to move instances off the
-    openstack-compute \(worker\) host\(s\) being upgraded.
+    openstack-compute (worker) capacity to move instances off the
+    openstack-compute (worker) host\(s) being upgraded.
 
 -   If you are using NetApp Trident in |prod| |prod-ver| and have upgraded from
     the |prod| previous version, ensure that your NetApp backend version is

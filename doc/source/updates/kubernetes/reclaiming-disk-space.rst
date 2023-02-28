@@ -12,14 +12,14 @@ version of an update has been committed to the system.
 .. rubric:: |proc|
 
 #.  Run the :command:`query-dependencies` command to show a list of updates
-    that are required by the specified update \(patch\), including itself.
+    that are required by the specified update (patch), including itself.
 
     .. code-block:: none
 
         sw-patch query-dependences [ --recursive ] <patch-id>
 
     The :command:`query-dependencies` command will show a list of updates that
-    are required by the specified update \(including itself\). The
+    are required by the specified update (including itself). The
     ``--recursive`` option will crawl through those dependencies to return a
     list of all the updates in the specified update's dependency tree. This
     query is used by the :command:`commit` command in calculating the set of

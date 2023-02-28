@@ -38,7 +38,7 @@ OSD Replication Factor
     | 3                  | 3                           | 3                                    |
     +--------------------+-----------------------------+--------------------------------------+
 
-You can add up to 16 Ceph disks \(OSD disks\) per storage host for
+You can add up to 16 Ceph disks (OSD disks) per storage host for
 data storage.
 
 Space on the storage hosts must be configured at installation before you
@@ -47,7 +47,7 @@ by adding resources to existing storage hosts or adding more storage hosts.
 For more information, see |_link-inst-book|.
 
 Storage hosts can achieve faster data access using SSD-backed transaction
-journals \(journal functions\). NVMe-compatible SSDs are supported.
+journals (journal functions). NVMe-compatible SSDs are supported.
 
 .. seealso::
 

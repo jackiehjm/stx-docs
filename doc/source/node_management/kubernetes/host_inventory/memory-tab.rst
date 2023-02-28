@@ -19,7 +19,7 @@ The information is presented in three columns, as follows:
     For a controller node it displays the total and available memory figures.
 
     For a worker node, as in the example above, it displays the amount of
-    memory reserved for the platform \(system software\), and the usable
+    memory reserved for the platform (system software), and the usable
     total available for use by applications. The usable total includes memory
     reserved for vSwitch huge pages.
 
@@ -36,7 +36,7 @@ The information is presented in three columns, as follows:
     The size of the huge pages, and the total and available huge page figures.
 
     .. note::
-        vSwitch Huge Pages are not allocated if vswitch\_type is set
+        vSwitch Huge Pages are not allocated if vswitch_type is set
         to **None**.
 
 For more about host memory allocations,

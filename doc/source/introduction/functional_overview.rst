@@ -103,7 +103,7 @@ Where:
 
     -   OpenStack Horizon - dashboard
 
-    ..  -   Telemetry \(OPTIONAL\)
+    ..  -   Telemetry (OPTIONAL)
 
             -   Panko - Event storage
 

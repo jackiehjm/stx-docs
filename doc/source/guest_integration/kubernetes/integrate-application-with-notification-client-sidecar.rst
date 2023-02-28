@@ -49,7 +49,7 @@ The following prerequisites are required before the integration:
       :start-after: prereq-begin
       :end-before: prereq-end
 
--   The cloud is configured with a node that supports the Subordinate mode \(Secondary mode\).
+-   The cloud is configured with a node that supports the Subordinate mode (Secondary mode).
 
 -   The cloud is labeled with **ptp-registration=true**, and **ptp-notification=true**.
 

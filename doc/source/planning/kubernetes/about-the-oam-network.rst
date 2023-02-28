@@ -42,7 +42,7 @@ Network:
     -   more accurate clock synchronization
 
     -   the ability to extend the clock synchronization, not only to |prod|
-        hosts \(controllers, workers, and storage nodes\), but also to hosted
+        hosts (controllers, workers, and storage nodes), but also to hosted
         applications on |prod| hosts.
 
     When used in conjunction with hardware support on the |OAM| and Management

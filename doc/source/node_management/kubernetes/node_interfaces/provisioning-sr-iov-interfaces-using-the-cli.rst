@@ -12,12 +12,12 @@ Provision SR-IOV Interfaces using the CLI
 By default, a Kubernetes container is started with a default network virtual
 interface for cluster networking. For accelerated networking between
 containers or external networks, additional |SRIOV| backed interfaces
-\(network attachments\) can be added to the container.
+\(network attachments) can be added to the container.
 
 You can use the CLI to provision |SRIOV| interfaces on a |prod| system.
 
 The |SRIOV| device plugin discovers and advertises |SRIOV| network virtual
-functions \(VFs\) in a Kubernetes host. To enable the device plugin, all hosts
+functions (VFs) in a Kubernetes host. To enable the device plugin, all hosts
 on which accelerated networking pods will be enabled should have the
 **sriovdp** label applied.
 
@@ -98,7 +98,7 @@ See |datanet-doc|: :ref:`Add Data Networks using the CLI
     where the following options are available:
 
     **hostname**
-        This is the host name or ID of the compute \(worker\) node.
+        This is the host name or ID of the compute (worker) node.
 
     **numvfs**
         The number of virtual functions to enable on the device.

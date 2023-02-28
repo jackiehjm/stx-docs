@@ -59,7 +59,7 @@ To make interface changes, you must lock the compute node first.
     **ifname**
         is the name of the interface
 
-    **ip\_address**
+    **ip_address**
         is an IPv4 or IPv6 address
 
     **prefix**

@@ -20,7 +20,7 @@ command to perform an update.
 
 where the following are optional arguments:
 
-**<app\_name>**
+**<app_name>**
     The name of the application to update.
 
     You can look up the name of an application using the
@@ -51,7 +51,7 @@ where the following are optional arguments:
 
 and the following is a positional argument which must come last:
 
-**<tar\_file>**
+**<tar_file>**
     The tar file containing the application manifest, Helm charts and
     configuration file.
 

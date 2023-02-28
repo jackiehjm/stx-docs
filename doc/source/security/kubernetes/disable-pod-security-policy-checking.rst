@@ -11,7 +11,7 @@ disable pod security policy checking.
 
 .. rubric:: |proc|
 
-#.  Remove the kubernetes **kube\_apiserver admission\_plugins** system
+#.  Remove the kubernetes **kube_apiserver admission_plugins** system
     parameter to exclude PodSecurityPolicy.
 
     .. code-block:: none

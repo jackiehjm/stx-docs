@@ -28,7 +28,7 @@ where:
 **<interface name>**
     is the name of the interface
 
-**<mtu\_size>**
+**<mtu_size>**
     is the new |MTU| value
 
 For example:

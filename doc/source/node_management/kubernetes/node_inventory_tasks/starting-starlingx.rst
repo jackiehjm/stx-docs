@@ -37,8 +37,8 @@ shut down and physically moved.
 #.  Power on **storage-0**.
 
     .. note::
-        This step applies to Ceph-backed systems  \(systems with storage
-        nodes\) only.
+        This step applies to Ceph-backed systems  (systems with storage
+        nodes) only.
 
     #.  Apply power to the system.
 
@@ -50,7 +50,7 @@ shut down and physically moved.
 #.  Power on and unlock **storage-1**.
 
     .. note::
-        This step applies to Ceph-backed systems \(systems with storage nodes\)
+        This step applies to Ceph-backed systems (systems with storage nodes)
         only.
 
     #.  Apply power to the system.

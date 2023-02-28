@@ -164,10 +164,10 @@ and secure boot is enabled.
 
 Many motherboards ship with Microsoft secure boot certificates pre-programmed
 in the |UEFI| certificate database. These certificates may be required to boot
-|UEFI| drivers for video cards, |RAID| controllers, or |NICs| \(for example,
+|UEFI| drivers for video cards, |RAID| controllers, or |NICs| (for example,
 the |PXE| boot software for a |NIC| may have been signed by a Microsoft
-certificate\). While certificates can be removed from the certificate database
-\(this is |UEFI| implementation specific\) it may be required that you keep the
+certificate). While certificates can be removed from the certificate database
+\(this is |UEFI| implementation specific) it may be required that you keep the
 Microsoft certificates to allow for complete system operation.
 
 Mixed combinations of secure boot and non-secure boot nodes are supported. For
@@ -183,7 +183,7 @@ protected by secure boot.
 -   |prod| does not currently support switching from legacy to |UEFI| mode
     after a system has been installed. Doing so requires a reinstall of the
     system. This means that upgrading from a legacy install to a secure boot
-    install \(|UEFI|\) is not supported.
+    install (|UEFI|) is not supported.
 
 -   When upgrading a |prod| system from a version that did not support secure
     boot to a version that does, do not enable secure boot in |UEFI| firmware

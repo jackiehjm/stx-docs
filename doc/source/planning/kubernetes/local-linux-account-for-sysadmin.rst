@@ -22,6 +22,6 @@ privileges.
     are blocked for about five minutes.
 
 Operational complexity: None. The above security hardening features are set by
-default \(see :ref:`System Account Password Rules
-<system-account-password-rules>` for password rules\).
+default (see :ref:`System Account Password Rules
+<system-account-password-rules>` for password rules).
 

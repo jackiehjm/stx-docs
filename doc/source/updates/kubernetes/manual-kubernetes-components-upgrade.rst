@@ -11,7 +11,7 @@ version to another.
 
 .. rubric:: |context|
 
-To complete this task, you will apply the following three updates \(patches\)
+To complete this task, you will apply the following three updates (patches)
 and upgrade various systems.
 
 **Platform update**

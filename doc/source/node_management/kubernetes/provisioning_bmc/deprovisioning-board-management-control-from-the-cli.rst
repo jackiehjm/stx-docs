@@ -7,11 +7,11 @@ Deprovision Board Management Control from the CLI
 =================================================
 
 |BMC| can be deprovisioned on a host by
-setting the bm\_type option to none.
+setting the bm_type option to none.
 
 .. rubric:: |proc|
 
--   Use the :command:`system host-update` command to set bm\_type.
+-   Use the :command:`system host-update` command to set bm_type.
 
     For example:
 

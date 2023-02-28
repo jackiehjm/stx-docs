@@ -10,7 +10,7 @@ To initiate device image updates on a host, use the
 :command:`host-device-image-update` command.
 
 .. note::
-    Modifying or deleting device labels for devices on the host \(if any\)
+    Modifying or deleting device labels for devices on the host (if any)
     is not allowed while the update is in progress.
 
 The command syntax is:

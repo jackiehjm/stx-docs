@@ -125,13 +125,13 @@ specialized equipment.
         A hexadecimal string of the functional device image.
 
     ``<name>``
-        The name of the device image \(optional\).
+        The name of the device image (optional).
 
     ``<description>``
-        Is the description of the device image \(optional\).
+        Is the description of the device image (optional).
 
     ``<image-version>``
-        The version of the device image \(optional\).
+        The version of the device image (optional).
 
     ``--bmc <true/false>``
         A boolean indicating whether it is a |BMC| functional image (optional).

@@ -6,7 +6,7 @@
 Upload and Applying Updates to SystemController Using Horizon
 =============================================================
 
-You can upload and apply updates \(patches\) to the SystemController in order
+You can upload and apply updates (patches) to the SystemController in order
 to update the central update repository, from the Horizon Web interface.
 
 .. rubric:: |context|
@@ -30,7 +30,7 @@ and Applying Updates to SystemController Using the CLI
 #.  On the **Patches** tab, click **Upload Patches**.
 
     In the **Upload Patches** dialog box, click **Browse** to select updates
-    \(patches\) for upload.
+    (patches) for upload.
 
     .. image:: figures/cah1525101473925.png
 

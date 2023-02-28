@@ -58,8 +58,8 @@ To make interface changes, you must lock the compute host first.
 
         .. image:: /shared/figures/datanet/jow1442607685238.png
 
-    #.  Enter the IPv4 or IPv6 address and netmask \(for example,
-        192.168.1.3/24\), and then click **Create Address**.
+    #.  Enter the IPv4 or IPv6 address and netmask (for example,
+        192.168.1.3/24), and then click **Create Address**.
 
     The new address is added to the **Address List**.
 

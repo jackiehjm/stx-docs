@@ -11,7 +11,7 @@ controllers.
 
 .. rubric:: |context|
 
-Swact is an abbreviated form of the term Switch Active \(host\). When
+Swact is an abbreviated form of the term Switch Active (host). When
 selected, this option forces the other controller to become the active one
 in the HA cluster. This means that all active system services on this
 controller move to standby operation, and that the corresponding services

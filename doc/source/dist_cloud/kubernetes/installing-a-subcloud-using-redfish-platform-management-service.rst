@@ -7,8 +7,8 @@
 Install a Subcloud Using Redfish Platform Management Service
 ============================================================
 
-For subclouds with servers that support Redfish Virtual Media Service \(version
-1.2 or higher\), you can use the Central Cloud's CLI to install the ISO and
+For subclouds with servers that support Redfish Virtual Media Service (version
+1.2 or higher), you can use the Central Cloud's CLI to install the ISO and
 bootstrap the subclouds from the Central Cloud.
 
 
@@ -47,9 +47,9 @@ subcloud, the subcloud installation has these phases:
     :command:`load-import` command to allow the import into the
     System Controller ``/opt/dc-vault/loads``. The purpose of this is to allow
     Redfish install of subclouds referencing a single full copy of the
-    ``bootimage.iso`` at ``/opt/dc-vault/loads``. \(Previously, the full
+    ``bootimage.iso`` at ``/opt/dc-vault/loads``. (Previously, the full
     ``bootimage.iso`` was duplicated for each :command:`subcloud add`
-    command\).
+    command).
 
     .. note::
 

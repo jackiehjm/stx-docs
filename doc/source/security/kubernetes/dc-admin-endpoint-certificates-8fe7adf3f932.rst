@@ -45,7 +45,7 @@ following certificates:
 .. certificate-management-for-admin-rest--api-endpoints-ul-zdc-pmk-xnb:
 
 -   **DC-AdminEp-Root-CA certificate**: This certificate expires in 1825 days
-    \(approximately 5 years\). Renewal of this certificate starts 30 days prior
+    (approximately 5 years). Renewal of this certificate starts 30 days prior
     to expiry.
 
     The Root |CA| certificate is renewed on the System Controller. When the

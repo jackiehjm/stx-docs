@@ -68,8 +68,8 @@ privileged capabilities for the namespaces they have access to, they require a
 new RoleBinding to the **privileged-psp-user** role to create pods directly.
 For creating privileged pods through deployments/ReplicaSets/etc., the target
 namespace being used will also require a RoleBinding for the corresponding
-controller serviceAccounts in kube-system \(or generally
-**system:serviceaccounts:kube-system**\).
+controller serviceAccounts in kube-system (or generally
+**system:serviceaccounts:kube-system**).
 
 .. rubric:: |proc|
 

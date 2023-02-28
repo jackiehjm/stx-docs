@@ -109,8 +109,8 @@ variables and aliases for the remote |CLI| commands.
 
         In most cases, the remote |CLI| will detect and handle these commands
         correctly. If you encounter cases that are not handled correctly, you
-        can force-enable or disable the shell options using the <FORCE\_SHELL=true>
-        or <FORCE\_NO\_SHELL=true> variables before the command.
+        can force-enable or disable the shell options using the <FORCE_SHELL=true>
+        or <FORCE_NO_SHELL=true> variables before the command.
 
         For example:
 
@@ -123,7 +123,7 @@ variables and aliases for the remote |CLI| commands.
 
 -   If you need to run a remote |CLI| command that references a local file,
     then that file must be copied to or created in the working directory
-    specified in the -w option on the ./config\_client.sh command.
+    specified in the -w option on the ./config_client.sh command.
 
     For example:
 
@@ -144,8 +144,8 @@ variables and aliases for the remote |CLI| commands.
 
     .. note::
         When using helm, any command that requires access to a helm
-        repository \(managed locally\) will require that you be in the
-        $HOME/remote\_cli\_wd directory and use the --home ./.helm option.
+        repository (managed locally) will require that you be in the
+        $HOME/remote_cli_wd directory and use the --home ./.helm option.
         For the host local installation, it requires the users $HOME and
         ends up in $HOME/.config and $HOME/.cache/helm.
 

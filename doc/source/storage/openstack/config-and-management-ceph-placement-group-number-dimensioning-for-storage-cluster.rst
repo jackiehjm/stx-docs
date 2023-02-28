@@ -8,9 +8,9 @@ Ceph Placement Group Number Dimensioning for Storage Cluster
 
 Ceph pools are created automatically by |prod-long|, |prod-long| applications,
 or by |prod-long| supported optional applications. By default, no
-pools are created after the Ceph cluster is provisioned \(monitor\(s\) enabled
-and |OSDs| defined\) until it is created by an application or the Rados Gateway
-\(RADOS GW\) is configured.
+pools are created after the Ceph cluster is provisioned (monitor\(s) enabled
+and |OSDs| defined) until it is created by an application or the Rados Gateway
+\(RADOS GW) is configured.
 
 The following is a list of pools created by |prod-os|, and Rados Gateway applications.
 
@@ -65,13 +65,13 @@ The following is a list of pools created by |prod-os|, and Rados Gateway applica
 Recommendations
 ---------------
 
-For more information on how placement group numbers, \(pg\_num\) can be set
+For more information on how placement group numbers, (pg_num) can be set
 based on how many |OSDs| are in the cluster, see, Ceph PGs per pool calculator:
 `https://old.ceph.com/pgcalc/ <https://old.ceph.com/pgcalc/>`__.
 
-You must collect the current pool information \(replicated size, number of
-|OSDs| in the cluster\), and enter it into the calculator, calculate placement
-group numbers \(pg\_num\) required based on pg\_calc algorithm, estimates on
+You must collect the current pool information (replicated size, number of
+|OSDs| in the cluster), and enter it into the calculator, calculate placement
+group numbers (pg_num) required based on pg_calc algorithm, estimates on
 |OSD| growth, and data percentage to balance Ceph as the number of |OSDs|
 scales.
 
@@ -88,11 +88,11 @@ When balancing placement groups for each individual pool, consider the following
 
 -   replication
 
--   the crush map \(Ceph |OSD| tree\)
+-   the crush map (Ceph |OSD| tree)
 
 
 Running the command, :command:`ceph -s`, displays one of the following
-**HEALTH\_WARN** messages:
+**HEALTH_WARN** messages:
 
 
 .. _config-and-management-ceph-placement-group-number-dimensioning-for-storage-cluster-ul-sdd-v4t-jnb:
@@ -113,11 +113,11 @@ groups for individual pools:
 -   To list all the pools in the cluster, use the following command,
     :command:`ceph osd lspools`.
 
--   To list all the pools with their pg\_num values, use the following command,
+-   To list all the pools with their pg_num values, use the following command,
     :command:`ceph osd dump`.
 
--   To get only the pg\_num / pgp\_num value, use the following command,
-    :command:`ceph osd get <pool-name\>pg\_num`.
+-   To get only the pg_num / pgp_num value, use the following command,
+    :command:`ceph osd get <pool-name\>pg_num`.
 
 
 **Too few PGs per OSD**
@@ -139,16 +139,16 @@ the following commands:
 
 .. note::
 
-    Increasing pg\_num of a pool has to be done in increments of 64/|OSD|,
+    Increasing pg_num of a pool has to be done in increments of 64/|OSD|,
     otherwise, the above commands are rejected. If this happens, decrease the
-    pg\_num number, retry and wait for the cluster to be **HEALTH\_OK** before
+    pg_num number, retry and wait for the cluster to be **HEALTH_OK** before
     proceeding to the the next step. Multiple incremental steps may be required
     to achieve the targeted values.
 
 **Too few PGs per Pool**
     This indicates that the pool has many more objects per PG than average
-    \(too few PGs allocated\). This warning is addressed by increasing the
-    pg\_num of that pool, using the following commands:
+    (too few PGs allocated). This warning is addressed by increasing the
+    pg_num of that pool, using the following commands:
 
 .. code-block:: none
 
@@ -159,7 +159,7 @@ the following commands:
     ~(keystone_admin)$ ceph osd pool set <pool-name> pgp_num <new_pg_num>
 
 .. note::
-    pgp\_num should be equal to pg\_num.
+    pgp_num should be equal to pg_num.
 
 Otherwise, Ceph will issue a warning:
 
@@ -201,7 +201,7 @@ To get these properties, use :command:`ceph osd dump`, or use the following comm
     pg_num: 512
 
 Before you delete a pool, use the following properties to recreate the pool;
-pg\_num, pgp\_num, crush\_rule.
+pg_num, pgp_num, crush_rule.
 
 To delete a pool, use the following command:
 

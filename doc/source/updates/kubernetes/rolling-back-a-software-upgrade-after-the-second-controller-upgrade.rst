@@ -49,7 +49,7 @@ abort. It may be necessary to restore the system from a backup.
 
         ~(keystone_admin)]$ system host-lock controller-0
 
-#.  Wipe the disk and power down all storage \(if applicable\) and worker hosts.
+#.  Wipe the disk and power down all storage (if applicable) and worker hosts.
 
     .. note::
         Skip this step if doing this procedure on a |prod| Duplex system.
@@ -59,7 +59,7 @@ abort. It may be necessary to restore the system from a backup.
 
     #.  Power down each host.
 
-#.  Lock all storage \(if applicable\) and worker hosts.
+#.  Lock all storage (if applicable) and worker hosts.
 
     .. note::
         Skip this step if doing this procedure on a |prod| Duplex system.
@@ -115,8 +115,8 @@ abort. It may be necessary to restore the system from a backup.
         ~(keystone_admin)]$ system host-unlock controller-1
 
 
-#.  Power up and unlock the storage hosts one at a time \(if using a Ceph
-    storage backend\). The hosts are re-installed with the previous release load.
+#.  Power up and unlock the storage hosts one at a time (if using a Ceph
+    storage backend). The hosts are re-installed with the previous release load.
 
     .. note::
         Skip this step if doing this procedure on a |prod| Duplex system.

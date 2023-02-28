@@ -31,7 +31,7 @@ The following items are included in the summary:
         $ system host-update <hostname> serialid=<xxx>
 
 -   location, as entered by the operator using the Edit Host window
-    \(see :ref:`Hosts Tab <hosts-tab>`\).
+    (see :ref:`Hosts Tab <hosts-tab>`).
 
 -   time stamps of when the host was created and last updated
 

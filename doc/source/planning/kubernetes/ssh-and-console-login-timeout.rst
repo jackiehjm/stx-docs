@@ -7,7 +7,7 @@ SSH and Console Login Timeout
 =============================
 
 |prod| is configured to automatically log users out of their SSH/Console
-session after 900 seconds \(15 mins\) of inactivity.
+session after 900 seconds (15 mins) of inactivity.
 
 Operational complexity: No additional configuration is required.
 

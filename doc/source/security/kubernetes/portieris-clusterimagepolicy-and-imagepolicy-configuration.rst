@@ -46,7 +46,7 @@ Trust Policies
 --------------
 
 You can specify a \[Cluster\]ImagePolicy to allow any image from a trusted
-repository\(s\) or only allow images with trust data from a repository in a
+repository\(s) or only allow images with trust data from a repository in a
 registry+notary server
 
 
@@ -65,7 +65,7 @@ registry+notary server
             - name: "icr.io/*"
               policy:
 
--   This example allows only images with valid trust data \(policy.trust.enabled=true\) from the icr.io registry + notary \(policy.trust.trustServer\) server.
+-   This example allows only images with valid trust data (policy.trust.enabled=true) from the icr.io registry + notary (policy.trust.trustServer) server.
 
     .. code-block:: none
 

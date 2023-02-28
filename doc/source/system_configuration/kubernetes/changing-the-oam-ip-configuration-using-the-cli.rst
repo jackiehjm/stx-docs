@@ -72,9 +72,9 @@ For example:
 
 .. note::
     On AIO Simplex systems, the
-    oam\_floating\_ip, oam\_c0\_ip and oam\_c0\_ip parameters are not
+    oam_floating_ip, oam_c0\_ip and oam_c0\_ip parameters are not
     supported. To change the |OAM| IP address of a Simplex System, the parameter
-    oam\_ip must be used in combination with oam\_gateway\_ip and oam\_subnet.
+    oam_ip must be used in combination with oam_gateway_ip and oam_subnet.
 
     For example:
 
@@ -83,7 +83,7 @@ For example:
         ~(keystone_admin)]$ system oam-modify oam_subnet=10.10.10.0/24 oam_gateway_ip=10.10.10.1 oam_ip=10.10.10.2
 
 .. note::
-    If you change the IP address version \(IPv4 or IPv6\), ensure that the
+    If you change the IP address version (IPv4 or IPv6), ensure that the
     same version is used for the DNS and NTP servers.
 
 After changing the |OAM| server configuration, you must lock and unlock the

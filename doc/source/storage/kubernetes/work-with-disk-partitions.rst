@@ -32,8 +32,8 @@ The following restrictions apply:
 -   You can increase the size of a partition, but you cannot decrease the
     size.
 
--   You cannot delete a partition while it is in use \(that is, while its
-    physical volume is assigned to a local volume group\).
+-   You cannot delete a partition while it is in use (that is, while its
+    physical volume is assigned to a local volume group).
 
 -   User-created partitions are not supported for storage hosts.
 

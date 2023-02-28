@@ -1,8 +1,8 @@
 
 .. begin-redfish-vms
 
-For subclouds with servers that support Redfish Virtual Media Service \(version
-1.2 or higher\), you can use the Central Cloud's CLI to install the ISO and
+For subclouds with servers that support Redfish Virtual Media Service (version
+1.2 or higher), you can use the Central Cloud's CLI to install the ISO and
 bootstrap subclouds from the Central Cloud. For more information, see
 :ref:`Installing a Subcloud Using Redfish Platform Management Service
 <installing-a-subcloud-using-redfish-platform-management-service>`.

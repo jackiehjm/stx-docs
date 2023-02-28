@@ -25,7 +25,7 @@ device, subject to the **PCI NUMA Affinity** extra specification.
 You can use the |os-prod-hor| interface or the |CLI| to add a |PCI| alias
 extra specification. From the |os-prod-hor| interface, use the **Custom
 Extra Spec** selection in the **Create Flavor Extra Spec** drop-down menu. For
-the **Key**, use **pci\_passthrough:alias**.
+the **Key**, use **pci_passthrough:alias**.
 
 .. image:: /node_management/figures/kho1513370501907.png
 
@@ -61,15 +61,15 @@ a Generic PCI Device for Use by VMs
 
     where
 
-    **<flavor\_name>**
+    **<flavor_name>**
         is the name of the flavor
 
-    **<pci\_alias>**
+    **<pci_alias>**
         is the PCI alias of the device
 
         .. note::
 
-            The parameter pci\_passthrough:alias is used for both |PCI|
+            The parameter pci_passthrough:alias is used for both |PCI|
             passthrough devices and |SRIOV| devices.
 
         Depending on the device type, the following default |PCI| alias options
@@ -89,7 +89,7 @@ a Generic PCI Device for Use by VMs
             .. note::
 
                 Due to driver limitations, |PCI| passthrough access for the Intel
-                AV-ICE02 VPN Acceleration Card \(qat-pf option\) is not
+                AV-ICE02 VPN Acceleration Card (qat-pf option) is not
                 supported.
 
 
@@ -98,7 +98,7 @@ a Generic PCI Device for Use by VMs
                 On a system with multiple cards that use the same default |PCI|
                 alias, you must assign and use a unique |PCI| alias for each one.
 
-    **<number\_of\_devices>**
+    **<number_of_devices>**
         is the number of |SRIOV| or |PCI| passthrough devices to expose to the VM
 
     For example, to make two QuickAssist |SRIOV| devices available to a guest:

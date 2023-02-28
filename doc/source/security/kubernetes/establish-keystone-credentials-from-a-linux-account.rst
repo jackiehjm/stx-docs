@@ -20,7 +20,7 @@ For more information about :command:`ldapusersetup`, see :ref:`Create LDAP
 Linux Accounts <create-ldap-linux-accounts>`.
 
 User accounts created using :command:`ldapusersetup` have access to the
-StarlingX |CLIs| \(system, fm, sw-patch, dcmanager, etc.\) and the platform
+StarlingX |CLIs| (system, fm, sw-patch, dcmanager, etc.) and the platform
 'OpenStack' CLI as part of the shell.
 
 .. rubric:: |prereq|
@@ -44,13 +44,13 @@ Platform OpenStack |CLIs|, using one of the following methods:
 
 .. _estabilish-keystone-credentials-from-a-linux-account-steps-hjs-dwm-ynb:
 
-#.  \(Method 1\) When you have logged into the Horizon Web interface with your
-    Keystone user credentials, download an OpenStack RC file \(openrc.sh\), and
+#.  (Method 1) When you have logged into the Horizon Web interface with your
+    Keystone user credentials, download an OpenStack RC file (openrc.sh), and
     use it to source the required environment within your local LDAP user shell
     . For more information on downloading your OpenStack RC file from Horizon,
     see, `http://docs.openstack.org <http://docs.openstack.org/>`__.
 
-#.  \(Method 2\) Add the required environment variables manually into a
+#.  (Method 2) Add the required environment variables manually into a
     wrcprc.sh file and use this to source the required environment within your
     local |LDAP| user shell.
 
@@ -58,29 +58,29 @@ Platform OpenStack |CLIs|, using one of the following methods:
 .. note::
     For security and reliability, add all the variables.
 
-    **OS\_USERNAME**
+    **OS_USERNAME**
         the Keystone user name
 
-    **OS\_USER\_DOMAIN\_NAME**
+    **OS_USER_DOMAIN_NAME**
         the default domain for the user
 
-    **OS\_PROJECT\_NAME**
+    **OS_PROJECT_NAME**
         the tenant name
 
-    **OS\_PROJECT\_DOMAIN\_NAME**
+    **OS_PROJECT_DOMAIN_NAME**
         the default domain for the project
 
-    **OS\_PASSWORD**
+    **OS_PASSWORD**
         a clear text representation of the Keystone password
 
-    **OS\_AUTH\_URL**
+    **OS_AUTH_URL**
         the Keystone Authentication URL
 
-    **OS\_IDENTITY\_API\_VERSION**
+    **OS_IDENTITY_API_VERSION**
         the identity API version
 
-    **OS\_INTERFACE**
+    **OS_INTERFACE**
         the interface
 
-    **OS\_REGION\_NAME**
+    **OS_REGION_NAME**
         the Keystone Region Name

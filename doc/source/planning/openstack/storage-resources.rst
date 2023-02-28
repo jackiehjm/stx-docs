@@ -69,13 +69,13 @@ Uses of Disk Storage
     ephemeral disk, |PVCs| backed by Ceph and a containerized HA mariadb
     deployment for configuration and database files.
 
-**VM Ephemeral Boot Disk Volumes \(that is, when booting from an image\)**
+**VM Ephemeral Boot Disk Volumes (that is, when booting from an image)**
     Virtual machines use local ephemeral disk storage on computes for Nova
     ephemeral local boot disk volumes built from images. These virtual disk
     volumes are created when the |VM| instances are launched. These virtual
     volumes are destroyed when the |VM| instances are terminated.
 
-**VM Persistent Boot Disk Volumes \(that is, when booting from Cinder Volumes\)**
+**VM Persistent Boot Disk Volumes (that is, when booting from Cinder Volumes)**
     Virtual machines can optionally use the Ceph-backed storage cluster for
     backing Cinder boot disk volumes. This provides permanent storage for the
     |VM| root disks, facilitating faster machine startup, but requiring more

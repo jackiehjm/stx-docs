@@ -13,12 +13,12 @@ There are two cases for aborting an upgrade:
 
 .. _overview-of-upgrade-abort-procedure-ul-q5f-vmz-bx:
 
--   Before controller-0 has been upgraded \(that is, only controller-1 has been
-    upgraded\): In this case the upgrade can be aborted and the system will
+-   Before controller-0 has been upgraded (that is, only controller-1 has been
+    upgraded): In this case the upgrade can be aborted and the system will
     remain in service during the abort.
 
--   After controller-0 has been upgraded \(that is, both controllers have been
-    upgraded\): In this case the upgrade can only be aborted with a complete
+-   After controller-0 has been upgraded (that is, both controllers have been
+    upgraded): In this case the upgrade can only be aborted with a complete
     outage and a re-install of all hosts. This would only be done as a last
     resort, if there was absolutely no other way to recover the system.
 

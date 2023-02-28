@@ -72,8 +72,8 @@ Kubernetes kubectl CLI commands
 
     In most cases, the remote CLI will detect and handle these commands
     correctly. If you encounter cases that are not handled correctly, you
-    can force-enable or disable the shell options using the <FORCE\_SHELL>
-    or <FORCE\_NO\_SHELL> variables before the command.
+    can force-enable or disable the shell options using the <FORCE_SHELL>
+    or <FORCE_NO_SHELL> variables before the command.
 
     For example:
 
@@ -90,11 +90,11 @@ Remote CLI commands with local files
 
 If you need to run a remote CLI command that references a local file, then
 that file must be copied to or created in the working directory specified
-in the ``-w`` option on the ./config\_client.sh command.
+in the ``-w`` option on the ``./config_client.sh`` command.
 
 For example:
 
-#.  If you have not already done so, source the remote\_client\_platform.sh
+#.  If you have not already done so, source the ``remote_client_platform.sh``
     file.
 
     .. code-block:: none
@@ -125,12 +125,12 @@ Do the following to use helm.
 
 .. note::
     When using helm, any command that requires access to a helm repository
-    \(managed locally\) will require that you be in the
-    $HOME/remote\_cli\_wd directory and use the ``--home "./.helm"`` option.
+    (managed locally) will require that you be in the
+    ``$HOME/remote_cli_wd`` directory and use the ``--home "./.helm"`` option.
 
 #.  Do the initial set-up of the helm client.
 
-    #. If you have not already done so, source the remote\_client\_platform.sh
+    #. If you have not already done so, source the ``remote_client_platform.sh``
        file.
 
        .. code-block:: none
@@ -146,7 +146,7 @@ Do the following to use helm.
 
 #.  Run a helm command.
 
-    #. If you have not already done so, source the remote\_client\_platform.sh
+    #. If you have not already done so, source the ``remote_client_platform.sh``
        file.
 
        .. code-block:: none

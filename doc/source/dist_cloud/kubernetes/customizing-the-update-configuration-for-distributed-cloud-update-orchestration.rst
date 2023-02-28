@@ -6,8 +6,8 @@
 Customize the Update Configuration for Distributed Cloud Update Orchestration
 =============================================================================
 
-You can adjust how the nodes in each system \(Central Cloud's RegionOne and/or
-Subclouds\) are updated.
+You can adjust how the nodes in each system (Central Cloud's RegionOne and/or
+Subclouds) are updated.
 
 .. rubric:: |context|
 

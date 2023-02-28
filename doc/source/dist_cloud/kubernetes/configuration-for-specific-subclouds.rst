@@ -22,8 +22,8 @@ The following settings are applied by default:
 
 -   alarm restriction type: relaxed
 
--   default instance action: migrate \(This parameter is only applicable to
-    hosted application |VMs| with the |prefix|-openstack application.\)
+-   default instance action: migrate (This parameter is only applicable to
+    hosted application |VMs| with the |prefix|-openstack application.)
 
 
 To update the default values, use the :command:`dcmanager strategy-config
@@ -112,7 +112,7 @@ individual subclouds.
         migrate or stop-start — determines whether hosted application |VMs| are
         migrated or stopped and restarted when a worker host is upgraded
 
-    **subcloud\_name**
+    **subcloud_name**
         The name of the subcloud to use the custom strategy. If this omitted,
         the default upgrade strategy is updated.
 

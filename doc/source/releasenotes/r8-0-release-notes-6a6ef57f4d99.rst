@@ -1289,7 +1289,7 @@ PCI address information in the |CNI| configuration.
 **restart-on-reboot: "true"** to their pod spec template metadata. All pods with
 this label will be deleted and recreated after system initialization, therefore
 all pods must be restartable and managed by a Kubernetes controller
-\(i.e. DaemonSet, Deployment or StatefulSet\) for auto recovery.
+\(i.e. DaemonSet, Deployment or StatefulSet) for auto recovery.
 
 Pod Spec template example:
 
@@ -1339,7 +1339,7 @@ Ceph OSD Recovery on an AIO-DX System
 
 In certain instances a Ceph OSD may not recover on an |AIO-DX| system
 \(for example, if an OSD comes up after a controller reboot and a swact
-occurs\), and remains in the down state when viewed using the :command:`ceph -s`
+occurs), and remains in the down state when viewed using the :command:`ceph -s`
 command.
 
 **Workaround**: Manual recovery of the OSD may be required.
@@ -1410,10 +1410,10 @@ letters.
 Kubernetes Root CA Certificates
 *******************************
 
-Kubernetes does not properly support **k8s\_root\_ca\_cert** and **k8s\_root\_ca\_key**
+Kubernetes does not properly support **k8s_root_ca_cert** and **k8s_root_ca_key**
 being an Intermediate CA.
 
-**Workaround**: Accept internally generated **k8s\_root\_ca\_cert/key** or
+**Workaround**: Accept internally generated **k8s_root_ca_cert/key** or
 customize only with a Root CA certificate and key.
 
 ************************
@@ -1422,7 +1422,7 @@ Windows Active Directory
 
 -   **Limitation**: The Kubernetes API does not support uppercase IPv6 addresses.
 
-    **Workaround**: The issuer\_url IPv6 address must be specified as lowercase.
+    **Workaround**: The issuer_url IPv6 address must be specified as lowercase.
 
 -   **Limitation**: The refresh token does not work.
 
@@ -1485,11 +1485,11 @@ Rare Node Not Ready Scenario
 ****************************
 
 In rare cases, an instantaneous loss of communication with the active
-**kube-apiserver** may result in kubernetes reporting node\(s\) as stuck in the
+**kube-apiserver** may result in kubernetes reporting node\(s) as stuck in the
 "Not Ready" state after communication has recovered and the node is otherwise
 healthy.
 
-**Workaround**: A restart of the **kublet** process on the affected node\(s\)
+**Workaround**: A restart of the **kublet** process on the affected node\(s)
 will resolve the issue.
 
 *************************
@@ -1507,7 +1507,7 @@ Pods Using isolcpus
 *******************
 
 The isolcpus feature currently does not support allocation of thread siblings
-for cpu requests \(i.e. physical thread +HT sibling\).
+for cpu requests (i.e. physical thread +HT sibling).
 
 **Workaround**: NA
 
@@ -1520,10 +1520,10 @@ The system host-disk-wipe command is not supported in this release.
 **Workaround**: NA
 
 *************************************************************
-Restrictions on the Size of Persistent Volume Claims \(PVCs\)
+Restrictions on the Size of Persistent Volume Claims (PVCs)
 *************************************************************
 
-There is a limitation on the size of Persistent Volume Claims \(PVCs\) that can
+There is a limitation on the size of Persistent Volume Claims (PVCs) that can
 be used for all StarlingX Platform Releases.
 
 **Workaround**: It is recommended that all PVCs should be a minimum size of

@@ -7,8 +7,8 @@ Update the Domain Name
 ======================
 
 Containerized OpenStack services in |prod-os| are deployed behind an ingress
-controller \(nginx\) that listens, by default, on either port 80 \(HTTP\) or
-port 443 \(HTTPS\).
+controller (nginx) that listens, by default, on either port 80 (HTTP) or
+port 443 (HTTPS).
 
 .. rubric:: |context|
 
@@ -17,11 +17,11 @@ as the Cinder service, or the Neutron service, by parsing the |FQDN| in the
 packet. For example, neutron.openstack.svc.cluster.local is for the Neutron
 service, cinder‐api.openstack.svc.cluster.local is for the Cinder service.
 
-This routing requires that access to OpenStack REST APIs \(directly or via
-remote OpenStack |CLIs|\) must be via a |FQDN|. You cannot access OpenStack REST
+This routing requires that access to OpenStack REST APIs (directly or via
+remote OpenStack |CLIs|) must be via a |FQDN|. You cannot access OpenStack REST
 APIs using an IP address.
 
-|FQDNs| \(such as cinder‐api.openstack.svc.cluster.local\) must be in a |DNS|
+|FQDNs| (such as cinder‐api.openstack.svc.cluster.local) must be in a |DNS|
 server that is publicly accessible.
 
 .. note::
@@ -40,7 +40,7 @@ service‐parameter-add` command to configure and set the OpenStack domain name:
 .. _update-the-domain-name-prereq-FQDNs:
 
 -   You must have an external |DNS| Server for which you have authority to add
-    new domain name to IP address mappings \(e.g. A, AAAA or CNAME records\).
+    new domain name to IP address mappings (e.g. A, AAAA or CNAME records).
 
 -   The |DNS| server must be added to your|prod-long| |DNS| list.
 
@@ -123,8 +123,8 @@ service‐parameter-add` command to configure and set the OpenStack domain name:
 
         ~(keystone_admin)$ system service-parameter-add openstack helm endpoint_domain=<domain_name>
 
-    <domain\_name> should be a fully qualified domain name that you own, such
-    that you can configure the |DNS| Server that owns <domain\_name> with the
+    <domain_name> should be a fully qualified domain name that you own, such
+    that you can configure the |DNS| Server that owns <domain_name> with the
     OpenStack service names underneath the domain.
 
     See the :ref:`prerequisites <update-the-domain-name-prereq-FQDNs>` for a
@@ -156,8 +156,8 @@ cinder‐api.my-|prefix|-domain.mycompany.com, and so on for all OpenStack servi
 
 .. note::
     OpenStack Horizon is also changed to listen on
-    horizon.my-|prefix|-domain.mycompany.com:80 \(instead of the initial
-    oam‐floating‐ip:31000\), for example,
+    horizon.my-|prefix|-domain.mycompany.com:80 (instead of the initial
+    oam‐floating‐ip:31000), for example,
     horizon.my-wr-domain.mycompany.com:80.
 
 .. rubric:: |postreq|

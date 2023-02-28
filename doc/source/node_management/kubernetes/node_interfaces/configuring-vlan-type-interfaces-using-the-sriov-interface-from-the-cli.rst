@@ -70,14 +70,14 @@ For more information, see :ref:`Provisioning SR-IOV VF Interfaces using the CLI
     where the following options are available:
 
     **interface name**
-        A name or |UUID| for the interface \(Required\).
+        A name or |UUID| for the interface (Required).
 
         .. caution::
             To avoid potential internal inconsistencies, do not use upper case
             characters when creating interface names. Some components normalize
             all interface names to lower case.
 
-    **vlan\_id**
+    **vlan_id**
         The |VLAN| identifier for the network.
 
     **hostname**
@@ -87,7 +87,7 @@ For more information, see :ref:`Provisioning SR-IOV VF Interfaces using the CLI
         The class of the interface. The valid classes are **platform**,
         **data**, **pci-sriov**, and **pci-passthrough**.
 
-    **sriov\_intf\_name**
+    **sriov_intf_name**
         The name of the |SRIOV| interface.
 
     **datanetworks**

@@ -78,13 +78,13 @@ Ethernet interfaces are created automatically.
 
     **ip4\_mode**
         The mode for assigning IPv4 addresses to a data interface
-        \(static or pool.\)
+        (static or pool.)
 
     **ip6\_mode**
         The mode for assigning IPv6 addresses to a data interface
-        \(static or pool.\)
+        (static or pool.)
 
-    **addr\_pool**
+    **addr_pool**
         The name of an IPv4 or IPv6 address pool, for use with the pool mode
         of IP address assignment for data interfaces.
 

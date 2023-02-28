@@ -13,4 +13,4 @@ The command for performing the mapping has the format:
 
 .. code-block:: none
 
-    ~(keystone_admin)]$ system interface‐datanetwork‐assign <host\_name> <interface\_uuid> <datanetwork\_uuid>
+    ~(keystone_admin)]$ system interface‐datanetwork‐assign <host_name> <interface_uuid> <datanetwork_uuid>

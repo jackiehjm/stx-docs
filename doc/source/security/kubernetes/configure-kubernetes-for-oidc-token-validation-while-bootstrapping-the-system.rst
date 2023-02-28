@@ -43,14 +43,14 @@ Validation after Bootstrapping the System
     is the port to be configured for the NodePort service for dex in
     **oidc-auth-apps**. The default is 30556.
 
-    The values of the **username\_claim**, and **groups\_claim** parameters
+    The values of the **username_claim**, and **groups_claim** parameters
     could vary for different user and groups configurations in your Windows
     Active Directory server.
 
     .. note::
         For IPv6 deployments, ensure that the IPv6 OAM floating address in
-        the **issuer\_url** is, https://\[<oam-floating-ip>\]:30556/dex
-        \(that is, in lower case, and wrapped in square brackets\).
+        the **issuer_url** is, https://\[<oam-floating-ip>\]:30556/dex
+        (that is, in lower case, and wrapped in square brackets).
 
 
 .. rubric:: |result|

@@ -6,8 +6,8 @@
 VLAN Aware VMs
 ==============
 
-|prod-os| supports OpenStack |VLAN| Aware |VMs| \(also known as port
-trunking\), which adds |VLAN| support for |VM| interfaces.
+|prod-os| supports OpenStack |VLAN| Aware |VMs| (also known as port
+trunking), which adds |VLAN| support for |VM| interfaces.
 
 For more information about |VLAN| Aware |VMs|, consult the public OpenStack
 documentation at,

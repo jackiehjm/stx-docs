@@ -18,7 +18,7 @@ could include:
 .. _l2-access-switches-ul-obf-dyr-4n:
 
 -   one port-based |VLAN| for the internal management network with internal
-    cluster host network sharing this same L2 network \(default configuration\)
+    cluster host network sharing this same L2 network (default configuration)
 
 -   one port-based |VLAN| for the |OAM| network
 

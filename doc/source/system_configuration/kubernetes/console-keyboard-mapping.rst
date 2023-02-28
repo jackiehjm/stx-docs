@@ -20,7 +20,7 @@ the keyboard layout settings on your keyboard:
     US keyboard. You should use as simple a password as possible in order to
     avoid any unexpected key mappings. Then, after you have successfully logged
     in to |prod| and updated your keyboard layout, you should update your
-    sysadmin password \(':command:`passwd sysadmin`'\) to a more secure
+    sysadmin password (':command:`passwd sysadmin`') to a more secure
     password.
 
 To display the current console keyboard settings that are configured for the

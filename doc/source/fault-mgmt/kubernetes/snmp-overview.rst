@@ -27,7 +27,7 @@ system application.
 About SNMP Support
 ------------------
 
-Support for Simple Network Management Protocol \(SNMP\) is implemented as follows:
+Support for Simple Network Management Protocol (SNMP) is implemented as follows:
 
 .. _snmp-overview-ul-bjv-cjd-cp:
 
@@ -56,7 +56,7 @@ For information on enabling SNMP support, see
 .. _snmp-overview-section-N10099-N1001F-N10001:
 
 -----------------------
-SNMPv2-MIB \(RFC 3418\)
+SNMPv2-MIB (RFC 3418)
 -----------------------
 
 Support for the basic standard MIB for SNMP entities is limited to the System
@@ -86,17 +86,17 @@ Wind River Enterprise MIBs
 |prod| supports the Wind River Enterprise Registration and Alarm MIBs.
 
 **Enterprise Registration MIB, wrsEnterpriseReg.mib**
-    Defines the Wind River Systems \(WRS\) hierarchy underneath the
-    **iso\(1\).org\(3\).dod\(6\).internet\(1\).private\(4\).enterprise\(1\)**.
+    Defines the Wind River Systems (WRS) hierarchy underneath the
+    **iso\(1).org\(3).dod\(6).internet\(1).private\(4).enterprise\(1)**.
     This hierarchy is administered as follows:
 
-    -   **.wrs\(731\)**, the IANA-registered enterprise code for Wind River
+    -   **.wrs\(731)**, the IANA-registered enterprise code for Wind River
         Systems
 
-    -   **.wrs\(731\).wrsCommon\(1\).wrs<Module\>\(1-...\)**,
+    -   **.wrs\(731).wrsCommon\(1).wrs<Module\>\(1-...)**,
         defined in wrsCommon<Module\>.mib.
 
-    -   **.wrs\(731\).wrsProduct\(2-...\)**, defined in wrs<Product\>.mib.
+    -   **.wrs\(731).wrsProduct\(2-...)**, defined in wrs<Product\>.mib.
 
 **Alarm MIB, wrsAlarmMib.mib**
     Defines the common TRAP and ALARM MIBs for |org| products.

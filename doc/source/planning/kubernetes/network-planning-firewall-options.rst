@@ -10,8 +10,8 @@ Firewall Options
 additional Kubernetes Network Policies in order to augment or override the
 default rules.
 
-The |prod| firewall uses the Kubernetes Network Policies \(using the Calico
-|CNI|\) to implement a firewall on the |OAM| network.
+The |prod| firewall uses the Kubernetes Network Policies (using the Calico
+|CNI|) to implement a firewall on the |OAM| network.
 
 A minimal set of rules is always applied before any custom rules, as follows:
 
@@ -22,7 +22,7 @@ A minimal set of rules is always applied before any custom rules, as follows:
 
 -   Egress traffic is always accepted.
 
--   Service manager \(SM\) traffic is always accepted.
+-   Service manager (SM) traffic is always accepted.
 
 -   |SSH| traffic is always accepted.
 

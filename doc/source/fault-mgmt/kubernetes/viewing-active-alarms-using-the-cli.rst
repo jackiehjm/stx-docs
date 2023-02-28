@@ -109,7 +109,7 @@ To review detailed information about a specific alarm instance, see
 
         This option indicates that all active alarms should be displayed,
         including suppressed alarms. Suppressed alarms are displayed with
-        their Alarm ID set to S<\(alarm-id\)>.
+        their Alarm ID set to S<\(alarm-id)>.
 
     **--uuid**
         The ``--uuid`` option on the :command:`fm alarm-list` command lists the

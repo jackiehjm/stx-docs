@@ -41,7 +41,7 @@ StarlingX REST API applications and the web administration server
 -----------------------------------------------------------------
 
 By default, |prod| provides HTTP access to StarlingX REST API application
-endpoints \(Keystone, Barbican and StarlingX\) and the StarlingX web
+endpoints (Keystone, Barbican and StarlingX) and the StarlingX web
 administration server. For improved security, you can enable HTTPS access. When
 HTTPS access is enabled, HTTP access is disabled.
 

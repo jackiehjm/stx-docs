@@ -78,18 +78,18 @@ following table. For best performance, |org| recommends dedicated interfaces.
     +===========================================================================+===============================+===============================+===============================+
     | -   Physical interfaces on servers limited to two pairs                   | 2x 10GE LAG:                  | 2x 10GE LAG:                  | 2x 10GE LAG:                  |
     |                                                                           |                               |                               |                               |
-    | -   Estimated aggregate average Container storage traffic less than 5G    | -   Mgmt \(untagged\)         | -   Mgmt \(untagged\)         | -   Cluster Host \(untagged\) |
+    | -   Estimated aggregate average Container storage traffic less than 5G    | -   Mgmt (untagged)           | -   Mgmt (untagged)           | -   Cluster Host (untagged)   |
     |                                                                           |                               |                               |                               |
-    |                                                                           | -   Cluster Host \(untagged\) | -   Cluster Host \(untagged\) |                               |
+    |                                                                           | -   Cluster Host (untagged)   | -   Cluster Host (untagged)   |                               |
     |                                                                           |                               |                               | Optionally                    |
     |                                                                           |                               |                               |                               |
     |                                                                           | 2x 1GE LAG:                   |                               | 2x 10GE LAG                   |
     |                                                                           |                               |                               |                               |
-    |                                                                           | -   OAM \(untagged\)          |                               | external network ports        |
+    |                                                                           | -   OAM (untagged)            |                               | external network ports        |
     +---------------------------------------------------------------------------+-------------------------------+-------------------------------+-------------------------------+
     | -   No specific limit on number of physical interfaces                    | 2x 1GE LAG:                   | 2x 1GE LAG                    | 2x 1GE LAG                    |
     |                                                                           |                               |                               |                               |
-    | -   Estimated aggregate average Container storage traffic greater than 5G | -   Mgmt \(untagged\)         | -   Mgmt \(untagged\)         | -   Mgmt \(untagged\)         |
+    | -   Estimated aggregate average Container storage traffic greater than 5G | -   Mgmt (untagged)           | -   Mgmt (untagged)           | -   Mgmt (untagged)           |
     |                                                                           |                               |                               |                               |
     |                                                                           |                               |                               |                               |
     |                                                                           | 2x 10GE LAG:                  | 2x 10GE LAG                   | 2x 10GE LAG:                  |
@@ -99,7 +99,7 @@ following table. For best performance, |org| recommends dedicated interfaces.
     |                                                                           |                               |                               |                               |
     |                                                                           | 2x 1GE LAG:                   |                               | Optionally                    |
     |                                                                           |                               |                               |                               |
-    |                                                                           | -   OAM \(untagged\)          |                               | 2x 10GE LAG                   |
+    |                                                                           | -   OAM (untagged)            |                               | 2x 10GE LAG                   |
     |                                                                           |                               |                               |                               |
     |                                                                           |                               |                               | -   external network ports    |
     |                                                                           | Optionally                    |                               |                               |

@@ -51,7 +51,7 @@ To make interface changes, you must lock the compute node first.
         A name used for selecting the pool during data interface setup.
 
     **Network Address**
-        The subnet for the range \(for example, **192.168.1.0/24**\).
+        The subnet for the range (for example, **192.168.1.0/24**).
 
     **Allocation Order**
         The order for assigning addresses. You can select **Sequential** or
@@ -59,8 +59,8 @@ To make interface changes, you must lock the compute node first.
 
     **Address Range**
         One or more ranges, where the start and end IP address of each range
-        is separated by a dash, and the ranges are separated by commas \(for
-        example, **192.168.1.10-192.168.1.20, 192.168.1.35-192.168.1.45**\).
+        is separated by a dash, and the ranges are separated by commas (for
+        example, **192.168.1.10-192.168.1.20, 192.168.1.35-192.168.1.45**).
         If no range is specified, the full range is used.
 
 .. rubric:: |postreq|

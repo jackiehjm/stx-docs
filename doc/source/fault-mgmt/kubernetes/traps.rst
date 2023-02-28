@@ -36,7 +36,7 @@ customer logs are mapped into the 'Message' trap.
    MIBs. See :ref:`SNMP Overview <snmp-overview>` for details.
 
 For Critical, Major, Minor, Warning, and Message traps, all variables in the
-active alarm table are included as varbinds \(variable bindings\), where each
+active alarm table are included as varbinds (variable bindings), where each
 varbind is a pair of fields consisting of an object identifier and a value
 for the object.
 

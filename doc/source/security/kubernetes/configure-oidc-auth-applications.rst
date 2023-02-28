@@ -318,9 +318,9 @@ Configure OIDC Auth Applications
     (https://github.com/dexidp/dex/blob/v2.31.1/config.dev.yaml).
 
     The example below configures a token expiry of ten hours, a single |LDAP|
-    connector to an Active Directory service using HTTPS \(LDAPS\) using the
+    connector to an Active Directory service using HTTPS (LDAPS) using the
     ``wad-ca-cert`` secret configured in this section, the required Active
-    Directory service login information \(that is, bindDN, and bindPW\), and
+    Directory service login information (that is, bindDN, and bindPW), and
     example :command:`userSearch`, and :command:`groupSearch` clauses.
 
     (Optional) There is a default secret in the dex configuration for

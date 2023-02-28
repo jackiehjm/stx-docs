@@ -96,8 +96,8 @@ Config drive
 ------------
 
 |prod-os| can be configured to use a special-purpose configuration
-drive \(abbreviated config drive\) to store metadata \(including
-injected files\). Metadata is written to the drive, which is attached
+drive (abbreviated config drive) to store metadata (including
+injected files). Metadata is written to the drive, which is attached
 to the instance when it boots. The instance can retrieve information
 normally available through the metadata service by reading from the
 mounted drive.

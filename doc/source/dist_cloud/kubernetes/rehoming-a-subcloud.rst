@@ -23,7 +23,7 @@ Controller using the rehoming playbook.
     and the subcloud's controllers before rehoming the subcloud.
 
 Use the following procedure to enable subcloud rehoming and to update the new
-subcloud configuration \(networking parameters, passwords, etc.\) to be
+subcloud configuration (networking parameters, passwords, etc.) to be
 compatible with the new System Controller.
 
 .. rubric:: |context|
@@ -63,7 +63,7 @@ There are six phases for Rehoming a subcloud:
 .. rubric:: |prereq|
 
 -   Ensure that the subcloud management subnet, oam_floating_address,
-    oam_node_0_address and oam_node_1_address \(if applicable\) does not overlap
+    oam_node_0_address and oam_node_1_address (if applicable) does not overlap
     addresses already being used by the new System Controller or any of its
     subclouds.
 
@@ -130,7 +130,7 @@ There are six phases for Rehoming a subcloud:
         You will need to specify the old and the new password.
 
 #.  For an |AIO-DX| subcloud, ensure that the active controller is
-    controller-0. Perform a host-swact of the active controller \(controller-1\)
+    controller-0. Perform a host-swact of the active controller (controller-1)
     to make controller-0 active.
 
     .. code-block:: none

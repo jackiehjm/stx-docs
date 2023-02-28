@@ -9,12 +9,12 @@ Deployment Configurations
 A variety of |prod-long| deployment configuration options are supported.
 
 **All-in-one Simplex**
-    A single physical server providing all three cloud functions \(controller,
-    worker and storage\).
+    A single physical server providing all three cloud functions (controller,
+    worker and storage).
 
-**All-in-one Duplex \(up to 50 worker nodes\)**
+**All-in-one Duplex (up to 50 worker nodes)**
     Two HA-protected physical servers, both running all three cloud functions
-    \(controller, worker and storage\), optionally with up to 50 worker nodes
+    (controller, worker and storage), optionally with up to 50 worker nodes
     added to the cluster.
 
 **Standard with Storage Cluster on Controller Nodes**

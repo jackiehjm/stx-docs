@@ -6,11 +6,11 @@
 VXLAN Data Networks
 ===================
 
-Virtual eXtensible Local Area Networks \(|VXLANs|\) data networks are an
+Virtual eXtensible Local Area Networks (|VXLANs|) data networks are an
 alternative to |VLAN| data networks.
 
 A |VXLAN| data network is implemented over a range of |VXLAN| Network
-Identifiers \(|VNIs|.\) This is similar to the |VLAN| option, but allows
+Identifiers (|VNIs|.) This is similar to the |VLAN| option, but allows
 multiple data networks to be defined over the same physical network using
 unique |VNIs| defined in segmentation ranges.
 

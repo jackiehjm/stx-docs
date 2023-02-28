@@ -33,7 +33,7 @@ Follow the steps below to manually upgrade the System Controller:
            :start-after: license-begin
            :end-before: license-end
 
-#.  Transfer iso and signature files to controller-0 \(active controller\) and import the load.
+#.  Transfer iso and signature files to controller-0 (active controller) and import the load.
 
     .. code-block:: none
 
@@ -158,7 +158,7 @@ Follow the steps below to manually upgrade the System Controller:
 
         -   State entered after :command:`system upgrade-start` completes.
 
-        -   Release <nn.nn> system data \(for example, postgres databases\) has
+        -   Release <nn.nn> system data (for example, postgres databases) has
             been exported to be used in the upgrade.
 
     As part of the upgrade, the upgrade process checks the health of the system
@@ -366,10 +366,10 @@ Follow the steps below to manually upgrade the System Controller:
         you can safely unlock the node.
 
         After upgrading a storage node, but before unlocking, there are Ceph
-        synchronization alarms \(that appear to be making progress in
-        synching\), and there are infrastructure network interface alarms
-        \(since the infrastructure network interface configuration has not been
-        applied to the storage node yet, as it has not been unlocked\).
+        synchronization alarms (that appear to be making progress in
+        synching), and there are infrastructure network interface alarms
+        (since the infrastructure network interface configuration has not been
+        applied to the storage node yet, as it has not been unlocked).
 
         Unlock the node as soon as the upgraded storage node comes online.
 
@@ -447,8 +447,8 @@ Follow the steps below to manually upgrade the System Controller:
         +--------------+--------------------------------------+
 
     During the running of the :command:`upgrade-activate` command, new
-    configurations are applied to the controller. 250.001 \(**hostname
-    Configuration is out-of-date**\) alarms are raised and are cleared as the
+    configurations are applied to the controller. 250.001 (**hostname
+    Configuration is out-of-date**) alarms are raised and are cleared as the
     configuration is applied. The upgrade state goes from **activating** to
     **activation-complete** once this is done.
 

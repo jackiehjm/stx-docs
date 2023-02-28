@@ -8,7 +8,7 @@ Convert a Duplex System to Direct Connection
 
 On a |prod| |AIO| system configured to use switch-based network connection for
 the management and cluster host networks, you can convert to direct
-\(peer-to-peer\) connection.
+\(peer-to-peer) connection.
 
 The connection type is initially configured at installation. You can change
 it at any time. You must use the CLI to make the change.
@@ -19,7 +19,7 @@ it at any time. You must use the CLI to make the change.
 .. rubric:: |proc|
 
 #.  Use the :command:`system modify` command to specify direct
-    connection \(**duplex-direct**\).
+    connection (**duplex-direct**).
 
     .. code-block:: none
 

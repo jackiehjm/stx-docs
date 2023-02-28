@@ -12,7 +12,7 @@ container images are being pulled from an external Docker registry with a
 certificate signed by a non-well-known |CA|.
 
 Generally a trusted |CA| certificate needs to be added if |prod| clients on
-the hosts will be connecting to server\(s\) secured with SSL and whose
+the hosts will be connecting to server\(s) secured with SSL and whose
 certificate is signed by an unknown |CA|.
 
 .. contents::
@@ -43,7 +43,7 @@ Ansible Bootstrap Playbook
 A trusted |CA| certificate may need to be specified as an override parameter
 for the Ansible Bootstrap Playbook. Specifically, if the Docker registries,
 specified by the bootstrap overrides file, use a certificate signed by an
-unknown |CA|. If this is the case then the ssl\_ca\_cert parameter needs to
+unknown |CA|. If this is the case then the ssl_ca_cert parameter needs to
 be specified in the ansible overrides file, /home/sysadmin/localhost.yml, as
 part of bootstrap in the installation procedure.
 
@@ -53,8 +53,8 @@ For example:
 
     ssl_ca_cert: /path/to/ssl_ca_cert_file
 
-The *ssl\_ca\_cert* value is the absolute path of the file containing the
-|CA| certificate\(s\) to trust. The certificate\(s\) must be in |PEM| format
+The *ssl_ca_cert* value is the absolute path of the file containing the
+|CA| certificate\(s) to trust. The certificate\(s) must be in |PEM| format
 and the file may contain one or more |CA| certificates.
 
 
@@ -137,7 +137,7 @@ running the following command:
 
     ~(keystone_admin)]$ system certificate-uninstall -m ssl_ca <UUID>
 
-where, <UUID> is the UUID of the ssl\_ca certtype to be removed.
+where, <UUID> is the UUID of the ssl_ca certtype to be removed.
 
 .. note::
 

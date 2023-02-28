@@ -148,12 +148,12 @@ controller for access by subclouds. For example:
 
     **--max-parallel-subclouds**
         Sets the maximum number of subclouds that can be upgraded in parallel
-        \(default 20\). If this is not specified using the CLI, the values for
+        (default 20). If this is not specified using the CLI, the values for
         max_parallel_subclouds defined for each subcloud group will be used by
         default.
 
     **--stop-on-failure**
-        **false** \(default\) or **true** — determines whether upgrade
+        **false** (default) or **true** — determines whether upgrade
         orchestration failure for a subcloud prevents application to subsequent
         subclouds.
 
@@ -257,7 +257,7 @@ controller for access by subclouds. For example:
 
     .. note::
         After the *Kubernetes Version Upgrade Distributed Cloud Orchestration
-        Strategy* has been applied \(or aborted\) it must be deleted before
+        Strategy* has been applied (or aborted) it must be deleted before
         another Kubernetes Version Upgrade Distributed Cloud Orchestration
         strategy can be created. If a Kubernetes upgrade strategy application
         fails, you must address the issue that caused the failure, then delete

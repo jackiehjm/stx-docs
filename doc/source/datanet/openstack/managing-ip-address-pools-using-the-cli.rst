@@ -39,21 +39,21 @@ where:
     is a name used to select the pool during data interface setup
 
 **<network>**
-    is the subnet and mask for the range \(for example, **192.168.1.0**\)
+    is the subnet and mask for the range (for example, **192.168.1.0**)
 
 **<prefix>**
-    is the subnet mask, expressed in network prefix length notation \(for
-    example, **24**\)
+    is the subnet mask, expressed in network prefix length notation (for
+    example, **24**)
 
-**<assign\_order>**
-    is the order in which to assign addresses from the pool \(random or
-    sequential\). The default is random.
+**<assign_order>**
+    is the order in which to assign addresses from the pool (random or
+    sequential). The default is random.
 
-**<addr\_ranges>**
+**<addr_ranges>**
     is a set of IP address ranges to use for assignment, where the start
     and end IP address of each range is separated by a dash, and the ranges
-    are separated by commas \(for example, **192.168.1.10-192.168.1.20,
-    192.168.1.35-192.168.1.45**\). If no range is specified, the full range is
+    are separated by commas (for example, **192.168.1.10-192.168.1.20,
+    192.168.1.35-192.168.1.45**). If no range is specified, the full range is
     used.
 
 .. _managing-ip-address-pools-using-the-cli-section-N10109-N1001F-N10001:

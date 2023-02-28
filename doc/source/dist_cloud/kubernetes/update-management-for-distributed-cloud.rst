@@ -6,11 +6,11 @@
 Update Management for Distributed Cloud
 =======================================
 
-You can apply software updates \(also known as 'patches'\) to the Central Cloud
+You can apply software updates (also known as 'patches') to the Central Cloud
 and subclouds from the System Controller.
 
 A central update repository on the Central Cloud is introduced for |prod-dc|.
-This is used to store all updates \(patches\) so that unmanaged subclouds can
+This is used to store all updates (patches) so that unmanaged subclouds can
 be synchronized with any required updates when they are brought into a managed
 state.
 

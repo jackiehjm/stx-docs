@@ -33,16 +33,16 @@ displayed in the list of host devices by running the following command:
     +-------+----------+--------+--------+--------+------------+-------------+----------------------+-----------+---------|
 
 To enable the |FEC| device for |SRIOV| interfaces, it must be modified in order
-to set the number of virtual functions \(VF\), and the appropriate userspace
-drivers for the physical function \(PF\), and VFs.
+to set the number of virtual functions (VF), and the appropriate userspace
+drivers for the physical function (PF), and VFs.
 
 The following PF and VF drivers are supported:
 
 .. _n3000-fpga-forward-error-correction-ul-klj-2zh-bmb:
 
--   PF driver: igb\_uio
+-   PF driver: igb_uio
 
--   VF driver: igb\_uio, vfio
+-   VF driver: igb_uio, vfio
 
 For example, run the following commands:
 

@@ -12,8 +12,8 @@ hour.
 
 .. rubric:: |context|
 
-By default, the Keystone token expiration time is set to 3600 seconds \(1
-hour\). This is the amount of time a token remains valid. The new setting
+By default, the Keystone token expiration time is set to 3600 seconds (1
+hour). This is the amount of time a token remains valid. The new setting
 must be between 3600 seconds and 14400 seconds.
 
 .. rubric:: |proc|
@@ -24,7 +24,7 @@ must be between 3600 seconds and 14400 seconds.
 
         $ source /etc/platform/openrc
 
-#.  Ensure that the token\_expiration parameter is defined for the identity
+#.  Ensure that the token_expiration parameter is defined for the identity
     service.
 
     .. code-block:: none

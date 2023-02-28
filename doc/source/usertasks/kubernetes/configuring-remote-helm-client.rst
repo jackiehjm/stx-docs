@@ -17,8 +17,8 @@ complete the following steps on the controller: Except where indicated, these
 commands can be run by the non-admin user, locally or remotely.
 
 .. note::
-    If you are using container-backed helm CLIs and clients \(method 1\),
-    ensure you change directories to <$HOME>/remote\_cli\_wd.
+    If you are using container-backed helm CLIs and clients (method 1),
+    ensure you change directories to <$HOME>/remote_cli_wd.
 
 .. rubric:: |prereq|
 
@@ -102,15 +102,15 @@ commands can be run by the non-admin user, locally or remotely.
             Enable TLS on Tiller.
 
         ``--tiller-tls-cert <certificate_file>``
-            The public key/certificate for Tiller \(signed by
-            ``--tls-ca-cert``\).
+            The public key/certificate for Tiller (signed by
+            ``--tls-ca-cert``).
 
         ``--tiller-tls-key <key_file>``
             The private key for Tiller.
 
         ``--tiller-tls-verify``
-            Enable authentication of client certificates \(i.e. validate they
-            are signed by ``--tls-ca-cert``\).
+            Enable authentication of client certificates (i.e. validate they
+            are signed by ``--tls-ca-cert``).
 
         ``--tls-ca-cert <certificate_file>``
             The public certificate of the CA used for signing Tiller server and
@@ -127,8 +127,8 @@ You can now use the private Tiller server remotely or locally by specifying the
     helm install --name wordpress stable/wordpress --tiller-namespace <namespace>
 
 .. note::
-    If you are using container-backed helm CLI and Client \(method 1\), then
-    you change directory to <$HOME>/remote\_cli\_wd and include the following option
+    If you are using container-backed helm CLI and Client (method 1), then
+    you change directory to <$HOME>/remote_cli_wd and include the following option
     on all helm commands:
 
     .. code-block:: none

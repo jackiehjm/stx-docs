@@ -32,7 +32,7 @@ the following parameters:
 For hosts that have the |prefix|-openstack application running with active
 instances and since the Kubernetes version upgrade is a reboot required
 operation for a host, the strategy offers **stop/start** or **migrate** options
-for managing instances over the **lock/unlock** \(reboot\) steps in the upgrade
+for managing instances over the **lock/unlock** (reboot) steps in the upgrade
 process.
 
 You must use the :command:`sw-manager`` CLI tool to create, and then apply the
@@ -56,12 +56,12 @@ at a time.
 When the Kubernetes version upgrade strategy is applied, if the system is
 All-in-one, the controllers are upgraded first, one after the other with a
 swact in between, followed by the remaining worker hosts according to the
-selected worker apply concurrency \(**serial** or **parallel**\) method.
+selected worker apply concurrency (**serial** or **parallel**) method.
 
 By default, strategies upgrade the worker hosts serially unless the **parallel**
 worker apply type option is specified, which configures the Kubernetes version
-upgrade process for worker hosts to be in parallel \(up to a maximum parallel
-number\). This reduces the overall Kubernetes version upgrade installation time.
+upgrade process for worker hosts to be in parallel (up to a maximum parallel
+number). This reduces the overall Kubernetes version upgrade installation time.
 
 The upgrade takes place in two phases.  The first phase upgrades the patches
 (controllers, storage and then workers), and the second  phase upgrades
@@ -124,8 +124,8 @@ management options include **start-stop** or **migrate**.
     after the unlock completes. This is typically used for instances that do not
     support migration or for cases where migration takes too long. To ensure
     this does not impact the high-level service being provided by the instance,
-    the instance\(s\) should be protected and grouped into an anti-affinity
-    server group\(s\) with its standby instance.
+    the instance\(s) should be protected and grouped into an anti-affinity
+    server group\(s) with its standby instance.
 
 -   **migrate**: Instances are moved off a host following the Kubernetes upgrade
     but before the host is locked. Instances with **Live Migration** support are

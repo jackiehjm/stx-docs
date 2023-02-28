@@ -21,7 +21,7 @@ Storage Hosts <storage-hosts-storage-on-storage-hosts>`.
 -   On an All-in-One Simplex or Duplex system, controller-0 must be
     provisioned and unlocked before you can add a secondary tier.
 
--   On Standard \(2+2\) and Standard with Storage \(2+2+2\) system, both
+-   On Standard (2+2) and Standard with Storage (2+2+2) system, both
     controllers must be unlocked and available before secondary tiers can be
     added.
 

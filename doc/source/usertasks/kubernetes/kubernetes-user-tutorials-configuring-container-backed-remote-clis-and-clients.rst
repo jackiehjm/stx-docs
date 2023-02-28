@@ -115,7 +115,7 @@ and clients for a non-admin user.
     #.  Create a working directory that will be mounted by the container
         implementing the remote |CLIs|.
 
-        See the description of the :command:`configure\_client.sh` ``-w``
+        See the description of the :command:`configure_client.sh` ``-w``
         option :ref:`below
         <kubernetes-user-tutorials-configuring-container-backed-remote-clis-and-clients-w-option>`
         for more details.
@@ -124,7 +124,7 @@ and clients for a non-admin user.
 
             $ mkdir -p $HOME/remote_cli_wd
 
-    #.  Run the :command:`configure\_client.sh` script.
+    #.  Run the :command:`configure_client.sh` script.
 
         .. only:: starlingx
 
@@ -140,12 +140,12 @@ and clients for a non-admin user.
         above, you must remember to perform a :command:`docker login` to
         that repository before using remote |CLIs| for the first time.
 
-        The options for configure\_client.sh are:
+        The options for configure_client.sh are:
 
         **-t**
-            The type of client configuration. The options are platform \(for
-            |prod-long| |CLI| and clients\) and openstack \(for |prod-os|
-            application |CLI| and clients\).
+            The type of client configuration. The options are platform (for
+            |prod-long| |CLI| and clients) and openstack (for |prod-os|
+            application |CLI| and clients).
 
             The default value is platform.
 
@@ -169,8 +169,8 @@ and clients for a non-admin user.
             commands.
 
             For the platform client setup, the default is
-            remote\_client\_platform.sh. For the openstack application client
-            setup, the default is remote\_client\_app.sh.
+            remote_client_platform.sh. For the openstack application client
+            setup, the default is remote_client_app.sh.
 
         .. _kubernetes-user-tutorials-configuring-container-backed-remote-clis-and-clients-w-option:
 
@@ -205,7 +205,7 @@ and clients for a non-admin user.
             pulled from docker.io/starlingx/stx-openstackclients.
 
         The :command:`configure-client.sh` command will generate a
-        remote\_client\_platform.sh RC file. This RC file needs to be sourced
+        remote_client_platform.sh RC file. This RC file needs to be sourced
         in the shell to set up required environment variables and aliases
         before any remote |CLI| commands can be run.
 

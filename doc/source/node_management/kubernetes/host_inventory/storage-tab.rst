@@ -33,7 +33,7 @@ For each device, the following information is included:
     The Linux device path.
 
 **Type**
-    The type of storage device \(HDD or SSD\).
+    The type of storage device (HDD or SSD).
 
 **Size**
     The capacity of the device in MiB.
@@ -86,7 +86,7 @@ Physical Volumes
 ----------------
 
 On controller and worker hosts, this list shows physical volumes
-\(disk or partitions\) assigned to local volume groups.
+\(disk or partitions) assigned to local volume groups.
 
 .. figure:: /node_management/kubernetes/figures/fph1515514594885.png
     :scale: 100%
@@ -121,7 +121,7 @@ Storage Functions
 -----------------
 
 This list is presented for storage hosts. It shows a list of logical storage
-functions \(OSDs and Ceph journal functions\) defined on available disks.
+functions (OSDs and Ceph journal functions) defined on available disks.
 
 .. figure:: /shared/figures/storage/caf1464886132887.png
     :scale: 100%
@@ -132,8 +132,8 @@ For each volume, the following information is included:
     The unique identifier for the storage volume.
 
 **Function**
-    The type of function \(**osd** for object storage, or **journal** for
-    Ceph journal storage\).
+    The type of function (**osd** for object storage, or **journal** for
+    Ceph journal storage).
 
 **OSD ID**
     For an |OSD| function, the identity of the associated Ceph object

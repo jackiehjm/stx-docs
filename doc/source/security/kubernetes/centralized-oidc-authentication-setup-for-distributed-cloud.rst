@@ -66,7 +66,7 @@ For a centralized |OIDC| authentication setup, use the following procedure:
 
 #.  Configure the **kube-apiserver** parameters on the System Controller and
     each subcloud during bootstrapping, or by using the **system
-    service-parameter-add kubernetes kube\_apiserver** command after
+    service-parameter-add kubernetes kube_apiserver** command after
     bootstrapping the system, using the System Controller's floating OAM IP
     address as the oidc-issuer-url for all clouds.
     address as the oidc-issuer-url for all clouds.
@@ -95,8 +95,8 @@ For a centralized |OIDC| authentication setup, use the following procedure:
 
     .. note::
         For IPv6 deployments, ensure that the IPv6 OAM floating address is,
-        https://\[<central-cloud-floating-ip>\]:30556/dex \(that is, in
-        lower case, and wrapped in square brackets\).
+        https://\[<central-cloud-floating-ip>\]:30556/dex (that is, in
+        lower case, and wrapped in square brackets).
 
 
 .. rubric:: |postreq|

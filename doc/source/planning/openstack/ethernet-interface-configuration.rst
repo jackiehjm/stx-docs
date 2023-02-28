@@ -24,17 +24,17 @@ following networks:
 
 -   the internal management network
 
--   the internal cluster host network \(by default sharing the same L2
-    interface as the internal management network\)
+-   the internal cluster host network (by default sharing the same L2
+    interface as the internal management network)
 
 -   the external |OAM| network
 
 -   one or more data networks
 
 A single interface can optionally be configured to support more than one
-network using |VLAN| tagging \(see :ref:`Shared (VLAN or Multi-Netted) Ethernet
+network using |VLAN| tagging (see :ref:`Shared (VLAN or Multi-Netted) Ethernet
 Interfaces
-<network-planning-shared-vlan-or-multi-netted-ethernet-interfaces>`\).
+<network-planning-shared-vlan-or-multi-netted-ethernet-interfaces>`).
 
 .. _ethernet-interface-configuration-section-N10059-N1001C-N10001:
 
@@ -54,17 +54,17 @@ The following virtual network interfaces are available:
 
 -   |AVP|
 
--   ne2k\_pci \(NE2000 Emulation\)
+-   ne2k_pci (NE2000 Emulation)
 
--   pcnet \(AMD PCnet/|PCI| Emulation\)
+-   pcnet (AMD PCnet/|PCI| Emulation)
 
--   rtl8139 \(Realtek 8139 Emulation\)
+-   rtl8139 (Realtek 8139 Emulation)
 
--   virtio \(VirtIO Network\)
+-   virtio (VirtIO Network)
 
--   pci-passthrough \(|PCI| Passthrough Device\)
+-   pci-passthrough (|PCI| Passthrough Device)
 
--   pci-sriov \(|SRIOV| device\)
+-   pci-sriov (|SRIOV| device)
 
 
 Unmodified guests can use Linux networking and virtio drivers. This provides a
@@ -74,7 +74,7 @@ immediately.
 .. xbooklink For more information about |AVP| drivers, see OpenStack VNF Integration: :ref:`Accelerated Virtual Interfaces <accelerated-virtual-interfaces>`.
 
 |prod-os| incorporates |DPDK|-Accelerated Neutron Virtual Router L3 Forwarding
-\(AVR\). Accelerated forwarding is used for directly attached project networks
+\(AVR). Accelerated forwarding is used for directly attached project networks
 and subnets, as well as for gateway, |SNAT| and floating IP functionality.
 
 |prod-os| also supports direct guest access to |NICs| using |PCI| passthrough

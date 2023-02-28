@@ -51,7 +51,7 @@ to platform networks using the CLI.
     Where:
 
     **interfacename**
-        is the name or |UUID| for the interface \(Required\).
+        is the name or |UUID| for the interface (Required).
 
     **hostname**
         is the name or |UUID| of the host.

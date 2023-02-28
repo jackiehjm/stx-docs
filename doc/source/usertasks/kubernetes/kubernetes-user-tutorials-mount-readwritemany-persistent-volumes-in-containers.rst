@@ -130,7 +130,7 @@ see :ref:`Create ReadWriteMany Persistent Volume Claims <kubernetes-user-tutoria
 
         % kubectl attach wrx-busybox-6455997c76-crmw6 -c busybox -i -t
 
-#.  \(Optional\): From the container's console list the disks to verify that
+#.  (Optional): From the container's console list the disks to verify that
     the |PVC| is attached.
 
     .. code-block:: none

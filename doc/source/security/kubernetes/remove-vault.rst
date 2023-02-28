@@ -39,9 +39,9 @@ resources created by the application installation. For more information, see
             $ kubectl delete ns vault
 
 
-#.  To completely remove Vault, including PVCs \(PVCs are intended to
+#.  To completely remove Vault, including PVCs (PVCs are intended to
     persist after :command:`system application-remove vault` in order to
-    preserve Vault data\), use the following command.
+    preserve Vault data), use the following command.
 
     .. code-block:: none
 

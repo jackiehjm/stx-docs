@@ -10,8 +10,8 @@ Disks on storage hosts are assigned storage functions in |prod| to provide
 either OSD storage or Ceph journal storage.
 
 Rotational disks on storage hosts are always assigned as object storage
-devices \(OSDs\) to provide storage for Application disks. Solid-state disks
-\(SSDs\) can be assigned as OSDs, or as journal functions to provide space for
+devices (OSDs) to provide storage for Application disks. Solid-state disks
+\(SSDs) can be assigned as OSDs, or as journal functions to provide space for
 Ceph transaction journals associated with OSDs. NVMe-compatible SSDs are also
 supported.
 

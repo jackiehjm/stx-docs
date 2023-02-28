@@ -23,7 +23,7 @@ one or more letters, as follows:
 A slash-separated list of letters is used when the alarm can be triggered with
 one of several severity levels.
 
-An asterisk \(\*\) indicates the management-affecting severity, if any. A
+An asterisk (\*) indicates the management-affecting severity, if any. A
 management-affecting alarm is one that cannot be ignored at the indicated
 severity level or higher by using relaxed alarm rules during an orchestrated
 patch or upgrade operation.

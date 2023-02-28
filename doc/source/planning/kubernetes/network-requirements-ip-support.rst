@@ -25,7 +25,7 @@ table lists IPv4 and IPv6 support for different networks:
      - Y
      - N
      - If present, the |PXE| boot network is used for |PXE| booting of new
-       hosts \(instead of using the internal management network\), and must be
+       hosts (instead of using the internal management network), and must be
        untagged. It is limited to IPv4, because the |prod| installer does not
        support IPv6 |UEFI| booting.
    * - Internal Management

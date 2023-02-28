@@ -7,8 +7,8 @@ Roll Back a Software Upgrade Before the Second Controller Upgrade
 =================================================================
 
 After the first controller is upgraded, you can still perform an in-service
-abort of an upgrade before the second Controller \(controller-0 in the examples
-of this procedure\) has been upgraded. The :command:`system upgrade-abort`
+abort of an upgrade before the second Controller (controller-0 in the examples
+of this procedure) has been upgraded. The :command:`system upgrade-abort`
 command can be run from the node that is updated with the latest release and
 has upgraded successfully.
 

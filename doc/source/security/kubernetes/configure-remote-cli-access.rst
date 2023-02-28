@@ -17,7 +17,7 @@ You can access the system from a remote workstation using one of two methods.
     CLIs and clients for accessing a remote |prod-long|. This provides
     access to the :command:`system` and :command:`dcmanager` |prod| CLIs,
     the OpenStack CLI for Keystone and Barbican in the platform, and
-    Kubernetes-related CLIs \(kubectl, helm\). This approach is simple to
+    Kubernetes-related CLIs (kubectl, helm). This approach is simple to
     install, portable across Linux, macOS, and Windows, and provides access
     to all |prod-long| CLIs. However, commands such as those that reference
     local files or require a shell are awkward to run in this environment.

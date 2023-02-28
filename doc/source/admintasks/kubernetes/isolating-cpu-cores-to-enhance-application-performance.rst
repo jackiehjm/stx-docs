@@ -60,7 +60,7 @@ see :ref:`Kubernetes CPU Manager Policies <kubernetes-cpu-manager-policies>`.
 When using the static CPU manager policy before increasing the number of
 platform CPUs or changing isolated CPUs to application CPUs on a host, ensure
 that no pods on the host are making use of any isolated CPUs that will be
-affected. Otherwise, the pod\(s\) will transition to a Topology Affinity Error
+affected. Otherwise, the pod\(s) will transition to a Topology Affinity Error
 state. Although not strictly necessary, the simplest way to do this on systems
 other than |AIO-SX| is to administratively lock the host, causing all the
 pods to be restarted on an alternate host, before changing CPU assigned
@@ -73,9 +73,9 @@ Kubernetes will report a new **windriver.com/isolcpus** resource for each
 worker node. This corresponds to the application-isolated CPUs. Pods in the
 **Best-effort** or **Burstable** |QoS| class may specify some number of
 **windriver.com/isolcpus** resources and the pod will be scheduled on a host
-\(and possibly |NUMA| node depending on topology manager policy\) with
+\(and possibly |NUMA| node depending on topology manager policy) with
 sufficient application-isolated cores available, and the container requesting
-the resource will be affined \(and restricted\) to those CPUs via cgroups.
+the resource will be affined (and restricted) to those CPUs via cgroups.
 
 Pods in the Guaranteed |QoS| class should not specify **windriver.com/isolcpus**
 resources as they will be allocated but not used. If there are multiple

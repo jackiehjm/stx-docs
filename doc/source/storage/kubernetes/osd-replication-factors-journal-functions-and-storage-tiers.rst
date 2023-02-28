@@ -28,7 +28,7 @@ OSD Replication Factor
     | 3                  | 3                           | 3                                    |
     +--------------------+-----------------------------+--------------------------------------+
 
-You can add up to 16 Ceph disks \(OSD disks\) per storage host for
+You can add up to 16 Ceph disks (OSD disks) per storage host for
 data storage.
 
 Space on the storage hosts must be configured at installation before you
@@ -37,7 +37,7 @@ by adding resources to existing storage hosts or adding more storage hosts.
 For more information, see |_link-inst-book|.
 
 Storage hosts can achieve faster data access using SSD-backed transaction
-journals \(journal functions\). NVMe-compatible SSDs are supported.
+journals (journal functions). NVMe-compatible SSDs are supported.
 
 .. _osd-replication-factors-journal-functions-and-storage-tiers-section-N10044-N1002B-N10001:
 
@@ -51,7 +51,7 @@ replication, and if required, for data recovery. This is a full Ceph
 journal, containing both meta-data and data. By default, it is collocated
 on the OSD, which typically uses slower but less expensive HDD-backed
 storage. For faster commits and improved reliability, you can use a
-dedicated solid-state drive \(SSD\) installed on the host and assigned as a
+dedicated solid-state drive (SSD) installed on the host and assigned as a
 journal function. NVMe-compatible SSDs are also supported. You can dedicate
 more than one SSD as a journal function.
 

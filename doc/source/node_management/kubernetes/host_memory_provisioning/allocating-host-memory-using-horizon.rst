@@ -116,7 +116,7 @@ from the available memory, an informative message is displayed.
             :end-before: vswitch-hugepage-size-node-text-end
 
     To see how many huge pages of a given size you can successfully request
-    on a node \(assuming that pages of another size are not also requested\),
+    on a node (assuming that pages of another size are not also requested),
     hover over the information icon next to the field.
 
     .. figure:: /node_management/kubernetes/figures/jow1432129731308.png

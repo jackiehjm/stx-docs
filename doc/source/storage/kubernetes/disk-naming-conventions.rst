@@ -9,8 +9,8 @@ Disk Naming Conventions
 |prod| uses persistent disk names to simplify hardware management.
 
 In addition to the device node identification commonly used in Linux
-systems \(for example, **/dev/sda**\), |prod| identifies hardware storage
-devices by physical location \(device path\). This ensures that the system
+systems (for example, **/dev/sda**), |prod| identifies hardware storage
+devices by physical location (device path). This ensures that the system
 can always identify a given disk based on its location, even if its device
 node enumeration changes because of a hardware reconfiguration. This helps
 to avoid the need for a system re-installation after a change to the disk

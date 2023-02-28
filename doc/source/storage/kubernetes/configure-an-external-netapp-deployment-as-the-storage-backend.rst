@@ -251,7 +251,7 @@ procedure.
 To configure a persistent volume claim for the NetApp backend, add the
 appropriate storage-class name you set up in step :ref:`2
 <configure-an-external-netapp-deployment-as-the-storage-backend>`
-\(``netapp-nas-backend`` in this example\) to the persistent volume
+\(``netapp-nas-backend`` in this example) to the persistent volume
 claim's yaml configuration file. For more information about this file, see
 |usertasks-doc|: :ref:`Create ReadWriteOnce Persistent Volume Claims
 <kubernetes-user-tutorials-create-readwriteonce-persistent-volume-claims>`.

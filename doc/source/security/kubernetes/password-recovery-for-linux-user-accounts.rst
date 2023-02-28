@@ -26,8 +26,8 @@ this type of account as follows:
     $ sudo passwd <user>
     $ sudo chage -d 0 <user>
 
-where `<user>` is the user name of the account to be reset \(for, example,
-**sysadmin**\) and :command:`sudo passwd <user>` will prompt for the new
+where `<user>` is the user name of the account to be reset (for, example,
+**sysadmin**) and :command:`sudo passwd <user>` will prompt for the new
 password. The :command:`chage` command forces immediate expiration, so that
 the user must change the password at first login.
 
@@ -52,6 +52,6 @@ You can reset the password for an LDAP account as follows:
     $ sudo ldapmodifyuser <user> replace userPassword <temp_password>
     $ sudo ldapmodifyuser <user> replace shadowLastChange 0
 
-where <user> is the username, and <temp\_password> is a temporary password.
+where <user> is the username, and <temp_password> is a temporary password.
 The second command forces a password change on first login.
 

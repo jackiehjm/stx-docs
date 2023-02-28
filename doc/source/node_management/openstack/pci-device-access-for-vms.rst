@@ -16,8 +16,8 @@ cards and other |PCI| devices.
 
 .. note::
 
-    When starting a |VM| where interfaces have **binding\_vif\_type**, the
-    following parameter is required for the |VM| flavor, hw:mem\_page\_size=large
+    When starting a |VM| where interfaces have **binding_vif_type**, the
+    following parameter is required for the |VM| flavor, hw:mem_page_size=large
     enabled
 
     where, page size is one of the following:

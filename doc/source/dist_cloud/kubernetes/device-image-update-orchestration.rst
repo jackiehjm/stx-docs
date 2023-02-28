@@ -161,14 +161,14 @@ device image updates, including |FPGA| updates.
 
     **max-parallel-subclouds**
         Sets the maximum number of subclouds that can be updated in parallel
-        \(default 20\).
+        (default 20).
 
         If this is not specified using the |CLI|, the values for
         :command:`max_parallel_subclouds` defined for each subcloud group
         will be used by default.
 
     **stop-on-failure**
-        true or false \(default\) — determines whether update orchestration
+        true or false (default) — determines whether update orchestration
         failure for a subcloud prevents application to subsequent subclouds.
 
     **group**

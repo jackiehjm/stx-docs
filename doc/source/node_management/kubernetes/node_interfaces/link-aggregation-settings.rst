@@ -7,14 +7,14 @@ Link Aggregation Settings
 =========================
 
 |prod| supports several link aggregation
-\(|LAG|\) operational modes.
+\(|LAG|) operational modes.
 
-If you select link aggregation \(also known as aggregated Ethernet\) when
+If you select link aggregation (also known as aggregated Ethernet) when
 configuring the management, cluster-host, or
 |OAM| networks, you can choose from the
 following operational modes. For more information, refer to the Linux
 kernel Ethernet Bonding Driver documentation available online
-\(`https://www.kernel.org/doc/Documentation/networking/bonding.txt <https://www.kernel.org/doc/Documentation/networking/bonding.txt>`__\).
+\(`https://www.kernel.org/doc/Documentation/networking/bonding.txt <https://www.kernel.org/doc/Documentation/networking/bonding.txt>`__).
 
 .. note::
     Ensure that the |LAG| mode on the corresponding |ToR| switch ports is
@@ -33,13 +33,13 @@ kernel Ethernet Bonding Driver documentation available online
       - Supported Interface Types
     * - Active-backup
 
-        \(default value\)
+        (default value)
       - Provides fault tolerance. Only one standby interface at a time is
         available. The backup standby interface becomes active only when the
         active standby interface fails.
 
-        For platform interfaces \(such as, |OAM|, cluster-host, and management
-        interfaces\), the system will select the interface with the lowest
+        For platform interfaces (such as, |OAM|, cluster-host, and management
+        interfaces), the system will select the interface with the lowest
         |MAC| address as the primary interface when all standby interfaces are
         enabled.
       - Management, |OAM|, cluster-host, and data interface
@@ -84,10 +84,10 @@ kernel Ethernet Bonding Driver documentation available online
       - Supported Interface Types
     * - Layer 2
 
-        \(default value\)
+        (default value)
       - Hashes on source and destination |MAC| addresses.
-      - |OAM|, internal management, cluster-host, and data interfaces \(worker
-        nodes\).
+      - |OAM|, internal management, cluster-host, and data interfaces (worker
+        nodes).
     * - Layer 2 + 3
       - Hashes on source and destination |MAC| addresses, and on source and
         destination IP addresses.
@@ -107,7 +107,7 @@ kernel Ethernet Bonding Driver documentation available online
       - Supported Interface Types
     * - Always
 
-        \(default value\)
+        (default value)
       - The primary standby becomes an active standby whenever it comes back up.
       - |OAM|, internal management, and cluster-host
     * - Better

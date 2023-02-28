@@ -12,7 +12,7 @@ the Ethernet link.
 
 In the context of |prod|, the |MTU| refers to the largest possible payload on
 the Ethernet frame on a particular network link. The payload is enclosed by the
-Ethernet header \(14 bytes\) and the CRC \(4 bytes\), resulting in an Ethernet
+Ethernet header (14 bytes) and the CRC (4 bytes), resulting in an Ethernet
 frame that is 18 bytes longer than the |MTU| size.
 
 The original IEEE 802.3 specification defines a valid standard Ethernet frame

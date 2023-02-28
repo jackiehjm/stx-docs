@@ -20,7 +20,7 @@ Some reasons for adding an additional storage class include:
 
 -   using an alternate Ceph Storage Tier, for example. with faster drives
 
-A modification to the configuration \(Helm overrides\) of the
+A modification to the configuration (Helm overrides) of the
 |RBD| provisioner service is required to enable an additional storage class
 
 The following example that illustrates adding a second storage class to be

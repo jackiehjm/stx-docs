@@ -25,7 +25,7 @@ The **Processor** tab includes the following items:
 
 -   Physical Cores Per Processor
 
--   Hyper-Threading status \(enabled or disabled\)
+-   Hyper-Threading status (enabled or disabled)
 
 
 For more information, see :ref:`Configure CPU Core

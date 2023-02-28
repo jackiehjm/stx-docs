@@ -45,4 +45,4 @@ information, see the `StarlingX Installation and Deployment Guide
 <https://docs.starlingx.io/deploy_install_guides/index-install-e083ca818006.html>`__.
 
 Storage hosts can achieve faster data access using |SSD|-backed transaction
-journals \(journal functions\). |NVMe|-compatible |SSDs| are supported.
+journals (journal functions). |NVMe|-compatible |SSDs| are supported.

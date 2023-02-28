@@ -48,7 +48,7 @@ command in the final step of this procedure.
 
     .. note::
         This step applies to Ceph-backed systems
-        \(systems with storage nodes\) only.
+        (systems with storage nodes) only.
 
     #.  From the **Admin** \> **Platform** \> **Host Inventory** page, on the
         Hosts tab, select **Edit Host** \> **Lock Host**.
@@ -94,7 +94,7 @@ command in the final step of this procedure.
 #.  Shut down **storage-0**.
 
     .. note::
-        This step applies to Ceph-backed systems \(systems with storage nodes\)
+        This step applies to Ceph-backed systems (systems with storage nodes)
         only.
 
     You must use a local console or a |BMC| console to issue the shutdown

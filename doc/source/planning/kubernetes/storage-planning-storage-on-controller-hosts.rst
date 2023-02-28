@@ -48,8 +48,8 @@ Synchronized Filesystems
 
 Synchronized filesystems ensure that files stored in several different physical
 locations are up to date. The following commands can be used to resize an
-|DRBD|-synced filesystem \(Database, Docker-distribution, Etcd, Extension,
-Platform\) on controllers.
+|DRBD|-synced filesystem (Database, Docker-distribution, Etcd, Extension,
+Platform) on controllers.
 
 :command:`controllerfs-list`, :command:`controllerfs-modify`, and
 :command:`controllerfs-show`.
@@ -74,7 +74,7 @@ Platform\) on controllers.
     If you add a database filesystem or increase its size, you must also
     increase the size of the backup filesystem.
 
-**Docker-distribution storage \(local Docker registry storage\)**
+**Docker-distribution storage (local Docker registry storage)**
     The storage allotment for container images stored in the local Docker
     registry. This storage is provided using a |DRBD|-synchronized partition on
     the controller primary disk.
@@ -103,7 +103,7 @@ Host Filesystems
 ----------------
 
 The following host filesystem commands can be used to resize non-|DRBD|
-filesystems \(Backup, Docker, Kubelet, Scratch, and Log\) and do not
+filesystems (Backup, Docker, Kubelet, Scratch, and Log) and do not
 apply to all hosts of a given personality type:
 
 :command:`host-fs-list`, :command:`host-fs-modify`, and :command:`host-fs-show`
@@ -145,7 +145,7 @@ replacement disk.
 .. _storage-planning-storage-on-controller-hosts-d103e334:
 
 -------------------------------------------------
-Persistent Volume Claims storage \(Ceph Cluster\)
+Persistent Volume Claims storage (Ceph Cluster)
 -------------------------------------------------
 
 For controller-storage systems, additional disks on the controller, configured

@@ -14,8 +14,8 @@ can do this using the Horizon Web interface or the CLI.
 
 .. note::
     When attaching a |prod-os| application to a data network using
-    a |VLAN| interface, you cannot select a |VLAN| data network \(stacked VLANs
-    are not supported\).
+    a |VLAN| interface, you cannot select a |VLAN| data network (stacked VLANs
+    are not supported).
 
 .. xbooklinkFor more information about shared interfaces,
    see |planning-doc|: `Shared (VLAN) Ethernet Interfaces <shared-vlan-or-multi-netted-ethernet-interfaces>`.
@@ -46,7 +46,7 @@ can do this using the Horizon Web interface or the CLI.
 
 #.  In the **Vlan ID** field, type a unique |VLAN| identifier for the network.
 
-#.  From the **Interfaces\(s\)** list, select the Ethernet interfaces used to
+#.  From the **Interfaces\(s)** list, select the Ethernet interfaces used to
     attach this interface to the network.
 
 #.  Complete any other settings required for the **Interface Class**.

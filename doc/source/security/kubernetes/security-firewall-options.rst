@@ -10,8 +10,8 @@ Modify Firewall Options
 additional Kubernetes Network Policies in order to augment or override the
 default rules.
 
-The |prod| firewall uses the Kubernetes Network Policies \(using the Calico
-|CNI|\) to implement a firewall on the |OAM| network.
+The |prod| firewall uses the Kubernetes Network Policies (using the Calico
+|CNI|) to implement a firewall on the |OAM| network.
 
 A minimal set of rules is always applied before any custom rules, as follows:
 

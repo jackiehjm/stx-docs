@@ -10,13 +10,13 @@ You can adjust the heartbeat interval, as well as the thresholds for missed
 heartbeat challenges that cause a host to be moved to the **Degraded** or
 **Failed** state.
 
-The settings apply to all hosts \(controller, worker, and storage\). For more
+The settings apply to all hosts (controller, worker, and storage). For more
 information about host states,
 see :ref:`The Life Cycle of a Host <the-life-cycle-of-a-host-93640aa2b707>`.
 
 .. note::
-    The heartbeat\_degrade threshold must not exceed the
-    heartbeat\_failure\_threshold.
+    The heartbeat_degrade threshold must not exceed the
+    heartbeat_failure_threshold.
 
 .. rubric:: |proc|
 
@@ -51,19 +51,19 @@ see :ref:`The Life Cycle of a Host <the-life-cycle-of-a-host-93640aa2b707>`.
     response thresholds for moving a host to the **Degraded** or **Failed**
     state.
 
-    **heartbeat\_period**
+    **heartbeat_period**
         The time in milliseconds between heartbeat challenges from the
-        controller to the other hosts \(100–1000 ms\). The default is
+        controller to the other hosts (100–1000 ms). The default is
         100 ms.
 
-    **heartbeat\_degrade\_threshold**
+    **heartbeat_degrade_threshold**
         The number of consecutive missing responses to heartbeat challenges
-        before a host is moved into the **Degraded** state \(4–100\). The
+        before a host is moved into the **Degraded** state (4–100). The
         default is six consecutive missing responses.
 
-    **heartbeat\_failure\_threshold**
+    **heartbeat_failure_threshold**
         The number of consecutive missing responses to heartbeat challenges
-        before a host is moved into the **Failed** state \(10–100\). The
+        before a host is moved into the **Failed** state (10–100). The
         default is 10 consecutive missing responses.
 
     For example, to change the heartbeat failure threshold for all hosts to

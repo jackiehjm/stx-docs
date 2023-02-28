@@ -21,7 +21,7 @@ subcloud groups, is the order they are processed by orchestration.
 #.  All subclouds in the first, second, and third group, etc.
 
 #.  Subclouds from different groups will never be included in the same stage of
-    the strategy to ensure they are not upgraded, updated \(patched\) at the
+    the strategy to ensure they are not upgraded, updated (patched) at the
     same time.
 
 

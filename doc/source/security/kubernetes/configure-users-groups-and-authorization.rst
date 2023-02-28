@@ -19,14 +19,14 @@ rtual-dc/active-directory-domain-services-overview>`__ for additional
 information on adding users and groups to Windows Active Directory.
 
 Use the following procedure to configure the desired authorization on
-|prod-long| for the user or the user's group\(s\):
+|prod-long| for the user or the user's group\(s):
 
 .. rubric:: |proc|
 
 
 .. _configure-users-groups-and-authorization-steps-b2f-ck4-dlb:
 
-#.  In |prod-long|, bind Kubernetes |RBAC| role\(s\) for the **testuser**.
+#.  In |prod-long|, bind Kubernetes |RBAC| role\(s) for the **testuser**.
 
     For example, give **testuser** admin privileges, by creating the
     following deployment file, and deploy the file with :command:`kubectl
@@ -48,7 +48,7 @@ Use the following procedure to configure the desired authorization on
           name: testuser
 
 
-    Alternatively, you can bind Kubernetes |RBAC| role\(s\) for the group\(s\)
+    Alternatively, you can bind Kubernetes |RBAC| role\(s) for the group\(s)
     of the **testuser**.
 
     For example, give all members of the **billingDeptGroup** admin

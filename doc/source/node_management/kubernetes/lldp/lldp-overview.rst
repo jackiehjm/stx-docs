@@ -17,7 +17,7 @@ to advertise their properties to other devices on the same network.
 window, or through system CLI commands.
 
 |LLDP| information can be used to verify cabling to the next hop device
-\(typically the Top-of-Rack switch\).
+\(typically the Top-of-Rack switch).
 
 .. note::
     The neighboring device must be capable of, and enabled for, transmitting

@@ -46,17 +46,17 @@ see :ref:`The Life Cycle of a Host <the-life-cycle-of-a-host-93640aa2b707>`.
 
     The following service parameters control the boot timeout interval.
 
-    **worker\_boot\_timeout**
+    **worker_boot_timeout**
         The time in seconds to allow for a worker or storage host to boot
-        \(720–1800 seconds\). The default value is 720 seconds \(12 minutes\).
+        (720–1800 seconds). The default value is 720 seconds (12 minutes).
 
         .. note::
             This parameter also applies to storage nodes.
 
-    **controller\_boot\_timeout**
+    **controller_boot_timeout**
         The time in seconds to allow for a controller host to boot
-        \(1200-1800 seconds\). The default value is 1200 seconds
-        \(20 minutes\).
+        (1200-1800 seconds). The default value is 1200 seconds
+        (20 minutes).
 
     For example, to change the boot timeout for the worker and storage
     hosts to 840 seconds:

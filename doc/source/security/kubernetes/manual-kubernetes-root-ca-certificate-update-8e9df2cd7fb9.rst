@@ -30,9 +30,9 @@ host.
 
 .. rubric:: |prereq|
 
--   The system must be clear of alarms \(with the exception of alarms for locked
+-   The system must be clear of alarms (with the exception of alarms for locked
     hosts, stopped instances, certificate expiring soon, certificate expired,
-    and Kubernetes root ca update in progress\).
+    and Kubernetes root ca update in progress).
 
 -   All hosts must be unlocked, enabled and available.
 

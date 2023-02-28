@@ -57,7 +57,7 @@ Options for controlling access to |PCIe| devices are:
 
 .. _resource-planning-ul-ogh-xsz-55:
 
--   Use pci\_numa\_affinity flavor extra specs to force VNF6 to be scheduled on
+-   Use pci_numa_affinity flavor extra specs to force VNF6 to be scheduled on
     NUMA nodes where the |PCI| device is running. This is the recommended option
     because it does not require prior knowledge of which socket a |PCI| device
     resides on. The affinity may be **strict** or **prefer**:

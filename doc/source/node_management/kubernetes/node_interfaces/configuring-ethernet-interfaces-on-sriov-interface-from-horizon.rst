@@ -49,9 +49,9 @@ the CLI <provisioning-sr-iov-interfaces-using-the-cli>`.
 #.  Open the **Interface Type** drop-down menu and select **ethernet**.
 
 #.  Select the |SRIOV| Ethernet interface used to attach this interface to the
-    network from the Interfaces\(s\) list.
+    network from the Interfaces\(s) list.
 
-#.  From the Platform Network\(s\) list, select **pxeboot** to which this interface
+#.  From the Platform Network\(s) list, select **pxeboot** to which this interface
     is attached.
 
 #.  Click **Create Interface** to save your changes and close the dialog box.

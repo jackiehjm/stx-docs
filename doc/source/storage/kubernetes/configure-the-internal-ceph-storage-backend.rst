@@ -61,7 +61,7 @@ the internal Ceph storage backend.
         storage node.
 
     .. note::
-        CephFS support requires Metadata servers \(MDS\) to be deployed. When
+        CephFS support requires Metadata servers (MDS) to be deployed. When
         CephFS is configured, an MDS is deployed automatically along with each
         node that has been configured to run a Ceph Monitor.
 

@@ -53,8 +53,8 @@ if using the CLI.
     .. note::
 
         Services in a Subcloud authenticate against their local Identity
-        Provider only \(i.e. Keystone for StarlingX and Kubernetes Service
-        Accounts for Kubernetes\). This allows the subcloud to not only be
+        Provider only (i.e. Keystone for StarlingX and Kubernetes Service
+        Accounts for Kubernetes). This allows the subcloud to not only be
         autonomous in the face of disruptions with the Central Region, but also
         allows the subcloud to improve service performance since authentication
         is localized within the subcloud.
@@ -64,7 +64,7 @@ if using the CLI.
     Each subcloud can be in a Managed or Unmanaged state.
 
     **Managed**
-        When a subcloud is in the Managed state, it is updated \(synchronized\)
+        When a subcloud is in the Managed state, it is updated (synchronized)
         immediately with configuration changes made at the System Controller.
         This is the normal operating state. Updates may be delayed slightly
         depending on network conditions.

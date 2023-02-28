@@ -6,7 +6,7 @@
 Cert Manager
 ============
 
-|prod| integrates the open source project cert-manager \(cert-manager.io\).
+|prod| integrates the open source project cert-manager (cert-manager.io).
 Cert-manager is a native Kubernetes certificate management controller, that
 supports certificate management with external |CAs|.
 

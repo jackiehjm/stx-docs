@@ -7,8 +7,8 @@ VXLANs
 ======
 
 You can use |VXLANs| to connect |VM| instances across non-contiguous Layer 2
-segments \(that is, Layer 2 segments connected by one or more Layer 3
-routers\).
+segments (that is, Layer 2 segments connected by one or more Layer 3
+routers).
 
 A |VXLAN| is a Layer 2 overlay network scheme on a Layer 3 network
 infrastructure. Packets originating from |VMs| and destined for other |VMs| are

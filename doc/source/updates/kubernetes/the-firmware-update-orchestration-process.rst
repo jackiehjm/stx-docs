@@ -30,7 +30,7 @@ parameters:
 For hosts that have the |prefix|-openstack application running with active
 instances and since the firmware update is a reboot required operation for a
 host, the strategy offers **stop/start** or **migrate** options for managing
-instances over the **lock/unlock** \(reboot\) steps in the update process.
+instances over the **lock/unlock** (reboot) steps in the update process.
 
 You must use the :command:`sw-manager` |CLI| commands to create, and then apply
 the update strategy. A created strategy can be monitored with the
@@ -45,7 +45,7 @@ strategy :command:`apply` action.
 
 .. note::
     Controllers in Storage or Standard systems are not subject to firmware
-    updates. However, the controllers for an All-in-one \(|AIO|\)system can be
+    updates. However, the controllers for an All-in-one (|AIO|)system can be
     updated because they contain the worker function. Whenever controllers are
     added to a strategy they are updated first; before the worker only hosts.
 
@@ -56,12 +56,12 @@ control and monitor the firmware update progress one stage at a time.
 When the firmware update strategy is applied, if the system is All-in-one,
 the controllers are updated first, one after the other with a swact in between,
 followed by the remaining worker hosts according to the selected worker apply
-concurrency \(**serial** or **parallel**\) method.
+concurrency (**serial** or **parallel**) method.
 
 The strategy creation default is to update the worker hosts serially unless the
 ``parallel`` worker apply type option is specified which configures the
-firmware update process for worker hosts to be in parallel \(up to a maximum
-parallel number\) to reduce the overall firmware update installation time.
+firmware update process for worker hosts to be in parallel (up to a maximum
+parallel number) to reduce the overall firmware update installation time.
 
 The firmware update strategy, with specified and default options is used to
 create a reliable *Firmware Update Orchestration Strategy* that consists of a
@@ -100,8 +100,8 @@ strategy application process. The instance management options include
     after the unlock completes. This is typically used for instances that do
     not support migration or for cases where migration takes too long. To
     ensure this does not impact the high-level service being provided by the
-    instance, the instance\(s\) should be protected and grouped into an
-    anti-affinity server group\(s\) with its standby instance.
+    instance, the instance\(s) should be protected and grouped into an
+    anti-affinity server group\(s) with its standby instance.
 
 -   ``migrate``: where instances are moved off a host following the firmware
     update but before the host is locked. Instances with **Live Migration**

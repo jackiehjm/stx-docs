@@ -62,7 +62,7 @@ them more CPU cores from the Horizon Web interface.
         increased flexibility for high-performance configurations. For
         example, you can dedicate certain |NUMA| nodes for platform
         use such that other |NUMA| nodes that service IRQ requests are left
-        available for the containers \(hosted applications\) that require
+        available for the containers (hosted applications) that require
         high-performance IRQ servicing.
 
         .. note::

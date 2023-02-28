@@ -24,7 +24,7 @@ least the following |SANs|: ``DNS:registry.local``, ``DNS:registry.central``,
 IP Address:<oam-floating-ip-address>, IP Address:<mgmt-floating-ip-address>.
 Use the :command:`system addrpool-list` command to get the |OAM| floating IP
 Address and management floating IP Address for your system. You can add any
-additional |DNS| entry\(s\) that you have set up for your |OAM| floating IP
+additional |DNS| entry\(s) that you have set up for your |OAM| floating IP
 Address.
 
 .. note::
@@ -42,7 +42,7 @@ an expired or soon to expire certificate.
 .. rubric:: |prereq|
 
 Obtain an intermediate or Root |CA|-signed certificate and key from a trusted
-intermediate or Root Certificate Authority \(|CA|\). Refer to the documentation
+intermediate or Root Certificate Authority (|CA|). Refer to the documentation
 for the external Root |CA| that you are using, on how to create public
 certificate and private key pairs, signed by an intermediate or Root |CA|, for
 HTTPS.
@@ -54,7 +54,7 @@ using openssl <create-certificates-locally-using-openssl>` to create an
 Intermediate or test Root |CA| certificate and key, and use it to sign test
 certificates.
 
-Put the Privacy Enhanced Mail \(PEM\) encoded versions of the certificate and
+Put the Privacy Enhanced Mail (PEM) encoded versions of the certificate and
 key in a single file, and copy the file to the controller host.
 
 Also obtain the certificate of the intermediate or Root CA that signed the
@@ -87,7 +87,7 @@ information, see, :ref:`Display Certificates Installed on a System <utility-scri
 #.  Update the Docker registry certificate using the
     :command:`certificate-install` command.
 
-    Set the mode (``-m`` or ``--mode``) parameter to docker\_registry.
+    Set the mode (``-m`` or ``--mode``) parameter to docker_registry.
 
     .. code-block:: none
 

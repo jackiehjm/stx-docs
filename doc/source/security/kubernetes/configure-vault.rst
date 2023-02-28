@@ -110,9 +110,9 @@ The following steps use Vault's REST API and is run from controller-0.
             The service account and namespace used for the values below must exist on the kubernetes cluster.
 
 
-            -   **bound\_service\_account\_names**
+            -   **bound_service_account_names**
 
-            -   **bound\_service\_account\_namespaces**
+            -   **bound_service_account_namespaces**
 
 
         .. code-block:: none
@@ -142,7 +142,7 @@ The following steps use Vault's REST API and is run from controller-0.
             $ curl --cacert /home/sysadmin/vault_ca.pem --header "X-Vault-Token:$ROOT_TOKEN" https://sva-vault.vault.svc.cluster.local:8200/v1/secret/basic-secret/helloworld
 
 
-#.  \(Optional\) To enable and configure logging, use the steps below:
+#.  (Optional) To enable and configure logging, use the steps below:
 
 
     #.  Enable Vault logging to file for persistent log storage.

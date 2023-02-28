@@ -92,12 +92,12 @@ applications with a Helm v2 chart.
         .. note::
             In order for your remote host to trust the certificate used by
             the |prod-long| K8S API, you must ensure that the
-            **k8s\_root\_ca\_cert** specified at install time is a trusted
+            **k8s_root_ca_cert** specified at install time is a trusted
             CA certificate by your host. Follow the instructions for adding
             a trusted CA certificate for the operating system distribution
             of your particular host.
 
-            If you did not specify a **k8s\_root\_ca\_cert** at install
+            If you did not specify a **k8s_root_ca_cert** at install
             time, then specify ``--insecure-skip-tls-verify``, as shown below.
 
         .. code-block:: none
@@ -221,14 +221,14 @@ applications with a Helm v2 chart.
             Enable TLS on Tiller.
 
         ``--tiller-tls-cert <certificate_file>``
-            The public key/certificate for Tiller \(signed by ``--tls-ca-cert``\).
+            The public key/certificate for Tiller (signed by ``--tls-ca-cert``).
 
         ``--tiller-tls-key <key_file>``
             The private key for Tiller.
 
         ``--tiller-tls-verify``
-            Enable authentication of client certificates \(i.e. validate
-            they are signed by ``--tls-ca-cert``\).
+            Enable authentication of client certificates (i.e. validate
+            they are signed by ``--tls-ca-cert``).
 
         ``--tls-ca-cert <certificate_file>``
             The public certificate of the |CA| used for signing Tiller

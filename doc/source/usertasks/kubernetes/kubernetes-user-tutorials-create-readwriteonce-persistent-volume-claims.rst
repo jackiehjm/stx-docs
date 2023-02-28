@@ -8,7 +8,7 @@ Create ReadWriteOnce Persistent Volume Claims
 
 Container images have an ephemeral file system by default. For data to survive
 beyond the lifetime of a container, it can read and write files to a persistent
-volume obtained with a Persistent Volume Claim \(PVC\) created to provide
+volume obtained with a Persistent Volume Claim (PVC) created to provide
 persistent storage.
 
 .. rubric:: |context|

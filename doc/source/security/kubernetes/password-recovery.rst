@@ -24,13 +24,13 @@ This section describes how to change or reset a Keystone user password.
 
             ~(keystone_admin)]$ openstack user password set
 
--   Use the following command to reset a Keystone non-admin user \(tenant user\) account.
+-   Use the following command to reset a Keystone non-admin user (tenant user) account.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ openstack user set --password <temp_password> <user>
 
-    where <user> is the username and <temp\_password> is a temporary password.
+    where <user> is the username and <temp_password> is a temporary password.
 
 .. only:: partner
 
