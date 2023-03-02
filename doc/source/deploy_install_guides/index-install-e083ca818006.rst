@@ -13,8 +13,10 @@ Each guide provides instruction on a specific StarlingX configuration
 Upcoming release
 ----------------
 
-The next release will be R8.0. Use the installation procedures in
-:ref:`index-install-e083ca818006`.
+.. look up on this branch
+
+The next release will be R9.0. Use the installation procedures in
+:ref:`index-install-r7-8966076f0e81`.
 
 ---------------
 Current release
@@ -22,8 +24,10 @@ Current release
 
 R8.0 is the current release of StarlingX.
 
+.. reference explicitely on release branch
+
 Use the `R8.0 Installation Guides
-<https://docs.starlingx.io/r/stx.8.0/deploy_install_guides/index-install-e083ca818006.html>`__
+<https://docs.starlingx.io/r/stx.8.0/deploy_install_guides/release/index-install-r7-8966076f0e81.html>`__
 to install R8.0.
 
 

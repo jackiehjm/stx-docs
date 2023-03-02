@@ -3,8 +3,8 @@ Install StarlingX Kubernetes on Virtual Standard with Rook Storage
 ==================================================================
 
 This section describes the steps to install the StarlingX Kubernetes platform
-on a **StarlingX R7.0 virtual Standard with Rook Storage** deployment configuration,
-deploy rook ceph cluster replacing default native ceph cluster.
+on a StarlingX |this-ver| virtual Standard with Rook Storage deployment
+configuration, deploy rook ceph cluster replacing default native ceph cluster.
 
 .. contents::
    :local:
@@ -18,8 +18,8 @@ In the last step of :doc:`rook_storage_environ`, the controller-0 virtual
 server 'rookstorage-controller-0' was started by the
 :command:`setup_configuration.sh` command.
 
-On the host, attach to the console of virtual controller-0 and select the appropriate
-installer menu options to start the non-interactive install of
+On the host, attach to the console of virtual controller-0 and select the
+appropriate installer menu options to start the non-interactive install of
 StarlingX software on controller-0.
 
 .. note::

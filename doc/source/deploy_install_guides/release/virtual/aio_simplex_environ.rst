@@ -3,7 +3,7 @@ Prepare Host and Environment
 ============================
 
 This section describes how to prepare the physical host and virtual environment
-for a **StarlingX R7.0 virtual All-in-one Simplex** deployment configuration.
+for a StarlingX |this-ver| virtual All-in-one Simplex deployment configuration.
 
 .. contents::
    :local:

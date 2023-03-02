@@ -3,7 +3,7 @@ Install StarlingX Kubernetes on Virtual AIO-SX
 ==============================================
 
 This section describes the steps to install the StarlingX Kubernetes platform
-on a **StarlingX R7.0 virtual All-in-one Simplex** deployment configuration.
+on a StarlingX |this-ver| virtual All-in-one Simplex deployment configuration.
 
 .. contents::
    :local:
@@ -13,8 +13,9 @@ on a **StarlingX R7.0 virtual All-in-one Simplex** deployment configuration.
 Install software on controller-0
 --------------------------------
 
-In the last step of :doc:`aio_simplex_environ`, the controller-0 virtual server 'simplex-controller-0'
-was started by the :command:`setup_configuration.sh` command.
+In the last step of :doc:`aio_simplex_environ`, the controller-0 virtual server
+'simplex-controller-0' was started by the :command:`setup_configuration.sh`
+command.
 
 On the host, attach to the console of virtual controller-0 and select the
 appropriate installer menu options to start the non-interactive install of
