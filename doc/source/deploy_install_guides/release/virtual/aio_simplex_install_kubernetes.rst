@@ -3,7 +3,7 @@ Install StarlingX Kubernetes on Virtual AIO-SX
 ==============================================
 
 This section describes the steps to install the StarlingX Kubernetes platform
-on a **StarlingX R7.0 virtual All-in-one Simplex** deployment configuration.
+on a St|this-ver|arlingX  virtual All-in-one Simplex deployment configuration.
 
 .. contents::
    :local:
@@ -13,8 +13,9 @@ on a **StarlingX R7.0 virtual All-in-one Simplex** deployment configuration.
 Install software on controller-0
 --------------------------------
 
-In the last step of :doc:`aio_simplex_environ`, the controller-0 virtual server 'simplex-controller-0'
-was started by the :command:`setup_configuration.sh` command.
+In the last step of :doc:`aio_simplex_environ`, the controller-0 virtual server
+'simplex-controller-0' was started by the :command:`setup_configuration.sh`
+command.
 
 On the host, attach to the console of virtual controller-0 and select the
 appropriate installer menu options to start the non-interactive install of
@@ -90,8 +91,8 @@ On virtual controller-0:
    Specify the user configuration override file for the Ansible bootstrap
    playbook using one of the following methods:
 
-   * Copy the default.yml file listed above to ``$HOME/localhost.yml`` and edit
-     the configurable values as desired (use the commented instructions in
+   * Copy the ``default.yml`` file listed above to ``$HOME/localhost.yml`` and
+     edit the configurable values as desired (use the commented instructions in
      the file).
 
    or
@@ -125,11 +126,12 @@ On virtual controller-0:
 
         EOF
 
-   Refer to :ref:`Ansible Bootstrap Configurations <ansible_bootstrap_configs_r7>`
-   for information on additional Ansible bootstrap configurations for advanced
-   Ansible bootstrap scenarios, such as Docker proxies when deploying behind a
-   firewall, etc. Refer to :ref:`Docker Proxy Configuration <docker_proxy_config>`
-   for details about Docker proxy settings.
+   Refer to :ref:`Ansible Bootstrap Configurations
+   <ansible_bootstrap_configs_r7>` for information on additional Ansible
+   bootstrap configurations for advanced Ansible bootstrap scenarios, such as
+   Docker proxies when deploying behind a firewall, etc. Refer to :ref:`Docker
+   Proxy Configuration <docker_proxy_config>` for details about Docker proxy
+   settings.
 
 #. Run the Ansible bootstrap playbook:
 
@@ -137,8 +139,8 @@ On virtual controller-0:
 
     ansible-playbook /usr/share/ansible/stx-ansible/playbooks/bootstrap.yml
 
-   Wait for Ansible bootstrap playbook to complete.
-   This can take 5-10 minutes, depending on the performance of the host machine.
+   Wait for Ansible bootstrap playbook to complete. This can take 5-10 minutes,
+   depending on the performance of the host machine.
 
 ----------------------
 Configure controller-0
@@ -152,9 +154,9 @@ On virtual controller-0:
 
      source /etc/platform/openrc
 
-#. Configure the OAM interface of controller-0 and specify the attached network
-   as "oam". Use the OAM port name, for example eth0, that is applicable to your
-   deployment environment:
+#. Configure the |OAM| interface of controller-0 and specify the attached
+   network as "oam". Use the |OAM| port name, for example eth0, that is
+   applicable to your deployment environment:
 
    ::
 

@@ -19,7 +19,7 @@ Prerequisites
   5.2.22. Download from:  http://www.virtualbox.org/wiki/Downloads
 * VirtualBox Extension Pack is installed.
   To boot worker nodes via the controller, you must install the
-  VirtualBox Extension Pack to add support for PXE boot of Intel cards. Download
+  VirtualBox Extension Pack to add support for |PXE| boot of Intel cards. Download
   the extension pack from:  https://www.virtualbox.org/wiki/Downloads
 
 .. note::
@@ -34,7 +34,7 @@ Prerequisites
 Create VMs for controller, worker and storage hosts
 ---------------------------------------------------
 
-For each StarlingX host, configure a VirtualBox VM with the following settings.
+For each StarlingX host, configure a VirtualBox |VM| with the following settings.
 
 .. note::
 

@@ -1,6 +1,6 @@
-================================
-Install Ironic on StarlingX R7.0
-================================
+===========================
+Install Ironic on StarlingX
+===========================
 
 .. include:: /_includes/ironic.rest
 
@@ -9,10 +9,10 @@ Install Ironic on StarlingX R7.0
 This section describes the steps to install Ironic on a standard configuration,
 either:
 
-* **StarlingX R7.0 bare metal Standard with Controller Storage** deployment
+* StarlingX |this-ver| bare metal Standard with Controller Storage deployment
   configuration
 
-* **StarlingX R7.0 bare metal Standard with Dedicated Storage** deployment
+* StarlingX |this-ver| bare metal Standard with Dedicated Storage deployment
   configuration
 
 .. contents::
@@ -23,8 +23,8 @@ either:
 Enable Ironic service
 ---------------------
 
-This section describes the pre-configuration required to enable the Ironic service.
-All the commands in this section are for the StarlingX platform.
+This section describes the pre-configuration required to enable the Ironic
+service. All the commands in this section are for the StarlingX platform.
 
 First acquire administrative privileges:
 

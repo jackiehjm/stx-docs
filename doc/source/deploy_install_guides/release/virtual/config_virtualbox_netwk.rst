@@ -3,7 +3,7 @@ Configure VirtualBox Network Access
 ===================================
 
 This guide describes two alternatives for providing external network access
-to the controller :abbr:`VMs (Virtual Machines)` for VirtualBox:
+to the controller |VMs| for VirtualBox:
 
 .. contents::
    :local:

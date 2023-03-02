@@ -3,7 +3,7 @@ Install StarlingX Kubernetes on Virtual Standard with Dedicated Storage
 =======================================================================
 
 This section describes the steps to install the StarlingX Kubernetes platform
-on a **StarlingX R7.0 virtual Standard with Dedicated Storage** deployment
+on a StarlingX |this-ver| virtual Standard with Dedicated Storage deployment
 configuration.
 
 .. contents::
@@ -18,8 +18,8 @@ In the last step of :doc:`dedicated_storage_environ`, the controller-0 virtual
 server 'dedicatedstorage-controller-0' was started by the
 :command:`setup_configuration.sh` command.
 
-On the host, attach to the console of virtual controller-0 and select the appropriate
-installer menu options to start the non-interactive install of
+On the host, attach to the console of virtual controller-0 and select the
+appropriate installer menu options to start the non-interactive install of
 StarlingX software on controller-0.
 
 .. note::
@@ -74,7 +74,8 @@ Unlock virtual controller-0 in order to bring it into service:
   system host-unlock controller-0
 
 Controller-0 will reboot in order to apply configuration changes and come into
-service. This can take 5-10 minutes, depending on the performance of the host machine.
+service. This can take 5-10 minutes, depending on the performance of the host
+machine.
 
 -----------------------------------------------------------------
 Install software on controller-1, storage nodes, and worker nodes
@@ -94,8 +95,8 @@ Install software on controller-1, storage nodes, and worker nodes
 
       virsh console dedicatedstorage-controller-1
 
-#. As controller-1 VM boots, a message appears on its console instructing you to
-   configure the personality of the node.
+#. As controller-1 |VM| boots, a message appears on its console instructing you
+   to configure the personality of the node.
 
 #. On the console of controller-0, list hosts to see newly discovered
    controller-1 host (hostname=None):
@@ -119,9 +120,10 @@ Install software on controller-1, storage nodes, and worker nodes
    This initiates software installation on controller-1.
    This can take 5-10 minutes, depending on the performance of the host machine.
 
-#. While waiting on the previous step to complete, start up and set the personality
-   for 'dedicatedstorage-storage-0' and 'dedicatedstorage-storage-1'. Set the
-   personality to 'storage' and assign a unique hostname for each.
+#. While waiting on the previous step to complete, start up and set the
+   personality for 'dedicatedstorage-storage-0' and
+   'dedicatedstorage-storage-1'. Set the personality to 'storage' and assign a
+   unique hostname for each.
 
    For example, start 'dedicatedstorage-storage-0' from the host:
 
@@ -152,9 +154,9 @@ Install software on controller-1, storage nodes, and worker nodes
    This initiates software installation on storage-0 and storage-1.
    This can take 5-10 minutes, depending on the performance of the host machine.
 
-#. While waiting on the previous step to complete, start up and set the personality
-   for 'dedicatedstorage-worker-0' and 'dedicatedstorage-worker-1'. Set the
-   personality to 'worker' and assign a unique hostname for each.
+#. While waiting on the previous step to complete, start up and set the
+   personality for 'dedicatedstorage-worker-0' and 'dedicatedstorage-worker-1'.
+   Set the personality to 'worker' and assign a unique hostname for each.
 
    For example, start 'dedicatedstorage-worker-0' from the host:
 
@@ -192,8 +194,8 @@ Install software on controller-1, storage nodes, and worker nodes
         :ref:`deploy-edgeworker-nodes` for details.
 
 #. Wait for the software installation on controller-1, storage-0, storage-1,
-   worker-0, and worker-1 to complete, for all virtual servers to reboot, and for all
-   to show as locked/disabled/online in 'system host-list'.
+   worker-0, and worker-1 to complete, for all virtual servers to reboot, and
+   for all to show as locked/disabled/online in 'system host-list'.
 
    ::
 
@@ -233,7 +235,8 @@ On virtual controller-0:
 
 #. Assign the cluster-host network to the MGMT interface for the storage nodes.
 
-   Note that the MGMT interfaces are partially set up by the network install procedure.
+   Note that the MGMT interfaces are partially set up by the network install
+   procedure.
 
    ::
 
@@ -282,7 +285,8 @@ Unlock virtual storage nodes in order to bring them into service:
   done
 
 The storage nodes will reboot in order to apply configuration changes and come
-into service. This can take 5-10 minutes, depending on the performance of the host machine.
+into service. This can take 5-10 minutes, depending on the performance of the
+host machine.
 
 ----------------------
 Configure worker nodes
@@ -308,8 +312,8 @@ On virtual controller-0:
       This step is required only if the StarlingX OpenStack application
       (|prefix|-openstack) will be installed.
 
-      1G Huge Pages are not supported in the virtual environment and there is no
-      virtual NIC supporting SRIOV. For that reason, data interfaces are not
+      1G Huge Pages are not supported in the virtual environment and there is
+      no virtual NIC supporting SRIOV. For that reason, data interfaces are not
       applicable in the virtual environment for the Kubernetes-only scenario.
 
    For OpenStack only:

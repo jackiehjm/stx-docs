@@ -3,7 +3,7 @@ Prepare Host and Environment
 ============================
 
 This section describes how to prepare the physical host and virtual environment
-for a **StarlingX R7.0 virtual Standard with Controller Storage** deployment
+for a StarlingX |this-ver| virtual Standard with Controller Storage deployment
 configuration.
 
 .. contents::
@@ -38,7 +38,8 @@ Prepare virtual environment and servers
 #. Prepare virtual servers.
 
    Create the XML definitions for the virtual servers required by this
-   configuration option. This will create the XML virtual server definition for:
+   configuration option. This will create the XML virtual server definition
+   for:
 
    * controllerstorage-controller-0
    * controllerstorage-controller-1
@@ -54,6 +55,6 @@ Prepare virtual environment and servers
 
      bash setup_configuration.sh -c controllerstorage -i ./bootimage.iso
 
-   If there is no X-server present errors will occur and the X-based GUI for the
-   virt-manager application will not start. The virt-manager GUI is not absolutely
-   required and you can safely ignore errors and continue.
+   If there is no X-server present errors will occur and the X-based GUI for
+   the virt-manager application will not start. The virt-manager GUI is not
+   absolutely required and you can safely ignore errors and continue.

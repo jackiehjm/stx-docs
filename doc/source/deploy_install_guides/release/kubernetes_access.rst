@@ -1,8 +1,8 @@
 .. _kubernetes_access_r7:
 
-================================
-Access StarlingX Kubernetes R7.0
-================================
+===========================
+Access StarlingX Kubernetes
+===========================
 
 This section describes how to use local/remote CLIs, GUIs, and/or REST APIs to
 access and manage StarlingX Kubernetes and hosted containerized applications.
