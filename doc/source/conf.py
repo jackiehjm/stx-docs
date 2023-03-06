@@ -180,4 +180,4 @@ starlingxdocs_plus_bug_project = 'starlingx'
 starlingxdocs_plus_bug_tag = 'stx.docs'
 starlingxdocs_plus_this_version = "r/stx.6.0"
 # starlingxdocs_plus_other_versions = [("rel label","path"),("latest","path")]
-starlingxdocs_plus_other_versions = [("Version 7.0","/r/stx.7.0"),("Version 8.0","/r/stx.8.0"),("Latest","/")]
+starlingxdocs_plus_other_versions = [("Version 7.0","r/stx.7.0"),("Version 8.0","r/stx.8.0"),("Latest","/")]
