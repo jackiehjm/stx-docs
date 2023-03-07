@@ -14,7 +14,7 @@
         <div class="version-dropdown-content">
           <p><a href="." rel="nofollow">{{ this_version }}</a></p>
           {%- for ver in other_versions: %}
-            <p><a href="{{pathto(ver[1], 1) }}" rel="nofollow">{{ ver[0] }}</a></p>
+            <p><a href="/{{pathto(ver[1], 1) }}" rel="nofollow">{{ ver[0] }}</a></p>
           {%- endfor %}
         </div>
       </div>
