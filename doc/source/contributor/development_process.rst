@@ -541,48 +541,63 @@ Testing phase
 *************
 
 Testing a newly developed fix or feature can be as challenging as developing
-the fix or feature itself. The effort and work items needed to complete
-the testing phase should be considered in the planning phase.
+the fix or feature itself. The effort and work items needed to complete the
+testing phase should be considered in the planning phase.
 
-It is possible to cause major changes in the
-behavior of the StarlingX software
+It is possible to cause major changes in the behavior of the StarlingX software
 with very small code changes so thorough testing is important to the stability
-of the code. We suggest that feature developers create a test plan
-in collaboration with the sub-project's PL and TL, the core reviewers
-and subject matter experts within the StarlingX community. Consultation
-with members of the project's Test team are also advised.
+of the code. We suggest that feature developers create a test plan in
+collaboration with the sub-project's PL and TL, the core reviewers and subject
+matter experts within the StarlingX community. Consultation with members of the
+project's Test team are also advised.
 
-Test plans can cover one or more StarlingX configurations,
-define test
-cases focused on the functional changes made, and sometimes include
-sanity tests or full regression test runs by the test team, depending
-on the impact of the changes made.
+Test plans can cover one or more StarlingX configurations, define test cases
+focused on the functional changes made, and sometimes include sanity tests or
+full regression test runs by the test team, depending on the impact of the
+changes made.
 
-Test cases should be automated, and ideally run within Zuul jobs that
-are triggered upon code check in. These tests can also be run locally.
+Test cases should be automated, and ideally run within Zuul jobs that are
+triggered upon code check in. These tests can also be run locally.
 
-It is the responsibility of each project team to ensure that they
-have the proper test automation in Zuul jobs for their repos. It is
-the responsibility of every developer to submit new automated
-tests with their code changes.
+It is the responsibility of each project team to ensure that they have the
+proper test automation in Zuul jobs for their repos. It is the responsibility
+of every developer to submit new automated tests with their code changes.
 
-Some issues can be configuration specific and for instance only
-reproduce on standard configurations on bare metal, or on simplex
-configurations in a virtual environment. We don't expect every
-developer to have access to multiple hardware setups so collaboration
-with the test team is important. Collaboration with the test
-team may also be needed
-to help create new test cases in their test suites.
+Some issues can be configuration specific and for instance only reproduce on
+standard configurations on bare metal, or on simplex configurations in a
+virtual environment. We don't expect every developer to have access to multiple
+hardware setups so collaboration with the test team is important. Collaboration
+with the test team may also be needed to help create new test cases in their
+test suites.
 
-Testing should also include unit tests or functional tests. Such
-tests should be added to the git repos as part of the code check in.
+Testing should also include unit tests or functional tests. Such tests should
+be added to the git repos as part of the code check in.
 
-Once all of the required tests are written, have been checked in
-and have been successfully
-executed, the test phase is complete. Completion of
-developer testing is usually a requirement for acceptance
-of the code by the core reviewers, so the implementation and test
-phases usually complete at the same time.
+Once all of the required tests are written, have been checked in and have been
+successfully executed, the test phase is complete. Completion of developer
+testing is usually a requirement for acceptance of the code by the core
+reviewers, so the implementation and test phases usually complete at the same
+time.
+
+.. rubric:: Getting help
+
+The infrastructure used by StarlingX and other OpenInfra communities is
+provided and maintained by `OpenDev <https://opendev.org>`_. Contributors
+should take time to learn how the infrastructure works and work with the
+OpenDev community to ensure that the resources that StarlingX is relying on are
+maintained.
+
+If you have issues or questions about `OpenDev <https://opendev.org>`_
+infrastructure, you can search and post questions to the ``service-discuss``
+mailing list at:
+
+https://lists.opendev.org/archives/list/service-discuss@lists.opendev.org/latest
+
+You will need to create an account and log in to post questions. No log-in is
+required to view posts.
+
+The OpenDev community is also available on IRC in the #opendev channel on the
+OFTC network.
 
 *******************
 Documentation phase
@@ -592,23 +607,20 @@ Code changes to StarlingX that change the user interface, or
 the project's APIs or the behavior of the system should be
 documented.
 
-The process to submit a documentation change is described
-in the
-`Documentation Contributor's Guide.
+The process to submit a documentation change is described in the `Documentation
+Contributor's Guide.
 <https://docs.starlingx.io/contributor/doc_contribute_guide.html>`_
 
 Some changes may require an update to the project's release notes. Please
-consult with your sub-project's PL and TL to see if release
-notes are needed, and follow the
-`Release Note
-<https://docs.starlingx.io/contributor/release_note_contribute_guide.html>`_
-to contribute your changes to the release notes.
+consult with your sub-project's PL and TL to see if release notes are needed,
+and follow the `Release Note
+<https://docs.starlingx.io/contributor/release_note_contribute_guide.html>`_ to
+contribute your changes to the release notes.
 
-The documentation changes needed for a code change should be
-included in the planning phase, working with project's docs team as
-for help with the documentation file format or for how to place
-your documentation changes into the projects formal documentation.
+The documentation changes needed for a code change should be included in the
+planning phase, working with project's docs team as for help with the
+documentation file format or for how to place your documentation changes into
+the projects formal documentation.
 
-The documentation phase is complete when all documents impacted
-by a change are complete and have been merged by the docs project's
-core reviewers.
+The documentation phase is complete when all documents impacted by a change are
+complete and have been merged by the docs project's core reviewers.
