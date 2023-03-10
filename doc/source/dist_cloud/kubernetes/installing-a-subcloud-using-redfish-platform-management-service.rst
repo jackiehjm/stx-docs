@@ -243,6 +243,8 @@ command with the ``install-values.yaml`` file containing the desired
             url: registry.central:9001/docker.io
           docker.elastic.co:
             url: registry.central:9001/docker.elastic.co
+          registry.k8s.io:
+            url: registry.central:9001/registry.k8s.io
           defaults:
             username: sysinv
             password: <sysinv_password>
@@ -426,4 +428,4 @@ command with the ``install-values.yaml`` file containing the desired
 
 -   For more information on bootstrapping and deploying, see the procedures
     listed under :ref:`install-a-subcloud`.
-  
+

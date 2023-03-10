@@ -112,6 +112,13 @@ Install-time-only parameters
     * ``password``
     * ``secure``
 
+  * ``registry.k8s.io``
+
+    * ``url``
+    * ``username``
+    * ``password``
+    * ``secure``
+
   * ``defaults``
 
     * ``url``
@@ -305,6 +312,8 @@ additionally specifies an alternate CA certificate.
        url: my.quayregistry.io
      docker.io:
        url: my.dockerregistry.io
+     registry.k8s.io:
+       url: my.registry.k8s.io
      defaults:
        url: my.registry.io
        username: myreguser
