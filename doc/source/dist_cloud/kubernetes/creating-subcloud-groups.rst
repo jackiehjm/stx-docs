@@ -57,7 +57,7 @@ Deletes subcloud group details from the database.
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ dcmanager subcloud-group add --name <<group>>
+        ~(keystone_admin)]$ dcmanager subcloud-group add --name <group>
         usage: dcmanager subcloud-group add [-h] [-f {json,shell,table,value,yaml}]
          [-c COLUMN] [--max-width <integer>]
          [--fit-width] [--print-empty] [--noindent]

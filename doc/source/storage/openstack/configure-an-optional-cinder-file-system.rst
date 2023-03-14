@@ -59,7 +59,7 @@ Adding a New Filesystem for Image-Conversion
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system host-fs-add <<hostname or id>> <<fs-name=size>>
+        ~(keystone_admin)]$ system host-fs-add <hostname or id> <fs-name=size>
 
     Where:
 
@@ -143,7 +143,7 @@ Removing the File System
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system host-fs-delete <<hostname or id>> <<fs-name>>
+        ~(keystone_admin)]$ system host-fs-delete <hostname-or-id> <fs-name>
 
 #.  When the **image-conversion** file system is removed from the system, the
     /opt/conversion partition is also removed.

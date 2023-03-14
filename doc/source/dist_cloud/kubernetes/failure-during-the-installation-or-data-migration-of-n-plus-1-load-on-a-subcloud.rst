@@ -31,7 +31,7 @@ command to fix it.
 
 .. code-block:: none
 
-    ~(keystone_admin)]$ dcmanager subcloud update <<subcloud-name>> --install-values <<subcloud-install-values-yaml>>
+    ~(keystone_admin)]$ dcmanager subcloud update <subcloud-name> --install-values <subcloud-install-values-yaml>
 
 This type of failure is recoverable and you can retry the orchestrated
 upgrade for each of the failed subclouds using the following procedure:
@@ -50,7 +50,7 @@ upgrade for each of the failed subclouds using the following procedure:
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ dcmanager upgrade-strategy create <<subcloud-name>> --force <<additional options>>
+        ~(keystone_admin)]$ dcmanager upgrade-strategy create <subcloud-name> --force <additional options>
 
     .. note::
 
