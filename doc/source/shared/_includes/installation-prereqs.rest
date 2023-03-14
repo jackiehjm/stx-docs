@@ -41,11 +41,8 @@ Before attempting to install |prod|, ensure that you have the following:
             -a <file>: Specify ks-addon.cfg file
             -p <p=v>:  Specify boot parameter
 
-            Examples:
-                -p rootfs_device=nvme0n1
-                -p boot_device=nvme0n1
-                -p rootfs_device=/dev/disk/by-path/pci-0000:00:0d.0-ata-1.0
-                -p boot_device=/dev/disk/by-path/pci-0000:00:0d.0-ata-1.0
+            Example:
+                -p instdev=/dev/disk/by-path/pci-0000:00:0d.0-ata-1.0
 
             -d <default menu option>:
                 Specify default boot menu option:
