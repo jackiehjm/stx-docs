@@ -207,11 +207,11 @@ To delete a pool, use the following command:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ ceph osd pool delete <pool-name> <<pool-name>>
+    ~(keystone_admin)$ ceph osd pool delete <pool-name> <pool-name>
 
 To create a pool, use the parameters from ceph osd dump, and run the following command:
 
 .. code-block:: none
 
-    ~(keystone_admin)$ ceph osd pool create {pool-name}{pg-num} {pgp-num} {replicated} <<crush-ruleset-name>>
+    ~(keystone_admin)$ ceph osd pool create {pool-name}{pg-num} {pgp-num} {replicated} <crush-ruleset-name>
 

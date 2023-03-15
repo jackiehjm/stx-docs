@@ -114,7 +114,7 @@ You can use this command to obtain information about a Glance image.
 .. code-block:: none
 
     ~(keystone_admin)$ OS_AUTH_URL=http://keystone.openstack.svc.cluster.local/v3
-    ~(keystone_admin)$  openstack image-show <<image-id>>
+    ~(keystone_admin)$  openstack image-show <image-id>
     +------------------+--------------------------------------+
     | Property         | Value                                |
     +------------------+--------------------------------------+

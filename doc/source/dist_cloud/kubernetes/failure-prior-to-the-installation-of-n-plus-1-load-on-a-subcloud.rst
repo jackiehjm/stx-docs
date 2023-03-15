@@ -41,7 +41,7 @@ orchestrated upgrade after addressing the cause of failure:
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ dcmanager upgrade-strategy create <<additional options>>
+        ~(keystone_admin)]$ dcmanager upgrade-strategy create <additional options>
 
     .. note::
 
