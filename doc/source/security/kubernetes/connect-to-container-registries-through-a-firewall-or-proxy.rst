@@ -32,7 +32,7 @@ otherwise inaccessible behind a firewall or proxy.
     Substitute the correct value for <my.proxy.com>.
 
 #.  If you access registries that are not on the other side of the
-    firewall/proxy, you can specify their IP addresses in the no\_proxy service
+    firewall/proxy, you can specify their IP addresses in the no_proxy service
     parameter as a comma separated list.
 
     .. note::

@@ -42,7 +42,7 @@ guidelines:
     with the internal management or infrastructure networks.
 
 -   The IP addresses of the DNS, and |NTP|/|PTP| servers must match the IP
-    address plan \(IPv4 or IPv6\) of the |OAM| network.
+    address plan (IPv4 or IPv6) of the |OAM| network.
 
 -   For an IPv4 address plan:
 

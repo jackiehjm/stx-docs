@@ -6,8 +6,8 @@
 Web Administration Login Timeout
 ================================
 
-The |prod| Web administration tool \(Horizon\) will automatically log users
-out after 50 minutes \(the Keystone Token Expiry time\), regardless of activity.
+The |prod| Web administration tool (Horizon) will automatically log users
+out after 50 minutes (the Keystone Token Expiry time), regardless of activity.
 
 Operational complexity: No additional configuration is required.
 

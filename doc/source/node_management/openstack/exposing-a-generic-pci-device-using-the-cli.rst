@@ -6,8 +6,8 @@
 Expose a Generic PCI Device Using the CLI
 =========================================
 
-For generic PCI-passthrough or |SRIOV| devices \(i.e not network interface
-devices or cards\), you can configure |VM| access using the |CLI|.
+For generic PCI-passthrough or |SRIOV| devices (i.e not network interface
+devices or cards), you can configure |VM| access using the |CLI|.
 
 .. rubric:: |context|
 
@@ -57,7 +57,7 @@ To edit a device, you must first lock the host.
     **<hostname>**
         is the name of the host where the device is installed
 
-    **<pci\_address>**
+    **<pci_address>**
         is the address shown in the device list
 
     **<devicename>**

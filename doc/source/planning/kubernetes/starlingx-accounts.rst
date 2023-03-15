@@ -21,7 +21,7 @@ StarlingX Accounts
 **Local LDAP Linux User Accounts**
     These are local |LDAP| accounts that are centrally managed across all
     hosts in the cluster. These accounts are intended to provide additional
-    admin level user accounts \(in addition to sysadmin\) that can SSH to
+    admin level user accounts (in addition to sysadmin) that can SSH to
     the nodes of the |prod|.
 
     See :ref:`Local LDAP Linux User Accounts

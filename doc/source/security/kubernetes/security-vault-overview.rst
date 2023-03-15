@@ -7,7 +7,7 @@ Vault Overview
 ==============
 
 |prod| integrates open source Vault containerized security application
-\(Optional\) into the |prod| solution, that requires |PVCs| as a storage
+\(Optional) into the |prod| solution, that requires |PVCs| as a storage
 backend to be enabled.
 
 Vault is a containerized secrets management application that provides

@@ -65,8 +65,8 @@ This example requires that:
                   class: nginx
 
 #.  Create a deployment of the kuard demo application
-    \(`https://github.com/kubernetes-up-and-running/kuard
-    <https://github.com/kubernetes-up-and-running/kuard>`__\) with an INGRESS
+    (`https://github.com/kubernetes-up-and-running/kuard
+    <https://github.com/kubernetes-up-and-running/kuard>`__) with an INGRESS
     using cert-manager by applying the following manifest file:
 
     Where both ``starlingx.mycompany.com`` and

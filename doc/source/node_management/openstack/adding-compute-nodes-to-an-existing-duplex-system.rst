@@ -30,7 +30,7 @@ The requirements for each added compute node are as follows:
     :widths: auto
 
     +---------------+---------------+---------------+
-    | Compute Nodes | RAM \(GB\)    | CPU Cores     |
+    | Compute Nodes | RAM (GB)      | CPU Cores     |
     +===============+===============+===============+
     | 1             | +2            | +1            |
     +---------------+---------------+---------------+
@@ -49,7 +49,7 @@ The requirements for each added compute node are as follows:
     inventory in |prod-os|. See |node-doc|: :ref:`Memory Tab <memory-tab>` and
     :ref:`Processor Tab <processor-tab>`.
 
-#.  Add the hosts \(compute nodes\).
+#.  Add the hosts (compute nodes).
 
     Add one or more host entries to the system inventory.
 

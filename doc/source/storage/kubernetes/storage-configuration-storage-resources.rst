@@ -52,7 +52,7 @@ Kubernetes Docker ephemeral storage is allocated as part of the
 docker-lv and kubelet-lv file systems from the cgts-vg volume group on
 the root disk. These filesystems are resizable.
 
-**Container Persistent Volume Claims \(PVCs\)**
+**Container Persistent Volume Claims (PVCs)**
 
 Containers can mount remote HA replicated volumes backed by the Ceph
 Storage Cluster for managing persistent data. This data survives
@@ -77,12 +77,12 @@ following storage may be used only for:
 
 -   Controller hosts: Container Persistent Volume Claims on dedicated
     storage hosts when using that setup or on controller hosts. Additional
-    Ceph OSD disk\(s\) are present on controllers in configurations
-    without dedicated storage hosts. These OSD\(s\) provide storage to fill
+    Ceph OSD disk\(s) are present on controllers in configurations
+    without dedicated storage hosts. These OSD\(s) provide storage to fill
     Persistent Volume Claims made by Kubernetes pods or containers.
 
 -   Worker hosts: This is storage is derived from docker-lv/kubelet-lv as
-    defined on the cgts-vg \(root disk\). You can add a disk to cgts-vg and
+    defined on the cgts-vg (root disk). You can add a disk to cgts-vg and
     increase the size of the docker-lv/kubelet-lv.
 
 

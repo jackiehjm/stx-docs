@@ -30,8 +30,8 @@ For more information, see :ref:`Adjust Sensor Actions and Audit Intervals
 
 The available sensor groups and their membership are based on the sensor
 model of the installed |BMC|. The sensor model is learned by |prod| when the
-|BMC| is initially provisioned, and can be relearned if necessary \(for
-example, if the model changes due to a |BMC| firmware upgrade\). For more
+|BMC| is initially provisioned, and can be relearned if necessary (for
+example, if the model changes due to a |BMC| firmware upgrade). For more
 information, see :ref:`Relearn Sensor Models
 <relearning-sensor-models>`.
 
@@ -136,7 +136,7 @@ The following actions are supported:
     notification to the Maintenance Service for action handling. If the
     server is locked, then the Maintenance Service forces a reset of the
     server. If the server is unlocked, then the Maintenance Service fails the
-    server and runs the full enable finite state machine \(FSM\) in an
+    server and runs the full enable finite state machine (FSM) in an
     attempt to recover it to the **ENABLED** state. In both cases, there is
     a 10 minute wait period before another reset/enable is issued if the
     Hardware Monitor Service continues to report the fault. This hold-off

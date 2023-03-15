@@ -47,7 +47,7 @@ Some interfaces require manual provisioning before the nodes can be unlocked.
     **ifname**
         The name of the interface.
 
-    **ip\_address**
+    **ip_address**
         An IPv4 or IPv6 address.
 
     **prefix**

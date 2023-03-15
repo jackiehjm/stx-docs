@@ -6,7 +6,7 @@
 Configure Heartbeat Failure Action
 ==================================
 
-You can configure **heartbeat\_failure\_action** while performing network
+You can configure **heartbeat_failure_action** while performing network
 related maintenance activities that may interrupt inter-host communications.
 
 You can configure service parameters to change the heartbeat failure behavior
@@ -50,7 +50,7 @@ immediately in the event of a persistent loss of maintenance heartbeat.
         ~(keystone_admin)$ system service-parameter-modify <platform maintenance heartbeat_failure_action>=ignore Action must be one of 'fail', 'degrade', 'alarm' or 'none'
 
     The following service parameters control the
-    **heartbeat\_failure\_action** and accepts one of the four possible
+    **heartbeat_failure_action** and accepts one of the four possible
     actions.
 
     **fail**
@@ -121,11 +121,11 @@ The heartbeat alarms, such as Management Network can be viewed. For example:
 .. note::
     In the event of a single host heartbeat failure, maintenance will attempt
     to reboot, and if unreachable, will also attempt to reset the host in order
-    to expedite failed host recovery (if |LAG| Network is provisioned\).
+    to expedite failed host recovery (if |LAG| Network is provisioned).
 
 .. warning::
     To maintain a system with High Fault Detection and Availability the
-    **heartbeat\_failure\_action** should always be reverted back to **fail**
+    **heartbeat_failure_action** should always be reverted back to **fail**
     once network maintenance activities are completed. This action applies to
     all hosts and if a heartbeat failure occurs while any action other than
     **fail** is selected, maintenance will not take action to recover the
@@ -143,5 +143,5 @@ The heartbeat alarms, such as Management Network can be viewed. For example:
 
 .. rubric:: |postreq|
 
-Always revert the **heartbeat\_failure\_action** to **fail** once network
+Always revert the **heartbeat_failure_action** to **fail** once network
 maintenance activities are complete.

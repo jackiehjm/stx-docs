@@ -50,14 +50,14 @@ For example:
 **NTP Service**
 
 Clock synchronization, synchronizes time across multiple systems in a
-network. The default value for **clock\_synchronization** is **ntp**.
+network. The default value for **clock_synchronization** is **ntp**.
 
 .. xbooklink For more information on configuring the NTP service for clock
    synchronization, see |node-doc|: `Host Inventory <hosts-tab>`.
 
 .. note::
     |NTP| and |PTP| is configured per host. Lock/unlock the host when
-    updating **clock\_synchronization** for the host.
+    updating **clock_synchronization** for the host.
 
 Use the following command to change the clock synchronization on the host:
 

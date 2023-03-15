@@ -114,14 +114,14 @@ variables and aliases for the remote |CLI| commands.
         In some cases the mechanism for identifying commands that should leave
         you at a shell prompt does not identify them correctly. If you
         encounter such scenarios, you can force-enable or disable the shell
-        options using the <FORCE\_SHELL> or <FORCE\_NO\_SHELL> variables before
+        options using the <FORCE_SHELL> or <FORCE_NO_SHELL> variables before
         the command.
 
         You cannot use both variables at the same time.
 
 -   If you need to run a remote |CLI| command that references a local file, then
     that file must be copied to or created in the working directory specified on
-    the ./config\_client.sh command and referenced as under /wd/ in the actual
+    the ./config_client.sh command and referenced as under /wd/ in the actual
     command.
 
     For example:

@@ -29,7 +29,7 @@ You can install reboot-required software updates using the CLI.
         |pn|-nn.nn_PATCH_0002   Available
         |pn|-nn.nn_PATCH_0003   Available
 
-    where *nn.nn* in the update \(patch\) filename is the |prod| release number.
+    where *nn.nn* in the update (patch) filename is the |prod| release number.
 
 #.  Ensure the original update files have been deleted from the root drive.
 
@@ -120,7 +120,7 @@ You can install reboot-required software updates using the CLI.
            In a wait state.
 
         **installing**
-           Installing \(or removing\) updates.
+           Installing (or removing) updates.
 
         **install-failed**
            The operation failed, either due to an update error or something
@@ -248,13 +248,13 @@ You can install reboot-required software updates using the CLI.
 
         ~(keystone_admin)]$ system host-unlock <hostname>
 
-    where <hostname> is the name of the host \(for example, ``worker-0``\).
+    where <hostname> is the name of the host (for example, ``worker-0``).
 
     .. note::
         Update installations can be triggered in parallel.
 
-        The :command:`sw-patch host-install-async` command \( cooresponding to
-        **install patches** on the Horizon Web interface\) can be run on all
+        The :command:`sw-patch host-install-async` command ( cooresponding to
+        **install patches** on the Horizon Web interface) can be run on all
         locked nodes, without waiting for one node to complete the install
         before triggering the install on the next. If you can lock the nodes at
         the same time, without impacting hosted application services, you can
@@ -269,7 +269,7 @@ You can install reboot-required software updates using the CLI.
         * You cannot lock a worker node if you do not have enough free resources
           to relocate the hosted applications from it. 
           
-        Also, in a Ceph configuration \(with storage nodes\), you cannot lock
+        Also, in a Ceph configuration (with storage nodes), you cannot lock
         more than one of controller-0/controller-1/storage-0 at the same time,
         as these nodes are running Ceph monitors and you must have at least two
         in service at all times.

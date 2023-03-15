@@ -13,7 +13,7 @@ You can change the settings for a host interface.
 The ability to change the interface settings is especially useful for
 updating the management interface. When a worker node is first created, its
 internal management interface is automatically set up using the default
-**Interface Type** \(**ethernet**\). If you are using |LAG| on the internal
+**Interface Type** (**ethernet**). If you are using |LAG| on the internal
 management network, you must update this manually to **aggregated ethernet**.
 
 .. rubric:: |proc|

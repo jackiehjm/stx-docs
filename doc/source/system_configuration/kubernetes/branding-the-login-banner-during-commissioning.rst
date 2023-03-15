@@ -6,7 +6,7 @@
 Brand the Login Banner During Commissioning
 ===========================================
 
-You can customize the pre-login message \(issue\) and post-login |MOTD| across
+You can customize the pre-login message (issue) and post-login |MOTD| across
 the entire |prod| cluster during system commissioning and installation.
 
 The following files can be customized to use this feature:

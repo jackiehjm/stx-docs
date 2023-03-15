@@ -3,7 +3,7 @@
 .. _network-planning-shared-vlan-or-multi-netted-ethernet-interfaces:
 
 ===================================================
-Shared \(VLAN or Multi-Netted\) Ethernet Interfaces
+Shared (VLAN or Multi-Netted) Ethernet Interfaces
 ===================================================
 
 The management, cluster host, |OAM|, and physical networks can share Ethernet
@@ -20,8 +20,8 @@ The following arrangements are possible:
 .. _network-planning-shared-vlan-or-multi-netted-ethernet-interfaces-ul-y5k-zg2-zq:
 
 -   One interface for the internal management network and internal cluster host
-    network using multi-netting, another interface for |OAM| \(on which
-    container workloads are exposed externally\) and one or more additional
+    network using multi-netting, another interface for |OAM| (on which
+    container workloads are exposed externally) and one or more additional
     interfaces data networks. This is the default configuration.
 
 -   One interface for the internal management network, another interface for

@@ -56,7 +56,7 @@ subcloud, the subcloud installation process has two phases:
 
 -   In order to be able to deploy subclouds from either controller, all local
     files that are referenced in the ``bootstrap.yml`` file must exist on both
-    controllers \(for example, ``/home/sysadmin/docker-registry-ca-cert.pem``\).
+    controllers (for example, ``/home/sysadmin/docker-registry-ca-cert.pem``).
 
 .. rubric:: |proc|
 
@@ -74,8 +74,8 @@ subcloud, the subcloud installation process has two phases:
        :start-after: begin-ref-1
        :end-before: end-ref-1
 
-#.  Update the ISO image to modify installation boot parameters \(if
-    required\), automatically select boot menu options and add a kickstart file
+#.  Update the ISO image to modify installation boot parameters (if
+    required), automatically select boot menu options and add a kickstart file
     to automatically perform configurations such as configuring the initial IP
     Interface for bootstrapping.
 
@@ -258,7 +258,7 @@ subcloud, the subcloud installation process has two phases:
     deployment by monitoring the following log files on the active controller
     in the Central Cloud.
 
-    /var/log/dcmanager/ansible/<subcloud\_name>\_playbook.output.log
+    /var/log/dcmanager/ansible/<subcloud_name>\_playbook.output.log
 
     For example:
 

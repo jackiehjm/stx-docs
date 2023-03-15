@@ -6,8 +6,8 @@
 For Kubernetes CLI from a Local LDAP Linux Account Login
 ========================================================
 
-You can establish credentials for executing Kubernetes |CLIs| \(kubectl and
-helm\) for a Local |LDAP| user, if required; this is not setup by default.
+You can establish credentials for executing Kubernetes |CLIs| (kubectl and
+helm) for a Local |LDAP| user, if required; this is not setup by default.
 
 .. rubric:: |context|
 

@@ -40,7 +40,7 @@ the **LLDP** tab in the Host Details window.
         +------------------+------------------------------------------------------------------------------------------------+
         | Port Description | The port description of the |LLDP| neighbor port.                                              |
         +------------------+------------------------------------------------------------------------------------------------+
-        | Time To Live     | The time until the neighbor is timed out \(if no further |LLDP| frames are received from it\). |
+        | Time To Live     | The time until the neighbor is timed out (if no further |LLDP| frames are received from it).   |
         +------------------+------------------------------------------------------------------------------------------------+
         | System Name      | The system name of the neighbor.                                                               |
         +------------------+------------------------------------------------------------------------------------------------+

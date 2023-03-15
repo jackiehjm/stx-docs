@@ -14,8 +14,8 @@ maintenance purposes.
 On a controller node, the state transition only succeeds if there are no
 services running in active mode on the host.
 
-On a worker node \(or |AIO|\), the state transition only succeeds if all
-currently running containers \(hosted applications\) on the host can be
+On a worker node (or |AIO|), the state transition only succeeds if all
+currently running containers (hosted applications) on the host can be
 re-located on alternative worker nodes or |AIO| Controller. Re-location of
 containers is initiated automatically by |prod| as soon as the state transition
 is requested. For containers, a live re-location of the container to

@@ -26,7 +26,7 @@ unlocked as part of applying the update.
     The **Patches** tab shows the current status of all updates uploaded to the
     system. If there are no updates, an empty **Patch Table** is displayed.
 
-#.  Upload the update \(patch\) file to the update storage area.
+#.  Upload the update (patch) file to the update storage area.
 
     Click the **Upload Patch** button to display an upload window from which
     you can browse your workstation's file system to select the update file.
@@ -67,8 +67,8 @@ unlocked as part of applying the update.
 #.  Repeat the steps 6 a,b, above with controller-1 to install the update
     on controller-1.
 
-#.  Repeat the steps 6 a,b above for the worker and/or storage hosts \(if
-    present\).
+#.  Repeat the steps 6 a,b above for the worker and/or storage hosts (if
+    present).
 
     This step does not apply for |prod| Simplex or Duplex systems.
 

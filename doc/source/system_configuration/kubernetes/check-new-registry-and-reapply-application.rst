@@ -30,7 +30,7 @@ to controller-1 and perform the same steps.
 #. Check if an application re-apply will now properly pull from the registries.
    First, remove the images for an application, such as
    nginx-ingress-controller, from the registry.local and the local image cache
-   for all nodes \(assuming AIO-SX\), in order to force the next re-apply of
+   for all nodes (assuming AIO-SX), in order to force the next re-apply of
    the application to re-pull these images.
 
    .. code-block:: none

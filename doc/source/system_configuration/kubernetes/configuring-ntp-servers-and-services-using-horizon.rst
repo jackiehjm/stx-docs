@@ -18,7 +18,7 @@ Horizon Web interface.
 .. note::
     |NTP| and |PTP| are configured per host. The default is |NTP|.
 
-    Lock/unlock the host when updating **clock\_synchronization** for the host.
+    Lock/unlock the host when updating **clock_synchronization** for the host.
 
 **NTP Servers**
 
@@ -35,7 +35,7 @@ Before making changes to the list of |NTP| servers, review the Fault Management
 page and ensure that any existing system alarms are cleared.
 
 .. caution::
-    Before you can use fully qualified domain names \(FQDN\) instead of IPv4
+    Before you can use fully qualified domain names (FQDN) instead of IPv4
     addresses, at least one valid DNS server is required. To add one, see
     :ref:`Specify DNS Servers Using Horizon <specifying-dns-servers-using-horizon>`.
 
@@ -89,14 +89,14 @@ page and ensure that any existing system alarms are cleared.
 
     #.  Perform a swact on the active controller.
 
-        Click **Action Menu \(down arrow\)** \> **Swact Host** \>   for
+        Click **Action Menu (down arrow)** \> **Swact Host** \>   for
         the active controller.
 
         Horizon Web interface access is interrupted, and the |prod| login
         screen appears. Wait briefly for the Web service to stabilize, and
         then log in again.
 
-    #.  Lock the original controller \(now in standby mode\).
+    #.  Lock the original controller (now in standby mode).
 
         Wait for the lock operation to be completed.
 

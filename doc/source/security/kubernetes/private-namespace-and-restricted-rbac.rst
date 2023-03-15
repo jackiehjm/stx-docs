@@ -20,7 +20,7 @@ resources in one or more namespaces.
 
 The following example creates a non-admin service account called dave-user
 with read/write type access to a single private namespace
-\(**billing-dept-ns**\).
+\(**billing-dept-ns**).
 
 .. note::
     The following example creates and uses ServiceAccounts as the user

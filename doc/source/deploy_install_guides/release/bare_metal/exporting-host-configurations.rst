@@ -16,8 +16,8 @@ host-bulk-export` command, and then use this file with the :command:`system
 host-bulk-add` command to re-create the system. If required, you can modify the
 file before using it.
 
-The configuration settings \(management |MAC| address, BM IP address, and so
-on\) for all nodes except **controller-0** are written to the file.
+The configuration settings (management |MAC| address, BM IP address, and so
+on) for all nodes except **controller-0** are written to the file.
 
 .. note::
     To ensure that the hosts are not powered on unexpectedly, the **power-on**

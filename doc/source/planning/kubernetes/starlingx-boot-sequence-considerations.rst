@@ -21,14 +21,14 @@ a bootable operating system, and set the following boot order in the BIOS.
 
 .. _starlingx-boot-sequence-considerations-ol-htt-5qg-fn:
 
-#.  removable storage device \(USB flash drive or DVD drive\)
+#.  removable storage device (USB flash drive or DVD drive)
 
 #.  hard drive
 
-#.  network \(|PXE|\), over an interface connected to the internal management
+#.  network (|PXE|), over an interface connected to the internal management
     network
 
-#.  network \(|PXE|\), over an interface connected to the |PXE| boot network
+#.  network (|PXE|), over an interface connected to the |PXE| boot network
 
 For BIOS configuration details, refer to the OEM documentation supplied with
 the worker node.

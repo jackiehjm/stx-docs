@@ -19,7 +19,7 @@ syntax information, use the :command:`help` command.
     List all the sensors.
 
 :command:`system host-sensor-modify`
-    You can modify sensors using the suppress parameter \(True or False\).
+    You can modify sensors using the suppress parameter (True or False).
 
 :command:`system host-sensor-show`
 
@@ -28,16 +28,16 @@ syntax information, use the :command:`help` command.
 :command:`system host-sensorgroup-modify`
     You can modify sensor groups using the following parameters:
 
-    **actions\_critical\_group**
+    **actions_critical_group**
         Valid values are alarm or ignore.
 
-    **actions\_major\_group**
+    **actions_major_group**
         Valid values are alarm or ignore.
 
-    **actions\_minor\_group**
+    **actions_minor_group**
         Valid values are alarm or ignore.
 
-    **audit interval\_group**
+    **audit interval_group**
         The time in seconds.
 
     **suppress**

@@ -37,9 +37,9 @@ Distributed Cloud Using Horizon
 
     The **Patch State** column indicates whether the Patch is available,
     partially-applied or applied. **Applied** indicates that the update has
-    been installed on all hosts of the cloud \(SystemController in this case\).
+    been installed on all hosts of the cloud (SystemController in this case).
 
--   To identify which subclouds are update-current \(**in-sync**\), use the
+-   To identify which subclouds are update-current (**in-sync**), use the
 
     .. code-block:: none
 

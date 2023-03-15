@@ -22,8 +22,8 @@ end-users' Kubernetes applications. |prod| recommends to install a Helm v3
 client on a remote workstation, so that non-admin (and admin) end-users can
 manage their Kubernetes applications remotely.
 
-Upon system installation, local Helm repositories \(containing |prod-long|
-packages\) are created and added to the Helm repo list.
+Upon system installation, local Helm repositories (containing |prod-long|
+packages) are created and added to the Helm repo list.
 
 Use the following command to list these local Helm repositories:
 
@@ -34,8 +34,8 @@ Use the following command to list these local Helm repositories:
     starlingx       `http://127.0.0.1:8080/helm_charts/starlingx`
     stx-platform    `http://127.0.0.1:8080/helm_charts/stx-platform`
 
-Where the `stx-platform` repo holds Helm charts of StarlingX Applications \(see
-next section\) of the |prod| platform itself, while the `starlingx` repo holds
+Where the `stx-platform` repo holds Helm charts of StarlingX Applications (see
+next section) of the |prod| platform itself, while the `starlingx` repo holds
 Helm charts of optional StarlingX applications, such as Openstack. The admin
 user can add charts to these local repos and regenerate the index to use these
 charts, and add new remote repositories to the list of known repos.

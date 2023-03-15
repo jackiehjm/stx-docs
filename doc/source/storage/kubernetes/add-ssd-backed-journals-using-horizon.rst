@@ -20,12 +20,12 @@ Storage Hosts <storage-hosts-storage-on-storage-hosts>`.
 
 .. rubric:: |prereq|
 
-A storage host with a solid-state drive \(SSD\) or Non-Volatile Memory
-Express \(NVMe\) drive is required.
+A storage host with a solid-state drive (SSD) or Non-Volatile Memory
+Express (NVMe) drive is required.
 
 To create or edit an SSD-backed journal, you must lock the host. The system
-must have at least two other unlocked hosts with Ceph monitors. \(Ceph
-monitors run on **controller-0**, **controller-1**, and **storage-0** only\).
+must have at least two other unlocked hosts with Ceph monitors. (Ceph
+monitors run on **controller-0**, **controller-1**, and **storage-0** only).
 
 .. rubric:: |proc|
 

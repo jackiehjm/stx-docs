@@ -43,7 +43,7 @@ You can use the CLI to view and change the timezone configuration.
 
 -   To change the timezone, use the following command syntax:
 
-    :command:`system modify --timezone=<one\_specific\_timezone>`
+    :command:`system modify --timezone=<one_specific_timezone>`
 
     For example:
 

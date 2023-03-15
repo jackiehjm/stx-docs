@@ -7,7 +7,7 @@ Enable Public Use of the cert-manager-acmesolver Image
 ======================================================
 
 When an arbitrary non-admin user creates a certificate with an external |CA|,
-cert-manager dynamically creates a pod \(image=cert-manager-acmesolver\)
+cert-manager dynamically creates a pod (image=cert-manager-acmesolver)
 and an ingress in the user-specified namespace in order to handle the
 http01 challenge from the external CA.
 

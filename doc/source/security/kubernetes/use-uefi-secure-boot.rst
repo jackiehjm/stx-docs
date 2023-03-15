@@ -12,7 +12,7 @@ booting |prod| as a legacy boot target.
 |prod| currently does not support switching from legacy to UEFI mode after a
 system has been installed. Doing so requires a reinstall of the system. This
 also means that upgrading from a legacy install to a secure boot install
-\(UEFI\) is not supported.
+\(UEFI) is not supported.
 
 When upgrading a |prod| system from a version which does not support secure
 boot to a version that does, do not enable secure boot in |UEFI| firmware until
@@ -35,8 +35,8 @@ Many motherboards ship with Microsoft secure boot certificates
 pre-programmed in the |UEFI| certificate database. These certificates may be
 required to boot |UEFI| drivers for video cards, RAID controllers, or NICs
 \(for example, the |PXE| boot software for a NIC may have been signed by a
-Microsoft certificate\). While certificates can usually be removed from the
-certificate database \(again, this is UEFI implementation specific\) it
+Microsoft certificate). While certificates can usually be removed from the
+certificate database (again, this is UEFI implementation specific) it
 may be required that you keep the Microsoft certificates to allow for
 complete system operation.
 

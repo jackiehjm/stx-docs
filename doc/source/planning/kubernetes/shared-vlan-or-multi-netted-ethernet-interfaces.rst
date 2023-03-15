@@ -3,7 +3,7 @@
 .. _shared-vlan-or-multi-netted-ethernet-interfaces:
 
 ===================================================
-Shared \(VLAN or Multi-Netted\) Ethernet Interfaces
+Shared (VLAN or Multi-Netted) Ethernet Interfaces
 ===================================================
 
 The management, |OAM|, cluster host, and other networks for container workload
@@ -22,18 +22,18 @@ The following arrangements are possible:
 .. _shared-vlan-or-multi-netted-ethernet-interfaces-ul-y5k-zg2-zq:
 
 -   One interface for the internal management network and internal cluster host
-    network using multi-netting, and another interface for |OAM| \(on which
-    container workloads are exposed externally\). This is the default
+    network using multi-netting, and another interface for |OAM| (on which
+    container workloads are exposed externally). This is the default
     configuration.
 
 -   One interface for the internal management network and another interface for
-    the external |OAM| and external cluster host \(on which container workloads
-    are exposed externally\) networks. Both are implemented using |VLAN|
+    the external |OAM| and external cluster host (on which container workloads
+    are exposed externally) networks. Both are implemented using |VLAN|
     tagging.
 
 -   One interface for the internal management network, another interface for
     the external |OAM| network, and a third for an external cluster host
-    network \(on which container workloads are exposed externally\).
+    network (on which container workloads are exposed externally).
 
 -   One interface for the internal management network and internal cluster host
     network using multi-netting, another interface for |OAM| and a third

@@ -31,7 +31,7 @@ In this method you can run Ansible Restore playbook and point to controller-0.
 
 #.  Provide an inventory file, either a customized one that is specified
     using the ``-i`` option, or the default one that is in the Ansible
-    configuration directory \(that is, /etc/ansible/hosts\). You must
+    configuration directory (that is, /etc/ansible/hosts). You must
     specify the floating |OAM| IP of the controller host. For example, if the
     host name is |prefix|\_Cluster, the inventory file should have an entry
     called |prefix|\_Cluster.
@@ -54,12 +54,12 @@ In this method you can run Ansible Restore playbook and point to controller-0.
 
     where ``optional-extra-vars`` can be:
 
-    -   To keep Ceph data intact \(false - default option\), use the
+    -   To keep Ceph data intact (false - default option), use the
         following parameter:
 
         :command:`wipe_ceph_osds=false`
 
-    -   To start with an empty Ceph cluster \(true\), where the Ceph
+    -   To start with an empty Ceph cluster (true), where the Ceph
         cluster will need to be recreated, use the following parameter:
 
         :command:`wipe_ceph_osds=true`
@@ -103,7 +103,7 @@ In this method you can run Ansible Restore playbook and point to controller-0.
         on controller-0.
 
     -   The :command:`ansible_remote_tmp` should be set to a new
-        directory \(not required to create it ahead of time\) under
+        directory (not required to create it ahead of time) under
         /home/sysadmin on controller-0 using the ``-e`` option on the command
         line.
 

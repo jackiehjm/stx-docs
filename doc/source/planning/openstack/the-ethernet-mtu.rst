@@ -12,7 +12,7 @@ elements on the Ethernet link.
 
 In the context of |prod-os|, the |MTU| refers to the largest possible payload
 on the Ethernet frame on a particular network link. The payload is enclosed by
-the Ethernet header \(14 bytes\) and the CRC \(4 bytes\), resulting in an
+the Ethernet header (14 bytes) and the CRC (4 bytes), resulting in an
 Ethernet frame that is 18 bytes longer than the |MTU| size.
 
 The original IEEE 802.3 specification defines a valid standard Ethernet frame
@@ -25,9 +25,9 @@ resulting in a frame size 22 bytes longer than the |MTU| size.
 
 For a |VXLAN| network, the frame is either 54 or 74 bytes longer, depending on
 whether IPv4 or IPv6 protocol is used. This is because, in addition to the
-Ethernet header and CRC, the payload is enclosed by an IP header \(20 bytes for
-Ipv4 or 40 bytes for IPv6\), a |UDP| header \(8 bytes\), and a |VXLAN| header
-\(8 bytes\).
+Ethernet header and CRC, the payload is enclosed by an IP header (20 bytes for
+Ipv4 or 40 bytes for IPv6), a |UDP| header (8 bytes), and a |VXLAN| header
+\(8 bytes).
 
 In |prod-os|, you can configure the |MTU| size for the following interfaces and
 networks:

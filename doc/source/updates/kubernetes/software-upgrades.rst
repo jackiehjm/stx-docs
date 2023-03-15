@@ -105,14 +105,14 @@ abort:
 
 .. _software-upgrades-ul-dqp-brt-cx:
 
--   Before controller-0 has been upgraded \(that is, only controller-1 has been
-    upgraded\): In this case the upgrade can be aborted and the system will
+-   Before controller-0 has been upgraded (that is, only controller-1 has been
+    upgraded): In this case the upgrade can be aborted and the system will
     remain in service during the abort, see, :ref:`Rolling Back a Software
     Upgrade Before the Second Controller Upgrade
     <rolling-back-a-software-upgrade-before-the-second-controller-upgrade>`.
 
--   After controller-0 has been upgraded \(that is, both controllers have been
-    upgraded\): In this case the upgrade can only be aborted with a complete
+-   After controller-0 has been upgraded (that is, both controllers have been
+    upgraded): In this case the upgrade can only be aborted with a complete
     outage and a reinstall of all hosts. This would only be done as a last
     resort, if there was absolutely no other way to recover the system, see,
     :ref:`Rolling Back a Software Upgrade After the Second Controller Upgrade

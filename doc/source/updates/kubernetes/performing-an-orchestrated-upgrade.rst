@@ -60,7 +60,7 @@ described below to upgrade the remaining nodes of the |prod| system.
 
     -   storage-apply-type:
 
-        ``serial`` \(default\)
+        ``serial`` (default)
            Storage hosts will be upgraded one at a time.
 
         ``parallel``
@@ -72,13 +72,13 @@ described below to upgrade the remaining nodes of the |prod| system.
 
     -   worker-apply-type:
 
-        ``serial`` \(default\):
+        ``serial`` (default):
            Worker hosts will be upgraded one at a time.
 
         ``parallel``
            Worker hosts will be upgraded in parallel, ensuring that:
 
-           -   At most max-parallel-worker-hosts \(see below\) worker hosts
+           -   At most max-parallel-worker-hosts (see below) worker hosts
                will be upgraded at the same time.
 
            -   At most half of the hosts in a host aggregate will be upgraded
@@ -91,8 +91,8 @@ described below to upgrade the remaining nodes of the |prod| system.
            Worker hosts will not be upgraded.
 
         ``max-parallel-worker-hosts``
-           Specify the maximum worker hosts to upgrade in parallel \(minimum:
-           2, maximum: 10\).
+           Specify the maximum worker hosts to upgrade in parallel (minimum:
+           2, maximum: 10).
 
            .. note::
                For a maximum worker hosts condition in a Standard configuration
@@ -108,8 +108,8 @@ described below to upgrade the remaining nodes of the |prod| system.
 
             ``Strict``
                The default strict option will result in upgrade orchestration
-               failing if there are any alarms present in the system \(except
-               for a small list of alarms\).
+               failing if there are any alarms present in the system (except
+               for a small list of alarms).
 
             ``Relaxed``
                This option allows orchestration to proceed if alarms are
@@ -120,7 +120,7 @@ described below to upgrade the remaining nodes of the |prod| system.
 
     The upgrade strategy consists of one or more stages, which consist of one
     or more hosts to be upgraded at the same time. Each stage will be split
-    into steps \(for example, query-alarms, lock-hosts, upgrade-hosts\).
+    into steps (for example, query-alarms, lock-hosts, upgrade-hosts).
     Following are some notes about stages:
 
     -   Controller-0 is upgraded first, followed by storage hosts and then
@@ -134,13 +134,13 @@ described below to upgrade the remaining nodes of the |prod| system.
     -   The final step in each stage is one of:
 
         **system-stabilize**
-           This waits for a period of time \(up to several minutes\) and
+           This waits for a period of time (up to several minutes) and
            ensures that the system is free of alarms. This ensures that we do
            not continue to upgrade more hosts if the upgrade has caused an
            issue resulting in an alarm.
 
         **wait-data-sync**
-           This waits for a period of time \(up to many hours\) and ensures
+           This waits for a period of time (up to many hours) and ensures
            that data synchronization has completed after the upgrade of a
            controller or storage node.
 
@@ -169,7 +169,7 @@ described below to upgrade the remaining nodes of the |prod| system.
     -   If necessary an abort phase will be created and applied, which will
         attempt to unlock any hosts that were locked.
 
-    After an upgrade strategy has been applied \(or aborted\) it must be
+    After an upgrade strategy has been applied (or aborted) it must be
     deleted before another upgrade strategy can be created. If an
     upgrade strategy application fails, you must address the issue that caused
     the failure, then delete/re-create the strategy before attempting to apply

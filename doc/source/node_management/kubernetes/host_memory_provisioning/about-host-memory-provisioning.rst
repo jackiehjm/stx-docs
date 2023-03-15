@@ -49,10 +49,10 @@ configurations.
 You can use the :command:`system host-memory-list` and
 :command:`system host-memory-show` commands to see how much memory is
 available for applications. This information is also shown on the **Memory**
-tab of the Host Inventory page \(see :ref:`Memory Tab <memory-tab>`\).
+tab of the Host Inventory page (see :ref:`Memory Tab <memory-tab>`).
 
-For individual containers \(or hosted applications if you are running
-OpenStack\), you can specify which page size is required.
+For individual containers (or hosted applications if you are running
+OpenStack), you can specify which page size is required.
 
 .. only:: partner
 

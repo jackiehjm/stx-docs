@@ -56,13 +56,13 @@ The backup contains details as listed below:
     All platform configuration data and files required to fully restore the
     system to a working state following the platform restore procedure.
 
--   \(Optional\) Any end user container images in **registry.local**; that
+-   (Optional) Any end user container images in **registry.local**; that
     is, any images other than |org| system and application images.
     |prod| system and application images are repulled from their
     original source, external registries during the restore procedure.
 
 -   Home directory 'sysadmin' user, and all |LDAP| user accounts
-    \(item=/etc\)
+    (item=/etc)
 
 -   Patching and package repositories:
 

@@ -12,7 +12,7 @@ unlocked as part of applying the update.
 
 .. rubric:: |proc|
 
-#.  Upload the update \(patch\).
+#.  Upload the update (patch).
 
     .. code-block:: none
 
@@ -53,7 +53,7 @@ unlocked as part of applying the update.
         If the original files are not deleted before the updates are applied,
         the installation may fail due to a full disk.
 
-#.  Apply the update \(patch\).
+#.  Apply the update (patch).
 
     .. code-block:: none
 
@@ -104,8 +104,8 @@ unlocked as part of applying the update.
     The controller-1 host reports it is now 'patch current' and does not
     require a reboot, without having been locked or rebooted
 
-#.  Install the update on worker-0 \(and other worker nodes and storage nodes,
-    if present\)
+#.  Install the update on worker-0 (and other worker nodes and storage nodes,
+    if present)
 
     .. code-block:: none
 

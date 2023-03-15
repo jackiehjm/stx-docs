@@ -42,16 +42,16 @@ You can use |CLI| commands to manage local volume groups.
     |                                                       |                                                       |
     +-------------------------------------------------------+-------------------------------------------------------+
 
-**<instance\_backing>**
-    is the storage method for the local volume group \(image or remote\). The
+**<instance_backing>**
+    is the storage method for the local volume group (image or remote). The
     remote option is valid only for systems with dedicated storage.
 
-**<concurrent\_disk\_operations>**
+**<concurrent_disk_operations>**
     is the number of I/O intensive disk operations, such as glance image
     downloads or image format conversions, that can occur at the same time.
 
-**<lvm\_type>**
-    is the provisioning type for VM volumes \(thick or thin\). The default
+**<lvm_type>**
+    is the provisioning type for VM volumes (thick or thin). The default
     value is thin.
 
 **<hostname>**

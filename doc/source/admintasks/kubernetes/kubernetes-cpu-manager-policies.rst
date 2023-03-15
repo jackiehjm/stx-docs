@@ -29,15 +29,15 @@ Static policy customizations
 ----------------------------
 
 -   Pods in the **kube-system** namespace are affined to platform cores
-    only. Other pod containers \(hosted applications\) are restricted to
+    only. Other pod containers (hosted applications) are restricted to
     running on either the application or isolated cores. CFS quota
     throttling for Guaranteed QoS pods is disabled.
 
 -   When using the static policy, improved performance can be achieved if
     you also use the Isolated CPU behavior as described at :ref:`Isolating CPU Cores to Enhance Application Performance <isolating-cpu-cores-to-enhance-application-performance>`.
 
--   For Kubernetes pods with a **Guaranteed** QoS \(see `https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/ <https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/>`__
-    for background information\), CFS quota throttling is disabled as it
+-   For Kubernetes pods with a **Guaranteed** QoS (see `https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/ <https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/>`__
+    for background information), CFS quota throttling is disabled as it
     causes performance degradation.
 
 -   Kubernetes pods are prevented by default from running on CPUs with an

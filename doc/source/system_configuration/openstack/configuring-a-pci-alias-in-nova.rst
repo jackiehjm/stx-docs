@@ -10,23 +10,23 @@ Configure a PCI Alias in Nova
 
 .. rubric:: |context|
 
-Each alias specifies |PCI| matching optional attributes: vendor\_id, product\_id,
-and device\_type.
+Each alias specifies |PCI| matching optional attributes: vendor_id, product_id,
+and device_type.
 
 where
 
 **name**
     is a string identifying the |PCI| alias
 
-**device\_id**
-    is the device\_id value obtained from the device list
+**device_id**
+    is the device_id value obtained from the device list
 
-**vendor\_id**
-    is the vendor\_id value obtained from the device list
+**vendor_id**
+    is the vendor_id value obtained from the device list
 
-**device\_type**
-    is a string indicating the type of |PCI| device to add \(valid values are:
-    type-PCI, type-PF, or type-VF\)
+**device_type**
+    is a string indicating the type of |PCI| device to add (valid values are:
+    type-PCI, type-PF, or type-VF)
 
 The following command displays the current configured |PCI| aliases:
 

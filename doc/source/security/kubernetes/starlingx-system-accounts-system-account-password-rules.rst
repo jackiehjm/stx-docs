@@ -8,8 +8,8 @@ System Account Password Rules
 
 |prod| enforces a set of strength requirements for new or changed passwords.
 
-The following rules apply to all System Accounts \(Local LDAP, sysadmin,
-other Linux Accounts, and Keystone accounts\):
+The following rules apply to all System Accounts (Local LDAP, sysadmin,
+other Linux Accounts, and Keystone accounts):
 
 
 .. _starlingx-system-accounts-system-account-password-rules-ul-evs-dsn-ynb:
@@ -30,8 +30,8 @@ other Linux Accounts, and Keystone accounts\):
     -   at least one special character
 
 
-The following additional rules apply to Local Linux accounts only \(Local
-LDAP, sysadmin, and other Linux accounts\):
+The following additional rules apply to Local Linux accounts only (Local
+LDAP, sysadmin, and other Linux accounts):
 
 .. _starlingx-system-accounts-system-account-password-rules-ul-rvj-jsn-ynb:
 

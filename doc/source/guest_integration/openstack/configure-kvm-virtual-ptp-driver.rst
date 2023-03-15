@@ -25,7 +25,7 @@ hosting compute or |AIO|-controller node, do the following in the |VM|:
 
         ~(keystone_admin)$ modprobe kvm_ptp
 
-#.  Update the reference clock in the chrony config file \(/etc/chrony.conf\):
+#.  Update the reference clock in the chrony config file (/etc/chrony.conf):
 
     .. code-block:: none
 

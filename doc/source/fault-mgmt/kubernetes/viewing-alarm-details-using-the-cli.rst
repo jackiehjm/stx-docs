@@ -41,16 +41,16 @@ You can view detailed information to help troubleshoot an alarm.
         | uuid                   | 4ab5698a-19cb-4c17-bd63-302173fef62c            |
         +------------------------+-------------------------------------------------+
 
-    The pair of attributes **\(alarm\_id, entity\_instance\_id\)** uniquely
+    The pair of attributes **\(alarm_id, entity_instance_id)** uniquely
     identifies an active alarm:
 
-    **alarm\_id**
+    **alarm_id**
         An ID identifying the particular alarm condition. Note that there are
         some alarm conditions, such as *administratively locked*, that can be
         raised by more than one entity-instance-id.
 
-    **entity\_instance\_id**
+    **entity_instance_id**
         Type and instance information of the object raising the alarm. A
-        period-separated list of \(key, value\) pairs, representing the
+        period-separated list of (key, value) pairs, representing the
         containment structure of the overall entity instance. This structure
         is used for processing hierarchical clearing of alarms.

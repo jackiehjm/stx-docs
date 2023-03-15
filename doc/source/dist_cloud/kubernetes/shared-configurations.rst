@@ -13,10 +13,10 @@ Synchronizations can be delayed slightly, depending on network traffic
 conditions and the amount of information to be synchronized.
 
 |prod| synchronizes configuration for selected attributes of system-wide
-configurations \(see :ref:`Table 1
-<shared-configurations-shared-sys-configs>`\) and synchronizes configuration
-for resources of the Keystone Identity Service \(see :ref:`Table 2
-<shared-configurations-shared-keystone-configs>`\).
+configurations (see :ref:`Table 1
+<shared-configurations-shared-sys-configs>`) and synchronizes configuration
+for resources of the Keystone Identity Service (see :ref:`Table 2
+<shared-configurations-shared-keystone-configs>`).
 
 
 .. _shared-configurations-shared-sys-configs:

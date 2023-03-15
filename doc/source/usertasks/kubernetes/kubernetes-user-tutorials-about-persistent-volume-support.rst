@@ -6,7 +6,7 @@
 About Persistent Volume Support
 ===============================
 
-Persistent Volume Claims \(PVCs\) are requests for storage resources in your
+Persistent Volume Claims (PVCs) are requests for storage resources in your
 cluster. By default, container images have an ephemeral file system. In order
 for containers to persist files beyond the lifetime of the container, a
 Persistent Volume Claim can be created to obtain a persistent volume which the

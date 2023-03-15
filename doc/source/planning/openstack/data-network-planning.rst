@@ -68,4 +68,4 @@ When planning data networks, you must consider the following guidelines:
 -   In some circumstances, data networks can be configured to support |VLAN|
     Transparent mode on project networks. In this mode |VLAN| tagged packets
     are encapsulated within a data network segment without removing or
-    modifying the guest |VLAN| tag\(s\).
+    modifying the guest |VLAN| tag\(s).

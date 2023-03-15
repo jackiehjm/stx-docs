@@ -40,7 +40,7 @@ Management** in the left-hand pane.
 
 .. rubric:: |prereq|
 
-You cannot successfully create an update \(patch\) strategy if any hosts show
+You cannot successfully create an update (patch) strategy if any hosts show
 **Patch Current** = **Pending**, indicating that the update status of these
 hosts has not yet been updated. The creation attempt fails, and you must try
 again. You can use :command:`sw-patch query-hosts` to review the current update
@@ -49,8 +49,8 @@ status before creating an update strategy.
 .. rubric:: |proc|
 
 #.  Upload and apply your updates as described in :ref:`Manage Software Updates
-    <managing-software-updates>` \(do not lock any hosts or use
-    :command:`host-install` to install the updates on any hosts\).
+    <managing-software-updates>` (do not lock any hosts or use
+    :command:`host-install` to install the updates on any hosts).
 
 #.  Select **Platform** \> **Software Management**, then select the **Patch
     Orchestration** tab.
@@ -71,13 +71,13 @@ status before creating an update strategy.
         is Management Affecting.
 
     **Controller Apply Type**
-        -   Serial \(default\): controllers will be updated one at a time
-            \(standby controller first\)
+        -   Serial (default): controllers will be updated one at a time
+            (standby controller first)
 
         -   Ignore: controllers will not be updated
 
     **Storage Apply Type**
-        -   Serial \(default\): storage hosts will be updated one at a time
+        -   Serial (default): storage hosts will be updated one at a time
 
         -   Parallel: storage hosts will be updated in parallel, ensuring that
             only one storage node in each replication group is updated at a
@@ -86,7 +86,7 @@ status before creating an update strategy.
         -   Ignore: storage hosts will not be updated
 
     **Worker Apply Type**
-        -   Serial \(default\): worker hosts will be updated one at a time
+        -   Serial (default): worker hosts will be updated one at a time
 
         -   Parallel: worker hosts will be updated in parallel
 
@@ -96,7 +96,7 @@ status before creating an update strategy.
                 are updated before worker hosts with pods.
 
         -   Parallel: specify the maximum worker hosts to update in parallel
-            \(minimum: 2, maximum: 100\)
+            (minimum: 2, maximum: 100)
 
         -   Ignore: Worker hosts will not be updated
 
@@ -104,11 +104,11 @@ status before creating an update strategy.
         This parameter only applies for systems with the |prefix|-openstack
         application.
 
-        -   Stop-Start \(default\): hosted applications VMs will be stopped
-            before a host is updated \(applies to reboot updates only\)
+        -   Stop-Start (default): hosted applications VMs will be stopped
+            before a host is updated (applies to reboot updates only)
 
         -   Migrate: hosted application VMs will be migrated off a host before
-            it is updated \(applies to reboot updates only\).
+            it is updated (applies to reboot updates only).
 
     **Alarm Restrictions**
         This option lets you specify how update orchestration behaves when
@@ -119,8 +119,8 @@ status before creating an update strategy.
 
         **Strict**
            The default strict option will result in update orchestration
-           failing if there are any alarms present in the system \(except for a
-           small list of alarms\).
+           failing if there are any alarms present in the system (except for a
+           small list of alarms).
 
         **Relaxed**
            This option allows orchestration to proceed if alarms are present,
@@ -145,8 +145,8 @@ status before creating an update strategy.
 
     The update strategy has one or more stages, with each stage consisting of
     one or more hosts to be updated at the same time. Each stage is split into
-    steps \(for example, :command:`query-alarms`, :command:`lock-hosts`,
-    :command:`sw-patch-hosts`\). Note the following about stages:
+    steps (for example, :command:`query-alarms`, :command:`lock-hosts`,
+    :command:`sw-patch-hosts`). Note the following about stages:
 
     .. note::
 
@@ -157,7 +157,7 @@ status before creating an update strategy.
             worker hosts with hosted application pods.
 
         -   The final step in each stage is ``system-stabilize``, which waits
-            for a period of time \(up to several minutes\) and ensures that the
+            for a period of time (up to several minutes) and ensures that the
             system is free of alarms. This ensures that the update orchestrator
             does not continue to update more hosts if the update application has
             caused an issue resulting in an alarm.
@@ -188,7 +188,7 @@ status before creating an update strategy.
 
 #.  Delete the update strategy.
 
-    After an update strategy has been applied \(or aborted\) it must be deleted
+    After an update strategy has been applied (or aborted) it must be deleted
     before another update strategy can be created. If an update strategy
     application fails, you must address the issue that caused the failure, then
     delete and re-create the strategy before attempting to apply it again.

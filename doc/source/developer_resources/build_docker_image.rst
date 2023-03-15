@@ -157,7 +157,7 @@ Example build command:
         --stream ${BUILD_STREAM}
 
 | This will produce a wheels tarball in your workspace:
-| ${MY\_WORKSPACE}/std/build-wheels-${OS}-${BUILD\_STREAM}/stx-${OS}-${BUILD\_STREAM}-wheels.tar
+| ${MY_WORKSPACE}/std/build-wheels-${OS}-${BUILD_STREAM}/stx-${OS}-${BUILD_STREAM}-wheels.tar
 
 ****************
 StarlingX wheels
@@ -168,7 +168,7 @@ the build. For CentOs, this means updating the package rpm specfile to
 build the wheel and package it in a -wheels package. The names of the
 wheels packages to be included in the tarball are listed in the
 wheels.inc files in the corresponding repo (ie.
-centos\_stable\_wheels.inc).
+centos_stable_wheels.inc).
 
 ---------------
 Building images
@@ -178,8 +178,8 @@ The StarlingX Docker images are built using a set of image directives
 files, with the base image and wheels tarball as input. The images are
 built by the build-stx-images.sh tool, in
 stx-root/build-tools/build-docker-images. The build-stx-images.sh tool
-will search the StarlingX repos for a corresponding docker\_images.inc
-file (ie. centos\_dev\_docker\_images.inc) which contains a list of
+will search the StarlingX repos for a corresponding docker_images.inc
+file (ie. centos_dev_docker_images.inc) which contains a list of
 subdirectories that contain the associated image directives files, which
 are processed and built.
 
@@ -286,15 +286,15 @@ Options supported by BUILDER=docker image directives files include:
 
 *  LABEL: the image name
 *  PROJECT: main project name
-*  DOCKER\_REPO: main project source git repo
-*  DOCKER\_REF: git branch or tag for main project source repo (default "master")
-*  DOCKER\_PATCHES: list of patch files to apply to DOCKER\_REPO, relative to the local dir
-*  DOCKER\_CONTEXT: path to build context source, relative to the local dir (default "docker")
-*  DOCKER\_FILE: path to Dockerfile, relative to the local dir (default "docker/Dockerfile")
+*  DOCKER_REPO: main project source git repo
+*  DOCKER_REF: git branch or tag for main project source repo (default "master")
+*  DOCKER_PATCHES: list of patch files to apply to DOCKER_REPO, relative to the local dir
+*  DOCKER_CONTEXT: path to build context source, relative to the local dir (default "docker")
+*  DOCKER_FILE: path to Dockerfile, relative to the local dir (default "docker/Dockerfile")
 
    .. note::
 
-     DOCKER\_CONTEXT and DOCKER\_FILE are mutually exclusive to DOCKER\_REPO, DOCKER\_REF and DOCKER\_PATCHES.
+     DOCKER_CONTEXT and DOCKER_FILE are mutually exclusive to DOCKER_REPO, DOCKER_REF and DOCKER_PATCHES.
 
 For an example of a BUILDER=docker image, see
 https://opendev.org/starlingx/oidc-auth-armada-app/src/branch/master/dex/centos/dex.stable_docker_image
@@ -317,11 +317,11 @@ loci include:
 
 *  LABEL: the image name
 *  PROJECT: main project name
-*  PROJECT\_REPO: main project source git repo
-*  PROJECT\_REF: git branch or tag for main project source repo
-*  PIP\_PACKAGES: list of python modules to be installed, beyond those
+*  PROJECT_REPO: main project source git repo
+*  PROJECT_REF: git branch or tag for main project source repo
+*  PIP_PACKAGES: list of python modules to be installed, beyond those
    specified by project dependencies or requirements
-*  DIST\_PACKAGES: additional packages to be installed (eg. RPMs from
+*  DIST_PACKAGES: additional packages to be installed (eg. RPMs from
    repo, configured by base image)
 *  PROFILES: bindep profiles supported by project to be installed (eg.
    apache)
@@ -330,7 +330,7 @@ In addition, you can specify a bash command in the CUSTOMIZATION option,
 in order to do a modification on the loci-built image.
 
 Example:
-stx-upstream/openstack/python-nova/centos/stx-nova.dev\_docker\_image
+stx-upstream/openstack/python-nova/centos/stx-nova.dev_docker_image
 
 ::
 
@@ -347,7 +347,7 @@ In a case where the image is built without a main project source git
 repo, where the main project source is just coming from a wheel, you can
 set PROJECT to infra, and loci skips the git clone steps. For example,
 stx-nova-api-proxy:
-stx-nfv/nova-api-proxy/centos/stx-nova-api-proxy.dev\_docker\_image
+stx-nfv/nova-api-proxy/centos/stx-nova-api-proxy.dev_docker_image
 
 ::
 
@@ -466,7 +466,7 @@ of the entire image. The tool allows for updates via:
 Specifying Python module source
 *******************************
 
-The --module-src command-line option (or MODULE\_SRC in an update
+The --module-src command-line option (or MODULE_SRC in an update
 directives file) allows a designer to specify python module source from
 either a directory or git repository. If specifying a git repository,
 you can also specify a branch or tag to be fetched, as well as
@@ -483,9 +483,9 @@ Customization script
 
 You can optionally provide a customization script to make changes to the
 image that cannot be handled by updating software, using the --customize
-command-line option (or CUSTOMIZATION\_SCRIPT in an update directives
+command-line option (or CUSTOMIZATION_SCRIPT in an update directives
 file). You can also provide supporting files with the --extra
-command-line option (or EXTRA\_FILES in an update directives file),
+command-line option (or EXTRA_FILES in an update directives file),
 which will be accessible to the customization script in the
 /image-update/extras directory within the update container.
 

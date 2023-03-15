@@ -9,7 +9,7 @@ Storage Backends
 |prod-long| supports an internal Ceph block storage backend and connecting
 to an external NetApp block storage backend. Configuring a storage
 backend is optional, but it is required if the applications being hosted
-require persistent volume claims \(PVCs\).
+require persistent volume claims (PVCs).
 
 
 .. _storage-backends-section-bgt-gv5-blb:
@@ -62,7 +62,7 @@ The following internal Ceph deployment models are supported:
     |                      |                                                                                                                                                                                      |
     |                      | Replication is done per OSD, not per node. Configuration updates are applied without requiring a host lock/unlock.                                                                   |
     |                      |                                                                                                                                                                                      |
-    |                      | You can set replication to 1, 2 or 3 \(default is 1\).                                                                                                                               |
+    |                      | You can set replication to 1, 2 or 3 (default is 1).                                                                                                                                 |
     |                      |                                                                                                                                                                                      |
     |                      | -   A replication setting of 1 requires a minimum of one OSD.                                                                                                                        |
     |                      |                                                                                                                                                                                      |

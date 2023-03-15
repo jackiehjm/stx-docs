@@ -79,8 +79,8 @@ List Glance Images
 ------------------
 
 You can use this command to identify the storage backend type for Glance
-images. \(The column headers in the following example have been modified
-slightly to fit the page.\)
+images. (The column headers in the following example have been modified
+slightly to fit the page.)
 
 .. code-block:: none
 

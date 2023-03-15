@@ -109,7 +109,7 @@ The following procedure shows how to configure the Container-backed Remote
 
             $ mkdir -p $HOME/remote_cli_wd
 
-    #.  Run the :command:`configure\_client.sh` script to install and configure
+    #.  Run the :command:`configure_client.sh` script to install and configure
         the OpenStack CLIs/Clients.
 
         .. only:: starlingx
@@ -128,12 +128,12 @@ The following procedure shows how to configure the Container-backed Remote
         above, you must remember to perform a :command:`docker login` to that
         repository before using remote |CLIs| for the first time.
 
-        The options for configure\_client.sh are:
+        The options for configure_client.sh are:
 
         **-t**
-            The type of client configuration. The options are platform \(for
-            |prod-long| |CLI| and clients\) and OpenStack \(for
-            |prod-os| application |CLI| and clients\).
+            The type of client configuration. The options are platform (for
+            |prod-long| |CLI| and clients) and OpenStack (for
+            |prod-os| application |CLI| and clients).
 
             The default value is platform.
 
@@ -150,8 +150,8 @@ The following procedure shows how to configure the Container-backed Remote
             commands.
 
             For the platform client setup, the default is
-            remote\_client\_platform.sh. For the OpenStack application client
-            setup, the default is remote\_client\_openstack.sh.
+            remote_client_platform.sh. For the OpenStack application client
+            setup, the default is remote_client_openstack.sh.
 
         **-w**
             The working directory that will be mounted by the container
@@ -159,7 +159,7 @@ The following procedure shows how to configure the Container-backed Remote
             passed as arguments to the remote |CLI| commands need to be in this
             directory in order for the container to access the files. The
             default value is the directory from which the
-            :command:`configure\_client.sh` command was run.
+            :command:`configure_client.sh` command was run.
 
         **-p**
             Override the container image for the platform |CLI| and clients.
@@ -178,11 +178,11 @@ The following procedure shows how to configure the Container-backed Remote
             pulled from docker.io/starlingx/stx-openstackclients.
 
         The :command:`configure-client.sh` command will generate a
-        remote\_client\_openstack.sh RC file. This RC file needs to be sourced
+        remote_client_openstack.sh RC file. This RC file needs to be sourced
         in the shell to set up required environment variables and aliases
         before any remote |CLI| commands can be run.
 
-    #.  Copy the file remote\_client\_openstack.sh to $HOME/remote\_cli\_wd
+    #.  Copy the file remote_client_openstack.sh to $HOME/remote_cli_wd
 
 
 .. rubric:: |postreq|

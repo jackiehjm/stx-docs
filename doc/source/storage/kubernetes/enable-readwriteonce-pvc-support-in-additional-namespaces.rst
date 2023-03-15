@@ -9,7 +9,7 @@ Enable ReadWriteOnce PVC Support in Additional Namespaces
 The default general **rbd-provisioner** storage class is enabled for the
 default, kube-system, and kube-public namespaces. To enable an additional
 namespace, for example for an application-specific namespace, a
-modification to the configuration \(helm overrides\) of the
+modification to the configuration (helm overrides) of the
 |RBD| provisioner service is required.
 
 .. rubric:: |context|

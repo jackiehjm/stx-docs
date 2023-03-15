@@ -64,7 +64,7 @@ You can use the CLI to add segmentation ranges to data networks.
         is the data network associated with the range.
 
     **network type**
-        is the network type \(VLAN/VXLAN\) of the range.
+        is the network type (VLAN/VXLAN) of the range.
 
     **minimum**
         is the minimum value of the segmentation range.

@@ -6,8 +6,8 @@
     appropriate settings.
 
     In particular, if |IGMP| snooping is enabled on |ToR| switches, then a
-    device acting as an |IGMP| querier is required on the network \(on the same
-    |VLAN|\) to prevent nodes from being dropped from the multicast group. The
+    device acting as an |IGMP| querier is required on the network (on the same
+    |VLAN|) to prevent nodes from being dropped from the multicast group. The
     |IGMP| querier periodically sends |IGMP| queries to all nodes on the
     network, and each node sends an |IGMP| join or report in response. Without
     an |IGMP| querier, the nodes do not periodically send |IGMP| join messages

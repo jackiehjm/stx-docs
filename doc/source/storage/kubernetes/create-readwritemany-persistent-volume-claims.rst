@@ -8,13 +8,13 @@ Create ReadWriteMany Persistent Volume Claims
 
 Container images have an ephemeral file system by default. For data to survive
 beyond the lifetime of a container, it can read and write files to a persistent
-volume obtained with a Persistent Volume Claim \(PVC\) created to provide
+volume obtained with a Persistent Volume Claim (PVC) created to provide
 persistent storage.
 
 .. rubric:: |context|
 
 For multiple containers to mount the same |PVC|, create a |PVC| with accessMode
-of ReadWriteMany \(RWX\).
+of ReadWriteMany (RWX).
 
 The following steps show an example of creating a 1GB |PVC| with ReadWriteMany
 accessMode.

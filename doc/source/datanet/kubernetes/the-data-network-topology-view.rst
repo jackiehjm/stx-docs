@@ -84,6 +84,6 @@ Labels for Network Connections
 ------------------------------
 
 Network connections in the topology window may be labeled with the data
-interface name \(displayed above the connection line\) and LLDP neighbor
-information \(displayed below the connection line\). You can show or hide the
-labels using a button above the lists \(**Show Labels** or **Hide Labels**\).
+interface name (displayed above the connection line) and LLDP neighbor
+information (displayed below the connection line). You can show or hide the
+labels using a button above the lists (**Show Labels** or **Hide Labels**).

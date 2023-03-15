@@ -6,7 +6,7 @@
 Local LDAP Linux User Accounts
 ==============================
 
-You can manage regular Linux \(shadow\) user accounts on any host in the
+You can manage regular Linux (shadow) user accounts on any host in the
 cluster using standard Linux commands.
 
 
@@ -17,7 +17,7 @@ cluster using standard Linux commands.
     an end-user.
 
 -   Password changes are not enforced automatically on the first login, and
-    they are not propagated by the system \(only for 'sysadmin'\).
+    they are not propagated by the system (only for 'sysadmin').
 
 -   **If the administrator wants to provision additional access to the system,
     it is better to configure local |LDAP| Linux accounts.**
@@ -51,7 +51,7 @@ Operational complexity:
 
 -   Passwords aging is automatically configured.
 
--   |LDAP| user accounts \(operator, admin\) are available by default on
+-   |LDAP| user accounts (operator, admin) are available by default on
     newly deployed hosts. For increased security, the admin and operator
     accounts must be used from the console ports of the hosts; no |SSH| access
     is allowed.

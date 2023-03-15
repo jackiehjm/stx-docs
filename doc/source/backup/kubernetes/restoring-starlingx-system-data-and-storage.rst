@@ -7,8 +7,8 @@
 Restore Platform System Data and Storage
 ========================================
 
-You can perform a system restore \(controllers, workers, including or excluding
-storage nodes\) of a |prod| cluster from a previous system backup and bring it
+You can perform a system restore (controllers, workers, including or excluding
+storage nodes) of a |prod| cluster from a previous system backup and bring it
 back to the operational state it was when the backup procedure took place.
 
 .. rubric:: |context|
@@ -31,14 +31,14 @@ details on the backup.
     the backup was made. You cannot use this backup file to restore the system
     to different hardware.
 
-    To restore the backup, use the same version of the boot image \(ISO\) that
+    To restore the backup, use the same version of the boot image (ISO) that
     was used at the time of the original installation.
 
 The |prod| restore supports the following optional modes:
 
 .. _restoring-starlingx-system-data-and-storage-ol-tw4-kvc-4jb:
 
--   To keep the Ceph cluster data intact \(false - default option\), use the
+-   To keep the Ceph cluster data intact (false - default option), use the
     following parameter, when passing the extra arguments to the Ansible Restore
     playbook command:
 
@@ -46,7 +46,7 @@ The |prod| restore supports the following optional modes:
 
        wipe_ceph_osds=false
 
--   To wipe the Ceph cluster entirely \(true\), where the Ceph cluster will
+-   To wipe the Ceph cluster entirely (true), where the Ceph cluster will
     need to be recreated, or if the Ceph partition was wiped somehow before or
     during reinstall, use the following parameter:
 
@@ -57,9 +57,9 @@ The |prod| restore supports the following optional modes:
 
 Restoring a |prod| cluster from a backup file is done by re-installing the
 ISO on controller-0, running the Ansible Restore Playbook, applying updates
-\(patches\), unlocking controller-0, and then powering on, and unlocking the
+\(patches), unlocking controller-0, and then powering on, and unlocking the
 remaining hosts, one host at a time, starting with the controllers, and then
-the storage hosts, ONLY if required, and lastly the compute \(worker\) hosts.
+the storage hosts, ONLY if required, and lastly the compute (worker) hosts.
 
 .. rubric:: |prereq|
 
@@ -92,7 +92,7 @@ conditions are in place:
     host manually for network boot immediately after powering it on.
 
 -   If you are restoring a |prod-dc| subcloud first, ensure it is in
-    an **unmanaged** state on the Central Cloud \(SystemController\) by using
+    an **unmanaged** state on the Central Cloud (SystemController) by using
     the following commands:
 
     .. code-block:: none
@@ -293,8 +293,8 @@ conditions are in place:
        #.  If :command:`wipe_ceph_osds` is set to **true**, reinstall the
            storage hosts.
 
-       #.  If :command:`wipe_ceph_osds` is set to **false** \(default
-           option\), do not reinstall the storage hosts.
+       #.  If :command:`wipe_ceph_osds` is set to **false** (default
+           option), do not reinstall the storage hosts.
 
            .. caution::
                 Do not reinstall or power off the storage hosts if you want to
@@ -302,7 +302,7 @@ conditions are in place:
                 will lead to data loss.
 
    #.  Ensure that the Ceph cluster is healthy. Verify that the three Ceph
-       monitors \(controller-0, controller-1, storage-0\) are running in
+       monitors (controller-0, controller-1, storage-0) are running in
        quorum.
 
        .. code-block:: none
@@ -332,15 +332,15 @@ conditions are in place:
 
        If the message HEALTH_WARN appears, wait a few minutes and then try
        again. If the warning condition persists, consult the public
-       documentation for troubleshooting Ceph monitors \(for example,
+       documentation for troubleshooting Ceph monitors (for example,
        `http://docs.ceph.com/docs/master/rados/troubleshooting/troubleshootin
        g-mon/
        <http://docs.ceph.com/docs/master/rados/troubleshooting/troubleshootin
-       g-mon/>`__\).
+       g-mon/>`__).
 
-#. Restore the compute \(worker\) hosts, one at a time.
+#. Restore the compute (worker) hosts, one at a time.
 
-   Restore the compute \(worker\) hosts following the same procedure used to
+   Restore the compute (worker) hosts following the same procedure used to
    restore controller-1.
 
 #. Allow Calico and Coredns pods to be recovered by Kubernetes. They should
@@ -396,7 +396,7 @@ conditions are in place:
     are not included as part of the backup and restore procedures.
 
 -   After restoring a |prod-dc| subcloud, you need to bring it back
-    to the **managed** state on the Central Cloud \(SystemController\), by
+    to the **managed** state on the Central Cloud (SystemController), by
     using the following commands:
 
     .. code-block:: none

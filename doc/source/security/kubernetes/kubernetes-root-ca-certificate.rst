@@ -31,26 +31,26 @@ See :ref:`Create Certificates Locally using openssl
 
    The administrator can also provide values to add to the Kubernetes API
    server certificate **Subject Alternative Name** list using the
-   apiserver\_cert\_sans override parameter.
+   apiserver_cert_sans override parameter.
 
 
-Use the bootstrap override values <k8s\_root\_ca\_cert> and
-<k8s\_root\_ca\_key>, as part of the installation procedure to specify the
+Use the bootstrap override values <k8s_root_ca_cert> and
+<k8s_root_ca_key>, as part of the installation procedure to specify the
 certificate and key for the Kubernetes Root |CA|.
 
-**<k8s\_root\_ca\_cert>**
+**<k8s_root_ca_cert>**
 
 Specifies the certificate for the Kubernetes Root |CA|. The
-<k8s\_root\_ca\_cert> value is the absolute path of the certificate
+<k8s_root_ca_cert> value is the absolute path of the certificate
 file. The certificate must be in |PEM| format and the value must be
-provided as part of a pair with <k8s\_root\_ca\_key>.
+provided as part of a pair with <k8s_root_ca_key>.
 
-**<k8s\_root\_ca\_key>**
+**<k8s_root_ca_key>**
 
-Specifies the key for the Kubernetes Root |CA|. The <k8s\_root\_ca\_key>
+Specifies the key for the Kubernetes Root |CA|. The <k8s_root_ca_key>
 value is the absolute path of the certificate file. The certificate
 must be in |PEM| format and the value must be provided as part of a pair
-with <k8s\_root\_ca\_cert>.
+with <k8s_root_ca_cert>.
 
 For example:
 
@@ -71,9 +71,9 @@ The playbook will not proceed if only one value is provided.
 
     The administrator can also provide values to add to the Kubernetes
     API server certificate Subject Alternative Name list using the
-    <apiserver\_cert\_sans> override parameter.
+    <apiserver_cert_sans> override parameter.
 
-**apiserver\_cert\_sans**
+**apiserver_cert_sans**
 
 Specifies a list of Subject Alternative Name entries that will be added
 to the Kubernetes API server certificate. Each entry in the list must

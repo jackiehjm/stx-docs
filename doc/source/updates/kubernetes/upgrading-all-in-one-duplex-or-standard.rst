@@ -24,8 +24,8 @@ of |prod| software.
     release running on the system must be applied, and all patches must be
     committed. To find and download applicable updates, visit the |dnload-loc|.
 
--   Transfer the new release software load to controller-0 \(or onto a USB
-    stick\); controller-0 must be active.
+-   Transfer the new release software load to controller-0 (or onto a USB
+    stick); controller-0 must be active.
 
     .. note::
         Make sure that the filesystem containing the ``/home/sysadmin``
@@ -34,11 +34,11 @@ of |prod| software.
         recommended to delete the ``.iso bootimage`` recently imported after
         running the :command:`load-import` command.
 
--   Transfer the new release software license file to controller-0, \(or onto a
-    USB stick\).
+-   Transfer the new release software license file to controller-0, (or onto a
+    USB stick).
 
--   Transfer the new release software signature to controller-0 \(or onto a USB
-    stick\).
+-   Transfer the new release software signature to controller-0 (or onto a USB
+    stick).
 
 -   Unlock all hosts.
 
@@ -224,7 +224,7 @@ of |prod| software.
 
         -   State entered after :command:`system upgrade-start` completes.
 
-        -   Release <nn>.<nn> system data \(for example, postgres databases\) has
+        -   Release <nn>.<nn> system data (for example, postgres databases) has
             been exported to be used in the upgrade.
 
         -   Configuration changes must not be made after this point, until the
@@ -338,8 +338,8 @@ of |prod| software.
         If the controller transitions to **unlocked-disabled-failed**, check the
         issue before proceeding to the next step. The alarms may indicate a
         configuration error. Check the result of the configuration logs on
-        controller-1, \(for example, Error logs in
-        controller1:``/var/log/puppet``\).
+        controller-1, (for example, Error logs in
+        controller1:``/var/log/puppet``).
 
 #.  Set controller-1 as the active controller. Swact to controller-1.
 
@@ -422,10 +422,10 @@ of |prod| software.
         you can safely unlock the node.
 
         After upgrading a storage node, but before unlocking, there are Ceph
-        synchronization alarms \(that appear to be making progress in
-        synching\), and there are infrastructure network interface alarms
-        \(since the infrastructure network interface configuration has not been
-        applied to the storage node yet, as it has not been unlocked\).
+        synchronization alarms (that appear to be making progress in
+        synching), and there are infrastructure network interface alarms
+        (since the infrastructure network interface configuration has not been
+        applied to the storage node yet, as it has not been unlocked).
 
         Unlock the node as soon as the upgraded storage node comes online.
 
@@ -498,8 +498,8 @@ of |prod| software.
         +--------------+--------------------------------------+
 
     When running the :command:`upgrade-activate` command, new
-    configurations are applied to the controller. 250.001 \(**hostname
-    Configuration is out-of-date**\) alarms are raised and are cleared as the
+    configurations are applied to the controller. 250.001 (**hostname
+    Configuration is out-of-date**) alarms are raised and are cleared as the
     configuration is applied. The upgrade state goes from ``activating`` to
     ``activation-complete`` once this is done.
 

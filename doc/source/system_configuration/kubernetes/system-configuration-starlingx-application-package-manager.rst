@@ -10,8 +10,8 @@ Use the |prod| system application commands to manage containerized
 applications provided as part of |prod|.
 
 StarlingX application management provides a wrapper around FluxCD and
-Kubernetes Helm \(see `https://github.com/helm/helm
-<https://github.com/helm/helm>`__\) for managing containerized applications.
+Kubernetes Helm (see `https://github.com/helm/helm
+<https://github.com/helm/helm>`__) for managing containerized applications.
 FluxCD is a tool for managing multiple Helm charts with dependencies by
 centralizing all configurations in a single FluxCD YAML definition and
 providing life-cycle hooks for all Helm releases.

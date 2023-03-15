@@ -20,7 +20,7 @@ access is disabled.
 When HTTPS is enabled for the first time on a |prod-os| system, a self-signed
 certificate is automatically installed. In order to connect, remote clients
 must be configured to accept the self-signed certificate without verifying it
-\("insecure" mode\).
+\("insecure" mode).
 
 For secure-mode connections, a |CA|-signed certificate is required. The use of
 a |CA|-signed certificate is strongly recommended.

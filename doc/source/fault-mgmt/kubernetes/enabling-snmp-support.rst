@@ -530,7 +530,7 @@ traps will not be generated.
 
 #.  Modify your |SNMP| Helm chart values file (for example, ``user_conf.yaml``)
     by adding the line "trap-server-port: [new port]" as shown in the example
-    below \("30162" is the new port in this example\).
+    below ("30162" is the new port in this example).
 
     .. code-block:: none
 

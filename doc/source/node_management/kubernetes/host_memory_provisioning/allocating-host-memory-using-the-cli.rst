@@ -65,15 +65,15 @@ worker or an |AIO| controller.
             +-----------+---------+------------+---------+----------------+--------+--------+--------+-------+----------+--------+--------+----------+--------+--------+----------+---------------+
 
         The sample tabular output above has been split for display purposes.
-        Columns from **vs\_hp\_total** on appear to the right of
-        **vs\_hp\_size \(MiB\)** and columns from **app\_hp\_total** appear
-        to the right of **app\_hp\_pending\_2M** in terminal output.
+        Columns from **vs_hp_total** on appear to the right of
+        **vs_hp_size (MiB)** and columns from **app_hp_total** appear
+        to the right of **app_hp_pending_2M** in terminal output.
 
         For definitions of these columns, see the **Properties** column in
         the output from step
         :ref:`1.b <allocating-host-memory-using-the-cli-host-mem-show>` below.
 
-        The column **app\_hp\_use\_1G**, not shown below, indicates if apps
+        The column **app_hp_use_1G**, not shown below, indicates if apps
         are using 1GiB huge pages. If the value is **false**, they are using
         2MiB pages.
 

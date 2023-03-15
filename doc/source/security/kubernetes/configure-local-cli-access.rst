@@ -34,8 +34,8 @@ required system maintenance, administration and troubleshooting tasks.
         [sysadmin@controller-0 ~(keystone_admin)]$
 
 #.  If you plan on customizing the sysadmin's kubectl configuration on the
-    |prod-long| Controller, \(for example, :command:`kubectl config set-...` or
-    :command:`or oidc-auth`\), you should use a private KUBECONFIG file and NOT
+    |prod-long| Controller, (for example, :command:`kubectl config set-...` or
+    :command:`or oidc-auth`), you should use a private KUBECONFIG file and NOT
     the system-managed KUBECONFIG file /etc/kubernetes/admin.conf, which can be
     changed and overwritten by the system.
 

@@ -20,7 +20,7 @@ If the Subclouds are in a **Managed** state and if the patching sync status is
 .. rubric:: |context|
 
 Only one update strategy can exist at a time. The strategy controls how the
-subclouds are updated \(for example, serially or in parallel\).
+subclouds are updated (for example, serially or in parallel).
 
 To determine how the nodes on the Central Cloud's RegionOne and each subcloud
 are updated, the update strategy refers to separate configuration settings

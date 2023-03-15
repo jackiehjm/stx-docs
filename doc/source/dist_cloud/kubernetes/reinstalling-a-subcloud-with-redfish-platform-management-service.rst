@@ -9,7 +9,7 @@ Reinstall a Subcloud with Redfish Platform Management Service
 =============================================================
 
 For subclouds with servers that support Redfish Virtual Media Service
-\(version 1.2 or higher\), you can use the Central cloud's CLI to reinstall
+\(version 1.2 or higher), you can use the Central cloud's CLI to reinstall
 the ISO and bootstrap subclouds from the Central cloud.
 
 .. caution::

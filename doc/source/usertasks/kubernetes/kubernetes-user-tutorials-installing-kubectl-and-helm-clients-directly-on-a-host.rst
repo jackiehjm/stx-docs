@@ -65,12 +65,12 @@ You will need the following information from your |prod| administrator:
         .. note::
             In order for your remote host to trust the certificate used by the
             |prod-long| K8s API, you must ensure that the
-            **k8s\_root\_ca\_cert** provided by your |prod| administrator is a
+            **k8s_root_ca_cert** provided by your |prod| administrator is a
             trusted CA certificate by your host. Follow the instructions for
             adding a trusted CA certificate for the operating system
             distribution of your particular host.
 
-            If your administrator does not provide a **k8s\_root\_ca\_cert**
+            If your administrator does not provide a **k8s_root_ca_cert**
             at the time of installation, then specify
             –insecure-skip-tls-verify, as shown below.
 

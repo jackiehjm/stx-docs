@@ -11,7 +11,7 @@ to authenticate users of the Kubernetes API, using the **oidc-auth-apps**
 application.
 
 The **oidc-auth-apps** application installs a proxy |OIDC| identity provider
-that can be configured to proxy authentication requests to an |LDAP| \(s\)
+that can be configured to proxy authentication requests to an |LDAP| (s)
 identity provider, such as Windows Active Directory. For more information, see,
 `https://github.com/dexidp/dex <https://github.com/dexidp/dex>`__. The
 **oidc-auth-apps** application also provides an |OIDC| client for accessing the

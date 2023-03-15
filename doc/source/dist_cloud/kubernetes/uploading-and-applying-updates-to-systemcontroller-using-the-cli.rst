@@ -21,7 +21,7 @@ patches for the SystemController is provided below.
 For standard |prod| updating procedures, see the |updates-doc|:
 :ref:`software-updates-and-upgrades-software-updates` guide.
 
-For SystemController of |prod-dc| \(and the central update repository\), you
+For SystemController of |prod-dc| (and the central update repository), you
 must include the additional |CLI| parameter ``--os-region-name`` with the value
 SystemController when using |CLI| :command:`sw-patch` commands.
 
@@ -67,7 +67,7 @@ SystemController when using |CLI| :command:`sw-patch` commands.
         You may receive a warning about the update already being imported. This
         is expected and occurs if the update was uploaded locally to the system
         controller. The warning will only occur for patches that were applied
-        to controller-0 \(system controller\) before it was first unlocked.
+        to controller-0 (system controller) before it was first unlocked.
 
 #.  Confirm that the newly uploaded patches have a status of **available**.
 

@@ -6,7 +6,7 @@
 Provision Storage on a Storage Host Using the CLI
 =================================================
 
-You can use the command line to configure the Ceph disks \(|OSDs| disk\)
+You can use the command line to configure the Ceph disks (|OSDs| disk)
 on storage hosts.
 
 .. rubric:: |context|
@@ -22,8 +22,8 @@ For more about |OSDs|, see |stor-doc|: :ref:`Storage on Storage Hosts
 .. rubric:: |prereq|
 
 To create or edit an |OSD|, you must lock the storage host. The system must
-have at least two other unlocked hosts with Ceph monitors. \(Ceph monitors
-run on **controller-0**, **controller-1**, and **storage-0** only\).
+have at least two other unlocked hosts with Ceph monitors. (Ceph monitors
+run on **controller-0**, **controller-1**, and **storage-0** only).
 
 To use a custom storage tier, you must create the tier first.
 
@@ -54,11 +54,11 @@ To use a custom storage tier, you must create the tier first.
         | e9ddc040-7d5e-4e28-86be-f8c80f5c0c42 | storage | in-use | f1151da5-bd... |
         +--------------------------------------+---------+--------+----------------+
 
-#.  Create a storage function \(an |OSD|\).
+#.  Create a storage function (an |OSD|).
 
     .. note::
-        You cannot add a storage function to the root disk \(/dev/sda in this
-        example\).
+        You cannot add a storage function to the root disk (/dev/sda in this
+        example).
 
     .. code-block:: none
 
@@ -68,7 +68,7 @@ To use a custom storage tier, you must create the tier first.
                                      [--tier-uuid[<storage tier uuid>]]
                                      <hostname or id> [<function>] <idisk_uuid>
 
-    where <idisk\_uuid> identifies an |OSD|. For example:
+    where <idisk_uuid> identifies an |OSD|. For example:
 
     .. code-block:: none
 
@@ -100,8 +100,8 @@ To use a custom storage tier, you must create the tier first.
     default size of 1 GiB. You can use the ``--journal-size`` option to
     specify a different size in GiB.
 
-    If multiple journal functions exist \(corresponding to multiple
-    dedicated |SSDs|\), then you must include the ``--journal-location``
+    If multiple journal functions exist (corresponding to multiple
+    dedicated |SSDs|), then you must include the ``--journal-location``
     option and specify the journal function to use for the |OSD|. You can
     obtain the UUIDs for journal functions using the :command:`system
     host-stor-list` command:

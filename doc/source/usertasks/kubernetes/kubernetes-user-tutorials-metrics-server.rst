@@ -121,7 +121,7 @@ file: service account, roles and role binding that allow the application to
 communicate with the apiserver, pod.
 
 The application pulls the token associated with the service account from its
-default location (\/var/run/secrets/kubernetes.io/serviceaccount/token\) in
+default location (\/var/run/secrets/kubernetes.io/serviceaccount/token) in
 order to perform authenticated requests to the /apis/metrics.k8s.io/v1beta1/pods endpoint.
 
 Sample application structure

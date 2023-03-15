@@ -7,7 +7,7 @@ Configure the Optional Image Conversion File System
 ===================================================
 
 By default, **qcow2** to raw **image-conversion** is done using the
-**docker\_lv** file system. To avoid filling up the **docker\_lv** file system,
+**docker_lv** file system. To avoid filling up the **docker_lv** file system,
 you can create a new file system dedicated for image conversion as described in
 this section.
 

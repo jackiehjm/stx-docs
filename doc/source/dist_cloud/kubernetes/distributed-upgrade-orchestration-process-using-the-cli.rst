@@ -42,7 +42,7 @@ following conditions:
 -   The subclouds must use the Redfish platform management service if it is
     an |AIO-SX| subcloud.
 
--   Duplex \(|AIO-DX|/Standard\) upgrades are supported, and they do not
+-   Duplex (|AIO-DX|/Standard) upgrades are supported, and they do not
     require remote install using Redfish.
 
 -   Redfish |BMC| is required for orchestrated subcloud upgrades. The install
@@ -62,8 +62,8 @@ following conditions:
     :ref:`Installing a Subcloud Using Redfish Platform Management Service
     <installing-a-subcloud-using-redfish-platform-management-service>`.
 
--   All subclouds are clear of management-affecting alarms \(with the exception of the alarm upgrade
-    in progress\).
+-   All subclouds are clear of management-affecting alarms (with the exception of the alarm upgrade
+    in progress).
 
 -   All hosts of all subclouds must be unlocked, enabled, and available.
 
@@ -104,7 +104,7 @@ dcmanager CLI or the Horizon web interface. If you prefer to use Horizon, see
     After the System Controller upgrade is completed, wait for 10 minutes for
     the **load_sync_status** of all subclouds to be updated.
 
-    To identify which subclouds are upgrade-current \(in-sync\), use the
+    To identify which subclouds are upgrade-current (in-sync), use the
     :command:`subcloud list` command. For example:
 
     .. code-block:: none
@@ -184,14 +184,14 @@ dcmanager CLI or the Horizon web interface. If you prefer to use Horizon, see
 
     **max-parallel-subclouds**
         Sets the maximum number of subclouds that can be upgraded in parallel
-        \(default 20\).
+        (default 20).
 
         If this is not specified using the CLI, the values for
         :command:`max_parallel_subclouds` defined for each subcloud group
         will be used by default.
 
     **stop-on-failure**
-        **true**\(default\) or **false**— determines whether upgrade
+        **true**\(default) or **false**— determines whether upgrade
         orchestration failure for a subcloud prevents application to subsequent
         subclouds.
 

@@ -8,7 +8,7 @@ Security Feature Configuration for Spectre and Meltdown
 
 The system allows for the security features of the Linux kernel to be
 configured to mitigate the variants of Meltdown and Spectre side-channel
-vulnerabilities \(CVE-2017-5754, CVE-2017-5753, CVE-2017-5715\).
+vulnerabilities (CVE-2017-5754, CVE-2017-5753, CVE-2017-5715).
 
 
 .. _security-feature-configuration-for-spectre-and-meltdown-section-N1001F-N1001C-N10001:
@@ -20,7 +20,7 @@ Overview
 By default, mitigation is provided against Spectre v1 type attacks.
 Additional mitigation can be enabled to cover Spectre v2 attacks and
 Meltdown attacks. Enabling this mitigation may affect system performance.
-The spectre\_v2 may also require firmware or BIOS updates from your
+The spectre_v2 may also require firmware or BIOS updates from your
 motherboard manufacturer to be effective.
 
 
@@ -35,9 +35,9 @@ motherboard manufacturer to be effective.
     +-----------------------------------+---------------------------------------------------------+
     | **Option name**                   | **Description**                                         |
     +-----------------------------------+---------------------------------------------------------+
-    | spectre\_meltdown\_v1 \(default\) | Protect against Spectre v1 attacks, highest performance |
+    | spectre_meltdown_v1 (default)     | Protect against Spectre v1 attacks, highest performance |
     +-----------------------------------+---------------------------------------------------------+
-    | spectre\_meltdown\_all            | Protect against Spectre v1, v2 and Meltdown attacks     |
+    | spectre_meltdown_all              | Protect against Spectre v1, v2 and Meltdown attacks     |
     +-----------------------------------+---------------------------------------------------------+
 
 .. note::
@@ -57,7 +57,7 @@ motherboard manufacturer to be effective.
 .. _security-feature-configuration-for-spectre-and-meltdown-ol-i4m-byx-vdb:
 
 #.  To view the existing kernel security configuration, use the following
-    command to check the current value of security\_feature:
+    command to check the current value of security_feature:
 
     .. code-block:: none
 

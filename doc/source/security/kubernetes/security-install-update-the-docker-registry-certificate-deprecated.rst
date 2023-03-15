@@ -38,7 +38,7 @@ least the following |SANs|: ``DNS:registry.local``, ``DNS:registry.central``, IP
 Address:<oam-floating-ip-address>, IP Address:<mgmt-floating-ip-address>. Use
 the :command:`system addrpool-list` command to get the |OAM| floating IP
 Address and management floating IP Address for your system. You can add any
-additional DNS entry\(s\) that you have set up for your |OAM| floating IP
+additional DNS entry\(s) that you have set up for your |OAM| floating IP
 Address.
 
 Use the following procedure to install an intermediate or Root |CA|-signed

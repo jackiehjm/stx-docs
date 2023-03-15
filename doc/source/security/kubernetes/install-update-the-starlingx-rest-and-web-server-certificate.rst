@@ -7,7 +7,7 @@ Install/Update the StarlingX Rest and Web Server Certificate
 ============================================================
 
 Use the following procedure to install or update the certificate for the |prod|
-REST API application endpoints \(Keystone, Barbican and |prod|\) and the
+REST API application endpoints (Keystone, Barbican and |prod|) and the
 |prod| web administration server.
 
 .. rubric:: |prereq|

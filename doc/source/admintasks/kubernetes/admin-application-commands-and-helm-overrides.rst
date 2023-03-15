@@ -75,7 +75,7 @@ commands to manage containerized applications provided as part of |prod|.
         | updated_at    | 2022-06-21T03:13:01.051293+00:00 |
         +---------------+----------------------------------+
 
--   Use the following command to upload application Helm chart\(s\) and
+-   Use the following command to upload application Helm chart\(s) and
     manifest.
 
     .. code-block:: none

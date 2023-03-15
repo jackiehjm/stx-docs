@@ -26,7 +26,7 @@ You can add an arbitrary number of hosts using a single CLI command.
 
         ~[keystone_admin]$ system host-bulk-add <xml_file>
 
-    where <xml\_file> is the name of the prepared XML file.
+    where <xml_file> is the name of the prepared XML file.
 
 #.  Power on the hosts to be added, if required.
 

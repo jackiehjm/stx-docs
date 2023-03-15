@@ -27,7 +27,7 @@ controllers.
 .. rubric:: |proc|
 
 #.  Use the :command:`system modify` command to specify switch-based
-    connection \(**duplex**\).
+    connection (**duplex**).
 
     .. code-block:: none
 

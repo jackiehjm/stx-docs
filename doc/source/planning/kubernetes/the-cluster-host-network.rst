@@ -25,20 +25,20 @@ interfaces for external connectivity on all nodes. This is typically done
 either directly to the application containers service or through an ingress
 controller service to reduce external port usage. HA would be achieved through
 either an external HA load balancer across two or more controller and/or worker
-nodes, or simply using multiple records \(two or more destination controller
-and/or worker node IPs\) for the application's external DNS entry.
+nodes, or simply using multiple records (two or more destination controller
+and/or worker node IPs) for the application's external DNS entry.
 
 Alternatively, the cluster host network can be deployed as an external network
 and provides the container workload's external connectivity as well. Container
 network endpoints will be exposed externally with **NodePort** Kubernetes
 services. This exposes selected Application Containers network ports on *all*
-interfaces \(e.g. external cluster host interfaces\) of both controller nodes
+interfaces (e.g. external cluster host interfaces) of both controller nodes
 and *all* worker nodes. This would typically be done either directly to the
 Application Containers service or through an ingress controller service to
 reduce external port usage. HA would be achieved through either an external HA
 load balancer across two or more controller and/or worker nodes, or simply
-using multiple records \(2 or more destination controller and/or worker node
-IPs\) for the Application's external DNS Entry.
+using multiple records (2 or more destination controller and/or worker node
+IPs) for the Application's external DNS Entry.
 
 If using an external cluster host network, container network endpoints could be
 exposed through |BGP| within the Calico |CNI| service. Calico |BGP|

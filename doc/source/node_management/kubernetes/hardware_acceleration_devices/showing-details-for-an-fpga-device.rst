@@ -28,5 +28,5 @@ command in the context of an |FPGA| device.
     | bmc_fw_version        | D.2.0.21                  |
     +-----------------------+---------------------------+
 
-In the above example, the properties below the ellipse \(…\) are specific
+In the above example, the properties below the ellipse (…) are specific
 to |FPGA| devices.

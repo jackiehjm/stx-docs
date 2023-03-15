@@ -9,7 +9,7 @@ Enable ReadWriteMany PVC Support in Additional Namespaces
 The default general **cephfs-provisioner** storage class is enabled for the
 default, kube-system, and kube-public namespaces. To enable an additional
 namespace, for example for an application-specific namespace, a modification
-to the configuration \(Helm overrides\) of the **cephfs-provisioner** service
+to the configuration (Helm overrides) of the **cephfs-provisioner** service
 is required.
 
 .. rubric:: |context|

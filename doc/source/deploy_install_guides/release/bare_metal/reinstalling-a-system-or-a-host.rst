@@ -17,7 +17,7 @@ For a summary of changes that require system or host reinstallation, see
 <configuration-changes-requiring-re-installation>`.
 
 To reinstall an entire system, refer to the Installation Guide for your system
-type \(for example, Standard or All-in-one\).
+type (for example, Standard or All-in-one).
 
 .. note::
     To simplify system reinstallation, you can export and reuse an existing
@@ -29,8 +29,8 @@ To reinstall the software on a host using the Host Inventory controls, see
 |node-doc|: :ref:`Host Inventory <hosts-tab>`. In some cases, you must delete
 the host instead, and then re-add it using the standard host installation
 procedure. This applies if the system inventory record must be corrected to
-complete the configuration change \(for example, if the |MAC| address of the
-management interface has changed\).
+complete the configuration change (for example, if the |MAC| address of the
+management interface has changed).
 
 -   :ref:`Reinstalling a System Using an Exported Host Configuration File
     <reinstalling-a-system-using-an-exported-host-configuration-file-r7>`

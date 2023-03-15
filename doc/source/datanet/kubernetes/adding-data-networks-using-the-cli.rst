@@ -59,8 +59,8 @@ pci-passthrough interface.
         The name assigned to the data network.
 
     **<type>**
-        The type of data network to be created \(**flat**, **vlan**, or
-        **vxlan**\)
+        The type of data network to be created (**flat**, **vlan**, or
+        **vxlan**)
 
         .. note::
             **vxlan** is only applicable to |prod-os|.
@@ -86,7 +86,7 @@ pci-passthrough interface.
 
 For the |prod-os| application, after creating a data network of the VLAN or
 VXLAN type, you can assign one or more segmentation ranges consisting of a set
-of consecutive VLAN IDs \(for VLANs\) or VNIs \(for VXLANs\) using the
+of consecutive VLAN IDs (for VLANs) or VNIs (for VXLANs) using the
 :command:`openstack network segment range create` command. Segmentation ranges
 are required in order to set up project networks.
 

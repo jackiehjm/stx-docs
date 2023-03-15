@@ -19,11 +19,11 @@ update. The main steps of the procedure are:
 
 -   Upload the updates.
 
--   Lock the host\(s\).
+-   Lock the host\(s).
 
 -   Install updates; any unlocked nodes will reject the request.
 
--   Unlock the host\(s\). Unlocking the host\(s\) automatically triggers a
+-   Unlock the host\(s). Unlocking the host\(s) automatically triggers a
     reboot.
 
 .. rubric:: |proc|
@@ -42,7 +42,7 @@ update. The main steps of the procedure are:
     The **Patches** tab shows the current status of all updates uploaded to the
     system. If there are no updates, an empty **Patch Table** is displayed.
 
-#.  Upload the update \(patch\) file to the update storage area.
+#.  Upload the update (patch) file to the update storage area.
 
     Click the **Upload Patches** button to display an upload window from which
     you can browse your workstation's file system to select the update file.

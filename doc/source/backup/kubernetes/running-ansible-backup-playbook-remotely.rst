@@ -39,7 +39,7 @@ and target it at controller-0.
 
 #.  Provide either a customized Ansible hosts file specified using the ``-i``
     option, or use the default one in the Ansible configuration directory
-    \(that is, /etc/ansible/hosts\).
+    (that is, /etc/ansible/hosts).
 
     #. If using a customized file, change to the ``<br>`` directory created
        in the previous step.
@@ -106,7 +106,7 @@ and target it at controller-0.
 
         ~(keystone_admin)]$ ansible-playbook backup.yml --limit sm5 -i $HOME/br_test/hosts --ask-vault-pass -e "host_backup_dir=$HOME/br_test override_files_dir=$HOME/override_dir"
 
-    The generated backup tar file can be found in <host\_backup\_dir>, that
+    The generated backup tar file can be found in <host_backup_dir>, that
     is, /home/sysadmin, by default. You can overwrite it using the **-e**
     option on the command line or in an override file.
 

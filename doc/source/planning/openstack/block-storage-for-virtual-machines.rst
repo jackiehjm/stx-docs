@@ -19,8 +19,8 @@ You can allocate root disk storage for virtual machines using the following:
 
 .. _block-storage-for-virtual-machines-ul-d1c-j5k-s5:
 
--   Cinder volumes on controller hosts \(backed by small Ceph Cluster\) or
-    storage hosts \(backed by large-scale Ceph\).
+-   Cinder volumes on controller hosts (backed by small Ceph Cluster) or
+    storage hosts (backed by large-scale Ceph).
 
 -   Ephemeral local storage on compute hosts, using image-based instance
     backing.

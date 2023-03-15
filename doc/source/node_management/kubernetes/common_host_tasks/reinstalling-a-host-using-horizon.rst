@@ -35,7 +35,7 @@ order. Observe the following tips:
         Typically, this is the disk associated with /dev/sda and is as
         defined in /proc/cmdline when the load is booted.
 
-    #.  The |NIC| on the boot interface \(such as management or |PXE| network\).
+    #.  The |NIC| on the boot interface (such as management or |PXE| network).
 
 -   Set the BIOS boot options to ensure a failsafe boot, if available. For
     example, rotating through available boot interfaces, watchdog timer on

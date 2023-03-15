@@ -11,8 +11,8 @@ host-disk-partition-modify` command.
 
 .. rubric:: |context|
 
-You can modify only the last partition on a disk \(indicated by **part** in the
-device path; for example, /dev/disk/by-path/pci-0000:00:0d.0-ata-2.0-part6\).
+You can modify only the last partition on a disk (indicated by **part** in the
+device path; for example, /dev/disk/by-path/pci-0000:00:0d.0-ata-2.0-part6).
 
 You cannot decrease the size of a partition.
 

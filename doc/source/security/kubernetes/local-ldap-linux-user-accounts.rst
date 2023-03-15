@@ -13,7 +13,7 @@ hosts in the cloud/cluster use the Local |LDAP| server on the active controller
 for |SSH| and Console authentication.
 
 The intended use of these accounts is to provide additional admin level user
-accounts \(in addition to sysadmin\) that can |SSH| to the nodes of the |prod|.
+accounts (in addition to sysadmin) that can |SSH| to the nodes of the |prod|.
 
 .. note::
     For security reasons, it is recommended that ONLY admin level users be

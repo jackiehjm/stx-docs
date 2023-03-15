@@ -45,28 +45,28 @@ remote CLI, before proceeding.
     **<imagefile>**
         The filepath of the binary device image file.
 
-    **<pci\_vendor>**
+    **<pci_vendor>**
         The hexadecimal string identifying the |PCI| vendor ID of the device
         this image applies to.
 
-    **<pci\_device>**
+    **<pci_device>**
         The hexadecimal string identifying the |PCI| device ID of the device
         this image applies to.
 
-    **<key\_signature>**
+    **<key_signature>**
         A hexadecimal string identifying the root key device image.
 
-    **<revoke\_key\_id>**
+    **<revoke_key_id>**
         A decimal key ID for the key revocation device image.
 
-    **<bitstream\_id>**
+    **<bitstream_id>**
         A hexadecimal string of the functional device image.
 
     **<name>**
-        The name of the device image \(optional\).
+        The name of the device image (optional).
 
     **<description>**
-        Is the description of the device image \(optional\).
+        Is the description of the device image (optional).
 
     **<image-version>**
-        The version of the device image \(optional\).
+        The version of the device image (optional).

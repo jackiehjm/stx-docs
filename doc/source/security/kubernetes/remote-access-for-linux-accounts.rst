@@ -7,7 +7,7 @@ Remote Access for Linux Accounts
 ================================
 
 You can log in remotely as a Linux user\(either sysadmin or a local |LDAP|
-user\) using :command:`ssh`.
+user) using :command:`ssh`.
 
 .. note::
     For security reasons, it is recommended that ONLY admin level users be

@@ -7,7 +7,7 @@ Standard Configuration with Dedicated Storage
 =============================================
 
 Deployment of |prod| with dedicated storage nodes provides the highest capacity
-\(single region\), performance, and scalability.
+\(single region), performance, and scalability.
 
 .. image:: /shared/figures/deploy_install_guides/starlingx-deployment-options-dedicated-storage.png
    :width: 800
@@ -28,9 +28,9 @@ storage, and network interfaces can be scaled to meet requirements.
 Storage nodes provide a large scale Ceph cluster for the storage backend for
 Kubernetes |PVCs|. They are deployed in replication groups of either two or
 three for redundancy. For a system configured to use two storage hosts per
-replication group, a maximum of eight storage hosts \(four replication groups\)
+replication group, a maximum of eight storage hosts (four replication groups)
 are supported. For a system with three storage hosts per replication group, up
-to nine storage hosts \(three replication groups\) are supported. The system
+to nine storage hosts (three replication groups) are supported. The system
 provides redundancy and scalability through the number of Ceph |OSDs| installed
 in a storage node group, with more |OSDs| providing more capacity and better
 storage performance. The scalability and performance of the storage function is

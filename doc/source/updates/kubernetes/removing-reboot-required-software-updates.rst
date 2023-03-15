@@ -89,7 +89,7 @@ discussed in :ref:`Install Reboot-Required Software Updates Using Horizon
 
     #.  Lock controller-0.
 
-    #.  Run the updating \(patching\) sequence.
+    #.  Run the updating (patching) sequence.
 
         .. code-block:: none
 

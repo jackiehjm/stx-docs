@@ -5,7 +5,7 @@ Vault Server Certificate
 ========================
 
 |prod| integrates open source Vault containerized security application
-\(Optional\) into the |prod| solution.
+\(Optional) into the |prod| solution.
 
 Vault is a containerized secrets management application that provides encrypted
 storage with policy-based access control and supports multiple secrets storage

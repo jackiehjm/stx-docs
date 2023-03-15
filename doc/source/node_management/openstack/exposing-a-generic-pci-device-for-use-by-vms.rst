@@ -6,8 +6,8 @@
 Expose a Generic PCI Device for Use by VMs
 ==========================================
 
-You can configure generic |PCI|-passthrough or |SRIOV| devices \(i.e. not network
-interface devices/cards\) so that they are accessible to |VMs|.
+You can configure generic |PCI|-passthrough or |SRIOV| devices (i.e. not network
+interface devices/cards) so that they are accessible to |VMs|.
 
 .. rubric:: |context|
 

@@ -63,8 +63,8 @@ provide support for small scale deployments on the Intel Xeon D family of
 processors using a smaller memory and CPU footprint than the standard Simplex
 configuration.
 
-For low-cost or low-power applications with minimal performance demands \(40
-Containers or fewer\), |prod| Simplex can be deployed on a server with a
+For low-cost or low-power applications with minimal performance demands (40
+Containers or fewer), |prod| Simplex can be deployed on a server with a
 single Intel Xeon D class processor. The platform-reserved memory and the
 maximum number of worker threads are reduced by default, but can be
 reconfigured as required.

@@ -55,14 +55,14 @@ You can use the CLI to attach |VLAN| interfaces to networks.
     where the following options are available:
 
     **interface name**
-        A name or UUID for the interface \(Required\).
+        A name or UUID for the interface (Required).
 
         .. caution::
             To avoid potential internal inconsistencies, do not use upper
             case characters when creating interface names. Some components
             normalize all interface names to lower case.
 
-    **vlan\_id**
+    **vlan_id**
         The |VLAN| identifier for the network.
 
     **hostname**

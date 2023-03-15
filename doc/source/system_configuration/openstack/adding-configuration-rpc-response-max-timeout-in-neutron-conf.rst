@@ -3,16 +3,16 @@
 .. _adding-configuration-rpc-response-max-timeout-in-neutron-conf:
 
 =============================================================
-Add Configuration rpc\_response\_max\_timeout in neutron.conf
+Add Configuration rpc_response_max_timeout in neutron.conf
 =============================================================
 
-You can add the rpc\_response\_max\_timeout to neutron.conf using Helm
+You can add the rpc_response_max_timeout to neutron.conf using Helm
 overrides.
 
 .. rubric:: |context|
 
-Maximum rpc timeout is now configurable by rpc\_response\_max\_timeout from
-Neutron config instead of being calculated as 10 \* rpc\_response\_timeout.
+Maximum rpc timeout is now configurable by rpc_response_max_timeout from
+Neutron config instead of being calculated as 10 \* rpc_response_timeout.
 
 This configuration can be used to change the maximum rpc timeout. If maximum
 rpc timeout is too big, some requests which should fail will be held for a long
@@ -23,7 +23,7 @@ timeout.
 
 .. rubric:: |proc|
 
-#.  create a yaml file to add configuration rpc\_response\_max\_timeout in
+#.  create a yaml file to add configuration rpc_response_max_timeout in
     neutron.conf.
 
     .. code-block:: none
@@ -42,7 +42,7 @@ timeout.
         ~(keystone_admin)]$ system helm-override-update |prefix|-openstack neutron openstack --values neutron-overrides.yaml
         ~(keystone_admin)]$ system application-apply |prefix|-openstack
 
-#.  Verify that configuration rpc\_response\_max\_time has been added in
+#.  Verify that configuration rpc_response_max_time has been added in
     neutron.conf.
 
     .. code-block:: none

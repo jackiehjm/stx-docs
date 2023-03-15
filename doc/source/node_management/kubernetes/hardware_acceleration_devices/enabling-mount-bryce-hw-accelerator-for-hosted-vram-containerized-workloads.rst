@@ -50,8 +50,8 @@ enables the ACC100/ACC200 device.
         ~(keystone_admin)$ system host-label-assign controller-0 kube-topology-mgr-policy=restricted
 
 #.  Modify the CPU core assignments for controller-0 to have 12
-    application-isolated physical cores \(24 virtual cores if hyper-threading
-    is supported and enabled on the processor\) on processor 0. Your specific
+    application-isolated physical cores (24 virtual cores if hyper-threading
+    is supported and enabled on the processor) on processor 0. Your specific
     application(s) may need more or less cores.
 
 

@@ -6,7 +6,7 @@
 Specify the Storage Type for VM Ephemeral Disks
 ==================================================
 
-You can specify the ephemeral storage type for virtual machines \(|VMs|\) by
+You can specify the ephemeral storage type for virtual machines (|VMs|) by
 using a flavor with the appropriate extra specification.
 
 .. rubric:: |context|
@@ -21,9 +21,9 @@ using a flavor with the appropriate extra specification.
 
 Each new flavor is automatically assigned a Storage Type extra spec that
 specifies, as the default, instantiation on compute hosts configured for
-image-backed local storage \(Local |CoW| Image Backed\). You can change the extra
+image-backed local storage (Local |CoW| Image Backed). You can change the extra
 spec to specify instantiation on compute hosts configured for Ceph-backed
-remote storage, if this is available \(Remote Storage Backed\). Ceph-backed
+remote storage, if this is available (Remote Storage Backed). Ceph-backed
 remote storage is available only on systems configured with a Ceph storage
 backend.
 
@@ -38,8 +38,8 @@ Storage Settings for Migration, Resize, or Evacuation
 <vm-storage-settings-for-migration-resize-or-evacuation>`.
 
 If the instance is configured to boot from volume, the root disk is implemented
-using persistent Cinder-based storage allocated from the controller \(for a
-system using LVM\) or from storage hosts \(for a system using Ceph\) by
+using persistent Cinder-based storage allocated from the controller (for a
+system using LVM) or from storage hosts (for a system using Ceph) by
 default. On a system that offers both LVM and Ceph storage backends for Cinder
 storage, you can specify to use the LVM backend when you launch an instance.
 

@@ -116,9 +116,9 @@ You can configure Vault by logging into a Vault server pod and using Vault CLI.
             exist on the kubernetes cluster.
 
 
-            -   **bound\_service\_account\_names**
+            -   **bound_service_account_names**
 
-            -   **bound\_service\_account\_namespaces**
+            -   **bound_service_account_namespaces**
 
 
         .. code-block:: none
@@ -155,7 +155,7 @@ You can configure Vault by logging into a Vault server pod and using Vault CLI.
             $ vault kv get secret/basic-secret/helloworld
 
 
-#.  \(Optional\) To enable audit logging, use the steps below:
+#.  (Optional) To enable audit logging, use the steps below:
 
     .. note::
         It is recommended to enable file logging and stdout.

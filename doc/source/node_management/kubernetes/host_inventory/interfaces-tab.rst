@@ -54,16 +54,16 @@ Information about interfaces is presented in several columns, as follows:
     -   pci-passthrough, for a |PCI| passthrough interface
 
     -   pci-passthrough, pci-sriov, for an interface that can be used in
-        either configuration \(dual use\)
+        either configuration (dual use)
 
 **Type**
-    Ethernet, or aggregated Ethernet \(|LAG|\).
+    Ethernet, or aggregated Ethernet (|LAG|).
 
 **Vlan ID**
     If the network uses a shared interface, the |VLAN| ID of the network is
     listed in the **Interface Class** column.
 
-**Port\(s\)**
+**Port\(s)**
     The physical ports on top of which the logical interface is built.
     Multiple ports are displayed when the logical interface uses |LAG|.
 

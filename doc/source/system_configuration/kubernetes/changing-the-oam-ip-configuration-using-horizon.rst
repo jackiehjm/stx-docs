@@ -23,7 +23,7 @@ interface or the CLI. You can use IPv4 or IPv6 addresses.
     interrupted until the hosts are locked and unlocked.
 
     Once the |OAM| IP addresses are changed, any existing server certificates
-    \(ssl, docker\_registry, OpenStack etc.\) that have the old |OAM| IP
+    (ssl, docker_registry, OpenStack etc.) that have the old |OAM| IP
     addresses in their |SANs| must be updated with new certificates reflecting
     the new addresses.
 
@@ -66,10 +66,10 @@ and ensure that any existing system alarms are cleared.
 #.  Replace the IP Subnet and/or IP addresses with different ones as required.
 
     .. note::
-        If you change the IP address version \(IPv4 or IPv6\), ensure that the
+        If you change the IP address version (IPv4 or IPv6), ensure that the
         same version is used for the DNS servers
-        \(see :ref:`Specify DNS Servers Using Horizon <specifying-dns-servers-using-horizon>`\)
-        and NTP servers \(see :ref:`Configure NTP Servers Using Horizon <configuring-ntp-servers-and-services-using-horizon>`\).
+        (see :ref:`Specify DNS Servers Using Horizon <specifying-dns-servers-using-horizon>`)
+        and NTP servers (see :ref:`Configure NTP Servers Using Horizon <configuring-ntp-servers-and-services-using-horizon>`).
 
 #.  Click **Save**.
 
@@ -131,7 +131,7 @@ the system configuration is updated.
 -   If alarms are not cleared after a few minutes, lock and unlock the worker
     nodes to apply any other incomplete configuration changes.
 
--   \(Optional\) If you are running Docker proxy on your system, you need to
+-   (Optional) If you are running Docker proxy on your system, you need to
     change the **no_proxy** service parameter using the CLI to append the new
     OAM IP. See, :ref:`Change the OAM IP Configuration Using the CLI <changing-the-oam-ip-configuration-using-the-cli>`.
 

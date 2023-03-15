@@ -20,12 +20,12 @@ user must wait before the lockout is reset.
     only.
 
 By default, after five consecutive failed login attempts, a user must wait
-thirty minutes \(1800 seconds\) before attempting another login. During this
+thirty minutes (1800 seconds) before attempting another login. During this
 period, all Web administration interface login attempts by the user are
 refused, including those using the correct password.
 
-This behavior is controlled by the lockout\_retries parameter and the
-lockout\_seconds service parameter. To review their current values, use the
+This behavior is controlled by the lockout_retries parameter and the
+lockout_seconds service parameter. To review their current values, use the
 :command:`system service-parameter-list` command.
 
 You can change the duration of the lockout using the following |CLI| command:

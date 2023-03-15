@@ -9,10 +9,10 @@ Resynchronize a Host to the NTP Server
 If host synchronization is lost for any reason, you must lock and then
 unlock the host to restore the synchronization safely.
 
-If a large time discrepancy \(greater than 1000 seconds, or about 17
-minutes\) develops between the clock time on a host and the time as reported
+If a large time discrepancy (greater than 1000 seconds, or about 17
+minutes) develops between the clock time on a host and the time as reported
 by an |NTP| server, the **ntpd** service on the host stops, and Alarm
-200.006 \(<hostname\> 'ntpd' process has failed\) is logged in the Alarm Log
+200.006 (<hostname\> 'ntpd' process has failed) is logged in the Alarm Log
 and the Customer Log. This can occur if the clock on the host is
 inadvertently set incorrectly, or cannot access the |NTP| server for the
 correct time at initialization and defaults to an incorrect time.

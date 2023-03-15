@@ -31,8 +31,8 @@ For data networks of the |VLAN| type, consider the following guidelines:
    :start-after: vlan-begin
    :end-before: vxlan-begin
 
--   Configuring a project network to have access to external networks \(not
-    just providing local networking\) requires the following elements:
+-   Configuring a project network to have access to external networks (not
+    just providing local networking) requires the following elements:
 
     -   A physical router, and the data network's access L2 switch, must be
         part of the same Layer-2 network. Because this Layer 2 network uses a
@@ -76,7 +76,7 @@ For data networks of the |VXLAN| type, consider the following guidelines:
 
 In some circumstances, project networks can be configured to use |VLAN|
 Transparent mode, in which |VLAN| tagged packets from the guest are
-encapsulated within a data network segment \(|VLAN|\) without removing or
+encapsulated within a data network segment (|VLAN|) without removing or
 modifying the guest |VLAN| tag.
 
 Alternatively, guest |VLAN|-tagged traffic can be implemented using |prod-os|

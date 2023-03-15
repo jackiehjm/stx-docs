@@ -125,6 +125,6 @@ Dashboard.
 
 
     You are presented with the Kubernetes Dashboard for the current context
-    \(cluster, user and credentials\) specified in the kubeconfig file.
+    (cluster, user and credentials) specified in the kubeconfig file.
 
 

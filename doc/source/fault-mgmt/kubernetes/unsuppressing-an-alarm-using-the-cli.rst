@@ -32,7 +32,7 @@ If you need to reactivate a suppressed alarm, you can do so using the CLI.
     ``--uuid``
         includes the alarm type UUIDs in the output.
 
-    Alarm type\(s\) with the specified <alarm-id\(s\)> will be unsuppressed.
+    Alarm type\(s) with the specified <alarm-id\(s)> will be unsuppressed.
 
     You can unsuppress all currently suppressed alarms using the following command:
 

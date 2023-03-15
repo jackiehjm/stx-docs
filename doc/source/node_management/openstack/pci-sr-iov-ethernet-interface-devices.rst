@@ -10,10 +10,10 @@ A |SRIOV| ethernet interface is a physical |PCI| ethernet |NIC| that implements
 hardware-based virtualization mechanisms to expose multiple virtual network
 interfaces that can be used by one or more virtual machines simultaneously.
 
-The |PCI|-SIG Single Root I/O Virtualization and Sharing \(|SRIOV|\) specification
+The |PCI|-SIG Single Root I/O Virtualization and Sharing (|SRIOV|) specification
 defines a standardized mechanism to create individual virtual ethernet devices
 from a single physical ethernet interface. For each exposed virtual ethernet
-device, formally referred to as a Virtual Function \(VF\), the |SRIOV| interface
+device, formally referred to as a Virtual Function (VF), the |SRIOV| interface
 provides separate management memory space, work queues, interrupts resources,
 and |DMA| streams, while utilizing common resources behind the host interface.
 Each VF therefore has direct access to the hardware and can be considered to be
@@ -102,7 +102,7 @@ already, and that |VLAN| ID 10 is a valid segmentation ID assigned to
     Select **Admin** \> **Network** \> **Networks**, select the Networks tab, and then click **Create Network**. Fill in the Create Network dialog box as illustrated below. You must ensure that:
 
     -   **project1** has access to the project network, either assigning it as
-        the owner, as in the illustration \(using **Project**\), or by enabling
+        the owner, as in the illustration (using **Project**), or by enabling
         the shared flag.
 
     -   The segmentation ID is set to 10.
@@ -110,7 +110,7 @@ already, and that |VLAN| ID 10 is a valid segmentation ID assigned to
 
     .. image:: /node_management/figures/bek1516655307871.png
 
-    The segmentation ID of the project network\(s\) used is more significant
+    The segmentation ID of the project network\(s) used is more significant
     here since this identifies the particular |VF| of the |SRIOV| interface
 
     Click the **Next** button to proceed to the Subnet tab.

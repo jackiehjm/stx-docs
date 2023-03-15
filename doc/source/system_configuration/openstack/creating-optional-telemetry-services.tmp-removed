@@ -7,9 +7,9 @@ Enable Optional Telemetry Services
 ==================================
 
 By default in |prod-os|, Telemetry services are disabled. These
-services are optional and includes Ceilometer \(Data collection service\),
-Panko \(Event storage service\), Gnocchi
-\(Time series metric storage service\), and Aodh \(Alarming service\).
+services are optional and includes Ceilometer (Data collection service),
+Panko (Event storage service), Gnocchi
+\(Time series metric storage service), and Aodh (Alarming service).
 
 .. rubric:: |context|
 

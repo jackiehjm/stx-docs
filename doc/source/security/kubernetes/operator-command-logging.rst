@@ -16,8 +16,8 @@ requests.
 StarlingX REST API Operator Command Logging
 -------------------------------------------
 
-The logs include the timestamp, tenant name \(if applicable\), user name,
-command executed, and command status \(success or failure\).
+The logs include the timestamp, tenant name (if applicable), user name,
+command executed, and command status (success or failure).
 
 The files are located under the ``/var/log`` directory and are named using the
 convention ``*api.log``. The list of log files is presented below.

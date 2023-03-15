@@ -20,7 +20,7 @@ and to collect alarms from the subcloud.
 
 The subcloud is synchronized when it is first connected to the |prod-dc| and
 set to managed. A backup audit and synchronization is run at regular intervals
-\(every ten minutes\) for subclouds in the Managed state, synchronizing them to
+\(every ten minutes) for subclouds in the Managed state, synchronizing them to
 the System Controller. You can view the synchronization status for individual
 subclouds on the Cloud Overview page from **Distributed Cloud Admin** \>
 **Cloud Overview**.

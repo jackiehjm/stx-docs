@@ -182,7 +182,7 @@ For example:
        This option specifies the host concurrency of the Kubernetes version
        upgrade strategy:
 
-       -   serial \(default\): worker hosts will be patched one at a time
+       -   serial (default): worker hosts will be patched one at a time
 
        -   parallel: worker hosts will be upgraded in parallel
 
@@ -198,8 +198,8 @@ For example:
 
     ``--max-parallel-worker-hosts``
        This option applies to the parallel worker apply type selection to
-       specify the maximum worker hosts to upgrade in parallel \(minimum: 2,
-       maximum: 10\).
+       specify the maximum worker hosts to upgrade in parallel (minimum: 2,
+       maximum: 10).
 
     ``–instance-action``
        This option only has significance when the |prefix|-openstack
@@ -207,7 +207,7 @@ For example:
        It specifies how the strategy deals with worker host instances over the
        strategy execution.
 
-    ``stop-start`` \(default\)
+    ``stop-start`` (default)
        Instances will be stopped before the host lock operation following the
        upgrade and then started again following the host unlock.
 
@@ -215,13 +215,13 @@ For example:
            Using the ``stop-start`` option will result in an outage for each
            instance, as it is stopped while the worker host is locked/unlocked.
            In order to ensure this does not impact service, instances MUST be
-           grouped into anti-affinity \(or anti-affinity best effort\) server
+           grouped into anti-affinity (or anti-affinity best effort) server
            groups, which will ensure that only a single instance in each server
            group is stopped at a time.
 
     ``migrate``
-       Instances will be migrated off a host before it is patched \(this
-       applies to reboot patching only\).
+       Instances will be migrated off a host before it is patched (this
+       applies to reboot patching only).
 
     ``--alarm-restrictions``
        This option sets how the how the Kubernetes version upgrade
@@ -234,10 +234,10 @@ For example:
 
            ~(keystone_admin)$ fm alarm-list --mgmt_affecting
 
-    ``strict`` \(default\)
+    ``strict`` (default)
        The default strict option will result in patch orchestration failing if
-       there are any alarms present in the system \(except for a small list of
-       alarms\).
+       there are any alarms present in the system (except for a small list of
+       alarms).
 
     ``relaxed``
        This option allows orchestration to proceed if alarms are present, as
@@ -388,7 +388,7 @@ For example:
 
     .. note::
         After the *Kubernetes Version Upgrade Orchestration Strategy* has been
-        applied \(or aborted\) it must be deleted before another Kubernetes
+        applied (or aborted) it must be deleted before another Kubernetes
         version upgrade strategy can be created. If a Kubernetes version
         upgrade strategy application fails, you must address the issue that
         caused the failure, then delete and re-create the strategy before

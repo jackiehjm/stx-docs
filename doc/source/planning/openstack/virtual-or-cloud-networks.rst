@@ -11,7 +11,7 @@ In addition to the physical networks used to connect the |prod-os| hosts,
 
 Virtual networks, which include data networks and project networks, are defined
 and implemented internally. They are connected to system hosts and to the
-outside world using data \(physical\) networks attached to data interfaces on
+outside world using data (physical) networks attached to data interfaces on
 compute nodes.
 
 Each data network supports one or more data networks, which may be implemented

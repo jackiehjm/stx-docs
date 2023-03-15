@@ -83,7 +83,7 @@ For more information, see :ref:`Provision SR-IOV Interfaces using the CLI
     where the following options are available:
 
     **hostname**
-        This is the host name or ID of the compute \(worker\) node.
+        This is the host name or ID of the compute (worker) node.
 
     **interfacename**
         The name for the VF interface.

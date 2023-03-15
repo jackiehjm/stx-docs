@@ -6,7 +6,7 @@
 Provision Storage on a Controller or Storage Host Using Horizon
 ===============================================================
 
-You must configure the Ceph disks \(OSD disks\) on controllers or
+You must configure the Ceph disks (OSD disks) on controllers or
 storage hosts to provide container disk storage.
 
 .. rubric:: |context|
@@ -26,8 +26,8 @@ To create or edit an OSD, you must lock the controller or storage host.
 
 -   When adding storage to a storage host or controller on a Standard
     system , you must have at least two other unlocked hosts with Ceph
-    monitors. \(Ceph monitors typically run on **controller-0**,
-    **controller-1**, and **storage-0** only\).
+    monitors. (Ceph monitors typically run on **controller-0**,
+    **controller-1**, and **storage-0** only).
 
 -   When adding storage to AIO-SX and AIO-DX system, a single Ceph monitor
     is required.
@@ -84,7 +84,7 @@ must add the storage tier first. For more about storage tiers, see
 
     #.  In the **Disks** field, select the OSD to use for storage.
 
-        You cannot use the rootfs disk \(**dev/sda**\) for storage functions.
+        You cannot use the rootfs disk (**dev/sda**) for storage functions.
 
     #.  If applicable, specify the size of the Ceph journal.
 

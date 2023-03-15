@@ -37,8 +37,8 @@ unnecessary alarms.
     <alarm-id>: **Alarm ID not found: <alarm-id\>**.
 
     If the specified number of Alarm IDs is greater than 1, and at least 1 is
-    wrong, then the suppress command is not applied \(none of the specified
-    Alarm IDs are suppressed\).
+    wrong, then the suppress command is not applied (none of the specified
+    Alarm IDs are suppressed).
 
     .. note::
         Suppressing an Alarm will result in the system NOT notifying the

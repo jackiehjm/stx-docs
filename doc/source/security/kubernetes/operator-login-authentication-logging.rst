@@ -8,13 +8,13 @@ Operator Login/Authentication Logging
 
 |prod| logs all operator login and authentication attempts.
 
-For security purposes, all login attempts \(success and failure\) are
+For security purposes, all login attempts (success and failure) are
 logged. This includes the Horizon Web Interface logins, SSH logins, Local
 Console Logins and internal database login attempts.
 
 
 The logs include the timestamp, user name, remote IP Address, and number of
-failed login attempts \(if applicable\). They are located under the /var/log
+failed login attempts (if applicable). They are located under the /var/log
 directory, and include the following:
 
 

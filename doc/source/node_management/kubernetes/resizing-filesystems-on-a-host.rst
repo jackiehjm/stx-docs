@@ -59,7 +59,7 @@ sizes on a controller.
 
         host-fs-list <hostname_or_id>
 
-    **<hostname\_or\_id>** is the host name or UUID of the host.
+    **<hostname_or_id>** is the host name or UUID of the host.
 
 #.  Optionally, list details about a filesystem.
 
@@ -69,10 +69,10 @@ sizes on a controller.
 
         host-fs-show <hostname_or_id> <fs_name_or_uuid>
 
-    **<hostname\_or\_id>**
+    **<hostname_or_id>**
         The host name or UUID of the host.
 
-    **<fs\_name\_or\_uuid>**
+    **<fs_name_or_uuid>**
         The name or UUID of the file system.
 
     .. code-block:: none
@@ -97,10 +97,10 @@ sizes on a controller.
 
         host-fs-modify <hostname_or_id> <fs_name>=<size> [<fs_name>=<size>]
 
-    **<hostname\_or\_id>**
+    **<hostname_or_id>**
         The host name or UUID of the node.
 
-    **<fs\_name>**
+    **<fs_name>**
         The name of the filesystem.
 
     **<size>**

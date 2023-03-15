@@ -7,7 +7,7 @@ Use Local CLIs
 ==============
 
 |prod-os| administration and other tasks can be carried out from the command
-line interface \(|CLI|\)
+line interface (|CLI|)
 
 .. rubric:: |context|
 

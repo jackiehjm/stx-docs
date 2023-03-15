@@ -46,7 +46,7 @@ Hugepages
     custom Kata kernel.
 
 -   The size and number of hugepages must be written using the
-    :command:`io.katacontainers.config.hypervisor.kernel\_params` annotation.
+    :command:`io.katacontainers.config.hypervisor.kernel_params` annotation.
 
 -   Creating a **hugetlbfs** mount for hugepages in the Kata container is
     specific to the end user application.

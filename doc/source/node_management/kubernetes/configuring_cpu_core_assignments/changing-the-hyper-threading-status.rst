@@ -12,10 +12,10 @@ The hyper-threading status is controlled by the BIOS settings of the host.
     Some applications may benefit from hyperthreading. For applications that
     require deterministic performance, it is recommended to run with
     hyperthreading disabled. If hyperthreading is enabled, the application
-    \(either running on bare metal or in a container\) must check the CPU
+    (either running on bare metal or in a container) must check the CPU
     topology for the CPUs and affine tasks appropriately to HT siblings. For
     example, "/proc/cpuinfo" and
-    "/sys/devices/system/cpu/cpuX/topology/thread\_siblings\*" can be used to
+    "/sys/devices/system/cpu/cpuX/topology/thread_siblings\*" can be used to
     identify HT siblings of the same core.
 
 
@@ -39,7 +39,7 @@ The hyper-threading status is controlled by the BIOS settings of the host.
     .. note::
         Changes to the host's BIOS must be made while it is locked and it
         must not be subsequently unlocked until it comes back online
-        \(locked-disabled-online\) and the updated Hyperthreading settings
+        (locked-disabled-online) and the updated Hyperthreading settings
         are available in the inventory.
 
     #.  Boot the host in BIOS mode.

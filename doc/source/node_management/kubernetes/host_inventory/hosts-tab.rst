@@ -52,7 +52,7 @@ A sample **Hosts** tab is illustrated below:
 
         A worker node in this state, and not in the failed state, is eligible
         for regular scheduling and maintenance operations on containers
-        \(hosted applications\).
+        (hosted applications).
 
         -   If the node's vSwitch type is set to **none**, the number of
             vSwitch CPUs must be 0 before
@@ -116,7 +116,7 @@ A sample **Hosts** tab is illustrated below:
         services. The |prod| maintenance system automatically tries to
         recover hosts in this state.
 
-        In the case of a worker node, any containers \(hosted applications\)
+        In the case of a worker node, any containers (hosted applications)
         that were running before are immediately restarted on another
         enabled worker node with sufficient available resources.
 
@@ -146,8 +146,8 @@ A sample **Hosts** tab is illustrated below:
     installing the |prod| software on the host.
 
     -   The **Host Info** tab provides access for adding and modifying the
-        Personality, Location, Host Name \(controller, worker and storage
-        nodes only\), Clock Synchronization \(|NTP|/|PTP|\), and applying
+        Personality, Location, Host Name (controller, worker and storage
+        nodes only), Clock Synchronization (|NTP|/|PTP|), and applying
         profiles.
 
         -   **Personality**: Select the personality or type of host.

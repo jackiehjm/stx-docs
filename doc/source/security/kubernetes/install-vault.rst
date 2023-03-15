@@ -12,7 +12,7 @@ Vault is packaged as a system application and is managed using
 .. rubric:: |context|
 
 .. note::
-    Vault requires a storage backend with PVC enabled \(for example, Ceph\).
+    Vault requires a storage backend with PVC enabled (for example, Ceph).
 
 To install Vault, use the following procedure:
 

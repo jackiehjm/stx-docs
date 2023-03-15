@@ -17,7 +17,7 @@ The **Filesystems** tab includes the following items:
 **Name**
     The name of the file system.
 
-**Size \(GiB\)**
+**Size (GiB)**
     The size of the file system, in gigabytes.
 
 .. note::

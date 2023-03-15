@@ -42,8 +42,8 @@ software.
 
     -   A valid license file has been installed.
 
--   Transfer the new release software load to controller-0 \(or onto a USB
-    stick\); controller-0 must be active.
+-   Transfer the new release software load to controller-0 (or onto a USB
+    stick); controller-0 must be active.
 
     .. note::
 
@@ -53,11 +53,11 @@ software.
         bootimage previously imported after the :command:`load-import`
         command.
 
--   Transfer the new release software license file to controller-0 \(or onto a
-    USB stick\).
+-   Transfer the new release software license file to controller-0 (or onto a
+    USB stick).
 
--   Transfer the new release software signature to controller-0 \(or onto a USB
-    stick\).
+-   Transfer the new release software signature to controller-0 (or onto a USB
+    stick).
 
 .. note::
     The upgrade procedure includes steps to resolve system health issues.
@@ -247,7 +247,7 @@ For more details, see :ref:`Detailed contents of a system backup
 
         -   State entered after :command:`system upgrade-start` completes.
 
-        -   Release <nn>.<nn> system data \(for example, postgres databases\) has
+        -   Release <nn>.<nn> system data (for example, postgres databases) has
             been exported to be used in the upgrade.
 
         -   Configuration changes must not be made after this point, until the
@@ -283,13 +283,13 @@ For more details, see :ref:`Detailed contents of a system backup
     Ensure the upgrade state is *started*. It will take several minutes to
     transition to the *started* state.
 
-#.  \(Optional\) Copy the upgrade data from the system to an alternate safe
-    location \(such as a USB drive or remote server\).
+#.  (Optional) Copy the upgrade data from the system to an alternate safe
+    location (such as a USB drive or remote server).
 
     The upgrade data is located under ``/opt/platform-backup``. Example file names
     are:
 
-    **lost+found upgrade\_data\_2020-06-23T033950\_61e5fcd7-a38d-40b0-ab83-8be55b87fee2.tgz**
+    **lost+found upgrade_data_2020-06-23T033950\_61e5fcd7-a38d-40b0-ab83-8be55b87fee2.tgz**
 
     .. code-block:: none
 
@@ -305,8 +305,8 @@ For more details, see :ref:`Detailed contents of a system backup
 
     This is the point of no return. All data except ``/opt/platform-backup/``
     will be erased from the system. This will wipe the ``rootfs`` and reboot the
-    host. The new release must then be manually installed \(via network or
-    USB\).
+    host. The new release must then be manually installed (via network or
+    USB).
 
     .. code-block:: none
 
@@ -379,8 +379,8 @@ For more details, see :ref:`Detailed contents of a system backup
 #.  Activate the upgrade.
 
     During the running of the :command:`upgrade-activate` command, new
-    configurations are applied to the controller. 250.001 \(**hostname
-    Configuration is out-of-date**\) alarms are raised and then cleared as the
+    configurations are applied to the controller. 250.001 (**hostname
+    Configuration is out-of-date**) alarms are raised and then cleared as the
     configuration is applied. The upgrade state goes from *activating* to
     *activation-complete* once this is done.
 

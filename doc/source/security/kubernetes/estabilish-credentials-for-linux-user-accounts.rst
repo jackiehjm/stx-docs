@@ -7,7 +7,7 @@ Establish Credentials for Linux User Accounts
 =============================================
 
 You can establish credentials for StarlingX, Platform OpenStack |CLIs|, and
-Kubernetes |CLIs| \(kubectl and helm\) for Linux user accounts.
+Kubernetes |CLIs| (kubectl and helm) for Linux user accounts.
 
 For more information, see:
 

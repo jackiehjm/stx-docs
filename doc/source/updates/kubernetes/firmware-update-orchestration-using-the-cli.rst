@@ -84,7 +84,7 @@ parallelism, instance action, and alarm restrictions.
 ``--worker-apply-type``
    This option specifies the host concurrency of the firmware update strategy:
 
-   -   ``serial`` \(default\): worker hosts will be patched one at a time
+   -   ``serial`` (default): worker hosts will be patched one at a time
    
    -   ``parallel``: worker hosts will be updated in parallel
    
@@ -100,7 +100,7 @@ parallelism, instance action, and alarm restrictions.
 
 ``--max-parallel-worker-hosts``
    This option applies to the parallel worker apply type selection to specify
-   the maximum worker hosts to update in parallel \(minimum: 2, maximum: 10\).
+   the maximum worker hosts to update in parallel (minimum: 2, maximum: 10).
 
 ``-–instance-action``
    This option only has significance when the |prefix|-openstack application is
@@ -116,14 +116,14 @@ parallelism, instance action, and alarm restrictions.
            Using the ``stop-start`` option will result in an outage for each
            instance, as it is stopped while the worker host is locked/unlocked. In
            order to ensure this does not impact service, instances MUST be grouped
-           into anti-affinity \(or anti-affinity best effort\) server groups,
+           into anti-affinity (or anti-affinity best effort) server groups,
            which will ensure that only a single instance in each server group is
            stopped at a time.
    
    -   ``migrate``
    
-       Instances will be migrated off a host before it is patched \(this applies
-       to reboot patching only\).
+       Instances will be migrated off a host before it is patched (this applies
+       to reboot patching only).
 
 ``--alarm-restrictions``
    This option sets how the how the firmware update orchestration behaves when
@@ -138,8 +138,8 @@ parallelism, instance action, and alarm restrictions.
    -   ``strict`` (default)
    
        The default strict option will result in patch orchestration failing if
-       there are any alarms present in the system \(except for a small list of
-       alarms\).
+       there are any alarms present in the system (except for a small list of
+       alarms).
    
    -   ``relaxed``
    

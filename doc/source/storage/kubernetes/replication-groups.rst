@@ -23,12 +23,12 @@ which each peer has sufficient resources to meet the operational
 requirements of the system.
 
 A replication group is considered healthy when all its peers are available.
-When only a minimum number of peers are available \(as indicated by the
-**min\_replication** value reported for the group\), the group continues to
-provide storage services but without full replication, and a HEALTH\_WARN
+When only a minimum number of peers are available (as indicated by the
+**min_replication** value reported for the group), the group continues to
+provide storage services but without full replication, and a HEALTH_WARN
 state is declared. When the number of available peers falls below the
-**min\_replication** value, the group no longer provides storage services,
-and a HEALTH\_ERR state is declared. The **min\_replication** value is
+**min_replication** value, the group no longer provides storage services,
+and a HEALTH_ERR state is declared. The **min_replication** value is
 always one less than the replication factor for the group.
 
 It is not possible to lock more than one peer at a time in a replication

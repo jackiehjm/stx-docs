@@ -37,8 +37,8 @@ You can restore |prod-os| from a backup with or without Ceph.
 
 
     -   Restore only |prod-os| system data. This option will not restore the
-        Ceph data \(that is, it will not run commands like :command:`rbd
-        import`\). This procedure will preserve any existing Ceph data at
+        Ceph data (that is, it will not run commands like :command:`rbd
+        import`). This procedure will preserve any existing Ceph data at
         restore-time.
 
     -   Restore |prod-os| system data, Cinder volumes and Glance images. You'll

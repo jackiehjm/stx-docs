@@ -6,7 +6,7 @@
 Populate the Storage Area
 =========================
 
-Software updates \(patches\) have to be uploaded to the |prod| storage area
+Software updates (patches) have to be uploaded to the |prod| storage area
 before they can be applied.
 
 .. rubric:: |proc|
@@ -78,5 +78,5 @@ it using the following command:
     $ sudo sw-patch delete |pn|-|pvr|-PATCH_0001
 
 The update to delete from the storage area is identified by the update
-\(patch\) ID reported by the :command:`sw-patch query` command. You can provide
+\(patch) ID reported by the :command:`sw-patch query` command. You can provide
 multiple patch IDs to the delete command, separating their names by spaces.

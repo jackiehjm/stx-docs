@@ -6,16 +6,16 @@
 Dynamic VXLAN
 =============
 
-|prod-os| supports dynamic mode \(learning\) VXLAN implementation that has each
+|prod-os| supports dynamic mode (learning) VXLAN implementation that has each
 vSwitch instance registered on the network for a particular IP multicast group,
 |MAC| addresses, and |VTEP| endpoints that are populated based on neutron
 configuration data.
 
-The IP multicast group, \(for example, 239.1.1.1\), is input when a new
+The IP multicast group, (for example, 239.1.1.1), is input when a new
 neutron data network is provisioned. The selection of the IP multicast group
 constraints flooding to only those nodes that have registered for the specified
-group. The IP multicast network can work in both a single subnet \(that is,
-local Layer2 environment\) or can span Layer3 segments in the customer network
+group. The IP multicast network can work in both a single subnet (that is,
+local Layer2 environment) or can span Layer3 segments in the customer network
 for more complex routing requirements but requires IP multicast enabled routers.
 
 .. only:: starlingx
@@ -70,7 +70,7 @@ segmentation ranges using the |CLI|.
 #.  Create a VXLAN data network, see :ref:`Adding Data Networks
     <adding-data-networks-using-the-cli>`.
 
-#.  Add segmentation ranges to dynamic |VXLAN| \(Multicast |VXLAN|\) data
+#.  Add segmentation ranges to dynamic |VXLAN| (Multicast |VXLAN|) data
     networks, see :ref:`Adding Segmentation Ranges Using the CLI
     <adding-segmentation-ranges-using-the-cli>`.
 

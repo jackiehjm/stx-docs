@@ -12,16 +12,16 @@ by Ceph and a containerized HA mariadb deployment.
 
 On systems configured for controller storage with a small Ceph cluster on the
 master/controller nodes, they also provide persistent block storage for
-persistent |VM| volumes \(Cinder\), storage for |VM| images \(Glance\), and
-storage for |VM| remote ephemeral volumes \(Nova\). On All-in-One Simplex or
+persistent |VM| volumes (Cinder), storage for |VM| images (Glance), and
+storage for |VM| remote ephemeral volumes (Nova). On All-in-One Simplex or
 Duplex systems, the controllers also provide nova- local storage for ephemeral
 |VM| volumes.
 
 On systems configured for controller storage, the master/controller's root disk
 is reserved for system use, and additional disks are required to support the
 small Ceph cluster. On a All-in-One Simplex or Duplex system, you have the
-option to partition the root disk for the nova-local storage \(to realize a
-two-disk controller\) or use a third disk for nova-local storage.
+option to partition the root disk for the nova-local storage (to realize a
+two-disk controller) or use a third disk for nova-local storage.
 
 
 .. _configuration-and-management-storage-on-controller-hosts-section-rvx-vwc-vlb:

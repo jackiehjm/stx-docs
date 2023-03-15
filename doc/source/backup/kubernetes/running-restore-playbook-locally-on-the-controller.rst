@@ -48,12 +48,12 @@ Other ``-e`` command line options:
 
 -   **Optional**: You can select one of the following restore modes:
 
-    -   To keep the Ceph cluster data intact \(false - default option\), use the
+    -   To keep the Ceph cluster data intact (false - default option), use the
         following parameter:
 
         :command:`wipe_ceph_osds=false`
 
-    -   To wipe the Ceph cluster entirely \(true\), where the Ceph cluster will
+    -   To wipe the Ceph cluster entirely (true), where the Ceph cluster will
         need to be recreated, use the following parameter:
 
         :command:`wipe_ceph_osds=true`
@@ -133,7 +133,7 @@ Other ``-e`` command line options:
 
 .. rubric:: |postreq|
 
-After running restore\_platform.yml playbook, you can restore the local
+After running restore_platform.yml playbook, you can restore the local
 registry images.
 
 .. note::

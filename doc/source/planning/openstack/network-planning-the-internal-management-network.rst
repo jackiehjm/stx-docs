@@ -38,8 +38,8 @@ or 10 Gb Ethernet port. Requirements for this port are that:
 
 .. note::
     |OSDs| bind to all addresses but communicate on the same network as
-    monitors \(monitors and |OSDs| need to communicate, if monitors are on
-    management networks, then |OSDs| source address will also be on mgmt0\).
+    monitors (monitors and |OSDs| need to communicate, if monitors are on
+    management networks, then |OSDs| source address will also be on mgmt0).
 
 See :ref:`Kubernetes Internal Management Network
 <internal-management-network-planning>` for details.

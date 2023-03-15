@@ -10,8 +10,8 @@ You can apply rate-limiting on |VFs| used for Data networks.
 
 .. rubric:: |context|
 
-This feature is available on the Intel X710/XL710 \(Fortville\) 10G and Intel
-E810-CQDA2 \(Columbiaville\). It can be used on sub-interfaces of vf type
+This feature is available on the Intel X710/XL710 (Fortville) 10G and Intel
+E810-CQDA2 (Columbiaville). It can be used on sub-interfaces of vf type
 interfaces.
 
 Be aware of the following guidance when using this feature:
@@ -76,8 +76,8 @@ Data networks should be created for VF sub-interfaces attachment.
 
     .. note::
         The units for ``max-tx-rate`` are Mbps.
-        The configured sriov\_numvfs with
-        max\_tx\_rate\(max\_tx\_rate\*sriov\_numvfs\) should not exceed 90% of
+        The configured sriov_numvfs with
+        max_tx_rate\(max_tx_rate\*sriov_numvfs) should not exceed 90% of
         the link bandwidth.
 
     For example:

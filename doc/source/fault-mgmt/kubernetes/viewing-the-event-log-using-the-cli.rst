@@ -33,7 +33,7 @@ You can use CLI commands to work with historical alarms and logs in the event lo
     Optional arguments:
 
     ``-q QUERY, --query QUERY``
-        \- key\[op\]data\_type::value; list. data\_type is optional, but if
+        \- key\[op\]data_type::value; list. data_type is optional, but if
         supplied must be string, integer, float, or boolean.
 
     ``-l NUMBER, --limit NUMBER``
@@ -45,7 +45,7 @@ You can use CLI commands to work with historical alarms and logs in the event lo
     ``--logs``
         Show customer logs only.
 
-    ``--include\_suppress``
+    ``--include_suppress``
         Show suppressed alarms as well as unsuppressed alarms.
 
     ``--uuid``

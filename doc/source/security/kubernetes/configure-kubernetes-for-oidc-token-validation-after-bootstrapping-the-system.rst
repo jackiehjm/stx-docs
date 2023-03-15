@@ -24,7 +24,7 @@ you can do so at any time using service parameters.
 .. _configure-kubernetes-for-oidc-token-validation-after-bootstrapping-the-system-steps-vlw-k2p-zkb:
 
 #.  Set the following service parameters using the :command:`system
-    service-parameter-add kubernetes kube\_apiserver` command.
+    service-parameter-add kubernetes kube_apiserver` command.
 
     For example:
 
@@ -44,8 +44,8 @@ you can do so at any time using service parameters.
 
         .. note::
             For IPv6 deployments, ensure that the IPv6 OAM floating address
-            is, https://\[<oam-floating-ip>\]:30556/dex \(that is, in lower
-            case, and wrapped in square brackets\).
+            is, https://\[<oam-floating-ip>\]:30556/dex (that is, in lower
+            case, and wrapped in square brackets).
 
     -   oidc-username-claim=<email>
 

@@ -6,7 +6,7 @@
 Manage Software Updates
 =======================
 
-Updates \(also known as patches\) to the system software become available as
+Updates (also known as patches) to the system software become available as
 needed to address issues associated with a current |prod-long| software release.
 Software updates must be uploaded to the active controller and applied to all
 required hosts in the cluster.
@@ -30,7 +30,7 @@ The following elements form part of the software update environment:
         minimize the impact to the hosted application service.
 
 **In-Service Software Updates**
-    In-service \(reboot-not-required\), software updates are updates that do not
+    In-service (reboot-not-required), software updates are updates that do not
     require the locking and rebooting of hosts. The required |prod| software is
     updated and any required |prod| processes are re-started. Hosted
     applications pods and services are completely unaffected.

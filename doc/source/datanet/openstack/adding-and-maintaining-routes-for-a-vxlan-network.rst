@@ -39,7 +39,7 @@ where
     is the default gateway
 
 **metric**
-    is the cost of the route \(the number of hops\)
+    is the cost of the route (the number of hops)
 
 To delete routes, use the following command.
 

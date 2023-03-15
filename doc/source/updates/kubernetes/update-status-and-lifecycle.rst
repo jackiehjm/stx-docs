@@ -11,14 +11,14 @@ being applied.
 
 .. rubric:: |context|
 
-After adding an update \(patch\) to the storage area you must move it to the
+After adding an update (patch) to the storage area you must move it to the
 repository, which manages distribution for the cluster. From there, you can
 install the updates to the hosts that require them.
 
 Some of the available updates may be required on controller hosts only, while
 others may be required on worker or storage hosts. Use :command:`sw-patch
-query-hosts` to see which hosts are impacted by the newly applied \(or
-removed\) updates. You can then use :command:`sw-patch host-install` to update
+query-hosts` to see which hosts are impacted by the newly applied (or
+removed) updates. You can then use :command:`sw-patch host-install` to update
 the software on individual hosts.
 
 To keep track of software update installation, you can use the
@@ -44,8 +44,8 @@ This shows the 'Patch State' for each of the updates in the storage area:
     updates repository using the :command:`sw-patch apply` command, but has not
     been installed on all hosts that require it. It may have been installed on
     some but not others, or it may not have been installed on any hosts. If any
-    reboot-required update is in a partial state \(Partial-Apply or
-    Partial-Remove\), you cannot update the software on any given host without
+    reboot-required update is in a partial state (Partial-Apply or
+    Partial-Remove), you cannot update the software on any given host without
     first locking it. If, for example, you had one reboot-required update and
     one in-service update, both in a Partial-Apply state and both applicable to
     node X, you cannot just install the non-reboot-required update to the
@@ -56,7 +56,7 @@ This shows the 'Patch State' for each of the updates in the storage area:
     require it.
 
 You can use the :command:`sw-patch query-hosts` command to see which hosts are
-fully updated \(Patch Current\). This also shows which hosts require
+fully updated (Patch Current). This also shows which hosts require
 reboot, either because they are not fully updated, or because they are fully
 updated but not yet rebooted.
 

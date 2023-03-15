@@ -23,8 +23,8 @@ Firmware update orchestration requirements
 Firmware update orchestration can only be done on a system that meets the
 following conditions:
 
--   The system is clear of alarms \(with the exception of alarms for locked
-    hosts, stopped instances, and firmware updates in progress\).
+-   The system is clear of alarms (with the exception of alarms for locked
+    hosts, stopped instances, and firmware updates in progress).
 
     .. note::
         When configuring firmware update orchestration, you have the option to
@@ -39,8 +39,8 @@ following conditions:
 -   Firmware update is a reboot-required operation. Therefore, in systems that
     have the |prefix|-openstack application applied with running instances, if
     the migrate option is selected there must be spare openstack-compute \
-    (worker\) capacity to move instances off the openstack-compute \
-    (worker\) host\(s\) being updated.
+    (worker) capacity to move instances off the openstack-compute \
+    (worker) host\(s) being updated.
 
     .. note::
         Administrative controller Swacts should be avoided during firmware

@@ -19,7 +19,7 @@ methods.
 #.  The first method involves using the remote :abbr:`CLI (Command Line
     Interface)` tarball from |dnload-loc| to install a set of container-backed
     remote CLIs for accessing a remote |prod-long|. This provides
-    access to the kubernetes-related CLIs \(kubectl, helm\). This approach is
+    access to the kubernetes-related CLIs (kubectl, helm). This approach is
     simple to install, portable across Linux, MacOS and Windows, and provides
     access to all |prod-long| CLIs. However, commands such as those that
     reference local files or require a shell are awkward to run in this

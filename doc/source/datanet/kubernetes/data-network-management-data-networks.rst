@@ -13,7 +13,7 @@ A data network represents a Layer 2 physical or virtual network, or set of
 virtual networks, used to provide the underlying network connectivity needed
 to support the application networks. Multiple data networks may be configured
 as required, and realized over the same or different physical networks. Access
-to external networks is typically \(although not necessarily\) granted to
+to external networks is typically (although not necessarily) granted to
 worker nodes using a data network. The extent of this connectivity, including
 access to the open internet, is application dependent.
 

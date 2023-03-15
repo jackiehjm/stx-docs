@@ -18,12 +18,12 @@ Using Horizon <add-ssd-backed-journals-using-horizon>`.
 
 .. rubric:: |prereq|
 
-A storage host with a solid-state drive \(SSD\) or Non-Volatile Memory
-Express \(NVMe\) drive is required.
+A storage host with a solid-state drive (SSD) or Non-Volatile Memory
+Express (NVMe) drive is required.
 
 To create or edit an SSD-backed journal, you must lock the host. The system
-must have at least two other unlocked hosts with Ceph monitors. \(Ceph
-monitors run on **controller-0**, **controller-1**, and **storage-0** only\).
+must have at least two other unlocked hosts with Ceph monitors. (Ceph
+monitors run on **controller-0**, **controller-1**, and **storage-0** only).
 
 .. rubric:: |proc|
 
@@ -48,8 +48,8 @@ monitors run on **controller-0**, **controller-1**, and **storage-0** only\).
 
         ~(keystone_admin)]$ system host-stor-add <host_name> journal <device_uuid>
 
-    where <host\_name> is the name of the storage host \(for example,
-    storage-3\), and <device\_uuid> identifies an SSD.
+    where <host_name> is the name of the storage host (for example,
+    storage-3), and <device_uuid> identifies an SSD.
 
     For example:
 

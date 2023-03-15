@@ -15,9 +15,9 @@ For example:
 
     $ docker login registry.local:9001 -u <keystoneUserName> -p <keystonePassword>
 
-An authorized administrator \('admin' and 'sysinv'\) can perform any docker
-action. Regular users can only interact with their own repositories \(i.e.
-``registry.local:9001/<keystoneUserName>/``\). Any authenticated user can pull
+An authorized administrator ('admin' and 'sysinv') can perform any docker
+action. Regular users can only interact with their own repositories (i.e.
+``registry.local:9001/<keystoneUserName>/``). Any authenticated user can pull
 from the following list of public images:
 
 .. _kubernetes-user-tutorials-authentication-and-authorization-d315e50:
@@ -58,7 +58,7 @@ example, the user **testuser** is correct in the following URL, while
     cloud/systemController, access to the local registry can only be done using
     registry.local:9001. registry.central:9001 will be inaccessible. Installing
     a CA-signed certificate for the registry and the certificate of the CA as
-    an 'ssl\_ca' certificate will remove this restriction.
+    an 'ssl_ca' certificate will remove this restriction.
 
 .. seealso::
     `https://docs.docker.com/engine/reference/commandline/docker/

@@ -34,7 +34,7 @@ not satisfy the policy, then the workload is blocked from being deployed.
 The |prod| implementation of Portieris is integrated with cert-manager and
 can use custom registries.
 
-Configuring a trust server \(for an image or cluster-wide\) requires network
+Configuring a trust server (for an image or cluster-wide) requires network
 access upon pod creation. Therefore, if a cluster has no external network
 connectivity, pod creation will be blocked.
 
@@ -42,6 +42,6 @@ It is required to pull from a registry using a docker-registry secret.
 Enforcing trust for anonymous image pulls is not supported.
 
 |prod| integration with Portieris has been verified against the Harbor
-registry and notary server \(`https://goharbor.io/
-<https://goharbor.io/>`__\).
+registry and notary server (`https://goharbor.io/
+<https://goharbor.io/>`__).
 

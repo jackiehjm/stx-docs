@@ -23,7 +23,7 @@ The following procedure shows an example of launching a container image with
         $ source /etc/platform/openrc ~(keystone_admin)$
 
 #.  Create a pod.yml file that requests 16 ACC100/ACC200 VFs
-    \(i.e. intel.com/intel_acc100_fec: '16'\)
+    (i.e. intel.com/intel_acc100_fec: '16')
 
     .. code-block:: none
 

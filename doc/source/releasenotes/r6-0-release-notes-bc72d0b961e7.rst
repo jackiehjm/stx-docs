@@ -194,7 +194,7 @@ associated user guides (if applicable).
 
     In a subcloud, if the |CLI| command returns an authentication after you
     source the script ``/etc/platform/openrc``, you can verify the password on
-    the subcloud by using the :command:`env \| grep OS\_PASSWORD` command. If it
+    the subcloud by using the :command:`env | grep OS_PASSWORD` command. If it
     returns the old password, you will need to run the :command:`keyring set CGCS admin`
     command and provide the new admin password.
 

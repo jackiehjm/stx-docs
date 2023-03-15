@@ -61,7 +61,7 @@ management and cluster host network.
 
     |org| recommends a 10GE shared management and cluster host network with
     |LAG| for direct connections. If the management
-    network must be 1GE \(to support PXE booting\), then a separate 10GE
+    network must be 1GE (to support PXE booting), then a separate 10GE
     cluster host network with |LAG| is also
     recommended. The use of |LAG| addresses failover
     considerations unique to peer-to-peer connections.
@@ -81,8 +81,8 @@ provide support for small scale deployments on the Intel Xeon D family of
 processors using a smaller memory and CPU footprint than the standard Simplex
 configuration.
 
-For low-cost or low-power applications with minimal performance demands \(40
-containers or fewer\), |prod| Simplex can be deployed on a server with a
+For low-cost or low-power applications with minimal performance demands (40
+containers or fewer), |prod| Simplex can be deployed on a server with a
 single Intel Xeon D class processor. The platform-reserved memory and the
 maximum number of worker threads are reduced by default, but can be
 reconfigured if required.

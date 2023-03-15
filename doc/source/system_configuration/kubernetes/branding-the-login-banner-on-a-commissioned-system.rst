@@ -6,7 +6,7 @@
 Brand the Login Banner on a Commissioned System
 ===============================================
 
-You can customize the pre-login message \(issue\) and post-login
+You can customize the pre-login message (issue) and post-login
 |MOTD| on an installed and commissioned |prod| cluster, simplifying propagation
 of the customized files.
 
@@ -73,7 +73,7 @@ commissioned system:
     See the :command:`issue` and :command:`motd` man pages for details on file
     syntax.
 
-#.  Apply the customization using :command:`apply\_banner\_customization`.
+#.  Apply the customization using :command:`apply_banner_customization`.
 
     .. code-block:: none
 

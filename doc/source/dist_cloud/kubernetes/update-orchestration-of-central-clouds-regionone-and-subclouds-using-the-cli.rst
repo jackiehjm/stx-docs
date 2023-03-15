@@ -43,18 +43,18 @@ available:
     parallel, or serially.
 
     If this is not specified using the |CLI|, the values for
-    :command:`subcloud\_update\_type` defined for each subcloud group will be
+    :command:`subcloud_update_type` defined for each subcloud group will be
     used by default.
 
 **maximum parallel subclouds**
-    Sets the maximum number of subclouds that can be updated in parallel \(default 20\).
+    Sets the maximum number of subclouds that can be updated in parallel (default 20).
 
     If this is not specified using the |CLI|, the values for
-    :command:`max\_parallel\_subclouds` defined for each subcloud group will be
+    :command:`max_parallel_subclouds` defined for each subcloud group will be
     used by default.
 
 **stop on failure**
-    true \(default\) or false — determines whether update orchestration failure
+    true (default) or false — determines whether update orchestration failure
     for a subcloud prevents application to subsequent subclouds.
 
 
@@ -224,7 +224,7 @@ individual subclouds.
 .. note::
 
     Since re-location is not possible on a single-node |prod| Simplex system,
-    you must change the configuration to set default\_instance\_action to
+    you must change the configuration to set default_instance_action to
     stop-start.
 
 .. _update-orchestration-of-central-clouds-regionone-and-subclouds-using-the-cli-ul-xfb-bfz-fdb:
@@ -307,7 +307,7 @@ individual subclouds.
         migrate or stop-start — determines whether hosted application VMs are
         migrated or stopped and restarted when a worker host is upgraded.
 
-    **subcloud\_name**
+    **subcloud_name**
         The name of the subcloud to use the custom strategy. If this omitted,
         the default update strategy is updated.
 

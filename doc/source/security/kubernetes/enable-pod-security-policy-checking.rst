@@ -8,7 +8,7 @@ Enable Pod Security Policy Checking
 
 .. rubric:: |proc|
 
-#.  Set the kubernetes kube\_apiserver admission\_plugins system parameter to
+#.  Set the kubernetes kube_apiserver admission_plugins system parameter to
     include PodSecurityPolicy.
 
     .. code-block:: none

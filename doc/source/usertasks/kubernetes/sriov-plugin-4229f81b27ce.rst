@@ -33,7 +33,7 @@ container as shown in :ref:`Use Network Attachment Definitions in a Container
 .. rubric:: |prereq|
 
 You must have configured at least one |SRIOV| interface on a host with the
-target datanetwork \(``datanet-a`` or ``datanet-b`` in the example below\)
+target datanetwork (``datanet-a`` or ``datanet-b`` in the example below)
 assigned to it before creating a ``NetworkAttachmentDefinition`` referencing
 this data network.
 
@@ -70,8 +70,8 @@ would be:
 
 .. _creating-network-attachment-definitions-ul-qjr-vnb-xhb:
 
--   The extended resource name will convert all dashes \('-'\) in the data
-    network name into underscores \('\_'\).
+-   The extended resource name will convert all dashes ('-') in the data
+    network name into underscores ('\_').
 
 -   |SRIOV| enabled interfaces using the netdevice VF driver must be
     administratively and operationally up to be advertised by the |SRIOV|
@@ -107,7 +107,7 @@ would be:
 
 
     This ``NetworkAttachmentDefinition`` is valid for both a kernel-based and
-    a |DPDK| \(vfio\) based device.
+    a |DPDK| (vfio) based device.
 
 #.  Create an |SRIOV| network attachment with a VLAN ID or with IP Address information.
 
@@ -238,7 +238,7 @@ devices as you have network annotations.
             pod/pod1 created
 
     After creating the container, an extra network device interface, ``net2``,
-    which uses one |SRIOV| |VF|, will appear in the associated container\(s\).
+    which uses one |SRIOV| |VF|, will appear in the associated container\(s).
 
     After creating the container, the interface ``sriov0``, which uses one
     |SRIOV| |VF| will appear.
@@ -288,11 +288,11 @@ devices as you have network annotations.
             pod/pod2 created
 
     After creating the container, two ``net2`` network device interfaces, which
-    each use one |SRIOV| |VF|, will appear in the associated container\(s\).
+    each use one |SRIOV| |VF|, will appear in the associated container\(s).
 
     After creating the container, the network device interfaces ``sriov0`` and
     ``sriov1``, which uses one |SRIOV| |VF|, will appear in the associated
-    container\(s\).
+    container\(s).
 
     At this point you can execute commands and review links on the container.
     For example:
@@ -340,15 +340,15 @@ devices as you have network annotations.
     ``net2`` and ``net3`` will each take a device from the
     ``pci_sriov_net_datanet_b`` pool and be configured on the
     container/host based on the their respective
-    ``NetworkAttachmentDefinition`` specifications \(see :ref:`Creating Network
-    Attachment Definitions <creating-network-attachment-definitions>`\).
+    ``NetworkAttachmentDefinition`` specifications (see :ref:`Creating Network
+    Attachment Definitions <creating-network-attachment-definitions>`).
 
     After creating the pod, the network device interface ``sriov0``, which uses
-    one |SRIOV| |VF|, will appear in the associated container\(s\).
+    one |SRIOV| |VF|, will appear in the associated container\(s).
 
     After creating the container, network device interfaces ``net2`` and
     ``net3``, which each use one |SRIOV| |VF|, will appear in the associated
-    container\(s\).
+    container\(s).
 
     At this point you can execute commands and review links on the container.
     For example:
@@ -436,8 +436,8 @@ devices as you have network annotations.
                   medium: HugePages
 
         .. note::
-            You must convert any dashes \(-\) in the datanetwork name used in
-            the ``NetworkAttachmentDefinition`` to underscores \(\_\).
+            You must convert any dashes (-) in the datanetwork name used in
+            the ``NetworkAttachmentDefinition`` to underscores (\_).
 
     #.  Apply the configuration to create the container.
 

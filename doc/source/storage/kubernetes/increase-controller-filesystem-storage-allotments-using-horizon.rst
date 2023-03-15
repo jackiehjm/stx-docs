@@ -39,8 +39,8 @@ Before changing storage allotments, prepare as follows:
 .. _increase-controller-filesystem-storage-allotments-using-horizon-ul-p3d-2h5-vp:
 
 -   Record the current configuration settings in case they need to be
-    restored \(for example, because of an unexpected interruption during
-    changes to the system configuration\). Consult the configuration plan for
+    restored (for example, because of an unexpected interruption during
+    changes to the system configuration). Consult the configuration plan for
     your system.
 
 -   Ensure that the BIOS boot settings for the host are appropriate for a
@@ -88,8 +88,8 @@ Before changing storage allotments, prepare as follows:
 
     #.  Click **Save**.
 
-        This raises major alarms against the controllers \(**250.001
-        Configuration out-of-date**\). You can view the alarms on the Fault
+        This raises major alarms against the controllers (**250.001
+        Configuration out-of-date**). You can view the alarms on the Fault
         Management page. In addition, the status **Config out-of-date** is
         shown for the controllers in the Hosts list.
 

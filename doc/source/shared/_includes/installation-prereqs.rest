@@ -131,8 +131,8 @@ Before attempting to install |prod|, ensure that you have the following:
 
 
 -   A record of the IP addresses allocated for the public interfaces for your
-    deployment \(that is IP addresses for the |OAM| Network and |SRIOV| Data
-    Networks\).
+    deployment (that is IP addresses for the |OAM| Network and |SRIOV| Data
+    Networks).
 
 
 .. end-install-prereqs

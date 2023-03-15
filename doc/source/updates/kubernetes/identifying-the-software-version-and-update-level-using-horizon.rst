@@ -20,9 +20,9 @@ interface. The system type is also shown.
 
     The software version is shown in the **Version** field.
 
-    The type of system selected at installation \(Standard or All-in-one\) is
-    shown in the **System Type** field. The mode \(**simplex**, **duplex**, or
-    **standard**\) is shown in the **System Mode** field.
+    The type of system selected at installation (Standard or All-in-one) is
+    shown in the **System Type** field. The mode (**simplex**, **duplex**, or
+    **standard**) is shown in the **System Mode** field.
 
 #.  In the |prod| Horizon interface, open the **Software Management** page.
 

@@ -68,7 +68,7 @@ described below to upgrade the remaining nodes of the |prod|.
 - The subclouds must use the Redfish platform management service if it is an
   All-in-one Simplex subcloud.
 
-- Duplex \(AIODX/Standard\) upgrades are supported, and they do not require
+- Duplex (AIODX/Standard) upgrades are supported, and they do not require
   remote install via Redfish.
 
 .. rubric:: |proc|
@@ -97,7 +97,7 @@ described below to upgrade the remaining nodes of the |prod|.
 
     -   storage-apply-type:
 
-        -   ``serial`` \(default\): storage hosts will be upgraded one at a time
+        -   ``serial`` (default): storage hosts will be upgraded one at a time
 
         -   ``parallel``: storage hosts will be upgraded in parallel, ensuring that
             only one storage node in each replication group is patched at a
@@ -107,7 +107,7 @@ described below to upgrade the remaining nodes of the |prod|.
 
     -   worker-apply-type:
 
-        ``serial`` \(default\)
+        ``serial`` (default)
            Worker hosts will be upgraded one at a time.
 
         ``ignore``
@@ -123,9 +123,9 @@ described below to upgrade the remaining nodes of the |prod|.
 
         Performing management actions without specifically relaxing the alarm
         checks will still fail if there are any alarms present in the system
-        \(except for a small list of basic alarms for the orchestration actions
+        (except for a small list of basic alarms for the orchestration actions
         such as an upgrade operation in progress alarm not impeding upgrade
-        orchestration\).
+        orchestration).
 
         You can use the CLI command :command:`fm alarm-list --mgmt_affecting`
         to view the alarms that are management affecting.
@@ -140,7 +140,7 @@ described below to upgrade the remaining nodes of the |prod|.
 
     The upgrade strategy consists of one or more stages, which consist of one
     or more hosts to be upgraded at the same time. Each stage will be split
-    into steps \(for example, query-alarms, lock-hosts, upgrade-hosts\).
+    into steps (for example, query-alarms, lock-hosts, upgrade-hosts).
     Following are some notes about stages:
 
     -   Controller-0 is upgraded first, followed by storage hosts and then
@@ -154,13 +154,13 @@ described below to upgrade the remaining nodes of the |prod|.
     -   The final step in each stage is one of:
 
         **system-stabilize**
-            This waits for a period of time \(up to several minutes\) and
+            This waits for a period of time (up to several minutes) and
             ensures that the system is free of alarms. This ensures that we do
             not continue to upgrade more hosts if the upgrade has caused an
             issue resulting in an alarm.
 
         **wait-data-sync**
-           This waits for a period of time \(up to many hours\) and ensures
+           This waits for a period of time (up to many hours) and ensures
            that data synchronization has completed after the upgrade of a
            controller or storage node.
 
@@ -224,7 +224,7 @@ described below to upgrade the remaining nodes of the |prod|.
     -   If necessary an abort phase will be created and applied, which will
         attempt to unlock any hosts that were locked.
 
-    After an upgrade strategy has been applied \(or aborted\) it must be
+    After an upgrade strategy has been applied (or aborted) it must be
     deleted before another upgrade strategy can be created. If an
     upgrade strategy application fails, you must address the issue that caused
     the failure, then delete/re-create the strategy before attempting to apply
@@ -253,8 +253,8 @@ described below to upgrade the remaining nodes of the |prod|.
 #.  Activate the upgrade.
 
     During the running of the :command:`upgrade-activate` command, new
-    configurations are applied to the controller. 250.001 \(**hostname
-    Configuration is out-of-date**\) alarms are raised and are cleared as the
+    configurations are applied to the controller. 250.001 (**hostname
+    Configuration is out-of-date**) alarms are raised and are cleared as the
     configuration is applied. The upgrade state goes from **activating** to
     **activation-complete** once this is done.
 
