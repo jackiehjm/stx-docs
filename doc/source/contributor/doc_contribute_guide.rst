@@ -1199,3 +1199,150 @@ Example RST:
    Integer sed tortor nisi. Vivamus feugiat, urna in posuere gravida, ligula
    nunc hendrerit magna, nec tristique ex tortor non lorem.
 
+------------------
+Release activities
+------------------
+
+Several activies must be completed in preparation for each release.
+
+*********************
+Release notes updates
+*********************
+
+Various sections in the |prod| release notes must be updated on the ``master``
+branch before the release branch for the upcoming release (for example
+``r/stx.9.0``) is created. 
+
+The Release notes can be found in the directory
+:file:`doc/source/releasenotes`.
+
+**********************
+Version number updates
+**********************
+
+Product and related software version numbers must be updated throughout the
+source :file:`rst` files.
+
+* Some of these changes must me made manually by searching for and replacing
+  the appropriate values.
+
+* More common version values are implemented as Sphinx substitutions: simple,
+  reusable placeholders.
+
+  * For the current version of |prod|, edit the value of ``this-ver`` in the
+    file :file:`doc/source/_this.txt`.
+
+    .. code-block::
+
+      .. |this-ver| replace:: r9.0
+
+  * For other values, consult the file
+    :file:`doc/source/_vendor/vendor_strings.txt`.
+
+********************
+Version menu updates
+********************
+
+A menu is available on each page of |prod| documentation to allow easy
+switching between documentation versions. This menu must be updated on
+``master`` and each release branch.
+
+To do so:
+
+#. On a working branch, open the file :file:`doc/source/conf.py`.
+
+#. If you are updating on a new branch, change the configuration assignment
+   ``starlingxdocs_plus_this_version`` to the name of the new branch. 
+
+   For example:
+
+   .. code-block::
+
+      starlingxdocs_plus_this_version="Version 9.0"
+
+   Otherwise, confirm that the value is correct for the branch you are
+   updating.
+
+#. Locate the configuration assignment ``starlingxdocs_plus_other_versions``.
+
+   This assignment takes a *key,value* pair for each branch other than the
+   branch you are configuring.
+
+   * Each key is the name of the branch that will appear in the menu. 
+   * Each value is the name of the branch.
+   
+   For example, if you are editing :file:`conf.py` on the branch ``r/stx.7.0``,
+   then this assignment would container a key pair for each of 
+
+   ``r/stx.6.0``, ``r/stx.8.0``, ``<newer-release>`` ..., and ``master``.
+
+   These pairs are separated by commas and must be listed from oldest to most
+   recent, always ending with the ``master`` branch. The *key* for the
+   ``master`` branch is ``Latest``.
+
+   For example, for release 9.0, the ``r/stx.9.0`` version of this file would
+   have this assignment:
+
+   .. code-block::
+
+      starlingxdocs_plus_other_versions = [("Version 6.0","r/stx.6.0"),("Version 7.0","r/stx.7.0"),("Version 8.0","r/stx.8.0"),("Latest","")]
+
+   .. note::
+
+      During a documentation build, Sphinx prepends a forward slash to each
+      *value* in ``starlingxdocs_plus_other_versions`` to construct the correct
+      URLs, such as ``https://docs.starlingx.io/r/stx.8.0/``. Since the
+      ``master`` documentation is at the base URL ``docs.startlingx.io``, this
+      means that the value must be an empty string, as show above.
+
+*********************
+Adding the promte job
+*********************
+
+A ``promote`` job must be created for merged reviews on a new release branch to
+be published to docs.starlingx.io. 
+
+.. rubric:: |prereq|
+
+You must have the OpenStack ``project-config`` repo available.
+
+.. rubric:: |proc|
+
+#. In the ``project-config`` repo, open the file
+   :file:`zuul.d/starlingx-jobs.yaml`.
+
+#. Locate the ``promote-stx-tox-docs-site`` job.
+
+#. Add the new branch to the list of branches that will be published.
+
+   For example:
+
+   .. code-block:: yaml
+      :emphasize-lines: 21
+
+      - job:
+          name: promote-stx-tox-docs-site
+          parent: opendev-promote-docs-base
+          description: |
+            Promote content from openstack-tox-docs job for
+            starlingx/doc repository only.
+      
+            Publish the results of a sphinx build to
+            /afs/.openstack.org/project/starlingx.io/www      
+      
+          final: true
+          vars:
+            download_artifact_job: openstack-tox-docs
+          # add older release branches as desired
+          branches:
+            - master
+            - r/stx.5.0
+            - r/stx.6.0
+            - r/stx.7.0
+            - r/stx.8.0
+            - r/stx.9.0
+
+#. Save the file and commit a gerrit review.
+
+See https://review.opendev.org/c/openstack/project-config/+/873266 for a
+sample promote job update with reviewers.
