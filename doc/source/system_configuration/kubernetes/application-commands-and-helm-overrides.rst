@@ -13,9 +13,9 @@ commands to manage containerized applications provided as part of |prod|.
     Application commands and Helm overrides apply to **user overrides** only
     and take precedence over system overrides.
 
-.. rubric:: |proc|
 
--   Use the following command to list all containerized applications provided
+``application-list``
+    Use the following command to list all containerized applications provided
     as part of |prod|.
 
     .. code-block:: none
@@ -43,8 +43,8 @@ commands to manage containerized applications provided as part of |prod|.
         | rook-ceph-apps           | 1.0-17  | rook-ceph-manifest                        | manifest.yaml    | uploaded | completed |
         +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
 
-
--   Use the following command to show details for |prod|.
+``application-show``
+    Use the following command to show details for |prod|.
 
     .. code-block:: none
 
@@ -75,7 +75,8 @@ commands to manage containerized applications provided as part of |prod|.
         | updated_at    | 2022-06-21T03:13:01.051293+00:00 |
         +---------------+----------------------------------+
 
--   Use the following command to upload application Helm chart\(s\) and
+``application-upload``
+    Use the following command to upload application Helm chart\(s) and
     manifest.
 
     .. code-block:: none
@@ -116,7 +117,8 @@ commands to manage containerized applications provided as part of |prod|.
         +---------------+----------------------------------+
         Please use 'system application-list' or 'system application-show metrics-server' to view the current progress.
 
--   To list the Helm chart overrides for the |prod|, use the following
+``helm-override-list``
+    To list the Helm chart overrides for the |prod|, use the following
     command:
 
     .. code-block:: none
@@ -176,8 +178,9 @@ commands to manage containerized applications provided as part of |prod|.
         | gnocchi             | [u'openstack']                 | [False]       |
         | panko               | [u'openstack']                 | [False]       |
 
--   To show the overrides for a particular chart, use the following command.
-    System overrides are displayed in the **system\_overrides** section of
+``helm-override-show``
+    To show the overrides for a particular chart, use the following command.
+    System overrides are displayed in the **system_overrides** section of
     the **Property** column.
 
     .. code-block:: none
@@ -202,10 +205,11 @@ commands to manage containerized applications provided as part of |prod|.
 
         ~(keystone_admin)]$ system helm-override-show |prefix|-openstack glance openstack
 
--   To modify service configuration parameters using user-specified overrides,
+``helm-override-update``
+    To modify service configuration parameters using user-specified overrides,
     use the following command. To update a single configuration parameter, you
     can use ``--set``. To update multiple configuration parameters, use
-    the ``--values`` option with a **yaml** file.
+    the ``--values`` option with a ``yaml`` file.
 
     .. code-block:: none
 
@@ -266,7 +270,8 @@ commands to manage containerized applications provided as part of |prod|.
         To apply the updated Helm chart ovverrides to the running application,
         use the :command:`system application-apply` command.
 
--   To enable or disable the installation of a particular Helm chart within an
+``helm-chart-attribute-modify``
+    To enable or disable the installation of a particular Helm chart within an
     application manifest, use the :command:`helm-chart-attribute-modify`
     command. This command does not modify a chart or modify chart overrides,
     which are managed through the :command:`helm-override-update` command.
@@ -295,7 +300,8 @@ commands to manage containerized applications provided as part of |prod|.
         To apply the updated helm chart attribute to the running application,
         use the :command:`system application-apply` command.
 
--   To delete all the user overrides for a chart, use the following command:
+``helm-override-delete``
+    To delete all the user overrides for a chart, use the following command:
 
     .. code-block:: none
 
@@ -320,7 +326,8 @@ commands to manage containerized applications provided as part of |prod|.
         ~(keystone_admin)]$ system helm-override-delete |prefix|-openstack glance openstack
         Deleted chart overrides glance:openstack for application |prefix|-openstack
 
--   Use the following command to apply or reapply an application, making it
+``application-apply``
+    Use the following command to apply or reapply an application, making it
     available for service.
 
     .. code-block:: none
@@ -359,7 +366,8 @@ commands to manage containerized applications provided as part of |prod|.
         +---------------+----------------------------------+
         Please use 'system application-list' or 'system application-show metrics-server' to view the current progress.
 
--   Use the following command to abort the current application.
+``application-abort``
+    Use the following command to abort the current application.
 
     .. code-block:: none
 
@@ -381,7 +389,8 @@ commands to manage containerized applications provided as part of |prod|.
     Use :command:`application-list` to confirm that the application has been
     aborted.
 
--   Use the following command to update the deployed application to a different
+``application-update``
+    Use the following command to update the deployed application to a different
     version.
 
     .. code-block:: none
@@ -419,7 +428,8 @@ commands to manage containerized applications provided as part of |prod|.
         The tar file containing the application manifest, Helm charts and
         configuration file.
 
--   Use the following command to remove an application from service. Removing
+``application-remove``
+    Use the following command to remove an application from service. Removing
     an application will clean up related Kubernetes resources and delete all
     of its installed helm charts.
 
@@ -429,7 +439,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     where:
 
-    **<app\name>**
+    **<app_name>**
         is the name of the application to remove.
 
     For example:
@@ -454,7 +464,8 @@ commands to manage containerized applications provided as part of |prod|.
 
     This command places the application in the uploaded state.
 
--   Use the following command to completely delete an application from the
+``application-delete``
+    Use the following command to completely delete an application from the
     system.
 
     .. code-block:: none
