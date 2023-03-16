@@ -50,46 +50,41 @@ To change the driver bundle back to the default version, there are two options:
     .. code-block:: none
 
         ~(keystone_admin)$ system service-parameter-modify platform config intel_nic_driver_version=cvl-4.0.1
-
-#.  Apply the service parameter change.
-
-    .. code-block:: none
-
         ~(keystone_admin)$ system service-parameter-apply platform
-        Applying platform service parameters
 
 #.  Remove the system service parameter ``intel_nic_driver_version``.
 
-.. code-block:: none
+    .. code-block:: none
 
-    ~(keystone_admin)$ system service-parameter-list --service platform --section config --name intel_nic_driver_version
-    +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
-    | uuid                                 | service    | section | name                      | value     | personality | resource |
-    +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
-    | 84306212-d96d-4a2a-8cc0-2d48781e006c | platform   | config  | intel_nic_driver_version  | cvl-2.54  | None        | None     |
-    +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
-    ~(keystone_admin)$ system service-parameter-delete 84306212-d96d-4a2a-8cc0-2d48781e006c
+        ~(keystone_admin)$ system service-parameter-list --service platform --section config --name intel_nic_driver_version
+        +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
+        | uuid                                 | service    | section | name                      | value     | personality | resource |
+        +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
+        | 84306212-d96d-4a2a-8cc0-2d48781e006c | platform   | config  | intel_nic_driver_version  | cvl-2.54  | None        | None     |
+        +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
+        ~(keystone_admin)$ system service-parameter-delete 84306212-d96d-4a2a-8cc0-2d48781e006c
+        ~(keystone_admin)$ system service-parameter-apply platform
 
 To apply the service parameter change, all hosts need to be locked and
 unlocked, using the following commands for each host depending on the deployed
 configuration:
 
-For |AIO-SX| deployments:
+-   For |AIO-SX| deployments:
 
-.. code-block:: none
+    .. code-block:: none
 
-    ~(keystone_admin)$ system host-lock controller-0
-    ~(keystone_admin)$ system host-unlock controller-0
+        ~(keystone_admin)$ system host-lock controller-0
+        ~(keystone_admin)$ system host-unlock controller-0
 
-For |AIO-DX| and Standards deployments, after controller-1 is locked/unlocked
-swact controller-0 to make controller-1 the active node. The next set of
-commands are executed on controller-0 node:
+-   For |AIO-DX| and Standards deployments, after controller-1 is locked/unlocked
+    swact controller-0 to make controller-1 the active node. The next set of
+    commands are executed on controller-0 node:
 
-.. code-block:: none
+    .. code-block:: none
 
-    ~(keystone_admin)$ system host-lock controller-1
-    ~(keystone_admin)$ system host-unlock controller-1
-    ~(keystone_admin)$ system host-swact controller-0
+        ~(keystone_admin)$ system host-lock controller-1
+        ~(keystone_admin)$ system host-unlock controller-1
+        ~(keystone_admin)$ system host-swact controller-0
 
 On controller-1, after controller-0 is locked/unlocked swact controller-1 to go
 back to controller-0 as the active node. The next set of commands are executed
@@ -101,13 +96,18 @@ on controller-1 node:
     ~(keystone_admin)$ system host-unlock controller-0
     ~(keystone_admin)$ system host-swact controller-1
 
-For each worker node in the configuration execute the commands from
-controller-0:
+All remaining nodes in the deployment need to be locked/unlocked, one at a time,
+using the following commands (replace **worker-0** with the name of the node being
+locked/unlocked):
 
 .. code-block:: none
 
     ~(keystone_admin)$ system host-lock worker-0
     ~(keystone_admin)$ system host-unlock worker-0
+
+.. note::
+
+   You must wait for the node to enter the locked state prior to unlocking.
 
 To verify the current Intel driver version use ``ethtool -i`` on the desired
 Intel network interface. For example:
@@ -118,18 +118,6 @@ Intel network interface. For example:
     driver: i40e
     version: 2.20.12
 
-Upgrades
---------
-
-For an upgrade, the default drivers will be configured after the upgrade.
-To set the legacy drivers for an upgrade, set the driver bundle on
-controller-0 prior to the upgrade using the following commands:
-
-.. code-block:: none
-
-    ~(keystone_admin)$ system service-parameter-add platform config intel_nic_driver_version=cvl-2.54 --resource platform::compute::grub::params::g_intel_nic_driver_version
-    ~(keystone_admin)$ system service-parameter-apply platform
-
 Backup and Restore
 ------------------
 
@@ -137,8 +125,8 @@ In case a Backup and Restore is performed, after unlocking the host during a
 restore operation, the system will be configured with the correct multi-driver
 version, but the drivers will be loaded to the default version.
 
-To load the drivers to the correct configured version a second host-unlock will
-be needed.
+To load the drivers to the correct configured version an extra host-lock/
+host-unlock will be needed.
 
 .. only:: partner
 
