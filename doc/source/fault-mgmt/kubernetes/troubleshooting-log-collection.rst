@@ -70,6 +70,15 @@ Collect Tool Caveats and Usage
             to collect serially.  ``--inline`` can be combined with the
             ``--all`` option.
 
+        .. code-block:: none
+
+            (keystone_admin)$ collect --all [--timeout | -t] <minutes>
+
+        .. note::
+            For large deployments, the default timeout value (20 minutes) may
+            need to be increased by using the ``--timeout`` (``-t``) option.
+
+
     -   For subcloud deployments:
 
         .. code-block:: none
