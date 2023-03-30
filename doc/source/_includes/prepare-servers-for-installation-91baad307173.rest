@@ -21,7 +21,7 @@ host types are:
 
 .. end-min-hw-reqs-common-intro
 
-.. 
+..
 .. Simplex
 ..
 
@@ -48,7 +48,7 @@ host types are:
           default, configurable)
 
           Application: Remaining cores
-          
+
    * - Minimum memory
      - 64 GB
 
@@ -57,16 +57,26 @@ host types are:
           * Platform:
 
             - Socket 0: 7GB (by default, configurable)
-          
+
             - Socket 1: 1GB (by default, configurable)
-          
+
           * Application:
-          
+
             - Socket 0: Remaining memory
-          
+
             - Socket 1: Remaining memory
    * - Primary disk
-     -  500 GB SSD or |NVMe| (see :ref:`nvme_config`) 
+
+     .. only:: starlingx
+
+        -  500 GB SSD or |NVMe| (see :ref:`nvme_config`)
+
+     .. only:: partner
+
+        .. include:: /_includes/prepare-servers-for-installation-91baad307173.rest
+            :start-after: primary-disk-begin
+            :end-before: primary-disk-end
+
    * - Additional disks
      - * 1 or more 500 GB (min. 10K RPM) for Ceph |OSD|
 
@@ -99,7 +109,7 @@ host types are:
 
       * - USB Interface
         - 1 (Only required if used for initial installation of controller-0)
-   
+
       * - Boot Order
         - HD, PXE, USB
 
@@ -107,7 +117,7 @@ host types are:
 
         - BIOS or |UEFI|
 
-          .. note:: 
+          .. note::
 
              |UEFI Secure Boot and |UEFI| |PXE| boot over IPv6 are not
              supported. On systems with an IPv6 management network, you can use
@@ -122,7 +132,7 @@ host types are:
        * VT for directed I/O enabled
 
        * CPU power and performance policy set to performance
- 
+
        * |min-proc-idle-power| CPU C state control disabled
 
        * Plug & play |BMC| detection disabled
@@ -149,7 +159,7 @@ Prepare bare metal servers
 .. end-prepare-servers
 
 
-.. 
+..
 .. Duplex
 ..
 
@@ -187,7 +197,17 @@ host types are:
    * - Minimum memory
      - 64 GB
    * - Primary disk
-     - 500 GB SSD or |NVMe| (see :ref:`nvme_config`) 
+
+     .. only:: starlingx
+
+        -  500 GB SSD or |NVMe| (see :ref:`nvme_config`)
+
+     .. only:: partner
+
+        .. include:: /_includes/prepare-servers-for-installation-91baad307173.rest
+            :start-after: primary-disk-begin
+            :end-before: primary-disk-end
+
    * - Additional disks
      - * 1 or more 500 GB (min. 10K RPM) for Ceph |OSD|
 
@@ -231,7 +251,7 @@ Prepare bare metal servers
 
 .. end-prepare-servers-dx
 
-.. 
+..
 .. Standard with storage
 ..
 
@@ -255,6 +275,7 @@ configuration.
 Minimum hardware requirements
 -----------------------------
 
+
 The recommended minimum hardware requirements for bare metal servers for various
 host types are:
 
@@ -274,7 +295,17 @@ host types are:
      - 64 GB
      - 32 GB
    * - Primary disk
-     - 500 GB SSD or |NVMe| (see Configure |NVMe| Drive as Primary Disk)
+
+     .. only:: starlingx
+
+        -  500 GB SSD or |NVMe| (see :ref:`nvme_config`)
+
+     .. only:: partner
+
+        .. include:: /_includes/prepare-servers-for-installation-91baad307173.rest
+            :start-after: primary-disk-begin
+            :end-before: primary-disk-end
+
      - 120 GB (Minimum 10k RPM)
    * - Additional disks
      - * 1 or more 500 GB (min. 10K RPM) for Ceph |OSD|
@@ -322,7 +353,7 @@ Prepare bare metal servers
 .. end-prepare-servers-std
 
 
-.. 
+..
 .. Dedicated storage
 ..
 
@@ -360,7 +391,7 @@ host types are:
      - 2-9
      - 2-100
    * - Minimum processor class
-     - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket 
+     - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket
      - (Same as controller node)
      - (Same as controller node)
    * - Minimum memory
@@ -368,7 +399,16 @@ host types are:
      - 64 GB
      - 32 GB
    * - Primary disk
-     - 500 GB SSD or |NVMe| (see :ref:`nvme_config`)
+     .. only:: starlingx
+
+        -  500 GB SSD or |NVMe| (see :ref:`nvme_config`)
+
+     .. only:: partner
+
+        .. include:: /_includes/prepare-servers-for-installation-91baad307173.rest
+            :start-after: primary-disk-begin
+            :end-before: primary-disk-end
+
      - 120 GB (min. 10k RPM)
      - 120 GB (min. 10k RPM)
    * - Additional disks
@@ -389,15 +429,15 @@ host types are:
        * Data: 1 or more x 10GE
    * - Bios settings
      - * Hyper-Threading technology enabled
-   
+
        * Virtualization technology enabled
-   
+
        * VT for directed I/O enabled
-   
+
        * CPU power and performance policy set to performance
-   
+
        * CPU C state control disabled
-   
+
        * Plug & play |BMC| detection disabled
      - (Same as controller node)
      - (Same as controller node)
