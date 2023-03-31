@@ -72,9 +72,9 @@ You must have completed the procedure in
           Offline subcloud is not skipped. Applicable only when the strategy is
           created to a single subcloud.
 
-       .. figure:: figures/create-strategy.png
+       .. figure:: figures/create-upgrade-strategy.png
 
-       .. figure:: figures/create-strategy-2.png
+       .. figure:: figures/create-upgrade-strategy-2.png
 
            Create an orchestration strategy
 
