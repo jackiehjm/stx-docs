@@ -40,15 +40,17 @@ sizes on a controller.
     .. code-block:: none
 
         ~(keystone_admin)$ system host-fs-list controller-1
-        +--------------------------------------+---------+-------------+----------------+
-        | UUID                                 | FS Name | Size in GiB | Logical Volume |
-        +--------------------------------------+---------+-------------+----------------+
-        | a4d83571-a555-4ba5-999f-af709206ae35 | backup  | 25          | backup-lv      |
-        | d57652a1-af17-47b8-b941-9ebfeee4a56f | docker  | 30          | docker-lv      |
-        | a84374c6-8917-4db5-bd34-2a8d244f2bf6 | kubelet | 10          | kubelet-lv     |
-        | f0c5a8a9-57c7-4072-932d-8f7aac519f8c | log     | 8           | log-lv         |
-        | 2c026d6f-5c03-4135-abca-c0047aa7f5a6 | scratch | 8           | scratch-lv     |
-        +--------------------------------------+---------+-------------+----------------+
+        +--------------------------------------+-----------+-------------+----------------+
+        | UUID                                 | FS Name   | Size in GiB | Logical Volume |
+        +--------------------------------------+-----------+-------------+----------------+
+        | 42dba35b-d2cb-4cbe-85b5-4ffc0fd75d37 | backup    | 25          | backup-lv      |
+        | 0c83c1cb-63f3-4d7a-961e-21b460890417 | docker    | 30          | docker-lv      |
+        | dc212c9b-ba1b-49f1-8bbc-dc41f7f226f2 | kubelet   | 10          | kubelet-lv     |
+        | 766ad3d7-e420-4aff-9e35-a8e495413ead | log       | 8           | log-lv         |
+        | 0215defd-ded2-46df-9338-1d39e7648028 | root      | 20          | root-lv        |
+        | 3079f0ca-28c8-444f-a955-44cc98f96156 | scratch   | 16          | scratch-lv     |
+        | c987d5d7-729e-400c-8d51-ff464b2b9675 | var       | 20          | var-lv         |
+        +--------------------------------------+-----------+-------------+----------------+
 
     Note that the **docker** and **kubelet** filesystems are 30 GiB and 10 GiB
     respectively.
