@@ -84,15 +84,15 @@ For example, follow the steps below:
 
        .. code-block::
 
-           ~(keystone_admin)]$ system host-label-apply controller-0 ptp-registration=true
+           ~(keystone_admin)]$ system host-label-assign controller-0 ptp-registration=true
 
    #.  Apply the notification label to each node that is configured for PTP
        clock synchronization.
 
        .. code-block::
 
-           ~(keystone_admin)]$ system host-label-apply controller-0 ptp-notification=true
-           ~(keystone_admin)]$ system host-label-apply compute-0 ptp-notification=true
+           ~(keystone_admin)]$ system host-label-assign controller-0 ptp-notification=true
+           ~(keystone_admin)]$ system host-label-assign compute-0 ptp-notification=true
 
    #.  Verify the labels.
 
