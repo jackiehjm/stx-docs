@@ -173,15 +173,15 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
 
     .. code-block:: none
 
-        [sysadmin@controller-0 ~(keystone_admin)]$ dcmanager subcloud errors 1
+        [sysadmin@controller-0 ~(keystone_admin)]$ dcmanager subcloud errors 4
         FAILED bootstrapping playbook of (subcloud1).
-         detail: fatal: [subcloud1]: FAILED! => changed=true
-          failed_when_result: true
-          msg: non-zero return code
-            500 Server Error: Internal Server Error ("manifest unknown: manifest unknown")
-             Image download failed: admin-2.cumulus.mss.com: 30093/wind-river/cloud-platform-deployment-manager: WRCP_22.06 500 Server Error: Internal Server Error ("Get https://admin-2.cumulus .mss.com: 30093/v2/: dial tcp: lookup admin-2.cumulus.mss.com on 10.41.0.1:53: read udp 10.41.1.3:40251->10.41.0.1:53: i/o timeout")
-             Image download failed: gcd.io/kubebuilder/kube-rdac-proxy:v0.11.0 500 Server Error: Internal Server Error ("Get https://gcd.io/v2/: dial tcp: lookup gcd.io on 10.41.0.1:53: read udp 10.41.1.3:52485->10.41.0.1:53: i/o timeout")
-            raise Exception("Failed to download images %s" % failed_downloads)
-             Exception: Failed to download images ["admin-2.cumulus.mss.com: 30093/wind-river/cloud-platform-deployment-manager: WRCP_22.06", "gcd.io kubebuilder/kube-rdac-proxy:v0.11.0"]
-        FAILED TASK: TASK [common/push-docker-images Download images and push to local registry] Wednesday 12 October 2022 12:27:31 +0000 (0:00:00.042)
-        0:16:34.495
+         detail: fatal: [subcloud1]: FAILED! => changed-false
+          msg:
+            - Failed to log in one of the registry. Please check if docker_registries parameter
+            - "is properly configured in bootstrap overrides yaml file and docker registry certificate (where " - applicable) is valid.
+            - Err_code=images_download_failure
+            - "Possible failures: Logging into registry.k8s.io for user admin failed 500 Server Error: Internal Server Error ("Get "https://registry.k8s.io/v2/": net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)") | Logging into icr.io for user admin failed - 500 Server Error: Internal Server Error ("Get "https://icr.io/v2/": net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaitin g headers)")"
+        FAILED TASK: TASK [common/push-docker-images: Display registry login error] Tuesday 21 March 2023 0 31:13 +0000 (0:00:00.076)
+        0:22:47.420
+        Check docker_registries and docker proxy configurations in bootstrap values yaml file. Ensure you can manually log into the registry e.g. sudo docker login registry.local:9001 -u <registry-user> -p <registry-password>
+        For bootstrap failures, please delete and re-add the subcloud after the cause of failure has been resolved.
