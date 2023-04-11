@@ -65,35 +65,48 @@ subcloud, the subcloud installation has these phases:
 
             ~(keystone_admin)]$ system --os-region-name SystemController load-import --active |installer-image-name|.iso |installer-image-name|.sig
 
-    In order to be able to deploy subclouds from either controller, all local
-    files that are referenced in the ``bootstrap.yml`` file must exist on both
-    controllers (for example, ``/home/sysadmin/docker-registry-ca-cert.pem``).
+-   Run the :command:`load-import` command on controller-0 to import
+    the new release.
 
-.. Greg updates required for -High Security Vulnerability Document Updates
-
-.. _increase-subcloud-platform-backup-size:
-
-----------------------------------------------------
-Increase Subcloud Platform Backup Size using the CLI
-----------------------------------------------------
-
-By default, 30GB is allocated for ``/opt/platform-backup``. If additional
-persistent disk space is required, the partition can be increased in the next
-subcloud reinstall using the following commands:
-
--   To increase ``/opt/platform-backup`` to 40GB, add the **persistent_size: 40000**
-    parameter to the subcloud install-values.yaml file.
-
--   Use the :command:`dcmanager subcloud update` command to save the
-    configuration change for the next subcloud reinstall.
+    You can specify either the full file path or relative paths to the ``*.iso``
+    bootimage file and to the ``*.sig`` bootimage signature file.
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ dcmanager subcloud update --install-values <install-values-yaml-file><subcloud-name>
+        $ source /etc/platform/openrc
+        ~(keystone_admin)]$ system load-import [--local] /home/sysadmin/<bootimage>.iso <bootimage>.sig
 
-For a new subcloud deployment, use the :command:`dcmanager subcloud add`
-command with the ``install-values.yaml`` file containing the desired
-``persistent_size`` value.
+        +--------------------+-----------+
+        | Property           | Value     |
+        +--------------------+-----------+
+        | id                 | 2         |
+        | state              | importing |
+        | software_version   | nn.nn     |
+        | compatible_version | nn.nn     |
+        | required_patches   |           |
+        +--------------------+-----------+
+
+    The :command:`load-import` must be done on controller-0.
+
+    (Optional) If ``--local`` is specified, the ISO and sig files are
+    uploaded directly from the active controller, where `<local_iso_file_path>`
+    and `<local_sig_file_path>` are paths on the active controller to load
+    ISO files and sig files respectively.
+
+    .. note::
+
+        If ``--local`` is specified, the ISO and sig files are transferred
+        directly from the active controller filesystem to the load directory,
+        if it is not specified, the files are transferred via the API.
+
+    .. note::
+        This will take a few minutes to complete.
+
+    In order to deploy subclouds from either controller, all local
+    files that are referenced in the ``subcloud-bootstrap-values.yaml`` file must exist
+    on both controllers (for example, ``/home/sysadmin/docker-registry-ca-cert.pem``).
+
+.. Greg updates required for -High Security Vulnerability Document Updates
 
 .. rubric:: |proc|
 
@@ -119,7 +132,7 @@ command with the ``install-values.yaml`` file containing the desired
        :start-after: begin-ref-1
        :end-before: end-ref-1
 
-#.  Create the ``install-values.yaml`` file and use the content to pass the file
+#.  Create the ``subcloud-install-values.yaml`` file and use the content to pass the file
     into the :command:`dcmanager subcloud add` command, using the
     ``--install-values`` command option.
 
@@ -131,7 +144,7 @@ command with the ``install-values.yaml`` file containing the desired
         wait for the interface to have carrier, and complete IPv6 duplicate
         address detection |DAD|. For the ZTSystems server, this can take more
         than four minutes. It is recommended to set this value to 300 seconds,
-        by specifying the following in the ``subcloud install-values.yaml``
+        by specifying the following in the ``subcloud-install-values.yaml``
         file:
 
         .. code-block:: none
@@ -150,7 +163,7 @@ command with the ``install-values.yaml`` file containing the desired
            :start-after: begin-syslimit
            :end-before: end-syslimit
 
-    For example, :command:`--install-values /home/sysadmin/install-values.yaml`.
+    For example, :command:`--install-values /home/sysadmin/subcloud-install-values.yaml`.
 
     .. parsed-literal::
 
@@ -205,8 +218,30 @@ command with the ``install-values.yaml`` file containing the desired
         # to 30000.
         persistent_size: 30000
 
+    .. _increase-subcloud-platform-backup-size:
+
+    .. note::
+
+        By default, 30GB is allocated for ``/opt/platform-backup``. If additional
+        persistent disk space is required, the partition can be increased in the next
+        subcloud reinstall using the following commands:
+
+        -   To increase ``/opt/platform-backup`` to 40GB, add the **persistent_size: 40000**
+            parameter to the ``subcloud-install-values.yaml`` file.
+
+        -   Use the :command:`dcmanager subcloud update` command to save the
+            configuration change for the next subcloud reinstall.
+
+            .. code-block:: none
+
+                ~(keystone_admin)]$ dcmanager subcloud update --install-values <subcloud-install-values.yaml> <subcloud-name>
+
+        For a new subcloud deployment, use the :command:`dcmanager subcloud add`
+        command with the ``subcloud-install-values.yaml`` file containing the desired
+        ``persistent_size`` value.
+
 #.  At the System Controller, create a
-    ``/home/sysadmin/subcloud1-bootstrap-values.yaml`` overrides file for the
+    ``/home/sysadmin/subcloud-bootstrap-values.yaml`` overrides file for the
     subcloud.
 
     For example:
@@ -214,7 +249,7 @@ command with the ``install-values.yaml`` file containing the desired
     .. code-block:: none
 
         system_mode: simplex
-        name: "subcloud1"
+        name: "subcloud"
 
         description: "test"
         location: "loc"
@@ -296,15 +331,16 @@ command with the ``install-values.yaml`` file containing the desired
 #.  Add the subcloud using dcmanager.
 
     When calling the :command:`subcloud add` command, specify the install
-    values, the bootstrap values and the subcloud's sysadmin password.
+    values, bootstrap values and the subcloud's sysadmin password.
 
     .. code-block:: none
 
        ~(keystone_admin)]$ dcmanager subcloud add \
        --bootstrap-address <oam_ip_address_of_subclouds_controller-0> \
-       --bootstrap-values /home/sysadmin/subcloud1-bootstrap-values.yaml \
+       --bootstrap-values /home/sysadmin/subcloud-bootstrap-values.yaml \
        --sysadmin-password <sysadmin_password> \
-       --install-values /home/sysadmin/install-values.yaml \
+       --install-values /home/sysadmin/subcloud-install-values.yaml \
+       --deploy-config /home/sysadmin/subcloud-deploy-config.yaml \
        --bmc-password <bmc_password>
 
     If the ``--sysadmin-password`` is not specified, you are prompted to
@@ -365,8 +401,8 @@ command with the ``install-values.yaml`` file containing the desired
     .. code-block:: none
 
         [sysadmin@controller-0 ~(keystone_admin)]$ dcmanager subcloud errors 1
-        FAILED bootstrapping playbook of (subcloud1).
-         detail: fatal: [subcloud1]: FAILED! => changed=true
+        FAILED bootstrapping playbook of (subcloud).
+         detail: fatal: [subcloud]: FAILED! => changed=true
           failed_when_result: true
           msg: non-zero return code
             500 Server Error: Internal Server Error ("manifest unknown: manifest unknown")
@@ -382,23 +418,28 @@ command with the ``install-values.yaml`` file containing the desired
     bootstrapping and deployment by monitoring the following log files on the
     active controller in the Central Cloud.
 
-    ``/var/log/dcmanager/ansible/<subcloud_name>_playbook.output.log``
+    ``/var/log/dcmanager/ansible/<subcloud_name>_playbook_output.log``
 
     For example:
 
     .. code-block:: none
 
-        controller-0:/home/sysadmin# tail /var/log/dcmanager/ansible/subcloud1_playbook.output.log
+        controller-0:/home/sysadmin# tail /var/log/dcmanager/ansible/subcloud_playbook_output.log
         k8s.gcr.io: {password: secret, url: null}
         quay.io: {password: secret, url: null}
         )
 
         TASK [bootstrap/bringup-essential-services : Mark the bootstrap as completed] ***
-        changed: [subcloud1]
+        changed: [subcloud]
 
         PLAY RECAP *********************************************************************
-        subcloud1                  : ok=230  changed=137  unreachable=0    failed=0
+        subcloud                  : ok=230  changed=137  unreachable=0    failed=0
 
+
+    .. note::
+
+        The subcloud_playbook_output.log can rotate, the previous log file will
+        be subcloud_playbook_output.log.1.
 
 .. rubric:: |postreq|
 
@@ -426,4 +467,4 @@ command with the ``install-values.yaml`` file containing the desired
 
 -   For more information on bootstrapping and deploying, see the procedures
     listed under :ref:`install-a-subcloud`.
-  
+
