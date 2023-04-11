@@ -33,7 +33,7 @@ The main steps of this task are:
 #.	Use dcmanager commands to prestage the subcloud(s).
 
 To increase Subcloud Platform Backup Size using dcmanager CLI, see
-:ref:`increase-subcloud-platform-backup-size`.
+:ref:`note <increase-subcloud-platform-backup-size>`.
 
 .. _prestaging-prereqs:
 

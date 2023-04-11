@@ -54,9 +54,10 @@ subcloud, the subcloud installation process has two phases:
 
 -   You must have downloaded ``update-iso.sh`` from |dnload-loc|.
 
--   In order to be able to deploy subclouds from either controller, all local
-    files that are referenced in the ``bootstrap.yml`` file must exist on both
-    controllers \(for example, ``/home/sysadmin/docker-registry-ca-cert.pem``\).
+-   In order to deploy subclouds from either controller, all local
+    files that are referenced in the ``subcloud-bootstrap-values.yaml`` file
+    must exist on both controllers
+    (for example, ``/home/sysadmin/docker-registry-ca-cert.pem``).
 
 .. rubric:: |proc|
 
