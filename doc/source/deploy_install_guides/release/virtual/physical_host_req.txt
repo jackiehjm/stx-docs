@@ -67,6 +67,6 @@ Set up the host with the following steps:
       apparmor-profile modules.
 
 
-#. Get the StarlingX ISO from the
-   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_.
-   Alternately, you can use an ISO from a private StarlingX build.
+#. Get the latest StarlingX ISO from the
+   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/latest_release/debian/monolithic/outputs/iso/>`_.
+   Alternately, you can get an older release ISO from `here <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/>`_.
