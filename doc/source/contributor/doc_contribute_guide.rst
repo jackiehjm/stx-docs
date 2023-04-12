@@ -78,11 +78,52 @@ Docs organization
 
 Documentation for StarlingX is organized into the following sections:
 
-:doc:`/introduction/index-intro-27197f27ad41`
+:ref:`Introduction <index-intro-27197f27ad41>`
   Overview of the StarlingX project.
 
-:doc:`/deploy_install_guides/index-install-e083ca818006`
+:ref:`Deployment Configurations <index-deploy-da06a98b83b1>`
+  Supported deployment configuration options.
+
+:ref:`Planning <index-planning-332af0718d15>`
+  Requirements planning guidance.
+
+:ref:`Installation <index-install-e083ca818006>`
   Release-specific installation and deployment guides.
+
+:ref:`Security <index-security-84d0d8aa401b>`
+  Detailed discusion of security configuration.
+
+:ref:`System Configuration <index-sysconf-d511820651f0>`
+  Detailed discussion of various post-installation configuration changes.
+
+:ref:`Data Networks <index-datanet-e316bf6c2f6a>`
+  Discussion of |prod| data network configuration and management.
+
+:ref:`Node Management <index-node-mgmt-cd0f9d8eaee6>`
+  Discussion of |prod| node configuration and management.
+
+:ref:`Backup and Restore <index-backup-1b466179efc3>`
+  Discussion of |prod| backup and restore procedures.
+
+:ref:`Updates and Upgrades <index-updates-e3b970bb69ce>`
+  Discussion of |prod| update and upgrade procedures.
+
+:ref:`KubeVirt <index-kubevirt-f1bfd2a21152>`
+  Overview of |VM| support using KubeVirt.
+
+:ref:`Admin Tasks <index-admintasks-768a6e9aaeff>`
+  Overview of common administrator tasks.
+
+:ref:`User Tasks <index-usertasks-b18b379ab832>`
+  Overview of common user tasks.
+
+:ref:`Guest Integration <index-guest-ef8c9a20bf6c>`
+  Overview of various guest integrations.
+
+:ref:`Distributed Cloud <index-dist-cloud-f5dbeb16b976>`
+  Discussion of |prod| |prod-dc| for edge computing.
+
+:ref:`Sample Application Deployment <index-sample-apps-15fce86ad4bf>`
 
 :doc:`/archive/configuration/index`
   Configuration references for post-installation StarlingX system configuration.
