@@ -237,7 +237,3 @@ devices as you have network annotations.
             ~(keystone_admin)$  kubectl create -f pod4.yaml
             pod/testpmd created
 
-.. note::
-    For applications backed by Mellanox NICs, privileged mode is required in
-    the pod's security context. For Intel i40e based NICs bound to vfio,
-    privileged mode is not required.
