@@ -96,6 +96,7 @@
 .. |NVMe| replace:: :abbr:`NVMe (Non-Volatile Memory express)`
 .. |OAM| replace:: :abbr:`OAM (Operations, administration and management)`
 .. |OC| replace:: :abbr:`OC (Ordinary Clock)`
+.. |OID| replace:: :abbr:`OID (Object Identifier)`
 .. |OIDC| replace:: :abbr:`OIDC (OpenID Connect)`
 .. |ONAP| replace:: :abbr:`ONAP (Open Network Automation Program)`
 .. |OVS| replace:: :abbr:`OVS (Open Virtual Switch)`
