@@ -198,6 +198,7 @@ AppArmor
 
    about-apparmor-ebdab8f1ed87
    enable-disable-apparmor-on-a-host-63a7a184d310
+   enable-disable-apparmor-on-a-host-using-horizon-a318ab726396
    install-security-profiles-operator-1b2f9a0f0108
    profile-management-a8df19c86a5d
    apply-a-profile-to-a-pod-c2fa4d958dec

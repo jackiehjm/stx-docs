@@ -171,6 +171,9 @@ A sample **Hosts** tab is illustrated below:
             the serial console cable is disconnected. The server must support
             data carrier detect on the serial console port.
 
+        -   **AppArmor Module**: Choose whether or not to enable Apparmor on
+            the host. The host needs to be locked before changing this value.
+
     -   The **Installation Parameters** tab provides access to installation
         settings. Changes take effect if the host is re-installed. For more
         information, see the document that pertains to your |prod|
