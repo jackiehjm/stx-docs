@@ -235,19 +235,70 @@ Create an interface and assign to ports
 PTP Limitations
 ---------------
 
-NICs using the Intel Ice NIC driver may report the following in the ``ptp4l``
-logs, which might coincide with a |PTP| port switching to ``FAULTY`` before
-re-initializing.
 
-.. code-block:: none
+* NICs using the Intel® ice driver may report the following error in the
+  ``ptp4l`` logs, which results in a |PTP| port switching to ``FAULTY`` before
+  re-initializing.
 
-    ptp4l[80330.489]: timed out while polling for tx timestamp
-    ptp4l[80330.489]: increasing tx_timestamp_timeout may correct this issue, but it is likely caused by a driver bug
+  .. note::
+ 
+     |PTP| ports frequently switching to ``FAULTY`` may degrade the accuracy of
+     the |PTP| timing.
+  
+  .. code-block:: none
+  
+      ptp4l[80330.489]: timed out while polling for tx timestamp
+      ptp4l[80330.489]: increasing tx_timestamp_timeout may correct this issue, but it is likely caused by a driver bug
+  
+  .. note::
 
-This is due to a limitation of the Intel Ice driver. The recommended workaround
-is to set the ``tx_timestamp_timeout`` parameter to 700 (ms) in the ``ptp4l``
-config.
+      This is due to a limitation with the Intel® ice driver as the driver
+      cannot guarantee the time interval to return the timestamp to the
+      ``ptp4l`` user space process which results in the occasional timeout
+      error message.
 
-.. code-block:: none
+  **Workaround**: The workaround recommended by Intel is to increase the
+  ``tx_timestamp_timeout`` parameter in the ``ptp4l`` config. The increased
+  timeout value gives more time for the ice driver to provide the timestamp to
+  the ``ptp4l`` user space process. Timeout values of 50ms and 700ms have been
+  validated. However, the user can use a different value if it is more suitable
+  for their system.
 
-    ~(keystone_admin)]$ system ptp-instance-parameter-add ptp-inst1 tx_timestamp_timeout=700
+  .. code-block:: none
+ 
+     ~(keystone_admin)]$ system ptp-instance-parameter-add <instance_name> tx_timestamp_timeout=700
+     ~(keystone_admin)]$ system ptp-instance-apply
+
+  .. note::
+
+     The ``ptp4l`` timeout error log may also be caused by other underlying
+     issues, such as NIC port instability. Therefore, it is recommended to
+     confirm the NIC port is stable before adjusting the timeout values.
+
+.. begin-silicom-ptp-limitations
+
+* Silicom and Intel based Time Sync NICs may not be deployed on the same system
+  due to conflicting time sync services and operations.
+
+  |PTP| configuration for Silicom TimeSync (STS) cards is handled separately
+  from |prod| host |PTP| configuration and may result in configuration
+  conflicts if both are used at the same time.
+
+  The sts-silicom application provides a dedicated ``phc2sys`` instance which
+  synchronizes the local system clock to the Silicom TimeSync (STS) card. Users
+  should ensure that ``phc2sys`` is not configured via |prod| |PTP| Host
+  Configuration when the sts-silicom application is in use.
+
+  Additionally, if |prod| |PTP| Host Configuration is being used in parallel
+  for non-STS NICs, users should ensure that all ``ptp4l`` instances do not use
+  conflicting ``domainNumber`` values.
+
+* When the Silicom TimeSync (STS) card is configured in timing mode using the
+  sts-silicom application, the card goes through an initialization process on
+  application apply and server reboots. The ports will bounce up and down
+  several times during the initialization process, causing network traffic
+  disruption. Therefore, configuring the platform networks on the Silicom
+  TimeSync (STS) card is not supported since it will cause platform
+  instability.
+
+.. end-silicom-ptp-limitations
