@@ -25,9 +25,9 @@ Create a bootable USB drive on Linux\*
 
       sudo -s
 
-#. Get the StarlingX ISO from the
-   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_.
-   Alternately, you can use an ISO from a private StarlingX build.
+#. Get the latest StarlingX ISO from the
+   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/latest_release/debian/monolithic/outputs/iso/>`_.
+   Alternately, you can get an older release ISO from `here <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/>`_.
 
 #. Navigate to the directory with the `StarlingX ISO <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/latest_release/centos/flock/outputs/iso/>`_.
 
@@ -68,8 +68,9 @@ Create a bootable USB drive on macOS\*
 
 #. Launch the Terminal app.
 
-#. Get the StarlingX ISO from the
-   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_. Alternately, you can use an ISO from a private StarlingX build.
+#. Get the latest StarlingX ISO from the
+   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/latest_release/debian/monolithic/outputs/iso/>`_.
+   Alternately, you can get an older release ISO from `here <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/>`_.
 
 #. Navigate to the directory with the ISO.
 
@@ -111,8 +112,9 @@ Create a bootable USB drive on macOS\*
 Create a bootable USB drive on Windows\*
 ----------------------------------------
 
-#. Get the StarlingX ISO from the
-   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_. Alternately, you can use an ISO from a private StarlingX build.
+#. Get the latest StarlingX ISO from the
+   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/latest_release/debian/monolithic/outputs/iso/>`_.
+   Alternately, you can get an older release ISO from `here <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/>`_.
 
 #. Download the `Rufus`_ utility to burn the image onto a USB drive.
    **Only use the latest version of Rufus**.
