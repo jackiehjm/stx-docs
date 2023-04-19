@@ -43,4 +43,10 @@ There are two methods for using Vault secrets with hosted applications:
 
    For more information, see, |usertasks-doc|: :ref:`Vault Unaware <vault-unaware>`.
 
+.. seealso::
 
+    * `Vault Command References <https://developer.hashicorp.com/vault/docs/v1.9.x>`_
+
+    * `Vault REST API reference <https://developer.hashicorp.com/vault/api-docs/v1.9.x>`_
+
+    * `Vault Helm chart overrides <https://github.com/hashicorp/vault-helm/blob/v0.19.0/values.yaml>`_
