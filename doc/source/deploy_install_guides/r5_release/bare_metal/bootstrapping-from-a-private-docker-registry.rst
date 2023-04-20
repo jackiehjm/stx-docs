@@ -9,6 +9,10 @@ Bootstrapping from a Private Docker Registry
 You can bootstrap controller-0 from a private Docker registry in the event that
 your server is isolated from the public Internet.
 
+.. note::
+    The private docker registry name must not end with ".local" to ensure that
+    the domain name is properly resolved using external DNS.
+
 .. rubric:: |proc|
 
 #.  Update your /home/sysadmin/localhost.yml bootstrap overrides file with the
