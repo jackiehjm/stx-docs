@@ -9,6 +9,10 @@ Check New Registry and Reapply Application
 Perform these steps on both controllers. Use controller-0 first and then swact
 to controller-1 and perform the same steps.
 
+.. note::
+    The private docker registry name must not end with ".local" to ensure that
+    the domain name is properly resolved using external DNS.
+
 .. rubric:: |proc|
 
 #. Run this command to login:
