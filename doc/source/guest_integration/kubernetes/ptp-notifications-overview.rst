@@ -127,3 +127,28 @@ manifest to include these parameters.
               timeoutSeconds: 3
     EOF
 
+
+**Container images and API compatibility**
+
+The ``ptp-notification`` provides a v1 API for backwards compatibility with
+client applications deployed on |prod| |prod-ver|, as well as a v2 API for
+O-RAN Spec Compliant Timing notifications. By default, ``ptp-notification``
+deploys two ``notificationservice-base`` containers to support these APIs.
+Users must decide which API they will use by deploying the appropriate
+``notificationclient-base`` image as a sidecar with their consumer application.
+
+-   The v1 API uses ``starlingx/notificationservice-base:stx.9.0-v2.1.1``
+
+    -   Compatible with the image:
+        ``starlingx/notificationclient-base:stx.5.0-v1.0.4``
+
+-   The v2 API uses ``starlingx/notificationservice-base-v2:stx.9.0-v2.1.1``
+
+    -   Compatible with the image:
+        ``starlingx/notificationclient-base:stx.9.0-v2.1.1``
+
+Upgrades of |prod| |prod-ver| to the next patch will automatically upgrade the
+``ptp-notification`` application and deploy both the v1 and v2 API containers.
+Consumer applications determine which API they interact with based on the
+version of ``notificationclient-base`` that is deployed along side their
+application.

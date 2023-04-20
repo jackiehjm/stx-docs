@@ -38,10 +38,9 @@ API.
 
 **v2 API**
 
-The API conforms to O-RAN.WG6.O-Cloud Notification API-v02.01 with the
-exception of the /././sync endpoint limitation. Using the v2 API, multiple
-``ptp4l`` instances can be tracked for independent |PTP| Sync State and |PTP|
-Clock Class notifications.
+The API conforms to O-RAN.WG6.O-Cloud Notification API-v02.01. Using the v2
+API, multiple ``ptp4l`` instances can be tracked for independent |PTP| Sync
+State and |PTP| Clock Class notifications.
 
 The application monitors the following services:
 
@@ -55,12 +54,6 @@ The application monitors the following services:
 
 -  Overall System Sync State
 
-**Limitations**
-
-The |O-RAN| Cloud Notification defines a /././sync API v2 endpoint intended to
-allow a client to subscribe to all notifications from a node. This endpoint is
-not supported in |prod-long| Release 22.12. A specific subscription for each
-resource type must be created instead.
 
 .. rubric:: |context|
 
@@ -128,23 +121,24 @@ For example, follow the steps below:
 
     #.  Create a yaml file and update the fields that require Helm overrides.
 
-        .. code-block::
+        .. code-block:: none
 
             ~(keystone_admin)]$ cat notification-override.yaml
 
-           ptptracking:
-             ptp4lServiceName: True
-             phc2sysServiceName: True
-             ts2phcServiceName: True
-             log_level: INFO
-             control_timeout: 2
-           device:
-             holdover_seconds: 15
-             poll_freq_seconds: 2
-           osclock:
-             holdover_seconds: 15
-           overall:
-             holdover_seconds: 15
+            ptptrackingv2:
+              enabled: True
+              ptp4lServiceName: True
+              phc2sysServiceName: True
+              ts2phcServiceName: True
+              log_level: INFO
+              control_timeout: 2
+              device:
+                simulated: false
+                holdover_seconds: 15
+              osclock:
+                holdover_seconds: 15
+              overall:
+                holdover_seconds: 15
 
         where the values are:
 
@@ -195,6 +189,22 @@ For example, follow the steps below:
           This is done in order to account for time between the monitor polling
           cycles. The ``holdover_seconds`` value should be configured to match the
           validated holdover time provided by the device manufacturer.
+
+    #.  To configure the ``ptp-notification`` v1 API, include the following in
+        the ``notification-override.yaml`` file. Ensure that values are updated
+        to match the configured instance names on your system.
+
+        .. code-block:: none
+
+            ptptracking:
+              enabled: True
+              ptp4lSocket: /var/run/ptp4l-instancename
+              ptp4lServiceName: ptp4l-instancename
+              phc2sysServiceName: phc2sys-instancename
+              logging_level: INFO
+            device:
+              holdover_seconds: 15
+              poll_freq_seconds: 2
 
     #.  View existing values.
 

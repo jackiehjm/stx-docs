@@ -39,6 +39,12 @@ application and the Sidecar communicate via a REST API. See the figure below.
       :start-after: note-begin
       :end-before: note-end
 
+To use the v1 API, deploy ``starlingx/notificationclient-base:stx.5.0-v1.0.4``
+as the sidecar container.
+
+To use the v2 API, deploy ``starlingx/notificationclient-base:stx.9.0-v2.1.1``
+as the sidecar container.
+
 .. rubric:: |prereq|
 
 The following prerequisites are required before the integration:
