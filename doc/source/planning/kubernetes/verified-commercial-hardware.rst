@@ -140,19 +140,19 @@ Supported hardware components for use with |prod| are listed here.
 
 .. _cert-hw-details:
 
-.. only:: starlingx
+.. .. only:: starlingx
+.. 
+..    The following table provides additional information about currently tested
+..    and supported hardware. Click the icon in the **Certified** column to see
+..    additional details.
+.. 
+..    **Table 2. Self-Validated and Certified Servers**
+.. 
+..    .. raw:: html
+..       :url: https://www.windriver.com/studio/operator/self-validated-and-certified-hosts
 
-   The following table provides additional information about currently tested
-   and supported hardware. Click the icon in the **Certified** column to see
-   additional details.
-
-   **Table 2. Self-Validated and Certified Servers**
-
-   .. raw:: html
-      :url: https://support2.windriver.com/self-validated-and-certified-hosts/?q
-
-   .. raw:: html
-   
-      <script>
-            document.getElementById("body").style.margin-left = -50px;
-      </script>
+..   .. raw:: html
+..   
+..      <script>
+..            document.getElementById("body").style.margin-left = -50px;
+..      </script>
