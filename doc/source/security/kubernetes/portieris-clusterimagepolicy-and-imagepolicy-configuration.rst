@@ -56,7 +56,7 @@ registry+notary server
 
     .. code-block:: none
 
-        apiVersion: securityenforcement.admission.cloud.ibm.com/v1beta1
+        apiVersion: portieris.cloud.ibm.com/v1
         kind: ImagePolicy
         metadata:
           name: allow-all-icrio
@@ -69,7 +69,7 @@ registry+notary server
 
     .. code-block:: none
 
-        apiVersion: securityenforcement.admission.cloud.ibm.com/v1beta1
+        apiVersion: portieris.cloud.ibm.com/v1
         kind: ImagePolicy
         metadata:
           name: allow-custom

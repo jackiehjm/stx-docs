@@ -12,7 +12,7 @@ registries' URLs using the following command:
 .. code-block:: none
 
     NEW_URL_START=new-registry.domain.com:9001
-    for registry in docker-registry quay-registry elastic-registry gcr-registry k8s-registry
+    for registry in docker-registry quay-registry elastic-registry gcr-registry k8s-registry icr-registry ghcr-registry registryk8s-registry
     do
     uuid=`system service-parameter-list |grep $registry | grep url | awk '{print $2}'`
     url_path=`system service-parameter-show $uuid | grep value | awk '{print $4}' | cut -d '/' -f 2-`

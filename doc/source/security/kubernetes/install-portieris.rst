@@ -10,6 +10,19 @@ You can install Portieris on |prod| from the command line.
 
 .. rubric:: |proc|
 
+.. note::
+
+    For systems upgraded from a previous release, please add service parameters
+    for the new icr registry that will contain images used by Portieris. You
+    will need to add 1 service parameter for the URL at a minimum: ``system
+    service-parameter-add docker icr-registry
+    url=myprivateregistry.abc.com:9001/icr.io``.
+
+    Refer to :ref:`About Changing External Registries for StarlingX
+    Installation
+    <about-changing-external-registries-for-starlingx-installation>` for more
+    details.
+
 #.  Locate the Portieris tarball in /usr/local/share/applications/helm.
 
     For example:
@@ -43,7 +56,6 @@ You can install Portieris on |prod| from the command line.
         .. code-block:: none
 
             ~(keystone_admin)]$ system helm-override-update portieris portieris-certs portieris --values caCert.yaml
-
 
 #.  Apply the application.
 

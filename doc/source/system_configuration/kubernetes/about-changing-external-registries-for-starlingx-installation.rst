@@ -11,11 +11,12 @@ and application updates.
 When installing and upgrading |prod| or applying and updating |prod|
 applications, container images are pulled from external registries, for various
 services. By default, these container images are pulled from the following
-public registries: ``k8s.gcr.io``, ``gcr.io``, ``quay.io``, and ``docker.io``.
-During installation, specifically during the bootstrap step, these external registries
-can be overridden using the 'docker_registries' variable in the bootstrap
-override file.  This task provides a procedure for changing these external
-registries **after** installing |prod|.
+public registries: ``k8s.gcr.io``, ``gcr.io``, ``quay.io``, ``docker.io``,
+``icr.io``, ``ghcr.io``, and ``registry.k8s.io``. During installation,
+specifically during the bootstrap step, these external registries can be
+overridden using the 'docker_registries' variable in the bootstrap override
+file.  This task provides a procedure for changing these external registries
+**after** installing |prod|.
 
 .. rubric:: |context|
 

@@ -36,6 +36,8 @@ your server is isolated from the public Internet.
             url: <my-registry.io>/docker.elastic.co
           registry.k8s.io:
             url: <my-registry.io>/registry.k8s.io
+          icr.io:
+            url: <my-registry.io>/icr.io
         defaults:
             type: docker
             username: <your_my-registry.io_username>
