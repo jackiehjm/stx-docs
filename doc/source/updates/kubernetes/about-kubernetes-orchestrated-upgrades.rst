@@ -48,9 +48,9 @@ meets the following conditions:
 
 -   If you are using NetApp Trident in |prod| |prod-ver| and have upgraded from
     the |prod| previous version, ensure that your NetApp backend version is
-    compatible with Trident 22.01 and follow the steps in :ref:`Upgrade the
+    compatible with Trident 22.07 and follow the steps in :ref:`Upgrade the
     NetApp Trident Software <upgrade-the-netapp-trident-software-c5ec64d213d3>`
-    to upgrade the Trident drivers to 22.01 before upgrading Kubernetes to
+    to upgrade the Trident drivers to 22.07 before upgrading Kubernetes to
     version |kube-ver|.
 
     .. note::
