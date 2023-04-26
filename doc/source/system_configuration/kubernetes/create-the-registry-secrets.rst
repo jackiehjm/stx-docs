@@ -163,5 +163,33 @@ You will get the following output:
     | resource    | None                                 |
     +-------------+--------------------------------------+
 
+    +---------------+------------------------------------------------------------------------+
+    | Field         | Value                                                                  |
+    +---------------+------------------------------------------------------------------------+
+    | Secret href   | http://controller:9311/v1/secrets/d88d2562-2a58-43fb-ab42-d5e63c6bf500 |
+    | Name          | registryk8s-registry-secret                                            |
+    | Created       | None                                                                   |
+    | Status        | None                                                                   |
+    | Content types | None                                                                   |
+    | Algorithm     | aes                                                                    |
+    | Bit length    | 256                                                                    |
+    | Secret type   | opaque                                                                 |
+    | Mode          | cbc                                                                    |
+    | Expiration    | None                                                                   |
+    +---------------+------------------------------------------------------------------------+
+
+    +-------------+--------------------------------------+
+    | Property    | Value                                |
+    +-------------+--------------------------------------+
+    | uuid        | fa8c3e00-b1b0-469b-8d73-5362f8d99725 |
+    | service     | docker                               |
+    | section     | registryk8s-registry                 |
+    | name        | auth-secret                          |
+    | value       | d88d2562-2a58-43fb-ab42-d5e63c6bf500 |
+    | personality | None                                 |
+    | resource    | None                                 |
+    +-------------+--------------------------------------+
+
+
 To update the registry secrets, go to :ref:`Update
 the Registries' Auth-Secrets <update-the-registry-secrets>`.

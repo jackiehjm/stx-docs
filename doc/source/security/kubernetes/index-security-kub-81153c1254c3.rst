@@ -190,6 +190,21 @@ Linux Auditing System
    auditd-support-339a51d8ce16
 
 
+********
+AppArmor
+********
+.. toctree::
+   :maxdepth: 1
+
+   about-apparmor-ebdab8f1ed87
+   enable-disable-apparmor-on-a-host-63a7a184d310
+   install-security-profiles-operator-1b2f9a0f0108
+   profile-management-a8df19c86a5d
+   apply-a-profile-to-a-pod-c2fa4d958dec
+   enable-apparmor-log-bb600560d794
+   author-apparmor-profiles-b02de0a22771
+
+
 *************************************
 Operator Login/Authentication Logging
 *************************************

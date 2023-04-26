@@ -26,6 +26,8 @@ You will get the following output:
     elastic-registry URL is new-registry.domain.com:9001/product-abc/starlingx/docker.elastic.co
     gcr-registry URL is new-registry.domain.com:9001/product-abc/starlingx/gcr.io
     k8s-registry URL is new-registry.domain.com:9001/product-abc/starlingx/k8s.gcr.io
+    registryk8s-registry URL is new-registry.domain.com:9001/product-abc/starlingx/registry.k8s.io
+
 
 If the existing registries used authentication, use the following command to
 display their auth-secrets:

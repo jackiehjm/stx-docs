@@ -85,5 +85,18 @@ You will get the following output:
     | resource    | None                                                                      |
     +-------------+---------------------------------------------------------------------------+
 
+    +-------------+---------------------------------------------------------------------------+
+    | Property    | Value                                                                     |
+    +-------------+---------------------------------------------------------------------------+
+    | uuid        | ea52a3cd-5aae-425a-967e-5a2bc19a1398                                      |
+    | service     | docker                                                                    |
+    | section     | registryk8s-registry                                                      |
+    | name        | url                                                                       |
+    | value       | new-registry.domain.com:9001/product-abc/starlingx/registry.k8s.io        |
+    | personality | None                                                                      |
+    | resource    | None                                                                      |
+    +-------------+---------------------------------------------------------------------------+
+
+
 To validate the registry, see :ref:`Display Updated Registries' URLs and Auth-Secrets
 <validate-existing-registry-and-new-url>`.
