@@ -36,14 +36,17 @@ Controller Filesystem Storage Allotments Using Horizon
     .. code-block:: none
 
         ~(keystone_admin)$ system host-fs-list controller-0
-        +--------------------------------------+---------+-------------+----------------+
-        | UUID                                 | FS Name | Size in GiB | Logical Volume |
-        +--------------------------------------+---------+-------------+----------------+
-        | 1875cd0e-aee2-4646-b397-298348acf424 | backup  | 25          | backup-lv      |
-        | cee6df98-9222-4594-b25f-469c625c5975 | docker  | 60          | docker-lv      |
-        | c53be87c-bbcf-4d11-8cf5-93f350f8d027 | kubelet | 10          | kubelet-lv     |
-        | efdddf39-7a0d-48f1-a14d-fc734e5b8675 | scratch | 16          | scratch-lv     |
-        +--------------------------------------+---------+-------------+----------------+
+        +--------------------------------------+-----------+-------------+----------------+
+        | UUID                                 | FS Name   | Size in GiB | Logical Volume |
+        +--------------------------------------+-----------+-------------+----------------+
+        | 42dba35b-d2cb-4cbe-85b5-4ffc0fd75d37 | backup    | 25          | backup-lv      |
+        | 0c83c1cb-63f3-4d7a-961e-21b460890417 | docker    | 30          | docker-lv      |
+        | dc212c9b-ba1b-49f1-8bbc-dc41f7f226f2 | kubelet   | 10          | kubelet-lv     |
+        | 766ad3d7-e420-4aff-9e35-a8e495413ead | log       | 8           | log-lv         |
+        | 0215defd-ded2-46df-9338-1d39e7648028 | root      | 20          | root-lv        |
+        | 3079f0ca-28c8-444f-a955-44cc98f96156 | scratch   | 16          | scratch-lv     |
+        | c987d5d7-729e-400c-8d51-ff464b2b9675 | var       | 20          | var-lv         |
+        +--------------------------------------+-----------+-------------+----------------+
 
 #.  To review the existing controller filesystems that are synchronized between
     controllers on two controller (|AIO-DX| and standard) systems, use the
