@@ -12,8 +12,8 @@ detailed information about the hosts, and execute maintenance operations.
 
 A sample **Hosts** tab is illustrated below:
 
-.. figure:: /node_management/kubernetes/figures/jpx1567098739405.png
-    :scale: 100%
+.. image:: /node_management/kubernetes/figures/jpx1567098739405.png
+    :width: 700
 
 **Host Name**
     The name assigned to the host. This is an active link pointing to the
