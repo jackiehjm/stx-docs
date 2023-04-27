@@ -42,7 +42,7 @@ You must be in **SystemController** region. To change the region, see
     tab.
 
     .. image:: figures/create-strategy.png
-        :width: 1000px
+        :width: 444px
 
 
 #.  On the **Cloud Strategy Orchestration** tab, click **Create Strategy**.
@@ -91,8 +91,10 @@ You must be in **SystemController** region. To change the region, see
         This option is available when **Strategy Type** is set to "Upgrade".
 
     .. image:: figures/update-strategy-2.png
+        :width: 444
 
     .. image:: figures/update-strategy-3.png
+        :width: 444
 
 #.  Adjust how nodes are updated on RegionOne and the subclouds.
 
