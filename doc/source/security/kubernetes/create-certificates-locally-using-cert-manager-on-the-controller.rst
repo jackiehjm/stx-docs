@@ -82,7 +82,7 @@ for use in a lab environment.
               duration: 2160h # 90d
               renewBefore: 360h # 15d
               organization:
-              - WindRiver
+                - ABC-Company
               commonName: 1.1.1.1
               dnsNames:
               - myserver.wrs.com
