@@ -37,6 +37,8 @@ host.
     Before locking a host, ensure that sufficient resources are available
     on other hosts to migrate any running instances.
 
+.. include:: /_includes/changing-hardware-components-for-a-worker-host.rest
+
 .. rubric:: |proc|
 
 #.  Lock the host to make changes.
