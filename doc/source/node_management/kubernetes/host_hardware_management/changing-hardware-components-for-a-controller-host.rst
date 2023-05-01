@@ -27,6 +27,10 @@ all disks so that you can reproduce them later.
 .. note::
     All your data should be preserved across this procedure.
 
+.. rubric:: |prereq|
+
+.. include:: /_includes/changing-hardware-components-for-a-worker-host.rest
+
 .. rubric:: |proc|
 
 #.  Lock the standby controller.
