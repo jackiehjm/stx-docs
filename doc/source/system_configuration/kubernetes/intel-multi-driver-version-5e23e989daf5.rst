@@ -6,8 +6,12 @@ Intel Multi-driver Version
 
 .. rubric:: |context|
 
+.. contents:: |minitoc|
+   :local:
+   :depth: 1
+
 This sections describes how to change the Intel driver bundle version.
-Currently there are 2 CVL versions available:
+Currently there are 3 CVL versions available:
 
 .. warning::
 
@@ -24,7 +28,7 @@ Currently there are 2 CVL versions available:
       - i40e: 2.14.13 / Required NVM/firmware: 8.21 or 8.24
       - iavf: 4.0.1
 
--   ``cvl-4.10`` Silicom driver bundle
+-   ``cvl-4.10`` (latest)
       - ice driver: 1.10.1.2
       - i40e driver: 2.21.12
       - iavf driver: 4.6.1
@@ -33,6 +37,7 @@ Currently there are 2 CVL versions available:
 
           `cvl-4.10`` is only recommended if the Silicom STS2 card is used.
 
+---------------------------------
 Change Intel Multi-driver Version
 ---------------------------------
 
@@ -40,11 +45,11 @@ On initial installation, the system will use the default driver bundle version
 which is ``cvl-4.0.1``. The chosen driver bundle will be applied subsequently
 as part of the deployment configuration, if specified.
 
-When there is no driver bundle specified as part of deployment, the system will
-continue to use the default driver bundle.
+When there is no driver bundle specified as part of the deployment, the system
+will continue to use the default driver bundle.
 
-To change the driver bundle to the legacy version, add the system service
-parameter ``intel_nic_driver_version`` to ``cvl-2.54``.
+For example to change the driver bundle to the legacy version, add the system
+service parameter ``intel_nic_driver_version`` to ``cvl-2.54``.
 
 .. code-block:: none
 
@@ -67,6 +72,8 @@ To change the driver bundle back to the default version, there are two options:
         ~(keystone_admin)$ system service-parameter-apply platform
         Applying platform service parameters
 
+.. Ghada please confirm if the system service-parameter-list, should have the 3rd driver listed in the table below?
+
 #.  Remove the system service parameter ``intel_nic_driver_version``.
 
 .. code-block:: none
@@ -77,11 +84,12 @@ To change the driver bundle back to the default version, there are two options:
     +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
     | 84306212-d96d-4a2a-8cc0-2d48781e006c | platform   | config  | intel_nic_driver_version  | cvl-2.54  | None        | None     |
     +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
+
     ~(keystone_admin)$ system service-parameter-delete 84306212-d96d-4a2a-8cc0-2d48781e006c
 
 To apply the service parameter change, all hosts need to be locked and
-unlocked, using the following commands for each host depending on the deployed
-configuration:
+unlocked for each host depending on the deployed configuration, using the
+following commands.
 
 For |AIO-SX| deployments:
 
@@ -131,13 +139,20 @@ Upgrades
 --------
 
 For an upgrade, the default drivers will be configured after the upgrade.
-To set the legacy drivers for an upgrade, set the driver bundle on
-controller-0 prior to the upgrade using the following commands:
+To set the non-default drivers for an upgrade, set the driver bundle on
+controller-0 prior to the upgrade. For example, to set legacy drivers use the
+following commands:
 
 .. code-block:: none
 
     ~(keystone_admin)$ system service-parameter-add platform config intel_nic_driver_version=cvl-2.54 --resource platform::compute::grub::params::g_intel_nic_driver_version
     ~(keystone_admin)$ system service-parameter-apply platform
+
+.. note::
+
+    After the upgrade is completed, all hosts need to be locked and unlocked to
+    load the non-default drivers.
+
 
 Backup and Restore
 ------------------
