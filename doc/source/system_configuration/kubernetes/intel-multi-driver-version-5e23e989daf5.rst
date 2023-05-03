@@ -24,15 +24,6 @@ Currently there are 2 CVL versions available:
       - i40e: 2.14.13 / Required NVM/firmware: 8.21 or 8.24
       - iavf: 4.0.1
 
--   ``cvl-4.10`` Silicom driver bundle
-      - ice driver: 1.10.1.2
-      - i40e driver: 2.21.12
-      - iavf driver: 4.6.1
-
-      .. note::
-
-          `cvl-4.10`` is only recommended if the Silicom STS2 card is used.
-
 Change Intel Multi-driver Version
 ---------------------------------
 
