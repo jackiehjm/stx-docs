@@ -22,7 +22,7 @@ You must be in **SystemController** region. To change the region, see
 #.  On the **Subcloud Group Management** tab, click **Add Subcloud Group**.
 
     .. image:: figures/create-subcloud-1.jpg
-        :width: 1000px
+        :width: 800
 
 #.  In the **Create New Subcloud Group** dialog box, adjust the settings as
     needed:
