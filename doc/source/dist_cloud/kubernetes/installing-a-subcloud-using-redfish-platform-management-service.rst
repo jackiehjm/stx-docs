@@ -36,6 +36,11 @@ subcloud, the subcloud installation has these phases:
     case, delete the host key entry, if present, from ``/root/.ssh/known_hosts``
     on the System Controller before doing reinstallations.
 
+.. note::
+
+    Remove all removable USB storage devices from subcloud servers before
+    starting a Redfish remote subcloud install.
+
 .. rubric:: |prereq|
 
 .. _installing-a-subcloud-using-redfish-platform-management-service-ul-g5j-3f3-qjb:
