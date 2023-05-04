@@ -44,7 +44,7 @@ This example requires that:
 
     .. code-block:: none
 
-        apiVersion: cert-manager.io/v1alpha3
+        apiVersion: cert-manager.io/v1
         kind: ClusterIssuer
         metadata:
           name: letsencrypt-prod
