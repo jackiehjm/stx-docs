@@ -97,6 +97,7 @@ commands to manage containerized applications provided as part of |prod|.
     **<tar_file>**
         is the path to the tar file containing the application to be uploaded.
 
+
     For example:
 
     .. parsed-literal::
@@ -395,7 +396,7 @@ commands to manage containerized applications provided as part of |prod|.
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system application-update [-n | --app-name] <app_name> [-v | --app-version] <version> <tar_file>
+        ~(keystone_admin)]$ system application-update [-n | --app-name] <app_name> [-v | --app-version] <version> [ --reuse-attributes <true/false> ] [ --reuse-user-overrides ` <true/false> ] <tar_file>
 
     where the following are optional arguments:
 
@@ -421,6 +422,16 @@ commands to manage containerized applications provided as part of |prod|.
 
     **<version>**
         The version to update the application to.
+
+    **reuse-attributes**
+        If the user disabled some Helm charts (using :command:`system helm-chart-attribute-modify --enabled false`)
+        and wants to keep them disabled during an app-update then the user
+        should use ``--reuse-attributes true``.
+
+    **reuse-user-overrides**
+        If the user added some Helm chart overrides
+        (using :command:`system helm-override-update`) and wants to keep them
+        over an app-update then the user should use ``--reuse-user-overrides true``.
 
     and the following is a positional argument which must come last:
 
@@ -485,3 +496,5 @@ commands to manage containerized applications provided as part of |prod|.
 
         ~(keystone_admin)]$ system application-delete metrics-server
         Application metrics-server deleted.
+
+
