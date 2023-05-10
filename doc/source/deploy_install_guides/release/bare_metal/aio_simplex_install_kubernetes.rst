@@ -182,6 +182,8 @@ Bootstrap system on controller-0
               url: myprivateregistry.abc.com:9001/docker.io
            registry.k8s.io
               url: myprivateregistry.abc.com:9001/registry.k8s.io
+           icr.io:
+              url: myprivateregistry.abc.com:9001/icr.io
            defaults:
               type: docker
               username: <your_myprivateregistry.abc.com_username>

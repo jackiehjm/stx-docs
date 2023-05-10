@@ -10,7 +10,7 @@ To display the updated URLs, use the following command:
 
 .. code-block:: none
 
-    for registry in docker-registry quay-registry elastic-registry gcr-registry k8s-registry
+    for registry in docker-registry quay-registry elastic-registry gcr-registry k8s-registry icr-registry ghcr-registry registryk8s-registry
     do
     uuid=`system service-parameter-list |grep $registry | grep url | awk '{print $2}'`
     url_path=`system service-parameter-show $uuid | grep value | awk '{print $4}'`
@@ -23,6 +23,8 @@ You will get the following output:
 
     docker-registry URL is new-registry.domain.com:9001/product-abc/starlingx/docker.io
     quay-registry URL is new-registry.domain.com:9001/product-abc/starlingx/quay.io
+    icr-registry URL is new-registry.domain.com:9001/product-abc/starlingx/icr.io
+    ghcr-registry URL is new-registry.domain.com:9001/product-abc/starlingx/ghcr.io
     elastic-registry URL is new-registry.domain.com:9001/product-abc/starlingx/docker.elastic.co
     gcr-registry URL is new-registry.domain.com:9001/product-abc/starlingx/gcr.io
     k8s-registry URL is new-registry.domain.com:9001/product-abc/starlingx/k8s.gcr.io

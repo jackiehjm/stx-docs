@@ -17,7 +17,7 @@ To create the auth-secrets for the new registries, use the following command:
 
     NEW_USERNAME_PASSWORD="username:docker password:********"
 
-    for registry in docker-registry quay-registry elastic-registry gcr-registry k8s-registry
+    for registry in docker-registry quay-registry elastic-registry gcr-registry k8s-registry icr-registry ghcr-registry registryk8s-registry
     do
     openstack secret store -n ${registry}-secret -p "${NEW_USERNAME_PASSWORD}"
     secret_uuid=`openstack secret list |grep ${registry}-secret | awk '{print $2}' | awk -F/ '{print $6}'`

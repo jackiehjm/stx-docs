@@ -18,7 +18,7 @@ To update the auth-secrets for the new registries, use the following command:
 
     NEW_USERNAME_PASSWORD="username:docker password:********"
 
-    for registry in docker-registry quay-registry elastic-registry gcr-registry k8s-registry
+    for registry in docker-registry quay-registry elastic-registry gcr-registry k8s-registry icr-registry ghcr-registry registryk8s-registry
     do
     secret=`openstack secret list | grep ${registry}-secret | awk '{print $2}'`
     openstack secret delete ${secret}

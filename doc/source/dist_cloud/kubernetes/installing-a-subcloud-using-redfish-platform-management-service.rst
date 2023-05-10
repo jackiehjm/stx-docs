@@ -285,6 +285,8 @@ subcloud, the subcloud installation has these phases:
             url: registry.central:9001/docker.elastic.co
           registry.k8s.io:
             url: registry.central:9001/registry.k8s.io
+          icr.io:
+            url: registry.central:9001/icr.io
           defaults:
             username: sysinv
             password: <sysinv_password>
