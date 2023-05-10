@@ -123,19 +123,19 @@ Supported hardware components for use with |prod| are listed here.
 
 .. only:: partner
 
-   **FlexRAN 22.07: Verified CPU / NICs / Accelerators**
+   **FlexRAN 22.11: Verified CPU / NICs / Accelerators**
 
    -  Maclaren Summit Intel® vRAN Accelerator ACC100
 
    -  3rd Generation Intel® Xeon® Scalable Processor; Intel E810-XXVDA4T
-      (Columbiaville Salem Channel; Westport Channel)
+      (Columbiaville Salem Channel, Westport Channel)
 
    -  4th Generation Intel® Xeon® Scalable Processor; Intel E810-XXVDA4
-      (Columbiaville Salem Channel)
+      (Columbiaville Salem Channel, Westport Channel)
 
    .. note::                                                                                                                                                                   |
 
-       FlexRAN 22.07 has been validated and tested with |prod-long| for lab usage
+       FlexRAN 22.11 has been validated and tested with |prod-long| for lab usage
        only.
 
 .. _cert-hw-details:
