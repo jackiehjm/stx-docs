@@ -37,13 +37,7 @@ Follow the steps below to manually upgrade the System Controller:
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system --os-region-name SystemController load-import <bootimage>.iso <bootimage>.sig
-
-    For example,
-
-    .. code-block:: none
-
-        ~(keystone_admin)]$ system --os-region-name SystemController load-import <bootimage>.iso <bootimage>.sig
+        ~(keystone_admin)]$ system --os-region-name SystemController load-import --local <bootimage>.iso <bootimage>.sig
 
     .. note::
         This can take several minutes.
@@ -51,8 +45,9 @@ Follow the steps below to manually upgrade the System Controller:
 #.  Apply any required software updates. After the update is installed ensure
     controller-0 is active.
 
-    The system must be 'patch current'. All software updates related to your
-    current |prod| software release must be uploaded, applied, and installed.
+    The system controller as well as the subclouds must be 'patch current'. All
+    software updates related to your current |prod| software release must be
+    uploaded, applied, and installed.
 
     All software updates to the new |prod| release, only need to be uploaded
     and applied. The install of these software updates will occur automatically
@@ -72,7 +67,8 @@ Follow the steps below to manually upgrade the System Controller:
     Check the current system health status, resolve any alarms and other issues
     reported by the :command:`system health-query-upgrade` command then recheck
     the system health status to confirm that all **System Health** fields are
-    set to **OK**.
+    set to **OK**. "If the upgrade health query fails 'Boot Device and Root file
+    system Device' check as seen below:"
 
     .. code-block:: none
 
@@ -95,18 +91,6 @@ Follow the steps below to manually upgrade the System Controller:
             Boot Device and Root file system Device: [Fail]
             boot_device (/dev/sde) for controller-0 does not match root disk /dev/sda
             rootfs_device (/dev/disk/by-path/pci-0000:00:1f.2-ata-1.0) for controller-0 does not match root disk /dev/sda
-
-    .. note::
-
-        In case "Disk space requirement: [Fail]"
-        Insufficient unallocated disk space on rootdisk for compute-0. Current
-        partitions have allocated disk space such that only 5GiB is available
-        but 23.5GiB unallocated disk space is needed. Insufficient total disk
-        space on rootdisk for controller-1, 220GiB needed, 180GiB available.
-
-        In case "Boot Device and Root file system Device: [Fail]";
-        boot_device (/dev/sdd) for controller-0 does not match any inventoried
-        disk rootfs_device for controller-1 is not assigned.
 
     Use the following commands to correct the boot_device and/or rootfs_device
     settings if you encounter an error:
@@ -512,5 +496,5 @@ Follow the steps below to manually upgrade the System Controller:
 .. only:: partner
 
     .. include:: /_includes/upgrading-the-systemcontroller-using-the-cli.rest
-       :start-after: upgradeDM-begin
-       :end-before: upgradeDM-end
+       :start-after: DMupgrades-begin
+       :end-before: DMupgrades-end

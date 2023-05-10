@@ -39,19 +39,15 @@ following conditions:
 
 .. _distributed-upgrade-orchestration-process-using-the-cli-ul-blp-gcx-ry:
 
--   The subclouds must use the Redfish platform management service if it is
-    an |AIO-SX| subcloud.
-
--   Duplex \(|AIO-DX|/Standard\) upgrades are supported, and they do not
-    require remote install using Redfish.
-
--   Redfish |BMC| is required for orchestrated subcloud upgrades. The install
-    values, and :command:`bmc_password` for each |AIO-SX| subcloud controller
-    must be provided using the following |CLI| command on the System Controller.
+-   The subclouds must use the Redfish platform management service if it is an
+    |AIO-SX| subcloud. The install values as well as `bmc_password`
+    for each |AIO-SX| subcloud must have already been saved in the system
+    controller database before the start of orchestrated subcloud upgrade.
 
     .. note::
-        This is only needed if the subcloud has not already been provisioned
-        with the Redfish BMC password.
+        The following command is only required if the |AIO-SX| subcloud install
+        values and `bmc_password` have never been provided using
+        :command:`dcmanager CLI` command.
 
     .. code-block:: none
 
@@ -62,8 +58,11 @@ following conditions:
     :ref:`Installing a Subcloud Using Redfish Platform Management Service
     <installing-a-subcloud-using-redfish-platform-management-service>`.
 
--   All subclouds are clear of management-affecting alarms \(with the exception of the alarm upgrade
-    in progress\).
+-   Duplex (|AIO-DX|/Standard) upgrades are supported, and they do not
+    require remote install using Redfish.
+
+-   All subclouds are clear of management-affecting alarms (with the exception of the alarm upgrade
+    in progress).
 
 -   All hosts of all subclouds must be unlocked, enabled, and available.
 
@@ -71,18 +70,21 @@ following conditions:
     command :command:`dcmanager upgrade-strategy-show`. An upgrade cannot be
     orchestrated while upgrade orchestration is in progress.
 
--   Verify the size and format of the platform-backup filesystem on each
-    subcloud. From the shell on each subcloud, use the following command to view
-    the details of the file system:
+-   The size and format of the persistent filesystem, /opt/platform-backup, of
+    each subcloud must be 30GiB (or larger) and ext4 respectively. From the shell
+    on a subcloud, use the following command to view the details of its
+    persistent file system:
 
     :command:`df -Th /opt/platform-backup`
 
-    The type must be ext4 and the size must be 9.5GB. For example, on
+    The type must be ext4 and the size must be 30GiB. For example, on
     controller-0, run the following command:
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ df -Th /opt/platform-backup/ Filesystem Type Size Used Avail Use% Mounted on /dev/sda2 ext4 9.5G 51M 9.0G 1% /opt/platform-backup
+        ~(keystone_admin)]$ df -Th /opt/platform-backup
+        Filesystem  Type    Size    Used     Avail  Use%  Mounted on
+        /dev/sda1   ext4    29G     6.9G     21G    26%   /opt/platform-backup
 
 -   **If a previous upgrade has been done on the subcloud**, from the shell on
     each subcloud, use the following command to remove the previous upgrade
@@ -113,15 +115,16 @@ dcmanager CLI or the Horizon web interface. If you prefer to use Horizon, see
         +----+-----------+--------------+--------------------+-------------+
         | id | name      | management   | availability       | sync        |
         +----+-----------+--------------+--------------------+-------------+
-        |  1 | subcloud1 | managed      | online             | out-of-sync |
-        |  2 | subcloud2 | managed      | online             | out-of-sync |
-        |  3 | subcloud3 | managed      | online             | out-of-sync |
-        |  4 | subcloud4 | managed      | online             | out-of-sync |
+        |  1 | subcloud-1| managed      | online             | out-of-sync |
+        |  2 | subcloud-2| managed      | online             | out-of-sync |
+        |  3 | subcloud-3| managed      | online             | out-of-sync |
+        |  4 | subcloud-4| managed      | online             | out-of-sync |
         +----+-----------+--------------+--------------------+-------------+
 
     .. note::
-        The sync status is the rolled up sync status of platform, patching,
-        identity, etc.
+        The subclouds are out-of-sync because the load-sync-status is out-of-sync.
+        All of the above subclouds are not upgrade-current and, therefore, need
+        to be upgraded.
 
     To see synchronization details for a subcloud, use the following command:
 
@@ -132,7 +135,7 @@ dcmanager CLI or the Horizon web interface. If you prefer to use Horizon, see
         | Field                       | Value                        |
         +-----------------------------+------------------------------+
         | id                          | 1                            |
-        | name                        | subcloud1                    |
+        | name                        | subcloud-1                   |
         | description                 | None                         |
         | location                    | None                         |
         | software_version            | nn.nn                        |
@@ -216,7 +219,7 @@ dcmanager CLI or the Horizon web interface. If you prefer to use Horizon, see
         +------------------------+----------------------------+
         | strategy type          | upgrade                    |
         | subcloud apply type    | parallel                   |
-        | max parallel subclouds | 10                         |
+        | max parallel subclouds | 2                          |
         | stop on failure        | False                      |
         | state                  | initial                    |
         | created_at             | 2020-06-10T17:16:51.857207 |
@@ -235,7 +238,7 @@ dcmanager CLI or the Horizon web interface. If you prefer to use Horizon, see
         | Field                  | Value                      |
         +------------------------+----------------------------+
         | subcloud apply type    | parallel                   |
-        | max parallel subclouds | 20                         |
+        | max parallel subclouds | 2                          |
         | stop on failure        | False                      |
         | state                  | initial                    |
         | created_at             | 2020-02-02T14:42:13.822499 |
@@ -279,7 +282,7 @@ dcmanager CLI or the Horizon web interface. If you prefer to use Horizon, see
         | Field                  | Value                      |
         +------------------------+----------------------------+
         | subcloud apply type    | parallel                   |
-        | max parallel subclouds | 20                         |
+        | max parallel subclouds | 2                          |
         | stop on failure        | False                      |
         | state                  | applying                   |
         | created_at             | 2020-02-02T14:42:13.822499 |
@@ -294,13 +297,13 @@ dcmanager CLI or the Horizon web interface. If you prefer to use Horizon, see
     .. code-block:: none
 
         ~(keystone_admin)]$ dcmanager strategy-step list
-        +------------------+-------+-------------+-----------------------------+----------------------------+----------------------------+
-        | cloud            | stage | state       | details                     | started_at                 | finished_at                |
-        +------------------+-------+-------------+-----------------------------+----------------------------+----------------------------+
-        | subcloud-1       |     2 | applying... | apply phase is 66% complete | 2021-06-11 14:12:12.262001 | 2021-06-11 14:15:52.450908 |
-        | subcloud-4       |     2 | applying... | apply phase is 83% complete | 2021-06-11 14:16:02.457588 | None                       |
-        | subcloud-5       |     2 | finishing   |                             | 2021-06-11 14:16:02.463213 | None                       |
-        | subcloud-6       |     2 | applying... | apply phase is 66% complete | 2021-06-11 14:16:02.473669 | None                       |
+        +------------------+-------+-----------------------+-------------------+----------------------------+----------------------------+
+        | cloud            | stage | state                 | details           | started_at                 | finished_at                |
+        +------------------+-------+-----------------------+-------------------+----------------------------+----------------------------+
+        | subcloud-1       |     1 | complete              |                   | 2021-06-11 14:12:12.262001 | 2021-06-11 14:15:52.450908 |
+        | subcloud-4       |     1 | activating upgrade    |                   | 2021-06-11 14:16:02.457588 | None                       |
+        | subcloud-5       |     2 | initial               |                   | None                       | None                       |
+        | subcloud-6       |     2 | initial               |                   | None                       | None                       |
         +------------------+-------+-------------+-----------------------------+----------------------------+----------------------------+
 
 #.  To show the step currently being performed on a subcloud, use the
@@ -321,7 +324,7 @@ dcmanager CLI or the Horizon web interface. If you prefer to use Horizon, see
         | Field                  | Value                      |
         +------------------------+----------------------------+
         | subcloud apply type    | parallel                   |
-        | max parallel subclouds | 20                         |
+        | max parallel subclouds | 2                          |
         | stop on failure        | False                      |
         | state                  | deleting                   |
         | created_at             | 2020-03-23T20:04:50.992444 |
@@ -330,29 +333,9 @@ dcmanager CLI or the Horizon web interface. If you prefer to use Horizon, see
 
 
 
-.. rubric:: |postreq|
-
-.. _distributed-upgrade-orchestration-process-using-the-cli-ul-lx1-zcv-3mb:
-
-The secret payload should be, "username: sysinv password:<password>". If
-the secret payload is, "username: admin password:<password>", see,
-:ref:`Update Docker Registry Credentials on a Subcloud
-<updating-docker-registry-credentials-on-a-subcloud>` for more information.
-
 .. only:: partner
 
    .. include:: /_includes/distributed-upgrade-orchestration-process-using-the-cli.rest
-      :start-after: syscontroller-begin
-      :end-before: syscontroller-end
+      :start-after: DMupgrade-begin
+      :end-before: DMupgrade-end
 
-.. only:: partner
-
-   .. include:: /_includes/distributed-upgrade-orchestration-process-using-the-cli.rest
-      :start-after: dcupgrade-begin
-      :end-before: dcupgrade-end
-
-.. only:: partner
-
-   .. include:: /_includes/distributed-upgrade-orchestration-process-using-the-cli.rest
-      :start-after: dcsubcloud-begin
-      :end-before: dcsubcloud-end
