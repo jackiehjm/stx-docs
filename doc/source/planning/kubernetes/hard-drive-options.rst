@@ -6,8 +6,16 @@
 Hard Drive Options
 ==================
 
-For hard drive storage, |prod| supports high-performance |SSD| and |NVMe|
-drives as well as rotational disks.
+.. only:: starlingx
+
+    For hard drive storage, |prod| supports high-performance |SSD| and |NVMe|
+    drives as well as rotational disks.
+
+.. only:: partner
+
+    .. include:: /_includes/hard-drive-options.rest
+      :start-after: hpe-begin
+      :end-before: hpe-end
 
 To increase system performance, you can use a |SSD| or a |NVMe| drive on |prod|
 hosts in place of any rotational drive. |SSD| provides faster read-write access
@@ -26,3 +34,10 @@ adapters is required.
 To use an |NVMe| drive as a root drive, you must enable |UEFI| support in the
 host BIOS. In addition, when installing the host, you must perform extra steps
 to assign the drive as the boot device.
+
+.. only:: partner
+
+    .. include:: /_includes/hard-drive-options.rest
+      :start-after: hard-drive-begin
+      :end-before: hard-drive-end
+

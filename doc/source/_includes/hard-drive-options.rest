@@ -1,0 +1,5 @@
+.. hpe-begin
+.. hpe-end
+
+.. hard-drive-begin
+.. hard-drive-end

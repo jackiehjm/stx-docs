@@ -44,5 +44,11 @@ persistent volume claim or container-ephemeral storage.
     |              | /dev/sdc |           |           |           |                                               |                             |                   | AIO-SX:superscript:`1:` (replication = 2) ; AIO-DX (replication = 2)    |
     +--------------+----------+-----------+-----------+-----------+-----------------------------------------------+-----------------------------+-------------------+-------------------------------------------------------------------------+
 
+.. only:: partner
+
+    .. include:: /_includes/controller-disk-configurations-for-all-in-one-systems.rest
+      :start-after: note-begin
+      :end-before: note-end
+
 
 .. [#fntarg1]  |AIO|-Simplex Ceph replication is disk-based.
