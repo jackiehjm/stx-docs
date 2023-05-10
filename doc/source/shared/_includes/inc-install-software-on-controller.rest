@@ -17,10 +17,10 @@ installation procedure.
 #. Insert the bootable USB into a bootable USB port on the host you are
    configuring as controller-0.
 
-   .. note:: 
+   .. note::
 
       Refer to :ref:`bootable_usb` for instructions on how
-      to create a bootable USB with the |prod| ISO. 
+      to create a bootable USB with the |prod| ISO.
 
    .. note::
 
@@ -37,9 +37,9 @@ installation procedure.
    selections in the installer:
 
    .. note::
-      
+
       If you configured the default menu options into the ISO with the
-      ``update-iso.sh`` script (using the ``-d`` option) in 
+      ``update-iso.sh`` script (using the ``-d`` option) in
       :ref:`Installation Prerequisites <aiosx-installation-prereqs>`,
       then the **Install** menu will not appear.
 
@@ -67,6 +67,11 @@ installation procedure.
    Wait for the non-interactive software installation to complete and for
    the server to reboot. This can take 5-10 minutes, depending on the performance
    of the server.
+
+   .. warning::
+
+      When using the low latency kernel, you must use the serial console
+      instead of the graphics console, as it causes RT performance issues.
 
 .. include:: /_includes/install-patch-ctl-0.rest
 
