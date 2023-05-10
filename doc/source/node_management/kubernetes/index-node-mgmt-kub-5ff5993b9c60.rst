@@ -337,6 +337,7 @@ vRAN Accelerator Adapters (ACC100/ACC200/N3000)
    hardware_acceleration_devices/enabling-mount-bryce-hw-accelerator-for-hosted-vram-containerized-workloads
    hardware_acceleration_devices/configure-sriov-fec-operator-to-enable-hw-accelerators-for-hosted-vran-containarized-workloads.rst
    hardware_acceleration_devices/set-up-pods-to-use-sriov
+   hardware_acceleration_devices/modify-device-driver-4d0435064c4e
 
 ****************************
 N3000 and ACC100 replacement
