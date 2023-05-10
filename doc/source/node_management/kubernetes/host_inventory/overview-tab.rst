@@ -33,6 +33,8 @@ The following items are included in the summary:
 -   location, as entered by the operator using the Edit Host window
     (see :ref:`Hosts Tab <hosts-tab>`).
 
+-   AppArmor's value on this host, which can be enabled or disabled.
+
 -   time stamps of when the host was created and last updated
 
 -   the host's state
