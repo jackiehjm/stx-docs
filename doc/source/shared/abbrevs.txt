@@ -58,6 +58,7 @@
 .. |GCC| replace:: :abbr:`GCC (GNU Compiler Collection)`
 .. |GPU| replace:: :abbr:`GPU (Graphics Processing Unit)`
 .. |HA| replace:: :abbr:`HA (High Availability)`
+.. |HT| replace:: :abbr:`HT (HyperThreading)`
 .. |ICA| replace:: :abbr:`ICA (Intermediate Certificate Authority)`
 .. |ICAs| replace:: :abbr:`ICAs (Intermediate Certificate Authorities)`
 .. |ICMP| replace:: :abbr:`ICMP (Internet Control Message Protocol)`
@@ -144,7 +145,7 @@
 .. |SMT| replace:: :abbr:`SMT (Simultaneous Multithreading)`
 .. |SNAT| replace:: :abbr:`SNAT (Source Network Address Translation)`
 .. |SNMP| replace:: :abbr:`SNMP (Simple Network Management Protocol)`
-.. |SPO| replace:: :abbr:`SPO (Security Profile Operator)`
+.. |SPO| replace:: :abbr:`SPO (Security Profiles Operator)`
 .. |SRIOV| replace:: :abbr:`SR-IOV (Single Root I/O Virtualization)`
 .. |SRIOVs| replace:: :abbr:`SR-IOVs (Single Root I/O Virtualizations)`
 .. |SSD| replace:: :abbr:`SSD (Solid State Drive)`

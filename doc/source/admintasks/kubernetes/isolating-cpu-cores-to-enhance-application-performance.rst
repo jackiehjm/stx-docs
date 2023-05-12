@@ -37,6 +37,23 @@ For example:
         ~(keystone_admin)]$ system host-cpu-modify -f application-isolated -c 3,4 controller-0
         ~(keystone_admin)]$ system host-cpu-modify -f application-isolated -c 3-5 controller-0
 
+In |this-ver| starting with K8s 1.22, allocation of isolcpus is in an HT-aware
+manner.
+
+.. note::
+
+    This does not apply to K8s 1.21 that you would use after a platform upgrade.
+
+If an even number of isolcpus is required, |HT| siblings will be provided as
+available. If an odd number of isolcpus is required, as many |HT| siblings as
+possible will be provided.
+
+.. note::
+
+    For optimal results, if |HT| is enabled then isolcpus should be
+    allocated in multiples of two in order to ensure that both |SMT| siblings
+    are allocated to the same container.
+
 All |SMT| siblings (hyperthreads, if enabled) on a core will have the same
 assigned function. On host boot, any CPUs designated as isolated will be
 specified as part of the isolcpus kernel boot argument, which will isolate them
@@ -53,7 +70,7 @@ see :ref:`Kubernetes CPU Manager Policies <kubernetes-cpu-manager-policies>`.
    number of isolcpus are requested it will provide as many |SMT| siblings as
    are available, then allocate singletons whose sibling has already been
    allocated, then allocate one sibling from a free |SMT| sibling pair. If
-   hyperthreading is enabled in the BIOS then containers should request isolcpus
+   |HT| is enabled in the BIOS then containers should request isolcpus
    in pairs. If all containers on a system do this then they will never have
    different containers being allocated |SMT| siblings from the same core.
 
