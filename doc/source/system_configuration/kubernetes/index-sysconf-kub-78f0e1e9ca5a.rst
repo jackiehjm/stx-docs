@@ -54,6 +54,7 @@ PTP Server Configuration
    instance-specific-considerations-d9d9509c79dd
    remove-ptp-configurations-4885c027dfa5
    advanced-ptp-configuration-334a08dc50fb
+   configure-silicom-sts-ptp-application-1bc4a8d07aad
    ptp-instance-examples-517dce312f56
    ptp-instance-troubleshooting-7a7c576ee57a
 
