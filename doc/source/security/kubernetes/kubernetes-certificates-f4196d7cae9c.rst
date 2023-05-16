@@ -13,9 +13,9 @@ for the external ``kube-apiserver`` API endpoint. By default, the Kubernetes
 Root |CA| is automatically generated at install time.
 
 If desired, you can externally generate a Root |CA| certificate and key, and
-configure it as the Kubernetes Root |CA| during installation. Upstream
-Kubernetes (v1.18) only supports a Root |CA| for the Kubernetes Root |CA|; NOT
-an Intermediate |CA|.
+configure it as the Kubernetes Root |CA| during installation. Currently,
+StarlingX supports only Internal |CA| mode with Kubernetes, which only supports
+a Root |CA| for the Kubernetes Root |CA|, not an Intermediate |CA|.
 
 The public certificate of the Kubernetes Root |CA|, whether auto-generated or
 specified, needs to be configured as a trusted |CA| by external servers
@@ -122,6 +122,17 @@ one file:
 -   ``/var/lib/kubelet/pki/kubelet-client-current.pem``
 
 This certificate is configured to auto renew.
+
+**front-proxy-client certificate**
+
+Client certificates signed by ``front-proxy`` Root |CA| certificate. It is used
+by ``apiserver/aggregator`` to connect to aggregated apiserver(extension
+APIserver).
+
+**front-proxy-ca certificate**
+
+The ``front-proxy`` Root |CA| certificate. front-proxy certificates are
+required only if you run ``kube-proxy`` to support an extension API server.
 
 .. toctree::
    :maxdepth: 1
