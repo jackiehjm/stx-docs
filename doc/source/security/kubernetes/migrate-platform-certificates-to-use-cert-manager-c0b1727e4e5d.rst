@@ -55,29 +55,30 @@ controllers/subclouds.
 
    .. code-block:: none
 
-       all:
-         vars:
-           system_local_ca_cert: <base64_cert>
-           system_local_ca_key: <base64_key>
-           root_ca_cert: <base64_cert>
-         children:
-           target_group:
-             vars:
-               dns_domain: xyz.com
-               duration: 2160h # 90d
-               renewBefore: 360h # 15d
-               subject_C: Canada
-               subject_ST: Ontario
-               subject_L: Ottawa
-               subject_O: myorganization
-               subject_OU: engineering
-               subject_CN: myorganization.com
-               subject_prefix: starlingx2`
-               # SSH password to connect to all subclouds
-               ansible_ssh_user: sysadmin
-               ansible_ssh_pass: <sysadmin-passwd>
-               # Sudo password
-               ansible_become_pass: <sysadmin-passwd>
+        all:
+          vars:
+            system_local_ca_cert: <base64_cert>
+            system_local_ca_key: <base64_key>
+            system_root_ca_cert: <base64_cert>
+          children:
+            target_group:
+              vars:
+                system_platform_certificate:
+                  dns_domain: xyz.com
+                  duration: 2160h # 90d
+                  renewBefore: 360h # 15d
+                  subject_C: CA
+                  subject_ST: Ontario
+                  subject_L: Ottawa
+                  subject_O: myorganization
+                  subject_OU: engineering
+                  subject_CN: myorganization.com
+                  subject_prefix: starlingx2`
+                # SSH password to connect to all subclouds
+                ansible_ssh_user: sysadmin
+                ansible_ssh_pass: <sysadmin-passwd>
+                # Sudo password
+                ansible_become_pass: <sysadmin-passwd>
 
    The inventory parameters have the following meanings:
 
