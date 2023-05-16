@@ -109,6 +109,7 @@ HTTPS Certificate Management
    configure-rest-api-applications-and-web-administration-server-certificates-after-installation-6816457ab95f
    configure-docker-registry-certificate-after-installation-c519edbfe90a
    oidc-client-dex-server-certificates-dc174462d51a
+   migrate-platform-certificates-to-use-cert-manager-c0b1727e4e5d
    portieris-server-certificate-a0c7054844bd
    vault-server-certificate-8573125eeea6
    dc-admin-endpoint-certificates-8fe7adf3f932
