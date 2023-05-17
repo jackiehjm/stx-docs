@@ -71,7 +71,7 @@ controllers/subclouds.
                   dns_domain: xyz.com
                   duration: 2160h # 90d
                   renewBefore: 360h # 15d
-                  subject_C: Canada
+                  subject_C: CA
                   subject_ST: Ontario
                   subject_L: Ottawa
                   subject_O: myorganization
