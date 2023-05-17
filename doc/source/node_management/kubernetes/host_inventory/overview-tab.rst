@@ -10,7 +10,7 @@ The **Overview** tab on the Host Detail page summarizes essential information
 about a host object.
 
 .. image:: /node_management/kubernetes/figures/pcd1567096217474.png
-    :scale: 700
+    :width: 700
 
 
 
