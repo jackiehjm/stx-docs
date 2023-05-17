@@ -164,27 +164,6 @@ of |prod| software.
         Disk space requirement: [OK]
         Boot Device and Root file system Device: [OK]
 
-    .. note::
-
-        In case of "Disk space requirement: [Fail]"
-        Insufficient unallocated disk space on rootdisk for compute-0. Current
-        partitions have allocated disk space such that only 5GiB is available
-        but 23.5GiB unallocated disk space is needed. Insufficient total disk
-        space on rootdisk for controller-1, 220GiB needed, 180GiB available.
-
-        In case "Boot Device and Root file system Device: [Fail]";
-        boot_device (/dev/sdd) for controller-0 does not match any inventoried disk
-        rootfs_device for controller-1 is not assigned.
-
-    Use the following commands to correct the boot_device and/or rootfs_device
-    settings if you encounter an error:
-
-    .. code-block:: none
-
-        ~(keystone_admin)]$ system host-lock <hostname_or_id>
-        ~(keystone_admin)]$ system host-update <hostname_or_id> boot_device=<boot_device> rootfs_device=<rootfs_device>
-        ~(keystone_admin)]$ system host-unlock <hostname_or_id>
-
     By default, the upgrade process cannot be run with active alarms present.
     Use the command :command:`system upgrade-start --force` to force the upgrade
     process to start and ignore non-management-affecting alarms.
