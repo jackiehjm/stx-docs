@@ -23,14 +23,16 @@ Currently there are 3 CVL versions available:
       - i40e: 2.20.12 / Required NVM/firmware: 8.70
       - iavf: 4.5.3
 
+.. Reverted ice driver to 1.5.8
+
 -   ``cvl-2.54`` (legacy)
-      - ice: 1.5.8.1 / Required NVM/firmware: 2.54
+      - ice: 1.5.8 / Required NVM/firmware: 2.54
       - i40e: 2.14.13 / Required NVM/firmware: 8.21 or 8.24
       - iavf: 4.0.1
 
 -   ``cvl-4.10`` (latest)
-      - ice driver: 1.10.1.2
-      - i40e driver: 2.21.12
+      - ice driver: 1.10.1.2 / Required NVM/firmware: 4.10 (Silicom STS2) / 4.10 (Intel E810)
+      - i40e driver: 2.21.12 / Required NVM/firmware: 9.10
       - iavf driver: 4.6.1
 
       .. note::
@@ -167,4 +169,5 @@ be needed.
 .. only:: partner
 
     .. include:: /_includes/intel-multi-driver-version.rest
+
 
