@@ -104,7 +104,6 @@ NetApp Trident supports:
 -   Azure NetApp Files service
 
 
-
 .. _storage-backends-d201e56:
 
 For more information about Trident, see
