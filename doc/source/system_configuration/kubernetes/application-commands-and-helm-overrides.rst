@@ -28,19 +28,26 @@ commands to manage containerized applications provided as part of |prod|.
 
     For example:
 
-    .. parsed-literal::
+    .. only:: partner
 
-        ~(keystone_admin)]$ system application-list --nowrap
+        .. include:: /_includes/application-commands-and-helm-overrides.rest
+           :start-after: app-version-begin
+           :end-before: app-version-end
 
-        +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
-        | application              | version | manifest name                             | manifest file    | status   | progress  |
-        +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
-        | cert-manager             | 1.0-34  | cert-manager-fluxcd-manifests             | fluxcd-manifests | applied  | completed |
-        | nginx-ingress-controller | 1.1-35  | nginx-ingress-controller-fluxcd-manifests | fluxcd-manifests | applied  | completed |
-        | oidc-auth-apps           | 1.0-68  | oidc-auth-apps-fluxcd-manifests           | fluxcd-manifests | uploaded | completed |
-        | platform-integ-apps      | 1.0-52  | platform-integ-apps-fluxcd-manifests      | fluxcd-manifests | applied  | completed |
-        | rook-ceph-apps           | 1.0-17  | rook-ceph-manifest                        | manifest.yaml    | uploaded | completed |
-        +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
+    .. only:: starlingx
+
+        .. parsed-literal::
+
+            ~(keystone_admin)]$ system application-list --nowrap
+
+            +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
+            | application              | version | manifest name                             | manifest file    | status   | progress  |
+            +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
+            | cert-manager             | 1.0-34  | cert-manager-fluxcd-manifests             | fluxcd-manifests | applied  | completed |
+            | nginx-ingress-controller | 1.1-35  | nginx-ingress-controller-fluxcd-manifests | fluxcd-manifests | applied  | completed |
+            | oidc-auth-apps           | 1.0-68  | oidc-auth-apps-fluxcd-manifests           | fluxcd-manifests | uploaded | completed |
+            | platform-integ-apps      | 1.0-52  | platform-integ-apps-fluxcd-manifests      | fluxcd-manifests | applied  | completed |
+            +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
 
 ``application-show``
     Use the following command to show details for |prod|.
@@ -404,18 +411,25 @@ commands to manage containerized applications provided as part of |prod|.
 
         You can look up the name of an application using the :command:`application-list` command:
 
-        .. code-block:: none
+        .. only:: partner
 
-            ~(keystone_admin)]$ system application-list
-            +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
-            | application              | version | manifest name                             | manifest file    | status   | progress  |
-            +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
-            | cert-manager             | 1.0-34  | cert-manager-fluxcd-manifests             | fluxcd-manifests | applied  | completed |
-            | nginx-ingress-controller | 1.1-35  | nginx-ingress-controller-fluxcd-manifests | fluxcd-manifests | applied  | completed |
-            | oidc-auth-apps           | 1.0-68  | oidc-auth-apps-fluxcd-manifests           | fluxcd-manifests | uploaded | completed |
-            | platform-integ-apps      | 1.0-52  | platform-integ-apps-fluxcd-manifests      | fluxcd-manifests | applied  | completed |
-            | rook-ceph-apps           | 1.0-17  | rook-ceph-manifest                        | manifest.yaml    | uploaded | completed |
-            +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
+            .. include:: /_includes/application-commands-and-helm-overrides.rest
+               :start-after: application-version-begin
+               :end-before: application-version-end
+
+        .. only:: starlingx
+
+            .. code-block:: none
+
+                ~(keystone_admin)]$ system application-list
+                +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
+                | application              | version | manifest name                             | manifest file    | status   | progress  |
+                +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
+                | cert-manager             | 1.0-34  | cert-manager-fluxcd-manifests             | fluxcd-manifests | applied  | completed |
+                | nginx-ingress-controller | 1.1-35  | nginx-ingress-controller-fluxcd-manifests | fluxcd-manifests | applied  | completed |
+                | oidc-auth-apps           | 1.0-68  | oidc-auth-apps-fluxcd-manifests           | fluxcd-manifests | uploaded | completed |
+                | platform-integ-apps      | 1.0-52  | platform-integ-apps-fluxcd-manifests      | fluxcd-manifests | applied  | completed |
+                +--------------------------+---------+-------------------------------------------+------------------+----------+-----------+
 
         The output indicates that the currently installed version of ``cert-manager`` is 1.0-34.
 
