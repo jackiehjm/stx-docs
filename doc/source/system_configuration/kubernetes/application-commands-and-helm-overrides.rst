@@ -33,15 +33,16 @@ commands to manage containerized applications provided as part of |prod|.
 
         ~(keystone_admin)]$ system application-list --nowrap
 
-        +-------------+---------+---------------+----------------+----------+-----------+
-        | application | version | manifest name | manifest file  | status   | progress  |
-        +-------------+---------+---------------+----------------+----------+-----------+
-        | platform-   | 1.0-7   | platform-     | manifest.yaml  | applied  | completed |
-        | integ-apps  |         | integration-  |                |          |           |
-        |             |         | manifest      |                |          |           |
-        | |prefix|- |s|       | 1.0-18  | armada-       | |prefix|-openstack |s| | uploaded | completed |
-        | openstack   |         | manifest      | .yaml          |          |           |
-        +-------------+---------+---------------+----------------+----------+-----------+
+        +-----------------+---------+--------------------+------------------------+----------+-----------+
+        | application     | version | manifest name      | manifest file          | status   | progress  |
+        +-----------------+---------+--------------------+------------------------+----------+-----------+
+        | platform-       | 1.0-7   | platform-          | manifest.yaml          | applied  | completed |
+        | integ-apps      |         | integration-       |                        |          |           |
+        |                 |         | manifest           |                        |          |           |
+        | |prefix|- |s|           | 1.0-18  | armada-manifest    | |prefix|-openstack |s|         | uploaded | completed |
+        | openstack       |         |                    | .yaml                  |          |           |
+        | rook-ceph-apps  | 1.0-14  | rook-ceph-manifest | manifest.yaml          | uploaded | completed |
+        +-----------------+---------+---------------------------------------------+----------+-----------+
 
 -   Use the following command to show details for |prod|.
 
@@ -66,9 +67,9 @@ commands to manage containerized applications provided as part of |prod|.
         | active        | False                            |
         | app_version   | 1.0-18                           |
         | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | |prefix|-openstack.yaml |s|      |
+        | manifest_file | |prefix|-openstack.yaml |s|              |
         | manifest_name | armada-manifest                  |
-        | name          | |prefix|-openstack  |s|          |
+        | name          | |prefix|-openstack  |s|                  |
         | progress      | completed                        |
         | status        | uploaded                         |
         | updated_at    | 2019-09-06T15:34:46.995929+00:00 |
@@ -106,9 +107,9 @@ commands to manage containerized applications provided as part of |prod|.
         | active        | False                            |
         | app_version   | 1.0-18                           |
         | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | |prefix|-openstack.yaml          |
+        | manifest_file | |prefix|-openstack.yaml               |
         | manifest_name | armada-manifest                  |
-        | name          | |prefix|-openstack               |
+        | name          | |prefix|-openstack                    |
         | progress      | None                             |
         | status        | uploading                        |
         | updated_at    | None                             |
@@ -349,9 +350,9 @@ commands to manage containerized applications provided as part of |prod|.
         | active        | False                            |
         | app_version   | 1.0-18                           |
         | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | |prefix|-openstack.yaml |s|      |
+        | manifest_file | |prefix|-openstack.yaml |s|              |
         | manifest_name | armada-manifest                  |
-        | name          | |prefix|-openstack |s|           |
+        | name          | |prefix|-openstack |s|                   |
         | progress      | None                             |
         | status        | applying                         |
         | updated_at    | 2019-09-06T15:34:46.995929+00:00 |
@@ -405,6 +406,7 @@ commands to manage containerized applications provided as part of |prod|.
             |                          |          | -manifest                     | _manifest.yaml            |          |           |
             | oidc-auth-apps           | 20.06-26 | oidc-auth-manifest            | manifest.yaml             | uploaded | completed |
             | platform-integ-apps      | 20.06-9  | platform-integration-manifest | manifest.yaml             | applied  | completed |
+            | rook-ceph-apps           | 1.0-14   | rook-ceph-manifest            | manifest.yaml             | uploaded | completed |
             +--------------------------+----------+-------------------------------+---------------------------+----------+-----------+
 
         The output indicates that the currently installed version of **cert-manager** is 20.06-4.
@@ -442,9 +444,9 @@ commands to manage containerized applications provided as part of |prod|.
         | active        | False                            |
         | app_version   | 1.0-18                           |
         | created_at    | 2019-09-06T15:34:03.194150+00:00 |
-        | manifest_file | |prefix|-openstack.yaml |s|      |
+        | manifest_file | |prefix|-openstack.yaml |s|              |
         | manifest_name | armada-manifest                  |
-        | name          | |prefix|-openstack  |s|          |
+        | name          | |prefix|-openstack  |s|                  |
         | progress      | None                             |
         | status        | removing                         |
         | updated_at    | 2019-09-06T17:39:19.813754+00:00 |
