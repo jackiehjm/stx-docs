@@ -27,5 +27,5 @@ Developer Resources
    starlingx_patching
    stx_ipv6_deployment
    stx_opcua
-
+   local_registry
 
