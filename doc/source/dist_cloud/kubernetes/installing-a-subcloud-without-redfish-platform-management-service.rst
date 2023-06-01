@@ -304,3 +304,80 @@ subcloud, the subcloud installation process has two phases:
 
 -   For more information on bootstrapping and deploying, see the procedures
     listed under :ref:`install-a-subcloud`.
+
+-   Add static route for nodes in subcloud to access openldap service.
+
+    In DC system, openldap service is running on Central Cloud. In order for the nodes
+    in the subclouds to access openldap service, such as ssh to the nodes as openldap
+    users, a static route to the System Controller is required to be added in these
+    nodes. This applies to controller nodes, worker nodes and storage nodes (nodes
+    that have sssd running).
+
+    The static route can be added on each of the nodes in the subcloud using system
+    CLI.
+
+    The following examples show how to add the static route in controller node and
+    worker node:
+
+    .. code-block:: none
+
+        system host-route-add controller-0 mgmt0 <Central Cloud mgmt subnet> 64 <Gateway IP address>
+        system host-route-add compute-0 mgmt0 <Central Cloud mgmt subnet> 64 <Gateway IP address>
+
+    The static route can also be added using Deployment Manager by adding the route
+    in its configuration file.
+
+    The following examples show adding the route configuration in controller and
+    worker host profiles of the deployment manager's configuration file:
+
+    .. code-block:: none
+
+        Controller node:
+        ---
+        apiVersion: starlingx.windriver.com/v1
+        kind: HostProfile
+        metadata:
+          labels:
+            controller-tools.k8s.io: "1.0"
+          name: controller-0-profile
+          namespace: deployment
+        spec:
+          administrativeState: unlocked
+          bootDevice: /dev/disk/by-path/pci-0000:c3:00.0-nvme-1
+          console: ttyS0,115200n8
+          installOutput: text
+          ......
+          routes:
+              - gateway: <Gateway IP address>
+            activeinterface: mgmt0
+            metric: 1
+            prefix: 64
+            subnet: <Central Cloud mgmt subnet>
+
+        Worker node:
+        ---
+        apiVersion: starlingx.windriver.com/v1
+        kind: HostProfile
+        metadata:
+          labels:
+            controller-tools.k8s.io: "1.0"
+          name: compute-0-profile
+          namespace: deployment
+        spec:
+          administrativeState: unlocked
+          boardManagement:
+            credentials:
+              password:
+                secret: bmc-secret
+            type: dynamic
+          bootDevice: /dev/disk/by-path/pci-0000:00:1f.2-ata-1.0
+          clockSynchronization: ntp
+          console: ttyS0,115200n8
+          installOutput: text
+          ......
+          routes:
+              - gateway: <Gateway IP address>
+            interface: mgmt0
+            metric: 1
+            prefix: 64
+            subnet: <Central Cloud mgmt subnet>
