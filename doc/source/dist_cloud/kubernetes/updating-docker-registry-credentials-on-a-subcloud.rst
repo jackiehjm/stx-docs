@@ -2,9 +2,9 @@
 .. qdu1595389242059
 .. _updating-docker-registry-credentials-on-a-subcloud:
 
-================================================
-Update Docker Registry Credentials on a Subcloud
-================================================
+===========================================================================
+Update Credentials Used by Subcloud for Install Registry (registry.central)
+===========================================================================
 
 On a subcloud that uses the System Controller's Docker registry
 (registry.central) as its install registry, you should use the
@@ -12,8 +12,15 @@ System Controller's sysinv service credentials for accessing registry.central.
 This makes access to registry.central independent of changes to the Distributed
 Cloud's Keystone admin user password.
 
-Use the following procedure to update the install registry credentials on the
-subcloud to the ``sysinv`` service credentials of the System Controller.
+.. warning::
+
+    If the following registry information/credentials are changed, a new subcloud
+    backup must be taken to avoid having a backup that contains old registry
+    credentials.
+
+Use the following procedure to update credentials used by the Subcloud to access
+its install registry (registry.central) to the ``sysinv`` service credentials of
+the System Controller.
 
 .. rubric:: |proc|
 
