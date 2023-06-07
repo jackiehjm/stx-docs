@@ -9,7 +9,7 @@ Use UEFI Secure Boot
 Secure Boot is supported in |UEFI| installations only. It is not used when
 booting |prod| as a legacy boot target.
 
-|prod| currently does not support switching from legacy to UEFI mode after a
+|prod| currently does not support switching from legacy to |UEFI| mode after a
 system has been installed. Doing so requires a reinstall of the system. This
 also means that upgrading from a legacy install to a secure boot install
 \(UEFI) is not supported.
@@ -44,6 +44,10 @@ Mixed combinations of secure boot and non-secure boot nodes are supported.
 For example, a controller node may secure boot, while a worker node may not.
 Secure boot must be enabled in the |UEFI| firmware of each node for that node
 to be protected by secure boot.
+
+.. only:: partner
+
+    .. include:: /_includes/extract-certificate-from-iso-181be684e2e5.rest
 
 .. only:: starlingx
 
