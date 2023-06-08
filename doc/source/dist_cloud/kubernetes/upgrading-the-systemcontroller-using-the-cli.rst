@@ -40,7 +40,10 @@ Follow the steps below to manually upgrade the System Controller:
         ~(keystone_admin)]$ system --os-region-name SystemController load-import --local <bootimage>.iso <bootimage>.sig
 
     .. note::
-        This can take several minutes.
+        This can take several minutes. After the system controller is successfully
+        upgraded, the old load (which is in imported state) should not be deleted
+        from load list otherwise the subcloud upgrade orchestration will fail
+        with an error.
 
 #.  Apply any required software updates. After the update is installed ensure
     controller-0 is active.
