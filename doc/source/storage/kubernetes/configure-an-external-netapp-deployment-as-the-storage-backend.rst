@@ -10,6 +10,11 @@ Configure an External NetApp Deployment as the Storage Backend
 Configure an external NetApp deployment as the storage backend, after system
 installation using a |prod|-provided ansible playbook.
 
+.. note::
+    It is not currently possible to setup NetApp in subclouds via orchestration.
+    Ansible playbook install_netapp_backend.yml must be executed manually in
+    each host.
+
 .. rubric:: |prereq|
 
 |prod-long| must be installed and fully deployed before performing this
