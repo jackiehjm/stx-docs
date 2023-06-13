@@ -51,7 +51,9 @@ parameters/options:
         included in the Backup.
         
         .. warning::
-            Patch data should only be excluded for |AIO-SX| subclouds.
+        
+            Patch data should only be excluded for |AIO-SX| subcloud deployments
+            when optimized Restore is used.
             
         .. note::
             Excluding patch data can save a significant amount of storage space,
