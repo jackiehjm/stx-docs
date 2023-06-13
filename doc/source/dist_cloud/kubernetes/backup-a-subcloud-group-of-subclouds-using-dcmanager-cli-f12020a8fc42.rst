@@ -47,10 +47,19 @@ parameters/options:
     The yaml file containing the customization parameters for the backup
     operation.
 
+    -   ``exclude_dirs=/opt/patching/**/*``: To exclude patch data from being
+        included in the Backup.
+        
+        .. warning::
+            Patch data should only be excluded for |AIO-SX| subcloud deployments
+            when optimized Restore is used.
+            
+        .. note::
+            Excluding patch data can save a significant amount of storage space,
+            transfer time, and compress/decompress the compute node.
+
     -   ``wipe_ceph_osds=false``: To keep the Ceph cluster data intact.
     -   ``wipe_ceph_osds=true``: To wipe the Ceph cluster entirely
-    -   ``on_box_data=true``: To indicate that the backup data file is under
-        /opt/platform-backup directory on the local machine
 
     See :ref:`Run Ansible Backup Playbook Locally on the Controller
     <running-ansible-backup-playbook-locally-on-the-controller>` for the list
