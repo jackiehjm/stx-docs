@@ -539,23 +539,6 @@ following |vRAN| |FEC| accelerators:
                           aqDepthLog2: 4
                   drainSkip: true
 
-        #. Lock the host.
-
-           .. code-block:: none
-
-               $ system host-lock controller-0
-
-        #.  Enable the ACC200 device to use the vfio-pci base driver.
-
-            .. code-block:: none
-
-                $ system host-device-modify controller-0 pci_0000_f7_00_0 --driver vfio-pci
-
-        #.  Unlock the host.
-
-            .. code-block:: none
-
-                $ system host-unlock controller-0
 
 
     #.  If you need to run the operator on a |prod-long| (|AIO-SX|), then you
