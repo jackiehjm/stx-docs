@@ -108,7 +108,7 @@ To restore a pre-installed subcloud from system backup data in central storage:
 
 .. code-block:: none
 
-    ~(keystone_admin)]$ dcmanager subcloud-backup restore --subcloud <subcloud-name> --with-install --sysadmin-password <sysadmin-password>
+    ~(keystone_admin)]$ dcmanager subcloud-backup restore --subcloud <subcloud-name> --sysadmin-password <sysadmin-password>
 
 To restore a subcloud, including remote installation, from system backup data
 stored in default local storage:
