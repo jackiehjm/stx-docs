@@ -29,20 +29,27 @@ commands to manage containerized applications provided as part of |prod|.
 
     For example:
 
-    .. parsed-literal::
+    .. only:: partner
 
-        ~(keystone_admin)]$ system application-list --nowrap
+        .. include:: /_includes/application-commands-and-helm-overrides.rest
+           :start-after: app-version-begin
+           :end-before: app-version-end
 
-        +-----------------+---------+--------------------+------------------------+----------+-----------+
-        | application     | version | manifest name      | manifest file          | status   | progress  |
-        +-----------------+---------+--------------------+------------------------+----------+-----------+
-        | platform-       | 1.0-7   | platform-          | manifest.yaml          | applied  | completed |
-        | integ-apps      |         | integration-       |                        |          |           |
-        |                 |         | manifest           |                        |          |           |
-        | |prefix|- |s|           | 1.0-18  | armada-manifest    | |prefix|-openstack |s|         | uploaded | completed |
-        | openstack       |         |                    | .yaml                  |          |           |
-        | rook-ceph-apps  | 1.0-14  | rook-ceph-manifest | manifest.yaml          | uploaded | completed |
-        +-----------------+---------+---------------------------------------------+----------+-----------+
+    .. only:: starlingx
+
+        .. parsed-literal::
+
+            ~(keystone_admin)]$ system application-list --nowrap
+
+            +-----------------+---------+--------------------+------------------------+----------+-----------+
+            | application     | version | manifest name      | manifest file          | status   | progress  |
+            +-----------------+---------+--------------------+------------------------+----------+-----------+
+            | platform-       | 1.0-7   | platform-          | manifest.yaml          | applied  | completed |
+            | integ-apps      |         | integration-       |                        |          |           |
+            |                 |         | manifest           |                        |          |           |
+            | |prefix|- |s|           | 1.0-18  | armada-manifest    | |prefix|-openstack |s|         | uploaded | completed |
+            | openstack       |         |                    | .yaml                  |          |           |
+            +-----------------+---------+---------------------------------------------+----------+-----------+
 
 -   Use the following command to show details for |prod|.
 
@@ -395,19 +402,26 @@ commands to manage containerized applications provided as part of |prod|.
 
         You can look up the name of an application using the :command:`application-list` command:
 
-        .. code-block:: none
+        .. only:: partner
 
-            ~(keystone_admin)]$ system application-list
-            +--------------------------+----------+-------------------------------+---------------------------+----------+-----------+
-            | application              | version  | manifest name                 | manifest file             | status   | progress  |
-            +--------------------------+----------+-------------------------------+---------------------------+----------+-----------+
-            | cert-manager             | 20.06-4  | cert-manager-manifest         | certmanager-manifest.yaml | applied  | completed |
-            | nginx-ingress-controller | 20.06-1  | nginx-ingress-controller-     | nginx_ingress_controller  | applied  | completed |
-            |                          |          | -manifest                     | _manifest.yaml            |          |           |
-            | oidc-auth-apps           | 20.06-26 | oidc-auth-manifest            | manifest.yaml             | uploaded | completed |
-            | platform-integ-apps      | 20.06-9  | platform-integration-manifest | manifest.yaml             | applied  | completed |
-            | rook-ceph-apps           | 1.0-14   | rook-ceph-manifest            | manifest.yaml             | uploaded | completed |
-            +--------------------------+----------+-------------------------------+---------------------------+----------+-----------+
+            .. include:: /_includes/application-commands-and-helm-overrides.rest
+               :start-after: application-version-begin
+               :end-before: application-version-end
+
+        .. only:: starlingx
+
+            .. code-block:: none
+
+                ~(keystone_admin)]$ system application-list
+                +--------------------------+----------+-------------------------------+---------------------------+----------+-----------+
+                | application              | version  | manifest name                 | manifest file             | status   | progress  |
+                +--------------------------+----------+-------------------------------+---------------------------+----------+-----------+
+                | cert-manager             | 20.06-4  | cert-manager-manifest         | certmanager-manifest.yaml | applied  | completed |
+                | nginx-ingress-controller | 20.06-1  | nginx-ingress-controller-     | nginx_ingress_controller  | applied  | completed |
+                |                          |          | -manifest                     | _manifest.yaml            |          |           |
+                | oidc-auth-apps           | 20.06-26 | oidc-auth-manifest            | manifest.yaml             | uploaded | completed |
+                | platform-integ-apps      | 20.06-9  | platform-integration-manifest | manifest.yaml             | applied  | completed |
+                +--------------------------+----------+-------------------------------+---------------------------+----------+-----------+
 
         The output indicates that the currently installed version of **cert-manager** is 20.06-4.
 
