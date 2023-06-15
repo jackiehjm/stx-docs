@@ -82,7 +82,7 @@ There are six phases for Rehoming a subcloud:
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ system show-show controller-0
+        ~(keystone_admin)]$ system host-show controller-0
 
     Check the |NTP| server configuration or |PTP| server configuration sections
     to correct the system time based on the system's ``clock_synchronization``
