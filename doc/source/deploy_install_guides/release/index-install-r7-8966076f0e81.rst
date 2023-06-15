@@ -23,6 +23,7 @@ Install StarlingX Kubernetes in a virtual environment
 .. toctree::
    :maxdepth: 1
 
+   virtual/automated_install
    virtual/aio_simplex
    virtual/aio_duplex
    virtual/controller_storage
