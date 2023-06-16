@@ -88,12 +88,13 @@ subcloud, the subcloud installation process has two phases:
 
     .. code-block:: none
 
-        update-iso.sh -i <input bootimage.iso> -o <output bootimage.iso>
+        update-iso.sh --initial-password <password> -i <input bootimage.iso> -o <output bootimage.iso>
                         [ -a <ks-addon.cfg> ] [ -p param=value ]
                         [ -d <default menu option> ] [ -t <menu timeout> ]
              -i <file>: Specify input ISO file
              -o <file>: Specify output ISO file
              -a <file>: Specify ks-addon.cfg file
+             --initial-password <password>: Specify the initial login password for sysadmin user
 
              -p <p=v>:  Specify boot parameter
                         Examples:
