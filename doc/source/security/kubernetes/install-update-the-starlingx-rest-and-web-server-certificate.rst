@@ -65,3 +65,14 @@ file, and copy the file to the controller host.
     MUST renew the certificate prior to expiry, otherwise a variety of system
     operations will fail.
 
+.. note::
+    
+    Ensure the certificates have RSA key length >= 2048 bits. The
+    |prod-long| Release |this-ver| provides a new version of ``openssl`` which
+    requires a minimum of 2048-bit keys for RSA for better security / encryption
+    strength.
+    
+    You can check the key length by running ``openssl x509 -in <the certificate file> -noout -text``
+    and looking for the "Public-Key" in the output. For more information see
+    :ref:`Create Certificates Locally using openssl <create-certificates-locally-using-openssl>`.
+
