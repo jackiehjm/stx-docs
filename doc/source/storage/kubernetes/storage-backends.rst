@@ -103,10 +103,6 @@ NetApp Trident supports:
 
 -   Azure NetApp Files service
 
-.. note::
-    It is not currently possible to setup NetApp in subclouds via orchestration.
-    Ansible playbook install_netapp_backend.yml must be executed manually in
-    each host.
 
 .. _storage-backends-d201e56:
 
