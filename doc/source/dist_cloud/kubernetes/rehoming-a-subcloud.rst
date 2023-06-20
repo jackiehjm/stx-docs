@@ -148,12 +148,15 @@ There are six phases for Rehoming a subcloud:
 
     .. note::
 
-        The ``--install-values`` is optional. It is not mandatory for subcloud
-        rehoming. However, you can opt to save these values in the new System
-        Controller as part of the rehoming process so that future operations
-        that involve remote reinstallation of the subcloud (e.g. reinstall,
-        upgrade, restore) can be performed for a rehomed subcloud similar to
-        other existing Redfish capable subclouds in the Distributed Cloud.
+        The ``--install-values`` parameter is optional and is not mandatory
+        for subcloud rehoming. However, you can opt to save these values on the
+        new System Controller as part of the rehoming process so that future
+        operations that involve remote reinstallation of the subcloud (e.g.
+        reinstall, upgrade, restore) can be performed for the rehomed subcloud.
+
+        The subcloud install values can also be added to or updated on the new
+        System Controller using the :command:`dcmanager subcloud update --install-values`
+        command post subcloud rehoming.
 
         **Delete the "image:" line from the install-values file, if it exists, so
         that the image is correctly located based on the new System Controller
