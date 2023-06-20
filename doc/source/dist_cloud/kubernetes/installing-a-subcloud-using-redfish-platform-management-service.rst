@@ -221,7 +221,13 @@ subcloud, the subcloud installation has these phases:
         # Set the value for persistent file system (/opt/platform-backup).
         # The value must be whole number (in MB) that is greater than or equal
         # to 30000.
-        persistent_size: 30000
+        persistent_size:
+
+        # Configure custom arguments applied at boot within the installed subcloud.
+        # Multiple boot arguments can be provided by separating each argument by a
+        # single comma. Spaces are not allowed.
+        # Example: extra_boot_params: multi-drivers-switch=cvl-2.54
+        # extra_boot_params:
 
     .. _increase-subcloud-platform-backup-size:
 
