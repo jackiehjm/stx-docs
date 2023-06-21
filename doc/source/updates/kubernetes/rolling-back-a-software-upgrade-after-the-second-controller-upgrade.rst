@@ -19,7 +19,8 @@ abort. It may be necessary to restore the system from a backup.
 
 .. rubric:: |proc|
 
-#.  Run the :command:`upgrade-abort` command to abort the upgrade.
+#.  Run the :command:`upgrade-abort` command to abort the upgrade (running from
+    controller-1).
 
     .. code-block:: none
 
@@ -37,19 +38,28 @@ abort. It may be necessary to restore the system from a backup.
 
         -   Remain in this state until the abort is completed.
 
-#.  Make controller-1 active.
-
-    .. code-block:: none
-
-        ~(keystone_admin)]$ system host-swact controller-0
-
 #.  Lock controller-0.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ system host-lock controller-0
 
-#.  Wipe the disk and power down all storage (if applicable) and worker hosts.
+#.  Lock all storage and worker nodes that don't have ceph-mon configured
+    (ceph-mon usually on worker-0 or storage-0). Execute the
+    :command:`system ceph-mon-list` comand to determine which hosts are running
+    ceph-mon.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system ceph-mon-list
+
+    .. note::
+
+        Skip this step if doing this procedure on a |prod| Duplex
+        system.
+
+#.  Use wipedisk on all worker and storage nodes, except on storage-0
+    or on the worker node that has ceph-mon configured (worker-0 usually).
 
     .. note::
         Skip this step if doing this procedure on a |prod| Duplex system.
@@ -59,7 +69,7 @@ abort. It may be necessary to restore the system from a backup.
 
     #.  Power down each host.
 
-#.  Lock all storage (if applicable) and worker hosts.
+#.  Power off all storage and worker nodes except the node with ceph-mon.
 
     .. note::
         Skip this step if doing this procedure on a |prod| Duplex system.
@@ -96,17 +106,19 @@ abort. It may be necessary to restore the system from a backup.
     release databases, which were frozen at the time of the swact to
     controller-1. This is essentially the same result as a system restore.
 
-#.  Lock and downgrade controller-1.
+#.  Lock controller-1.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ system host-lock controller-1
 
+    The host is re-installed with the previous release load.
+
+#.  Downgrade controller-1.
+
     .. code-block:: none
 
         ~(keystone_admin)]$ system host-downgrade controller-1
-
-    The host is re-installed with the previous release load.
 
 #.  Unlock controller-1.
 
@@ -114,17 +126,20 @@ abort. It may be necessary to restore the system from a backup.
 
         ~(keystone_admin)]$ system host-unlock controller-1
 
+#.  Run wipedisk on the worker node that was online (or the storage-0 node) and
+    power off the host.
 
-#.  Power up and unlock the storage hosts one at a time (if using a Ceph
-    storage backend). The hosts are re-installed with the previous release load.
+    .. note::
+        Skip this step if doing this procedure on a |prod| Duplex system.
+
+#.  Power up and unlock storage, then worker hosts one at a time.
 
     .. note::
         Skip this step if doing this procedure on a |prod| Duplex system.
 
-#.  Power up and unlock the worker hosts one at a time.
+    .. code-block:: none
 
-    .. note::
-        Skip this step if doing this procedure on a |prod| Duplex system.
+        ~(keystone_admin)]$ system host-unlock <hostID>
 
     The hosts are re-installed with the previous release load. As each worker
     host goes online, application pods will be automatically recovered by the
