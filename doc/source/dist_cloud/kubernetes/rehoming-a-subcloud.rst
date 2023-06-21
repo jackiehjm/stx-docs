@@ -22,6 +22,12 @@ Controller using the rehoming playbook.
     The system time should be accurately configured on the System Controllers
     and the subcloud's controllers before rehoming the subcloud.
 
+.. warning::
+
+    Do not rehome a subcloud if the RECONCILED status on the system resource or
+    any host resource of the subcloud is FALSE. To check the RECONCILED status,
+    run the :command:`kubectl -n deployment get system` and :command:`kubectl -n deployment get hosts` commands.
+    
 Use the following procedure to enable subcloud rehoming and to update the new
 subcloud configuration (networking parameters, passwords, etc.) to be
 compatible with the new System Controller.
@@ -97,10 +103,6 @@ There are six phases for Rehoming a subcloud:
     ``--install-values`` option, when running the remote subcloud reinstall,
     upgrade or restore commands.
 
-.. warning::
-
-    Do not rehome a subcloud if the RECONCILED status on the system host
-    or any host resource of the subcloud is FALSE.
 
 .. note::
 
