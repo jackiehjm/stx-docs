@@ -97,7 +97,7 @@ password will be prompted during runtime.
 
 .. code-block:: none
 
-    ~(keystone_admin)]$ ansible-playbook --inventory secure-inventory --ask-vault-pass --extra-vars='user_id=na-admin mode=create' \ /usr/share/ansible/stx-ansible/ playbooks/manage_local_ldap_account.yml
+    ~(keystone_admin)]$ ansible-playbook --inventory secure-inventory --ask-vault-pass --extra-vars='user_id=na-admin mode=create' /usr/share/ansible/stx-ansible/playbooks/manage_local_ldap_account.yml
 
 -   Extra-vars parameter options:
 
