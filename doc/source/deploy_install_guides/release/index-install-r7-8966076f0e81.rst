@@ -10,7 +10,7 @@ Development StarlingX Installation
    work due to pre-release inconsistencies between documentation and code.
 
    To install the most recent released verion of |prod|, see:
-   https://docs.starlingx.io/r/stx.7.0/deploy_install_guides/r7_release/index-install-r7-8966076f0e81.html
+   https://docs.starlingx.io/r/stx.8.0/deploy_install_guides/release/index-install-r7-8966076f0e81.html
 
 StarlingX provides a pre-defined set of standard :doc:`deployment
 configurations </introduction/deploy_options>`. Most deployment options may be
