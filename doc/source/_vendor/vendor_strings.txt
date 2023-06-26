@@ -42,6 +42,11 @@
 .. |os-intro-doc| replace:: :title:`OpenStack Introduction`
 .. |updates-doc| replace:: :title:`StarlingX Updates and Upgrades`
 
+.. Docs url
+
+.. |docs-url| replace:: https://docs.starlingx.io/
+
+
 .. Name of downloads location
 
 .. |dnload-loc| replace:: a StarlingX mirror
