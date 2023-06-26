@@ -16,7 +16,7 @@ unnecessary alarms.
 
     .. code-block:: none
 
-        ~(keystone_admin)$ fm event-suppress [--nowrap] --alarm id <alarm_ id>[,<alarm-id>] \
+        ~(keystone_admin)$ fm event-suppress [--nowrap] --alarm <alarm_ id>[,<alarm-id>] \
         [--nopaging] [--uuid]
 
     where
