@@ -9,6 +9,19 @@ Manual Kubernetes Version Upgrade
 You can upgrade the Kubernetes version on a running system from one supported
 version to another.
 
+
+.. note::
+
+    Each |prod| release supports two or more consecutive Kubernetes releases.
+    The default version on a fresh install will always be the latest Kubernetes
+    release supported by a |prod| release. Upgrades from previous releases will
+    always start with the same Kubernetes version as the highest version from
+    the release you are upgrading from.
+
+    Kubernetes upgrades must be done sequentially without skipping any
+    release(s).
+
+
 .. rubric:: |context|
 
 To complete this task, you will apply the following three updates (patches)
@@ -49,12 +62,6 @@ and upgrade various systems.
     NetApp Trident Software <upgrade-the-netapp-trident-software-c5ec64d213d3>`
     to upgrade the Trident drivers to 21.04 before upgrading Kubernetes to
     version 1.19.
-
-.. note::
-    The default version on a fresh install will be Kubernetes 1.21.8, while
-    on an upgrade from |prod| |prod-ver| it will be 1.18.1. You will need to
-    upgrade Kubernetes to each version up to 1.21.8 in order to be ready to
-    upgrade to the next version of |prod|.
 
 .. rubric:: |proc|
 
@@ -112,9 +119,9 @@ and upgrade various systems.
             The version can be upgraded to.
 
         *unavailable*
-            The version is not available for upgrading. Either it is a downgrade
-            or it requires an intermediate upgrade first. Kubernetes can be only
-            upgraded one version at a time.
+            The version is not available for upgrading. Either it is a
+            downgrade or it requires an intermediate upgrade first. Kubernetes
+            can be only upgraded one version at a time.
 
 #.  Confirm that the system is healthy.
 
