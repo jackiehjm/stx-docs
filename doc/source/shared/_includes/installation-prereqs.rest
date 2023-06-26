@@ -33,13 +33,12 @@ Before attempting to install |prod|, ensure that you have the following:
 
     .. code-block::
 
-        update-iso.sh --initial-password <password> -i <input bootimage.iso> -o <output bootimage.iso>
+        update-iso.sh -i <input bootimage.iso> -o <output bootimage.iso>
             [ -a <ks-addon.cfg> ] [ -p param=value ]
             [ -d <default menu option> ] [ -t <menu timeout> ]
             -i <file>: Specify input ISO file
             -o <file>: Specify output ISO file
             -a <file>: Specify ks-addon.cfg file
-            --initial-password <password>: Specify the initial login password for sysadmin user
             -p <p=v>:  Specify boot parameter
 
             Example:
@@ -57,30 +56,58 @@ Before attempting to install |prod|, ensure that you have the following:
             -t <menu timeout>:
                 Specify boot menu timeout, in seconds
 
-    The following example ``ks-addon.cfg`` file, used with the ``-a`` option, sets up
-    an initial IP interface at boot time by defining a VLAN on an Ethernet
-    interface and has it use DHCP to request an IP address:
+    The following example ``ks-addon.cfg`` file, used with the ``-a`` option,
+    sets up an initial IP interface at boot time by defining a |VLAN| on an Ethernet
+    interface with with ``static`` assigned |VLAN| addresses:
 
     .. code-block::
 
         #### start ks-addon.cfg
-        OAM_DEV=enp0s3
-        OAM_VLAN=1234
+        RAW_DEV=enp24s0f0
+        OAM_VLAN=103
+        MGMT_VLAN=163
 
-        cat << EOF > /etc/sysconfig/network-scripts/ifcfg-$OAM_DEV
-        DEVICE=$OAM_DEV
-        BOOTPROTO=none
-        ONBOOT=yes
-        LINKDELAY=20
+        cat << EOF > ${IMAGE_ROOTFS}/etc/network/interfaces.d/auto
+        auto ${RAW_DEV} lo vlan${OAM_VLAN} vlan${MGMT_VLAN}
+
         EOF
 
-        cat << EOF > /etc/sysconfig/network-scripts/ifcfg-$OAM_DEV.$OAM_VLAN
-        DEVICE=$OAM_DEV.$OAM_VLAN
-        BOOTPROTO=dhcp
-        ONBOOT=yes
-        VLAN=yes
-        LINKDELAY=20
+        cat << EOF > ${IMAGE_ROOTFS}/etc/network/interfaces.d/ifcfg-${RAW_DEV}
+        iface ${RAW_DEV} inet manual
+        mtu 9000
+        post-up echo 0 > /proc/sys/net/ipv6/conf/${RAW_DEV}/autoconf;\
+        echo 0 > /proc/sys/net/ipv6/conf/${RAW_DEV}/accept_ra;\
+        echo 0 > /proc/sys/net/ipv6/conf/${RAW_DEV}/accept_redirects
         EOF
+
+        cat << EOF > ${IMAGE_ROOTFS}/etc/network/interfaces.d/ifcfg-vlan${OAM_VLAN}
+        iface vlan${OAM_VLAN} inet6 static
+        vlan-raw-device ${RAW_DEV}
+        address <__address__>
+        netmask 64
+        gateway <__address__>
+        mtu 1500
+        post-up /usr/sbin/ip link set dev vlan${OAM_VLAN} mtu 1500;\
+        echo 0 > /proc/sys/net/ipv6/conf/vlan${OAM_VLAN}/autoconf;\
+        echo 0 > /proc/sys/net/ipv6/conf/vlan${OAM_VLAN}/accept_ra;\
+        echo 0 > /proc/sys/net/ipv6/conf/vlan${OAM_VLAN}/accept_redirects
+        pre-up /sbin/modprobe -q 8021q
+        EOF
+
+        cat << EOF > ${IMAGE_ROOTFS}/etc/network/interfaces.d/ifcfg-vlan${MGMT_VLAN}
+        iface vlan${MGMT_VLAN} inet6 static
+        vlan-raw-device ${RAW_DEV}
+        address <__address__>
+        netmask 64
+        mtu 1500
+        post-up /usr/local/bin/tc_setup.sh vlan${MGMT_VLAN} mgmt 10000 > /dev/null;\
+        /usr/sbin/ip link set dev vlan${MGMT_VLAN} mtu 1500;\
+        echo 0 > /proc/sys/net/ipv6/conf/vlan${MGMT_VLAN}/autoconf;\
+        echo 0 > /proc/sys/net/ipv6/conf/vlan${MGMT_VLAN}/accept_ra;\
+        echo 0 > /proc/sys/net/ipv6/conf/vlan${MGMT_VLAN}/accept_redirects
+        pre-up /sbin/modprobe -q 8021q
+        EOF
+
         #### end ks-addon.cfg
 
     After updating the ISO image, create a bootable USB with the ISO or put the
