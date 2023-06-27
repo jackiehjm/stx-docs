@@ -117,28 +117,32 @@ subcloud, the subcloud installation process has two phases:
 
 
     The following example ``ks-addon.cfg`` file, used with the -a option,
-    sets up an initial IP interface at boot time by defining a |VLAN| on
-    an Ethernet interface and has it use |DHCP| to request an IP address:
+    sets up an initial IP interface at boot time by defining a |VLAN| on an
+    Ethernet interface and has it use |DHCP| to request an IP address:
 
     .. code-block:: none
 
         #### start ks-addon.cfg
-        OAM_DEV=enp0s3
-        OAM_VLAN=1234
+        RAW_DEV=enp24s0f0
+        OAM_VLAN=103
 
-        cat << EOF > /etc/sysconfig/network-scripts/ifcfg-$OAM_DEV
-        DEVICE=$OAM_DEV
-        BOOTPROTO=none
-        ONBOOT=yes
-        LINKDELAY=20
+        cat << EOF > ${IMAGE_ROOTFS}/etc/network/interfaces.d/ifcfg-${RAW_DEV}
+        iface ${RAW_DEV} inet manual
+        mtu 9000
+        post-up echo 0 > /proc/sys/net/ipv6/conf/${RAW_DEV}/autoconf;\
+        echo 0 > /proc/sys/net/ipv6/conf/${RAW_DEV}/accept_ra;\
+        echo 0 > /proc/sys/net/ipv6/conf/${RAW_DEV}/accept_redirects
         EOF
 
-        cat << EOF > /etc/sysconfig/network-scripts/ifcfg-$OAM_DEV.$OAM_VLAN
-        DEVICE=$OAM_DEV.$OAM_VLAN
-        BOOTPROTO=dhcp
-        ONBOOT=yes
-        VLAN=yes
-        LINKDELAY=20
+        cat << EOF > ${IMAGE_ROOTFS}/etc/network/interfaces.d/ifcfg-vlan${OAM_VLAN}
+        iface vlan${OAM_VLAN} inet6 dhcp
+        vlan-raw-device ${RAW_DEV}
+        mtu 1500
+        post-up /usr/sbin/ip link set dev vlan${OAM_VLAN} mtu 1500;\
+        echo 0 > /proc/sys/net/ipv6/conf/vlan${OAM_VLAN}/autoconf;\
+        echo 0 > /proc/sys/net/ipv6/conf/vlan${OAM_VLAN}/accept_ra;\
+        echo 0 > /proc/sys/net/ipv6/conf/vlan${OAM_VLAN}/accept_redirects
+        pre-up /sbin/modprobe -q 8021q
         EOF
         #### end ks-addon.cfg
 
