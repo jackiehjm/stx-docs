@@ -5,11 +5,11 @@ Prestage a Subcloud
 ===================
 
 Before you start an |AIO-SX| subcloud upgrade or reinstall for the purpose of
-restoring the subcloud; the subcloud can be prestaged with software packages
-and container image archives outside the maintenance window using the dcmanager
-CLI. The prestaged data is stored in the subcloud persistent file systems
-``/opt/platform-backup/<sw_version>``. This data will be used when the subcloud
-is reinstalled next.
+restoring the subcloud; the subcloud can be prestaged with OSTree repo
+(software updates) and container image archives outside the maintenance window
+using the dcmanager CLI. The prestaged data is stored in the subcloud
+persistent file system ``/opt/platform-backup/<sw_version>``. This data will be
+used when the subcloud is reinstalled next.
 
 Where, the `<sw_version>` number is the active load of the System Controller.
 
