@@ -39,11 +39,10 @@ Before attempting to install |prod|, ensure that you have the following:
             -i <file>: Specify input ISO file
             -o <file>: Specify output ISO file
             -a <file>: Specify ks-addon.cfg file
-            -p <p=v>: Specify boot and rootfs device parameters
+            -p <p=v>:  Specify boot parameter
 
             Example:
-                -p boot_device=/dev/disk/by-path/pci-0000:00:0d.0-ata-1.0
-                -p rootfs_device=/dev/disk/by-path/pci-0000:00:0d.0-ata-1.0
+                -p instdev=/dev/disk/by-path/pci-0000:00:0d.0-ata-1.0
 
             -d <default menu option>:
                 Specify default boot menu option:
