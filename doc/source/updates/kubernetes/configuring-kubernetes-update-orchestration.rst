@@ -174,9 +174,10 @@ For example:
        upgrade concurrency is only supported for worker hosts.
 
        .. note::
-          Kubernetes version upgrade is currently only supported for hosts with
-          worker function. Any attempt to modify the controller or storage
-          apply type is rejected.
+
+          Setting the Kubernetes version upgrade apply type is only supported
+          for hosts with only the worker function. Any attempt to modify the
+          controller or storage apply type will be rejected.
 
     ``--worker-apply-type``
        This option specifies the host concurrency of the Kubernetes version
