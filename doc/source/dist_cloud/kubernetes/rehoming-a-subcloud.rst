@@ -220,12 +220,6 @@ There are six phases for Rehoming a subcloud:
        :start-after: rehoming-begin
        :end-before: rehoming-end
 
-.. rubric:: |postreq|
-
-After rehoming, please perform the procedure to :ref:`Update Docker Registry
-Credentials on a Subcloud <updating-docker-registry-credentials-on-a-subcloud>`
-to update registry credentials for the particular subcloud.
-
 .. rubric:: Error Recovery
 
 If the subcloud rehoming process begins successfully, (status changes to
