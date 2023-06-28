@@ -51,8 +51,7 @@ parameters/options:
         included in the Backup.
         
         .. warning::
-            Patch data should only be excluded for |AIO-SX| subcloud deployments
-            when optimized Restore is used.
+            Patch data should only be excluded for |AIO-SX| subclouds.
             
         .. note::
             Excluding patch data can save a significant amount of storage space,
@@ -93,7 +92,6 @@ complications in restoring a group of subclouds.
 It is not possible to customize the central storage location. Backup data of
 all subclouds stored centrally will have the same naming convention and be
 stored at ``/opt/dc-vault/backups/<subcloud>/<release>/``.
-
 
 Back up a single subcloud
 -------------------------
