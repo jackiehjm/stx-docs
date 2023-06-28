@@ -223,6 +223,12 @@ subcloud, the subcloud installation has these phases:
         # to 30000.
         persistent_size: 30000
 
+        # Configure custom arguments applied at boot within the installed subcloud.
+        # Multiple boot arguments can be provided by separating each argument by a
+        # single comma. Spaces are not allowed.
+        # Example: extra_boot_params: multi-drivers-switch=cvl-2.54
+        # extra_boot_params:
+
     .. _increase-subcloud-platform-backup-size:
 
     .. note::
