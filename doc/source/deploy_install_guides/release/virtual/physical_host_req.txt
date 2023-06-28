@@ -46,13 +46,13 @@ Set up the host with the following steps:
 
     apt-get install -y git
     cd $HOME
-    git clone https://opendev.org/starlingx/tools.git
+    git clone https://opendev.org/starlingx/virtual-deployment.git
 
 #. Install required packages:
 
    ::
 
-    cd $HOME/tools/deployment/libvirt/
+    cd $HOME/virtual-deployment/libvirt
     bash install_packages.sh
     apt install -y apparmor-profiles
     apt-get install -y ufw
