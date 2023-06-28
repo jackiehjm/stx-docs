@@ -92,6 +92,18 @@ controllers/subclouds.
         (self-signed, internal Root |CA|) or use an external Root
         |CA| that would make this an Intermediate |CA|.
 
+    .. note::
+      
+        Ensure the certificates have RSA key length >= 2048 bits before
+        migrating to |prod-long| Release |this-ver|. The |prod-long| Release
+        |this-ver| provides a new version of ``openssl`` which requires a
+        minimum of 2048-bit keys for RSA for better security / encryption
+        strength.
+        
+        You can check the key length by running ``openssl x509 -in <the certificate file> -noout -text``
+        and looking for the "Public-Key" in the output. For more information see
+        :ref:`Create Certificates Locally using openssl <create-certificates-locally-using-openssl>`.
+
     ``system_root_ca_cert``
         The Root |CA| that signed ``system_local_ca_cert``. If
         ``system_local_ca_cert`` is a self-signed, internal Root |CA|

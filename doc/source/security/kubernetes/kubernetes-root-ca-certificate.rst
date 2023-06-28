@@ -52,6 +52,17 @@ value is the absolute path of the certificate file. The certificate
 must be in |PEM| format and the value must be provided as part of a pair
 with <k8s_root_ca_cert>.
 
+.. note::
+    
+    Ensure the certificates have RSA key length >= 2048 bits. The
+    |prod-long| Release |this-ver| provides a new version of ``openssl`` which
+    requires a minimum of 2048-bit keys for RSA for better security / encryption
+    strength.
+    
+    You can check the key length by running ``openssl x509 -in <the certificate file> -noout -text``
+    and looking for the "Public-Key" in the output. For more information see
+    :ref:`Create Certificates Locally using openssl <create-certificates-locally-using-openssl>`.
+
 For example:
 
 .. code-block:: none
