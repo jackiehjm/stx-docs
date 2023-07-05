@@ -1,8 +1,8 @@
 .. _gnss-and-synce-support-62004dc97f3e:
 
-======================
-SyncE and Introduction
-======================
+==================
+SyncE Introduction
+==================
 
 Intel's Westport Channel and Logan Beach NICs support a built-in GNSS module
 and the ability to distribute clock via Synchronous Ethernet (SyncE). This
@@ -15,7 +15,7 @@ additional details if required.
 
 .. important::
 
-   Reference the user guide for their Westport Channel or Logan Beach NIC for
+   Reference the user guide for their Westport Channel or Logan Beach |NIC| for
    additional information on configuring these features. The intent of this
    section is to explain how these parameters can be set, rather than
    describing each possible configuration.
