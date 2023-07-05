@@ -44,8 +44,8 @@ terminal output.
 
    .. code-block::
 
-      ~(keystone_admin)]$ cat /etc/ptpinstance/ptp4l-ptp4l-legacy.conf
-
+      ~(keystone_admin)]$ cat /etc/linuxptp/ptpinstance/ptp4l-ptp4l-legacy.conf
+      
       [global]
       ##
       ## Default Data Set
@@ -66,8 +66,7 @@ terminal output.
 
    .. code-block::
 
-      ~(keystone_admin)]$ ptp4l -f /etc/ptpinstance/ptp4l-ptp4l-legacy.conf
-      no interface specified
+      ~(keystone_admin)]$ ptp4l -f /etc/linuxptp/ptpinstance/ptp4l-ptp4l-legacy.conf
 
    In this example the ``ptp4l`` program indicates that there is no interface
    specified, which is confirmed by the contents of the config file above.
@@ -90,7 +89,12 @@ Additional tools
      # General command format:
      sudo pmc -u -b 0 -f <path to ptp4l.conf for targeted instance> -s <path to uds socket for target instance> 'COMMAND GOES HERE'
 
-     eg. pmc -u -b 0 -f /etc/ptpinstance/ptp4l-ptp1.conf -s /var/run/ptp4l-ptp1 'get PORT_DATA_SET
+ 
+  For Example:
+
+  .. code-block::
+      
+      pmc -u -b 0 -f /etc/linuxptp/ptpinstance/ptp4l-ptp1.conf -s /var/run/ptp4l-ptp1 ‘get PORT_DATA_SET’
 
 
 :command:`PHC_CTL`
