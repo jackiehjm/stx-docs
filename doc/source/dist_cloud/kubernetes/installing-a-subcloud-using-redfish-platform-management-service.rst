@@ -45,12 +45,12 @@ subcloud, the subcloud installation has these phases:
 
 .. _installing-a-subcloud-using-redfish-platform-management-service-ul-g5j-3f3-qjb:
 
--   The docker **rvmc** image needs to be added to the System Controller
+-   The docker **rvmc** image needs to be added to the system controller
     bootstrap override file, docker.io/starlingx/rvmc:|v_starlingx-rvmc|.
 
 -   A new system CLI option ``--active`` is added to the
     :command:`load-import` command to allow the import into the
-    System Controller ``/opt/dc-vault/loads``. The purpose of this is to allow
+    system controller ``/opt/dc-vault/loads``. The purpose of this is to allow
     Redfish install of subclouds referencing a single full copy of the
     ``bootimage.iso`` at ``/opt/dc-vault/loads``. (Previously, the full
     ``bootimage.iso`` was duplicated for each :command:`subcloud add`
@@ -122,16 +122,16 @@ subcloud, the subcloud installation has these phases:
 
        Do not power off the servers. The host portion of the server can be
        powered off, but the |BMC| portion of the server must be powered and
-       accessible from the System Controller.
+       accessible from the system controller.
 
        There is no need to wipe the disks.
 
     .. note::
 
        The servers require connectivity to a gateway router that provides IP
-       routing between the subcloud management subnet and the System Controller
+       routing between the subcloud management or admin subnet and the system controller
        management subnet, and between the subcloud |OAM| subnet and the
-       System Controller subnet.
+       system controller subnet.
 
     .. include:: /_includes/installing-a-subcloud-using-redfish-platform-management-service.rest
        :start-after: begin-ref-1
@@ -251,7 +251,7 @@ subcloud, the subcloud installation has these phases:
         command with the ``subcloud-install-values.yaml`` file containing the desired
         ``persistent_size`` value.
 
-#.  At the System Controller, create a
+#.  At the system controller, create a
     ``/home/sysadmin/subcloud-bootstrap-values.yaml`` overrides file for the
     subcloud.
 
@@ -305,6 +305,23 @@ subcloud, the subcloud installation has these phases:
 
         $ keyring get sysinv services
 
+    In the above example, if the admin network is used for communication
+    between the subcloud and system controller, then the
+    ``management_gateway_address`` parameter should be replaced with admin
+    subnet information.
+
+    For example:
+
+    .. code-block:: none
+
+        management_subnet: 192.168.101.0/24
+        management_start_address: 192.168.101.2
+        management_end_address: 192.168.101.50
+        admin_subnet: 192.168.102.0/24
+        admin_start_address: 192.168.102.2
+        admin_end_address: 192.168.102.50
+        admin_gateway_address: 192.168.102.1
+
     This configuration will install container images from the local registry on
     your central cloud. The Central Cloud's local registry's HTTPS Certificate
     must have the Central Cloud's |OAM| IP, **registry.local** and
@@ -338,11 +355,6 @@ subcloud, the subcloud installation has these phases:
        :start-after: begin-subcloud-1
        :end-before: end-subcloud-1
 
-
-
-
-
-
 #.  Add the subcloud using dcmanager.
 
     When calling the :command:`subcloud add` command, specify the install
@@ -352,10 +364,10 @@ subcloud, the subcloud installation has these phases:
 
        ~(keystone_admin)]$ dcmanager subcloud add \
        --bootstrap-address <oam_ip_address_of_subclouds_controller-0> \
-       --bootstrap-values /home/sysadmin/subcloud-bootstrap-values.yaml \
+       --bootstrap-values /home/sysadmin/subcloud1-bootstrap-values.yaml \
        --sysadmin-password <sysadmin_password> \
-       --install-values /home/sysadmin/subcloud-install-values.yaml \
-       --deploy-config /home/sysadmin/subcloud-deploy-config.yaml \
+       --deploy-config /home/sysadmin/subcloud1-deploy-config.yaml \
+       --install-values /home/sysadmin/install-values.yaml \
        --bmc-password <bmc_password>
 
     If the ``--sysadmin-password`` is not specified, you are prompted to
@@ -366,11 +378,20 @@ subcloud, the subcloud installation has these phases:
 
        Enter the sysadmin password for the subcloud:
 
-    (Optional) The ``--bmc-password <password>`` is used for subcloud
-    installation, and only required if the ``--install- values`` parameter is
+    The ``--deploy-config`` option must reference the deployment configuration
+    file mentioned above. In the deployment configurations, static routes from
+    the management or admin interface of a subcloud to the system controller's
+    management subnet must be explicitly listed. This ensures that the subcloud
+    comes online after deployment. If the admin network is used for
+    communication between the system controller and subcloud, the deployment
+    configuration file must include both an admin network type and a management
+    network type interface.
+
+    (Optional) The ``--bmc-password <password>`` option is used for subcloud
+    installation, and only required if the ``--install- values`` option is
     specified.
 
-    If the ``--bmc-password <password>`` is omitted and the
+    If the ``--bmc-password <password>`` option is omitted and the
     ``--install-values`` option is specified the system administrator will be
     prompted to enter it, following the :command:`dcmanager subcloud add`
     command. This option is ignored if the ``--install-values`` option is not

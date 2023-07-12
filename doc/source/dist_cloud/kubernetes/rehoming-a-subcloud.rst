@@ -7,10 +7,10 @@
 Rehome a Subcloud
 =================
 
-When the System Controller needs to be reinstalled, or when the subclouds from
-multiple System Controllers are being consolidated into a single System
-Controller, you can add already deployed subclouds to a different System
-Controller using the rehoming playbook.
+When you need to reinstall the system controller, or when the subclouds from
+multiple system controllers are being consolidated into a single system
+controller, you can add already deployed subclouds to a different system
+controller using the rehoming playbook.
 
 .. note::
 
@@ -19,7 +19,7 @@ Controller using the rehoming playbook.
 
 .. note::
 
-    The system time should be accurately configured on the System Controllers
+    The system time should be accurately configured on the system controllers
     and the subcloud's controllers before rehoming the subcloud.
 
 .. warning::
@@ -30,47 +30,47 @@ Controller using the rehoming playbook.
     
 Use the following procedure to enable subcloud rehoming and to update the new
 subcloud configuration (networking parameters, passwords, etc.) to be
-compatible with the new System Controller.
+compatible with the new system controller.
 
 .. rubric:: |context|
 
 There are six phases for Rehoming a subcloud:
 
 
-#.  Unmanage the subcloud from the previous System Controller.
+#.  Unmanage the subcloud from the previous system controller.
 
     .. note::
 
-        You can skip this step if the previous System Controller is no longer
+        You can skip this step if the previous system controller is no longer
         running or is unable to connect to the subcloud.
 
 #.  Update the admin password on the subcloud to match the new System
     Controller, if required.
 
 #.  Run the :command:`subcloud add` command with the ``--migrate`` option on
-    the new System Controller. This will update the System Controller and
+    the new system controller. This will update the system controller and
     connect to the subcloud to update the appropriate configuration parameters.
 
 #.  Use the :command:`dcmanager subcloud list` command to check the status
     of the subcloud, ensure the subcloud is online and complete before managing
     the subcloud.
 
-#.  Delete the subcloud from the previous System Controller after the subcloud
+#.  Delete the subcloud from the previous system controller after the subcloud
     is offline.
 
     .. note::
 
-        You can skip this phase if the previous System Controller is no longer
+        You can skip this phase if the previous system controller is no longer
         running or is unable to connect to the subcloud.
 
-#.  On the new System Controller, set the subcloud to "managed" and wait for it
+#.  On the new system controller, set the subcloud to "managed" and wait for it
     to sync.
 
 .. rubric:: |prereq|
 
--   Ensure that the subcloud management subnet, oam_floating_address,
+-   Ensure that the subcloud management or admin subnet, oam_floating_address,
     oam_node_0_address and oam_node_1_address (if applicable) does not overlap
-    addresses already being used by the new System Controller or any of its
+    addresses already being used by the new system controller or any of its
     subclouds.
 
 -   Ensure that the subcloud has been backed up, in case something goes wrong
@@ -95,37 +95,37 @@ There are six phases for Rehoming a subcloud:
     config (|NTP| or |PTP|).
 
 -   Transfer the yaml file that was used to bootstrap the subcloud prior to
-    rehoming, to the new System Controller. This data is required for rehoming.
+    rehoming, to the new system controller. This data is required for rehoming.
 
 -   If the subcloud can be remotely installed via Redfish Virtual Media service,
     transfer the yaml file that contains the install data for this subcloud,
-    and use this install data in the new System Controller, via the
+    and use this install data in the new system controller, via the
     ``--install-values`` option, when running the remote subcloud reinstall,
     upgrade or restore commands.
 
 
 .. note::
 
-    These prerequisites apply if the old System Controller is still available.
+    These prerequisites apply if the old system controller is still available.
 
 .. rubric:: |proc|
 
-#.  If the previous System Controller is running, use the following command to
+#.  If the previous system controller is running, use the following command to
     ensure that it does not try to change subcloud configuration while you are
-    modifying it to be compatible with the new System Controller.
+    modifying it to be compatible with the new system controller.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ dcmanager subcloud unmanage <subcloud_name>
 
 #.  Ensure that the subcloud's bootstrap values file is available on the new
-    System Controller. If required, in the subcloud's bootstrap values file
+    system controller. If required, in the subcloud's bootstrap values file
     update the ``systemcontroller_gateway_address`` entry to point to the
-    appropriate network gateway for the new System Controller to communicate
+    appropriate network gateway for the new system controller to communicate
     with the subcloud.
 
 #.  If the admin password of the subcloud does not match the admin password of
-    the new System Controller, use the following command to change the subcloud
+    the new system controller, use the following command to change the subcloud
     admin password. This step is done on the subcloud that is being migrated.
 
     .. code-block:: none
@@ -150,7 +150,7 @@ There are six phases for Rehoming a subcloud:
     out-of-date" alarm, a lock/unlock is required to clear that alarm on the node
     before the next step.
 
-#.  On the new System Controller, use the following command to start the
+#.  On the new system controller, use the following command to start the
     rehoming process.
 
     .. code-block:: none
@@ -161,7 +161,7 @@ There are six phases for Rehoming a subcloud:
 
         You will need to update the ``systemcontroller_gateway_address``
         variable in the bootstrap values file before you perform the migration.
-        This field is the gateway address to the new System Controller.
+        This field is the gateway address to the new system controller.
 
     The subcloud deploy status will change to "pre-rehome" and if the
     preliminary steps complete successfully it will change to "rehoming".
@@ -174,19 +174,19 @@ There are six phases for Rehoming a subcloud:
 
         The ``--install-values`` parameter is optional and is not mandatory
         for subcloud rehoming. However, you can opt to save these values on the
-        new System Controller as part of the rehoming process so that future
+        new system controller as part of the rehoming process so that future
         operations that involve remote reinstallation of the subcloud (e.g.
         reinstall, upgrade, restore) can be performed for the rehomed subcloud.
 
         The subcloud install values can also be added to or updated on the new
-        System Controller using the :command:`dcmanager subcloud update --install-values`
-        command post subcloud rehoming.
+        system controller using the :command:`dcmanager subcloud update --install-values`
+        command after rehoming the subcloud.
 
         **Delete the "image:" line from the install-values file, if it exists, so
-        that the image is correctly located based on the new System Controller
+        that the image is correctly located based on the new system controller
         configuration**.
 
-#.  If the previous System Controller is still running, delete the subcloud
+#.  If the previous system controller is still running, delete the subcloud
     after it goes offline, using the following command.
 
     .. code-block:: none
@@ -208,14 +208,14 @@ There are six phases for Rehoming a subcloud:
         +----+-----------+------------+--------------+---------------+---------+
 
 #.  Use the following command to "manage" the subcloud. This is executed on the
-    System Controller.
+    system controller.
 
     .. code-block:: none
 
         ~(keystone_admin)]$ dcmanager subcloud manage <subcloud-name>
 
-#.  The new System Controller will audit the subcloud and determine whether it
-    is in-sync with the System Controller.
+#.  The new system controller will audit the subcloud and determine whether it
+    is in-sync with the system controller.
 
 .. only:: partner
 
@@ -230,7 +230,7 @@ If the subcloud rehoming process begins successfully, (status changes to
 successfully, then manual error recovery is required.
 
 The first stage of error recovery is to delete the subcloud from
-the new System Controller and re-attempt rehoming using the following commands:
+the new system controller and re-attempt rehoming using the following commands:
 
 .. code-block:: none
 

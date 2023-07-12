@@ -38,9 +38,9 @@ subcloud, the subcloud installation process has two phases:
 
     After a successful remote installation of a subcloud in a Distributed Cloud
     system, a subsequent remote reinstallation fails because of an existing ssh
-    key entry in the ``/root/.ssh/known_hosts`` on the System Controller. In this
+    key entry in the ``/root/.ssh/known_hosts`` on the system controller. In this
     case, delete the host key entry, if present, from ``/root/.ssh/known_hosts``
-    on the System Controller before doing reinstallations.
+    on the system controller before doing reinstallations.
 
 .. rubric:: |prereq|
 
@@ -67,9 +67,9 @@ subcloud, the subcloud installation process has two phases:
     .. note::
 
         The servers require connectivity to a gateway router that provides IP
-        routing between the subcloud management subnet and the System
-        Controller management subnet, and between the subcloud |OAM| subnet and
-        the System Controller subnet.
+        routing between the subcloud management or admin subnet and the system
+        controller management subnet, and between the subcloud |OAM| subnet and
+        the system controller subnet.
 
     .. include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
        :start-after: begin-ref-1
@@ -164,7 +164,7 @@ subcloud, the subcloud installation process has two phases:
 #.  Log in to the subcloud's controller-0 and ping the Central Cloud's floating
     |OAM| IP Address.
 
-#.  At the System Controller, create a
+#.  At the system controller, create a
     ``/home/sysadmin/subcloud1-bootstrap-values.yaml`` overrides file for the
     subcloud.
 
@@ -219,6 +219,23 @@ subcloud, the subcloud installation process has two phases:
 
         $ keyring get sysinv services
 
+    In the above example, if the admin network is used for communication
+    between the subcloud and system controller, then the
+    ``management_gateway_address`` parameter should be replaced with admin
+    subnet information.
+    
+    For example:
+
+    .. code-block:: none
+
+        management_subnet: 192.168.101.0/24
+        management_start_address: 192.168.101.2
+        management_end_address: 192.168.101.50
+        admin_subnet: 192.168.102.0/24
+        admin_start_address: 192.168.102.2
+        admin_end_address: 192.168.102.50
+        admin_gateway_address: 192.168.102.1
+
     This configuration uses the local registry on your central cloud. If you
     prefer to use the default external registries, make the following
     substitutions for the ``docker_registries`` and
@@ -255,8 +272,8 @@ subcloud, the subcloud installation process has two phases:
        :start-after: begin-prepare-files-to-copy-deployment-config
        :end-before: end-prepare-files-to-copy-deployment-config
 
-#.  At the Central Cloud / System Controller, monitor the progress of the
-    subcloud bootstrapping and deployment by using the deploy status field of
+#.  At the Central Cloud / system controller, monitor the progress of the
+    subcloud bootstraping and deployment by using the deploy status field of
     the :command:`dcmanager subcloud list` command.
 
     .. include:: /shared/_includes/installing-a-subcloud.rest
@@ -318,7 +335,7 @@ subcloud, the subcloud installation process has two phases:
 
     In DC system, openldap service is running on Central Cloud. In order for the nodes
     in the subclouds to access openldap service, such as ssh to the nodes as openldap
-    users, a static route to the System Controller is required to be added in these
+    users, a static route to the system controller is required to be added in these
     nodes. This applies to controller nodes, worker nodes and storage nodes (nodes
     that have sssd running).
 
