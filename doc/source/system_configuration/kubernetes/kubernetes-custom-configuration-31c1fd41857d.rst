@@ -363,6 +363,7 @@ Example usage:
    apiserver_extra_volumes:
      - name: admission-control-config-file
        mountPath: "/etc/kubernetes/admission-control-config-file.yaml"
+       hostPath: "/etc/kubernetes/admission-control-config-file.yaml"
        readOnly: true
        pathType: "File"
        content: |
@@ -399,6 +400,7 @@ Example usage:
                namespaces: []
          - name: pod-node-selector
            mountPath: "/etc/kubernetes/pod-node-selector.yaml"
+           hostPath: "/etc/kubernetes/pod-node-selector.yaml"
            readOnly: true
            pathType: "File"
            content: |
@@ -422,6 +424,7 @@ Example usage:
    apiserver_extra_volumes:
      - name: audit-policy-file
        mountPath: "/etc/kubernetes/audit-policy-file.yaml"
+       hostPath: "/etc/kubernetes/audit-policy-file.yaml"
        readOnly: true
        pathType: "File"
        content: |
@@ -432,6 +435,7 @@ Example usage:
          - level: Metadata
      - name: audit-log-path
        mountPath: "/var/log/kubernetes/audit/"
+       hostPath: "/var/log/kubernetes/audit/"
        readOnly: false
        pathType: "DirectoryOrCreate"
 
@@ -624,6 +628,7 @@ Complex Example configuration
    apiserver_extra_volumes:
      - name: admission-control-config-file
        mountPath: "/etc/kubernetes/admission-control-config-file.yml"
+       hostPath: "/etc/kubernetes/admission-control-config-file.yml"
        pathType: "File"
        readOnly: true
        content: |
@@ -634,6 +639,7 @@ Complex Example configuration
            path: /etc/kubernetes/podnodeselector.yaml
      - name: pod-nodes-selector-plugin-config
        mountPath: "/etc/kubernetes/podnodeselector.yaml"
+       hostPath: "/etc/kubernetes/podnodeselector.yaml"
        pathType: "File"
        readOnly: true
        content: |
@@ -643,6 +649,7 @@ Complex Example configuration
          namespace2: name-of-node-selector
      - name: audit-policy-file
        mountPath: "/etc/kubernetes/audit-policy-file.yml"
+       hostPath: "/etc/kubernetes/audit-policy-file.yml"
        pathType: "File"
        readOnly: true
        content: |
@@ -653,12 +660,14 @@ Complex Example configuration
          - level: Metadata
      - name: audit-log-path
        mountPath: "/var/log/kubernetes/audit/"
+       hostPath: "/var/log/kubernetes/audit/"
        readOnly: false
        pathType: 'DirectoryOrCreate'
 
    scheduler_extra_volumes:
      - name: sch-admission-control-config-file
        mountPath: "/etc/kubernetes/admission-control-config-file.yml"
+       hostPath: "/etc/kubernetes/admission-control-config-file.yml"
        pathType: "File"
        readOnly: true
        content: |
@@ -669,6 +678,7 @@ Complex Example configuration
            path: /etc/kubernetes/podnodeselector.yaml
      - name: sch-pod-nodes-selector-plugin-config
        mountPath: "/etc/kubernetes/podnodeselector.yaml"
+       hostPath: "/etc/kubernetes/podnodeselector.yaml"
        pathType: "File"
        readOnly: true
        content: |
@@ -678,6 +688,7 @@ Complex Example configuration
          namespace2: name-of-node-selector
      - name: sch-audit-policy-file
        mountPath: "/etc/kubernetes/audit-policy-file.yml"
+       hostPath: "/etc/kubernetes/audit-policy-file.yml"
        pathType: "File"
        readOnly: true
        content: |
@@ -690,6 +701,7 @@ Complex Example configuration
    controllermanager_extra_volumes:
       - name: cm-admission-control-config-file
         mountPath: "/etc/kubernetes/admission-control-config-file.yml"
+        hostPath: "/etc/kubernetes/admission-control-config-file.yml"
         pathType: "File"
         readOnly: true
         content: |
@@ -700,6 +712,7 @@ Complex Example configuration
             path: /etc/kubernetes/podnodeselector.yaml
       - name: cm-pod-nodes-selector-plugin-config
         mountPath: "/etc/kubernetes/podnodeselector.yaml"
+        hostPath: "/etc/kubernetes/podnodeselector.yaml"
         pathType: "File"
         readOnly: true
         content: |
@@ -709,6 +722,7 @@ Complex Example configuration
           namespace2: name-of-node-selector
       - name: cm-audit-policy-file
         mountPath: "/etc/kubernetes/audit-policy-file.yml"
+        hostPath: "/etc/kubernetes/audit-policy-file.yml"
         pathType: "File"
         readOnly: true
         content: |
