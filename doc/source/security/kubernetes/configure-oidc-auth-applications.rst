@@ -305,17 +305,17 @@ Configure OIDC Auth Applications
 
     For the complete list of dex helm chart values supported, see `Dex Helm
     Chart Values
-    <https://github.com/dexidp/helm-charts/blob/dex-0.8.2/charts/dex/values.yaml>`__.
+    <https://github.com/dexidp/helm-charts/blob/dex-0.14.1/charts/dex/values.yaml>`__.
     For the complete list of parameters of the dex |LDAP| connector
     configuration, see `Authentication Through LDAP
     <https://dexidp.io/docs/connectors/ldap/>`__.
 
     The overall Dex documentation is available on `dexidp.io
     <https://dexidp.io/docs/>`__.  The configuration of dex server version
-    v2.31.1 is described on github
-    (https://github.com/dexidp/dex/blob/v2.31.1/config.yaml.dist) with example
+    v2.36.0 is described on github
+    (https://github.com/dexidp/dex/blob/v2.36.0/config.yaml.dist) with example
     ``config.dev.yaml``
-    (https://github.com/dexidp/dex/blob/v2.31.1/config.dev.yaml).
+    (https://github.com/dexidp/dex/blob/v2.36.0/config.dev.yaml).
 
     The example below configures a token expiry of ten hours, a single |LDAP|
     connector to an Active Directory service using HTTPS (LDAPS) using the
@@ -468,7 +468,7 @@ are:
     image:
       repository: ghcr.io/dexidp/dex
       pullPolicy: IfNotPresent
-      tag: v2.31.1
+      tag: v2.36.0
     imagePullSecrets:
       - name: default-registry-key
     env:
