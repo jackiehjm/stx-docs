@@ -16,6 +16,12 @@ non-distributed systems :command:`sw-manager` orchestration procedure.
 
 Follow the steps below to manually upgrade the System Controller:
 
+.. rubric:: |prereq|
+
+-   Validate the list of new images with the target release. If you are using a
+    private registry for installs/upgrades, you must populate your private
+    registry with the new images prior to bootstrap and/or patch application.
+
 .. rubric:: |proc|
 
 .. _upgrading-the-systemcontroller-using-the-cli-steps-oq4-dgm-cmb:

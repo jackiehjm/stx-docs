@@ -47,6 +47,10 @@ The following prerequisites apply to a |prod-dc| upgrade management service.
 
 .. _upgrade-management-overview-ul-smx-y2m-cmb:
 
+-   Validate the list of new images with the target release. If you are using a
+    private registry for installs/upgrades, you must populate your private
+    registry with the new images prior to bootstrap and/or patch application.
+
 -   **Configuration Verification**: Ensure that the following configurations
     are verified before you proceed with the upgrade on the |prod-dc|
     and subclouds:
