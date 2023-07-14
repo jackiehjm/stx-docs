@@ -21,9 +21,7 @@ create a certificate named ``system-registry-local-certificate`` in the
 spec must also be named ``system-registry-local-certificate``.
 
 See the example procedure below for creating the certificate for the local
-Docker registry.  This example assumes you have configured a
-``system-local-ca`` ClusterIssuer as described in
-:ref:`starlingx-rest-api-applications-and-the-web-admin-server-cert-9196c5794834`.
+Docker registry.
 
 Update the following fields:
 
@@ -83,9 +81,9 @@ Update the following fields:
 
    .. code-block::
 
-       ~(keystone_admin)]$ kubectl get certificate system-registry-local-certificate –n deployment
+       ~(keystone_admin)]$ kubectl get certificate system-registry-local-certificate -n deployment
 
-   If configuration was successful, the certificate’s Ready status will be
+   If configuration was successful, the certificate's Ready status will be
    ``True``.
 
 #. Update the platform's trusted certificates (i.e. ``ssl_ca``) with the Root

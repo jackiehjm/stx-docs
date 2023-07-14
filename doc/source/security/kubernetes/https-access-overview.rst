@@ -6,12 +6,18 @@
 HTTPS and Certificates Management Overview
 ==========================================
 
-Certificates are heavily used for secure HTTPS access and authentication on
-|prod| platform. This table lists the major certificates being used in the
-system, and indicates which certificates are automatically created/renewed by
-the system versus which certificates must be manually created/renewed by the
-system administrator. Details on manual management of certificates can be found
-in the following sections.
+Certificates are required for secure HTTPS access and authentication on |prod|
+platform. 
+
+This table lists all the platform certificates, and indicates which
+certificates are automatically created/renewed by the system versus which
+certificates must be manually created/renewed by the system administrator.
+
+Platform certificates that are associated with optional platform components are
+only present if the optional platform component is configured (e.g. |OIDC|).\
+
+Platform certificates that are associated with Distributed Cloud are only
+present on |DC| SystemController systems or |DC| Subclouds. 
 
 .. table::
     :widths: auto
@@ -19,6 +25,18 @@ in the following sections.
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
     | Certificate                                               | Auto Created                                                                | Renewal Status                                                                                         |
     +===========================================================+=============================================================================+========================================================================================================+
+    | **Etcd:**                                                                                                                                                                                                                                        |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+    | etcd Root CA certificate                                  | Yes                                                                         | NOT AUTO-RENEWED; Default expiry is set at 10 years                                                    |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+    | etcd server certificate                                   | Yes                                                                         | auto-renewed by cron job                                                                               |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+    | etcd client certificate                                   | Yes                                                                         | auto-renewed by cron job                                                                               |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+    | kube-apiserver's etcd client certificate                  | Yes                                                                         | auto-renewed by cron job                                                                               |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+    | **Kubernetes:**                                                                                                                                                                                                                                  |
+    +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
     | Kubernetes Root CA Certificate                            | Yes                                                                         | NOT AUTO-RENEWED; Default expiry is set at 10 years; MUST be renewed via CLI.                          |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
     | Cluster Admin client certificate used by kubectl          | Yes                                                                         | auto-renewed by cron job                                                                               |
@@ -31,58 +49,44 @@ in the following sections.
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
     | kube-apiserver's kubelet client certificate               | Yes                                                                         | auto-renewed by cron job                                                                               |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    | kubelet client certificate                                | Yes                                                                         | auto-renewed by kubelet feature enabled by default                                                     |
+    | kubelet client certificate                                | Yes                                                                         | auto-renewed by kubelet. Feature enabled by default                                                    |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
     | front-proxy-client                                        | Yes                                                                         | front-proxy-client: auto-renewed by cron job                                                           |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
     | front-proxy-ca                                            | Yes                                                                         | front-proxy-ca: NOT AUTO-RENEWED; Default expiry is set at 10 years                                    |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    |                                                                                                                                                                                                                                                  |
+    | **system-local-ca**                                       | Yes                                                                         | NOT AUTO-RENEWED. MUST be renewed via CLI                                                              |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    | etcd Root CA certificate                                  | Yes                                                                         | NOT AUTO-RENEWED; Default expiry is set at 10 years                                                    |
+    | **OpenLDAP Server Certificate**                           | Yes                                                                         | auto-renewed by system                                                                                 |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    | etcd server certificate                                   | Yes                                                                         | auto-renewed by cron job                                                                               |
-    +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    | etcd client certificate                                   | Yes                                                                         | auto-renewed by cron job                                                                               |
-    +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    | kube-apiserver's etcd client certificate                  | Yes                                                                         | auto-renewed by cron job                                                                               |
-    +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    |                                                                                                                                                                                                                                                  |
-    +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    | StarlingX REST API & HORIZON Server Certificate           | Yes (But the auto-created certificate is self-signed and should be changed) | auto-renewed if configured with cert-manager;                                                          |
+    | **StarlingX REST API & HORIZON Server Certificate**       | Yes (But the auto-created certificate is self-signed and should be changed) | auto-renewed if configured with cert-manager;                                                          |
     |                                                           |                                                                             | NOT AUTO-RENEWED if configured with :command:`system certificate-install ..`, must be renewed via CLI  |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    |                                                                                                                                                                                                                                                  |
-    +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    | Local Registry Server Certificate                         | Yes (But the auto-created certificate is self-signed and should be changed) | auto-renewed if configured with cert-manager;                                                          |
+    | **Local Registry Server Certificate**                     | Yes (But the auto-created certificate is self-signed and should be changed) | auto-renewed if configured with cert-manager;                                                          |
     |                                                           |                                                                             | NOT AUTO-RENEWED if configured with :command:`system certificate-install ..`, must be renewed via CLI  |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    |                                                                                                                                                                                                                                                  |
-    +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    | OpenLDAP Server Certificate                               | Yes                                                                         | auto-renewed by system                                                                                 |
-    +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    |                                                                                                                                                                                                                                                  |
+    | **OIDC:**                                                                                                                                                                                                                                        |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
     | OIDC Client and Dex Server Server Certificate             | No                                                                          | auto-renewed if configured with cert-manager;                                                          |
-    |                                                           |                                                                             | NOT AUTO-RENEWED if configured with an externally generated certificate, CUSTOMER MUST renew via CLI.  |
+    |                                                           |                                                                             | NOT AUTO-RENEWED if configured with an externally generated certificate. MUST be renewed via CLI.      |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    | OIDC Client and Dex Server CA certificate                 | No                                                                          | NOT AUTO-RENEWED. CUSTOMER MUST renew via CLIs                                                         |
+    | OIDC Client and Dex Server CA certificate                 | No                                                                          | NOT AUTO-RENEWED. MUST be renewed via CLI.                                                             |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    | OIDC Remote WAD CA Certificate                            | No                                                                          | NOT AUTO-RENEWED. CUSTOMER MUST renew via CLIs                                                         |
+    | OIDC Remote WAD CA Certificate                            | No                                                                          | NOT AUTO-RENEWED. MUST be renewed via CLI.                                                             |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    |                                                                                                                                                                                                                                                  |
+    | **Vault:**                                                                                                                                                                                                                                       |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    | Vault Server Certificate                                  | Yes                                                                         | NOT AUTO-RENEWED; CUSTOMER MUST renew via CLIs                                                         |
+    | Vault Server Certificate                                  | Yes                                                                         | NOT AUTO-RENEWED; MUST be renewed via CLI.                                                             |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    | Vault Root CA certificate                                 | Yes                                                                         | NOT AUTO-RENEWED; CUSTOMER MUST renew via CLIs                                                         |
+    | Vault Root CA certificate                                 | Yes                                                                         | NOT AUTO-RENEWED; MUST be renewed via CLI.                                                             |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    |                                                                                                                                                                                                                                                  |
+    | **Portieris:**                                                                                                                                                                                                                                   |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
     | Portieris Server Certificate                              | Yes                                                                         | Auto renewed by cert-manager; BUT CUSTOMER MUST restart Portieris after the certificate is renewed     |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
     | Portieris remote registry and notary server CA Certificate| No                                                                          | NOT AUTO-RENEWED; CUSTOMER MUST renew via CLIs                                                         |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    |                                                                                                                                                                                                                                                  |
+    | **DC Admin Endpoints:**                                                                                                                                                                                                                          |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
     | Root CA DC Admin Endpoint CA Certificate                  | Yes                                                                         | auto-renewed                                                                                           |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
@@ -90,9 +94,7 @@ in the following sections.
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
     | DC Admin Endpoint Server Certificate                      | Yes                                                                         | auto-renewed                                                                                           |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    |                                                                                                                                                                                                                                                  |
-    +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-    | System trusted CA Certificates                            | No                                                                          | NOT AUTO-RENEWED as these are certificates that are not necessarily owned by the platform              |
+    | **System trusted CA Certificates**                        | No                                                                          | NOT AUTO-RENEWED as these are certificates that are not necessarily owned by the platform              |
     +-----------------------------------------------------------+-----------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
 Where:
@@ -103,30 +105,13 @@ Where:
 -   Renewal Status: whether the certificate is renewed automatically by the system
     when expiry date approaches.
 
-The following sections provide details on managing these certificates.
+The specific certificates, and details such as expiration date, that are
+present on a |prod| system can be displayed with a local script, :command:`sudo
+show-certs.sh`, see :ref:`utility-script-to-display-certificates`. 
 
--   :ref:`StarlingX REST API Applications and the Web Administration Server Certificate <starlingx-rest-api-applications-and-the-web-administration-server>`
+|prod| monitors the installed certificates on the system by raising alarms for
+expired certificates and certificates that will expire soon, see
+:ref:`alarm-expiring-soon-and-expired-certificates-baf5b8f73009`. 
 
--   :ref:`Kubernetes Certificates <kubernetes-certificates-f4196d7cae9c>`
-
--   :ref:`Local Registry Server Certificates <security-install-update-the-docker-registry-certificate>`
-
--   :ref:`System Trusted CA Certificates <add-a-trusted-ca>`
-
-For further information about certificates expiration date or other certificates
-information, see :ref:`Display Certificates Installed on a System <utility-script-to-display-certificates>`.
-In addition, |prod| monitors the installed certificates on the system by raising
-alarms for expire-soon certificates and for expired certificates on the system,
-see :ref:`Expiring-Soon and Expired Certificate Alarms
-<alarm-expiring-soon-and-expired-certificates-baf5b8f73009>`.
-
-.. note::
-    
-    Ensure the certificates have RSA key length >= 2048 bits. The
-    |prod-long| Release |this-ver| provides a new version of ``openssl`` which
-    requires a minimum of 2048-bit keys for RSA for better security / encryption
-    strength.
-    
-    You can check the key length by running ``openssl x509 -in <the certificate file> -noout -text``
-    and looking for the "Public-Key" in the output. For more information see
-    :ref:`Create Certificates Locally using openssl <create-certificates-locally-using-openssl>`.
+The following sections also provide details on creating and/or renewing the
+|prod| platform certificates.

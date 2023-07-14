@@ -4,47 +4,49 @@
 
 .. _migrate-platform-certificates-to-use-cert-manager-c0b1727e4e5d:
 
-========================================================
-Migrate/Update Platform Certificates to use Cert Manager
-========================================================
+===========================================================================
+Update system-local-ca or Migrate Platform Certificates to use Cert Manager
+===========================================================================
 
-Platform Certificates from the legacy certificate management APIs/CLIs, which
-will be deprecated in a future release, to the new method of configuring
-Platform Certificates using Cert-Manager which enables auto-renewals of
-Platform Certificates.
+The playbook described in this section can be used to either update
+``system-local-ca`` or migrate platform Certificates to use Cert Manager. For
+updating ``system-local-ca``, this playbook will update the ``system-local-ca``
+Secret and Issuer, re-sign all the Platform certificates using this issuer, and
+in a Distributed Cloud environment, iterate thru all of the subclouds and do
+the same updates and re-signing on each Subcloud. In the migration use case,
+this playbook can be used to switch from using Platform certificates generated
+from the legacy certificate management APIs/CLIs, which will be deprecated in a
+future release, to the new method of configuring Platform certificates using
+Cert-Manager which enables auto-renewals of Platform certificates.  And again
+in a Distributed Cloud environment will iterate thru all of the Subclouds.
 
 .. rubric:: |context|
 
-This migration script can be configured to execute on any
-:ref:`deployment configuration <deployment-options>` supported by |prod|
-(|AIO|, standard, and distributed cloud configurations), allowing you to migrate
-the certificates at scale. The script will replace old certificates and a backup
-of the original certificates will be retained for reference. The certificates
-that will be migrated/updated with this playbook are:
+This playbook can be configured to execute on any :ref:`deployment
+configuration <deployment-options>` supported by |prod| (|AIO|, standard, and
+distributed cloud configurations), allowing you to update system-local-ca and
+re-sign certificates or migrate certificates at scale.
 
-* REST API & Web Server certificate
-* Docker Registry certificate
-* OIDC-Auth-Apps certificate
+The certificates (if they exist) that will be updated / migrated with this
+playbook are:
 
-The |CA| against which the server certificates will be validated can be generated
-on-platform (self-signed) or use an external Root |CA| and |ICA|. Using an external
-Root |CA| and |ICA| is recommended. Note that this ansible-playbook will use the same
-|ICA| cert & key to create the Issuers and/or ClusterIssuers for all
-controllers/subclouds.
-
-.. note::
-
-   This playbook can also be used to update certificates, which is useful for
-   situations such as |ICA| approaching expiry.
+* system-local-ca
+* system-openldap-local-certificate
+* REST API & Web Server certificate ( system-restapi-gui-certificate signed by system-local-ca)
+* Docker Registry certificate (system-registry-local-certificate signed by system-local-ca)
+* OIDC-Auth-Apps certificate (<user-specified> signed by system-local-ca)
 
 .. rubric:: |proc|
 
 #.  Create an inventory file using Ansible-Vault.
 
     You must create an inventory file to specify the playbook parameters. Using
-    ansible-vault is highly recommended for enhanced security. Ansible vault
-    will ask for a password in this step, which is used for subsequent
-    ansible-vault access and ansible-playbook commands.
+    ansible-vault is highly recommended in order to securely store the contents
+    of the inventory file which includes the ``system-local-ca`` public
+    certificate and private key, and the Root |CA| public certificate for
+    ``system-local-ca``. Ansible vault will ask for a password in this step,
+    which is used for subsequent ansible-vault access and ansible-playbook
+    commands.
 
     For example:
 
@@ -88,27 +90,23 @@ controllers/subclouds.
     The inventory parameters have the following meanings:
 
     ``system_local_ca_cert`` and ``system_local_ca_key``
-        You may choose to generate a certificate & key on the platform
-        (self-signed, internal Root |CA|) or use an external Root
-        |CA| that would make this an Intermediate |CA|.
+        Both values being the single-line base64 encoding of the corresponding
+        pem file; i.e. the output of :command:`base64 -w0 <pem-file>`.
 
-    .. note::
-      
-        Ensure the certificates have RSA key length >= 2048 bits before
-        migrating to |prod-long| Release |this-ver|. The |prod-long| Release
-        |this-ver| provides a new version of ``openssl`` which requires a
-        minimum of 2048-bit keys for RSA for better security / encryption
-        strength.
-        
-        You can check the key length by running ``openssl x509 -in <the certificate file> -noout -text``
-        and looking for the "Public-Key" in the output. For more information see
-        :ref:`Create Certificates Locally using openssl <create-certificates-locally-using-openssl>`.
+        It is highly recommended that you use an Intermediate |CA|
+        ``system-local-ca``, where the ``system-local-ca``'s certificate and
+        key are generated and signed by an external trusted Root |CA|.  Refer
+        to the documentation for the external trusted Root |CA| that you are
+        using, on how to create a public certificate and private key pair, for
+        use in an Intermediate |CA|.
+
+        The duration of the Intermediate CA public certificate and private key
+        pair should be at least 3 years.  See *ca_duration* to modify this
+        semantic check.
 
     ``system_root_ca_cert``
-        The Root |CA| that signed ``system_local_ca_cert``. If
-        ``system_local_ca_cert`` is a self-signed, internal Root |CA|
-        certificate, duplicate the value of ``system_local_ca_cert`` in this
-        field.
+        The public certificate of the Root |CA| that signed
+        ``system_local_ca_cert``.
 
     ``ca_duration``
         |CA| duration validation parameter. This will be used against
@@ -118,19 +116,20 @@ controllers/subclouds.
         renewed manually. Only override if necessary.
 
     ``system_platform_certificate.dns_domain``
-        The |DNS| domain that will be used to build the full dns name for the
+        The |DNS| domain that will be used to build a full DNS name for the
         |SANs| List of the Platform Certificates. E.g.
         ``starlingx-restapi-gui.<dns_domain>`` would appear in the |SANs| list
         of the REST API & Web Server certificate. in the server certificates.
 
     ``system_platform_certificate.duration``
         The duration of certificate validity to use in all Platform
-        Certificates, in hours. The Platform Server Certificates will be
-        auto-renewed by Cert-Manager.
+        Certificates, in hours; defaults to 2160h (or 90 days). The Platform
+        Server Certificates will be auto-renewed by Cert-Manager.
 
     ``system_platform_certificate.renewBefore``
         The number of hours before certificate expiry that the Platform
-        Certificate should be auto-renewed by Cert-Manager.
+        Certificate should be auto-renewed by Cert-Manager; defaults to 360h
+        (or 15 days).
 
     ``system_platform_certificate.subject_*fields``
         Subject related fields that will be added to all platform certificates:
@@ -147,9 +146,7 @@ controllers/subclouds.
 
         - ``system_platform_certificate.subject_CN``: Common Name
 
-        - ``system_platform_certificate.subject_prefix``: An optional field
-            to add a prefix to further identify the certificate, such as |prod|
-            for instance
+        - ``system_platform_certificate.subject_prefix``: An optional field to add a prefix to further identify the certificate, such as |prod| for instance.
 
     ``ansible_ssh_user``
         The username to use to connect to the target system using ``ssh``.
@@ -158,7 +155,7 @@ controllers/subclouds.
         The password to use to connect to the target system using ``ssh``.
 
     ``ansible_become_pass``
-        The target system's sudo password.
+        The ``ansible_ssh_user``'s sudo password.
 
     If a separate set of overrides are required for a group of hosts,
     ``children`` groups can be added under ``target_group``.
@@ -204,13 +201,19 @@ controllers/subclouds.
 
         ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/migrate_platform_certificates_to_certmanager.yml -i migration-inventory.yml --extra-vars "target_list=subcloud1 mode=update ignore_alarms=yes" --ask-vault-pass
 
-    The behavior of the migration can be customized using the following
+    .. note::
+
+       In |prod-dc| systems, the playbook must be executed from the System
+       Controller, and the ``target_list`` parameter should be used to target
+       the desired subclouds.
+
+    The behavior of the update/migration can be customized using the following
     ``--extra-vars`` parameter options:
 
     ``mode``
         * ``update``: Creates or updates platform certificates. Also supports
-          ongoing updates, which is useful for operations such as such as
-          replacing the |ICA| or changing other parameters.
+          ongoing updates, which is useful for operations such as replacing the
+          |ICA| or changing other parameters.
 
         * ``check``: Gathers certificates from all subclouds and prints them on
           the system controller
@@ -226,11 +229,8 @@ controllers/subclouds.
           retrieve a list of online subclouds to target.
 
     ``ignore_alarms``
-        ``yes``/``no``: When not specified defaults to no.
+        ``yes``/``no``: When not specified defaults to no. Using
+        ``ignore_alarms=yes`` should be avoided as much as possible. Only use
+        it after a careful analysis of the alarm in question and for specific
+        hosts.
 
-
-    .. note::
-
-        The ``ignore_alarms`` extra-var should be avoided as much as possible.
-        Only use it after a careful analysis of the alarm in question and for
-        specific hosts.
