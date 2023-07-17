@@ -43,6 +43,9 @@ Controller Filesystem Storage Allotments Using Horizon
         | cee6df98-9222-4594-b25f-469c625c5975 | docker  | 60          | docker-lv      |
         | c53be87c-bbcf-4d11-8cf5-93f350f8d027 | kubelet | 10          | kubelet-lv     |
         | efdddf39-7a0d-48f1-a14d-fc734e5b8675 | scratch | 16          | scratch-lv     |
+        | 3fe89994-a5b9-4612-8321-443fc9d2fba7 | log     | 8           | log-lv         |
+        | 0215defd-ded2-46df-9338-1d39e7648028 | root    | 20          | root-lv        |
+        | c987d5d7-729e-400c-8d51-ff464b2b9675 | var     | 20          | var-lv         |
         +--------------------------------------+---------+-------------+----------------+
 
 #.  To review the existing controller filesystems that are synchronized between
@@ -89,6 +92,9 @@ Controller Filesystem Storage Allotments Using Horizon
         | 3bb38311-00b3-49c7-8b53-9178aeef2233 | docker  | 60          | docker-lv      |
         | 44dd07e8-b4bf-4751-b76b-dd96b5bea9cc | kubelet | 10          | kubelet-lv     |
         | b2ab5c8e-a26a-4460-b960-552c636cfe43 | scratch | 16          | scratch-lv     |
+        | 3fe89994-a5b9-4612-8321-443fc9d2fba7 | log     | 8           | log-lv         |
+        | 0215defd-ded2-46df-9338-1d39e7648028 | root    | 20          | root-lv        |
+        | c987d5d7-729e-400c-8d51-ff464b2b9675 | var     | 20          | var-lv         |
         +--------------------------------------+---------+-------------+----------------+
 
     .. note::
@@ -109,25 +115,25 @@ Controller Filesystem Storage Allotments Using Horizon
            # 80G, you will need to add a new disk partition to cgts-vg.
            # There must be at least 20GB of available space after the docker
            # filesystem is increased.
-  
+
               # Assuming you have unused space on ROOT DISK, add partition to ROOT DISK.
               # ( if not use another unused disk )
-  
+
               # Get device path of ROOT DISK
               system host-show controller-0 --nowrap | fgrep rootfs
-  
+
               # Get UUID of ROOT DISK by listing disks
               system host-disk-list controller-0
-  
+
               # Create new PARTITION on ROOT DISK, and take note of new partition's 'uuid' in response
               # Use a partition size such that you'll be able to increase docker fs size from 30G to 60G
               PARTITION_SIZE=30
               system hostdisk-partition-add -t lvm_phys_vol controller-0 <root-disk-uuid> ${PARTITION_SIZE}
-  
+
               # Add new partition to 'cgts-vg' local volume group
               system host-pv-add controller-0 cgts-vg <NEW_PARTITION_UUID>
               sleep 2    # wait for partition to be added
-  
+
               # Increase docker filesystem to 60G
               system host-fs-modify controller-0 docker=60
 
