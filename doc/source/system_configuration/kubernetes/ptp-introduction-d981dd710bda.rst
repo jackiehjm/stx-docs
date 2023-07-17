@@ -27,8 +27,8 @@ part of the linuxptp project (https://sourceforge.net/projects/linuxptp/).
 ``ptp4l``
    ptp4l is the implementation of Precision Time Protocol according to the IEEE
    standard 1588 for Linux. It handles communication between |PTP| nodes as
-   well as setting the |PTP| Hardware Clock (PHC) on the NIC. See man ptp4l for
-   a complete list of configuration parameters.
+   well as setting the |PTP| Hardware Clock (PHC) on the NIC. Refer to the man
+   page (:command:`man ptp41`) for a complete list of configuration parameters.
 
 ``phc2sys``
    phc2sys is used to synchronize the system time with a PHC. The PHC may be
@@ -78,8 +78,10 @@ Overview of the |prod| configuration units
     ``currentUtcOffsetValid=1`` at the the ``ptp4l`` instance level to set this
     flag.
 
-    To return the CLOCK_TAI offset to 0, the ``currentUtcOffsetValid=1`` parameter
-    must be removed and the host must be restarted via lock/unlock.
+    To return the CLOCK_TAI offset to 0, the ``currentUtcOffsetValid=1``
+    parameter must be removed using system ptp-instance-parameter delete and
+    the PTP configuration must be re-applied with :command:`system
+    ptp-instance-apply``.
 
 
 General information
@@ -87,8 +89,9 @@ General information
 
 The relevant system locations for |PTP| instance configuration files are:
 
-``/etc/ptpinstance/``
-    Application configuration files, one per instance (excluding clock type).
+``/etc/linuxptp/ptpinstance/``
+    Application configuration files. A single configuration file is generated
+    for each configured instance.
 
 ``/etc/sysconfig/ptpinstance``
     Environment variable files, one per instance

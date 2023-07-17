@@ -112,6 +112,8 @@
 .. |PEM| replace:: :abbr:`PEM (Privacy Enhanced Mail)`
 .. |PF| replace:: :abbr:`PF (Physical Function)`
 .. |PHB| replace:: :abbr:`PHB (Per-Hop Behavior)`
+.. |PHC| replace:: :abbr:`PHC (PTP Hardware Clock)`
+.. |PHCs| replace:: :abbr:`PHC (PTP Hardware Clock)`
 .. |PMD| replace:: :abbr:`PMD (Pole Mode Driver)`
 .. |PQDN| replace:: :abbr:`PDQN (Partially Qualified Domain Name)`
 .. |PQDNs| replace:: :abbr:`PQDNs (Partially Qualified Domain Names)`

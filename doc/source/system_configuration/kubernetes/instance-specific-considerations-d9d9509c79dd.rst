@@ -32,6 +32,17 @@ NONE
 An interface with a port must be assigned to the ``ptp4l`` instance in order
 for it to start.
 
+.. note::
+
+   It is recommended to configure one ``ptp4l`` instance per |PHC|. Some |NIC|
+   designs have a single |PHC| shared between all the ports on the |NIC|, while
+   others may have one |PHC| per port. Refer to the |NIC| documentation to
+   determine if a |NIC| has multiple |PHCs|. Configuring a ``ptp4l`` instance
+   with multiple interfaces, each with its own |PHC|, results in degraded
+   timing accuracy or other undesirable behaviors. This means that a given
+   ``ptp4l`` instance should only be configured with interfaces that are on the
+   same |NIC| and share a |PHC|.
+
 phc2sys
 =======
 
@@ -89,7 +100,7 @@ named differently on each system.
 **Other requirements**
 
 An interface with a port must be assigned to the ``ts2phc`` instance in order
-for time to be synced from GNSS to the phc.
+for time to be synced from GNSS to the |PHC|.
 
 clock
 =====
@@ -108,8 +119,8 @@ NONE
 
 **Other requirements**
 
-The clock type instance is a special instance used for configuring the NIC
-control parameters of the Westport Channel or Logan Beach NIC clock
+The clock type instance is a special instance used for configuring the |NIC|
+control parameters of the Westport Channel or Logan Beach |NIC| clock
 interface parameters.
 
 These parameters can be applied to the interface of a clock instance |PTP|
