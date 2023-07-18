@@ -4,6 +4,13 @@ Pod Security Policies
 
 .. note::
 
+   PodSecurityPolicy (PSP) ONLY applies if running on K8S v1.24 or earlier.
+   PodSecurityPolicy (PSP) is deprecated as of Kubernetes v1.21 and removed from K8S v1.25.
+   Instead of using PodSecurityPolicy, you can enforce similar restrictions on Pods using
+   :ref:`Pod Security Admission Controller <pod-security-admission-controller-8e9e6994100f>`
+
+.. note::
+
    This guide was replaced by: :ref:`Pod Security Policies <pod-security-policies>`
 
 This guide describes how to enable Kubernetes pod security policies.
