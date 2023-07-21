@@ -18,6 +18,60 @@ health of the system.
    :widths: 6 25
    :header-rows: 0
 
+   * - **Alarm ID: 400.001**
+     - Service group failure; <list of affected services>. 
+                                                    
+       or                                                  
+                                                           
+       Service group degraded; <list of affected services>.
+                                                           
+       or                                                  
+                                                           
+       Service group warning; <list of affected services>. 
+   * - Entity Instance:
+     - service_domain=<domain_name>.service_group=<group_name>.host=<hostname>
+   * - Degrade Affecting Severity:
+     - None
+   * - Severity:
+     - C/M/m\*
+   * - Proposed Repair Action
+     - Contact next level of support.
+
+-----
+
+.. list-table::
+   :widths: 6 25
+   :header-rows: 0
+
+   * - **Alarm ID: 400.002**
+     - Service group loss of redundancy; expected <num> standby member<s> but
+       only <num> standby member<s> available.
+                                                                                                              
+       or                                                                                                            
+                                                                                                                     
+       Service group loss of redundancy; expected <num> active member<s> but no
+       active members available.            
+                                                                                                                     
+       or                                                                                                            
+                                                                                                                     
+       Service group loss of redundancy; expected <num> active member<s> but
+       only <num> active member<s> available.  
+   * - Entity Instance:
+     - service_domain=<domain_name>.service_group=<group_name>
+   * - Degrade Affecting Severity:
+     - None
+   * - Severity:
+     - M\*
+   * - Proposed Repair Action
+     - Bring a controller node back in to service, otherwise contact next level
+       of support.
+
+-----
+
+.. list-table::
+   :widths: 6 25
+   :header-rows: 0
+
    * - **Alarm ID: 400.003**
      - License key is not installed; a valid license key is required for
        operation.
