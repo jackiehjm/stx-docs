@@ -15,6 +15,61 @@ health of the system.
 .. _400-series-alarm-messages-table-zrd-tg5-v5:
 
 .. list-table::
+   :widths: 6 15
+   :header-rows: 0
+
+   * - **Alarm ID: 400.001**
+     - Service group failure; <list_of_affected_services>.
+
+       or
+
+       Service group degraded; <list_of_affected_services>
+
+       or
+
+       Service group Warning; <list_of_affected_services>.
+   * - Entity Instance
+     - service_domain=<domain_name>.service_group=<group_name>.host=<hostname>
+   * - Severity:
+     - C/M/m\*
+   * - Proposed Repair Action
+     - Contact next level of support.
+
+-----
+
+.. list-table::
+   :widths: 6 15
+   :header-rows: 0
+
+   * - **Alarm ID: 400.002**
+     - Service group loss of redundancy; expected <num> standby member<s> but
+       only <num> standby member<s> available.
+
+       or
+
+       Service group loss of redundancy; expected <num> standby member<s> but
+       only <num> standby member<s> available.
+
+       or
+
+       Service group loss of redundancy; expected <num> active member<s> but no
+       active members available.
+
+       or
+
+       Service group loss of redundancy; expected <num> active member<s> but
+       only <num> active member<s> available.
+   * - Entity Instance
+     - service_domain=<domain_name>.service_group=<group_name>
+   * - Severity:
+     - M\*
+   * - Proposed Repair Action
+     - Bring a controller node back in to service, otherwise contact next level
+       of support.
+
+-----
+
+.. list-table::
    :widths: 6 25
    :header-rows: 0
 
@@ -29,7 +84,7 @@ health of the system.
 
        or
 
-       Evaluation license key will expire on <date>; there are <num\_days> days
+       Evaluation license key will expire on <date>; there are <num_days> days
        remaining in this evaluation.
 
        or

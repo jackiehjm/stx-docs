@@ -17,7 +17,6 @@ OpenStack alarm messages
 
    openstack-alarm-messages-100s
    openstack-alarm-messages-300s
-   openstack-alarm-messages-400s
    openstack-alarm-messages-700s
    openstack-alarm-messages-800s
 
