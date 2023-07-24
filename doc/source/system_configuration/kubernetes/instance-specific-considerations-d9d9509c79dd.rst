@@ -38,7 +38,7 @@ for it to start.
    designs have a single |PHC| shared between all the ports on the |NIC|, while
    others may have one |PHC| per port. Refer to the |NIC| documentation to
    determine if a |NIC| has multiple |PHCs|. Configuring a ``ptp4l`` instance
-   with multiple interfaces, each with its own |PHC|, results in degraded
+   with multiple interfaces, each with its own |PHC| results in degraded
    timing accuracy or other undesirable behaviors. This means that a given
    ``ptp4l`` instance should only be configured with interfaces that are on the
    same |NIC| and share a |PHC|.
