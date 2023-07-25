@@ -4,6 +4,8 @@
 Security
 ========
 
+.. _index-security-84d0d8aa401b-kubernetes:
+
 ----------
 Kubernetes
 ----------
@@ -40,6 +42,8 @@ Contents:
    :maxdepth: 2
 
    kubernetes/index-security-kub-81153c1254c3
+
+.. _index-security-84d0d8aa401b-openstack:
 
 ---------
 OpenStack
