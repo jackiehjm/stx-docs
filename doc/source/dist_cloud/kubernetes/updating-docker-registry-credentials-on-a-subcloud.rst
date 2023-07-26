@@ -39,3 +39,17 @@ the System Controller.
 
         $ update_docker_registry_auth.sh sysinv <sysinv_password>
 
+
+#.  Lock and Unlock the Controller.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system host-lock controller-0
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ system host-unlock controller-0
+
+.. note::
+
+    If the system is a duplex, each controller will need to be locked and unlocked.
