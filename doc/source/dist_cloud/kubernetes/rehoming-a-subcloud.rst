@@ -27,7 +27,7 @@ Controller using the rehoming playbook.
     Do not rehome a subcloud if the RECONCILED status on the system resource or
     any host resource of the subcloud is FALSE. To check the RECONCILED status,
     run the :command:`kubectl -n deployment get system` and :command:`kubectl -n deployment get hosts` commands.
-    
+
 Use the following procedure to enable subcloud rehoming and to update the new
 subcloud configuration \(networking parameters, passwords, etc.\) to be
 compatible with the new System Controller.
@@ -247,6 +247,7 @@ There are six phases for Rehoming a subcloud:
 After rehoming, please perform the procedure to :ref:`Update Docker Registry
 Credentials on a Subcloud <updating-docker-registry-credentials-on-a-subcloud>`
 to update registry credentials for the particular subcloud.
+This operation will require controller lock and unlock.
 
 .. rubric:: Error Recovery
 
