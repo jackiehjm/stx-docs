@@ -150,6 +150,9 @@ For more details, see :ref:`Detailed contents of a system backup
 
 #.  Confirm that the system is healthy.
 
+    .. note::
+        Do not modify protected filesystem directories before backup.
+
     Check the current system health status, resolve any alarms and other issues
     reported by the :command:`system health-query-upgrade` command, then
     recheck the system health status to confirm that all **System Health**
