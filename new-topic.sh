@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-if ! hash uuidgen 2>/dev/null; then
-  echo >&2 "... uuidgen dependency not met. Please install."
-  exit 1
-fi
+. $(pwd)/_utils.sh
+if [[ -z ${utils_loaded+x} ]]; then echo "Could not load utilities"; exit 1; fi
+
+check_util_deps uuidgen
 
 INCLUDEDIR="$2/doc/source/_includes"
 
@@ -18,13 +18,11 @@ charReplacements=(
 
 ask_name () {
 
-   echo -e "`cat <<EOF
+   message "`cat <<EOF
 
    You are about to create a new reStructuredText file in
 
    ${WD}
-
-   or a content fragment file in doc/source/_includes
 
    If this is not what you want, press CTL-C to quit and change to the directory
    you want to create the file in.
@@ -36,7 +34,7 @@ ask_name () {
 EOF`"
 
 
-    while read -e -p 'Topic title: ' title ; do
+    while read -e -p 'Topic title: ' title ; do    
       if [[ -z $title ]]; then
          continue
       else
@@ -50,7 +48,7 @@ EOF`"
 
 ask_type () {
 
-  echo -e "`cat <<EOF
+  message "`cat <<EOF
 
   Thanks. Now choose a topic type. Enter one of the following characters:
 
@@ -62,7 +60,7 @@ ask_type () {
 
 EOF`"
 
-    while read -p 'Topic type: ' -n1 input; do
+    while read -p 'Topic type: ' -n1 input; do    
 
        case $input in
 
@@ -71,7 +69,7 @@ EOF`"
              ;;
 
            *)
-             echo -e "Enter a valid value"
+             warn "\nEnter a valid value"
              continue
              ;;
 
@@ -93,7 +91,7 @@ write_stub () {
 
    echo "$1" > "${outdir}/${filename}.${ext}"
    if [[ -f ${outdir}/${filename}.${ext} ]]; then
-     echo -e "\nCreated ${outdir}/${filename}.${ext}"
+     confirmation "\nCreated ${outdir}/${filename}.${ext}"
      exit 0
    else
      exit 1
@@ -114,10 +112,7 @@ myuuid="${myuuid:24:35}"
 
 ask_name
 
-strike=$(for ((i=1; i<=${#title}; i++)); do
-  printf '=%.0s' "$i"
-done)
-
+strike=$(make_strike "${title}")
 
 ask_type
 

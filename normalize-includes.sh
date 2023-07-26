@@ -1,37 +1,17 @@
 #!/usr/bin/env bash
 
+. $(pwd)/_utils.sh
+if [[ -z ${utils_loaded+x} ]]; then echo "Could not load utilities"; exit 1; fi
+
 directive='pre-include::'
 d_begin=':start-after:'
 d_end=':end-before:'
 inc_base='doc/source'
 
-RED='\033[0;31m'
-NC='\033[0m'
-
-message () { echo -e "$@" 1>&2; }
-
-error () { message $RED$@$NC; }
 
 OIFS=$IFS; IFS=$'\n'
 parents=( $(grep -Rl '.. pre-include:: ' --exclude-dir=docs/build --include="*.r*st" --exclude-dir='.*' doc/*) )
 IFS=$OIFS
-
-check_file_deps () {
-  for filereq in $@
-  do
-    if [ ! -f "${filereq}" ] && [ ! -L "${filereq}" ]; then error "${filereq}  not found. Quiting."; exit 1; fi
-  done
-}
-
-check_util_deps () {
-  for dep in $@
-  do
-    if ! hash $dep 2>/dev/null; then
-      error >&2 "... $dep dependency not met. Please install."
-      exit 1
-    fi
-  done
-}
 
 get_substr () {
 
@@ -47,15 +27,6 @@ get_substr () {
   else
      echo ""
   fi
-}
-
-trimspaces () {
-  local _s=$1
-
-  _s=${_s##*( )}
-  _s=${_s%%*( )}
-
-  echo $_s
 }
 
 get_inc_path () {
