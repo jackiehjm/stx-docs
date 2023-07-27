@@ -115,10 +115,9 @@ HTTPS Certificate Management
 
    https-access-overview
    utility-script-to-display-certificates
-   starlingx-rest-api-applications-and-the-web-admin-server-cert-9196c5794834
-   kubernetes-certificates-f4196d7cae9c
    etcd-certificates-c1fc943e4a9c
-   kubernetes-root-ca-certificate
+   kubernetes-certificates-f4196d7cae9c
+   starlingx-rest-api-applications-and-the-web-admin-server-cert-9196c5794834
    configure-rest-api-applications-and-web-administration-server-certificates-after-installation-6816457ab95f
    configure-docker-registry-certificate-after-installation-c519edbfe90a
    oidc-client-dex-server-certificates-dc174462d51a
@@ -127,7 +126,6 @@ HTTPS Certificate Management
    vault-server-certificate-8573125eeea6
    dc-admin-endpoint-certificates-8fe7adf3f932
    add-a-trusted-ca
-   one-single-root-ca-multiple-server-client-certificates-0692df6ce16d
    alarm-expiring-soon-and-expired-certificates-baf5b8f73009
 
 ************

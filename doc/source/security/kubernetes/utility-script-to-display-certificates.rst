@@ -6,8 +6,10 @@
 Display Certificates Installed on a System
 ------------------------------------------
 
-The utility script **show-certs.sh** can be used to display an overview of the
-various certificates that exist in the system along with their expiry date.
+The script **show-certs.sh** can be used to display a list of the specific
+certificates present on a |prod| system with details such as expiry
+date, residual time, subject, issuer and renewal behaviour (manual or
+automatic).
 
 The :command:`show-certs.sh` command has the following options:
 
@@ -21,13 +23,18 @@ renewal, and certificates expiring within 90 days.
 
 options:
 
--k  displays certificates found in any Kubernetes SECRETS;
-    this may include platform certificates and end-users' certificates
+``-k`` displays certificates found in any Kubernetes SECRETS; this may include
+platform certificates and end-users' certificates.
 
--e  <number-of-days> changes to highlight (in red) certificates within
-    <number-of-days> of expiry
+``-e`` <number-of-days>. Changes to highlight (in red) certificates within
+<number-of-days> of expiry.
 
--h  displays help
+``-h`` displays help
+
+.. note::
+
+    This command can only be run locally on the active controller, in an SSH
+    shell.
 
 For example:
 
@@ -46,9 +53,24 @@ For example:
     Residual Time   :  341d
     -----------------------------------------------------
 
-For scalability in a Distributed cloud system, the Subcloud ICA certificates
-are redirected to a file. The script displays the path to the file with a note
-at the end of the displayed output.
+    local-openldap / deployment  /  system-openldap-local-certificate  CERTIFICATE:
+    ------------------------------------------
+    Renewal        :  Automatic [Managed by Cert-Manager]
+    Namespace      :  deployment
+    Secret         :  system-openldap-local-certificate
+    Subject        :  CN = system-openldap
+    Issuer         :  CN = starlingx
+    Issue Date     :  Jul 6 16:15:30 2023 GMT
+    Expiry Date    :  Oct 4 16:15:30 2023 GMT
+    Residual Time  :  89d
+    
+    … etc
+
+
+For scalability reasons, in a Distributed cloud system, the Subcloud ICA
+certificates that are present on a SystemController are redirected to a file.
+The script displays the path to the file with a note at the end of the
+displayed output.
 
 .. code-block:: none
 

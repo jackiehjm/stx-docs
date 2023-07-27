@@ -20,9 +20,7 @@ in the ``deployment`` namespace.  The ``secretName`` attribute of this
 certificate's spec must also be named ``system-restapi-gui-certificate``.
 
 See the example procedure below for creating the certificate for the StarlingX
-REST API and Web Server endpoints.  This example assumes you have configured a
-``system-local-ca`` ClusterIssuer as described in
-:ref:`starlingx-rest-api-applications-and-the-web-admin-server-cert-9196c5794834`.
+REST API and Web Server endpoints.
 
 Update the following fields:
 

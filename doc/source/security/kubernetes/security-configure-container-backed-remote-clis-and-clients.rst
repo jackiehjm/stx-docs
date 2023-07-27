@@ -183,7 +183,8 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
     to the remote workstation, and extract its content.
 
 
-    -   The tarball is available from the |prod| area on the |prod| CENGEN build servers.
+    -   The tarball is available from the |prod| area on the |prod| CENGE N
+        build servers.
 
     -   You can extract the tarball's contents anywhere on your client system.
 
@@ -209,17 +210,18 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
 
     .. note::
 
-        For a Distributed Cloud system, navigate to **Project** \> **Central Cloud Regions** \> **RegionOne** \>
-        and download the **Openstack RC file**.
+        For a Distributed Cloud system, navigate to **Project** \> **Central
+        Cloud Regions** \> **RegionOne** \> and download the **Openstack RC
+        file**.
 
 #.  If HTTPS has been enabled for the |prod| RESTAPI Endpoints on your
-    |prod| system, add the following line to the bottom of admin-openrc.sh:
+    |prod| system, add the following line to the bottom of ``admin-openrc.sh``:
 
     .. code-block:: none
 
         OS_CACERT=<path_to_ca_>
 
-    where ``<path_to_ca>`` is the full filename of the PEM file for the CA
+    where ``<path_to_ca>`` is the full filename of the |PEM| file for the |CA|
     Certificate that signed the |prod| REST APIs Endpoint Certificate.
     Copy the file ``admin-openrc.sh`` to the remote workstation. This example
     assumes it is copied to the location of the extracted tarball.
