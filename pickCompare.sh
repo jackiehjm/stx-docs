@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
-RED='\033[0;31m'
-GR='\033[0;32m'
-NC='\033[0m' # No color
+. $(pwd)/_utils.sh
+if [[ -z ${utils_loaded+x} ]]; then echo "Could not load utilities"; exit 1; fi
 
 today=$(date '+%Y-%m-%d')
-default_start="2020-01-01"
+default_start=$(date --date='-9 month' '+%Y-%m-%d')
 
 config_file=".pickOptions.sh"
 
@@ -37,7 +36,7 @@ get_branches () {
 
   local refs="refs\/remotes"
 
-  echo -e "Select the two branches you want to compare:\n"
+  message "Select the two branches you want to compare:\n"
 
   for branch in br1 br2
   do
@@ -51,7 +50,7 @@ get_branches () {
       case $br in
 
         "")
-          echo "Invalid entry"
+          warn "Invalid entry"
           continue
         ;;
         *)
@@ -63,14 +62,14 @@ get_branches () {
     done
   done
   if [[ "$br1" == "$br2" ]]; then
-     echo -e "\n${RED}Comparing $br1 with itself makes no sense. Please pick two branches.${NC}\n"
+     warn "Comparing $br1 with itself makes no sense. Please pick two branches.\n"
      get_branches
   fi
 }
 
 get_dates () {
 
-  echo -e "Select a date range\n"
+  message "Select a date range\n"
 
   for date in begin end
   do
@@ -94,7 +93,7 @@ get_dates () {
         ;;
         *)
           if ! date -d $edate > /dev/null; then
-             echo -e "${RED}$edate is not valid. Try again.${NC}"
+             warn "$edate is not valid. Try again."
              continue
           else          
              declare -g ${date}=$edate
@@ -109,7 +108,7 @@ get_dates () {
 
 get_users () {
 
-  echo -e "Select users\n"
+  message "Select users\n"
 
   for auth in auth1 auth2
   do
@@ -120,7 +119,7 @@ get_users () {
        repo=$br2
     fi
 
-    echo -e "Optionally, select a ${GR}$repo${NC} author to filter by:\n"
+    message "Optionally, select a ${GR}$repo${NC} author to filter by:\n"
 
     select os in $(git log --pretty=format:%an --after="$begin" --before="$end" $repo  | sort | uniq; echo "None")
     do
@@ -128,7 +127,7 @@ get_users () {
       case $os in
 
         None)
-          echo "No author selected, will show all authors."
+          warn "No author selected, will show all authors."
           declare -g ${auth}=""
           break
         ;;
@@ -158,7 +157,7 @@ confirm_options () {
 compare_branches () {
 
   for pick in $({ git log --pretty=format:%s%n --after="$begin" --before="$end" --author="$auth1" $br1 & git log --pretty=format:%s%n --after="$begin" --before="$end" --author="$auth2" $br2; } | grep "(.*$str.*)$" | sort | uniq -u); do
-    echo -e "${RED}" $(git log --grep=$pick --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:"%cd, %s [ %h ]" --after=$begin --before=$end --author=$auth1 --author=$auth2 $br1 $br2) "${NC}"
+    confirmation $(git log --grep=$pick --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:"%cd, %s [ %h ]" --after=$begin --before=$end --author=$auth1 --author=$auth2 $br1 $br2) "${NC}"
   done
 
 }
@@ -194,12 +193,12 @@ str="$str"
 
 EOF`" > $config_file
 
-    echo " ... saved"
+    confirmation " ... saved"
 
   ;;
 
   *)
-     echo " ... not saved"
+     warn " ... not saved"
   ;;
 
   esac
@@ -210,7 +209,7 @@ read_settings () {
 
   if [[ -f ${config_file} ]]; then
 
-    echo -e "\nFound saved options:\n"
+    message "\nFound saved options:\n"
 
     values=$(<$config_file)
 
@@ -222,7 +221,7 @@ read_settings () {
     values=${values/end=/"End Date: "}
     values=${values/str=/"Pick Search String: "}
 
-    echo -e "$values\n"
+    message "$values\n"
 
     read -p 'Reuse these options now? [y/n]: ' -n1 read_opts;
 
@@ -232,10 +231,10 @@ read_settings () {
        CONTEXT_DIR="${BASH_SOURCE%/*}"
        if [[ ! -d "$CONTEXT_DIR" ]]; then CONTEXT_DIR="$PWD"; fi
        . "$CONTEXT_DIR/$config_file"
-        echo " ... read"
+        confirmation " ... read"
     ;;
     *)
-        echo " ... not read"
+        warn " ... not read"
     ;;
     esac
 
