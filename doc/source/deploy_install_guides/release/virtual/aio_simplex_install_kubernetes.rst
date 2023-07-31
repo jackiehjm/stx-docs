@@ -231,47 +231,6 @@ For Rook container-based Ceph:
       system host-label-assign controller-0 ceph-mon-placement=enabled
       system host-label-assign controller-0 ceph-mgr-placement=enabled
 
-#. Configure data interfaces for controller-0.
-
-   .. important::
-
-      This step is required only if the StarlingX OpenStack application
-      (|prefix|-openstack) will be installed.
-
-      1G Huge Pages are not supported in the virtual environment and there is no
-      virtual NIC supporting SRIOV. For that reason, data interfaces are not
-      applicable in the virtual environment for the Kubernetes-only scenario.
-
-   For OpenStack only:
-
-   ::
-
-    DATA0IF=eth1000
-    DATA1IF=eth1001
-    export NODE=controller-0
-    PHYSNET0='physnet0'
-    PHYSNET1='physnet1'
-    SPL=/tmp/tmp-system-port-list
-    SPIL=/tmp/tmp-system-host-if-list
-    system host-port-list ${NODE} --nowrap > ${SPL}
-    system host-if-list -a ${NODE} --nowrap > ${SPIL}
-    DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
-    DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
-    DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
-    DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
-    DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
-    DATA1PORTNAME=$(cat  $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
-    DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
-    DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
-
-    system datanetwork-add ${PHYSNET0} vlan
-    system datanetwork-add ${PHYSNET1} vlan
-
-    system host-if-modify -m 1500 -n data0 -c data ${NODE} ${DATA0IFUUID}
-    system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
-    system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
-    system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
-
 #. If required, and not already done as part of bootstrap, configure Docker to
    use a proxy server.
 
@@ -328,6 +287,47 @@ OpenStack-specific host configuration
 
      export NODE=controller-0
      system host-fs-add ${NODE} instances=34
+
+#. **For OpenStack only:** Configure data interfaces for controller-0.
+
+   .. important::
+
+      This step is required only if the |prod-os| application
+      (|prefix|-openstack) will be installed.
+
+      1G Huge Pages are not supported in the virtual environment and there is no
+      virtual |NIC| supporting |SRIOV|. For that reason, data interfaces are not
+      applicable in the virtual environment for the Kubernetes-only scenario.
+
+   For OpenStack only:
+
+   ::
+
+    DATA0IF=eth1000
+    DATA1IF=eth1001
+    export NODE=controller-0
+    PHYSNET0='physnet0'
+    PHYSNET1='physnet1'
+    SPL=/tmp/tmp-system-port-list
+    SPIL=/tmp/tmp-system-host-if-list
+    system host-port-list ${NODE} --nowrap > ${SPL}
+    system host-if-list -a ${NODE} --nowrap > ${SPIL}
+    DATA0PCIADDR=$(cat $SPL | grep $DATA0IF |awk '{print $8}')
+    DATA1PCIADDR=$(cat $SPL | grep $DATA1IF |awk '{print $8}')
+    DATA0PORTUUID=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $2}')
+    DATA1PORTUUID=$(cat $SPL | grep ${DATA1PCIADDR} | awk '{print $2}')
+    DATA0PORTNAME=$(cat $SPL | grep ${DATA0PCIADDR} | awk '{print $4}')
+    DATA1PORTNAME=$(cat  $SPL | grep ${DATA1PCIADDR} | awk '{print $4}')
+    DATA0IFUUID=$(cat $SPIL | awk -v DATA0PORTNAME=$DATA0PORTNAME '($12 ~ DATA0PORTNAME) {print $2}')
+    DATA1IFUUID=$(cat $SPIL | awk -v DATA1PORTNAME=$DATA1PORTNAME '($12 ~ DATA1PORTNAME) {print $2}')
+
+    system datanetwork-add ${PHYSNET0} vlan
+    system datanetwork-add ${PHYSNET1} vlan
+
+    system host-if-modify -m 1500 -n data0 -c data ${NODE} ${DATA0IFUUID}
+    system host-if-modify -m 1500 -n data1 -c data ${NODE} ${DATA1IFUUID}
+    system interface-datanetwork-assign ${NODE} ${DATA0IFUUID} ${PHYSNET0}
+    system interface-datanetwork-assign ${NODE} ${DATA1IFUUID} ${PHYSNET1}
 
 .. incl-config-controller-0-openstack-specific-aio-simplex-end:
 
