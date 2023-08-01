@@ -118,5 +118,8 @@ sizes on a controller.
         | a4d83571-a555-4ba5-999f-af709206ae35 | backup  | 25          | backup-lv      |
         | d57652a1-af17-47b8-b941-9ebfeee4a56f | docker  | 31          | docker-lv      |
         | a84374c6-8917-4db5-bd34-2a8d244f2bf6 | kubelet | 11          | kubelet-lv     |
+        | 3fe89994-a5b9-4612-8321-443fc9d2fba7 | log     | 8           | log-lv         |
         | 2c026d6f-5c03-4135-abca-c0047aa7f5a6 | scratch | 8           | scratch-lv     |
+        | 0215defd-ded2-46df-9338-1d39e7648028 | root    | 20          | root-lv        |
+        | c987d5d7-729e-400c-8d51-ff464b2b9675 | var     | 20          | var-lv         |
         +--------------------------------------+---------+-------------+----------------+
