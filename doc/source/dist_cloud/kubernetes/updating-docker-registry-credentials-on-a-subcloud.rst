@@ -112,4 +112,4 @@ the System Controller.
 
 .. note::
 
-    If the system is a duplex, each controller will need to be locked and unlocked.
+    If the system is a |AIO-DX|, each controller will need to be locked and unlocked.
