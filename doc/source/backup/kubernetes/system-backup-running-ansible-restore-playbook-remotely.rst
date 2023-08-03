@@ -101,6 +101,23 @@ In this method you can run Ansible Restore playbook and point to controller-0.
 
         ~(keystone_admin)]$ ansible-playbook /localdisk/designer/jenkins/tis-stx-dev/cgcs-root/stx/ansible-playbooks/playbookconfig/src/playbooks/restore_platform.yml --limit |prefix|\_Cluster -i $HOME/br_test/hosts -e "ansible_become_pass=St0rlingX* admin_password=St0rlingX* ansible_ssh_pass=St0rlingX* initial_backup_dir=$HOME/br_test backup_filename= |prefix|\_Cluster_system_backup_2019_08_08_15_25_36.tgz ansible_remote_tmp=/home/sysadmin/ansible-restore"
 
+    .. warning::
+
+        If ``ansible_remote_tmp`` is not set, ``/tmp`` will be used.  ``/tmp``
+        can only hold 1GB.
+
+    An example of what happens when ``ansible_remote_tmp`` is not used:
+
+    .. code-block:: none
+
+        TASK [backup-restore/transfer-file : Transfer backup tarball to /scratch on controller-0] ***
+        Wednesday 21 June 2023  13:59:28 +0000 (0:00:00.230)       0:00:51.283 ********
+        fatal: [subcloud1]: FAILED! =>
+         msg: |-
+          failed to transfer file to /opt/platform-backup/subcloud1_platform_backup_2023_06_09_23_14_14.tgz /tmp/.ansible-sysadmin/tmp/ansible-tmp-1687355968.13-696694507261/source:
+
+          scp: /tmp/.ansible-sysadmin/tmp/ansible-tmp-1687355968.13-696694507261/source: No space left on device
+
     .. note::
         If the backup contains patches, Ansible Restore playbook will apply
         the patches and prompt you to reboot the system. Then you will need to
