@@ -23,6 +23,15 @@ Errors can occur due to one of the following:
 
 -   A network error that results in the subcloud being temporarily unreachable
 
+To get detailed information about errors during installation or data migration,
+run the :command:`dcmanager subcloud errors <subcloud_name/subcloud_id>` command.
+
+If you are using web interface, you can get the error details within the
+corresponding strategy step or access the comprehensive information related to
+the affected subcloud. To do so, navigate to the subcloud view and click **Distributed
+Cloud Admin > Cloud Overview**. In the given list of subclouds, expand a
+specific subcloud. If there is any error message, you can see it at the end of
+the particular subcloud information.
 
 **Failure Caused by Install Values**
 
@@ -83,6 +92,16 @@ and finalized. If failure occurs:
 .. rubric:: |proc|
 
 .. _failure-during-the-installation-or-data-migration-of-n+1-load-on-a-subcloud-ul-ogc-cp5-qmb:
+
+-   Get detailed information about errors during activation step by running the
+    :command:`dcmanager subcloud errors <subcloud_name/subcloud_id>` command.
+
+-   If you are using web interface, you can get the error details within the
+    corresponding strategy step or access the comprehensive information related to
+    the affected subcloud. To do so, navigate to the subcloud view and click **Distributed
+    Cloud Admin > Cloud Overview**. In the given list of subclouds, expand a
+    specific subcloud. If there is any error message, you can see it at the end of
+    the particular subcloud information.
 
 -   Check specified log files
 
