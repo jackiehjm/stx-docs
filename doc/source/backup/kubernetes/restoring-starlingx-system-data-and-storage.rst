@@ -24,15 +24,14 @@ optional data if not defined.-
 See :ref:`Back Up System Data <backing-up-starlingx-system-data>` for more
 details on the backup.
 
-
 .. warning::
 
     The system backup file can only be used to restore the system from which
     the backup was made. You cannot use this backup file to restore the system
     to different hardware.
-
-    To restore the backup, use the same version of the boot image \(ISO\) that
-    was used at the time of the original installation.
+    
+    To restore the backup, use the same version of the boot image (ISO) and
+    patches that were installed at the time of the backup.
 
 The |prod| restore supports the following optional modes:
 
@@ -54,12 +53,12 @@ The |prod| restore supports the following optional modes:
 
         wipe_ceph_osds=true
 
-
 Restoring a |prod| cluster from a backup file is done by re-installing the
-ISO on controller-0, running the Ansible Restore Playbook, applying updates
-\(patches\), unlocking controller-0, and then powering on, and unlocking the
+ISO on controller-0, applying updates (patches), running the Ansible Restore
+Playbook, unlocking controller-0, and then powering on, and unlocking the
 remaining hosts, one host at a time, starting with the controllers, and then
-the storage hosts, ONLY if required, and lastly the compute \(worker\) hosts.
+the storage hosts, ONLY if required, and lastly the compute (worker) hosts.
+Lastly, running :command:`system restore-complete` command.
 
 .. rubric:: |prereq|
 
@@ -102,6 +101,12 @@ conditions are in place:
 
     where ``<subcloud-name>`` is the name of the subcloud to be unmanaged.
 
+    For more information, see:
+
+    -  `Backup a Subcloud/Group of Subclouds using DCManager CLI <backup-a-subcloud-group-of-subclouds-using-dcmanager-cli-f12020a8fc42>`
+
+    -  `Restore a Subcloud/Group of Subclouds from Backup Data Using DCManager CLI <restore-a-subcloud-group-of-subclouds-from-backup-data-using-dcmanager-cli-f10c1b63a95e>`
+
 .. rubric:: |proc|
 
 #.  Power down all hosts.
@@ -125,6 +130,20 @@ conditions are in place:
 
 #.  Install network connectivity required for the subcloud.
 
+#.  Any patches that were present at the time of the backup will need to be
+    manually applied. This may include doing a reboot if required.
+    See :ref:`Install Kubernetes Platform on All-in-one Simplex <aio_simplex_install_kubernetes_r7>`;
+    ``Install Software on Controller-0`` for steps on how to install patches
+    using the :command:`sw-patch install-local` command.
+    
+    After the reboot, you can verify that the updates were applied.
+    
+    .. only:: partner
+        
+       .. include:: /_includes/restore-platform-system-data-and-storage-b92b8bdaf16d.rest
+           :start-after: sw-patch-query-begin
+           :end-before: sw-patch-query-end
+
 #.  Ensure that the backup files are available on the controller. Run both
     Ansible Restore playbooks, restore_platform.yml and restore_user_images.yml.
     For more information on restoring the back up file, see :ref:`Run Restore
@@ -140,36 +159,12 @@ conditions are in place:
         The restore operation will pull images from the Upstream registry, they
         are not part of the backup.
 
-#.  If the backup file contains patches, Ansible Restore playbook
-    restore_platform.yml will apply the patches and prompt you to reboot the
-    system, you will need to re-run Ansible Restore playbook.
-
-    The current software version on the controller is compared against the
-    version available in the backup file. If the backed-up version includes
-    updates, the restore process automatically applies the updates and
-    forces an additional reboot of the controller to make them effective.
-
-    After the reboot, you can verify that the updates were applied, as
-    illustrated in the following example:
-
-    .. code-block:: none
-
-        $ sudo sw-patch query
-                Patch ID          RR          Release  Patch State
-        ========================  ==========  =======  ===========
-        COMPUTECONFIG             Available    nn.nn      n/a
-        LIBCUNIT_CONTROLLER_ONLY   Applied     nn.nn      n/a
-        STORAGECONFIG              Applied     nn.nn      n/a
-
-    Rerun the Ansible Playbook if there were patches applied and you were
-    prompted to reboot the system.
-
-    .. note::
-
-        After restore is completed it is not possible to restart (or rerun) the
-        restore playbook.
 
 #.  Restore the local registry using the file restore_user_images.yml.
+
+    .. note::
+        
+        This step applies only if it was created during the backup operation.
 
     This must be done before unlocking controller-0.
 

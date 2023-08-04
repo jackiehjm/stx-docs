@@ -30,6 +30,21 @@ the optional parameter:
     in order to ensure there is sufficient free space in the required
     directories in any event.
 
+.. note::
+
+    To exclude multiple files and directories, separate them with a comma.
+
+    Excluding patch data can save a significant amount of storage space,
+    transfer time, and compress/decompress computation.
+
+To exclude patch data from being included in the backup, you can use the parameter:
+``-e exclude_dirs=/opt/patching/**/*``.
+
+.. warning::
+    
+    Patch data should only be excluded for |AIO-SX| deployments when optimized
+    Restore is used.
+
 The <admin_password> and <ansible_become_pass> need to be set  correctly
 using the ``-e`` option on the command line, with an override file secured with
 ansible-vault (recommended).
