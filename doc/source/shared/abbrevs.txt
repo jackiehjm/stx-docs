@@ -89,6 +89,7 @@
 .. |NA| replace:: :abbr:`NA (Not Applicable)`
 .. |NAT| replace:: :abbr:`NAT (Network Address Translation)`
 .. |NF| replace:: :abbr:`NF (Network Function)`
+.. |NFD| replace:: :abbr:`NFD (Node Feature Discovery)`
 .. |NFs| replace:: :abbr:`NFs (Network Functions)`
 .. |NFS| replace:: :abbr:`NFS (Network File System)`
 .. |NIC| replace:: :abbr:`NIC (Network Interface Card)`
