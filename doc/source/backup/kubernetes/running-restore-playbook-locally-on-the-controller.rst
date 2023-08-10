@@ -130,19 +130,3 @@ Other ``-e`` command line options:
 
     After restore is completed it is not possible to restart (or rerun) the
     restore playbook.
-
-.. rubric:: |postreq|
-
-After running restore_platform.yml playbook, you can restore the local
-registry images.
-
-.. note::
-
-    The backup file of the local registry images may be large. Restore the
-    backed up file on the controller, where there is sufficient space.
-
-For example:
-
-.. code-block:: none
-
-    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_user_images.yml -e "initial_backup_dir=/home/sysadmin backup_filename=localhost_docker_local_registry_backup_2020_07_15_21_24_22.tgz ansible_become_pass=St8rlingX*"

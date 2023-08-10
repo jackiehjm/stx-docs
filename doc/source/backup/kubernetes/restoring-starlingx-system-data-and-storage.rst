@@ -29,7 +29,7 @@ details on the backup.
     The system backup file can only be used to restore the system from which
     the backup was made. You cannot use this backup file to restore the system
     to different hardware.
-    
+
     To restore the backup, use the same version of the boot image (ISO) and
     patches that were installed at the time of the backup.
 
@@ -135,11 +135,11 @@ conditions are in place:
     See :ref:`Install Kubernetes Platform on All-in-one Simplex <aio_simplex_install_kubernetes_r7>`;
     ``Install Software on Controller-0`` for steps on how to install patches
     using the :command:`sw-patch install-local` command.
-    
+
     After the reboot, you can verify that the updates were applied.
-    
+
     .. only:: partner
-        
+
        .. include:: /_includes/restore-platform-system-data-and-storage-b92b8bdaf16d.rest
            :start-after: sw-patch-query-begin
            :end-before: sw-patch-query-end
@@ -163,7 +163,7 @@ conditions are in place:
 #.  Restore the local registry using the file restore_user_images.yml.
 
     .. note::
-        
+
         This step applies only if it was created during the backup operation.
 
     This must be done before unlocking controller-0.
@@ -176,12 +176,6 @@ conditions are in place:
 
     After you unlock controller-0, storage nodes become available and Ceph
     becomes operational.
-
-#.  For an |AIO-SX| system, run the following command:
-
-    .. code-block:: none
-
-        $ system service-parameter-apply kubernetes
 
 #.  If the system is a Distributed Cloud system controller, restore the **dc-vault**
     using the restore_dc_vault.yml playbook. Perform this step after unlocking
