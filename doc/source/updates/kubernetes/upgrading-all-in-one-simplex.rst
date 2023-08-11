@@ -14,6 +14,10 @@ software.
 
 .. _upgrading-all-in-one-simplex-ul-ezb-b11-cx:
 
+-   Validate the list of new images with the target release. If you are using a
+    private registry for installs/upgrades, you must populate your private
+    registry with the new images prior to bootstrap and/or patch application.
+
 -   Perform a full backup to allow recovery.
 
     .. note::
