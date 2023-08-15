@@ -38,7 +38,6 @@ OpenStack service.
     | libvirt                   | [u'openstack']                 |
     | mariadb                   | [u'openstack']                 |
     | memcached                 | [u'openstack']                 |
-    | networking-avs            | [u'openstack']                 |
     | neutron                   | [u'openstack']                 |
     | nginx-ports-control       | []                             |
     | nova                      | [u'openstack']                 |
