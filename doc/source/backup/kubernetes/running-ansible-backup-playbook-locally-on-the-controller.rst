@@ -13,14 +13,15 @@ In this method the Ansible Backup playbook is run on the active controller.
 Use one of the following commands to run the Ansible Backup playbook and back
 up the |prod| configuration, data, and user container images in registry.local:
 
-.. code-block:: none
+-
+    .. code-block:: none
 
-    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml -e "ansible_become_pass=<sysadmin password> admin_password=<sysadmin password>" -e "backup_registry_filesystem=true"
+        ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml -e "ansible_become_pass=<sysadmin password> admin_password=<sysadmin password>" -e "backup_registry_filesystem=true"
 
+-
+    .. code-block:: none
 
-.. code-block:: none
-
-    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml --ask-vault-pass -e "override_files_dir=$HOME/override_dir"
+        ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml --ask-vault-pass -e "override_files_dir=$HOME/override_dir"
 
 
 To exclude a directory and all the files in it like ``/var/home*`` you can use
