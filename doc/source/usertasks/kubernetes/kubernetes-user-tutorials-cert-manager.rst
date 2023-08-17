@@ -158,3 +158,51 @@ service externally.  There are typically two options:
     <internal-ca-and-nodeport-example-2afa2a84603a>` section for an example of
     how to configure an application to use NodePort to expose its self-managed
     |TLS|-based service and to use an Internal |CA| for signing CERTIFICATEs.
+
+---------------------------------------------------------------------------
+Limitations for using IPv6 addresses related to management and OAM networks
+---------------------------------------------------------------------------
+
+Cert-manager accepts only short-hand IPv6 addresses. 
+
+**Workaround**: You must use the following rules when defining IPv6 addresses
+to be used by Cert-manager. 
+
+-  all letters must be in lower case
+
+-  each group of hexadecimal values must not have any leading 0s
+   (use :12: instead of :0012:)
+
+-  the longest sequence of consecutive all-zero fields must be short-handed
+   with ``::``
+    
+-  ``::`` must not be used to short-hand an IPv6 address with 7 groups of hexadecimal
+    values, use :0: instead of ``::``
+
+.. note::
+
+    Use the rules above to set the IPv6 address related to the management
+    and |OAM| network in the Ansible bootstrap overrides file, ``localhost.yml``.
+    
+.. code-block:: none
+
+    apiVersion: cert-manager.io/v1alpha2
+    kind: Certificate
+    metadata:
+    name: oidc-auth-apps-certificate
+    namespace: pvtest
+    spec:
+    duration: 1h
+    renewBefore: 55m
+    secretName: oidc-auth-apps-certificate
+    dnsNames:
+    - ahost.com
+    ipAddresses:
+    - 2620:10a:a001:a103::11
+    organization:
+    - WRCP-System
+    issuerRef:
+        name: cloudplatform-interca-issuer
+        kind: Issuer
+    controller-0:~$
+
