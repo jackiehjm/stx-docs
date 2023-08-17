@@ -113,5 +113,20 @@ show-certs.sh`, see :ref:`utility-script-to-display-certificates`.
 expired certificates and certificates that will expire soon, see
 :ref:`alarm-expiring-soon-and-expired-certificates-baf5b8f73009`. 
 
-The following sections also provide details on creating and/or renewing the
-|prod| platform certificates.
+The following sections provide details on managing these certificates.
+
+-   :ref:`StarlingX REST API Applications and the Web Administration Server Certificate <starlingx-rest-api-applications-and-the-web-administration-server>`
+
+-   :ref:`Kubernetes Certificates <kubernetes-certificates-f4196d7cae9c>`
+
+-   :ref:`Local Registry Server Certificates <security-install-update-the-docker-registry-certificate>`
+
+-   :ref:`System Trusted CA Certificates <add-a-trusted-ca>`
+
+For further information about certificates expiration date or other certificates
+information, see :ref:`Display Certificates Installed on a System <utility-script-to-display-certificates>`.
+
+In addition, |prod| monitors the installed certificates on the system by raising
+alarms for expire-soon certificates and for expired certificates on the system,
+see :ref:`Expiring-Soon and Expired Certificate Alarms
+<alarm-expiring-soon-and-expired-certificates-baf5b8f73009>`.
