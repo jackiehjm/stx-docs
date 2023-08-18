@@ -26,12 +26,12 @@ Errors can occur due to one of the following:
 To get detailed information about errors during installation or data migration,
 run the :command:`dcmanager subcloud errors <subcloud_name/subcloud_id>` command.
 
-If you are using web interface, you can get the error details within the
+If you are using the web interface, you can get the error details within the
 corresponding strategy step or access the comprehensive information related to
-the affected subcloud. To do so, navigate to the subcloud view and click **Distributed
-Cloud Admin > Cloud Overview**. In the given list of subclouds, expand a
-specific subcloud. If there is any error message, you can see it at the end of
-the particular subcloud information.
+the affected subcloud. To do so, navigate to the subcloud view and click
+**Distributed Cloud Admin > Cloud Overview**. In the given list of subclouds,
+expand a specific subcloud. You can see any error messages at the end of the
+details for each subcloud.
 
 **Failure Caused by Install Values**
 
@@ -96,12 +96,12 @@ and finalized. If failure occurs:
 -   Get detailed information about errors during activation step by running the
     :command:`dcmanager subcloud errors <subcloud_name/subcloud_id>` command.
 
--   If you are using web interface, you can get the error details within the
+-   If you are using the web interface, you can get the error details within the
     corresponding strategy step or access the comprehensive information related to
     the affected subcloud. To do so, navigate to the subcloud view and click **Distributed
     Cloud Admin > Cloud Overview**. In the given list of subclouds, expand a
-    specific subcloud. If there is any error message, you can see it at the end of
-    the particular subcloud information.
+    specific subcloud. You can see any error messages at the end of the
+    details for each subcloud.
 
 -   Check specified log files
 
