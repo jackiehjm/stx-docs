@@ -11,7 +11,7 @@ command is used for corrective content (bug fixes) -type updates to the
 running containerized openstack application.
 
 This means that the system application-update -n |prefix|-openstack is **not**
-used for upgrading between OpenStack releases (e.g. Train to Ussuri). The
+used for upgrading between OpenStack releases (e.g. Train to Antelope). The
 :command:`system application-update` assumes that there is no data schema
 changes or data migration required in order to update to the new openstack
 container image\(s).

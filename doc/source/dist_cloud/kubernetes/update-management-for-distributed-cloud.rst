@@ -34,21 +34,18 @@ updates. The workflow for patching is as follows:
 
 #.  Review the update status of the systems in the |prod-dc|.
 
-    See :ref:`Reviewing Update Status for Distributed Cloud Using Horizon
-    <reviewing-update-status-for-distributed-cloud-using-horizon>`.
+    See :ref:`reviewing-update-status-for-distributed-cloud-using-horizon`.
 
 #.  Upload and apply any required updates to the System Controller. This adds
     them to a Central Update Repository, making them available to the
     SystemController and all subclouds.
 
-    See :ref:`Uploading and Applying Updates to SystemController Using Horizon
-    <uploading-and-applying-updates-to-systemcontroller-using-horizon>`.
+    See :ref:`uploading-and-applying-updates-to-systemcontroller-using-horizon`.
 
 #.  Update the Central Cloud's RegionOne and all subclouds with the updates
     using update orchestration.
 
-    See :ref:`Update Orchestration of Central Cloud's RegionOne and Subclouds
-    <update-orchestration-of-central-clouds-regionone-and-subclouds>`.
+    See :ref:`update-orchestration-of-central-clouds-regionone-and-subclouds`.
 
     .. note::
         For |prod-dc|, manual updating of individual subclouds is not recommended.

@@ -2,30 +2,29 @@
 .. fql1558615252466
 .. _update-orchestration-of-central-clouds-regionone-and-subclouds-using-the-cli:
 
-=============================================================================
-Update Orchestration of Central Cloud's RegionOne and Subclouds Using the CLI
-=============================================================================
+===============================================
+Update Orchestration of Subclouds Using the CLI
+===============================================
 
 For |prod-dc| update orchestration, you can use the :command:`dcmanager`
 commands from the command line interface. These are similar to the
 :command:`sw-manager` commands used to define and execute update strategies on
-non-distributed systems.
+non-distributed systems, or on the SystemController RegionOne.
 
 .. contents:: |minitoc|
    :local:
    :depth: 1
 
-To use the Horizon Web interface instead, see :ref:`Update Orchestration of
-Central Cloud's RegionOne and Subclouds
-<update-orchestration-of-central-clouds-regionone-and-subclouds>`.
+To use the Horizon Web interface instead, see
+:ref:`update-orchestration-of-central-clouds-regionone-and-subclouds`.
 
 .. note::
 
     Before you can use |prod-dc| update orchestration, you must upload and
     apply one or more updates to the SystemController / central update
-    repository. For more information, see :ref:`Uploading and Applying Updates
-    to SystemController Using the CLI
-    <uploading-and-applying-updates-to-systemcontroller-using-the-cli>`.
+    repository, and then update the RegionOne. For more information, see
+    :ref:`uploading-and-applying-updates-to-systemcontroller-using-the-cli`.
+
 
 
 .. _update-orchestration-of-central-clouds-regionone-and-subclouds-using-the-cli-section-N10087-N10029-N10001:
@@ -35,7 +34,7 @@ Patch Strategy Settings
 -----------------------
 
 The update strategy for a |prod-dc| system controls how updates are applied to
-the Central Cloud's RegionOne and the subclouds. The following settings are
+the subclouds. The following settings are
 available:
 
 **subcloud apply type**
@@ -57,6 +56,10 @@ available:
     true (default) or false — determines whether update orchestration failure
     for a subcloud prevents application to subsequent subclouds.
 
+**upload only**
+    the patch strategy will only upload the necessary patches to the subclouds,
+    without executing the other steps (apply, install, reboot, etc.).
+
 
 .. _update-orchestration-of-central-clouds-regionone-and-subclouds-using-the-cli-ul-blq-nmx-fdb:
 
@@ -68,6 +71,7 @@ available:
         [--subcloud-apply-type <type>] \
         [–-max-parallel-subclouds <i>] \
         [–-stop-on-failure <level>] \
+        [--upload-only] \
         [--group group] \
         [<subcloud>]
 
@@ -92,9 +96,40 @@ available:
 
         You can optionally pass the name or ID of a subcloud group to the
         :command:`patch-strategy create` command. This results in a strategy
-        that is applied only to the System Controller and all subclouds in the
-        specified group. The subcloud group values are used for subcloud apply
-        type and max parallel subclouds parameters.
+        that is applied only to all subclouds in the specified group. The
+        subcloud group values are used for subcloud apply type and max parallel
+        subclouds parameters.
+
+    To only upload the necessary patches to the subclouds, without executing
+    the other steps (apply, install, reboot, etc.), use the
+    :command:`patch-strategy create --upload-only` command.
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ dcmanager patch-strategy create --upload-only
+        +------------------------+----------------------------+
+        | Field                  | Value                      |
+        +------------------------+----------------------------+
+        | strategy type          | patch                      |
+        | subcloud apply type    | None                       |
+        | max parallel subclouds | None                       |
+        | stop on failure        | False                      |
+        | upload only            | True                       |
+        | state                  | initial                    |
+        | created_at             | 2023-03-08T13:58:50.130629 |
+        | updated_at             | None                       |
+        +------------------------+----------------------------+
+
+    .. note::
+
+        This is useful to reduce the total time it takes to run the
+        orchestration during a system maintenance window by enabling the user
+        to upload the patches to the subclouds before the system maintenance
+        window.
+
+        If the ``--upload-only`` option is used, the ``updating patches`` state
+        skips directly to the ``complete`` state once the patches are uploaded
+        to the subclouds.
 
 -   To show the settings for the update strategy, use the
     :command:`patch-strategy show` command.
@@ -149,11 +184,10 @@ available:
             +------------------+-------+-------------+-----------------------------+----------------------------+----------------------------+
             | cloud            | stage | state       | details                     | started_at                 | finished_at                |
             +------------------+-------+-------------+-----------------------------+----------------------------+----------------------------+
-            | SystemController |     1 | complete    |                             | 2018-03-13 14:12:12.262001 | 2018-03-13 14:15:52.450908 |
-            | subcloud-1       |     2 | applying... | apply phase is 66% complete | 2018-03-13 14:16:02.457588 | None                       |
-            | subcloud-4       |     2 | applying... | apply phase is 83% complete | 2018-03-13 14:16:02.463213 | None                       |
-            | subcloud-5       |     2 | finishing   |                             | 2018-03-13 14:16:02.473669 | None                       |
-            | subcloud-6       |     2 | applying... | apply phase is 66% complete | 2018-03-13 14:16:02.483422 | None                       |
+            | subcloud-1       |     1 | applying... | apply phase is 66% complete | 2018-03-13 14:16:02.457588 | None                       |
+            | subcloud-4       |     1 | applying... | apply phase is 83% complete | 2018-03-13 14:16:02.463213 | None                       |
+            | subcloud-5       |     1 | finishing   |                             | 2018-03-13 14:16:02.473669 | None                       |
+            | subcloud-6       |     1 | applying... | apply phase is 66% complete | 2018-03-13 14:16:02.483422 | None                       |
             +------------------+-------+-------------+-----------------------------+----------------------------+----------------------------+
 
 -   To show the step currently being performed on a subcloud, use the
@@ -199,9 +233,9 @@ available:
 Configuration for Specific Subclouds
 ------------------------------------
 
-To determine how updates are applied to the nodes on each subcloud and on
-RegionOne, the update strategy refers to separate configuration settings. The
-following settings are applied by default:
+To determine how updates are applied to the nodes on each subcloud, the update
+strategy refers to separate configuration settings. The following settings are
+applied by default:
 
 
 .. _update-orchestration-of-central-clouds-regionone-and-subclouds-using-the-cli-ul-sgb-p34-gdb:
@@ -296,7 +330,7 @@ individual subclouds.
     **alarm restriction type**
         relaxed or strict — determines whether the orchestration is aborted for
         alarms that are not management-affecting. For more information, refer
-        to |updates-doc|: :ref:`Configure Update Orchestration <configuring-update-orchestration>`.
+        to |updates-doc|: :ref:`configuring-update-orchestration`.
 
     **default instance action**
         .. note::

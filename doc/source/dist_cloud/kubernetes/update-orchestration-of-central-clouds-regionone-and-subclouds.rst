@@ -2,22 +2,20 @@
 .. mmg1558615549438
 .. _update-orchestration-of-central-clouds-regionone-and-subclouds:
 
-===============================================================
-Update Orchestration of Central Cloud's RegionOne and Subclouds
-===============================================================
+=================================
+Update Orchestration of Subclouds
+=================================
 
-You can use update orchestration to automate software updates across the
-Central Cloud's RegionOne and all subclouds in the |prod-dc|.
+You can use update orchestration to automate software updates across all
+subclouds in the |prod-dc|.
 
 You can use the Horizon Web interface or the CLI. To use the CLI, see
-:ref:`Update Orchestration of Central Cloud's RegionOne and Subclouds Using the
-CLI
-<update-orchestration-of-central-clouds-regionone-and-subclouds-using-the-cli>`.
+:ref:`update-orchestration-of-central-clouds-regionone-and-subclouds-using-the-cli`.
 
 .. note::
 
     Patch orchestration is the recommended method for updating software on a
-    |prod-dc| system. Do not update RegionOne or individual subclouds manually.
+    |prod-dc| system. Do not update individual subclouds manually.
 
 To use update orchestration, complete the following workflow:
 
@@ -27,34 +25,34 @@ To use update orchestration, complete the following workflow:
 #.  Ensure that the required updates are uploaded and applied to the
     SystemController / central update repository.
 
-    For more information, see :ref:`Uploading and Applying Updates to
-    SystemController Using Horizon
-    <uploading-and-applying-updates-to-systemcontroller-using-horizon>`.
+    For more information, see
+    :ref:`uploading-and-applying-updates-to-systemcontroller-using-horizon`.
+
+#.  Update the RegionOne, for more information see
+    :ref:`uploading-and-applying-updates-to-systemcontroller-using-horizon-update-the-regionone`.
 
 #.  Create an update strategy for the |prod-dc| update orchestration.
 
-    See :ref:`Creating an Update Strategy for Distributed Cloud Update
-    Orchestration
-    <creating-an-update-strategy-for-distributed-cloud-update-orchestration>`.
+    See :ref:`creating-an-update-strategy-for-distributed-cloud-update-orchestration`.
 
 #.  Optionally, customize the configuration settings used by the update strategy.
 
-    The update strategy is applied to the Central Cloud's RegionOne and all
-    subclouds using default configuration settings. You can change these
-    settings, and you can create custom settings for individual subclouds. For
-    more information, see :ref:`Customizing the Update Configuration for
-    Distributed Cloud Update Orchestration
-    <customizing-the-update-configuration-for-distributed-cloud-update-orchestration>`.
+    The update strategy is applied to all subclouds using default configuration
+    settings. You can change these settings, and you can create custom settings
+    for individual subclouds. For more information, see
+    :ref:`customizing-the-update-configuration-for-distributed-cloud-update-orchestration`.
 
 #.  Apply the strategy for the |prod-dc| update orchestration.
 
-    See :ref:`Applying the Update Strategy for Distributed Cloud
-    <applying-the-update-strategy-for-distributed-cloud>`.
+    See :ref:`applying-the-update-strategy-for-distributed-cloud`.
 
     As each subcloud is updated, it moves through the following states:
 
     **initial**
         The update has not started.
+
+    **pre-check**
+        Subcloud alarm status is being checked for management-affecting alarms.
 
     **updating patches**
         Patches are being updated to synchronize with System Controller
@@ -67,9 +65,9 @@ To use update orchestration, complete the following workflow:
         The strategy is being applied in the subcloud.
 
     **finishing**
-        updates that are no longer required are being deleted
+        Updates that are no longer required are being deleted.
 
-        updates that require committing are being committed
+        Updates that require committing are being committed.
 
     **complete**
         Updating has been completed successfully.
@@ -79,13 +77,10 @@ To use update orchestration, complete the following workflow:
 
 .. seealso::
 
-    :ref:`Creating an Update Strategy for Distributed Cloud Update
-    Orchestration <creating-an-update-strategy-for-distributed-cloud-update-orchestration>`  
+    :ref:`creating-an-update-strategy-for-distributed-cloud-update-orchestration`
 
-    :ref:`Customizing the Update Configuration for Distributed Cloud Update
-    Orchestration <customizing-the-update-configuration-for-distributed-cloud-update-orchestration>`
-    
-    :ref:`Applying the Update Strategy for Distributed Cloud
-    <applying-the-update-strategy-for-distributed-cloud>`  
+    :ref:`customizing-the-update-configuration-for-distributed-cloud-update-orchestration`
+
+    :ref:`applying-the-update-strategy-for-distributed-cloud`
 
 

@@ -6,15 +6,14 @@
 Customize the Update Configuration for Distributed Cloud Update Orchestration
 =============================================================================
 
-You can adjust how the nodes in each system (Central Cloud's RegionOne and/or
-Subclouds) are updated.
+You can adjust how the nodes in each subcloud are updated.
 
 .. rubric:: |context|
 
 The update strategy for |prod-dc| Update Orchestration uses separate
 configuration settings to control how the nodes on a given system are updated.
-You can adjust the settings used by default for Central Cloud's RegionOne and
-all subclouds, and you can create custom settings for individual subclouds.
+You can adjust the settings used by default for all subclouds, and you can
+create custom settings for individual subclouds.
 
 You can change the configuration settings before or after creating a update
 strategy for |prod-dc| update orchestration. The settings are maintained
@@ -35,8 +34,8 @@ independently.
     Take one of the following actions:
 
 
-    -   To edit the settings applicable to RegionOne and all subclouds by
-        default, click **Edit Configuration** in the **all clouds default** row.
+    -   To edit the settings applicable to all subclouds by default, click
+        **Edit Configuration** in the **all clouds default** row.
 
         .. image:: figures/brk1525194697928.png
 
@@ -88,16 +87,14 @@ independently.
 
 .. rubric:: |postreq|
 
-For information about creating and applying a patch strategy, see :ref:`Update
-Management for Distributed Cloud <update-management-for-distributed-cloud>`.
+For information about creating and applying a patch strategy, see
+:ref:`update-management-for-distributed-cloud`.
 
 **Related information**
 
 .. seealso::
 
-    :ref:`Creating an Update Strategy for Distributed Cloud Update
-    Orchestration <creating-an-update-strategy-for-distributed-cloud-update-orchestration>`
+    :ref:`creating-an-update-strategy-for-distributed-cloud-update-orchestration`
 
-    :ref:`Applying the Update Strategy for Distributed Cloud
-    <applying-the-update-strategy-for-distributed-cloud>`
+    :ref:`applying-the-update-strategy-for-distributed-cloud`
 
