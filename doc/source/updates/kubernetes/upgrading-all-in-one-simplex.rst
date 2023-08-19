@@ -183,6 +183,7 @@ For more details, see :ref:`Contents of System Backup
         No alarms: [OK]
         All kubernetes nodes are ready: [OK]
         All kubernetes control plane pods are ready: [OK]
+        All PodSecurityPolicies are removed: [OK]
         Required patches are applied: [OK]
         License valid for upgrade: [OK]
         No instances running on controller-1: [OK]
