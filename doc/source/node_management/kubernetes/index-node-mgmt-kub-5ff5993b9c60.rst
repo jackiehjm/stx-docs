@@ -364,13 +364,14 @@ Host hardware management
 
 
 -----------------------------------------
-Run the node feature discovery helm chart
+Node Feature Discovery |prod| Application
 -----------------------------------------
 
 .. toctree::
    :maxdepth: 1
 
-   running-the-node-feature-discovery-helm-chart
+   install-node-feature-discovery-nfd-starlingx-application-70f6f940bb4a
+   uninstall-node-feature-discovery-nfd-starlingx-application-a582bfdadfb8
 
 -------------
 Provision BMC
