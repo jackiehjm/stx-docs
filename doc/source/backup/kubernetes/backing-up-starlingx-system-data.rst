@@ -2,12 +2,21 @@
 .. hgq1552923986183
 .. _backing-up-starlingx-system-data:
 
-===================
-Back Up System Data
-===================
+============================
+Back Up System Data Overview
+============================
 
-A system data backup of |prod-long| system captures core system information
-needed to restore a fully operational |prod-long| cluster.
+A system data backup of the |prod-long| system captures core system information
+needed to restore a fully operational |prod-long| cluster. See :ref:`Run
+Ansible Backup Playbook Locally on the Controller
+<running-ansible-backup-playbook-locally-on-the-controller>` or :ref:`Run
+Ansible Backup Playbook Remotely <running-ansible-backup-playbook-remotely>`
+for information on how to backup up a standalone system or a System Controller.
+
+In a |prod-dc| environment, see :ref:`Backup a Subcloud/Group of Subclouds
+using DCManager CLI
+<backup-a-subcloud-group-of-subclouds-using-dcmanager-cli-f12020a8fc42>` for
+how to remotely backup a subcloud from the System Controller.
 
 .. contents:: |minitoc|
    :local:
@@ -70,17 +79,14 @@ Consider the following for backup size:
 - Backup of user home directories can cause the backup archive to be very large
   and is limited to 2GB or less.
 
-- Total backup size should be below 100MB when using centralized backup and
-  restore operations.
+- Total backup size of the System Controller should be below 100MB when using
+  centralized backup and restore of subclouds.
 
 - Container images are large and will only be backed up locally to avoid large
-  image archives being transferred for each system. Container images that are
-  not present on the system may be pulled as part of platform and application
-  deployment, or restored separately to the local registry
+  image archives being transferred for each subcloud. Container images
+  that are not present on the system may be pulled as part of platform and
+  application deployment, or restored separately to the local registry
   (``registry.local``).
-
-- There can also be a significant size impact when patching is included in the
-  backup.
 
 
 System Backup Filesystem Usage
@@ -92,8 +98,8 @@ for both local and centralized backup.
 **Staging Storage**
 
 The host filesystem used to stage temporary files during backup operations. The
-filesystem may also be used to store final backup images if the filesystem is
-sufficiently sized to store the backup archives.
+filesystem may also be used to temporarily store final backup images prior to
+transfer, if the filesystem is sufficiently sized to store the backup archives.
 
 Host filesystem name: backup
 
@@ -109,7 +115,7 @@ For more information on how to modify the host filesystem sizes see
 The host filesystem used to store backup files in a protected partition which
 does not get wiped during system reinstallation. The protected local backup
 partition is typically used by |AIO-SX| systems where there is no redundant
-filesystem storage and is the default for local backups.
+filesystem storage and it is the default for local backups.
 
 .. note::
 
@@ -122,8 +128,8 @@ Default Size: 30GB
 
 **Centralized Storage**
 
-The Distributed Cloud (DC) Vault filesystem is used to store backup archives
-when using centralized backup and restore. The filesystem size must be
+The |prod-dc| Vault filesystem is used to store backup archives when using
+centralized backup and restore of subclouds. The filesystem size must be
 increased to accommodate subcloud backup archive storage. A separate backup
 archive is stored per subcloud and release, and therefore, must be sized to
 accommodate all backups.
@@ -134,9 +140,9 @@ Default size: 15GB
 
 .. note::
 
-    The filesystem is shared for |DC| subcloud deployment and management and
-    must be sized to store subcloud deployment files (subcloud configuration,
-    ISO images and subcloud staging files).
+    The filesystem is shared for |prod-dc| subcloud deployment and management
+    and must be sized to store subcloud deployment files (subcloud
+    configuration, ISO images and subcloud staging files).
 
 For more information on how to modify the controller filesystem sizes see
 :ref:`Storage on Controller Hosts
@@ -149,7 +155,7 @@ Distributed Cloud Centralized Backups
 A subcloud's system data and optionally container images (from
 ``registry.local``) can be backed up using DCManager CLI command line
 interface. The subcloud's system backup data can either be stored locally on
-the subcloud or on the System Controller.. The subcloud's container image
+the subcloud or on the System Controller. The subcloud's container image
 backup (from ``registry.local``) can only be stored locally on the subcloud to
 avoid overloading the central storage and the network with large amount of data
 transfer and redundant storage of images in a central location.
@@ -157,7 +163,7 @@ transfer and redundant storage of images in a central location.
 .. image:: figures/system-controller-backup-and-restore.png
     :width: 800
 
-For more information on the |CLI| operation of the centralized backup
+For more information on the CLI operation of the centralized backup
 capability see :ref:`Backup a Subcloud/Group of Subclouds using DCManager CLI
 <backup-a-subcloud-group-of-subclouds-using-dcmanager-cli-f12020a8fc42>`.
 
@@ -175,7 +181,7 @@ Execution Time for System Backups
 - Centralized backups may require additional time for network transfer for
   larger backups.
 
-- Subcloud backups may be initiated and monitored from the DCManager |CLI| or
+- Subcloud backups may be initiated and monitored from the DCManager CLI or
   API, including parallel backups.
 
 - A minor alarm (210.001) "System Backup in progress" is raised while backing
@@ -187,7 +193,10 @@ Execution Time for System Backups
 Recommended Backup and Retention Policies
 -----------------------------------------
 
-- All backups should be performed remotely and stored off the system.
+- Use of the centralized backup mechanism of the System Controllers to perform
+  and store the backups of subclouds. Standalone systems and System Controllers
+  backups can be performed locally or remotely, and the archive must be stored
+  off the system.
 
 - All backups are done during off-peak hours (i.e. maintenance window).
 
