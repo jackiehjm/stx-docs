@@ -173,34 +173,46 @@ procedure.
 
     .. code-block:: none
 
-        ansible_become_pass: xx43U~a96DN*m.?
-        trident_setup_dir: /tmp/trident
+        ansible_become_pass: <sysadmin_password>
+        trident_clean_folder: true
         netapp_k8s_storageclasses:
-            - metadata:
-                name: netapp-nas-backend
+          - metadata:
+              name: netapp-nas-backend
             provisioner: netapp.io/trident
             parameters:
-                backendType: "ontap-nas"
+              backendType: "ontap-nas"
+            mountOptions: ["rw", "hard", "intr", "bg", "vers=4", "proto=tcp", "timeo=600", "rsize=65536", "wsize=65536"]
 
         netapp_k8s_snapshotstorageclasses:
-            - metadata:
-                name: csi-snapclass
+          - metadata:
+              name: csi-snapclass
             driver: csi.trident.netapp.io
             deletionPolicy: Delete
 
         netapp_backends:
-            - version: 1
-            storageDriverName: "ontap-nas"
-            backendName: "nas-backend"
-            managementLIF: "10.0.0.1"
-            dataLIF: "10.0.0.2"
-            svm: "svm_nfs"
-            username: "admin"
-            password: "secret"
+          - metadata:
+              name: backend-tbc
+            spec:
+              version: 1
+              storageDriverName: "ontap-nas"
+              backendName: "nas-backend"
+              managementLIF: "10.0.0.1"
+              dataLIF: "10.0.0.2"
+              svm: "svm_nfs"
+              credentials:
+                name: backend-tbc-secret
+
+        tbc_secret:
+          - metadata:
+              name: backend-tbc-secret
+            type: Opaque
+            stringData:    
+              username: "admin"
+              password: "secret"
 
     This file is sectioned into ``netapp_k8s_storageclass``,
-    ``netapp_k8s_snapshotstorageclasses``, and ``netapp_backends``.
-    You can add multiple backends and/or storage classes.
+    ``netapp_k8s_snapshotstorageclasses``, ``netapp_backends``, and
+    ``tbc_secret``. You can add multiple backends and/or storage classes.
 
     .. note::
         To use IPv6 addressing, you must add the following to your
