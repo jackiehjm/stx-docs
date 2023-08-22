@@ -1,0 +1,2 @@
+Many security features are not specific to |prod-os|, and are documented in
+|prod-long| :ref:`Kubernetes Security <index-security-84d0d8aa401b-kubernetes>`.

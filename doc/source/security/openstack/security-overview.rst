@@ -8,8 +8,7 @@ Overview
 
 |prod-os| is a containerized application running on top of |prod-long|.
 
-Many security features are not specific to |prod-os|, and are documented in
-|prod-long| :ref:`Kubernetes Security <index-security-84d0d8aa401b-kubernetes>`.
+.. include:: /_includes/security-overview.rest
 
 This section covers security features that are specific to |prod-os|:
 
