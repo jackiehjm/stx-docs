@@ -14,9 +14,9 @@ release of |prod| software.
 .. note::
 
     Backup all yaml files that are updated using the Redfish Platform
-    Management service. For more information, see :ref:`Installing a Subcloud
-    Using Redfish Platform Management Service
-    <installing-a-subcloud-using-redfish-platform-management-service>`.
+    Management service. For more information, see
+    :ref:`installing-a-subcloud-using-redfish-platform-management-service`.
+    For information on back up and restore, see :ref:`backing-up-starlingx-system-data`.
 
 You can use the |CLI| to manage upgrades. The workflow for upgrades is as
 follows:
@@ -25,15 +25,12 @@ follows:
 .. _upgrade-management-overview-ol-uqv-p24-3mb:
 
 #.  To upgrade the |prod-dc| system, you must first upgrade the
-    System Controller. See :ref:`Upgrading the System Controller Using the CLI
-    <upgrading-the-systemcontroller-using-the-cli>`.
+    System Controller. See :ref:`upgrading-the-systemcontroller-using-the-cli`.
 
 #.  Use |prod-dc| Upgrade Orchestration to upgrade the subclouds. See
-    :ref:`Distributed Upgrade Orchestration Process Using the CLI <distributed-upgrade-orchestration-process-using-the-cli>`.
+    :ref:`distributed-upgrade-orchestration-process-using-the-cli`.
 
-#.  To handle errors during an orchestrated upgrade, see :ref:`Error
-    Handling During An Orchestrated Upgrade
-    <robust-error-handling-during-an-orchestrated-upgrade>`.
+#.  To handle errors during an orchestrated upgrade, see :ref:`robust-error-handling-during-an-orchestrated-upgrade`.
 
 .. rubric:: |prereq|
 
@@ -41,7 +38,8 @@ For all deployment configurations, end user container images in
 `registry.local` will be backed up during the upgrade process. This only
 includes images other than |prod| system and application images. These images
 are limited to 5 GB in total size. If the system contains more than 5 GB of
-these images, the upgrade start will fail.
+these images, the upgrade start will fail. For information on back up and restore,
+see :ref:`backing-up-starlingx-system-data`.
 
 The following prerequisites apply to a |prod-dc| upgrade management service.
 
