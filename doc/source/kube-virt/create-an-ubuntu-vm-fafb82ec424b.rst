@@ -43,7 +43,7 @@ The example uses:
    #. Create a new Data Network of type 'vlan' for SRIOV interfaces to be used
       by your KubeVirt |VMs|.
 
-      .. code-block:: 
+      .. code-block::
 
          ~(keystone_admin)$ system datanetwork-add kube-sriov vlan
 
@@ -54,12 +54,12 @@ The example uses:
       compute-1's enp24s0f0 ethernet interface
 
 
-      .. code-block:: 
+      .. code-block::
 
          ~(keystone_admin)$ system host-if-modify -n sriov0 -c pci-sriov -N 64 --vf-driver vfio compute-1 enp24s0f0
          ~(keystone_admin)$ system interface-datanetwork-assign compute-1 sriov0 kube-sriov
 
-    
+
    #. Create a ``NetworkAttachmentDefinition`` in Kubernetes to point to the new
       Data Network and specify a particular vlan-id to use within that Data
       Network.
@@ -75,10 +75,10 @@ The example uses:
       data network name, if any, converted to underscores).
 
       .. code-block:: yaml
- 
-         $ cat <<EOF > 186-subnet.yaml 
-         apiVersion: "k8s.cni.cncf.io/v1" 
-         kind: NetworkAttachmentDefinition 
+
+         $ cat <<EOF > 186-subnet.yaml
+         apiVersion: "k8s.cni.cncf.io/v1"
+         kind: NetworkAttachmentDefinition
          metadata:
            name: 186-subnet
            namespace: stx-lab
@@ -115,12 +115,12 @@ The example uses:
 
       .. code-block:: yaml
 
-         $ cat <<EOF > stx-lab-ubuntu-test-vm.yaml
+         $ cat <<EOF > stx-lab-ubuntu-test.yaml
          apiVersion: kubevirt.io/v1alpha3
          kind: VirtualMachine
          metadata:
            labels:
-           kubevirt.io/vm: stx-lab-ubuntu-test
+             kubevirt.io/vm: stx-lab-ubuntu-test
            name: stx-lab-ubuntu-test
            namespace: stx-lab
          spec:
@@ -138,7 +138,7 @@ The example uses:
                      name: myrootdisk
                    - disk:
                        bus: virtio
-                       name: cloudinitdisk
+                     name: cloudinitdisk
                    interfaces:
                    - masquerade: {}
                      name: default
@@ -148,7 +148,7 @@ The example uses:
                    type: ""
                  resources:
                    requests:
-                     cpu: 8 
+                     cpu: 8
                      memory: 16Gi
                networks:
                - name: default
@@ -162,12 +162,12 @@ The example uses:
                  dataVolume:
                    name: stx-lab-ubuntu-test-disk
                - cloudInitNoCloud:
-                 userData: |-
-                   #cloud-config
-                   user: jenkins
-                   password: myP@ssw0rd
-                   chpasswd: { expire: False }
-                   ssh_pwauth: True
+                   userData: |-
+                     #cloud-config
+                     user: jenkins
+                     password: myP@ssw0rd
+                     chpasswd: { expire: False }
+                     ssh_pwauth: True
                  name: cloudinitdisk
          EOF
 
@@ -175,17 +175,17 @@ The example uses:
 
       .. code-block::
 
-         $ kubectl apply -f stx-lab-ubuntu-test-vm.yaml
+         $ kubectl apply -f stx-lab-ubuntu-test.yaml
 
    #. Connect to console and configure |VM| and the |VM|'s interface on the
       10.10.186.0/24 network.
 
       .. code-block::
 
-         $ virtctl -n stx-lab console stx-lab-ubuntu-test-vm
+         $ virtctl -n stx-lab console stx-lab-ubuntu-test
          Successfully connected to stx-lab-ubuntu-test console. The escape sequence is ^]4
 
-         stx-lab-ubuntu-test login: jenkins 
+         stx-lab-ubuntu-test login: jenkins
          Password:
          Welcome to Ubuntu 22.04 LTS (GNU/Linux 5.15.0-39-generic x86_64)
 
@@ -194,9 +194,9 @@ The example uses:
          * Support:       https://ubuntu.com/advantage
 
           System information as of Thu Dec 8 16:55:12 UTC 2022
- 
+
           System information as of Thu   Dec     8 16:55:12 UTC 2022
-          
+
           System load:    0.2587890625        Processes:               178
           Usage of /:	  0.3% of 476.62GB    Users logged in:	       0
           Memory usage:   1%	              IPv4 address for enp1s0: 10.0.2.2
@@ -207,7 +207,7 @@ The example uses:
           ...
 
    #. Still in the |VM| console, list the interfaces.
-   
+
       Note that this |VM| has 2x interfaces.
 
       * enp1s0 is the default container |CNI| interface
@@ -260,15 +260,15 @@ The example uses:
       .. code-block:: bash
 
          $ sudo su -
-         
+
          $ cat <<EOF > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
          network: {config: disabled}
          EOF
-         
+
          # Update /etc/netplan/50-cloud-init.yaml as shown below.
 
          $ vi /etc/netplan/50-cloud-init.yaml
-         
+
          network:
             ethernets:
               # enp1s0:
@@ -306,7 +306,7 @@ The example uses:
          2: enp1s0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
             link/ether 52:54:00:41:84:a0 brd ff:ff:ff:ff:ff:ff
          3: enp6s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
-            link/ether 46:c5:53:3b:b3:b3 brd ff:ff:ff:ff:ff:ff 
+            link/ether 46:c5:53:3b:b3:b3 brd ff:ff:ff:ff:ff:ff
 
          jenkins@stx-lab-ubuntu-test:~$ ip addr
          1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
@@ -328,7 +328,7 @@ The example uses:
 
          jenkins@stx-lab-ubuntu-test:~$ ip route
          default via 10.10.186.1 dev enp6s0 proto static
-         10.10.186.0/24 dev enp6s0 proto kernel scope link src 10.10.186.97 
+         10.10.186.0/24 dev enp6s0 proto kernel scope link src 10.10.186.97
 
 #. Connect from a remote workstation.
 

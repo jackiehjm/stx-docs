@@ -15,7 +15,7 @@ Complete the following steps to install KubeVirt.
 
       .. code-block:: none
 
-          ~(keystone_admin)$ system application-upload /usr/local/share/applications/helm/kubevirt-app-1.0-1.tgz
+          ~(keystone_admin)$ system application-upload /usr/local/share/applications/helm/kubevirt-app-<version>.tgz
 
           ~(keystone_admin)$ system application-list
 
