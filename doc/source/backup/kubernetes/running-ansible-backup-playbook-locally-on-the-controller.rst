@@ -86,15 +86,15 @@ system configuration.
 
 .. _running-ansible-backup-playbook-locally-on-the-controller-ul-wj1-vxh-pmb:
 
--   inventory_hostname_platform_backup_timestamp.tgz
+-   ``inventory_hostname_platform_backup_timestamp.tgz``
 
--   inventory_hostname_wr-openstack_backup_timestamp.tgz
+-   ``inventory_hostname_wr-openstack_backup_timestamp.tgz``
 
--   inventory_hostname_user_images_backup_timestamp.tgz
+-   ``inventory_hostname_user_images_backup_timestamp.tgz``
 
--   inventory_hostname_dc_vault_backup_timestamp.tgz
+-   ``inventory_hostname_dc_vault_backup_timestamp.tgz``
 
--   inventory_hostname_image_registry_backup_timestamp.tgz
+-   ``inventory_hostname_image_registry_backup_timestamp.tgz``
 
 The output files' prefixes can be overridden with the following variables
 using the ``-e`` option on the command line or by using an override file.
@@ -111,20 +111,24 @@ using the ``-e`` option on the command line or by using an override file.
 
 -   openstack_app_name: "|prod-os|" (optional for |prod-os| application backup)
 
-The generated backup tar files will be displayed in the following format,
-for example:
+-   registry_filesystem_backup_filename_prefix
+
+The generated backup tar files will be displayed in the following format, when
+custom prefixes are not specified, for example:
 
 .. _running-ansible-backup-playbook-locally-on-the-controller-ul-p3b-f13-pmb:
 
--   localhost_docker_local_registry_backup_2020_07_15_21_24_22.tgz
+-   ``localhost_docker_local_registry_backup_2020_07_15_21_24_22.tgz``
 
--   localhost_platform_backup_2020_07_15_21_24_22.tgz
+-   ``localhost_platform_backup_2020_07_15_21_24_22.tgz``
 
--   localhost_openstack_backup_2020_07_15_21_24_22.tgz
+-   ``localhost_openstack_backup_2020_07_15_21_24_22.tgz``
 
--   localhost_dc_vault_backup_2020_07_15_21_24_22.tgz
+-   ``localhost_dc_vault_backup_2020_07_15_21_24_22.tgz``
 
-These files are located by default in the /opt/backups directory on
+-   ``localhost_image_registry_backup_2020_07_15_21_24_22.tgz``
+
+These files are located by default in the ``/opt/backups`` directory on
 controller-0, and contains the complete system backup.
 
 If the default location needs to be modified, the variable backup_dir can
