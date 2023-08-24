@@ -59,8 +59,6 @@ parameters/options:
             Excluding patch data can save a significant amount of storage space,
             transfer time, and compress/decompress the compute node.
 
-    -   ``wipe_ceph_osds=false``: To keep the Ceph cluster data intact.
-    -   ``wipe_ceph_osds=true``: To wipe the Ceph cluster entirely
 
     See :ref:`Run Ansible Backup Playbook Locally on the Controller
     <running-ansible-backup-playbook-locally-on-the-controller>` for the list
