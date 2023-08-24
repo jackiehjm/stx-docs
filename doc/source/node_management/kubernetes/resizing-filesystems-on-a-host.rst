@@ -27,7 +27,11 @@ The following combinations of filesystem and host types are supported.
     +-------------+----------------+------------------+----------------+--------------+
     | **log**     | All node types | /var/log         | log-lv         | 7.5 GiB      |
     +-------------+----------------+------------------+----------------+--------------+
+    | **root**    | All node types | /sysroot         | root-lv        | 20 GiB       |
+    +-------------+----------------+------------------+----------------+--------------+
     | **scratch** | All node types | /scratch         | scratch-lv     | variable     |
+    +-------------+----------------+------------------+----------------+--------------+
+    | **var**     | All node types | /var             | var-lv         | 20 GiB       |
     +-------------+----------------+------------------+----------------+--------------+
 
 The following example changes the **docker** and **kubelet** filesystem
