@@ -57,6 +57,12 @@ to controller-1 and perform the same steps.
        # SSH to controller-1 (or the standby controller)
        crictl rmi registry.local:9001/quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.23.0
 
+   .. note::
+
+        The :command:`registry-garbage-collect` command executes background
+        tasks that may affect access to the docker registry. It is recommended
+        to wait a few minutes before executing other registry related commands.
+
 #. To reapply the application run the following command:
 
    .. code-block:: none

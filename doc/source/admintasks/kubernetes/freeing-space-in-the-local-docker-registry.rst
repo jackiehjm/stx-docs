@@ -74,6 +74,12 @@ associated space from the file system. To do so, you must also run the
     **image:tags** from the file system and frees the file system spaces
     allocated to deleted/unreferenced images.
 
+    .. note::
+
+        The :command:`registry-garbage-collect` command executes background
+        tasks that may affect access to the docker registry. It is recommended
+        to wait a few minutes before executing other registry related commands.
+
     .. code-block:: none
 
         ~(keystone_admin)]$ system registry-garbage-collect
