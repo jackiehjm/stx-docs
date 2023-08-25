@@ -94,6 +94,12 @@ the local Docker registry's file system (`docker-distribution`) becomes full.
     read-only mode. If this occurs, run garbage-collect again to take the
     registry out of read-only mode.
 
+    .. note::
+
+        The :command:`registry-garbage-collect` command executes background
+        tasks that may affect access to the docker registry. It is recommended
+        to wait a few minutes before executing other registry related commands.
+
 ``registry-image-delete``
     Remove the specified Docker image from the local registry.
 
