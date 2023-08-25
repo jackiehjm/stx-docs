@@ -285,6 +285,13 @@ dcmanager CLI or the Horizon web interface. If you prefer to use Horizon, see
         | updated_at             | 2020-02-02T14:42:19.376688 |
         +------------------------+----------------------------+
 
+    .. warning::
+        Do not log in to the subcloud using the sysadmin account during an upgrade
+        procedure. During an upgrade, the subcloud password is reset to the default
+        value and is subsequently resynced, and any login attempt during the
+        upgrade will fail. Also, consecutive unsuccessful login attempts may lock
+        your account.
+
 #.  To show the step currently being performed on each of the subclouds, use
     the :command:`dcmanager strategy-step list` command.
 
@@ -327,7 +334,11 @@ dcmanager CLI or the Horizon web interface. If you prefer to use Horizon, see
         | updated_at             | 2020-03-23T20:05:14.157352 |
         +------------------------+----------------------------+
 
-
+    .. note::
+        Before attempting to log in to the subclouds using the sysadmin account,
+        verify that the subcloud ``platform_sync_status`` is synced. This would
+        ensure that the sysadmin password is successfully resynced to the subclouds
+        and that login attempts do not fail.
 
 .. rubric:: |postreq|
 
