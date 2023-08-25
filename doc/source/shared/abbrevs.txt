@@ -37,7 +37,7 @@
 .. |CVE| replace:: :abbr:`CVE (Common Vulnerabilities and Exposures)`
 .. |CVSS| replace:: :abbr:`CVSS (Common Vulnerability Scoring System)`
 .. |DAD| replace:: :abbr:`DAD (Duplicate Address Detection)`
-.. |DC| replace:: :abbr:`DC (Distributed Cloud)`
+.. |DC| replace:: |prod-dc|
 .. |DOR| replace:: :abbr:`DOR (Dead Office Recovery)`
 .. |DHCP| replace:: :abbr:`DHCP (Dynamic Host Configuration Protocol)`
 .. |DMA| replace:: :abbr:`DMA (Direct Memory Access)`
