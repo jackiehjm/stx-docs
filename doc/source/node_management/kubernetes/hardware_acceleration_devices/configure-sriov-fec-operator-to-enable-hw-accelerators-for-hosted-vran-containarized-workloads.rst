@@ -32,7 +32,7 @@ following |vRAN| |FEC| accelerators:
         $ source /etc/platform/openrc
         ~(keystone_admin)$
 
-#.  Upload and Apply the |SRIOV| |FEC| Operator.
+#.  Upload the |SRIOV| |FEC| Operator.
 
     .. code-block:: none
 
@@ -50,6 +50,16 @@ following |vRAN| |FEC| accelerators:
         | status        | uploading                           |
         | updated_at    | None                                |
         +---------------+-------------------------------------+
+
+#.  Configure a different resource name for |FEC| devices as desired.
+
+    -   To change the resource name for ACC100, use the following command:
+
+        .. code-block:: none
+
+            ~(keystone_admin)$ system helm-override-update sriov-fec-operator sriov-fec-operator sriov-fec-system --set env.SRIOV_FEC_ACC100_RESOURCE_NAME=intel_acc100_fec
+
+#.  Apply the |SRIOV| |FEC| Operator.
 
     .. code-block:: none
 
@@ -831,19 +841,22 @@ following |vRAN| |FEC| accelerators:
 -   The resource name for |FEC| |VFs| configured with |SRIOV| |FEC| operator
     must be ``intel.com/intel_fec_acc100`` for ACC100,
     ``intel.com/intel_fec_5g`` for N3000 and ``intel.com/intel_fec_acc200``
-    for ACC200 when requested in a pod spec.
+    for ACC200 when requested in a pod spec unless the resource name was
+    modified using the `system helm-override-update` command.
 
-    -   ACC100
+    -   If the ACC100 resource name was modified to ``intel_acc100_fec``, then
+        the resource requests and limits must match the same name as shown
+        below.
 
         .. code-block:: none
 
             resources:
               requests:
-                intel.com/intel_fec_acc100: '16'
+                intel.com/intel_acc100_fec: '16'
               limits:
-                intel.com/intel_fec_acc100: '16'
+                intel.com/intel_acc100_fec: '16'
 
-    -   N3000.
+    -   Use the default resource name for N3000 in a pod spec.
 
         .. code-block:: none
 
@@ -853,7 +866,7 @@ following |vRAN| |FEC| accelerators:
               limits:
                 intel.com/intel_fec_5g: '2'
 
-    -   ACC200.
+    -   Use the default resource name for ACC200 in a pod spec.
 
         .. code-block:: none
 
