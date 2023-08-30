@@ -102,3 +102,5 @@ Update the following fields:
 
 The REST and Web Server certificate installation is now complete, and
 Cert-Manager will handle the lifecycle management of the certificate.
+
+.. include:: /_includes/cert-mgmt-ipv6-address-limitation-1a4504370674.rest

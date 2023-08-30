@@ -158,3 +158,4 @@ service externally.  There are typically two options:
     <internal-ca-and-nodeport-example-2afa2a84603a>` section for an example of
     how to configure an application to use NodePort to expose its self-managed
     |TLS|-based service and to use an Internal |CA| for signing CERTIFICATEs.
+
