@@ -1,0 +1,40 @@
+
+Cert-manager accepts only short-hand IPv6 addresses. 
+
+**Workaround**: You must use the following rules when defining IPv6 addresses
+to be used by Cert-manager. 
+
+-  all letters must be in lower case
+
+-  each group of hexadecimal values must not have any leading 0s
+   (use :12: instead of :0012:)
+
+-  the longest sequence of consecutive all-zero fields must be short-handed
+   with ``::``
+    
+-  ``::`` must not be used to short-hand an IPv6 address with 7 groups of hexadecimal
+    values, use :0: instead of ``::``
+
+.. note::
+
+    Use the rules above to set the IPv6 address related to the management
+    and |OAM| network in the Ansible bootstrap overrides file, localhost.yml.
+
+.. code-block:: none
+
+    apiVersion: cert-manager.io/v1
+    kind: Certificate
+    metadata:
+        name: oidc-auth-apps-certificate
+        namespace: test
+    spec:
+        secretName: oidc-auth-apps-certificate
+        dnsNames:
+        - ahost.com
+        ipAddresses:
+        - fe80:12:903a:1c1a:e802::11e4
+        issuerRef:
+            name: cloudplatform-interca-issuer
+            kind: Issuer
+
+

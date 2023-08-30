@@ -20,9 +20,7 @@ in the ``deployment`` namespace.  The ``secretName`` attribute of this
 certificate's spec must also be named ``system-restapi-gui-certificate``.
 
 See the example procedure below for creating the certificate for the StarlingX
-REST API and Web Server endpoints.  This example assumes you have configured a
-``system-local-ca`` ClusterIssuer as described in
-:ref:`starlingx-rest-api-applications-and-the-web-admin-server-cert-9196c5794834`.
+REST API and Web Server endpoints.
 
 Update the following fields:
 
@@ -41,13 +39,13 @@ Update the following fields:
 
    If you plan to use the container-based remote CLIs, due to a limitation in
    the Python2 SSL certificate validation, the certificate used for the
-   'system-restapi-gui-certificate' certificate must either have:
+   ``system-restapi-gui-certificate`` certificate must either have:
 
-   1. CN=IPADDRESS and SANs=IPADDRESS
+   -  CN=IPADDRESS and SANs=IPADDRESS
 
    or
 
-   1. CN=FQDN and SANs=FQDN
+   -  CN=FQDN and SANs=FQDN
 
    where IPADDRESS and FQDN are for the |OAM| Floating IP Address.
 
@@ -95,12 +93,19 @@ Update the following fields:
 
    .. code-block::
 
-       ~(keystone_admin)]$ kubectl get certificate system-restapi-gui-certificate –n deployment
+       ~(keystone_admin)]$ kubectl get certificate system-restapi-gui-certificate -n deployment
 
-   If configuration was successful, the certificate’s Ready status will be
+   If configuration was successful, the certificate's Ready status will be
    ``True``.
 
 .. rubric:: |result|
 
 The REST and Web Server certificate installation is now complete, and
 Cert-Manager will handle the lifecycle management of the certificate.
+
+---------------------------------------------------------------------------
+Limitations for using IPv6 addresses related to management and OAM networks
+---------------------------------------------------------------------------
+
+.. include:: /shared/_includes/cert-mgmt-ipv6-address-limitation-1a4504370674.rest
+
