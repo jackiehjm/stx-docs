@@ -118,7 +118,7 @@ HTTPS Certificate Management
    etcd-certificates-c1fc943e4a9c
    kubernetes-certificates-f4196d7cae9c
    starlingx-rest-api-applications-and-the-web-admin-server-cert-9196c5794834
-   configure-rest-api-applications-and-web-administration-server-certificates-after-installation-6816457ab95f
+   configure-rest-api-apps-and-web-admin-server-certs-after-inst-6816457ab95f
    configure-docker-registry-certificate-after-installation-c519edbfe90a
    oidc-client-dex-server-certificates-dc174462d51a
    migrate-platform-certificates-to-use-cert-manager-c0b1727e4e5d

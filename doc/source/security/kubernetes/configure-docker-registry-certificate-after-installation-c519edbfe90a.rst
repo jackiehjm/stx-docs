@@ -4,9 +4,6 @@
 Configure Docker Registry Certificate
 =====================================
 
-.. rubric:: |context|
-
-
 The local Docker registry provides secure HTTPS access using the registry API.
 
 .. rubric:: |context|
@@ -104,4 +101,8 @@ Update the following fields:
 The Docker registry certificate installation is now complete, and Cert-Manager
 will handle the lifecycle management of the certificate.
 
-.. include:: /_includes/cert-mgmt-ipv6-address-limitation-1a4504370674.rest
+---------------------------------------------------------------------------
+Limitations for using IPv6 addresses related to management and OAM networks
+---------------------------------------------------------------------------
+
+.. include:: /shared/_includes/cert-mgmt-ipv6-address-limitation-1a4504370674.rest

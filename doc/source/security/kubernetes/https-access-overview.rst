@@ -113,7 +113,7 @@ show-certs.sh`, see :ref:`utility-script-to-display-certificates`.
 expired certificates and certificates that will expire soon, see
 :ref:`alarm-expiring-soon-and-expired-certificates-baf5b8f73009`. 
 
-The following sections provide details on managing these certificates.
+The following sections provide details on managing these certificates:
 
 -   :ref:`StarlingX REST API Applications and the Web Administration Server Certificate <starlingx-rest-api-applications-and-the-web-administration-server>`
 
@@ -130,3 +130,4 @@ In addition, |prod| monitors the installed certificates on the system by raising
 alarms for expire-soon certificates and for expired certificates on the system,
 see :ref:`Expiring-Soon and Expired Certificate Alarms
 <alarm-expiring-soon-and-expired-certificates-baf5b8f73009>`.
+
