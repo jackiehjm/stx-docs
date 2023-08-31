@@ -70,7 +70,7 @@ End user container images in ``registry.local`` will be backed up during the
 upgrade process. This only includes images other than |prod| system and
 application images. These images are limited to 5 GB in total size. If the
 system contains more than 5 GB of these images, the upgrade start will fail.
-For more details, see :ref:`Detailed contents of a system backup
+For more details, see :ref:`Contents of System Backup
 <backing-up-starlingx-system-data-ul-s3t-bz4-kjb>`.
 
 .. rubric:: |proc|
