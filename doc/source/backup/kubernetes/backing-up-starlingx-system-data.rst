@@ -118,8 +118,7 @@ purposes.
 
 .. important::
 
-    For |prod| |prod-ver|, the following backup and retention policies are
-    recommended:
+    The following backup and retention policies are recommended:
 
     -   All backups are done remotely and stored off the system.
 
