@@ -5,7 +5,11 @@ if ! hash uuidgen 2>/dev/null; then
   exit 1
 fi
 
+declare INCLUDEDIR="$2/doc/source/_includes"
 declare -A charReplacements
+# max basename lenght *before* appending UUID
+declare MAX_LEN=62
+
 
 charReplacements=(
    ["-"]="minus"
@@ -115,6 +119,12 @@ for c in "${!charReplacements[@]}"
 do
   filename=`sed "s/$c/${charReplacements[$c]}/g" <<< $filename`
 done
+
+if [[ ${#filename} -gt ${MAX_LEN} ]]; then
+   filename=${filename:0:$MAX_LEN}
+   declare FULL_LEN=$(($MAX_LEN + 13))
+   echo -e "\nFilename and label shortend to $FULL_LEN chars"
+fi
 
 filename="${filename//[^[:alnum:]]/-}"
 filename=$(echo $filename | tr -s -)
