@@ -1,6 +1,3 @@
----------------------------------------------------------------------------
-Limitations for using IPv6 addresses related to management and OAM networks
----------------------------------------------------------------------------
 
 Cert-manager accepts only short-hand IPv6 addresses. 
 
