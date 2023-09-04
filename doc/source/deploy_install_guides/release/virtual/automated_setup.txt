@@ -67,7 +67,7 @@ Set up the host with the following steps:
 
    .. code-block:: none
 
-    wget https://mirror.starlingx.cengn.ca/mirror/starlingx/release/8.0.0/debian/monolithic/outputs/iso/starlingx-intel-x86-64-cd.iso -O $HOME/Downloads/stx-8.iso
+    wget https://mirror.starlingx.windriver.com/mirror/starlingx/release/8.0.0/debian/monolithic/outputs/iso/starlingx-intel-x86-64-cd.iso -O $HOME/Downloads/stx-8.iso
 
 #. Create a local copy of the config file templates.
 
