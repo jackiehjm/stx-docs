@@ -785,8 +785,7 @@ following |vRAN| |FEC| accelerators:
 #.  Configure |VFIO| for |PF| interface.
 
     |SRIOV| |FEC| operator also supports ``vfio-pci`` driver for |PF|
-    interface. The |VFIO| mode requires that the ``vfio-pci`` driver be loaded
-    with the arguments ``enable_sriov=1`` and ``disable_idle_d3=1``.
+    interface.
 
     If the ``vfio-pci`` driver is used to bind the |PF| interface, then a UUID
     token must be configured as a ``VFIO_TOKEN`` to both |PF| and |VF|

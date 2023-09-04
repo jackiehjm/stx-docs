@@ -141,7 +141,10 @@ enables the ACC100/ACC200 device.
 
         .. code-block:: none
 
-            ~(keystone_admin)$ system host-device-modify controller-0 pci_0000_f7_00_0 --driver vfio-pci --vf-driver vfio -N 16
+            ~(keystone_admin)$ system host-device-modify controller-0 pci_0000_f7_00_0 --driver igb_uio --vf-driver vfio
+
+    .. note::
+        The system does not support ``vfio-pci`` driver for |PF| interface.
 
 #.  Unlock the host.
 
