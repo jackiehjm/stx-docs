@@ -624,6 +624,29 @@ documents:
 * `Sphinx documentation <http://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
 * `reStructuredText primer <http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_
 
+--------------------------
+Command prompt conventions
+--------------------------
+
+Command examples in |prod| are preceeded by a shell prompt. These prompts
+provide readers with important hints about the context in which the command is
+to be used. It is important that the following prompts be used consistently
+throughout the |prod| documentation.
+
+``$`` (dollar sign)
+  Used to indicate that a command should be run in a Linux terminal as a
+  regular user.
+
+``#`` (pound or hash sign)
+  Used to indicate that a command should be run in a Linux terminal as a
+  root user.
+
+``~(keystone_admin)]$``
+  Used to indicate that the command must be run within the sourced environment
+  of a system controller, i.e. after running 
+  
+  ``$ source /etc/platform/openrc``
+
 -------------
 Content reuse
 -------------
