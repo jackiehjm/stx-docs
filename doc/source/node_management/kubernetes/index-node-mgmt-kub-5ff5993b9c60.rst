@@ -372,6 +372,16 @@ Node Feature Discovery |prod| Application
    install-node-feature-discovery-nfd-starlingx-application-70f6f940bb4a
    uninstall-node-feature-discovery-nfd-starlingx-application-a582bfdadfb8
 
+--------------------------
+Configurable Power Manager
+--------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+   configurable-power-manager-04c24b536696
+
+
 -------------
 Provision BMC
 -------------
