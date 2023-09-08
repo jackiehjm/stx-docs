@@ -65,9 +65,9 @@ created:
     .. code-block:: none
 
         ~(keystone_admin)]$ kubectl get sc
-        NAME               PROVISIONER     RECLAIMPOLICY VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION
-        cephfs             ceph.com/cephfs Delete        Immediate           false
-        general (default)  ceph.com/rbd    Delete        Immediate           false
+        NAME               PROVISIONER         RECLAIMPOLICY VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION
+        cephfs             cephfs.csi.ceph.com Delete        Immediate           true
+        general (default)  rbd.csi.ceph.com    Delete        Immediate           true
 
 
 
