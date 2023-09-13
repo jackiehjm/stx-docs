@@ -36,7 +36,8 @@ author = 'StarlingX'
 # ones.
 extensions = [
 #    'openstackdocstheme',
-     'starlingxdocs_plus'
+     'starlingxdocs_plus',
+     'sphinx_tabs.tabs'
 ]
 
 if tags.has('use_spellext'):
