@@ -258,6 +258,12 @@ described below to upgrade the remaining nodes of the |prod|.
     configuration is applied. The upgrade state goes from **activating** to
     **activation-complete** once this is done.
 
+    .. only:: partner
+
+        .. include:: /_includes/performing-an-orchestrated-upgrade-using-the-cli.rest
+           :start-after: deploymentmanager-begin
+           :end-before: deploymentmanager-end
+
     .. code-block:: none
 
         ~(keystone_admin)]$ system upgrade-activate

@@ -484,6 +484,12 @@ of |prod| software.
     configuration is applied. The upgrade state goes from ``activating`` to
     ``activation-complete`` once this is done.
 
+    .. only:: partner
+
+        .. include:: /_includes/upgrading-all-in-one-duplex-or-standard.rest
+           :start-after: deploymentmanager-begin
+           :end-before: deploymentmanager-end
+
     The following states apply when this command is executed.
 
     ``activation-requested``

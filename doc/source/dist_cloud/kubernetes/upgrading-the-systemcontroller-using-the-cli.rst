@@ -466,6 +466,12 @@ Follow the steps below to manually upgrade the system controller:
     configuration is applied. The upgrade state goes from **activating** to
     **activation-complete** once this is done.
 
+    .. only:: partner
+
+        .. include:: /_includes/upgrading-the-systemcontroller-using-the-cli.rest
+           :start-after: deploymentmanager-begin
+           :end-before: deploymentmanager-end
+
     The following states apply when this command is executed.
 
     **activation-requested**

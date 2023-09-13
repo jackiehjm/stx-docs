@@ -2,3 +2,6 @@
 
 .. upgradeAIO-begin
 .. upgradeAIO-end
+
+.. deploymentmanager-begin
+.. deploymentmanager-end
