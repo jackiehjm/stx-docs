@@ -155,7 +155,7 @@ Build Docker images for OpenStack
        export MY_WORKSPACE=/home/wrsroot/starlingx/workspace/localdisk/loadbuild/wrsroot/starlingx/
        export BRANCH=master
        export CENTOS_BASE=starlingx/stx-centos:${BRANCH}-${BUILD_STREAM}-latest
-       export WHEELS=http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels/stx-centos-stable-wheels.tar
+       export WHEELS=https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels/stx-centos-stable-wheels.tar
        time $MY_REPO/build-tools/build-docker-images/build-stx-images.sh \
        --os centos \
        --stream ${BUILD_STREAM} \

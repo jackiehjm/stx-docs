@@ -11,8 +11,8 @@ ISO image
 ---------
 
 The pre-built ISO and Docker images for StarlingX release 5.0 are located at
-the `CENGN StarlingX mirror
-<http://mirror.starlingx.cengn.ca/mirror/starlingx/release/5.0.0/centos/flock/outputs/>`_.
+the `StarlingX mirror
+<https://mirror.starlingx.windriver.com/mirror/starlingx/release/5.0.0/centos/flock/outputs/>`_.
 
 ------
 Branch

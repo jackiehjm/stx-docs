@@ -22,8 +22,8 @@ Key features of StarlingX include:
 * Optimized by the community for security, ultra-low latency, extremely high
   service uptime, and streamlined operation.
 
-Download the StarlingX ISO image from the
-`CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_.
+Download the StarlingX ISO image from the `StarlingX mirror
+<https://mirror.starlingx.windriver.com/mirror/starlingx/>`_.
 
 Learn more about StarlingX:
 
