@@ -27,6 +27,10 @@
 .. |CNI| replace:: :abbr:`CNI (Container Networking Interface)`
 .. |CNIs| replace:: :abbr:`CNIs (Container Networking Interfaces)`
 .. |CoW| replace:: :abbr:`CoW (Copy on Write)`
+.. |CRD| replace:: :abbr:`CRD (Custom Resource Definition)`
+.. |CRDs| replace:: :abbr:`CRDs (Custom Resource Definitions)`
+.. |CSI| replace:: :abbr:`CSI (Container Storage Interface)`
+.. |CSIs| replace:: :abbr:`CSI (Container Storage Interfaces)`
 .. |CSK| replace:: :abbr:`CSK (Code Signing Key)`
 .. |CSKs| replace:: :abbr:`CSKs (Code Signing Keys)`
 .. |CVE| replace:: :abbr:`CVE (Common Vulnerabilities and Exposures)`
