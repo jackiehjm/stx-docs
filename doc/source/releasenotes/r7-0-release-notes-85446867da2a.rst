@@ -15,11 +15,11 @@ ISO image
 ---------
 
 The pre-built ISO (CentOS and Debian) and Docker images for StarlingX release
-7.0 are located at the ``CENGN StarlingX mirror`` repos:
+7.0 are located at the ``StarlingX mirror`` repos:
 
--  http://mirror.starlingx.cengn.ca/mirror/starlingx/release/7.0.0/centos/flock/outputs/
+-  https://mirror.starlingx.windriver.com/mirror/starlingx/release/7.0.0/centos/flock/outputs/
 
--  http://mirror.starlingx.cengn.ca/mirror/starlingx/release/7.0.0/debian/monolithic/outputs/
+-  https://mirror.starlingx.windriver.com/mirror/starlingx/release/7.0.0/debian/monolithic/outputs/
 
 .. note::
     Debian is a Technology Preview Release and only supports |AIO-SX| in StarlingX

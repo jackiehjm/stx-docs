@@ -91,7 +91,7 @@ Example dev build command:
 
 If you are not making changes to any source packages (ie. RPMs) that
 need to be installed in your designer-built images, you can use the
-CENGN-built stx-base image. For example:
+official StarlingX built stx-base image. For example:
 https://hub.docker.com/r/starlingx/stx-centos/tags
 
 *  Stable base image: starlingx/stx-centos:master-stable-latest
@@ -114,13 +114,13 @@ used to build and collect wheels and generate the wheels tarball. It
 uses two sub-tools (located in the same directory) to build and/or
 collect the two groups of wheels.
 
-If you are not modifying any python modules, you can use the CENGN-built
-wheels tarball:
+If you are not modifying any python modules, you can use the official
+StarlingX built wheels tarball:
 
 *  Stable wheels:
-   http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels/stx-centos-stable-wheels.tar
+   https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels/stx-centos-stable-wheels.tar
 *  Dev wheels:
-   http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels/stx-centos-dev-wheels.tar
+   https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels/stx-centos-dev-wheels.tar
 
 ***********
 Base wheels
@@ -363,7 +363,7 @@ stx-nfv/nova-api-proxy/centos/stx-nova-api-proxy.dev_docker_image
 Image build command
 ^^^^^^^^^^^^^^^^^^^
 
-Example image build command, using the CENGN base image and wheels:
+Example image build command, using the official StarlingX base image and wheels:
 
 ::
 
@@ -371,7 +371,7 @@ Example image build command, using the CENGN base image and wheels:
     BUILD_STREAM=stable
     BRANCH=master
     CENTOS_BASE=starlingx/stx-centos:${BRANCH}-${BUILD_STREAM}-latest
-    WHEELS=http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels//stx-centos-${BUILD_STREAM}-wheels.tar
+    WHEELS=https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels//stx-centos-${BUILD_STREAM}-wheels.tar
     DOCKER_USER=${USER}
     DOCKER_REGISTRY=192.168.0.1:9001 # Some private registry you've setup for your testing, for example
 
@@ -514,7 +514,7 @@ Examples
 ::
 
     ## Upstream image:
-    CENGN_DOCKER_URL="http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/latest_docker_image_build/outputs/docker-images"
+    STX_MIRROR_DOCKER_URL="https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/latest_docker_image_build/outputs/docker-images"
     DOCKER_USER=mydockerid # My docker ID
     DOCKER_REGISTRY=docker.io # The docker registry to use for pushing. This can be a private registry, like 192.168.2.10:9001
 
@@ -536,7 +536,7 @@ Examples
     #
 
     # Get the latest versioned stx-aodh image tag
-    STX_AODH=$(curl ${CENGN_DOCKER_URL}/images-centos-stable-versioned.lst 2>/dev/null | grep stx-aodh:)
+    STX_AODH=$(curl ${STX_MIRROR_DOCKER_URL}/images-centos-stable-versioned.lst 2>/dev/null | grep stx-aodh:)
     echo ${STX_AODH}
 
     BASE_VERSION=$(echo ${STX_AODH} | sed 's/.*://')
@@ -633,7 +633,7 @@ Examples
 
     # Update stx-nova with the latest update from the stx-nova staging repo
 
-    STX_NOVA=$(curl ${CENGN_DOCKER_URL}/images-centos-stable-versioned.lst 2>/dev/null | grep stx-nova:)
+    STX_NOVA=$(curl ${STX_MIRROR_DOCKER_URL}/images-centos-stable-versioned.lst 2>/dev/null | grep stx-nova:)
     echo ${STX_NOVA}
 
     time bash -x ${MY_REPO}/build-tools/build-docker-images/update-stx-image.sh \
