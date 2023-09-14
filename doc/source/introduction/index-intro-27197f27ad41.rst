@@ -23,7 +23,7 @@ Key features of StarlingX include:
   service uptime, and streamlined operation.
 
 Download the StarlingX ISO image from the
-`CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_.
+`StarlingX mirror <https://mirror.starlingx.windriver.com/mirror/starlingx/>`_.
 
 Learn more about StarlingX:
 

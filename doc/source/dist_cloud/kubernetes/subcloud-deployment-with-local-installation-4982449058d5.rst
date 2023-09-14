@@ -279,7 +279,7 @@ functions. You will find it in the same software distribution location as
 
     .. only:: starlingx
 
-        For |prod|: http://mirror.starlingx.cengn.ca/mirror/starlingx/
+        For |prod|: https://mirror.starlingx.windriver.com/mirror/starlingx/
 
     .. only:: partner
 

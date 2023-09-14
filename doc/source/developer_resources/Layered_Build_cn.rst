@@ -311,16 +311,16 @@ ISO镜像内容完全由文件来定义： ::
 其格式使用逗号分隔为三个字段，参照以下： ::
 
    cat stx-tools/centos-mirror-tools/config/centos/flock/required_layer_pkgs.cfg
-      compiler,std,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/compiler/latest_build/outputs/RPMS/std/rpm.lst
-      distro,std,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/distro/latest_build/outputs/RPMS/std/rpm.lst
-      distro,rt,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/distro/latest_build/outputs/RPMS/rt/rpm.lst
-      distro,installer,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/distro/latest_build/outputs/RPMS/installer/rpm.lst
+      compiler,std,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/compiler/latest_build/outputs/RPMS/std/rpm.lst
+      distro,std,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/distro/latest_build/outputs/RPMS/std/rpm.lst
+      distro,rt,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/distro/latest_build/outputs/RPMS/rt/rpm.lst
+      distro,installer,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/distro/latest_build/outputs/RPMS/installer/rpm.lst
 
    cat stx-tools/centos-mirror-tools/config/centos/flock/required_layer_iso_inc.cfg
-      compiler,std,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/compiler/latest_build/outputs/image.inc
-      compiler,dev,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/compiler/latest_build/outputs/image-dev.inc
-      distro,std,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/distro/latest_build/outputs/image.inc
-      distro,dev,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/distro/latest_build/outputs/image-dev.inc
+      compiler,std,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/compiler/latest_build/outputs/image.inc
+      compiler,dev,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/compiler/latest_build/outputs/image-dev.inc
+      distro,std,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/distro/latest_build/outputs/image.inc
+      distro,dev,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/distro/latest_build/outputs/image-dev.inc
 
 如果需要用到更底层layer所构建的包，需要在当前layer做好配置。使用语法: ``file://`` 将配置文件中的url替换成更底层layer所对应的信息。
 
@@ -488,8 +488,8 @@ cengna上的各自layer的 image.inc也是这样生成的。
 
 在 ``stx-tools/centos-mirror-tools/config/<os>/<layer>/required_layer_iso_inc.cfg`` 文件
 $ cat stx-tools/centos-mirror-tools/config/centos/distro/required_layer_iso_inc.cfg
-compiler,std,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/compiler/latest_build/outputs/image.inc
-compiler,dev,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/compiler/latest_build/outputs/image-dev.inc
+compiler,std,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/compiler/latest_build/outputs/image.inc
+compiler,dev,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/compiler/latest_build/outputs/image-dev.inc
 
 修改成你的distro 或者compile layer的 image.inc
 ``file:///localdisk/loadbuild/<user>/<project>/my_<layer>_imajge.inc``

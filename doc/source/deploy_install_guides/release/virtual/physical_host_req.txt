@@ -68,5 +68,5 @@ Set up the host with the following steps:
 
 
 #. Get the latest StarlingX ISO from the
-   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/latest_release/debian/monolithic/outputs/iso/>`_.
-   Alternately, you can get an older release ISO from `here <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/>`_.
+   `StarlingX mirror <https://mirror.starlingx.windriver.com/mirror/starlingx/release/latest_release/debian/monolithic/outputs/iso/>`_.
+   Alternately, you can get an older release ISO from `here <https://mirror.starlingx.windriver.com/mirror/starlingx/release/>`_.

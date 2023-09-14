@@ -26,10 +26,10 @@ Create a bootable USB drive on Linux\*
       sudo -s
 
 #. Get the latest StarlingX ISO from the
-   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/latest_release/debian/monolithic/outputs/iso/>`_.
-   Alternately, you can get an older release ISO from `here <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/>`_.
+   `StarlingX mirror <https://mirror.starlingx.windriver.com/mirror/starlingx/release/latest_release/debian/monolithic/outputs/iso/>`_.
+   Alternately, you can get an older release ISO from `here <https://mirror.starlingx.windriver.com/mirror/starlingx/release/>`_.
 
-#. Navigate to the directory with the `StarlingX ISO <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/latest_release/centos/flock/outputs/iso/>`_.
+#. Navigate to the directory with the `StarlingX ISO <https://mirror.starlingx.windriver.com/mirror/starlingx/release/latest_release/centos/flock/outputs/iso/>`_.
 
 #. Plug in the USB drive and get its identifier:
 
@@ -69,8 +69,8 @@ Create a bootable USB drive on macOS\*
 #. Launch the Terminal app.
 
 #. Get the latest StarlingX ISO from the
-   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/latest_release/debian/monolithic/outputs/iso/>`_.
-   Alternately, you can get an older release ISO from `here <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/>`_.
+   `StarlingX mirror <https://mirror.starlingx.windriver.com/mirror/starlingx/release/latest_release/debian/monolithic/outputs/iso/>`_.
+   Alternately, you can get an older release ISO from `here <https://mirror.starlingx.windriver.com/mirror/starlingx/release/>`_.
 
 #. Navigate to the directory with the ISO.
 
@@ -113,8 +113,8 @@ Create a bootable USB drive on Windows\*
 ----------------------------------------
 
 #. Get the latest StarlingX ISO from the
-   `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/latest_release/debian/monolithic/outputs/iso/>`_.
-   Alternately, you can get an older release ISO from `here <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/>`_.
+   `StarlingX mirror <https://mirror.starlingx.windriver.com/mirror/starlingx/release/latest_release/debian/monolithic/outputs/iso/>`_.
+   Alternately, you can get an older release ISO from `here <https://mirror.starlingx.windriver.com/mirror/starlingx/release/>`_.
 
 #. Download the `Rufus`_ utility to burn the image onto a USB drive.
    **Only use the latest version of Rufus**.

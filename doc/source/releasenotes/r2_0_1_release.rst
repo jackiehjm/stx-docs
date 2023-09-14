@@ -10,9 +10,9 @@ R2.0.1 Release Notes
 ISO image
 ---------
 
-You can find pre-built ISO and Docker images for stx.2.0.1 at
-`CENGN's StarlingX mirror,
-<http://mirror.starlingx.cengn.ca/mirror/starlingx/release/2.0.1/centos/>`_
+You can find pre-built ISO and Docker images for stx.2.0.1 at the
+`StarlingX mirror,
+<https://mirror.starlingx.windriver.com/mirror/starlingx/release/2.0.1/centos/>`_
 
 ------
 Branch
