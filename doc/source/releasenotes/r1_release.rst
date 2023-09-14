@@ -12,9 +12,9 @@ These are the release notes for StarlingX R1.0.
 ISO Image
 ---------
 
-You can find a pre-built image for R1.0 at
-`CENGN’s StarlingX mirror
-<http://mirror.starlingx.cengn.ca/mirror/starlingx/centos/2018.10/20181110/outputs/iso/>`__.
+You can find a pre-built image for R1.0 at the
+`StarlingX mirror
+<https://mirror.starlingx.windriver.com/mirror/starlingx/centos/2018.10/20181110/outputs/iso/>`__.
 
 ------------
 New Features

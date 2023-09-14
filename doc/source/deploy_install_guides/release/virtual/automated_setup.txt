@@ -1,0 +1,85 @@
+<<<<<<< HEAD   (22bbb4 Merge "Hide empty rows (r8, r7, r6, r5)" into r/stx.7.0)
+=======
+The following sections describe the system requirements and host setup for a
+workstation hosting virtual machine(s) where StarlingX will be deployed.
+
+*********************
+Hardware requirements
+*********************
+
+The host system should have at least:
+
+* **Processor:** x86_64 only supported architecture with BIOS enabled hardware
+  virtualization extensions
+
+* **Cores:** 8
+
+* **Memory:** 32GB RAM
+
+* **Hard Disk:** 500GB HDD
+
+* **Network:** One network adapter with active Internet connection
+
+*********************
+Software requirements
+*********************
+
+The host system should have at least:
+
+* A workstation computer with Ubuntu 20.04 LTS 64-bit
+
+
+**********
+Host setup
+**********
+
+Set up the host with the following steps:
+
+#. Update OS and install dependencies:
+
+   .. code-block:: none
+
+    apt-get update
+    sudo apt install -y virtualbox socat git rsync sshpass openssh-client python3-pip python3-venv
+
+#. Clone the StarlingX tools repository:
+
+   .. code-block:: none
+
+    cd $HOME
+    git clone https://opendev.org/starlingx/virtual-deployment.git
+
+#. Set up Python's Virtual Environment:
+
+   .. code-block:: none
+
+    cd $HOME/virtual-deployment/virtualbox/pybox
+    python3 -m venv venv
+    source ./venv/bin/activate
+    pip install --upgrade pip
+    pip install -r requirements.txt
+
+#. Create NatNetwork:
+
+   .. code-block:: none
+
+    VBoxManage natnetwork add --netname NatNetwork --network 10.10.10.0/24 --dhcp off --ipv6 on
+
+#. Get the StarlingX ISO:
+
+   .. code-block:: none
+
+    wget https://mirror.starlingx.windriver.com/mirror/starlingx/release/8.0.0/debian/monolithic/outputs/iso/starlingx-intel-x86-64-cd.iso -O $HOME/Downloads/stx-8.iso
+
+#. Create a local copy of the config file templates.
+
+   .. code-block:: none
+
+    mkdir myconfig
+    cp -r config myconfig
+
+   Make the desired changes in the config files on the new directory.
+
+.. note::
+    This setup guide can be found in the README.md file in $HOME/virtual-deployment/virtualbox/pybox
+>>>>>>> CHANGE (31f97d cengn reference removal)
