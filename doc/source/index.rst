@@ -8,9 +8,10 @@ everything needed to deploy an edge cloud on one, two, or up to 100 servers.
 **The most recent supported release is StarlingX R6.0.**
 
 * See the :ref:`release-notes`.
-* Download the `R6.0 StarlingX ISO image
-  <http://mirror.starlingx.cengn.ca/mirror/starlingx/release/6.0.0/centos/flock/outputs/>`_
-  from the CENGN StarlingX mirror.
+* Download the pre-built ISO (CentOS and Debian) and Docker images for
+  StarlingX latest release that are located at the ``StarlingX mirror`` repos:
+
+  -  https://mirror.starlingx.windriver.com/mirror/starlingx/release/latest_release/debian/monolithic/outputs/iso/
 
 For more information about the StarlingX project, refer to the
 `StarlingX wiki <https://wiki.openstack.org/wiki/StarlingX>`_.

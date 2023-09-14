@@ -12,9 +12,9 @@ R4.0 Release Notes
 ISO image
 ---------
 
-The pre-built ISO and Docker images for StarlingX release 4.0 are located at
-`CENGN’s StarlingX mirror
-<http://mirror.starlingx.cengn.ca/mirror/starlingx/release/4.0.1/centos/flock/outputs/>`_.
+The pre-built ISO and Docker images for StarlingX release 4.0 are located at the
+`StarlingX mirror
+<https://mirror.starlingx.windriver.com/mirror/starlingx/release/4.0.1/centos/flock/outputs/>`_.
 
 ------
 Branch

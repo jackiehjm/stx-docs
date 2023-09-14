@@ -16,7 +16,7 @@
 .. |prod-hor-long| replace:: |prod-hor| Web Interface
 .. |os-prod-hor-long| replace:: OpenStack |prod-hor-long|
 .. |os-prod-hor| replace:: OpenStack |prod-hor|
-.. |prod-img| replace:: http://mirror.starlingx.cengn.ca/mirror/starlingx/
+.. |prod-img| replace:: https://mirror.starlingx.windriver.com/mirror/starlingx/
 .. |prod-abbr| replace:: StX
 
 .. Guide names; will be formatted in italics by default.

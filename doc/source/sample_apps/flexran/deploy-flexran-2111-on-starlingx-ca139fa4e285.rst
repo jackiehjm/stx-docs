@@ -45,7 +45,7 @@ Prepare USB stick with StarlingX Installation ISO
 
 #. Get StarlingX Installation ISO from following location:
 
-   http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/latest_build/outputs/iso/bootimage.iso
+   https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/latest_build/outputs/iso/bootimage.iso
 
 #. Burn the image to a USB stick:
 

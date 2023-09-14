@@ -440,8 +440,8 @@ not found* error. This indicates that the page may have moved or been deleted.
 .. code-block:: none
     :linenos:
 
-    (developer_resources/build_docker_image: line  120) ok        http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels/stx-centos-stable-wheels.tar
-    (developer_resources/build_docker_image: line  122) broken    http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels/stx-centos-dev-wheels.tar - 404 Client Error: Not Found for url: http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels/stx-centos-dev-wheels.tar
+    (developer_resources/build_docker_image: line  120) ok        https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels/stx-centos-stable-wheels.tar
+    (developer_resources/build_docker_image: line  122) broken    https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels/stx-centos-dev-wheels.tar - 404 Client Error: Not Found for url: https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/latest_docker_image_build/outputs/wheels/stx-centos-dev-wheels.tar
 
 **Logs**
 

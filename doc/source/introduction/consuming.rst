@@ -14,11 +14,12 @@ themselves. Here are three ways in which you can consume StarlingX.
 ---------------------------
 Deploy the open source code
 ---------------------------
+You can use the open source software directly. Our community partner Wind River
+provides a |prod| mirror with ready-to-run ISO images of the current |prod|
+releases and daily builds. 
 
-You can use the open source software directly. Our community partner CENGN provides
-a StarlingX mirror with ready to run ISO images of the current StarlingX releases and
-daily builds. View the
-`CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_.
+View the `StarlingX mirror
+<https://mirror.starlingx.windriver.com/mirror/starlingx/>`_.
 
 As previously mentioned, these images are not signed and thus do not support
 secure boot or live software updates. You can also build your own images.

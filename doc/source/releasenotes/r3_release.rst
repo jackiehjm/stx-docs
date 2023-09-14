@@ -12,9 +12,9 @@ R3.0 Release Notes
 ISO image
 ---------
 
-You can find a pre-built ISO and Docker images for StarlingX release 3.0 at
-`CENGN’s StarlingX mirror
-<http://mirror.starlingx.cengn.ca/mirror/starlingx/release/3.0.0/centos/>`_.
+You can find a pre-built ISO and Docker images for StarlingX release 3.0 at the
+`StarlingX mirror
+<https://mirror.starlingx.windriver.com/mirror/starlingx/release/3.0.0/centos/>`_.
 
 ------
 Branch
