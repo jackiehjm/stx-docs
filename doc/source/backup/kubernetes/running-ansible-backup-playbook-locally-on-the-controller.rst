@@ -8,15 +8,18 @@ Run Ansible Backup Playbook Locally on the Controller
 
 In this method the Ansible Backup playbook is run on the active controller.
 
-Use one of the following commands to run the Ansible Backup playbook and
-back up the |prod| configuration, data, and user container images in
-registry.local data:
+Use one of the following commands to run the Ansible Backup playbook and back
+up the |prod| configuration, data, and user container images in registry.local:
 
-.. code-block:: none
+-
+    .. code-block:: none
 
-    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml -e "ansible_become_pass=<sysadmin password> admin_password=<sysadmin password>" -e "backup_user_local_registry=true"
+        ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml -e "ansible_become_pass=<sysadmin password> admin_password=<sysadmin password>" -e "backup_registry_filesystem=true"
 
-    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml --ask-vault-pass -e "override_files_dir=$HOME/override_dir"
+-
+    .. code-block:: none
+
+        ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml --ask-vault-pass -e "override_files_dir=$HOME/override_dir"
 
 The <admin_password> and <ansible_become_pass> need to be set correctly
 using the ``-e`` option on the command line, with an override file secured with

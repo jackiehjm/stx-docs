@@ -57,19 +57,3 @@ cluster data intact or wiping the Ceph cluster.
 
     If this parameter is set to **false**, the Ansible Restore playbook expects
     both the **initial_backup_dir** and **backup_filename** to be specified.
-
-.. rubric:: |postreq|
-
-After running restore\_platform.yml playbook, you can restore the local
-registry images.
-
-.. note::
-
-    The backup file of the local registry images may be large. Restore the
-    backed up file on the controller, where there is sufficient space.
-
-For example:
-
-.. code-block:: none
-
-    ~(keystone_admin)]$  ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_user_images.yml -e "initial_backup_dir=/home/sysadmin backup_filename=localhost_docker_local_registry_backup_2020_07_15_21_24_22.tgz ansible_become_pass=St0rlingX*"
