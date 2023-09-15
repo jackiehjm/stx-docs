@@ -184,6 +184,9 @@ Sample response to a single subcloud backup:
     | backup_datetime             | None                       |
     +-----------------------------+----------------------------+
 
+.. note::
+    Custom naming of backup files stored in the central storage is not supported.
+
 To view the progress of subcloud backup, use :command:`dcmanager subcloud show`
 or :command:`dcmanager subcloud list` command:
 
