@@ -21,6 +21,11 @@ OpenStack documentation.
 
 * `OpenStack Documentation Contributor Guide <https://docs.openstack.org/doc-contrib-guide/index.html>`_.
 
+.. note::
+
+   The supported version of tox is currently pinned at 2.9.1. If possible,
+   using this version is recommended for local builds.
+
 **********************
 Setup for contribution
 **********************
