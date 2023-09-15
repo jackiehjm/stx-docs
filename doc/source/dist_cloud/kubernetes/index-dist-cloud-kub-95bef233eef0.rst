@@ -60,6 +60,7 @@ Operation
     rehoming-a-subcloud
     prestage-a-subcloud-using-dcmanager-df756866163f
     add-a-horizon-keystone-user-to-distributed-cloud-29655b0f0eb9
+    update-a-subcloud-network-parameters-b76377641da4
 
 --------------------------------------------------------------------
 Prestage Orchestration for Distributed Cloud Subclouds using the CLI

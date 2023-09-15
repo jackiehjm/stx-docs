@@ -63,6 +63,14 @@ A number of components are common to most |prod| deployment configurations.
 
     This is typically a 10GE network.
 
+**Admin Network (Controller Nodes)**
+    The admin network is an optional network that is used to monitor and
+    control internal |prod-long| between the subclouds and system controllers
+    in a |prod-dc| environment. This function is performed by the management
+    network in the absence of an admin network. However, the admin network is
+    more easily reconfigured to handle subnet and IP address network
+    parameter changes.
+
 **Cluster Host Network (All Nodes)**
     The cluster host network is used for Kubernetes management and control, as
     well as private container networking. The |CNI| service, Calico, provides

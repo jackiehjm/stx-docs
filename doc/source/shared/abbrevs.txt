@@ -98,6 +98,7 @@
 .. |NUMA| replace:: :abbr:`NUMA (Non-Uniform Memory Access)`
 .. |NVMe| replace:: :abbr:`NVMe (Non-Volatile Memory express)`
 .. |OAM| replace:: :abbr:`OAM (Operations, administration and management)`
+.. |OEM| replace:: :abbr:`OEM (Original Equipment Manufacturer)`
 .. |OC| replace:: :abbr:`OC (Ordinary Clock)`
 .. |OID| replace:: :abbr:`OID (Object Identifier)`
 .. |OIDC| replace:: :abbr:`OIDC (OpenID Connect)`
