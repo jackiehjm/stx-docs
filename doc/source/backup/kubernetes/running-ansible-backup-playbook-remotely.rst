@@ -61,10 +61,10 @@ and target it at controller-0.
                |prefix|\_Cluster:
                  ansible_host: 128.224.141.74
 
-              vars:
-                ansible_ssh_user: sysadmin
-                ansible_ssh_pass: <sysadmin-passwd>
-                ansible_become_pass: <sysadmin-passwd>
+             vars:
+               ansible_ssh_user: sysadmin
+               ansible_ssh_pass: <sysadmin-passwd>
+               ansible_become_pass: <sysadmin-passwd>
 
 #.  Switch to the <overrides> directory created previously.
 
