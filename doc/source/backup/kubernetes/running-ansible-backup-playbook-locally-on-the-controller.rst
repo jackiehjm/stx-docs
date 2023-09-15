@@ -10,13 +10,18 @@ Run Ansible Backup Playbook Locally on the Controller
 
 In this method the Ansible Backup playbook is run on the active controller.
 
-Use the following command to run the Ansible Backup playbook and back up the
-|prod| configuration, data, and user container images in registry.local:
+Use one of the following commands to run the Ansible Backup playbook and back
+up the |prod| configuration, data, and user container images in registry.local:
 
-.. code-block:: none
+-
+    .. code-block:: none
 
-    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml -e "ansible_become_pass=<sysadmin password> admin_password=<sysadmin password>" -e "backup_registry_filesystem=true"
-    ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml --ask-vault-pass -e "override_files_dir=$HOME/override_dir"
+        ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml -e "ansible_become_pass=<sysadmin password> admin_password=<sysadmin password>" -e "backup_registry_filesystem=true"
+
+-
+    .. code-block:: none
+
+        ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/backup.yml --ask-vault-pass -e "override_files_dir=$HOME/override_dir"
 
 
 To exclude a directory and all the files in it like ``/var/home*`` you can use
@@ -41,7 +46,7 @@ To exclude patch data from being included in the backup, you can use the paramet
 ``-e exclude_dirs=/opt/patching/**/*``.
 
 .. warning::
-    
+
     Patch data should only be excluded for |AIO-SX| deployments when optimized
     Restore is used.
 
