@@ -73,7 +73,6 @@ Set up the host with the following steps:
 
    .. code-block:: none
 
-    mkdir myconfig
     cp -r config myconfig
 
    Make the desired changes in the config files on the new directory.
