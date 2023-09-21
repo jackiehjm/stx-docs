@@ -37,7 +37,7 @@ follows:
 
 .. rubric:: |prereq|
 
-For all deployment configurations, end user container images in
+For |AIO-SX| deployment configurations, the end user container images in
 `registry.local` will be backed up during the upgrade process. This only
 includes images other than |prod| system and application images. These images
 are limited to 5 GB in total size. If the system contains more than 5 GB of
@@ -68,16 +68,18 @@ The following prerequisites apply to a |prod-dc| upgrade management service.
     -   Run the :command:`kubectl get pods --all-namespaces` command to test
         that the authentication token validates correctly.
 
-    -   Run the :command:`fm alarm-list` command to check the system health to
-        ensure that there are no unexpected or management-affecting alarms.
+    -   Run the :command:`fm alarm-list` command to ensure that there are no
+        unexpected or management-affecting alarms.
+    
+    -   Run the :command:`system health-query-upgrade` command to check the
+        system health to ensure that the system meets all the upgrade prerequisites.
 
     -   Run the :command:`kubectl get host -n deployment` command to ensure all
         nodes in the cluster have reconciled and is set to 'true'.
 
     -   Ensure **controller-0** is the active controller.
 
--   The subclouds must all be |AIO-SX|, and must use the Redfish
-    platform management service.
+-   The |AIO-SX| subclouds must use the Redfish platform management service.
 
 -   Ensure any certificates managed by cert manager will not be renewed during
     the upgrade process.
