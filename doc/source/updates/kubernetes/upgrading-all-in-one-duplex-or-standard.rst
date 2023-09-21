@@ -312,12 +312,9 @@ of |prod| software.
         the |DRBD| sync **400.001** Services-related alarm to be raised and then
         cleared.
 
-        The following states apply when this command is executed.
-
-        -   ``upgrading-controllers``:
-
-            -   State entered when controller-1 has been unlocked and is
-                running release nn.nn software.
+        The **upgrading-controllers** state applies when this command is executed.
+        This state is entered after controller-1 has been upgraded to release nn.nn
+        and data migration is successfully completed.
 
         If the controller transitions to **unlocked-disabled-failed**, check the
         issue before proceeding to the next step. The alarms may indicate a

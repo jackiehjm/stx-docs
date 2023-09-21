@@ -165,12 +165,11 @@ Follow the steps below to manually upgrade the System Controller:
 
         Use the command :command:`system upgrade-start --force` to force the
         upgrades process to start and to ignore management affecting alarms.
-        This should ONLY be done if these alarms do not cause an issue for the
+        This should only be done if these alarms do not cause an issue for the
         upgrades process.
 
-        The `fm alarm-list` will provide the specific alarms leading to the system
-        health-query-upgrade alarms notes which may be blocking an orchestrated
-        upgrade.
+        The ``fm alarm-list --mgmt_affecting`` option provides specific alarms
+        which may be blocking an orchestrated upgrade.
 
     On systems with Ceph storage, it also checks that the Ceph cluster is
     healthy.
@@ -241,9 +240,8 @@ Follow the steps below to manually upgrade the System Controller:
 
         .. note::
 
-            Do not unlock controller-1, before running :command:`system
-            upgrade-show` to display the upgrade status
-            "data-migration-complete".
+            Do not unlock controller-1, before running the :command:`system upgrade-show`
+            command to display the upgrade status **data-migration-complete** or **upgrading-controllers**.
 
     #.  Unlock controller-1.
 
@@ -254,18 +252,11 @@ Follow the steps below to manually upgrade the System Controller:
         Wait for controller-1 to become **unlocked-enabled**. Wait for the DRBD
         sync **400.001** Services-related alarm is raised and then cleared.
 
-        The following states apply when this command is executed.
+        The **upgrading-controllers** state applies when this command is
+        run. This state is entered after controller-1 has been upgraded to
+        release nn.nn and data migration is successfully completed.
 
-
-        -   upgrading-controllers:
-
-
-            -   State entered when controller-1 has been unlocked and is
-                running release nn.nn software.
-
-                where *nn.nn* in the update file name is the |prod| release
-                number.
-
+        where *nn.nn* in the update file name is the |prod| release number.
 
         If it transitions to **unlocked-disabled-failed**, check the issue
         before proceeding to the next step. The alarms may indicate a
@@ -273,8 +264,8 @@ Follow the steps below to manually upgrade the System Controller:
         controller-1, (for example, Error logs in
         controller1:``/var/log/puppet``).
 
-    #.  Run the :command:`system application-list`, and :command:`system
-        host-upgrade-list` commands to view the current progress.
+    #.  Run the :command:`system application-list` and :command:`system host-upgrade-list`
+        commands to view the current progress.
 
 #.  Set controller-1 as the active controller. Swact to controller-1.
 
