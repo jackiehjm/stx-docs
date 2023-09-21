@@ -73,7 +73,7 @@ deployment of an All-In-One Simplex configuration.
       --iso-location "$HOME/Downloads/stx-8.iso" \
       --labname StarlingX --install-mode <serial/graphical> \
       --config-files-dir ./myconfig/labSetupFiles/ \
-      --ansible-controller-config ./myconfig/ansibleFiles/localhost.yml \
+      --ansible-controller-config ./myconfig/ansibleFiles/<simplex/duplex>_localhost.yml \
       --kubernetes-config-files ./myconfig/kubeFiles/ \
       --vboxnet-type nat \
       --vboxnet-name NatNetwork \
