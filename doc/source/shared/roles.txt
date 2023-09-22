@@ -1,0 +1,5 @@
+.. role:: hideable
+
+.. For use in CLI reference only
+
+.. role:: uline
