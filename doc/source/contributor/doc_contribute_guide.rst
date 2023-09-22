@@ -57,6 +57,31 @@ Make a change
 #. If needed, follow up with edits to your patch following the OpenStack
    instructions for `Responding to requests <https://docs.openstack.org/doc-contrib-guide/quickstart/first-timers.html#responding-to-requests>`_.
 
+.. build-singledoc-begin
+
+It can sometimes be useful to search the output globally for a string that may
+not be reliably returned by the built-in search functionality. For example, you
+may need to find and update all instances of a version number or container name.
+
+You can generate HTML output to a single page and use your browser's search
+functionality to search globally.
+
+To build all documentation as a single page, run the following command from
+your local clone of the documentation repository:
+
+.. code-block:: bash
+
+   $ tox -e singledoc
+
+The output will be available in *<repo-root>*/``doc/build/singlepage``
+
+.. note::
+
+   The quality checks done at the end of the build scan the most recent output
+   from running :command:`tox -e docs` and do not reflect any errors or
+   corrections in ``singledoc`` output.
+
+.. build-singledoc-end
 
 --------------------------
 Find tasks and help needed
