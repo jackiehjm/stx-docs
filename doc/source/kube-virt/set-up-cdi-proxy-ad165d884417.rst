@@ -24,7 +24,8 @@ Configuring the NodePort service option is shown below:
 
    .. code-block:: yaml
 
-      $ cat <<EOF > cdi-uploadproxy-nodeport-service.yaml apiVersion: v1
+      $ cat <<EOF > cdi-uploadproxy-nodeport-service.yaml
+      apiVersion: v1
       kind: Service
       metadata:
         name: cdi-uploadproxy-nodeport
@@ -34,12 +35,12 @@ Configuring the NodePort service option is shown below:
       spec:
         type: NodePort
         ports:
-          - port: 443
-          targetPort: 8443
-          nodePort: 32111 # Use unused nodeport in 31,500 to 32,767 range 
-          protocol: TCP
-      selector:
-        cdi.kubevirt.io: cdi-uploadproxy
+            - port: 443
+              targetPort: 8443
+              nodePort: 32111 # Use unused nodeport in 31,500 to 32,767 range
+              protocol: TCP
+        selector:
+          cdi.kubevirt.io: cdi-uploadproxy
       EOF
 
 
@@ -52,7 +53,7 @@ Configuring the NodePort service option is shown below:
 .. rubric:: |result|
 
 Now the ``virtctl`` command can be used to upload a |VM| image file into an
-existing or new DataVolume (|PVC|). 
+existing or new DataVolume (|PVC|).
 
 See the example (:ref:`create-an-ubuntu-vm-fafb82ec424b`) that uploads an ubuntu
 cloud image (``jammy-server-cloudimg-amd64.img`` from
@@ -61,10 +62,9 @@ named stx-lab-jenkins-disk:
 
 .. code-block::
 
-   $ virtctl image-upload dv stx-lab-jenkins-disk -n jenkins-ns --insecure \
-     --access-mode ReadWriteOnce --size 500Gi --image-path \
-     /home/sysadmin/admin/kubevirt/images/jammy-server-cloudimg-amd64.img     \
-     --uploadproxy-url https://admin.starlingx.abc.com:32111
+   $ virtctl image-upload dv <DV-Name> -n <NameSpace> --insecure \
+     --access-mode ReadWriteOnce --size <size>Gi --image-path <Image-Path> \
+     --uploadproxy-url https://<NodeIP>:<PORT>
 
 See sections on :ref:`create-an-ubuntu-vm-fafb82ec424b` and
 :ref:`create-a-windows-vm-82957181df02` on how to then use this DataVolume to

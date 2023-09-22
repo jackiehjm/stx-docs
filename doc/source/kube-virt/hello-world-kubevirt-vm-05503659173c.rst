@@ -43,13 +43,23 @@ the |VM| via the console:
    .. code-block:: yaml
 
       apiVersion: kubevirt.io/v1
-      kind: VirtualMachineInstance
+      kind: VirtualMachine
       metadata:
+        labels:
+          kubevirt.io/vm: vm-cirros
         name: vm-cirros
+      spec:
+        running: false
+        template:
+          metadata:
+            labels:
+              kubevirt.io/vm: vm-cirros
       spec:
         domain:
           devices:
             disks:
+            -disk:
+               bus: virtio
             - name: containerdisk
               disk:
                 bus: virtio
@@ -66,7 +76,7 @@ the |VM| via the console:
               image: kubevirt/cirros-container-disk-demo:latest
           - name: cloudinitdisk
             cloudInitNoCloud:
-              userDataBase64: IyEvYmluL3NoCgplY2hvICdwcmludGVkIGZyb20gY2xvdWQtaW5pdCB1c2VyZGF0YScKWQtaW5pdCB1c2VyZGF0YScK
+              userDataBase64: IyEvYmluL3NoCmVjaG8gJ3ByaW50ZWQgZnJvbSBjbG91ZC1pbml0IHVzZXJkYXRhJwo=
 
 #. Apply the ``yaml`` file to create the |VM| in a stopped state.
 
@@ -107,8 +117,6 @@ the |VM| via the console:
        # login as 'cirros' user. default password: 'gocubsgo'. Use 'sudo' for root.
        # vm-cirros login: cirros
        Password:
-
-       $ hostname vm-cirros
 
        $ ls /
          bin       home           lib64          mnt         root        tmp
@@ -154,8 +162,6 @@ the |VM| via the console:
 
       $ ssh -p 31562 cirros@<Floating-OAM-IP-Address-of-|prod|>
       password:
-
-      $ hostname vm-cirros
 
       # List Interfaces
       # Notice how the VM has a single eth0 interface, the default CNI interface.
