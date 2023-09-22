@@ -9,8 +9,6 @@ Manage Subclouds Using the CLI
 You can use the |CLI| to list subclouds, reconfigure subclouds if deployment
 fails, delete subclouds, and monitor or change the managed status of subclouds.
 
-.. rubric:: |proc|
-
 .. _managing-subclouds-using-the-cli-steps-unordered-r4m-2w5-5cb:
 
 -   To list subclouds, use the :command:`subcloud list` command.
@@ -185,3 +183,13 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
         0:22:47.420
         Check docker_registries and docker proxy configurations in bootstrap values yaml file. Ensure you can manually log into the registry e.g. sudo docker login registry.local:9001 -u <registry-user> -p <registry-password>
         For bootstrap failures, please delete and re-add the subcloud after the cause of failure has been resolved.
+
+.. only:: partner
+
+    .. include:: /_includes/managing-subclouds-using-the-cli.rest
+       :start-after: subclouderror-scenario-begin
+       :end-before: subclouderror-scenario-end
+
+
+
+
