@@ -7,6 +7,9 @@
 .. Load vendor-specific strings
 .. include:: /_vendor/vendor_strings.txt
 
+.. Load custom roles
+.. include:: /shared/roles.txt
+
 .. Load abbreviations list
 .. include:: /shared/abbrevs.txt
 
