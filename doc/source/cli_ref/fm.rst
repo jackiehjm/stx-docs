@@ -2,9 +2,7 @@
 fm
 ==
 
-:command:`fm` is the command-line interface for Fault Management.
-
-This page documents the :command:`fm` command.
+.. include:: /shared/_includes/cli-ref-intro-fm.rest
 
 .. contents::
    :local:

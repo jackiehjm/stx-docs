@@ -1,0 +1,14 @@
+.. include:: /shared/_includes/uline.rest
+
+:command:`dcmanager` is the command-line interface for the |prod-dc|
+Manager APIs. :command:`dcmanager` is applicable only in the `SystemController`
+region of the central cloud in a distributed cloud configuration.
+
+This page documents the :command:`dcmanager` command.
+
+For a full description of usage and optional arguments for a specific
+:command:`dcmanager` command, enter:
+
+.. code-block::
+
+   ~(keystone_admin)]$ dcmanager help <command>

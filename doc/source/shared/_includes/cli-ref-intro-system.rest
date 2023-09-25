@@ -1,0 +1,13 @@
+.. include:: /shared/_includes/uline.rest
+
+:command:`system` is the command-line interface for System Inventory and
+Maintenance.
+
+This page documents the :command:`system` command in |prod|.
+
+For a full description of usage and optional arguments for a specific
+:command:`system` command, enter:
+
+.. code-block::
+
+   ~(keystone_admin)]$ system help <command>
