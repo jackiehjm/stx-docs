@@ -335,11 +335,11 @@ the secret payload is, "username: admin password:<password>", see,
 :ref:`Update Docker Registry Credentials on a Subcloud
 <updating-docker-registry-credentials-on-a-subcloud>` for more information.
 
-    .. note::
-        Before attempting to log in to the subclouds using the sysadmin account,
-        verify that the subcloud ``platform_sync_status`` is synced. This would
-        ensure that the sysadmin password is successfully resynced to the subclouds
-        and that login attempts do not fail.
+.. note::
+    Before attempting to log in to the subclouds using the sysadmin account,
+    verify that the subcloud ``platform_sync_status`` is synced. This would
+    ensure that the sysadmin password is successfully resynced to the subclouds
+    and that login attempts do not fail.
 
 .. only:: partner
 
