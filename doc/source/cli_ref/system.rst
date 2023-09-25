@@ -2,10 +2,7 @@
 system
 ======
 
-:command:`system` is the command-line interface for System Inventory and
-Maintenance.
-
-This page documents the :command:`system` command in |prod|.
+.. include:: /shared/_includes/cli-ref-intro-system.rest
 
 .. contents::
    :local:

@@ -159,6 +159,7 @@
 .. |VFs| replace:: :abbr:`VFs (Virtual Functions)`
 .. |vGPU| replace:: :abbr:`vGPU (Virtual Graphics Processing Unit)`
 .. |vGPUs| replace:: :abbr:`vGPUs (Virtual Graphics Processing Units)`
+.. |VIM| replace:: :abbr:`VIM (Virtual Infrastructure Management)`
 .. |VLAN| replace:: :abbr:`VLAN (Virtual Local Area Network)`
 .. |VLANs| replace:: :abbr:`VLANs (Virtual Local Area Networks)`
 .. |VM| replace:: :abbr:`VM (Virtual Machine)`

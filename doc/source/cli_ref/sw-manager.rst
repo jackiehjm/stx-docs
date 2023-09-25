@@ -2,10 +2,7 @@
 sw-manager
 ==========
 
-:command:`sw-manager` is the command-line interface for the VIM Orchestration
-APIs.
-
-This page documents the :command:`sw-manager` command.
+.. include:: /shared/_includes/uline.rest
 
 .. contents::
    :local:
