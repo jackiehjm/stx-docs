@@ -338,11 +338,11 @@ dcmanager CLI or the Horizon web interface. If you prefer to use Horizon, see
         | updated_at             | 2020-03-23T20:05:14.157352 |
         +------------------------+----------------------------+
 
-    .. note::
-        Before attempting to log in to the subclouds using the sysadmin account,
-        verify that the subcloud ``platform_sync_status`` is synced. This would
-        ensure that the sysadmin password is successfully resynced to the subclouds
-        and that login attempts do not fail.
+.. note::
+    Before attempting to log in to the subclouds using the sysadmin account,
+    verify that the subcloud ``platform_sync_status`` is synced. This would
+    ensure that the sysadmin password is successfully resynced to the subclouds
+    and that login attempts do not fail.
 
 .. only:: partner
 
