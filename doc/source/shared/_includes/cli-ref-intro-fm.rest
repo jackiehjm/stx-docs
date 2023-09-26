@@ -1,0 +1,12 @@
+.. include:: /shared/_includes/uline.rest
+
+:command:`fm` is the command-line interface for Fault Management.
+
+This page documents the :command:`fm` command.
+
+For a full description of usage and optional arguments for a specific
+:command:`fm` command, enter:
+
+.. code-block::
+
+   ~(keystone_admin)]$ fm help <command>
