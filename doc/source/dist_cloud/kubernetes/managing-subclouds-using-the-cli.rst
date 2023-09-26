@@ -184,12 +184,6 @@ fails, delete subclouds, and monitor or change the managed status of subclouds.
         Check docker_registries and docker proxy configurations in bootstrap values yaml file. Ensure you can manually log into the registry e.g. sudo docker login registry.local:9001 -u <registry-user> -p <registry-password>
         For bootstrap failures, please delete and re-add the subcloud after the cause of failure has been resolved.
 
-.. only:: partner
-
-    .. include:: /_includes/managing-subclouds-using-the-cli.rest
-       :start-after: subclouderror-scenario-begin
-       :end-before: subclouderror-scenario-end
-
 
 
 

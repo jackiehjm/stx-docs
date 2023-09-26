@@ -2,6 +2,3 @@
 
 .. deploy-config-begin
 .. deploy-config-end
-
-.. subclouderror-scenario-begin
-.. subclouderror-scenario-end
