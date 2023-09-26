@@ -1,3 +1,5 @@
+.. _automated_install:
+
 ==============================
 Automated Virtual Installation
 ==============================
