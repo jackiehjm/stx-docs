@@ -24,6 +24,11 @@ Other ``-e`` command line options:
 ``-e restore_mode=optimized``
     Enable optimized restore mode
 
+    .. note::
+
+        Optimized restore is currently supported only on |AIO-SX| systems.
+
+
 ``-e "initial_backup_dir=/home/sysadmin"``
     Where the backup tgz files are located on box.
 
