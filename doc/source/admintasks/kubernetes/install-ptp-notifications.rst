@@ -104,7 +104,7 @@ For example, follow the steps below:
 
     .. code-block::
 
-        ~(keystone_admin)]$ ls /usr/local/share/applications/helm/stx-ptp-notification-helm-2.<minor_version>.tgz
+        ~(keystone_admin)]$ ls /usr/local/share/applications/helm/ptp-notification-<version>.tgz
 
 #. Upload the ``ptp-notification`` application using the command below.
 
@@ -118,84 +118,161 @@ For example, follow the steps below:
 
        ~(keystone_admin)]$ system application-list
 
-#.  Apply Helm overrides as required.
+#.  Apply Helm overrides as required. Create a yaml file and update the fields
+    that require Helm overrides.
 
     .. code-block::
 
         ~(keystone_admin)]$ system helm-override-update ptp-notification ptp-notification notification --values notification-override.yaml
+    
+    .. note::
+            
+        You can override the default values for the ``ptp-notification``
+        application either by creating separate override sections for v1
+        and v2 APIs or by including v1 and v2 APIs in a single file as
+        shown in the example below.
 
-    You can override the default values for the ``ptp-notification`` application:
+    .. code-block:: none
 
-    #.  Create a yaml file and update the fields that require Helm overrides.
+        ~(keystone_admin)]$ cat notification-override.yaml
+        ptptracking:
+          ptp4lServiceName: ptp4l-legacy
+          phc2sysServiceName: phc2sys-legacy
+          logging_level: INFO
+          device:
+            holdover_seconds: 15
+            poll_freq_seconds: 2
+        ptptrackingv2:
+          ptp4lServiceName: True
+          phc2sysServiceName: True
+          ts2phcServiceName: True
+          log_level: INFO
+          control_timeout: 2
+          device:
+            holdover_seconds: 15
+          osclock:
+            holdover_seconds: 15
+          overall:
+            holdover_seconds: 15
 
-        .. code-block::
-
-            ~(keystone_admin)]$ cat notification-override.yaml
-
+    #. To configure the ``ptp-notification`` v1 API in a seperate section,
+       include the following in the ``notification-override.yaml`` file.
+       Ensure that values are updated to match the configured instance
+       names on your system.
+       
+       .. code-block:: none
+        
            ptptracking:
+             enabled: True
+             ptp4lSocket: /var/run/ptp4l-instancename
+             ptp4lServiceName: ptp4l-instancename
+             phc2sysServiceName: phc2sys-instancename
+             logging_level: INFO
+           device:
+             holdover_seconds: 15
+             poll_freq_seconds: 2
+  
+       ``ptptracking``
+
+       where the values are:
+      
+       ``ptp4lSocket``
+           Update this value to include the correct instance name of your
+           configured ptp4l instance.
+       
+       ``ptp4lServiceName``
+           Update this value to the instance name of your configured ptp4l
+           instance.
+      
+       ``phc2sysServiceName``
+           Update this value to the instance name of your configure phc2sys
+           instance.
+
+       ``logging_level: INFO``
+           Set the logging level. DEBUG can be used for additional logs.
+
+       ``holdover_seconds``
+           ``holdover_seconds`` configures how long each service will stay in
+           the HOLDOVER state before transitioning to FREERUN. The holdover value
+           used by the application equates to: holdover_seconds - (poll_freq_seconds * 2).
+           
+           This is done in order to account for time between the monitor polling
+           cycles. The ``holdover_seconds`` value should be configured to match the
+           validated holdover time provided by the device manufacturer.
+          
+       ``poll_freq_seconds``
+           poll_freq_seconds sets how frequently, in seconds the services are
+           checked.
+
+    #. To configure the ``ptp-notification`` v2 API in a seperate section,
+       include the following in the ``notification-override.yaml`` file.
+       Ensure that values are updated to match the configured instance
+       names on your system.
+       
+       .. code-block:: none
+        
+           ptptrackingv2:
              ptp4lServiceName: True
              phc2sysServiceName: True
              ts2phcServiceName: True
              log_level: INFO
              control_timeout: 2
-           device:
-             holdover_seconds: 15
-             poll_freq_seconds: 2
-           osclock:
-             holdover_seconds: 15
-           overall:
-             holdover_seconds: 15
+             device:
+               holdover_seconds: 15
+             osclock:
+               holdover_seconds: 15
+             overall:
+               holdover_seconds: 15
 
-        where the values are:
+       ``ptptrackingv2``
 
-        **ptptracking**
-
-        ptp4lServiceName: True
-
-        phc2sysServiceName: True
-
-        ts2phcServiceName: True
-
-        -  The ServiceName fields are defaulted to True in the application and
-           generally do not need to be altered.
-
-        -  A service can be set to "False" in order to disable tracking for that
-           type. However, if a service type is not configured on a node
-           (ie. node does not use ts2phc), then the application will automatically
-           determine this and not attempt to monitor it.
-
-        -  Use these fields if there is a service that is configured on the node
-           but you do NOT wish to track.
-
-        **log_level: INFO**
-
-        Set the logging level. DEBUG can be used for additional logs.
-
-        **control_timeout: 2**
-
-        control_timeout sets how frequently, in seconds the services are checked.
-        Value applies to all service types.
-
-        **device refers to ptp4l monitoring**
-
-        device:
-          holdover_seconds: 15
-          poll_freq_seconds: 2
-        osclock:
-          holdover_seconds: 15
-        overall:
-          holdover_seconds: 15
-
-        -  ``holdover_seconds`` configures how long each service will stay in the
-           HOLDOVER state before transitioning to FREERUN. The holdover value
-           used by the application equates to: holdover_seconds
-
-        - (control_timeout * 2).
-
-          This is done in order to account for time between the monitor polling
-          cycles. The ``holdover_seconds`` value should be configured to match the
-          validated holdover time provided by the device manufacturer.
-
+       where the values are:
+       
+       ``ptp4lServiceName``: True
+       
+       ``phc2sysServiceName``: True
+       
+       ``ts2phcServiceName``: True  
+           -  The ServiceName fields are defaulted to True in the application
+              and generally do not need to be altered.
+              
+           -  A service can be set to "False" in order to disable tracking for
+              that type. However, if a service type is not configured on a node
+              (ie. node does not use ts2phc), then the application will automatically
+              determine this and not attempt to monitor it.
+              
+           -  Use these fields if there is a service that is configured on the
+              node but you do NOT wish to track.
+          
+       ``log_level: INFO``
+           Set the logging level. DEBUG can be used for additional logs.
+       
+       ``control_timeout: 2``
+           control_timeout sets how frequently, in seconds the services are checked.
+           Value applies to all service types.
+             
+       ``device``
+           ``device`` refers to ptp4l monitoring
+           
+           -  ``holdover_seconds``: 15
+           
+           -  ``poll_freq_seconds``: 2
+       
+       ``osclock``:
+           holdover_seconds: 15
+       
+       ``overall``:
+           ``holdover_seconds``: 15
+              ``holdover_seconds`` configures how long each service will stay in
+                the HOLDOVER state before transitioning to FREERUN. The holdover
+                value used by the application equates to:
+                holdover_seconds - (control_timeout * 2).
+                
+                This is done in order to account for time between the monitor
+                polling cycles. The ``holdover_seconds`` value should be
+                configured to match the validated holdover time provided by the
+                device manufacturer.
+   
     #.  View existing values.
 
         .. code-block:: none
@@ -257,3 +334,5 @@ hosting the application. For more information see:
 .. only:: partner
 
     .. include:: /_includes/install-ptp-notifications-3a94b1ea1ae3.rest
+
+
