@@ -1,0 +1,13 @@
+.. include:: /shared/_includes/uline.rest
+
+:command:`sw-manager` is the command-line interface for the |VIM| Orchestration
+APIs.
+
+This page documents the :command:`sw-manager` command.
+
+For a full description of usage and optional arguments for a specific
+:command:`sw-manager` command, enter:
+
+.. code-block::
+
+   ~(keystone_admin)]$ sw-manager <command> -h
