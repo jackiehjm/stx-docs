@@ -15,10 +15,8 @@ Integrate the Application with Notification Client Sidecar
 .. rubric:: |context|
 
 This section provides an example of kubernetes deployment of the sidecar and a
-simulated application. Users could replace the ``ptp-notification-demo-app``
-container and related configurations with an application requiring |PTP| status
-updates. The user application must support querying and handling responses
-for either of the API definitions available at:
+simulated application. The user application must support querying and handling
+responses for either of the API definitions available at:
 
 **See**:
 
@@ -61,6 +59,12 @@ The following prerequisites are required before the integration:
 The config provided below is for illustrative purposes and is not validated.
 A suitable user-supplied container would have to be run in the same pod and
 configured to make API calls to the notificationclient-base container.
+
+.. note::
+
+    The following example is for ``ptp-notification`` v2 API. To integrate
+    with ``ptp-notification`` v1 API, change the image from ``starlingx/notificationclient-base:stx.9.0-v2.1.1``
+    to ``starlingx/notificationclient-base:stx.5.0-v1.0.4``.
 
 .. parsed-literal::
 
