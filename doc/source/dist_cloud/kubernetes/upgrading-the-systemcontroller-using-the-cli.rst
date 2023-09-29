@@ -7,14 +7,14 @@
 Upgrade the System Controller Using the CLI
 ===========================================
 
-You can upload and apply upgrades to the System Controller in order to upgrade
-the central repository, from the CLI. The System Controller can be upgraded
+You can upload and apply upgrades to the system controller in order to upgrade
+the central repository, from the CLI. The system controller can be upgraded
 using either a manual software upgrade procedure or by using the
 non-distributed systems :command:`sw-manager` orchestration procedure.
 
 .. rubric:: |context|
 
-Follow the steps below to manually upgrade the System Controller:
+Follow the steps below to manually upgrade the system controller:
 
 .. rubric:: |prereq|
 
@@ -44,6 +44,14 @@ Follow the steps below to manually upgrade the System Controller:
     .. code-block:: none
 
         ~(keystone_admin)]$ system --os-region-name SystemController load-import --local <bootimage>.iso <bootimage>.sig
+
+    .. note::
+        Move the iso to ``/opt/backups`` before importing the load to avoid any
+        disk space issues during the load import.
+
+    .. note::
+        If you face any issue while importing the load, go to
+        ``/var/log/load-import.log`` and examine the error messages.
 
     .. note::
         This can take several minutes. After the system controller is successfully
@@ -193,8 +201,12 @@ Follow the steps below to manually upgrade the System Controller:
 
             ~(keystone_admin)]$ system host-upgrade controller-1
 
-        Wait for controller-1 to reinstall with the load N+1 and becomes
-        **locked-disabled-online** state.
+        Wait for controller-1 to reinstall with the load N+1 and enter the
+        ``locked-disabled-online`` state.
+
+        Controller-1 must boot using |PXE| from the internal management network, that
+        is, controller-1 must boot from the interface that is connected to
+        controller-0's management network interface. 
 
         The following data migration states apply when this command is executed.
 
@@ -251,8 +263,9 @@ Follow the steps below to manually upgrade the System Controller:
 
             ~(keystone_admin)]$ system host-unlock controller-1
 
-        Wait for controller-1 to become **unlocked-enabled**. Wait for the DRBD
-        sync **400.001** Services-related alarm is raised and then cleared.
+        Wait for controller-1 to enter the ``unlocked-enabled`` state. Wait until
+        the DRBD sync **400.001** Services-related alarm has been raised and then
+        cleared.
 
         The following states apply when this command is executed.
 
@@ -291,31 +304,43 @@ Follow the steps below to manually upgrade the System Controller:
         Continue the remaining steps below to manually upgrade or use upgrade
         orchestration to upgrade the remaining nodes.
 
-#.  Upgrade **controller-0**.
+#.  Upgrade controller-0.
 
     For more information, see :ref:`Updates and Upgrades
     <software-updates-and-upgrades-software-updates>`.
 
-    #.  Lock **controller-0**.
+    #.  Lock controller-0.
 
         .. code-block:: none
 
             ~(keystone_admin)]$ system host-lock controller-0
 
-    #.  Upgrade **controller-0**.
+    #.  Upgrade controller-0.
 
         .. code-block:: none
 
             ~(keystone_admin)]$ system host-upgrade controller-0
 
+        .. note::
+            Controller-0 must pxe-boot from the management network and not from
+            any pxe-boot server. Also, ensure that the |NIC| sequence is correct.
 
-    #.  Unlock **controller-0**.
+    #.  Unlock controller-0.
 
         .. code-block:: none
 
             ~(keystone_admin)]$ system host-unlock controller-0
+        
+        You may encounter the following error message:
 
-        Wait until the DRBD sync **400.001** Services-related alarm is raised
+        .. code-block:: none
+
+            Expecting number of interface sriov_numvfs=16. Please wait a few
+            minutes for inventory update and retry host-unlock.
+
+        If you see this error message, you need to retry after 5 minutes.
+
+        Wait until the DRBD sync **400.001** Services-related alarm has been raised
         and then cleared before proceeding to the next step.
 
 
