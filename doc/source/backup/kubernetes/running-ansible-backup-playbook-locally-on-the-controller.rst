@@ -47,7 +47,7 @@ To exclude patch data from being included in the backup, you can use the paramet
 
 .. warning::
 
-    Patch data should only be excluded for |AIO-SX| deployments when optimized
+    Directories should only be excluded for |AIO-SX| deployments when optimized
     Restore is used.
 
 The <admin_password> and <ansible_become_pass> need to be set  correctly
