@@ -1,1 +1,13 @@
 .. [#]_ See :ref:`Data Network Planning <data-network-planning>` for more information.
+
+.. vgpu-content-1-begin
+.. vgpu-content-1-end
+
+.. vgpu-content-2-begin
+.. vgpu-content-2-end
+
+.. vgpu-content-3-begin
+.. vgpu-content-3-end
+
+.. vgpu-content-4-begin
+.. vgpu-content-4-end
