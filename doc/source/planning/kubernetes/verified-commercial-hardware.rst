@@ -129,17 +129,19 @@ Supported hardware components for use with |prod| are listed here.
 
 .. only:: partner
 
-   **FlexRAN 22.11: Verified CPU / NICs / Accelerators**
+   **FlexRAN 23.07: Verified CPU / NICs / Accelerators**
 
    -  Intel® vRAN Accelerator ACC100
-
-   -  3rd Generation Intel® Xeon® Scalable Processor; Intel E810-XXVDA4T
-
-   -  4th Generation Intel® Xeon® Scalable Processor; Intel E810-XXVDA4
+   
+      -  3rd Generation Intel® Xeon® Scalable Processor; Intel E810-XXVDA4T
+      
+   -  Intel® ACC200 Integrated Adapter of 4th Gen Intel Xeon Scalable Processor 
+   
+      -  4th Generation Intel® Xeon® Scalable Processor; Intel E810-XXVDA4
 
    .. note::                                                                                                                                                                   |
 
-       FlexRAN 22.11 has been validated and tested with |prod-long| for lab usage
+       FlexRAN 23.07 has been validated and tested with |prod-long| for lab usage
        only.
 
 .. _cert-hw-details:
