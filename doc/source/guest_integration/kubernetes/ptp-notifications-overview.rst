@@ -39,8 +39,7 @@ PTP-notification consists of two main components:
 
 -   Enables operators to install the **ptp-notification-armada-app**, Sidecar
     container, and the application supporting the REST API. For more information,
-    see, `https://docs.starlingx.io/api-ref/ptp-notification-armada-app/index.html
-    <https://docs.starlingx.io/api-ref/ptp-notification-armada-app/index.html>`__.
+    see https://docs.starlingx.io/api-ref/ptp-notification-armada-app/index.html.
 
 -   Supports the **ptp4l** module and |PTP| port that is configured in
     Subordinate mode (Secondary mode).

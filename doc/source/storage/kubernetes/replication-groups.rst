@@ -48,8 +48,7 @@ member.
     of 20 seconds. This means that a Ceph filesystem may not respond to I/O
     for up to 20 seconds when a storage node or OSD goes out of service.
     For more information, see the Ceph documentation:
-    `http://docs.ceph.com/docs/master/rados/configuration/mon-osd-interaction
-    <http://docs.ceph.com/docs/master/rados/configuration/mon-osd-interaction>`__.
+    http://docs.ceph.com/docs/master/rados/configuration/mon-osd-interaction.
 
 Replication groups are shown on the Hosts Inventory page in association
 with the storage hosts. You can also use the following CLI commands to

@@ -19,7 +19,7 @@ from a browser.
 
       Access the Horizon in your browser at the address:
 
-      http://<oam-floating-ip-address>:8080
+      `http://<oam-floating-ip-address>:8080`
 
       Use the username **admin** and the sysadmin password to log in.
 

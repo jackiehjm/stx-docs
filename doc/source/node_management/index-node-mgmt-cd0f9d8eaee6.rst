@@ -34,8 +34,7 @@ You can change the resource pool in several ways:
     still meets the requirements for your system.
 
 Complete instructions for adding a worker node are provided in the
-`StarlingX Installation and Deployment Guide
-<https://docs.starlingx.io/deploy_install_guides/index.html>`__.
+:ref:`index-install-r7-8966076f0e81`.
 
 .. kub-end
 

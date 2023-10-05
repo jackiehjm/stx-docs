@@ -12,30 +12,30 @@ MIB via |SNMP|.
 The active alarm table contains a list of all active or set alarms in the
 system. Each entry in the table includes the following variables:
 
-- wrsAlarmActiveUuid                      
+- wrsAlarmActiveUuid
 
-- wrsAlarmActiveAlarmId                   
+- wrsAlarmActiveAlarmId
 
-- wrsAlarmActiveEntityInstanceId          
+- wrsAlarmActiveEntityInstanceId
 
-- wrsAlarmActiveDateAndTime               
+- wrsAlarmActiveDateAndTime
 
-- wrsAlarmActiveAlarmSeverity             
+- wrsAlarmActiveAlarmSeverity
 
-- wrsAlarmActiveReasonText                
+- wrsAlarmActiveReasonText
 
-- wrsAlarmActiveEventType                 
+- wrsAlarmActiveEventType
 
-- wrsAlarmActiveProbableCause             
+- wrsAlarmActiveProbableCause
 
-- wrsAlarmActiveProposedRepairAction     
+- wrsAlarmActiveProposedRepairAction
 
-- wrsAlarmActiveServiceAffecting          
+- wrsAlarmActiveServiceAffecting
 
-- wrsAlarmActiveSuppressionAllowed 
+- wrsAlarmActiveSuppressionAllowed
 
 
-See https://opendev.org/starlingx/snmp-armada-app/src/branch/master/stx-snmp-helm/centos/docker/stx-snmp/mibs/wrsAlarmMib.mib.txt
+See https://opendev.org/starlingx/snmp-armada-app/src/branch/master/stx-snmp-helm/docker/stx-snmp/mibs/wrsAlarmMib.mib.txt
 for alarm details.
 
 An external |SNMP| Manager can examine the Active Alarm table contents by doing

@@ -112,7 +112,7 @@ Dashboard.
     defined above for |prod| cluster's |OAM| floating IP.
 
 
-    #.  Access the dashboard at https://<fqdn>:32000
+    #.  Access the dashboard at `https://<fqdn>:32000`
 
         Because the certificate created earlier in this procedure was not
         signed by a trusted |CA|, you will need to acknowledge an insecure

@@ -321,11 +321,8 @@ conditions are in place:
 
        If the message HEALTH_WARN appears, wait a few minutes and then try
        again. If the warning condition persists, consult the public
-       documentation for troubleshooting Ceph monitors (for example,
-       `http://docs.ceph.com/docs/master/rados/troubleshooting/troubleshootin
-       g-mon/
-       <http://docs.ceph.com/docs/master/rados/troubleshooting/troubleshootin
-       g-mon/>`__).
+       documentation for troubleshooting Ceph monitors (for example
+       http://docs.ceph.com/docs/master/rados/troubleshooting/troubleshooting-mon/).
 
 #. Restore the compute (worker) hosts, one at a time.
 

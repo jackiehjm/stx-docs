@@ -48,7 +48,7 @@ Platform OpenStack |CLIs|, using one of the following methods:
     Keystone user credentials, download an OpenStack RC file (openrc.sh), and
     use it to source the required environment within your local LDAP user shell
     . For more information on downloading your OpenStack RC file from Horizon,
-    see, `http://docs.openstack.org <http://docs.openstack.org/>`__.
+    see http://docs.openstack.org.
 
 #.  (Method 2) Add the required environment variables manually into a
     wrcprc.sh file and use this to source the required environment within your

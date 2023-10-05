@@ -140,4 +140,4 @@ This example requires that:
 
 #.  Access the kuard demo from your browser to inspect and verify that the
     certificate is signed by LetsEncrypt |CA|. For this example, the URL
-    would be https://kuard.starlingx.mycompany.com.
+    would be `https://kuard.starlingx.mycompany.com`.
