@@ -106,13 +106,17 @@ host types are:
    * - Power profile
      - C-states (up to C6) may be configured for some use cases where application
        workloads can tolerate additional scheduling/timer latency.
+
+       .. note::
+
+          C-states may be enabled depending on application requirements.
    * - Boot order
      - HD, PXE, USB
    * - BIOS mode
      - BIOS or UEFI
-       
+
        .. note::
-          
+
           |UEFI| Secure Boot and |UEFI| |PXE| boot over IPv6 are not supported. On
           systems with an IPv6 management network, you can use a separate IPv4
           network for |PXE| boot. For more information, see
@@ -129,6 +133,10 @@ host types are:
        * Minimum Processor Idle Power; CPU C state control disabled
 
        * Plug & play |BMC| detection disabled
+
+       .. note::
+
+          The system will not override the recommended BIOS settings.
 
 .. end-min-hw-reqs-sx
 
@@ -243,20 +251,24 @@ host types are:
      - 1 (Only required if used for initial installation of controller-0).
      -
    * - Board Management
-     - 
+     -
      - 1 |BMC|
    * - Power profile
      -
      - C-states (up to C6) may be configured for some use cases where application
        workloads can tolerate additional scheduling/timer latency.
+
+       .. note::
+
+          C-states may be enabled depending on application requirements.
    * - Boot order
      - HD, PXE, USB
      - HD, PXE
    * - BIOS mode
      - BIOS or UEFI
-       
+
        .. note::
-          
+
           |UEFI| Secure Boot and |UEFI| |PXE| boot over IPv6 are not supported. On
           systems with an IPv6 management network, you can use a separate IPv4
           network for |PXE| boot. For more information, see
@@ -274,6 +286,10 @@ host types are:
        * CPU C state control disabled
 
        * Plug & play |BMC| detection disabled
+
+       .. note::
+
+          The system will not override the recommended BIOS settings.
 
      - (Same as controller node)
 
@@ -318,12 +334,12 @@ host types are:
      - 2-|max-workers|
    * - Minimum processor class
      - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket
-       
+
        .. note:: All cores are used by the platform.
      - Dual-CPU Intel® Xeon® E5 26xx family (SandyBridge) 8 cores/socket
-       
+
        .. note::
-          
+
           * Platform: 1x physical cores (2x logical cores if hyper-threading),
             (by default, configurable)
           * Application: Remaining cores
@@ -354,16 +370,16 @@ host types are:
      - 1 (Only required if used for initial installation of controller-0).
      -
    * - Board Management
-     - 
+     -
      - 1 |BMC|
    * - Boot order
      - HD, PXE, USB
      - HD, PXE
    * - BIOS mode
      - BIOS or UEFI
-       
+
        .. note::
-          
+
           |UEFI| Secure Boot and |UEFI| |PXE| boot over IPv6 are not supported. On
           systems with an IPv6 management network, you can use a separate IPv4
           network for |PXE| boot. For more information, see
@@ -462,7 +478,7 @@ host types are:
 
        Recommended, but not required: 1 or more 500G HDs (min. 10K RPM), |SSDs|
        or |NVMe| drives for Container ephemeral disk storage.
-  
+
    * - Minimum network ports
      - * MGMT: 1x1GE ( Recommended: MGMT 2x10GE LAG ).
        * |OAM|: 1x1GE (Recommended: |OAM|: 2x1GE LAG)
@@ -481,13 +497,13 @@ host types are:
      - 1 |BMC|
    * - Boot order
      - HD, PXE, USB
-     - 
+     -
      - HD, PXE
    * - BIOS mode
      - BIOS or UEFI
-       
+
        .. note::
-          
+
           |UEFI| Secure Boot and |UEFI| |PXE| boot over IPv6 are not supported. On
           systems with an IPv6 management network, you can use a separate IPv4
           network for |PXE| boot. For more information, see
