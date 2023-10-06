@@ -246,7 +246,6 @@ The following steps provide a quick-start procedure for developers.
 
        kubectl create -f volume-ceph.yaml
 
-       kubectl create -f volume-ceph.yaml
        persistentvolumeclaim/flexran-storage created
        controller-0:~$ kubectl get pvc
        NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
