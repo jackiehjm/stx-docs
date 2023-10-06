@@ -204,9 +204,10 @@ Follow the steps below to manually upgrade the system controller:
         Wait for controller-1 to reinstall with the load N+1 and enter the
         ``locked-disabled-online`` state.
 
-        Controller-1 must boot using |PXE| from the internal management network, that
-        is, controller-1 must boot from the interface that is connected to
-        controller-0's management network interface. 
+        controller-1 must pxe-boot over the management network and its load
+        must be served from controller-0, and not from any external
+        pxe-boot server attached to the |OAM| network. To ensure this,
+        check that the network boot list/order of BIOS |NIC| is correct.
 
         The following data migration states apply when this command is executed.
 
@@ -322,8 +323,11 @@ Follow the steps below to manually upgrade the system controller:
             ~(keystone_admin)]$ system host-upgrade controller-0
 
         .. note::
-            Controller-0 must pxe-boot from the management network and not from
-            any pxe-boot server. Also, ensure that the |NIC| sequence is correct.
+            
+            controller-0 must pxe-boot over the management network and its load
+            must be served from controller-1, and not from any external
+            pxe-boot server attached to the |OAM| network. To ensure this,
+            check that the network boot list/order of BIOS |NIC| is correct.
 
     #.  Unlock controller-0.
 
