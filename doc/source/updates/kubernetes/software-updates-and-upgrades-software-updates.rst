@@ -59,10 +59,6 @@ the |prod| software:
     which automates a rolling install of an update across all of the
     |prod-long| hosts.
 
-    The |prod| handles multiple updates being applied and removed at once.
-    Software updates can modify and update any area of |prod| software,
-    including the kernel itself.
-
     For information on populating, installing and removing software updates,
     see :ref:`Manage Software Updates <managing-software-updates>`.
 
