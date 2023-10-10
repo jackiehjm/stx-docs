@@ -163,3 +163,67 @@ Virtualization
 Virtual Machines (VM)
   An instance of a node provided by software (a hypervisor), which runs within
   the host operating system and hardware.
+  
+  You must configure separate, per-region PXEBoot networks.
+
+StarlingX
+  StarlingX is an open source, complete cloud infrastructure software stack
+  for the edge used by the most demanding applications in industrial |IoT|,
+  telecom, and other use cases. The platform creates a fusion between
+  OpenStack and Kubernetes to provide a robust and flexible environment for
+  all kinds of workloads, including containerized, virtualized or bare
+  metal.
+
+Storage
+  A node within a |prod| edge cloud that is dedicated to providing file and
+  object storage to application workloads. There can be 0 or more storage
+  nodes within a |prod| edge cloud.
+
+  - Runs CEPH distributed storage software.
+  - Part of an |HA| multi-node CEPH storage cluster supporting a replication
+    factor of two or three, journal caching, and class tiering.
+  - Provides |HA| persistent storage for images, virtual volumes (that is,
+    block storage), and object storage.
+
+Virtualization
+  The act of creating a virtual version of CPU, network or storage device.
+
+Virtual Machines (VM)
+  An instance of a node provided by software (a hypervisor), which runs
+  within the host operating system and hardware.
+
+Rollback 
+  The process of reverting changes made to a system or database to a
+  previous state. For |prod|, *Rollback* is a capability that is supported
+  during an upgrade or update.
+
+Restore
+  Bringing back a system or data from a backup or a previously saved state.
+  For |prod|, *Restore* can be used for current release (*N*) or (*N*-1).
+
+Downgrade
+  The process of moving from a higher version or a newer release of a
+  software, firmware, or operating system to a lower version or an older
+  release.
+
+Precheck
+  A system state checks intended to confirm the system health for an
+  impending operation.  This check can be performed at any time prior to the
+  system operation execution, but is intended to be executed just prior to
+  confirming that it can be scheduled before actually attempting the operation.
+
+Prestaging
+  System software media is prepopulated on the system in preparation for an
+  impending operation. *Prestaging* is currently supported for installation
+  and upgrade operation.
+
+Preinstallation
+  New deployments for a system that is installed in the factory.
+  *Preinstallation* also refers to software media that is installed alongside
+  the existing deployment in preparation for an upgrade.
+
+Shared NIC
+  A single physical port that can be shared by two or more system networks (oam, mgmt., 
+  cluster-host, pxeboot and data)
+  For more information, see :ref:`sriov-port-sharing`.
+
