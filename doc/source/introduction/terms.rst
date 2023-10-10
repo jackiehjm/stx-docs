@@ -213,4 +213,9 @@ commonly used in the |org| community and in this documentation.
    Preinstallation
      New deployments for a system that is installed in the factory.
      *Preinstallation* also refers to software media that is installed alongside
-     the existing deployment in preparation for an upgrade. 
+     the existing deployment in preparation for an upgrade.
+
+   Shared NIC
+     A single physical port that can be shared by two or more system networks (oam, mgmt., 
+     cluster-host, pxeboot and data)
+     For more information, see :ref:`sriov-port-sharing`.
