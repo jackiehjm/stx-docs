@@ -169,7 +169,7 @@
 .. |TBF| replace:: :abbr:`TBF (Token Bucket Filter)`
 .. |TCP| replace:: :abbr:`TCP (Transition Control Protocol)`
 .. |TFTP| replace:: :abbr:`TFTP (Trivial File Transfer Protocol)`
-.. |T-GM| replace:: :abbr:`T-GM (Telecom Grand Primary)`
+.. |T-GM| replace:: :abbr:`T-GM (Telecom Grand Master)`
 .. |TLS| replace:: :abbr:`TLS (Transport Layer Security)`
 .. |ToR| replace:: :abbr:`ToR (Top-of-Rack)`
 .. |TPM| replace:: :abbr:`TPM (Trusted Platform Module)`
