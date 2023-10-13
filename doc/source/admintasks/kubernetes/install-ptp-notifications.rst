@@ -71,27 +71,27 @@ For example, follow the steps below:
 
 .. rubric:: |proc|
 
-#. Apply labels to nodes that will be running the ``ptp-notification``.
+#.  Apply labels to nodes that will be running the ``ptp-notification``.
 
-   #.  Apply the registration label to the controller nodes.
+    #.  Apply the registration label to the controller nodes.
 
-       .. code-block::
+        .. code-block::
 
-           ~(keystone_admin)]$ system host-label-assign controller-0 ptp-registration=true
+            ~(keystone_admin)]$ system host-label-assign controller-0 ptp-registration=true
 
-   #.  Apply the notification label to each node that is configured for PTP
-       clock synchronization.
+    #.  Apply the notification label to each node that is configured for PTP
+        clock synchronization.
 
-       .. code-block::
+        .. code-block::
 
-           ~(keystone_admin)]$ system host-label-assign controller-0 ptp-notification=true
-           ~(keystone_admin)]$ system host-label-assign compute-0 ptp-notification=true
+            ~(keystone_admin)]$ system host-label-assign controller-0 ptp-notification=true
+            ~(keystone_admin)]$ system host-label-assign compute-0 ptp-notification=true
 
-   #.  Verify the labels.
+    #.  Verify the labels.
 
-       .. code-block::
+        .. code-block::
 
-           ~(keystone_admin)]$ system host-label-list <node name>
+            ~(keystone_admin)]$ system host-label-list <node name>
 
 #.  Locate the application tarball on the system controller.
 
@@ -117,9 +117,9 @@ For example, follow the steps below:
     .. code-block::
 
         ~(keystone_admin)]$ system helm-override-update ptp-notification ptp-notification notification --values notification-override.yaml
-    
+
     .. note::
-            
+
         You can override the default values for the ``ptp-notification``
         application either by creating separate override sections for v1
         and v2 APIs or by including v1 and v2 APIs in a single file as
@@ -132,6 +132,7 @@ For example, follow the steps below:
           ptp4lServiceName: ptp4l-legacy
           phc2sysServiceName: phc2sys-legacy
           logging_level: INFO
+          ptp4lClockClassLockedList: "6,7,135"
           device:
             holdover_seconds: 15
             poll_freq_seconds: 2
@@ -139,6 +140,8 @@ For example, follow the steps below:
           ptp4lServiceName: True
           phc2sysServiceName: True
           ts2phcServiceName: True
+          ptp4lClockClassLockedList: "6,7,135"
+          phc2sysToleranceThreshold: 1000
           log_level: INFO
           control_timeout: 2
           device:
@@ -148,124 +151,173 @@ For example, follow the steps below:
           overall:
             holdover_seconds: 15
 
-    #. To configure the ``ptp-notification`` v1 API in a seperate section,
-       include the following in the ``notification-override.yaml`` file.
-       Ensure that values are updated to match the configured instance
-       names on your system.
-       
-       .. code-block:: none
-        
-           ptptracking:
-             enabled: True
-             ptp4lSocket: /var/run/ptp4l-instancename
-             ptp4lServiceName: ptp4l-instancename
-             phc2sysServiceName: phc2sys-instancename
-             logging_level: INFO
-           device:
-             holdover_seconds: 15
-             poll_freq_seconds: 2
-  
-       ``ptptracking``
+    #.  To configure the ``ptp-notification`` v1 API in a seperate section,
+        include the following in the ``notification-override.yaml`` file.
+        Ensure that values are updated to match the configured instance
+        names on your system.
 
-       where the values are:
-      
-       ``ptp4lSocket``
-           Update this value to include the correct instance name of your
-           configured ptp4l instance.
-       
-       ``ptp4lServiceName``
-           Update this value to the instance name of your configured ptp4l
-           instance.
-      
-       ``phc2sysServiceName``
-           Update this value to the instance name of your configure phc2sys
-           instance.
+        .. code-block:: none
 
-       ``logging_level: INFO``
-           Set the logging level. DEBUG can be used for additional logs.
+            ptptracking:
+              enabled: True
+              ptp4lSocket: /var/run/ptp4l-instancename
+              ptp4lServiceName: ptp4l-instancename
+              phc2sysServiceName: phc2sys-instancename
+              logging_level: INFO
+              ptp4lClockClassLockedList: "6,7,135"
+              device:
+                holdover_seconds: 15
+                poll_freq_seconds: 2
 
-       ``holdover_seconds``
-           ``holdover_seconds`` configures how long each service will stay in
-           the HOLDOVER state before transitioning to FREERUN. The holdover value
-           used by the application equates to: holdover_seconds - (poll_freq_seconds * 2).
-           
-           This is done in order to account for time between the monitor polling
-           cycles. The ``holdover_seconds`` value should be configured to match the
-           validated holdover time provided by the device manufacturer.
-          
-       ``poll_freq_seconds``
-           poll_freq_seconds sets how frequently, in seconds the services are
-           checked.
+        ``ptptracking``
 
-    #. To configure the ``ptp-notification`` v2 API in a seperate section,
-       include the following in the ``notification-override.yaml`` file.
-       Ensure that values are updated to match the configured instance
-       names on your system.
-       
-       .. code-block:: none
-        
-           ptptrackingv2:
-             ptp4lServiceName: True
-             phc2sysServiceName: True
-             ts2phcServiceName: True
-             log_level: INFO
-             control_timeout: 2
-             device:
-               holdover_seconds: 15
-             osclock:
-               holdover_seconds: 15
-             overall:
-               holdover_seconds: 15
+        where the values are:
 
-       ``ptptrackingv2``
+        ``ptp4lSocket``
+            Update this value to include the correct instance name of your
+            configured ptp4l instance.
 
-       where the values are:
-       
-       ``ptp4lServiceName``: True
-       
-       ``phc2sysServiceName``: True
-       
-       ``ts2phcServiceName``: True  
-           -  The ServiceName fields are defaulted to True in the application
-              and generally do not need to be altered.
-              
-           -  A service can be set to "False" in order to disable tracking for
-              that type. However, if a service type is not configured on a node
-              (ie. node does not use ts2phc), then the application will automatically
-              determine this and not attempt to monitor it.
-              
-           -  Use these fields if there is a service that is configured on the
-              node but you do NOT wish to track.
-          
-       ``log_level: INFO``
-           Set the logging level. DEBUG can be used for additional logs.
-       
-       ``control_timeout: 2``
+        ``ptp4lServiceName``
+            Update this value to the instance name of your configured ptp4l
+            instance.
+
+        ``phc2sysServiceName``
+            Update this value to the instance name of your configure phc2sys
+            instance.
+
+        ``logging_level: INFO``
+            Set the logging level. DEBUG can be used for additional logs.
+
+        ``ptp4lClockClassLockedList``
+            Set the list of clock classes that will allow ``ptp-notification``
+            to report **Locked**. The clockClass for a monitored ptp4l instance
+            is read via the |PMC|. If the instance clockClass matches one of
+            the ``ptp4lClockClassLockedList`` values, then ``ptp-notification``
+            will report **Locked** for that instance.
+
+            The default values are "6,7,135", which means that
+            ``ptp-notification`` will report locked when reading a clockClass
+            of 6, 7 or 135 from the configured ptp4l instance. These values are
+            recommended for nodes operating as Boundary Clock (BC).
+
+            For nodes operating as |GM|, it is recommended to set the value to
+            "6", so that only clockClass 6 is reported as locked.
+
+        ``holdover_seconds``
+            ``holdover_seconds`` configures how long each service will stay in
+            the HOLDOVER state before transitioning to FREERUN. The holdover
+            value used by the application equates to: holdover_seconds -
+            (poll_freq_seconds * 2).
+
+            This is done in order to account for time between the monitor
+            polling cycles. The ``holdover_seconds`` value should be configured
+            to match the validated holdover time provided by the device
+            manufacturer.
+
+        ``poll_freq_seconds``
+            ``poll_freq_seconds`` sets how frequently, in seconds the services
+            are checked.
+
+    #.  To configure the ``ptp-notification`` v2 API in a seperate section,
+        include the following in the ``notification-override.yaml`` file.
+        Ensure that values are updated to match the configured instance
+        names on your system.
+
+        .. code-block:: none
+
+            ptptrackingv2:
+              ptp4lServiceName: True
+              phc2sysServiceName: True
+              ts2phcServiceName: True
+              log_level: INFO
+              ptp4lClockClassLockedList: "6,7,135"
+              phc2sysToleranceThreshold: 1000
+              control_timeout: 2
+              device:
+                holdover_seconds: 15
+              osclock:
+                holdover_seconds: 15
+              overall:
+                holdover_seconds: 15
+
+        ``ptptrackingv2``
+
+        where the values are:
+
+        ``ptp4lServiceName: True``
+
+        ``phc2sysServiceName: True``
+
+        ``ts2phcServiceName: True``
+            -   The ServiceName fields are defaulted to "True" in the
+                application and do not need to be altered.
+
+            -   A service can be set to "False" in order to disable tracking
+                for that type. However, if a service type is not configured on
+                the node (i.e. node does not use ts2phc), then the application
+                automatically determines this and does not attempt to monitor
+                the node.
+
+            -   Use these fields if there is a service that is configured on
+                the node that you do NOT want to track.
+
+        ``log_level: INFO``
+            Set the logging level. DEBUG can be used for additional logs.
+
+        ``ptp4lClockClassLockedList``
+            Set the list of clock classes that will allow ``ptp-notification``
+            to report **Locked**. The clockClass for a monitored ptp4l instance
+            is read via the |PMC|. If the instance clockClass matches one of
+            the ``ptp4lClockClassLockedList`` values, then ``ptp-notification``
+            will report **Locked** for that instance.
+
+            The default values are "6,7,135", which means that
+            ``ptp-notification`` will report locked when reading a clockClass
+            of 6, 7 or 135 from the configured ptp4l instance. These values are
+            recommended for nodes operating as Boundary Clock (BC).
+
+            For nodes operating as |GM|, it is recommended to set the value to
+            "6", so that only clockClass 6 is reported as locked.
+
+        ``phc2sysToleranceThreshold``
+            Default value: 1000
+
+            Set the skew threshold in nanoseconds at which ``ptp-notification``
+            will report that the system clock is no longer considered
+            **Locked**.
+
+            The ``ptp-notification`` application compares the time of the
+            system clock to the configured source PHC. If the delta between the
+            system clock and the |PHC| is greater than the
+            ``phc2sysToleranceThreshold``, a notification will be generated
+            that the system clock is not locked.
+
+        ``control_timeout: 2``
            control_timeout sets how frequently, in seconds the services are checked.
            Value applies to all service types.
-             
-       ``device``
-           ``device`` refers to ptp4l monitoring
-           
-           -  ``holdover_seconds``: 15
-           
-           -  ``poll_freq_seconds``: 2
-       
-       ``osclock``:
-           holdover_seconds: 15
-       
-       ``overall``:
-           ``holdover_seconds``: 15
-              ``holdover_seconds`` configures how long each service will stay in
-                the HOLDOVER state before transitioning to FREERUN. The holdover
-                value used by the application equates to:
+
+        ``device``
+            ``device`` refers to ptp4l monitoring
+
+            -  ``holdover_seconds: 15``
+
+            -  ``poll_freq_seconds: 2``
+
+        ``osclock``
+            holdover_seconds: 15
+
+        ``overall``
+            holdover_seconds: 15
+                ``holdover_seconds`` configures how long each service will stay
+                in the HOLDOVER state before transitioning to FREERUN. The
+                holdover value used by the application equates to:
                 holdover_seconds - (control_timeout * 2).
-                
+
                 This is done in order to account for time between the monitor
                 polling cycles. The ``holdover_seconds`` value should be
                 configured to match the validated holdover time provided by the
                 device manufacturer.
-   
+
     #.  View existing values.
 
         .. code-block:: none
@@ -278,9 +330,13 @@ For example, follow the steps below:
 
         .. note::
 
-            The application could be in the "uploaded" or "applied" state.
+            Changes to the ``ptp-notification`` override values require the
+            application to be removed and re-applied in order to re-create the
+            application containers.
 
         .. code-block:: none
+
+            ~(keystone_admin)]$ system application-remove ptp-notification
 
             ~(keystone_admin)]$ system helm-override-update ptp-notification ptp-notification notification -–values <notification-override.yaml>
 

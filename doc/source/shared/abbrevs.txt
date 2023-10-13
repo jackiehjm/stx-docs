@@ -55,6 +55,7 @@
 .. |FPGA| replace:: :abbr:`FPGA (Field Programmable Gate Array)`
 .. |FQDN| replace:: :abbr:`FQDN (Fully Qualified Domain Name)`
 .. |FQDNs| replace:: :abbr:`FQDNs (Fully Qualified Domain Names)`
+.. |GM| replace:: :abbr:`GM (Grand Master)`
 .. |GNP| replace:: :abbr:`GNP (Global Network Policy)`
 .. |GNPs| replace:: :abbr:`GNPs (Global Network Policies)`
 .. |GNSS| replace:: :abbr:`GNSS (Global Navigation Satellite System)`
@@ -119,6 +120,7 @@
 .. |PHB| replace:: :abbr:`PHB (Per-Hop Behavior)`
 .. |PHC| replace:: :abbr:`PHC (PTP Hardware Clock)`
 .. |PHCs| replace:: :abbr:`PHC (PTP Hardware Clock)`
+.. |PMC| replace:: :abbr:`PMC (PTP Management Client)`
 .. |PMD| replace:: :abbr:`PMD (Pole Mode Driver)`
 .. |PQDN| replace:: :abbr:`PDQN (Partially Qualified Domain Name)`
 .. |PQDNs| replace:: :abbr:`PQDNs (Partially Qualified Domain Names)`
