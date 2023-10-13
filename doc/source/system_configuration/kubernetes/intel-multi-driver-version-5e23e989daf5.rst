@@ -21,9 +21,7 @@ Currently there are 3 CVL versions available:
 -   ``cvl-4.0.1`` (default)
       - ice: 1.9.11 / Required NVM/firmware: 4.0
       - i40e: 2.20.12 / Required NVM/firmware: 8.70
-      - iavf: 4.5.3
-
-..    - iavf: 4.5.3.2 - To be added later
+      - iavf: 4.5.3.2
 
 .. Reverted ice driver to 1.5.8
 
