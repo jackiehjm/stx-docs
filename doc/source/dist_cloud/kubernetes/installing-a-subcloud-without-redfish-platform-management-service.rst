@@ -95,14 +95,11 @@ subcloud, the subcloud installation process has two phases:
              -o <file>: Specify output ISO file
              -a <file>: Specify ks-addon.cfg file
              --initial-password <password>: Specify the initial login password for sysadmin user
+             --no-force-password: Do not force password change on initial login (insecure)
 
              -p <p=v>:  Specify boot parameter
                         Examples:
-                        -p rootfs_device=nvme0n1
-                        -p boot_device=nvme0n1
-
-                        -p rootfs_device=/dev/disk/by-path/pci-0000:00:0d.0-ata-1.0
-                        -p boot_device=/dev/disk/by-path/pci-0000:00:0d.0-ata-1.0
+                        -p instdev=/dev/disk/by-path/pci-0000:00:0d.0-ata-1.0
 
              -d <default menu option>:
                         Specify default boot menu option:
@@ -119,32 +116,62 @@ subcloud, the subcloud installation process has two phases:
 
     The following example ``ks-addon.cfg`` file, used with the -a option,
     sets up an initial IP interface at boot time by defining a |VLAN| on an
-    Ethernet interface and has it use |DHCP| to request an IP address:
+    Ethernet interface and has it use |DHCP| to request an IP address.
+
+    In Debian, by default the ``ks-addon.cfg`` script is executed outside of the
+    installing subcloud runtime (outside the chroot environment). As a result,
+    the script does not have access to the kernel runtime command shell. Instead,
+    the file system must be accessed via the provided ``$IMAGE_ROOTFS`` environment
+    variable.
+
+    If required, a chroot can be manually entered, allowing full access to the
+    installing subcloud's execution environment. See the ``ks-addon.cfg`` given
+    below for an example.
 
     .. code-block:: none
 
         #### start ks-addon.cfg
-        RAW_DEV=enp24s0f0
-        OAM_VLAN=103
 
-        cat << EOF > ${IMAGE_ROOTFS}/etc/network/interfaces.d/ifcfg-${RAW_DEV}
-        iface ${RAW_DEV} inet manual
+        DEVICE=enp0s3
+        OAM_VLAN=1234
+        OAM_ADDR="xxxx:xxxx:x:xxxx:xx:x:x:x"
+
+        # This section is run outside of the subcloud target runtime.
+        # The IMAGE_ROOTFS environment variable is set to the root of the target filesystem
+
+        cat << EOF > ${IMAGE_ROOTFS}/etc/network/interfaces.d/ifcfg-${DEVICE}
+        auto ${DEVICE}
+        iface ${DEVICE} inet6 manual
         mtu 9000
-        post-up echo 0 > /proc/sys/net/ipv6/conf/${RAW_DEV}/autoconf;\
-        echo 0 > /proc/sys/net/ipv6/conf/${RAW_DEV}/accept_ra;\
-        echo 0 > /proc/sys/net/ipv6/conf/${RAW_DEV}/accept_redirects
+        post-up echo 0 > /proc/sys/net/ipv6/conf/${DEVICE}/autoconf;\
+        echo 0 > /proc/sys/net/ipv6/conf/${DEVICE}/accept_ra;\
+        echo 0 > /proc/sys/net/ipv6/conf/${DEVICE}/accept_redirects
         EOF
 
         cat << EOF > ${IMAGE_ROOTFS}/etc/network/interfaces.d/ifcfg-vlan${OAM_VLAN}
-        iface vlan${OAM_VLAN} inet6 dhcp
-        vlan-raw-device ${RAW_DEV}
+        auto vlan${OAM_VLAN}
+        iface vlan${OAM_VLAN} inet6 static
+        vlan-raw-device ${DEVICE}
+        address ${OAM_ADDR}
+        netmask 64
+        gateway ${OAM_GW_ADDR}
         mtu 1500
         post-up /usr/sbin/ip link set dev vlan${OAM_VLAN} mtu 1500;\
         echo 0 > /proc/sys/net/ipv6/conf/vlan${OAM_VLAN}/autoconf;\
         echo 0 > /proc/sys/net/ipv6/conf/vlan${OAM_VLAN}/accept_ra;\
         echo 0 > /proc/sys/net/ipv6/conf/vlan${OAM_VLAN}/accept_redirects
-        pre-up /sbin/modprobe -q 8021q
         EOF
+
+        # If execution is required inside the chroot environment, you can manually enter the
+        # chroot and run commands. Note: quotes around EOF are required:
+        cat << "EOF" | chroot "${IMAGE_ROOTFS}" /bin/bash -s
+          echo "ks-addon.cfg: inside chroot"
+
+          # chrooted commands go here.
+          # Commands are executed in the context of the installing subcloud.
+
+        EOF
+
         #### end ks-addon.cfg
 
     After updating the ISO image, create a bootable USB with the ISO or put the
