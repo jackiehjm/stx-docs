@@ -7,14 +7,14 @@
 Upgrade the System Controller Using the CLI
 ===========================================
 
-You can upload and apply upgrades to the System Controller in order to upgrade
-the central repository, from the CLI. The System Controller can be upgraded
+You can upload and apply upgrades to the system controller in order to upgrade
+the central repository, from the CLI. The system controller can be upgraded
 using either a manual software upgrade procedure or by using the
 non-distributed systems :command:`sw-manager` orchestration procedure.
 
 .. rubric:: |context|
 
-Follow the steps below to manually upgrade the System Controller:
+Follow the steps below to manually upgrade the system controller:
 
 .. rubric:: |prereq|
 
@@ -44,6 +44,14 @@ Follow the steps below to manually upgrade the System Controller:
     .. code-block:: none
 
         ~(keystone_admin)]$ system --os-region-name SystemController load-import --local <bootimage>.iso <bootimage>.sig
+
+    .. note::
+        Move the iso to ``/opt/backups`` before importing the load to avoid any
+        disk space issues during the load import.
+
+    .. note::
+        If you face any issue while importing the load, go to
+        ``/var/log/load-import.log`` and examine the error messages.
 
     .. note::
         This can take several minutes. After the system controller is successfully
@@ -191,8 +199,13 @@ Follow the steps below to manually upgrade the System Controller:
 
             ~(keystone_admin)]$ system host-upgrade controller-1
 
-        Wait for controller-1 to reinstall with the load N+1 and becomes
-        **locked-disabled-online** state.
+        Wait for controller-1 to reinstall with the load N+1 and enter the
+        ``locked-disabled-online`` state.
+
+        controller-1 must pxe-boot over the management network and its load
+        must be served from controller-0, and not from any external
+        pxe-boot server attached to the |OAM| network. To ensure this,
+        check that the network boot list/order of BIOS |NIC| is correct. 
 
         The following data migration states apply when this command is executed.
 
@@ -248,8 +261,9 @@ Follow the steps below to manually upgrade the System Controller:
 
             ~(keystone_admin)]$ system host-unlock controller-1
 
-        Wait for controller-1 to become **unlocked-enabled**. Wait for the DRBD
-        sync **400.001** Services-related alarm is raised and then cleared.
+        Wait for controller-1 to enter the ``unlocked-enabled`` state. Wait until
+        the DRBD sync **400.001** Services-related alarm has been raised and then
+        cleared.
 
         The **upgrading-controllers** state applies when this command is
         run. This state is entered after controller-1 has been upgraded to
@@ -281,31 +295,46 @@ Follow the steps below to manually upgrade the System Controller:
         Continue the remaining steps below to manually upgrade or use upgrade
         orchestration to upgrade the remaining nodes.
 
-#.  Upgrade **controller-0**.
+#.  Upgrade controller-0.
 
     For more information, see :ref:`Updates and Upgrades
     <software-updates-and-upgrades-software-updates>`.
 
-    #.  Lock **controller-0**.
+    #.  Lock controller-0.
 
         .. code-block:: none
 
             ~(keystone_admin)]$ system host-lock controller-0
 
-    #.  Upgrade **controller-0**.
+    #.  Upgrade controller-0.
 
         .. code-block:: none
 
             ~(keystone_admin)]$ system host-upgrade controller-0
 
+        .. note::
 
-    #.  Unlock **controller-0**.
+            controller-0 must pxe-boot over the management network and its load
+            must be served from controller-1, and not from any external
+            pxe-boot server attached to the |OAM| network. To ensure this,
+            check that the network boot list/order of BIOS |NIC| is correct.
+
+    #.  Unlock controller-0.
 
         .. code-block:: none
 
             ~(keystone_admin)]$ system host-unlock controller-0
+        
+        You may encounter the following error message:
 
-        Wait until the DRBD sync **400.001** Services-related alarm is raised
+        .. code-block:: none
+
+            Expecting number of interface sriov_numvfs=16. Please wait a few
+            minutes for inventory update and retry host-unlock.
+
+        If you see this error message, you need to retry after 5 minutes.
+
+        Wait until the DRBD sync **400.001** Services-related alarm has been raised
         and then cleared before proceeding to the next step.
 
 
