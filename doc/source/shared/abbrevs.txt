@@ -30,7 +30,7 @@
 .. |CRD| replace:: :abbr:`CRD (Custom Resource Definition)`
 .. |CRDs| replace:: :abbr:`CRDs (Custom Resource Definitions)`
 .. |CSI| replace:: :abbr:`CSI (Container Storage Interface)`
-.. |CSIs| replace:: :abbr:`CSI (Container Storage Interfaces)`
+.. |CSIs| replace:: :abbr:`CSIs (Container Storage Interfaces)`
 .. |CSK| replace:: :abbr:`CSK (Code Signing Key)`
 .. |CSKs| replace:: :abbr:`CSKs (Code Signing Keys)`
 .. |CVE| replace:: :abbr:`CVE (Common Vulnerabilities and Exposures)`
