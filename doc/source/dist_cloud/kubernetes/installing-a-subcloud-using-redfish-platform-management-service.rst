@@ -58,17 +58,28 @@ subcloud, the subcloud installation has these phases:
 
     .. note::
 
-        This is required only once and does not have to be done for every
-        subcloud install.
+        - This is required only once and does not have to be done for every
+          subcloud install.
 
-        :command:`dcmanager` recognizes bootimage names ending in <.iso> and
-        <.sig>
+          :command:`dcmanager` recognizes bootimage names ending in ``.iso`` and
+          ``.sig``.
 
-        For example,
+          For example,
 
-        .. parsed-literal::
+          .. parsed-literal::
 
-            ~(keystone_admin)]$ system --os-region-name SystemController load-import --active |installer-image-name|.iso |installer-image-name|.sig
+              ~(keystone_admin)]$ system --os-region-name SystemController load-import --active |installer-image-name|.iso |installer-image-name|.sig
+
+        - The ISO imported via ``load-import --active`` must be at the same
+          patch level as the system controller. This ensures that the subcloud
+          boot image aligns with the patch level of the load to be installed on
+          the subcloud.
+        
+    .. warning::
+        
+        If the patch level of load-imported ISO does not match the system controller
+        patch level, the subcloud patch state may not align with the system
+        controller patch state.
 
 -   Run the :command:`load-import` command on controller-0 to import
     the new release.
