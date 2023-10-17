@@ -62,8 +62,8 @@ To change the driver bundle back to the default version, there are two options:
         +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
         | 84306212-d96d-4a2a-8cc0-2d48781e006c | platform   | config  | intel_nic_driver_version  | cvl-2.54  | None        | None     |
         +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
+
         ~(keystone_admin)$ system service-parameter-delete 84306212-d96d-4a2a-8cc0-2d48781e006c
-        ~(keystone_admin)$ system service-parameter-apply platform
 
 To apply the service parameter change, all hosts need to be locked and
 unlocked, using the following commands for each host depending on the deployed
