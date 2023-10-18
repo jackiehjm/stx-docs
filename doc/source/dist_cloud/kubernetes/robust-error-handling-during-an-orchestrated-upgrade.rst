@@ -39,6 +39,12 @@ If a failure occurs, use the following general steps:
     <group-id>` command.
     Failed subclouds that are **offline** must be retried one at a time.
 
+.. only:: partner
+
+    .. include:: /_includes/robust-error-handling-during-an-orchestrated-upgrade-f52d90537973.rest
+       :start-after: upgradeerror-begin
+       :end-before:  upgradeerror-end
+
 .. seealso::
 
     * :ref:`failure-prior-to-the-installation-of-n-plus-1-load-on-a-subcloud`
