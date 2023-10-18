@@ -74,20 +74,18 @@ To change the driver bundle back to the default version, there are two options:
         ~(keystone_admin)$ system service-parameter-apply platform
         Applying platform service parameters
 
-.. Ghada please confirm if the system service-parameter-list, should have the 3rd driver listed in the table below?
-
 #.  Remove the system service parameter ``intel_nic_driver_version``.
 
-.. code-block:: none
+    .. code-block:: none
 
-    ~(keystone_admin)$ system service-parameter-list --service platform --section config --name intel_nic_driver_version
-    +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
-    | uuid                                 | service    | section | name                      | value     | personality | resource |
-    +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
-    | 84306212-d96d-4a2a-8cc0-2d48781e006c | platform   | config  | intel_nic_driver_version  | cvl-2.54  | None        | None     |
-    +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
+        ~(keystone_admin)$ system service-parameter-list --service platform --section config --name intel_nic_driver_version
+        +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
+        | uuid                                 | service    | section | name                      | value     | personality | resource |
+        +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
+        | 84306212-d96d-4a2a-8cc0-2d48781e006c | platform   | config  | intel_nic_driver_version  | cvl-2.54  | None        | None     |
+        +--------------------------------------+------------+---------+---------------------------+-----------+-------------+----------+
 
-    ~(keystone_admin)$ system service-parameter-delete 84306212-d96d-4a2a-8cc0-2d48781e006c
+        ~(keystone_admin)$ system service-parameter-delete 84306212-d96d-4a2a-8cc0-2d48781e006c
 
 To apply the service parameter change, all hosts need to be locked and
 unlocked for each host depending on the deployed configuration, using the
