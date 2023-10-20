@@ -36,7 +36,8 @@ A workstation computer with:
 * Docker
 * Android Repo Tool
 * Proxy settings configured, if required (See
-  http://lists.starlingx.io/pipermail/starlingx-discuss/2018-July/000136.html for more details)
+  https://lists.starlingx.io/archives/list/starlingx-discuss@lists.starlingx.io/message/FERKPQEAG5YOSV5T5TKEN7HPDCNXBFAL/
+  for more details)
 * Public SSH key
 
 .. _Development-environment-setup:
