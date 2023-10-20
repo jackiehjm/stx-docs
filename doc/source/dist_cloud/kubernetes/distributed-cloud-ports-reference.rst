@@ -11,6 +11,8 @@ function correctly.
 
 .. _distributed-cloud-ports-reference-table-mxl-qhh-blb:
 
+.. begin-dc-ports-table
+
 .. table:: Table 1. |prod-dc| port requirements
     :widths: auto
 
@@ -251,7 +253,4 @@ function correctly.
     | tcp      | 32323 | oam     | vim-webserver    | blocked(by gnp)  | blocked(by gnp)  | Not used between System Controller and Subclouds |                                     |                                         |
     +----------+-------+---------+------------------+------------------+------------------+--------------------------------------------------+-------------------------------------+-----------------------------------------+
 
-
-
-
-
+.. end-dc-ports-table
