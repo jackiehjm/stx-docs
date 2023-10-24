@@ -81,6 +81,8 @@ to controller-1 and perform the same steps.
 
 #. Validate that the application is running:
 
+   .. begin-eg-system-aplication-list
+
    .. code-block:: none
 
        ~(keystone_admin)]$ system application-list
@@ -93,6 +95,8 @@ to controller-1 and perform the same steps.
        | platform-integ-apps      | 1.0-52  | platform-integ-apps-fluxcd-manifests      | fluxcd-manifests | applied  | completed            |
        | rook-ceph-apps           | 1.0-17  | rook-ceph-manifest                        | manifest.yaml    | uploaded | completed            |
        +--------------------------+---------+-------------------------------------------+------------------+----------+----------------------+
+
+   .. end-eg-system-aplication-list
 
 #. Validate that the image is in the local registry:
 
