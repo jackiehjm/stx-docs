@@ -58,6 +58,7 @@ Operation
     delete-subcloud-backup-data-using-dcmanager-cli-9cabe48bc4fd
     restore-a-subcloud-group-of-subclouds-from-backup-data-using-dcmanager-cli-f10c1b63a95e
     rehoming-a-subcloud
+    rename-subcloud-e303565e7192
     prestage-a-subcloud-using-dcmanager-df756866163f
     add-a-horizon-keystone-user-to-distributed-cloud-29655b0f0eb9
     update-a-subcloud-network-parameters-b76377641da4
