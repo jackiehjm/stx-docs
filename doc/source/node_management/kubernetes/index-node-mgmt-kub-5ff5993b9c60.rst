@@ -362,16 +362,15 @@ Host hardware management
    host_hardware_management/changing-hardware-components-for-a-worker-host
    host_hardware_management/configuration-changes-requiring-re-installation
 
-.. Temporarily removing these files as they may be needed in the future.
-   -----------------------------------------
-   Node Feature Discovery |prod| Application
-   -----------------------------------------
+-----------------------------------------
+Node Feature Discovery |prod| Application
+-----------------------------------------
 
-   .. toctree::
-      :maxdepth: 1
+.. toctree::
+   :maxdepth: 1
 
-      install-node-feature-discovery-nfd-starlingx-application-70f6f940bb4a
-      uninstall-node-feature-discovery-nfd-starlingx-application-a582bfdadfb8
+   install-node-feature-discovery-nfd-starlingx-application-70f6f940bb4a
+   uninstall-node-feature-discovery-nfd-starlingx-application-a582bfdadfb8
 
 -------------
 Provision BMC
