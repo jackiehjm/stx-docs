@@ -131,3 +131,8 @@
 .. |deb-install-step-change| replace:: \
 .. |deb-dup-std-na| replace:: Duplex, and standard configurations are not available.
 .. |deb-update-iso| replace:: \
+
+
+.. Initial version for k8s multi-ver upgrade orch strategy
+
+.. |k8s-multi-ver-orch-strategy-release| replace:: release 8.0
