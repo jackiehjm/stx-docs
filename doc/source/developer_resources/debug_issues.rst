@@ -119,7 +119,7 @@ Implement fixes
 Additional resources
 --------------------
 
-*   Review the `StarlingX Discuss list <http://lists.starlingx.io/pipermail/starlingx-discuss/>`_
+*   Review the `StarlingX Discuss list <https://lists.starlingx.io/archives/list/starlingx-discuss@lists.starlingx.io/>`_
     for similar questions and workarounds from the community.
 
 *   Check the `StarlingX Launchpad <https://launchpad.net/starlingx>`_ for
