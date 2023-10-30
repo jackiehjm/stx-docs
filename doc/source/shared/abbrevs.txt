@@ -122,6 +122,7 @@
 .. |PHCs| replace:: :abbr:`PHC (PTP Hardware Clock)`
 .. |PMC| replace:: :abbr:`PMC (PTP Management Client)`
 .. |PMD| replace:: :abbr:`PMD (Pole Mode Driver)`
+.. |PMU| replace:: :abbr:`PMU (Performance Monitor Unit)`
 .. |PQDN| replace:: :abbr:`PDQN (Partially Qualified Domain Name)`
 .. |PQDNs| replace:: :abbr:`PQDNs (Partially Qualified Domain Names)`
 .. |PSA| replace:: :abbr:`PSA (Pod Security Admission)`
@@ -136,6 +137,7 @@
 .. |QoS| replace:: :abbr:`QoS (Quality of Service)`
 .. |RAID| replace:: :abbr:`RAID (Redundant Array of Inexpensive Disks)`
 .. |RAN| replace:: :abbr:`RAN (Radio Access Network)`
+.. |RAPL| replace:: :abbr:`RAPL (Running Average Power Limit)`
 .. |RBAC| replace:: :abbr:`RBAC (Role-Based Access Control)`
 .. |RBD| replace:: :abbr:`RBD (RADOS Block Device)`
 .. |RPC| replace:: :abbr:`RPC (Remote Procedure Call)`
