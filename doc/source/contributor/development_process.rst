@@ -158,15 +158,11 @@ Defect submission process
 
 The StarlingX project uses `launchpad for tracking bugs. <https://bugs.launchpad.net/starlingx>`_
 
-To report a new bug, go to the launchpad link above and click :guilabel:`Report a bug`.
-You will be prompted to search for similar bugs which helps reduce duplicates in
-the database. Please use the StarlingX Bug Template (displayed in the bug window)
-when filing a new bug to help ensure that the team can quickly triage and fix the bug.
-
-Capturing logs related to a defect is often required in order to root cause and
-fix the issue. Please use the `StarlingX log collection tool
-<https://files.starlingx.kube.cengn.ca>`_ to post collect log files
-and post a link to the logs within your Launchpad.
+To report a new bug, go to the launchpad link above and click :guilabel:`Report
+a bug`. You will be prompted to search for similar bugs which helps reduce
+duplicates in the database. Please use the StarlingX Bug Template (displayed in
+the bug window) when filing a new bug to help ensure that the team can quickly
+triage and fix the bug.
 
 As the reporter of a bug, once you complete the template and fill
 in the information requested, you can submit the bug report.
