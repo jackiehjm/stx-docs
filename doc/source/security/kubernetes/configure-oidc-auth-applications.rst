@@ -75,6 +75,8 @@ Configure OIDC Auth Applications
               - <OAM_floating_IP_address>
             EOF
 
+         .. include:: /shared/_includes/recommended-renewbefore-value-for-certificates-c929cf42b03b.rest
+
       #. Apply the configuration.
 
          .. code-block:: none
