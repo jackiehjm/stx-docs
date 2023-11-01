@@ -160,6 +160,8 @@ playbook are:
     If a separate set of overrides are required for a group of hosts,
     ``children`` groups can be added under ``target_group``.
 
+    .. include:: /shared/_includes/recommended-renewbefore-value-for-certificates-c929cf42b03b.rest 
+
     The following example illustrates using one set of ssh/sudo passwords for
     subcloud1 and subcloud2 and another set of ssh/sudo passwords for
     subcloud3.

@@ -12,15 +12,15 @@ You can access the system from a remote workstation using one of two methods.
 .. _configure-remote-cli-access-ul-jt2-lcy-ljb:
 
 
--   The first method involves using the remote |CLI| tarball from the
-    |prod| CENGEN build servers to install a set of container-backed remote
-    CLIs and clients for accessing a remote |prod-long|. This provides
-    access to the :command:`system` and :command:`dcmanager` |prod| CLIs,
-    the OpenStack CLI for Keystone and Barbican in the platform, and
-    Kubernetes-related CLIs (kubectl, helm). This approach is simple to
-    install, portable across Linux, macOS, and Windows, and provides access
-    to all |prod-long| CLIs. However, commands such as those that reference
-    local files or require a shell are awkward to run in this environment.
+-   The first method involves using the remote |CLI| tarball from StarlingX
+    Public build servers to install a set of container-backed remote CLIs and
+    clients for accessing a remote |prod-long|. This provides access to the
+    :command:`system` and :command:`dcmanager` |prod| CLIs, the OpenStack CLI
+    for Keystone and Barbican in the platform, and Kubernetes-related CLIs
+    (kubectl, helm). This approach is simple to install, portable across Linux,
+    macOS, and Windows, and provides access to all |prod-long| CLIs. However,
+    commands such as those that reference local files or require a shell are
+    difficult to run in this environment.
 
 -   The second method involves installing the :command:`kubectl` and
     :command:`helm` clients directly on the remote host. This method only
