@@ -76,6 +76,8 @@ Configure OIDC Auth Applications
 
             EOF
 
+         .. include:: /shared/_includes/recommended-renewbefore-value-for-certificates-c929cf42b03b.rest
+
       #. Apply the configuration.
 
          .. code-block:: none

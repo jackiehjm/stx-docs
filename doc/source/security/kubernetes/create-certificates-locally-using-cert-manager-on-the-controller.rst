@@ -91,6 +91,8 @@ for use in a lab environment.
                 kind: Issuer
             " | kubectl apply -f -
 
+        .. include:: /shared/_includes/recommended-renewbefore-value-for-certificates-c929cf42b03b.rest
+
     #.  Create the |PEM| files for Server certificate and key.
 
         .. code-block:: none

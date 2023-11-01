@@ -146,6 +146,8 @@ This example requires that:
           selector:
             app: example-app
 
+    .. include:: /shared/_includes/recommended-renewbefore-value-for-certificates-c929cf42b03b.rest
+
 #.  If example-app existed, you would access it from your browser
     with ``https://abccompany-starlingx.mycompany.com:31118``.
 

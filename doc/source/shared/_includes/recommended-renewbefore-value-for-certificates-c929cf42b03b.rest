@@ -1,0 +1,15 @@
+.. _recommended-renewbefore-value-for-certificates-c929cf42b03b:
+
+
+.. note::
+
+   The Certificate usage of Cert-manager Documentation
+   (https://cert-manager.io/docs/usage/certificate/) states that one should
+   "Take care when setting the ``renewBefore`` field to be very close to the
+   duration as this can lead to a renewal loop, where the Certificate is always
+   in the renewal period."
+
+   In the light of the statement above, you must not set ``renewBefore`` to a
+   value very close to the "duration" value, such as a renewBefore of 29 days
+   and a duration of 30 days. Instead, you could set values such as
+   renewBefore=15 days and duration=30 days to avoid renewal loops.

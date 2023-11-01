@@ -175,7 +175,14 @@ controllers/subclouds.
                  hosts:
                    subcloud3:
 
+   .. include:: /shared/_includes/recommended-renewbefore-value-for-certificates-c929cf42b03b.rest
+
+
 #. Run the playbook.
+
+    The following example illustrates using one set of ssh/sudo passwords for
+    subcloud1 and subcloud2 and another set of ssh/sudo passwords for
+    subcloud3.
 
    Execute the Ansible playbook to start the migration process. You will be
    prompted for the vault password created in the previous step.
