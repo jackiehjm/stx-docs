@@ -42,6 +42,12 @@ The following are application annotations available for core dump configuration:
     If this annotation is not used, the default core dump handler (systemd-coredump)
     will be used.
 
+.. note:
+
+    The ``starlingx.io/core_pattern`` parameter only accepts lower case
+    characters for the path and file name where the core dump is saved.
+
+
 ``--starlingx.io/core_compression``: none|lz4 (default “none”)
     This annotation is used to determine whether the file will be compressed.
     Using the "lz4" option, the file will be compressed, decreasing the file
