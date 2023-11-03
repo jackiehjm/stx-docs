@@ -183,8 +183,7 @@ CLIs and Clients for an admin user with cluster-admin clusterrole.
     to the remote workstation, and extract its content.
 
 
-    -   The tarball is available from the |prod| area on the |prod| CENGE N
-        build servers.
+    -   The tarball is available from the StarlingX Public build servers.
 
     -   You can extract the tarball's contents anywhere on your client system.
 
