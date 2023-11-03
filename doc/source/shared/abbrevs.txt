@@ -51,6 +51,7 @@
 .. |DSCP| replace:: :abbr:`DSCP (Differentiated Services Code Point)`
 .. |DVR| replace:: :abbr:`DVR (Distributed Virtual Router)`
 .. |EMS| replace:: :abbr:`EMS (Element Management System)`
+.. |ePRTC| replace:: :abbr:`ePRTC (Enhanced Primary Reference Time Clock)`
 .. |FEC| replace:: :abbr:`FEC (Forward Error Correction)`
 .. |FPGA| replace:: :abbr:`FPGA (Field Programmable Gate Array)`
 .. |FQDN| replace:: :abbr:`FQDN (Fully Qualified Domain Name)`
@@ -125,6 +126,7 @@
 .. |PMU| replace:: :abbr:`PMU (Performance Monitor Unit)`
 .. |PQDN| replace:: :abbr:`PDQN (Partially Qualified Domain Name)`
 .. |PQDNs| replace:: :abbr:`PQDNs (Partially Qualified Domain Names)`
+.. |PRTC| replace:: :abbr:`PRTC (Primary Reference Time Clock)`
 .. |PSA| replace:: :abbr:`PSA (Pod Security Admission)`
 .. |PSP| replace:: :abbr:`PSP (Pod Security Policy)`
 .. |PSPs| replace:: :abbr:`PSPs (Pod Security Policies)`
