@@ -55,3 +55,10 @@
    &#124;
 
 .. |optional| replace:: **Optional step:**
+
+.. Flag to mark an output html file for post-build step to hide empty rows
+   in tables. This is mostly useful where some rows are conditionalized.
+
+.. |hide-empty-rows| raw:: html
+
+   <!-- post-build-hide-empty-table-rows -->
