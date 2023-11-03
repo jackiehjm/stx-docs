@@ -572,7 +572,7 @@ Build avoidance
 The foundational principle of build avoidance is that it is faster to download
 the rpms than it is to build them. This typically true when the host for
 reference builds and the consumer are close to each other and share a high speed
-link. It is not practical for ``mirror.starlingx.cengn.ca`` to serve as a
+link. It is not practical for ``mirror.starlingx.windriver.com`` to serve as a
 provider of reference builds for the world. The real goal is for a corporate
 office to have a provider of reference builds to the designers within their
 corporate network.

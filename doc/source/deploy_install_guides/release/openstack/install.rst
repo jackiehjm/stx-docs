@@ -42,8 +42,8 @@ Install application manifest and helm-charts
    helm charts. Use one of the following options:
 
    *  Private StarlingX build. See :ref:`Build-stx-openstack-app` for details.
-   *  Public download from
-      `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_.
+   *  Public download from the
+      `StarlingX mirror <https://mirror.starlingx.windriver.com/mirror/starlingx/>`_.
 
       After you select a release, helm charts are located in ``centos/outputs/helm-charts``.
 

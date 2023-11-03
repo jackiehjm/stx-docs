@@ -17,9 +17,9 @@ ISO image
 ---------
 
 The pre-built ISO (Debian) for StarlingX Release 8.0 are located at the
-``CENGN StarlingX mirror`` repo:
+``StarlingX mirror`` repo:
 
-https://mirror.starlingx.cengn.ca/mirror/starlingx/release/8.0.0/debian/monolithic/outputs/iso/
+https://mirror.starlingx.windriver.com/mirror/starlingx/release/8.0.0/debian/monolithic/outputs/iso/
 
 -------------------------------------
 Source Code for StarlingX Release 8.0
