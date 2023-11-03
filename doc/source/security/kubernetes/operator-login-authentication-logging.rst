@@ -22,7 +22,7 @@ directory, and include the following:
 
 -   /var/log/auth.log
 
--   /var/log/horizon.log
+-   /var/log/horizon/horizon.log
 
 -   /var/log/pmond.log
 
