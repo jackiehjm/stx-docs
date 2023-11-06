@@ -1022,6 +1022,26 @@ The output from ``a.rst`` will include all three definitions. The output from
 
 .. end-conditionalize-content-across-pages
 
+-----------------------
+Hiding empty table rows
+-----------------------
+
+.. begin-hide-empty-rows
+
+A table may occasionally contain rows with conditionalized content that applies
+only in one context, resulting in empty rows in the output from other contexts.
+
+You can supress the output of empty rows by adding ``|hide-empty-rows|`` to the
+files in which you want this behavior. All empty rows will be hidden in the
+files where you make this addition.
+
+.. note::
+
+   If you are also using empty rows as separators between sections in longer
+   tables, then this behavior may not be what you want.
+
+.. end-hide-empty-rows
+
 -------------------
 RST quick reference
 -------------------
