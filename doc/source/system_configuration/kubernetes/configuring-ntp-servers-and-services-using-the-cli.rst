@@ -158,3 +158,18 @@ To view the |NTP| service configuration, use the following command:
     | uuid                  | 92c86da2-adb7-4fb2-92fc-82759e25108d           |
     | vim_progress_status   | services-enabled                               |
     +-----------------------+------------------------------------------------+
+
+.. note:: 
+
+    When |NTP| server is unreachable, alarm 100.114 is raised, and it will be
+    cleared once the server becomes reachable.
+
+    It is possible to take some time to raise or clear alarm 100.114. |NTP|
+    related alarm depends on the ``ntpq`` command output and follows |NTP|
+    specification. The 8-bit register in the poll is used to determine the
+    server's reachability. If the register contains any nonzero bits, the
+    server is considered reachable; otherwise, it is considered unreachable.
+
+    The current maximum poll interval is 128 seconds. As a result, it might
+    take about 30 minutes to raise or clear alarm 100.114 in some cases.
+    However, this is expected behavior.
