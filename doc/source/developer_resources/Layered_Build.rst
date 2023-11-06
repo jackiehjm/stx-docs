@@ -362,16 +362,16 @@ Both files use a comma seperated three field lines... ``<lower-layer>,<type>,<ur
 e.g. ::
 
    cat stx-tools/centos-mirror-tools/config/centos/flock/required_layer_pkgs.cfg
-      compiler,std,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/compiler/latest_build/outputs/RPMS/std/rpm.lst
-      distro,std,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/distro/latest_build/outputs/RPMS/std/rpm.lst
-      distro,rt,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/distro/latest_build/outputs/RPMS/rt/rpm.lst
-      distro,installer,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/distro/latest_build/outputs/RPMS/installer/rpm.lst
+      compiler,std,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/compiler/latest_build/outputs/RPMS/std/rpm.lst
+      distro,std,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/distro/latest_build/outputs/RPMS/std/rpm.lst
+      distro,rt,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/distro/latest_build/outputs/RPMS/rt/rpm.lst
+      distro,installer,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/distro/latest_build/outputs/RPMS/installer/rpm.lst
 
    cat stx-tools/centos-mirror-tools/config/centos/flock/required_layer_iso_inc.cfg
-      compiler,std,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/compiler/latest_build/outputs/image.inc
-      compiler,dev,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/compiler/latest_build/outputs/image-dev.inc
-      distro,std,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/distro/latest_build/outputs/image.inc
-      distro,dev,http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/distro/latest_build/outputs/image-dev.inc
+      compiler,std,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/compiler/latest_build/outputs/image.inc
+      compiler,dev,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/compiler/latest_build/outputs/image-dev.inc
+      distro,std,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/distro/latest_build/outputs/image.inc
+      distro,dev,https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/distro/latest_build/outputs/image-dev.inc
 
 To use your lower layer build, you must edit the config in the upper layer build.
 You must replace the url field for the relevant lines to point to your own build using the ``fill:///`` syntax.

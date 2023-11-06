@@ -229,9 +229,9 @@ following required setup:
       sudo pip2 install mechanize
 
 #.  Get the ``oidc-auth`` script from the public
-    `CENGN StarlingX mirror <http://mirror.starlingx.cengn.ca/mirror/starlingx/>`_.
+    `StarlingX mirror <https://mirror.starlingx.windriver.com/mirror/starlingx/>`_.
     For example,
-    ``http://mirror.starlingx.cengn.ca/mirror/starlingx/master/centos/latest_docker_image_build/outputs/remote-cli/``
+    ``https://mirror.starlingx.windriver.com/mirror/starlingx/master/centos/latest_docker_image_build/outputs/remote-cli/``
 
 After setup is complete, run the ``oidc-auth`` script to authenticate and update
 user credentials in the kubectl config file with the retrieved token.
