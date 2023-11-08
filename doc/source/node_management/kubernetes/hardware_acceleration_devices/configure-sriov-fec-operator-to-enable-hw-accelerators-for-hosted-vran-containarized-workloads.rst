@@ -104,7 +104,6 @@ following |vRAN| |FEC| accelerators:
         accelerator-discovery-svh87                     1/1     Running   0               3m26s
         sriov-device-plugin-j54hh                       1/1     Running   0               3m26s
         sriov-fec-controller-manager-77bb5b778b-bjmr8   2/2     Running   0               3m28s
-        sriov-fec-controller-manager-77bb5b778b-wpfld   2/2     Running   1 (3m26s ago)   3m28s
         sriov-fec-daemonset-stnjh                       1/1     Running   0               3m26s
 
 #.  List all the nodes in the cluster with |FEC| accelerators installed.
@@ -252,7 +251,7 @@ following |vRAN| |FEC| accelerators:
                 acceleratorSelector:
                   pciAddress: 0000:17:00.0
                 physicalFunction:
-                  pfDriver: "pci-pf-stub"
+                  pfDriver: "vfio-pci"
                   vfDriver: "vfio-pci"
                   vfAmount: 1
                   bbDevConfig:
@@ -297,7 +296,7 @@ following |vRAN| |FEC| accelerators:
                 acceleratorSelector:
                   pciAddress: 0000:17:00.0
                 physicalFunction:
-                  pfDriver: "pci-pf-stub"
+                  pfDriver: "vfio-pci"
                   vfDriver: "vfio-pci"
                   vfAmount: 2
                   bbDevConfig:
@@ -469,7 +468,7 @@ following |vRAN| |FEC| accelerators:
                   acceleratorSelector:
                     pciAddress: 0000:f7:00.0
                   physicalFunction:
-                    pfDriver: pci-pf-stub
+                    pfDriver: vfio-pci
                     vfDriver: vfio-pci
                     vfAmount: 1
                     bbDevConfig:
@@ -518,7 +517,7 @@ following |vRAN| |FEC| accelerators:
                   acceleratorSelector:
                     pciAddress: 0000:f7:00.0
                   physicalFunction:
-                    pfDriver: pci-pf-stub
+                    pfDriver: vfio-pci
                     vfDriver: vfio-pci
                     vfAmount: 2
                     bbDevConfig:
@@ -551,10 +550,8 @@ following |vRAN| |FEC| accelerators:
 
 
 
-    #.  If you need to run the operator on a |prod-long| (|AIO-SX|), then you
-        should provide ``SriovFecClusterConfig`` with ``spec.drainSkip: True``
-        to avoid node draining, because it is impossible to drain a node if
-        there is only one node.
+    #.  The ``SriovFecClusterConfig`` must be provided with
+        ``spec.drainSkip: True`` to avoid node draining.
 
     #.  Create and apply a ``SriovFecClusterConfig`` custom resource using
         the above examples as templates, setting the parameters
@@ -613,7 +610,7 @@ following |vRAN| |FEC| accelerators:
                       numAqsPerGroups: 16
                       numQueueGroups: 4
                 pciAddress: "0000:17:00.0"
-                pfDriver: pci-pf-stub
+                pfDriver: vfio-pci
                 vfAmount: 1
                 vfDriver: vfio-pci
             status:
@@ -627,7 +624,7 @@ following |vRAN| |FEC| accelerators:
               inventory:
                 sriovAccelerators:
                 - deviceID: 0d5c
-                  driver: pci-pf-stub
+                  driver: vfio-pci
                   maxVirtualFunctions: 16
                   pciAddress: "0000:17:00.0"
                   vendorID: "8086"
@@ -752,7 +749,7 @@ following |vRAN| |FEC| accelerators:
                       numAqsPerGroups: 16
                       numQueueGroups: 4
                 pciAddress: 0000:f7:00.0
-                pfDriver: pci-pf-stub
+                pfDriver: vfio-pci
                 vfAmount: 1
                 vfDriver: vfio-pci
             status:
@@ -766,7 +763,7 @@ following |vRAN| |FEC| accelerators:
               inventory:
                 sriovAccelerators:
                 - deviceID: 57c0
-                  driver: pci-pf-stub
+                  driver: vfio-pci
                   maxVirtualFunctions: 16
                   pciAddress: 0000:f7:00.0
                   vendorID: "8086"
@@ -805,9 +802,13 @@ following |vRAN| |FEC| accelerators:
         |FEC| operator and has the default value of
         ``02bddbbf-bbb0-4d79-886b-91bad3fbb510``
 
+    -   It is highly recommended to change the default vfio-token when
+        configuring the accelerator in vfio mode (ie., vfio-pci driver for PF
+        interface).
+
     -   The ``VFIO_TOKEN`` could be changed by setting
         ``SRIOV_FEC_VFIO_TOKEN`` before application Apply with
-        :command: `system helm-override-update`.
+        :command:`system helm-override-update`.
 
     -   This example sets the ``SRIOV_FEC_VFIO_TOKEN`` using ``uuidgen``.
 
@@ -816,7 +817,8 @@ following |vRAN| |FEC| accelerators:
             ~(keystone_admin)$ system helm-override-update sriov-fec-operator sriov-fec-operator sriov-fec-system --set env.SRIOV_FEC_VFIO_TOKEN=`uuidgen`
 
     -   For the |VF| interface, the same ``VFIO_TOKEN`` must be configured by
-        the application.
+        the application. You can get the token using the command
+        :command:`system helm-override-show sriov-fec-operator sriov-fec-operator sriov-fec-system`.
 
     -   To configure ACC100, N3000 and ACC200 in vfio mode, you should provide
         ``sriovFecClusterConfig`` with
@@ -837,25 +839,23 @@ following |vRAN| |FEC| accelerators:
 -   See :ref:`Set Up Pods to Use SRIOV to Access ACC100/ACC200 HW Accelerators
     <set-up-pods-to-use-sriov>`.
 
--   The resource name for |FEC| |VFs| configured with |SRIOV| |FEC| operator
-    must be ``intel.com/intel_fec_acc100`` for ACC100,
-    ``intel.com/intel_fec_5g`` for N3000 and ``intel.com/intel_fec_acc200``
-    for ACC200 when requested in a pod spec unless the resource name was
-    modified using the `system helm-override-update` command.
+-   Resource Request: The resource name for |FEC| |VFs| configured with |SRIOV|
+    |FEC| operator must be ``intel.com/intel_fec_acc100`` for ACC100,
+    ``intel.com/intel_fec_5g`` for N3000 and ``intel.com/intel_fec_acc200`` for
+    ACC200 when requested in a pod spec unless the resource name was modified
+    using the `system helm-override-update` command.
 
-    -   If the ACC100 resource name was modified to ``intel_acc100_fec``, then
-        the resource requests and limits must match the same name as shown
-        below.
+    -   Resource request for ACC100.
 
         .. code-block:: none
 
             resources:
               requests:
-                intel.com/intel_acc100_fec: '16'
+                intel.com/intel_fec_acc100: '16'
               limits:
-                intel.com/intel_acc100_fec: '16'
+                intel.com/intel_fec_acc100: '16'
 
-    -   Use the default resource name for N3000 in a pod spec.
+    -   Resource request for N3000.
 
         .. code-block:: none
 
@@ -865,7 +865,7 @@ following |vRAN| |FEC| accelerators:
               limits:
                 intel.com/intel_fec_5g: '2'
 
-    -   Use the default resource name for ACC200 in a pod spec.
+    -   Resource request for ACC200.
 
         .. code-block:: none
 
@@ -875,15 +875,9 @@ following |vRAN| |FEC| accelerators:
               limits:
                 intel.com/intel_fec_acc200: '16'
 
--   Applications that are using |FEC| |VFs| when the |PF| interface is bound
-    with the ``vfio-pci`` driver, should provide the ``vfio-token`` to |VF|
-    interface.
+-   vfio-token: (in case of vfio mode)
 
-    For example, a sample |DPDK| application can provide ``vfio-vf-token`` via
-    Environment Abstraction Layer (EAL) parameters.
-    :command:`./test-bbdev.py -e="--vfio-vf-token=02bddbbf-bbb0-4d79-886b-91bad3fbb510 -a0000:f7:00.1"`
-
--   An application pod can get the |VFIO| token through a pod environment
+    An application pod can get the |VFIO| token through a pod environment
     variable.
 
     For example, reference the pod spec section for vfio token injection.
@@ -894,4 +888,50 @@ following |vRAN| |FEC| accelerators:
         - name: SRIOV_FEC_VFIO_TOKEN
           value: "02bddbbf-bbb0-4d79-886b-91bad3fbb510"
 
-    :command:`./test-bbdev.py -e="--vfio-vf-token=$SRIOV_FEC_VFIO_TOKEN -a0000:f7:00.1"`
+    .. note::
+
+        The application can get the existing vfio-token using the command below,
+        if the user updates the custom vfio-token.
+        :command:`system helm-override-show sriov-fec-operator sriov-fec-operator sriov-fec-system`
+
+    If the vfio-token is available by default, it will not be displayed in the
+    output file.
+
+    .. note::
+
+        Use the default vfio-token for testing purposes only.
+
+-   Run the following command once the application pod is ready to get the |PCI|
+    address of the allocated |FEC| device along with the |VFIO| token when
+    applicable.
+
+    -   ACC100
+
+        .. code-block:: none
+
+            sysadmin@controller-0:~$ kubectl exec -ti app-pod -- env | grep FEC
+            PCIDEVICE_INTEL_COM_INTEL_FEC_ACC100=0000:32:00.0
+            SRIOV_FEC_VFIO_TOKEN=02bddbbf-bbb0-4d79-886b-91bad3fbb510
+
+    -   ACC200
+
+        .. code-block:: none
+
+            sysadmin@controller-0:~$ kubectl exec -ti app-pod -- env | grep FEC
+            PCIDEVICE_INTEL_COM_INTEL_FEC_ACC200=0000:f7:00.0
+            SRIOV_FEC_VFIO_TOKEN=02bddbbf-bbb0-4d79-886b-91bad3fbb510
+
+    -   N3000
+
+        .. code-block:: none
+
+            sysadmin@controller-0:~$ kubectl exec -ti app-pod -- env | grep FEC
+            PCIDEVICE_INTEL_COM_INTEL_FEC_5G=0000:1f:00.0
+
+-   Applications that are using |FEC| |VFs| when the |PF| interface is bound
+    with the ``vfio-pci`` driver, should provide the ``vfio-token`` to the |VF|
+    interface.
+
+    For example, a sample |DPDK| application can provide ``vfio-vf-token`` via
+    Environment Abstraction Layer (EAL) parameters.
+    :command:`./test-bbdev.py -e="--vfio-vf-token=$SRIOV_FEC_VFIO_TOKEN -a$PCIDEVICE_INTEL_COM_INTEL_FEC_ACC200"`
