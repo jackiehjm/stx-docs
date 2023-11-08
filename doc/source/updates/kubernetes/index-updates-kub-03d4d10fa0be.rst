@@ -74,6 +74,7 @@ Manual Kubernetes Version Upgrade
    :maxdepth: 1
 
    manual-kubernetes-components-upgrade
+   manual-kubernetes-multi-version-upgrade-in-aio-sx-13e05ba19840
 
 ----------------------------------------------
 Kubernetes Version Upgrade Cloud Orchestration
@@ -85,6 +86,7 @@ Kubernetes Version Upgrade Cloud Orchestration
    about-kubernetes-orchestrated-upgrades
    the-kubernetes-update-orchestration-process
    configuring-kubernetes-update-orchestration
+   configuring-kubernetes-multi-version-upgrade-orchestration-aio-b0b59a346466
    handling-kubernetes-update-orchestration-failures
 
 ----------------------------------
