@@ -181,7 +181,7 @@
 .. |UUID| replace:: :abbr:`UUID (Universally Unique Identifier)`
 .. |UUIDs| replace:: :abbr:`UUIDs (Universally Unique Identifiers)`
 .. |VF| replace:: :abbr:`VF (Virtual Function)`
-.. |VFIO| replace:: abbr:`VFIO (Virtual Function I/O)`
+.. |VFIO| replace:: :abbr:`VFIO (Virtual Function I/O)`
 .. |VFs| replace:: :abbr:`VFs (Virtual Functions)`
 .. |vGPU| replace:: :abbr:`vGPU (Virtual Graphics Processing Unit)`
 .. |vGPUs| replace:: :abbr:`vGPUs (Virtual Graphics Processing Units)`
