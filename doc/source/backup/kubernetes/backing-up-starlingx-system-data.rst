@@ -56,8 +56,9 @@ The following content is excluded from the backup:
   changes on the ``/etc`` directory. After a restore operation has been
   completed, these modifications must be reapplied.
 
-- Home directories and passwords of local user accounts. They must be backed up
-  manually by the sysadmin.
+- Local linux user accounts and groups, their home directories, and passwords
+  will not be carried over during an upgrade. The configuration and management
+  of additional users/groups is not recommended.
 
 - The ``/root`` directory. Use the sysadmin account instead when root access is
   needed.

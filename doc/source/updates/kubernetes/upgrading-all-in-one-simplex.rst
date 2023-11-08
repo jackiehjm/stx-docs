@@ -340,27 +340,9 @@ For more details, see :ref:`Contents of System Backup
     Once the data restoration is complete the upgrade state will be set to
     *upgrading-hosts*.
 
-#.  Check the status of the upgrade.
-
-    .. code-block:: none
-
-        ~(keystone_admin)]$ system upgrade-show
-        +--------------+--------------------------------------+
-        | Property     | Value                                |
-        +--------------+--------------------------------------+
-        | uuid         | 61e5fcd7-a38d-40b0-ab83-8be55b87fee2 |
-        | state        | upgrading-hosts                      |
-        | from_release | nn.nn                                |
-        | to_release   | nn.nn                                |
-        +--------------+--------------------------------------+
-
-#.  Unlock controller-0.
-
-    .. code-block:: none
-
-        ~(keystone_admin)]$ system host-unlock controller-0
-
-    This step is required only for Simplex systems that are not a subcloud.
+    
+    The upgrade playbook will automatically trigger unlock upon successful
+    completion. 
 
 #.  Activate the upgrade.
 
