@@ -75,6 +75,15 @@ There are two types of subcloud prestage:
    image pulls and archive file generation. If the total size of prestage
    images is N GB, available Docker space should be N*2 GB.
 
+.. note::
+
+    For the prestaged remote subcloud installations, the ISO imported via
+    ``load-import --inactive`` must be at the same patch level as the system
+    controller. If the system controller is patched after prestaging of
+    subclouds, you need to repeat the prestaging of each subcloud. This
+    ensures that the subcloud boot image aligns with the patch level of the
+    load that needs to be installed on the subcloud.
+
 .. warning::
 
     If the available docker space is inadequate, some application pods can get
