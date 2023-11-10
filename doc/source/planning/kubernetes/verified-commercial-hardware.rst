@@ -85,7 +85,6 @@ Supported hardware components for use with |prod| are listed here.
     |                                                                                | .. note::                                                                                                                                                                          |
     |                                                                                |     For Mellanox NICs, SR-IOV must be enabled in the NIC firmware.                                                                                                                 |
     |                                                                                |                                                                                                                                                                                    |
-    |                                                                                |                                                                                                                                                                                    |
     +--------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     | NIC for High-precision timing synchronization with IEEE 1588 PTP               | -   Intel X710                                                                                                                                                                     |
     |                                                                                |                                                                                                                                                                                    |
@@ -99,11 +98,22 @@ Supported hardware components for use with |prod| are listed here.
     |                                                                                |                                                                                                                                                                                    |
     |                                                                                | -   Silicom TimeSync STS2                                                                                                                                                          |
     |                                                                                |                                                                                                                                                                                    |
+    |                                                                                | .. note::                                                                                                                                                                          |
+    |                                                                                |     It is recommended to configure systems to use the realtime kernel when using IEEE 1588 PTP with Intel E810 series NICs using the ice driver.                                   |
+    |                                                                                |                                                                                                                                                                                    |
+    |                                                                                |     The standard kernel cannot provide any guarantees for ice driver thread priority and scheduling which can result in degraded PTP timing accuracy.                              |
+    |                                                                                |                                                                                                                                                                                    |
     +--------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     | NIC for High-precision timing synchronization with IEEE                        | -   Intel E810-XXVDA4T 25G                                                                                                                                                         |
     | 1588 PTP, SyncE and GNSS                                                       |                                                                                                                                                                                    |
     |                                                                                |                                                                                                                                                                                    |
     |                                                                                | -   Intel E810-CQDA2T 100G                                                                                                                                                         |
+    |                                                                                |                                                                                                                                                                                    |
+    |                                                                                | .. note::                                                                                                                                                                          |
+    |                                                                                |     It is recommended to configure systems to use the realtime kernel when using IEEE 1588 PTP with Intel E810 series NICs using the ice driver.                                   |
+    |                                                                                |                                                                                                                                                                                    |
+    |                                                                                |     The standard kernel cannot provide any guarantees for ice driver thread priority and scheduling which can result in degraded PTP timing accuracy.                              |
+    |                                                                                |                                                                                                                                                                                    |
     +--------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
     | Hardware Accelerator Devices Verified for PCI SR-IOV Access                    | -   ACC100 Adapter - SRIOV only                                                                                                                                                    |
     |                                                                                |                                                                                                                                                                                    |
@@ -132,11 +142,11 @@ Supported hardware components for use with |prod| are listed here.
    **FlexRAN 23.07: Verified CPU / NICs / Accelerators**
 
    -  Intel® vRAN Accelerator ACC100
-   
+
       -  3rd Generation Intel® Xeon® Scalable Processor; Intel E810-XXVDA4T
-      
-   -  Intel® ACC200 Integrated Adapter of 4th Gen Intel Xeon Scalable Processor 
-   
+
+   -  Intel® ACC200 Integrated Adapter of 4th Gen Intel Xeon Scalable Processor
+
       -  4th Generation Intel® Xeon® Scalable Processor; Intel E810-XXVDA4
 
    .. note::                                                                                                                                                                   |
@@ -147,18 +157,18 @@ Supported hardware components for use with |prod| are listed here.
 .. _cert-hw-details:
 
 .. .. only:: starlingx
-.. 
+..
 ..    The following table provides additional information about currently tested
 ..    and supported hardware. Click the icon in the **Certified** column to see
 ..    additional details.
-.. 
+..
 ..    **Table 2. Self-Validated and Certified Servers**
-.. 
+..
 ..    .. raw:: html
 ..       :url: https://www.windriver.com/studio/operator/self-validated-and-certified-hosts
 
 ..   .. raw:: html
-..   
+..
 ..      <script>
 ..            document.getElementById("body").style.margin-left = -50px;
 ..      </script>

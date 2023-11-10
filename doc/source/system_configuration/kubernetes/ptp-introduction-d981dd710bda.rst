@@ -42,6 +42,12 @@ part of the linuxptp project (https://sourceforge.net/projects/linuxptp/).
    distribute time to one or more PHC devices. Refer to the man pages
    (:command:`man ts2phc`) for a complete list of configuration parameters.
 
+.. note::
+
+    For more information on |PTP| compatible NICs, see
+    :ref:`verified-commercial-hardware`.
+
+
 Overview of the |prod| configuration units
 ==========================================
 
