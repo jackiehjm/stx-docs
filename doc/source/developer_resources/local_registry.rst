@@ -90,7 +90,7 @@ registry on a Linux system with Docker installed and configured.
 
     .. code-block:: shell
 
-        curl -s ${IMAGES_YAML_RAW_FILE} | grep -v '\-\-\-' | grep -v '^#' | cut -d ':' -f2 | tr -d ' ' > $HOME/docker-registry/images/list.lst
+        curl -s ${IMAGES_YAML_RAW_FILE} | grep -v '\-\-\-' | grep -v '^#' | cut -d ':' -f2,3 | tr -d ' ' > $HOME/docker-registry/images/list.lst
 
     .. note:: *Optional*: If you have a running |prod| setup, you can run
         the following to create an Ansible Playbook to get the exact images
