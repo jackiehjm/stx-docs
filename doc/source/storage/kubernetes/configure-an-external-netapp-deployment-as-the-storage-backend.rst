@@ -245,7 +245,7 @@ procedure.
 
     .. code-block:: none
 
-        ansible-playbook --ask-vault-pass /usr/share/ansible/stx-ansible/playbooks/install_netapp_backend.yml -e "override_files_dir=</home/sysadmin/mynetappconfig>"
+        sudo ansible-playbook --ask-vault-pass /usr/share/ansible/stx-ansible/playbooks/install_netapp_backend.yml -e "override_files_dir=</home/sysadmin/mynetappconfig>"
 
     Upon successful launch, there will be one Trident pod running on
     each node, plus an extra pod for the REST API running on one of the
