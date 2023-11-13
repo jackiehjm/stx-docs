@@ -192,9 +192,20 @@ controllers/subclouds.
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/migrate_platform_certificates_to_certmanager.yml -i migration-inventory.yml --extra-vars "target_list=subcloud1 mode=update ignore_alarms=yes" --ask-vault-pass
+        ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/migrate_platform_certificates_to_certmanager.yml -i migration-inventory.yml --extra-vars "target_list=localhost,subcloud1 mode=update ignore_alarms=yes" --ask-vault-pass
 
-    The behavior of the migration can be customized using the following
+    .. note::
+
+        - In |prod-dc| systems, the playbook must be run from the System
+          Controller, and the ``target_list`` parameter should be used to target
+          the desired subclouds.
+        - The ``target_list`` parameter must include localhost within the
+          targeted subcloud, to keep the certificates consistent with the
+          SystemController. In |prod-dc| systems, if localhost is not included
+          in the ``target_list`` parameter, the playbook can fail to install the
+          RCA certificate in the SystemController.
+
+    The behavior of the update/migration can be customized using the following
     ``--extra-vars`` parameter options:
 
     ``mode``
@@ -206,11 +217,12 @@ controllers/subclouds.
           the system controller
 
     ``target_list``
+        * ``localhost``: Will target the localhost (standalone systems or
+          system controller). The ``target_list`` parameter must include at
+          least this value.
+
         * ``subcloud1``, ``subcloud2``: A comma separated list of hosts the
           playbook will target.
-
-        * ``localhost``: Will target the localhost (standalone systems or
-          system controller)
 
         * ``all_online_subclouds``: Will query ``dcmanager subcloud list`` and
           retrieve a list of online subclouds to target.
