@@ -41,9 +41,24 @@ the following parameters/options:
     The yaml file containing the customization parameters.
 
     -   ``wipe_ceph_osds=false``: To keep the Ceph cluster data intact.
-    -   ``wipe_ceph_osds=true``: To wipe the Ceph cluster entirely
+    -   ``wipe_ceph_osds=true``: To wipe the Ceph cluster entirely.
     -   ``on_box_data=true``: To indicate that the backup data file is under
-        /opt/platform-backup directory on the local machine
+        /opt/platform-backup directory on the local machine.
+    -   ``bootstrap_address``: List of subclouds and their corresponding
+        bootstrap addresses for connectivity.
+
+        .. code-block:: none
+
+            bootstrap_address:
+              <subcloud_name1>: <subcloud_bootstrap_address1>
+              <subcloud_name2>: <subcloud_bootstrap_address2>
+        
+        .. note::
+
+            The ``bootstrap_address`` key is only necessary for the restore of
+            manually installed subclouds. For the subclouds installed via
+            Redfish, the ``bootstrap_address`` is already available in the
+            install values.
 
     See :ref:`Run Restore Playbook Locally on the Controller
     <running-restore-playbook-locally-on-the-controller>` for the list of
