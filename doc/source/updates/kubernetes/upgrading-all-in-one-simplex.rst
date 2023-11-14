@@ -316,6 +316,22 @@ For more details, see :ref:`Contents of System Backup
 
         ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/upgrade_platform.yml
 
+    .. only:: starlingx
+
+        .. important::
+
+            If you are upgrading from r7.0 to r8.0 use the command below instead:
+
+            .. code-block:: none
+
+                ansible-playbook /usr/share/ansible/stx-ansible/playbooks/upgrade_platform.yml -e "upgrade_mode=old"
+
+    .. only:: partner
+
+        .. include:: /_includes/upgrading-all-in-one-simplex.rest
+           :start-after: note-upgrade-begin
+           :end-before: note-upgrade-end
+
     Once the host has installed the new load, this will restore the upgrade
     data and migrate it to the new load.
 
@@ -340,9 +356,9 @@ For more details, see :ref:`Contents of System Backup
     Once the data restoration is complete the upgrade state will be set to
     *upgrading-hosts*.
 
-    
+
     The upgrade playbook will automatically trigger unlock upon successful
-    completion. 
+    completion.
 
 #.  Activate the upgrade.
 
