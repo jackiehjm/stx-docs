@@ -408,3 +408,10 @@ Provision BMC using the CLI
    provisioning_bmc/provisioning-bmc-after-adding-a-host
    provisioning_bmc/deprovisioning-board-management-control-from-the-cli
 
+----------------------------------
+Technology Preview - Power Metrics
+----------------------------------
+.. toctree::
+   :maxdepth: 1
+
+   install-power-metrics-application-a12de3db7478

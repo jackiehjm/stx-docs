@@ -90,6 +90,7 @@
 .. |ML| replace:: :abbr:`ML (Machine Learning)`
 .. |MNFA| replace:: :abbr:`MNFA (Multi-Node Failure Avoidance)`
 .. |MOTD| replace:: :abbr:`MOTD (Message of the Day)`
+.. |MSR| replace:: :abbr:`MSR (Model-specific Registers)`
 .. |MTU| replace:: :abbr:`MTU (Maximum Transmission Unit)`
 .. |NA| replace:: :abbr:`NA (Not Applicable)`
 .. |NAT| replace:: :abbr:`NAT (Network Address Translation)`
