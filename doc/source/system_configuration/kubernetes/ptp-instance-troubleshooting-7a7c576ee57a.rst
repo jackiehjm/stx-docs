@@ -60,7 +60,6 @@ terminal output.
       time_stamping hardware
       tx_timestamp_timeout 20
       uds_address /var/run/ptp4l-ptp4l-legacy
-      uds_ro_address /var/run/ptp4l-ptp4l-legacyro
 
 #. Start the service manually and check for errors.
 

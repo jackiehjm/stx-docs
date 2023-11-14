@@ -17,7 +17,6 @@ ptp4l
 *   delay_mechanism E2E
 *   boundary_clock_jbod 1
 *   uds_address /var/run/ptp4l-<instance name>
-*   uds_ro_address /var/run/ptp4l-<instance name>ro
 
 **Default interface parameters**
 
