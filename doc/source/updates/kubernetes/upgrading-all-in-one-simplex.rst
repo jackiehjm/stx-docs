@@ -299,7 +299,7 @@ For more details, see :ref:`Detailed contents of a system backup
 
     .. code-block:: none
 
-        ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/upgrade_platform.yml
+        ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/upgrade_platform.yml -e "upgrade_mode=old"
 
     Once the host has installed the new load, this will restore the upgrade
     data and migrate it to the new load.
