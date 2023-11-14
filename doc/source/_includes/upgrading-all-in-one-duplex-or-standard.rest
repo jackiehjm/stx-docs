@@ -2,3 +2,6 @@
 
 .. upgradeDX-begin
 .. upgradeDX-end
+
+.. deploymentmanager-begin
+.. deploymentmanager-end

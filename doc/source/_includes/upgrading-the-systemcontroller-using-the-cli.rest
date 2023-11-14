@@ -10,3 +10,7 @@
 
 .. DMupgrades-begin
 .. DMupgrades-end
+
+.. deploymentmanager-begin
+.. deploymentmanager-end
+

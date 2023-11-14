@@ -371,6 +371,12 @@ For more details, see :ref:`Contents of System Backup
     configuration is applied. The upgrade state goes from *activating* to
     *activation-complete* once this is done.
 
+    .. only:: partner
+
+        .. include:: /_includes/upgrading-all-in-one-simplex.rest
+           :start-after: deploymentmanager-begin
+           :end-before: deploymentmanager-end
+
     .. code-block:: none
 
         ~(keystone_admin)]$ system upgrade-activate

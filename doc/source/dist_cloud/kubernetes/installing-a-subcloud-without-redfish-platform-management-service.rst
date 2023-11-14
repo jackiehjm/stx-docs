@@ -295,7 +295,7 @@ subcloud, the subcloud installation process has two phases:
 
         ~(keystone_admin)]$ system certificate-install -m docker_registry path_to_cert
 
-    .. include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
+    .. pre-include:: /_includes/installing-a-subcloud-without-redfish-platform-management-service.rest
        :start-after: begin-prepare-files-to-copy-deployment-config
        :end-before: end-prepare-files-to-copy-deployment-config
 
