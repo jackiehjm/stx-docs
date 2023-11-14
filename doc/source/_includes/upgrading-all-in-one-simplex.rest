@@ -5,3 +5,6 @@
 
 .. deploymentmanager-begin
 .. deploymentmanager-end
+
+.. note-upgrade-begin
+.. note-upgrade-end
