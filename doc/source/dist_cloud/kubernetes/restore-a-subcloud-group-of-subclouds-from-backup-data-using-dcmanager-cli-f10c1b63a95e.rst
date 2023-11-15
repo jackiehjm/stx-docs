@@ -294,10 +294,11 @@ Resume subcloud audit with the command:
 
 **AIO-DX/Standard subcloud**
 
-After the controller-0 has been restored and the subcloud becomes online,
-follow the procedure :ref:`Restore Platform System Data and Storage
-<restoring-starlingx-system-data-and-storage>` to restore the rest of the
-subcloud nodes.
+If the restore playbook completes successfully, the subcloud will be online and
+``deploy_status`` will be set to `complete`. Only controller-0 will be in
+unlocked and online state. To complete the restore operation, follow the
+procedure available in :ref:`restoring-starlingx-system-data-and-storage` for
+restoring the remaining subcloud nodes.
 
 Resume subcloud audit with the command:
 
