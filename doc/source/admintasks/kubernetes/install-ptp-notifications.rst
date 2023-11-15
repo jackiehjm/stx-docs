@@ -99,17 +99,17 @@ For example, follow the steps below:
 
         ~(keystone_admin)]$ ls /usr/local/share/applications/helm/ptp-notification-<version>.tgz
 
-#. Upload the ``ptp-notification`` application using the command below.
+#.  Upload the ``ptp-notification`` application using the command below.
 
-   .. code-block::
+    .. code-block::
 
-       ~(keystone_admin)]$ system application-upload <path to application>
+        ~(keystone_admin)]$ system application-upload <path to application>
 
 #.  Verify if the application is in the uploaded state.
 
     .. code-block::
 
-       ~(keystone_admin)]$ system application-list
+        ~(keystone_admin)]$ system application-list
 
 #.  Apply Helm overrides as required. Create a yaml file and update the fields
     that require Helm overrides.
