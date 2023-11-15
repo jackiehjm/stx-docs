@@ -6,9 +6,8 @@
 Create an Update Strategy for Distributed Cloud Update Orchestration
 ====================================================================
 
-To update Central Cloud's RegionOne and the subclouds with updates in the
-**Partial-Apply** state, you must create an update strategy for |prod-dc|
-Update Orchestration.
+To update the subclouds with updates in the **Partial-Apply** state, you must
+create an update strategy for |prod-dc| Update Orchestration.
 
 After a patch (update) has been **applied/removed/committed** on the
 Central Cloud's RegionOne, the subclouds are audited and their patching sync
@@ -22,15 +21,14 @@ If the Subclouds are in a **Managed** state and if the patching sync status is
 Only one update strategy can exist at a time. The strategy controls how the
 subclouds are updated (for example, serially or in parallel).
 
-To determine how the nodes on the Central Cloud's RegionOne and each subcloud
-are updated, the update strategy refers to separate configuration settings
-available on the Cloud Patching Configuration tab.
+To determine how the nodes on each subcloud are updated, the update strategy
+refers to separate configuration settings available on the Cloud Patching
+Configuration tab.
 
 .. rubric:: |prereq|
 
 You must be in **SystemController** region. To change the region, see
-:ref:`RegionOne and SystemController Modes
-<regionone-and-systemcontroller-modes>`.
+:ref:`regionone-and-systemcontroller-modes`.
 
 .. rubric:: |proc|
 
@@ -96,11 +94,9 @@ You must be in **SystemController** region. To change the region, see
     .. image:: figures/update-strategy-3.png
         :width: 444
 
-#.  Adjust how nodes are updated on RegionOne and the subclouds.
+#.  Adjust how nodes are updated on the subclouds.
 
-    See :ref:`Customizing the Update Configuration for Distributed Cloud Update
-    Orchestration
-    <customizing-the-update-configuration-for-distributed-cloud-update-orchestration>`.
+    See :ref:`customizing-the-update-configuration-for-distributed-cloud-update-orchestration`.
 
 #.  Click **Create Strategy**.
 
@@ -120,9 +116,7 @@ You must be in **SystemController** region. To change the region, see
 
 .. seealso::
 
-    :ref:`Customizing the Update Configuration for Distributed Cloud Update
-    Orchestration <customizing-the-update-configuration-for-distributed-cloud-update-orchestration>`
+    :ref:`customizing-the-update-configuration-for-distributed-cloud-update-orchestration`
 
-    :ref:`Applying the Update Strategy for Distributed Cloud
-    <applying-the-update-strategy-for-distributed-cloud>`
+    :ref:`applying-the-update-strategy-for-distributed-cloud`
 

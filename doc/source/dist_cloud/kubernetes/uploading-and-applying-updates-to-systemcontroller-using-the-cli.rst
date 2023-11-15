@@ -13,10 +13,9 @@ for |prod|. For |prod-dc|, you must include an additional |CLI| parameter.
 .. rubric:: |context|
 
 If you prefer, you can use the Horizon Web interface. For more information, see
-:ref:`Uploading and Applying Updates to SystemController Using Horizon
-<uploading-and-applying-updates-to-systemcontroller-using-horizon>`, however
-the specific procedure for incrementally uploading and applying one or more
-patches for the SystemController is provided below.
+:ref:`uploading-and-applying-updates-to-systemcontroller-using-horizon`,
+however the specific procedure for incrementally uploading and applying one or
+more patches for the SystemController is provided below.
 
 For standard |prod| updating procedures, see the |updates-doc|:
 :ref:`software-updates-and-upgrades-software-updates` guide.
@@ -51,7 +50,7 @@ SystemController when using |CLI| :command:`sw-patch` commands.
 
 .. _uploading-and-applying-updates-to-systemcontroller-using-the-cli-steps-scm-jkx-fdb:
 
-  
+
 #.  Log in as the **sysadmin** user.
 
 #.  Copy all patches to be uploaded and applied to ``/home/sysadmin/patches/``.
@@ -63,11 +62,12 @@ SystemController when using |CLI| :command:`sw-patch` commands.
         ~(keystone_admin)]$ sw-patch upload-dir /home/sysadmin/patches --os-region-name SystemController
 
     .. note::
-    
+
         You may receive a warning about the update already being imported. This
         is expected and occurs if the update was uploaded locally to the system
         controller. The warning will only occur for patches that were applied
         to controller-0 (system controller) before it was first unlocked.
+
 
 #.  Confirm that the newly uploaded patches have a status of **available**.
 
@@ -87,9 +87,26 @@ SystemController when using |CLI| :command:`sw-patch` commands.
 
         ~(keystone_admin)]$ sw-patch query --os-region-name SystemController
 
+#.  To update the RegionOne, create the patch strategy using:
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ sw-manager patch-strategy create
+
+#.  Apply the patch strategy:
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ sw-manager patch-strategy apply
+
+    .. note::
+
+        The system controller is not included in the |DC| patch orchestration
+        strategy anymore. You need to patch the system controller before using
+        |DC| orchestration to patch the subclouds.
+
 .. rubric:: |postreq|
 
-To update the software on the System Controller and subclouds, you must use the
-|prod-dc| Update Orchestration. For more information, see :ref:`Update
-Orchestration of Central Cloud's RegionOne and Subclouds
-<update-orchestration-of-central-clouds-regionone-and-subclouds>`.
+To update the software on the subclouds, you must use the |prod-dc| Update
+Orchestration. For more information, see
+:ref:`update-orchestration-of-central-clouds-regionone-and-subclouds`.
