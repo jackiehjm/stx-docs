@@ -203,8 +203,14 @@ function correctly.
     | tcp      | 18003 | mgmt    | stx-fault        | allowed(service admin endpoint)     | Subclouds                                        | System Controller                   | https enabled                           |
     +----------+-------+---------+------------------+------------------+------------------+--------------------------------------------------+-------------------------------------+-----------------------------------------+
     | icmp     | NA    | oam     | icmp             | allowed          | allowed          | Not used between System Controller and Subclouds |                                     |                                         |
+    |          |       |         |                  |                  |                  |                                                  |                                     |                                         |
+    |          |       |         |                  |                  |                  | **The only exception is when using ICMP during   |                                     |                                         |
+    |          |       |         |                  |                  |                  | subcloud installs**.                             |                                     |                                         |
     +----------+-------+---------+------------------+------------------+------------------+--------------------------------------------------+-------------------------------------+-----------------------------------------+
     | icmp     | NA    | mgmt    | icmp             | allowed          | allowed          | Not used between System Controller and Subclouds |                                     |                                         |
+    |          |       |         |                  |                  |                  |                                                  |                                     |                                         |
+    |          |       |         |                  |                  |                  | **The only exception is when using ICMP during   |                                     |                                         |
+    |          |       |         |                  |                  |                  | subcloud installs**.                             |                                     |                                         |
     +----------+-------+---------+------------------+------------------+------------------+--------------------------------------------------+-------------------------------------+-----------------------------------------+
     | tcp      | 25491 | oam     | dcorch-patch     | allowed (service | NA               | Not used between System Controller and Subclouds |                                     | dcorch-patch-api-proxy public endpoint  |
     |          |       |         | -api-proxy       | public endpoint) |                  |                                                  |                                     |                                         |
@@ -254,3 +260,4 @@ function correctly.
     +----------+-------+---------+------------------+------------------+------------------+--------------------------------------------------+-------------------------------------+-----------------------------------------+
 
 .. end-dc-ports-table
+
