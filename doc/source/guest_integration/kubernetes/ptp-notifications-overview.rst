@@ -103,7 +103,11 @@ probe, if required. You can edit the Sidecar values in the deployment
 manifest to include these parameters.
 
 .. note::
+    
     Port and timeout values can be configured to meet user preferences.
+    The ``periodSeconds`` and ``timeoutSeconds`` values can be adjusted based
+    on system performance. A shorter value places more resource demand on the
+    Sidecar pod, so longer values can improve pod stability.
 
 .. code-block:: none
 
@@ -116,16 +120,14 @@ manifest to include these parameters.
             livenessProbe:
               exec:
                 command:
-                - timeout
-                - "2"
                 - curl
                 - http://127.0.0.1:8080/health
               failureThreshold: 3
-              periodSeconds: 3
+              initialDelaySeconds: 30
+              periodSeconds: 5
               successThreshold: 1
-              timeoutSeconds: 3
+              timeoutSeconds: 5
     EOF
-
 
 **Container images and API compatibility**
 
