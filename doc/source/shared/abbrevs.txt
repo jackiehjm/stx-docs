@@ -90,11 +90,14 @@
 .. |OSDs| replace:: :abbr:`OSDs (Object Storage Daemons)`
 .. |PAC| replace:: :abbr:`PAC (Programmable Acceleration Card)`
 .. |PCI| replace:: :abbr:`PCI (Peripheral Component Interconnect)`
-.. |PCIe| replace:: :abbr:`PCI (Peripheral Component Interconnect extended)`
+.. |PCIe| replace:: :abbr:`PCIe (Peripheral Component Interconnect extended)`
 .. |PDU| replace:: :abbr:`PDU (Packet Data Unit)`
 .. |PEM| replace:: :abbr:`PEM (Privacy Enhanced Mail)`
 .. |PF| replace:: :abbr:`PF (Physical Function)`
 .. |PHB| replace:: :abbr:`PHB (Per-Hop Behavior)`
+.. |PHC| replace:: :abbr:`PHC (PTP Hardware Clock)`
+.. |PHCs| replace:: :abbr:`PHCs (PTP Hardware Clocks)`
+.. |PMC| replace:: :abbr:`PMC (PTP Management Client)`
 .. |PMD| replace:: :abbr:`PMD (Pole Mode Driver)`
 .. |PQDN| replace:: :abbr:`PDQN (Partially Qualified Domain Name)`
 .. |PQDNs| replace:: :abbr:`PQDNs (Partially Qualified Domain Names)`
