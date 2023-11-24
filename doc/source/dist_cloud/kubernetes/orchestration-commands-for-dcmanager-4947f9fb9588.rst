@@ -5,6 +5,7 @@ Kubernetes Root CA Certificate Update for Distributed Cloud Orchestration
 =========================================================================
 
 .. warning::
+
     During the Kubernetes Root |CA| update, ``deployments``, ``daemonsets``, and
     ``statefulsets`` present in the cluster are rolling restarted. This impacts
     services provided by the application. It is highly recommended to schedule
@@ -15,13 +16,19 @@ Kubernetes Root |CA| certificate(s) for one or more subclouds in a Distributed
 Cloud Environment.
 
 The Kubernetes Root |CA| update Distributed Cloud Orchestration commands for
-DCManager use the keyword ``kube-rootca-update-strategy`` and provide the same
+DCManager uses the keyword ``kube-rootca-update-strategy`` and provides the same
 five subcommands as the other orchestrations: :command:`create, delete, apply,
-abort, show`.
+abort, and show` commands.
+
+.. note::
+
+    The DCmanager :command:`kube-rootca-update-strategy abort` command
+    completes the current updating stage before aborting, to prevent hosts from
+    being left in a state requiring manual intervention.
 
 DCManager Kubernetes Root |CA| update orchestration considers a subcloud to be
 'out of sync' that needs to be orchestrated based on the ``kube-rootca_sync_status``
-field, which is updated based on the presence of alarms in the subcloud
+field. This is updated based on the presence of alarms in the subcloud
 related to the Kubernetes Root |CA| certificate expiring soon (or expired)
 status.
 
