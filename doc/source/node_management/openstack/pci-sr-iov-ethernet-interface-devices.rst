@@ -2,30 +2,28 @@
 .. vic1596720744539
 .. _pci-sr-iov-ethernet-interface-devices:
 
-=====================================
-PCI SR-IOV Ethernet Interface Devices
-=====================================
+===============================================
+Configure PCI SR-IOV Ethernet Interface Devices
+===============================================
 
-A |SRIOV| ethernet interface is a physical |PCI| ethernet |NIC| that implements
-hardware-based virtualization mechanisms to expose multiple virtual network
-interfaces that can be used by one or more virtual machines simultaneously.
+An |SRIOV| Ethernet interface is a physical |PCI| Ethernet |NIC| that
+implements hardware-based virtualization mechanisms to expose multiple virtual
+network interfaces that can be used by one or more virtual machines
+simultaneously.
 
-The |PCI|-SIG Single Root I/O Virtualization and Sharing \(|SRIOV|\) specification
-defines a standardized mechanism to create individual virtual ethernet devices
-from a single physical ethernet interface. For each exposed virtual ethernet
-device, formally referred to as a Virtual Function \(VF\), the |SRIOV| interface
-provides separate management memory space, work queues, interrupts resources,
-and |DMA| streams, while utilizing common resources behind the host interface.
-Each VF therefore has direct access to the hardware and can be considered to be
-an independent ethernet interface.
+The |PCI|-SIG Single Root I/O Virtualization and Sharing \(|SRIOV|\)
+specification defines a standardized mechanism to create individual virtual
+Ethernet devices from a single physical Ethernet interface. For each exposed
+virtual Ethernet device, formally referred to as a |VF|, the
+|SRIOV| interface provides separate management memory space, work queues,
+interrupts resources, and |DMA| streams, while utilizing common resources
+behind the host interface. Each |VF| therefore has direct access to the hardware
+and can be considered to be an independent Ethernet interface.
 
-When compared with a |PCI| Passthrough ethernet interface, a |SRIOV| ethernet
+When compared with a |PCI| Passthrough Ethernet interface, a |SRIOV| Ethernet
 interface:
 
-
-.. _pci-sr-iov-ethernet-interface-devices-ul-tyq-ymg-rr:
-
--   Provides benefits similar to those of a |PCI| Passthrough ethernet interface,
+-   Provides benefits similar to those of a |PCI| Passthrough Ethernet interface,
     including lower latency packet processing.
 
 -   Scales up more easily in a virtualized environment by providing multiple
@@ -40,22 +38,139 @@ interface:
 -   Provides a similar configuration workflow when used on |prod-os|.
 
 
-The configuration of a |PCI| |SRIOV| ethernet interface is identical to
-:ref:`Configure PCI Passthrough ethernet Interfaces
-<configure-pci-passthrough-ethernet-interfaces>` except that
+The configuration of a |PCI| |SRIOV| Ethernet interface is almost identical to
+:ref:`Configure PCI Passthrough Ethernet Interfaces
+<configure-pci-passthrough-ethernet-interfaces>` and will be detailed bellow.
+
+.. rubric:: |context|
 
 
-.. _pci-sr-iov-ethernet-interface-devices-ul-ikt-nvz-qmb:
+Configure a |PCI| |SRIOV| on a host and request it for an
+instance at boot/create time.
 
--   you use **pci-sriov** instead of **pci-passthrough** when defining the
-    network type of an interface
+.. rubric:: |prereq|
 
--   the segmentation ID of the project network\(s\) used is more significant
-    here since this identifies the particular |VF| of the |SRIOV| interface
+-   To use |PCI| passthrough or |SRIOV| devices, you must have Intel VT-x and
+    Intel VT-d features enabled in the BIOS.
 
--   when creating the neutron port, you must use ``--vnic-typedirect``
+-   The exercise assumes that the underlying data network **group0-data0**
+    exists already, and that |VLAN| ID 10 is a valid segmentation ID assigned
+    to **project1**.
 
--   when creating a neutron port backed by an |SRIOV| |VF|, you must use
-    ``--vnic-type direct``
+.. rubric:: |proc|
+
+#.  Log in as the **admin** user to the |prod-p| |prod-hor-long|.
+
+#.  Lock the compute node you want to configure.
+
+#.  Configure the Ethernet interface to be used as a |PCI| passthrough
+    interface. You can do this using Horizon or the CLI.
+
+    -   Using Horison:
+
+        #.  Select **Admin** \> **Platform** \> **Host Inventory** from the
+            left-hand pane.
+
+        #.  Select the **Hosts** tab.
+
+        #.  Click the name of the compute host.
+
+        #.  Select the **Interfaces** tab.
+
+        #.  Click the **Edit Interface** button associated with the interface
+            you want to configure.
+
+            The Edit Interface dialog appears.
+
+            .. image:: /node_management/figures/ptj1538163621290.png
+
+        #.  Select **pci-sriov**, from the **Interface Class** drop-down, and
+            then select the data network to attach the interface.
+
+        #.  (Optional) You may also need to change the |MTU|.
+
+    -   Using the CLI:
+
+        Assign the ``pci-sriov`` class to the interface.
+
+        .. code-block:: none
+
+            ~(keystone_admin)$ system host-if-modify -c pci-sriov compute-0 enp0s3
+            ~(keystone_admin)$ system interface-datanetwork-assign compute-0 <enp0s3_interface_uuid> <group0_data0_data_network_uuid>
+
+#.  Create the ``net0`` project network.
+
+    Log in as the **admin** user to the |os-prod-hor-long|.
+
+    Select **Admin** \> **Network** \> **Networks**, select the **Networks**
+    tab, and then click **Create Network**. Fill in the **Create Network**
+    dialog box as illustrated below. You must ensure that:
+
+    -   **project1** has access to the project network, either assigning it as
+        the owner, as in the illustration \(using **Project**\), or by enabling
+        the shared flag.
+
+    -   The segmentation ID is set to 10.
 
 
+    .. image:: /node_management/figures/bek1516655307871.png
+
+    The segmentation ID of the project network\(s\) used is more significant
+    here since this identifies the particular |VF| of the |SRIOV| interface.
+
+    Click the **Next** button to proceed to the **Subnet** tab.
+
+    Click the **Next** button to proceed to the **Subnet Details** tab.
+
+#.  Configure the access switch. Refer to your |OEM| documentation for more
+    details.
+
+    Log in as the **admin** user to the |prod-p| |prod-hor-long|.
+
+    Configure the physical port on the access switch used to connect to
+    Ethernet interface ``enp0s3`` as an access port with default |VLAN| ID of 10.
+    Traffic across the connection is therefore untagged, and effectively
+    integrated into the targeted project network.
+
+    You can also use a trunk port on the access switch so that it handles
+    tagged packets as well. However, this opens the possibility for guest
+    applications to join other project networks using tagged packets with
+    different |VLAN| IDs, which might compromise the security of the system.
+    See |os-intro-doc|: :ref:`L2 Access Switches
+    <network-planning-l2-access-switches>` for other details regarding the
+    configuration of the access switch.
+
+#.  Unlock the compute node.
+
+#.  Create a neutron port with a |VNIC| of type ``direct-physical``.
+
+    Set up the environment and determine the correct network |UUID| to use with
+    the port.
+
+    .. code-block:: none
+
+        ~(keystone_admin)$ source /etc/platform/openrc
+        ~(keystone_admin)$ OS_AUTH_URL=http://keystone.openstack.svc.cluster.local/v3
+        ~(keystone_admin)$ openstack network list | grep net0
+        ~(keystone_admin)$ openstack port create --network <uuid_of_net0> --vnic-type direct <port_name>
+
+    You have now created a port to be used when launching the server in the
+    next step.
+
+#.  Launch the virtual machine specifying the |UUID| of the port previously
+    created.
+
+    .. note::
+
+        You will need to source to the same project selected in the
+        :ref:`Create Network net0 <create-the-net0-project-network>` step.
+
+    Specify the port uuid created.
+
+    .. code-block:: none
+
+        ~(keystone_admin)$ openstack server create --flavor <flavor_name> --image <image_name> --nic port-id=<port_uuid> <name>
+
+    For more information, see the Neutron documentation at:
+    `https://docs.openstack.org/neutron/train/admin/config-sriov.html
+    <https://docs.openstack.org/neutron/train/admin/config-sriov.html>`__.

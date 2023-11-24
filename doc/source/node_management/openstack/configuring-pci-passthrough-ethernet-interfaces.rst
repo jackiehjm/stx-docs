@@ -13,66 +13,105 @@ considerations.
 
 .. rubric:: |context|
 
-You can specify interfaces when you launch an instance.
+
+Configure a |PCI| Passthrough Ethernet Interface on a host and request it for an
+instance at boot/create time.
 
 .. rubric:: |prereq|
 
-.. note::
-
-    To use |PCI| passthrough or |SRIOV| devices, you must have Intel VT-x and
+-   To use |PCI| passthrough or |SRIOV| devices, you must have Intel VT-x and
     Intel VT-d features enabled in the BIOS.
 
-The exercise assumes that the underlying data network **group0-data0** exists
-already, and that |VLAN| ID 10 is a valid segmentation ID assigned to
-**project1**.
+-   The exercise assumes that the underlying data network **group0-data0**
+    exists already, and that |VLAN| ID 10 is a valid segmentation ID assigned
+    to **project1**.
 
 .. rubric:: |proc|
 
-#.  Log in as the **admin** user to the |os-prod-hor| interface.
+#.  Log in as the **admin** user to the |prod-p| |prod-hor-long|.
 
 #.  Lock the compute node you want to configure.
 
-#.  Configure the Ethernet interface to be used as a PCI passthrough interface.
+#.  Configure the Ethernet interface to be used as a |PCI| passthrough
+    interface. You can do this using Horizon or the CLI.
+
+    -   Using Horison:
+
+        #.  Select **Admin** \> **Platform** \> **Host Inventory** from the
+            left-hand pane.
+
+        #.  Select the **Hosts** tab.
+
+        #.  Click the name of the compute host.
+
+        #.  Select the **Interfaces** tab.
+
+        #.  Click the **Edit Interface** button associated with the interface
+            you want to configure.
 
 
-    #.  Select **Admin** \> **Platform** \> **Host Inventory** from the left-hand pane.
+            The Edit Interface dialog appears.
 
-    #.  Select the **Hosts** tab.
+            .. image:: /node_management/figures/ptj1538163621289.png
 
-    #.  Click the name of the compute host.
+        #.  Select **pci-passthrough**, from the **Interface Class** drop-down,
+            and then select the data network to attach the interface.
 
-    #.  Select the **Interfaces** tab.
+        #.  (Optional) You may also need to change the |MTU|.
 
-    #.  Click the **Edit Interface** button associated with the interface you
-        want to configure.
+    -   Using the CLI:
 
+        Assign the ``pci-sriov`` class to the interface.
 
-    The Edit Interface dialog appears.
+        .. code-block:: none
 
-    .. image:: /node_management/figures/ptj1538163621289.png
-
-
-
-    Select **pci-passthrough**, from the **Interface Class** drop-down, and
-    then select the data network to attach the interface.
-
-    You may also need to change the |MTU|.
-
-    The interface can also be configured from the |CLI| as illustrated below:
-
-    .. code-block:: none
-
-        ~(keystone_admin)$ system host-if-modify -c pci-passthrough compute-0 enp0s3
-        ~(keystone_admin)$ system interface-datanetwork-assign compute-0 <enp0s3_interface_uuid> <group0_data0_data_network_uuid>
-
-#.  Create the **net0** project network
-
-    Select **Admin** \> **Network** \> **Networks**, select the Networks tab, and then click **Create Network**. Fill in the Create Network dialog box as illustrated below. You must ensure that:
+            ~(keystone_admin)$ system host-if-modify -c pci-passthrough compute-0 enp0s3
+            ~(keystone_admin)$ system interface-datanetwork-assign compute-0 <enp0s3_interface_uuid> <group0_data0_data_network_uuid>
 
 
-    -   **project1** has access to the project network, either assigning it as
-        the owner, as in the illustration \(using **Project**\), or by enabling
-        the shared flag.
+#.  Check if the Ethernet interface supports |SRIOV|.
+
+
+    #.  Check the host port associated with the configured |PCI|-passthrough interface.
+
+        .. code-block:: none
+
+            ~(keystone_admin)$ system host-if-list <host-name> | grep pci-passthrough
+
+    #.  Review the value of ``sriov_totalvfs`` on the target port.
+
+        If the value is ``None``, the Ethernet interface does not support
+        |SRIOV|. Otherwise, it does.
+
+        .. code-block:: none
+
+            ~(keystone_admin)$ system host-port-show <host-name> <port-name> | grep sriov_totalvfs
+
+
+    .. note::
+
+        For Ethernet interfaces without |SRIOV| support, there is a known limitation
+        reported `here <https://bugs.launchpad.net/starlingx/+bug/1836682>`__.
+        This limitation is overcome with a specific step later on this procedure.
+
+    .. _create-the-net0-project-network:
+
+#.  Create the ``net0`` project network for Ethernet interfaces that support
+    |SRIOV|.
+
+    .. warning::
+
+        If the Ethernet interface does not support |SRIOV|, **skip** this step.
+
+    Log in as the **admin** user to the |os-prod-hor-long|.
+
+    Select **Admin** \> **Network** \> **Networks**, select the Networks tab,
+    and then click **Create Network**. Fill in the Create Network dialog box as
+    illustrated below. You must ensure that:
+
+    -   **project1** has access to the project network. Either by assigning it
+        as the owner, as in the illustration \(using **Project**\), or by
+        enabling the shared flag.
 
     -   The segmentation ID is set to 10.
 
@@ -80,18 +119,19 @@ already, and that |VLAN| ID 10 is a valid segmentation ID assigned to
     .. image:: /node_management/figures/bek1516655307871.png
 
 
+    Click the **Next** button to proceed to the **Subnet** tab.
 
-    Click the **Next** button to proceed to the Subnet tab.
-
-    Click the **Next** button to proceed to the Subnet Details tab.
+    Click the **Next** button to proceed to the **Subnet Details** tab.
 
 #.  Configure the access switch. Refer to the OEM documentation to configure
     the access switch.
 
+    Log in as the **admin** user to the |prod-p| |prod-hor-long|.
+
     Configure the physical port on the access switch used to connect to
-    Ethernet interface **enp0s3** as an access port with default |VLAN| ID of 10.
-    Traffic across the connection is therefore untagged, and effectively
-    integrated into the targeted project network.
+    Ethernet interface ``enp0s3`` to be an access port with the default |VLAN|
+    ID of 10. Traffic across the connection is therefore untagged, and
+    effectively integrated into the targeted project network.
 
     You can also use a trunk port on the access switch so that it handles
     tagged packets as well. However, this opens the possibility for guest
@@ -103,10 +143,14 @@ already, and that |VLAN| ID 10 is a valid segmentation ID assigned to
 
 #.  Unlock the compute node.
 
-#.  Create a neutron port with a |VNIC| type, direct-physical.
+#.  Create a neutron port with a |VNIC| of type ``direct-physical`` for
+    Ethernet interfaces that support |SRIOV|.
 
-    The neutron port can also be created from the |CLI|, using the following
-    command. First, you must set up the environment and determine the correct
+    .. warning::
+
+        If the Ethernet interface does not support |SRIOV|, **skip** this step.
+
+    First, you must set up the environment and determine the correct
     network |UUID| to use with the port.
 
     .. code-block:: none
@@ -119,16 +163,49 @@ already, and that |VLAN| ID 10 is a valid segmentation ID assigned to
     You have now created a port to be used when launching the server in the
     next step.
 
-#.  Launch the virtual machine, specifying the port uuid created in *Step 7*.
+#.  Complete the following Nova configuration, for Ethernet interfaces that do
+    not support |SRIOV|.
+
+    .. warning::
+
+        If the Ethernet interface supports |SRIOV|, **skip** this step.
+
+    #.  Get the Ethernet interface ``vendor_id`` and ``product_id``:
+
+        .. code-block:: none
+
+              ~(keystone_admin)$ source /etc/platform/openrc
+            ~(keystone_admin)$ system host-port-show <host-name> <port-name> | grep -E '(pvendor |pdevice )'
+
+    #.  Use the retrieved IDs to create a |PCI| alias with
+        ``"device_type":"type-PCI"``, as peer :ref:`Configure a PCI Alias in
+        Nova <configuring-a-pci-alias-in-nova>`.
+
+    #.  Configure a flavor with the extra spec key ``pci_passthrough:alias``
+        pointing to the previously created |PCI| alias, as peer :ref:`Configure
+        a Flavor to Use a Generic PCI Device
+        <configuring-a-flavor-to-use-a-generic-pci-device>`
+
+#.  Launch the virtual machine
 
     .. note::
 
-        You will need to source to the same project selected in the Create
-        Network 'net0' in *step 4*.
+        You will need to source to the same project selected in the :ref:`Create
+        Network net0 <create-the-net0-project-network>` step.
 
-    .. code-block:: none
+    - For Ethernet interfaces with |SRIOV| support: specify the port uuid
+      created.
 
-        ~(keystone_admin)$ openstack server create --flavor <flavor_name> --image <image_name> --nic port-id=<port_uuid> <name>
+      .. code-block:: none
+
+          ~(keystone_admin)$ openstack server create --flavor <flavor_name> --image <image_name> --nic port-id=<port_uuid> <name>
+
+    - For Ethernet interfaces without |SRIOV| support: specify the created
+      flavor to use the |PCI| device.
+
+      .. code-block:: none
+
+          ~(keystone_admin)$ openstack server create --flavor <pci_flavor_name> --image <image_name>
 
     For more information, see the Neutron documentation at:
     `https://docs.openstack.org/neutron/train/admin/config-sriov.html
