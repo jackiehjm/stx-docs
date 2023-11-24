@@ -43,6 +43,7 @@ For more information, refer to the following:
    the-sysadmin-account
    local-ldap-linux-user-accounts
    create-ldap-linux-accounts
+   delete-ldap-linux-accounts-7de0782fbafd
    remote-access-for-linux-accounts
    password-recovery-for-linux-user-accounts
    estabilish-credentials-for-linux-user-accounts
