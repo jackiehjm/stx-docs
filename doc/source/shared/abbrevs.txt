@@ -134,6 +134,7 @@
 .. |SWACT| replace:: :abbr:`SWACT (SWitch ACTivity)`
 .. |TCP| replace:: :abbr:`TCP (Transition Control Protocol)`
 .. |TFTP| replace:: :abbr:`TFTP (Trivial File Transfer Protocol)`
+.. |T-GM| replace:: :abbr:`T-GM (Telecom Grand Primary)`
 .. |TLS| replace:: :abbr:`TLS (Transport Layer Security)`
 .. |ToR| replace:: :abbr:`ToR (Top-of-Rack)`
 .. |TPM| replace:: :abbr:`TPM (Trusted Platform Module)`
@@ -160,7 +161,8 @@
 .. |VPC| replace:: :abbr:`VPC (Virtual Port Channel)`
 .. |vRAN| replace:: :abbr:`vRAN (virtualized Radio Access Network)`
 .. |VRF| replace:: :abbr:`VRF (Virtual Routing and Forwarding)`
-.. |VTEP| replace:: abbr:`VTEP (Virtual Tunnel End Point)`
+.. |VRFs| replace:: :abbr:`VRFs (Virtual Routing and Forwarding)`
+.. |VTEP| replace:: :abbr:`VTEP (Virtual Tunnel End Point)`
 .. |VXLAN| replace:: :abbr:`VXLAN (Virtual eXtensible Local Area Network)`
 .. |VXLANs| replace:: :abbr:`VXLANs (Virtual eXtensible Local Area Networks)`
 .. |WAD| replace:: :abbr:`WAD (Windows Active Directory)`
