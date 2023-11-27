@@ -39,7 +39,7 @@
 .. |CVE| replace:: :abbr:`CVE (Common Vulnerabilities and Exposures)`
 .. |CVSS| replace:: :abbr:`CVSS (Common Vulnerability Scoring System)`
 .. |DAD| replace:: :abbr:`DAD (Duplicate Address Detection)`
-.. |DC| replace:: |prod-dc|
+.. |DC| replace:: :abbr:`DC (Distributed Cloud)`
 .. |DOR| replace:: :abbr:`DOR (Dead Office Recovery)`
 .. |DHCP| replace:: :abbr:`DHCP (Dynamic Host Configuration Protocol)`
 .. |DMA| replace:: :abbr:`DMA (Direct Memory Access)`
@@ -174,7 +174,7 @@
 .. |TBF| replace:: :abbr:`TBF (Token Bucket Filter)`
 .. |TCP| replace:: :abbr:`TCP (Transition Control Protocol)`
 .. |TFTP| replace:: :abbr:`TFTP (Trivial File Transfer Protocol)`
-.. |T-GM| replace:: :abbr:`T-GM (Telecom Grand Master)`
+.. |T-GM| replace:: :abbr:`T-GM (Telecom Grand Primary)`
 .. |TLS| replace:: :abbr:`TLS (Transport Layer Security)`
 .. |ToR| replace:: :abbr:`ToR (Top-of-Rack)`
 .. |TPM| replace:: :abbr:`TPM (Trusted Platform Module)`
@@ -203,10 +203,9 @@
 .. |vRAN| replace:: :abbr:`vRAN (virtualized Radio Access Network)`
 .. |VRF| replace:: :abbr:`VRF (Virtual Routing and Forwarding)`
 .. |VRFs| replace:: :abbr:`VRFs (Virtual Routing and Forwarding)`
-.. |VTEP| replace:: abbr:`VTEP (Virtual Tunnel End Point)`
+.. |VTEP| replace:: :abbr:`VTEP (Virtual Tunnel End Point)`
 .. |VXLAN| replace:: :abbr:`VXLAN (Virtual eXtensible Local Area Network)`
 .. |VXLANs| replace:: :abbr:`VXLANs (Virtual eXtensible Local Area Networks)`
 .. |WAD| replace:: :abbr:`WAD (Windows Active Directory)`
 .. |XML| replace:: :abbr:`XML (eXtensible Markup Language)`
 .. |YAML| replace:: :abbr:`YAML (YAML Ain't Markup Language)`
-
