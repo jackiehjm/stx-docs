@@ -120,7 +120,7 @@ This example requires that:
                 imagePullPolicy: Always
                 ports:
                 - containerPort: 8443
-                protocol: TCP
+                  protocol: TCP
                 volumeMounts:
                 - name: mycert
                   mountPath: "/etc/mycert"  # the files tls.crt, tls.key and ca.crt will be under /etc/mycert/ in container
