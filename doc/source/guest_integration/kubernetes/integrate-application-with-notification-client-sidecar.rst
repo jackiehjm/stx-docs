@@ -109,14 +109,13 @@ configured to make API calls to the notificationclient-base container.
                livenessProbe:
                exec:
                  command:
-                 - timeout
-                 - "2"
                  - curl
                  - http://127.0.0.1:8080/health
                failureThreshold: 3
-               periodSeconds: 3
+               initialDelaySeconds: 30
+               periodSeconds: 5
                successThreshold: 1
-               timeoutSeconds: 3
+               timeoutSeconds: 5
             env:
               - name: THIS_NODE_NAME
                 valueFrom:
