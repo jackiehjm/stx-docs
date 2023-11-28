@@ -11,6 +11,9 @@ You can perform a system restore (controllers, workers, including or excluding
 storage nodes) of a |prod| cluster from a previous system backup and bring it
 back to the operational state it was when the backup procedure took place.
 
+There are two restore modes- optimized restore and legacy restore. Optmized restore
+must be used on |AIO-SX| and legacy restore must be used on systems that are not |AIO-SX|.
+
 .. rubric:: |context|
 
 Kubernetes configuration will be restored and pods that are started from
@@ -130,11 +133,12 @@ conditions are in place:
 
 #.  Install network connectivity required for the subcloud.
 
-#.  Any patches that were present at the time of the backup will need to be
-    manually applied. This may include doing a reboot if required.
-    See :ref:`Install Kubernetes Platform on All-in-one Simplex <aio_simplex_install_kubernetes_r7>`;
-    ``Install Software on Controller-0`` for steps on how to install patches
-    using the :command:`sw-patch install-local` command.
+#.  Ensure that the system is at the same patch level as it was when the backup
+    was taken. On the |AIO-SX| systems, you must manually reinstall any
+    previous patches. This may include doing a reboot if required.
+ 
+    For steps on how to install patches using the :command:`sw-patch install-local` command, see :ref:`aio_simplex_install_kubernetes_r7`;
+    ``Install Software on Controller-0``.
 
     After the reboot, you can verify that the updates were applied.
 
@@ -143,6 +147,12 @@ conditions are in place:
        .. include:: /_includes/restore-platform-system-data-and-storage-b92b8bdaf16d.rest
            :start-after: sw-patch-query-begin
            :end-before: sw-patch-query-end
+
+    .. note::
+
+        On the systems that are not |AIO-SX|, you can skip this step if
+        ``skip_patching=true`` is not used. Patches are automatically
+        reinstalled from the backup by default.
 
 #.  Ensure that the backup files are available on the controller. Run both
     Ansible Restore playbooks, restore_platform.yml and restore_user_images.yml.
@@ -156,15 +166,23 @@ conditions are in place:
 
         The backup files contain the system data and updates.
 
-        The restore operation will pull images from the Upstream registry, they
-        are not part of the backup.
+        The restore operation will pull missing images from the upstream registries.
 
 
 #.  Restore the local registry using the file restore_user_images.yml.
 
+    Example:
+
+    .. code-block:: none
+
+        ~(keystone_admin)]$ ansible-playbook /usr/share/ansible/stx-ansible/playbooks/restore_user_images.yml -e "initial_backup_dir=/home/sysadmin backup_filename=localhost_user_images_backup_2023_07_15_21_24_22.tgz ansible_become_pass=St8rlingX*"
+
     .. note::
 
-        This step applies only if it was created during the backup operation.
+        - This step applies only if it was created during the backup operation.
+
+        - The ``user_images_backup*.tgz`` file is created during backup only if
+          ``backup_user_images`` is true.
 
     This must be done before unlocking controller-0.
 
@@ -230,7 +248,7 @@ conditions are in place:
 
        The software is installed on the host, and then the host is
        rebooted. Wait for the host to be reported as **locked**, **disabled**,
-       and **offline**.
+       and **online**.
 
    #.  Unlock controller-1.
 
