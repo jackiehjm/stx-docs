@@ -136,3 +136,12 @@
 .. Initial version for k8s multi-ver upgrade orch strategy
 
 .. |k8s-multi-ver-orch-strategy-release| replace:: release 8.0
+
+.. Paired release values
+.. Used to expand to different values in different contexts, i.e. stx vs partner
+
+.. |v_master| replace:: r9
+.. |v_r8| replace:: r8
+.. |v_r7| replace:: r7
+.. |v_r6| replace:: r6
+.. |v_r5| replace:: r5
