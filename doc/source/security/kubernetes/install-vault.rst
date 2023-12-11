@@ -20,7 +20,7 @@ To install Vault, use the following procedure:
 
 #.  Locate the Vault tarball in ``/usr/local/share/applications/helm``.
 
-    For example, ``/usr/local/share/applications/helm/vault-*.tgz``.
+    For example, ``/usr/local/share/applications/helm/vault-<version>.tgz``.
 
 #.  Upload Vault, using the following command:
 
