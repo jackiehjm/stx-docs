@@ -169,21 +169,25 @@ Bootstrap system on controller-0
 
          docker_registries:
            quay.io:
-              url: myprivateregistry.abc.com:9001/quay.io
+             url: myprivateregistry.abc.com:9001/quay.io
            docker.elastic.co:
-              url: myprivateregistry.abc.com:9001/docker.elastic.co
+             url: myprivateregistry.abc.com:9001/docker.elastic.co
            gcr.io:
-              url: myprivateregistry.abc.com:9001/gcr.io
+             url: myprivateregistry.abc.com:9001/gcr.io
            ghcr.io:
-              url: myprivateregistry.abc.com:9001/ghcr.io
+             url: myprivateregistry.abc.com:9001/ghcr.io
            k8s.gcr.io:
-              url: myprivateregistry.abc.com:9001/k8s.gcr.io
+             url: myprivateregistry.abc.com:9001/k8s.gcr.io
            docker.io:
-              url: myprivateregistry.abc.com:9001/docker.io
+             url: myprivateregistry.abc.com:9001/docker.io
+           registry.k8s.io:
+             url: myprivateregistry.abc.com:9001/registry.k8s.io
+           icr.io:
+             url: myprivateregistry.abc.com:9001/icr.io
            defaults:
-              type: docker
-              username: <your_myprivateregistry.abc.com_username>
-              password: <your_myprivateregistry.abc.com_password>
+             type: docker
+             username: <your_myprivateregistry.abc.com_username>
+             password: <your_myprivateregistry.abc.com_password>
 
          # Add the CA Certificate that signed myprivateregistry.abc.com’s
          # certificate as a Trusted CA
