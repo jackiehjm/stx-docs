@@ -9,8 +9,10 @@ OpenStack Verified Commercial Hardware
 Verified and approved hardware components for use with |prod-os| are listed
 here.
 
-For more information see `Self-Validated and Certified Servers
-<https://www.windriver.com/studio/operator/self-validated-and-certified-hosts>`__.
+For more information on the verified and certified hardware components for
+hardware platforms and server configurations validated for |prod-os|,
+please refer to
+https://www.windriver.com/studio/operator/self-validated-and-certified-hosts.
 
 .. _installation-and-resource-planning-verified-commercial-hardware-verified-components:
 
