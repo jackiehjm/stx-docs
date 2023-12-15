@@ -191,10 +191,9 @@
 .. |vRAN| replace:: :abbr:`vRAN (virtualized Radio Access Network)`
 .. |VRF| replace:: :abbr:`VRF (Virtual Routing and Forwarding)`
 .. |VRFs| replace:: :abbr:`VRFs (Virtual Routing and Forwarding)`
-.. |VTEP| replace:: abbr:`VTEP (Virtual Tunnel End Point)`
+.. |VTEP| replace:: :abbr:`VTEP (Virtual Tunnel End Point)`
 .. |VXLAN| replace:: :abbr:`VXLAN (Virtual eXtensible Local Area Network)`
 .. |VXLANs| replace:: :abbr:`VXLANs (Virtual eXtensible Local Area Networks)`
 .. |WAD| replace:: :abbr:`WAD (Windows Active Directory)`
 .. |XML| replace:: :abbr:`XML (eXtensible Markup Language)`
 .. |YAML| replace:: :abbr:`YAML (YAML Ain't Markup Language)`
-
